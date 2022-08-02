@@ -1,6 +1,4 @@
-import { chakra } from "@chakra-ui/react"
 import { SVGAttributes } from "react"
-import { HTMLChakraProps } from "@chakra-ui/system"
 
 type Props = SVGAttributes<SVGSVGElement>
 
