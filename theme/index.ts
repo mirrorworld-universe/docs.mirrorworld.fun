@@ -14,7 +14,8 @@ const theme = {
   },
   colors: {
     ...foundations.colors,
-    dark: "#101520",
+    // dark: "#101520",
+    dark: "#111314",
     mirror: {
       base: "#dcff1c",
       50: "#faffdb",

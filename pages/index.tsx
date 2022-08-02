@@ -2,7 +2,6 @@ import Icon from "@chakra-ui/icon"
 import {
   Box,
   Center,
-  Circle,
   Flex,
   HStack,
   List,
@@ -105,7 +104,7 @@ export default function Home() {
           py={{ base: "10", md: "20" }}
         >
           <chakra.h2 textStyle="display.xl" mb="8" maxW="24ch">
-            Simple & effective APIs for Web3 Mobile and Web Apps
+            Powerful SDKs & APIs for Web3 Mobile and Web Apps
           </chakra.h2>
 
           <Link href="/overview/introduction" passHref>
