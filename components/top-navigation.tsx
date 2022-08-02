@@ -39,6 +39,7 @@ export function TopNavigation() {
             fontSize="xs"
             letterSpacing="wider"
             fontWeight="semibold"
+            rounded="full"
           >
             BETA
           </Badge>

@@ -94,7 +94,7 @@ export default function Home() {
 
       <Box
         as="section"
-        bg={{ base: "green.100", md: "unset" }}
+        bg={{ base: "mirror.400", md: "unset" }}
         layerStyle="contain"
         my={{ base: "20", md: "32" }}
       >

@@ -55,7 +55,7 @@ export function MobileNavigation() {
               {...api.contentProps}
               position="fixed"
               inset="0"
-              bg="white"
+              bg="dark"
               zIndex="modal"
               pb="10"
               overflowY="auto"
@@ -78,7 +78,7 @@ export function MobileNavigation() {
                 </Button>
               </Flex>
               <Box px="8">
-                <Spacer height="10" bg="white" />
+                <Spacer height="10" bg="dark" />
                 <Box mb="8">
                   <FrameworkSelect />
                 </Box>
