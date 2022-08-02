@@ -1,0 +1,25 @@
+```jsx
+import * as popover from "@zag-js/popover"
+import { useMachine, normalizeProps } from "@zag-js/react"
+import { Portal } from "@reach/portal"
+
+export function Popover() {
+  const [state, send] = useMachine(popover.machine({ id: "1" }))
+  
+  const api = popover.connect(state, send, normalizeProps)
+
+  return (
+    <div>
+      <button {...api.triggerProps}>Click me</button>
+      <div {...api.positionerProps}>
+        <div {...api.contentProps}>
+          <div {...api.titleProps}>Presenters</div>
+          <div {...api.descriptionProps}>Description</div>
+          <button>Action Button</button>
+          <button {...api.closeButtonProps}>X</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
