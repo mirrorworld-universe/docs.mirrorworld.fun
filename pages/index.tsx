@@ -9,6 +9,7 @@ import {
   ListItem,
   Stack,
   Text,
+  Link as CLink,
 } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { Button } from "components/button"
@@ -89,12 +90,20 @@ export default function Home() {
                 </HStack>
               </Button>
             </Link>
-            <Button variant="outline" px={6}>
-              <HStack spacing="2">
-                <span>Start buidling</span>
-                <Icon as={ArrowRightIcon} />
-              </HStack>
-            </Button>
+            <CLink
+              isExternal
+              href="https://app.mirrorworld.fun"
+              outline="none"
+              rounded="4px"
+              _hover={{ textDecoration: "none" }}
+            >
+              <Button variant="outline" px={6}>
+                <HStack spacing="2">
+                  <span>Start buidling</span>
+                  <Icon as={ArrowRightIcon} />
+                </HStack>
+              </Button>
+            </CLink>
           </Stack>
         </Stack>
       </Box>
