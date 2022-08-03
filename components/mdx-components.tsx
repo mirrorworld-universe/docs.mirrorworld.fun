@@ -17,6 +17,7 @@ import { CopyButton } from "./copy-button"
 import { useFramework } from "./framework"
 import { Showcase } from "./showcase"
 import NextImage from "next/image"
+import { ChainSupportTable } from "./support-table"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -224,6 +225,9 @@ const components: Record<string, FC<Record<string, any>>> = {
         <NextImage src={src} alt="" width="1456px" height="812px" />
       </Box>
     )
+  },
+  ChainSupportTable: (props) => {
+    return <ChainSupportTable {...props} />
   },
 }
 

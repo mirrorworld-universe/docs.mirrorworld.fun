@@ -27,10 +27,9 @@ import { TopNavigation } from "components/top-navigation"
 import { NextSeo } from "next-seo"
 import Link from "next/link"
 import siteConfig from "site.config"
-import { FiBookOpen, FiCheckCircle, FiUsers } from "react-icons/fi"
+import { FiBookOpen, FiUsers } from "react-icons/fi"
 import { AiOutlineShop } from "react-icons/ai"
 import { BiBadgeCheck } from "react-icons/bi"
-import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
 import { ChainSupportTable } from "../components/support-table"
 
 type FeatureItemProps = {
@@ -38,59 +37,6 @@ type FeatureItemProps = {
   icon: any
   children: string
 }
-
-export type Chain =
-  | "Solana"
-  | "Ethereum"
-  | "BNB Chain"
-  | "Polygon"
-  | "Aptos"
-  | "Sui"
-export type ChainSupportStatus = "In Development" | "Live"
-export interface SupportField {
-  chain: Chain
-  status: ChainSupportStatus
-  isOnMainnet: boolean
-  isOnTestnet: boolean
-  icon: any
-}
-const supportDataTable: SupportField[] = [
-  {
-    chain: "Solana",
-    status: "Live",
-    isOnMainnet: true,
-    isOnTestnet: true,
-    icon: SolanaIcon,
-  },
-  {
-    chain: "Ethereum",
-    status: "In Development",
-    isOnMainnet: true,
-    isOnTestnet: true,
-    icon: EthereumIcon,
-  },
-  {
-    chain: "BNB Chain",
-    status: "In Development",
-    isOnMainnet: true,
-    isOnTestnet: true,
-    icon: BNBChainIcon,
-  },
-  {
-    chain: "Aptos",
-    status: "In Development",
-    isOnMainnet: true,
-    isOnTestnet: true,
-    icon: AptosIcon,
-  },
-  {
-    chain: "Sui",
-    status: "In Development",
-    isOnMainnet: true,
-    isOnTestnet: true,
-    icon: SuiIcon,
-  },
-]
 
 function FeatureItem(props: FeatureItemProps) {
   const { title, children, icon } = props
@@ -121,11 +67,11 @@ export default function Home() {
             pt={{ base: "16", md: "24" }}
           >
             <chakra.h1 textStyle="display.2xl">
-              Buidl Rapidly & Effectively on Solana
+              Buidl Rapidly & Effectively on Web3
             </chakra.h1>
             <chakra.p className="has-highlight" textStyle="text.2xl" mt="6">
-              <mark>Cross-platform Solana SDKs and APIs.</mark> Zero-hassle
-              blockchain integration. For Mobile and the Web
+              <mark>Cross-chain SDKs and APIs.</mark> Zero-hassle blockchain
+              integration. For Mobile and the Web
             </chakra.p>
           </Box>
 
@@ -181,7 +127,7 @@ export default function Home() {
             mt="12"
           >
             <FeatureItem icon={FiUsers} title="Fast Web3 Authentication">
-              Easily onboard Mobile and Web users onto Solana using methods they
+              Easily onboard Mobile and Web users onto Web3 using methods they
               are familiar with. Social Authentication from Google, Discord,
               Twitter, and Apple Sign In.
             </FeatureItem>
@@ -189,7 +135,7 @@ export default function Home() {
               icon={AiOutlineShop}
               title="Powerful NFT Marketplace API"
             >
-              Deploy Solana Marketplaces. Query NFTs, NFT Transaction history
+              Deploy Web 3 Marketplaces. Query NFTs, NFT Transaction history
               easily. List, Buy and Transfer NFTs with a single line of code
               across, Mobile and Web.
             </FeatureItem>
