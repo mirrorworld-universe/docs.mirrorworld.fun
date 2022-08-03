@@ -15,7 +15,6 @@ import { ImMagicWand } from "react-icons/im"
 import { RiNpmjsFill } from "react-icons/ri"
 import { CopyButton } from "./copy-button"
 import { useFramework } from "./framework"
-import { Showcase } from "./showcase"
 import NextImage from "next/image"
 import { ChainSupportTable } from "./support-table"
 
@@ -55,7 +54,6 @@ export function ResourceLink({ href, icon, children }: ResourceLinkProps) {
 }
 
 const components: Record<string, FC<Record<string, any>>> = {
-  Showcase,
   Admonition(props) {
     return <div {...props} />
   },
