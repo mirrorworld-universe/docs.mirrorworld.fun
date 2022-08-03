@@ -4,6 +4,13 @@ import {
   allGuides,
   allSnippets,
   allChangelogs,
+  allAndroids,
+  allIOs,
+  allRusts,
+  allResources,
+  allWebs,
+  allNodes,
+  allUnity,
 } from "contentlayer/generated"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -58,6 +65,99 @@ export function getOverviewDoc(_slug: string | string[]) {
   return allOverviews.find(
     (post) => post.frontmatter.slug === `/overview/${slug}`,
   )
+}
+
+/* -----------------------------------------------------------------------------
+ * Android
+ * -----------------------------------------------------------------------------*/
+
+export function getAndroidPaths() {
+  return allAndroids.map((doc) => `/android/${doc.slug}`)
+}
+
+export function getAndroidDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allAndroids.find(
+    (post) => post.frontmatter.slug === `/android/${slug}`,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * iOS
+ * -----------------------------------------------------------------------------*/
+
+export function getIOSPaths() {
+  return allIOs.map((doc) => `/ios/${doc.slug}`)
+}
+
+export function getIOSDocs(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allIOs.find((post) => post.frontmatter.slug === `/ios/${slug}`)
+}
+
+/* -----------------------------------------------------------------------------
+ * Web
+ * -----------------------------------------------------------------------------*/
+
+export function getWebPaths() {
+  return allWebs.map((doc) => `/web/${doc.slug}`)
+}
+
+export function getWebDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allWebs.find((post) => post.frontmatter.slug === `/web/${slug}`)
+}
+
+/* -----------------------------------------------------------------------------
+ * Node
+ * -----------------------------------------------------------------------------*/
+
+export function getNodePaths() {
+  return allNodes.map((doc) => `/node/${doc.slug}`)
+}
+
+export function getNodeDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allNodes.find((post) => post.frontmatter.slug === `/node/${slug}`)
+}
+
+/* -----------------------------------------------------------------------------
+ * Rust
+ * -----------------------------------------------------------------------------*/
+
+export function getRustPaths() {
+  return allRusts.map((doc) => `/node/${doc.slug}`)
+}
+
+export function getRustDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allRusts.find((post) => post.frontmatter.slug === `/node/${slug}`)
+}
+
+/* -----------------------------------------------------------------------------
+ * Unity
+ * -----------------------------------------------------------------------------*/
+
+export function getUnityPaths() {
+  return allUnity.map((doc) => `/node/${doc.slug}`)
+}
+
+export function getUnityDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allUnity.find((post) => post.frontmatter.slug === `/node/${slug}`)
+}
+
+/* -----------------------------------------------------------------------------
+ * Resources
+ * -----------------------------------------------------------------------------*/
+
+export function getResourcesPaths() {
+  return allResources.map((doc) => `/node/${doc.slug}`)
+}
+
+export function getResourcesDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allNodes.find((post) => post.frontmatter.slug === `/node/${slug}`)
 }
 
 /* -----------------------------------------------------------------------------

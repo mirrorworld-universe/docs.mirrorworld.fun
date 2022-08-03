@@ -1,21 +1,24 @@
-import foundations from "@chakra-ui/theme/foundations"
 import { components } from "./components"
 import { globalStyles } from "./global-styles"
 import { layerStyles } from "./layer-styles"
 import { textStyles } from "./text-styles"
+import { extendTheme } from "@chakra-ui/react"
+import "focus-visible/dist/focus-visible"
+import { theme as proTheme } from "@chakra-ui/pro-theme"
 import "@fontsource/dm-sans"
 
 const theme = {
-  ...foundations,
   fonts: {
-    ...foundations.fonts,
     heading: "'DM Sans', sans-serif",
     body: "'DM Sans', sans-serif",
   },
+  shadows: {
+    "mirror-dark": `inset 0 4px 0 hsla(69,100%,55%,.3),inset 0 -4px 0 rgba(0,0,0,.25)!important;`,
+  },
   colors: {
-    ...foundations.colors,
     // dark: "#101520",
-    dark: "#111314",
+    // dark: "#111314",
+    dark: "#1b1f21",
     mirror: {
       base: "#dcff1c",
       50: "#faffdb",
@@ -43,5 +46,4 @@ const theme = {
 }
 
 type ColorMode = "light"
-
-export default theme
+export default extendTheme(proTheme, theme)

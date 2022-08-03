@@ -30,7 +30,7 @@ export const Footer = () => (
     >
       <Text dangerouslySetInnerHTML={{ __html: siteConfig.copyright }} />
       <Text>
-        <span>Made with ❤️</span> <span>by Mirror World, Inc.</span>
+        <span>Made with 🔥️</span> <span>by Mirror World, Inc.</span>
       </Text>
       <Stack mt={4} direction="row" spacing="12px" justify="center">
         {links.map((link) => (

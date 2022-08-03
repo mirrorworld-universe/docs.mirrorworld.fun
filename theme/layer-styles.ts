@@ -10,8 +10,8 @@ const blockquote: SystemStyleObject = {
   marginY: "5",
   paddingX: "4",
   paddingY: "3",
-  bg: "mirror.900",
-  borderWidth: "1px",
+  bg: "rgba(220, 255, 28, 0.2)",
+  color: "mirror.400",
   rounded: "4px",
 }
 

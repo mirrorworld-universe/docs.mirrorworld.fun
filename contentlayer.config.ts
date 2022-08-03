@@ -116,6 +116,104 @@ const Component = defineDocumentType(() => ({
   },
 }))
 
+const Android = defineDocumentType(() => ({
+  name: "Android",
+  filePathPattern: `android/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/android/[slug]`,
+    },
+  },
+}))
+
+const iOS = defineDocumentType(() => ({
+  name: "iOS",
+  filePathPattern: `ios/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/ios/[slug]`,
+    },
+  },
+}))
+
+const Web = defineDocumentType(() => ({
+  name: "Web",
+  filePathPattern: `web/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/web/[slug]`,
+    },
+  },
+}))
+
+const Node = defineDocumentType(() => ({
+  name: "Node",
+  filePathPattern: `node/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/node/[slug]`,
+    },
+  },
+}))
+
+const Rust = defineDocumentType(() => ({
+  name: "Rust",
+  filePathPattern: `rust/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/rust/[slug]`,
+    },
+  },
+}))
+
+const Unity = defineDocumentType(() => ({
+  name: "Unity",
+  filePathPattern: `unity/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/unity/[slug]`,
+    },
+  },
+}))
+
+const Resources = defineDocumentType(() => ({
+  name: "Resources",
+  filePathPattern: `resources/**/*.mdx`,
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/resources/[slug]`,
+    },
+  },
+}))
+
 const Snippet = defineDocumentType(() => ({
   name: "Snippet",
   filePathPattern: "snippets/**/*.mdx",
@@ -168,7 +266,20 @@ const Changelog = defineDocumentType(() => {
 
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
-  documentTypes: [Overview, Guide, Snippet, Component, Changelog],
+  documentTypes: [
+    Overview,
+    Guide,
+    Snippet,
+    Component,
+    Changelog,
+    Android,
+    iOS,
+    Rust,
+    Web,
+    Node,
+    Unity,
+    Resources,
+  ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
     rehypePlugins: [

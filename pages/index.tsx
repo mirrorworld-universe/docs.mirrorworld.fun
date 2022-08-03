@@ -14,21 +14,83 @@ import { chakra } from "@chakra-ui/system"
 import { Button } from "components/button"
 import { CodeArea } from "components/code-area"
 import { Footer } from "components/footer"
-import { ArrowRightIcon, CheckIcon, USDCIcon } from "components/icons"
+import {
+  AptosIcon,
+  ArrowRightIcon,
+  BNBChainIcon,
+  EthereumIcon,
+  SolanaIcon,
+  SuiIcon,
+  USDCIcon,
+} from "components/icons"
 import { TopNavigation } from "components/top-navigation"
 import { NextSeo } from "next-seo"
 import Link from "next/link"
-import { ElementType } from "react"
 import siteConfig from "site.config"
-import { FiBookOpen, FiUsers } from "react-icons/fi"
+import { FiBookOpen, FiCheckCircle, FiUsers } from "react-icons/fi"
 import { AiOutlineShop } from "react-icons/ai"
 import { BiBadgeCheck } from "react-icons/bi"
+import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react"
+import { ChainSupportTable } from "../components/support-table"
 
 type FeatureItemProps = {
   title: string
-  icon: ElementType
+  icon: any
   children: string
 }
+
+export type Chain =
+  | "Solana"
+  | "Ethereum"
+  | "BNB Chain"
+  | "Polygon"
+  | "Aptos"
+  | "Sui"
+export type ChainSupportStatus = "In Development" | "Live"
+export interface SupportField {
+  chain: Chain
+  status: ChainSupportStatus
+  isOnMainnet: boolean
+  isOnTestnet: boolean
+  icon: any
+}
+const supportDataTable: SupportField[] = [
+  {
+    chain: "Solana",
+    status: "Live",
+    isOnMainnet: true,
+    isOnTestnet: true,
+    icon: SolanaIcon,
+  },
+  {
+    chain: "Ethereum",
+    status: "In Development",
+    isOnMainnet: true,
+    isOnTestnet: true,
+    icon: EthereumIcon,
+  },
+  {
+    chain: "BNB Chain",
+    status: "In Development",
+    isOnMainnet: true,
+    isOnTestnet: true,
+    icon: BNBChainIcon,
+  },
+  {
+    chain: "Aptos",
+    status: "In Development",
+    isOnMainnet: true,
+    isOnTestnet: true,
+    icon: AptosIcon,
+  },
+  {
+    chain: "Sui",
+    status: "In Development",
+    isOnMainnet: true,
+    isOnTestnet: true,
+    icon: SuiIcon,
+  },
+]
 
 function FeatureItem(props: FeatureItemProps) {
   const { title, children, icon } = props
@@ -202,6 +264,25 @@ export default function Home() {
             </Box>
           </Center>
         </Flex>
+      </Box>
+
+      <Box as="section" my={{ base: "20", md: "32" }} layerStyle="contain">
+        <Flex
+          gap="64px"
+          direction={{ base: "column", xl: "row" }}
+          align={{ base: "flex-start", xl: "center" }}
+        >
+          <Box flex="1">
+            <chakra.h2 mb="8" maxW="24ch" textStyle="display.xl">
+              Cross-chain support.{" "}
+              <chakra.span color="mirror.400">Buidl Anywhere.</chakra.span>
+            </chakra.h2>
+            <chakra.p maxW="64ch" fontSize="lg">
+              Multiple-chain support for your application needs
+            </chakra.p>
+          </Box>
+        </Flex>
+        <ChainSupportTable />
       </Box>
       <Footer />
     </Box>
