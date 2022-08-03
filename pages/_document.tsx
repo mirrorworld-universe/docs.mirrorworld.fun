@@ -4,6 +4,16 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#dcff1c"
+        />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#1b1f21"
+        />
         <link rel="icon" type="image/png" href="/pwa/favicon.png" />
         <link
           rel="icon"
