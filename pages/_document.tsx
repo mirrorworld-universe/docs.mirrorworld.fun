@@ -143,14 +143,6 @@ export default function Document() {
           href="/pwa/apple-splash-1136-640.jpg"
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
         />
-        {process.env.NODE_ENV === "production" && (
-          <script
-            async
-            defer
-            data-domain="zagjs.com"
-            src="https://plausible.io/js/plausible.js"
-          />
-        )}
       </Head>
       <body>
         <Main />
