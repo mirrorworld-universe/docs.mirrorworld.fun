@@ -17,6 +17,7 @@ import {
   AptosIcon,
   BNBChainIcon,
   EthereumIcon,
+  PolygonIcon,
   SolanaIcon,
   SuiIcon,
 } from "./icons"
@@ -51,6 +52,13 @@ const supportDataTable: SupportField[] = [
     isOnMainnet: true,
     isOnTestnet: true,
     icon: EthereumIcon,
+  },
+  {
+    chain: "Polygon",
+    status: "In Development",
+    isOnMainnet: true,
+    isOnTestnet: true,
+    icon: PolygonIcon,
   },
   {
     chain: "BNB Chain",
