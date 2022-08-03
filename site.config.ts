@@ -1,5 +1,5 @@
 const baseConfig = {
-  repo: "https://github.com/mirrorworld-universe/mirrorworld-sdk-docs",
+  repo: "https://github.com/mirrorworld-universe/docs.mirrorworld.fun",
   title: "Mirror World - All of Crypto’s Potential In A Few Lines of Code.",
   description: "Highest conversion development infrastructure for Mobile dApps",
   url: "https://mirrorworld.fun",
@@ -7,7 +7,7 @@ const baseConfig = {
 
 const siteConfig = {
   ...baseConfig,
-  projectName: "mirrorworld-sdk-docs",
+  projectName: "docs.mirrorworld.fun",
   copyright: `Copyright &copy; ${new Date().getFullYear()}`,
   openCollective: {
     url: "",
@@ -18,7 +18,7 @@ const siteConfig = {
     twitter: "https://twitter.com/joinmirrorworld",
   },
   repo: {
-    url: "https://github.com/mirrorworld-universe/mirrorworld-sdk-docs",
+    url: "https://github.com/mirrorworld-universe/docs.mirrorworld.fun",
     editUrl: `${baseConfig.repo}/edit/main/data`,
     blobUrl: `${baseConfig.repo}/blob/main`,
   },
