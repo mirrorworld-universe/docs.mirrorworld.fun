@@ -39,12 +39,14 @@ export function MobileNavigation() {
     <>
       <Button
         display={{ base: "inline-flex", lg: "none" }}
+        {...api.triggerProps}
         size="sm"
         px="2"
-        {...api.triggerProps}
+        border={"none"}
+        shadow="none"
       >
         <HStack>
-          <HiMenu /> <span>Menu</span>
+          <HiMenu />
         </HStack>
       </Button>
 
@@ -70,10 +72,12 @@ export function MobileNavigation() {
                   ref={initialRef}
                   size="sm"
                   px="2"
+                  border={"none"}
+                  shadow="none"
                   {...api.closeButtonProps}
                 >
                   <HStack>
-                    <HiX /> <span>Close</span>
+                    <HiX />
                   </HStack>
                 </Button>
               </Flex>

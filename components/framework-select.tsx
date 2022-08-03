@@ -15,7 +15,7 @@ export function FrameworkSelect() {
         htmlFor="framework-select"
         fontSize="sm"
       >
-        Framework:{" "}
+        Language:{" "}
       </chakra.label>
       <chakra.select
         bg="transparent"

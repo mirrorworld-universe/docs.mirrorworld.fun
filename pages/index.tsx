@@ -96,8 +96,13 @@ export default function Home() {
               outline="none"
               rounded="4px"
               _hover={{ textDecoration: "none" }}
+              w={{ base: "full", sm: "unset" }}
             >
-              <Button variant="outline" px={6}>
+              <Button
+                variant="outline"
+                px={6}
+                w={{ base: "full", sm: "unset" }}
+              >
                 <HStack spacing="2">
                   <span>Start buidling</span>
                   <Icon as={ArrowRightIcon} />
