@@ -8,7 +8,7 @@ import {
 
 type ButtonProps = HTMLChakraProps<"button"> &
   ThemingProps<"Button"> & {
-    children: React.ReactNode
+    children?: React.ReactNode
   }
 
 export const Button = forwardRef<ButtonProps, "button">((props, ref) => {

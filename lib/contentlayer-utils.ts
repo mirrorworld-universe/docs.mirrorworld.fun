@@ -152,12 +152,12 @@ export function getUnityDoc(_slug: string | string[]) {
  * -----------------------------------------------------------------------------*/
 
 export function getResourcesPaths() {
-  return allResources.map((doc) => `/node/${doc.slug}`)
+  return allResources.map((doc) => `/resources/${doc.slug}`)
 }
 
 export function getResourcesDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allNodes.find((post) => post.frontmatter.slug === `/node/${slug}`)
+  return allResources.find((post) => post.frontmatter.slug === `/resources/${slug}`)
 }
 
 /* -----------------------------------------------------------------------------

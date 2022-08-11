@@ -137,6 +137,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       icon: HiOutlineViewGrid,
       id: "resources",
       items: [
+        { type: "doc", label: "Support", id: "support" },
         { type: "doc", label: "Tutorials", id: "tutorials" },
         { type: "doc", label: "Guides", id: "guides" },
       ],
