@@ -140,6 +140,7 @@ export const ResourceSupportTable = (props: BoxProps) => {
                         color="mirror.400"
                         className="css-fdexvs"
                         target="_blank"
+                        rel="noopener"
                         href={chain.How_to_submit}
                       >
                         {chain.How_to_submit}
