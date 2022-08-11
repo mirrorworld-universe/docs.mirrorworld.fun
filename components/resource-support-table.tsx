@@ -137,10 +137,10 @@ export const ResourceSupportTable = (props: BoxProps) => {
                   <Td border="none" py="8" bg="#1E1E1E" px={8} fontSize="lg">
                     {chain.type === "link" ? (
                       <a
+                        rel="noreferrer"
                         color="mirror.400"
                         className="css-fdexvs"
                         target="_blank"
-                        rel="noopener"
                         href={chain.How_to_submit}
                       >
                         {chain.How_to_submit}
