@@ -15,6 +15,7 @@ export const SupportButton = forwardRef((props, ref) => {
   const styles = useStyleConfig("Button", { variant, size })
   return (
     <chakra.button
+      _hover={{ background: "#efff9a" }}
       ref={ref}
       __css={styles}
       {...ownProps}
