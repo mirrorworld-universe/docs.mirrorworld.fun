@@ -39,13 +39,25 @@ export interface SupportField {
 }
 const supportDataTable: SupportField[] = [
   {
-    name: "Developer Community",
+    name: "Discord Developer Community",
     Platform: "Disocrd",
     How_to_submit: "https://discord.gg/7wFeftDwZA",
     type: "link",
   },
   {
-    name: "VIP support",
+    name: "Telegram Community Group",
+    Platform: "Telegram",
+    How_to_submit: "https://t.me/mirrorworld_sdk",
+    type: "link",
+  },
+  {
+    name: "Telegram Channel for Announcements:",
+    Platform: "Telegram",
+    How_to_submit: "https://t.me/mirrorworld_news",
+    type: "link",
+  },
+  {
+    name: "Telegram Support Group",
     Platform: "Telegram",
     How_to_submit: "Only supported for Enterprise tier",
   },
@@ -53,6 +65,12 @@ const supportDataTable: SupportField[] = [
     name: "Support Tick",
     Platform: "E-mail",
     How_to_submit: "Please submit a support ticket to sdk@mirrorworld.fun",
+  },
+  {
+    name: "Mirror World Research Blog",
+    Platform: "Blog",
+    How_to_submit: "https://blog.mirrorworld.fun",
+    type: "link",
   },
 ]
 
@@ -126,28 +144,45 @@ export const ResourceSupportTable = (props: BoxProps) => {
                 <Tr key={i}>
                   <Td border="none" py="8" bg="#1E1E1E" px={8}>
                     <HStack spacing="3">
-                      <Text fontSize="md">{chain.name}</Text>
+                      <Text
+                        maxWidth={"200px"}
+                        style={{ whiteSpace: "break-spaces" }}
+                        fontSize="md"
+                      >
+                        {chain.name}
+                      </Text>
                     </HStack>
                   </Td>
                   <Td border="none" py="8" bg="#1E1E1E" px={8}>
                     <HStack spacing="3">
-                      <Text fontSize="md">{chain.Platform}</Text>
+                      <Text
+                        maxWidth={"200px"}
+                        style={{ whiteSpace: "break-spaces" }}
+                        fontSize="md"
+                      >
+                        {chain.Platform}
+                      </Text>
                     </HStack>
                   </Td>
                   <Td border="none" py="8" bg="#1E1E1E" px={8} fontSize="lg">
-                    {chain.type === "link" ? (
-                      <a
-                        rel="noreferrer"
-                        color="mirror.400"
-                        className="css-fdexvs"
-                        target="_blank"
-                        href={chain.How_to_submit}
-                      >
-                        {chain.How_to_submit}
-                      </a>
-                    ) : (
-                      chain.How_to_submit
-                    )}
+                    <Text
+                      maxWidth={"300px"}
+                      style={{ whiteSpace: "break-spaces" }}
+                    >
+                      {chain.type === "link" ? (
+                        <a
+                          rel="noreferrer"
+                          color="mirror.400"
+                          className="css-fdexvs"
+                          target="_blank"
+                          href={chain.How_to_submit}
+                        >
+                          {chain.How_to_submit}
+                        </a>
+                      ) : (
+                        chain.How_to_submit
+                      )}
+                    </Text>
                   </Td>
                 </Tr>
               ))}
