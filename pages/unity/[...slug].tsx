@@ -4,8 +4,8 @@ import type { Component } from "contentlayer/generated"
 import DocsLayout from "layouts/docs"
 import {
   extractParams,
-  getComponentDoc,
-  getComponentPaths,
+  getUnityDoc,
+  getUnityPaths,
 } from "lib/contentlayer-utils"
 import { Framework } from "lib/framework-utils"
 import { GetStaticPaths, GetStaticProps } from "next"
@@ -27,11 +27,11 @@ export default function ComponentPage({ doc, framework }: PageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: getComponentPaths(), fallback: false }
+  return { paths: getUnityPaths(), fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { framework, slug } = extractParams(ctx.params.slug as string[])
-  const doc = getComponentDoc(slug)
+  const doc = getUnityDoc(slug)
   return { props: { doc, framework } }
 }

@@ -12,15 +12,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react"
-import { FiCheckCircle } from "react-icons/fi"
-import {
-  AptosIcon,
-  BNBChainIcon,
-  EthereumIcon,
-  PolygonIcon,
-  SolanaIcon,
-  SuiIcon,
-} from "./icons"
+
 import { Spacer } from "@chakra-ui/layout"
 
 export type Chain =
@@ -30,7 +22,7 @@ export type Chain =
   | "Polygon"
   | "Aptos"
   | "Sui"
-export type ChainSupportStatus = "In Development" | "Live"
+
 export interface SupportField {
   name: string
   Platform: string

@@ -19,6 +19,7 @@ import NextImage from "next/image"
 import { ChainSupportTable } from "./support-table"
 import { ResourceSupportTable } from "./resource-support-table"
 import { SupportButton } from "./support-button"
+import { LanguageSupportTable } from "./language-support-table"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -234,6 +235,9 @@ const components: Record<string, FC<Record<string, any>>> = {
   },
   SupportButton: (props) => {
     return <SupportButton {...props} />
+  },
+  LanguageSupportTable: (props) => {
+    return <LanguageSupportTable {...props} />
   },
 }
 

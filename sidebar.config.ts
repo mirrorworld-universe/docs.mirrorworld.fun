@@ -97,26 +97,12 @@ const sidebar: Record<"docs", SidebarItem[]> = {
     },
     {
       type: "category",
-      label: "Web",
+      label: "JavaScript",
       icon: SiJavascript,
-      id: "web",
+      id: "js",
       items: [
-        { type: "doc", label: "Installation", id: "web-installation" },
-        { type: "doc", label: "Authentication", id: "web-authentication" },
-        { type: "doc", label: "Marketplace", id: "web-marketplace" },
-        { type: "doc", label: "Tokenization", id: "web-tokenization" },
-      ],
-    },
-    {
-      type: "category",
-      label: "Node.js",
-      icon: SiNodedotjs,
-      id: "node",
-      items: [
-        { type: "doc", label: "Installation", id: "node-installation" },
-        { type: "doc", label: "Authentication", id: "node-authentication" },
-        { type: "doc", label: "Marketplace", id: "node-marketplace" },
-        { type: "doc", label: "Tokenization", id: "node-tokenization" },
+        { type: "doc", label: "Installation", id: "js-installation" },
+        { type: "doc", label: "API Reference", id: "js-api" },
       ],
     },
     {

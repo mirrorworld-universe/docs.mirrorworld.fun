@@ -17,14 +17,14 @@ const blockquote: SystemStyleObject = {
 
 const inlineCode: SystemStyleObject = {
   whiteSpace: "nowrap",
-  bg: "blackAlpha.100",
+  bg: "pink.900",
   rounded: "base",
   paddingY: "0.5",
   paddingX: "1",
   fontSize: "14px",
   fontFamily: "mono",
   fontWeight: "semibold",
-  color: "pink.600",
+  color: "pink.200",
 }
 
 export const layerStyles = {

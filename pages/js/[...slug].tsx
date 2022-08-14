@@ -2,11 +2,7 @@ import { FrameworkProvider } from "components/framework"
 import { useMDX } from "components/mdx-components"
 import type { Component } from "contentlayer/generated"
 import DocsLayout from "layouts/docs"
-import {
-  extractParams,
-  getComponentDoc,
-  getComponentPaths,
-} from "lib/contentlayer-utils"
+import { extractParams, getJsDoc, getJsPaths } from "lib/contentlayer-utils"
 import { Framework } from "lib/framework-utils"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { NextSeo } from "next-seo"
@@ -27,11 +23,11 @@ export default function ComponentPage({ doc, framework }: PageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: getComponentPaths(), fallback: false }
+  return { paths: getJsPaths(), fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { framework, slug } = extractParams(ctx.params.slug as string[])
-  const doc = getComponentDoc(slug)
+  const doc = getJsDoc(slug)
   return { props: { doc, framework } }
 }

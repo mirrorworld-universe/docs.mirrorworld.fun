@@ -8,8 +8,7 @@ import {
   allIOs,
   allRusts,
   allResources,
-  allWebs,
-  allNodes,
+  allJavaScripts,
   allUnity,
 } from "contentlayer/generated"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
@@ -99,26 +98,13 @@ export function getIOSDocs(_slug: string | string[]) {
  * Web
  * -----------------------------------------------------------------------------*/
 
-export function getWebPaths() {
-  return allWebs.map((doc) => `/web/${doc.slug}`)
+export function getJsPaths() {
+  return allJavaScripts.map((doc) => `/js/${doc.slug}`)
 }
 
-export function getWebDoc(_slug: string | string[]) {
+export function getJsDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allWebs.find((post) => post.frontmatter.slug === `/web/${slug}`)
-}
-
-/* -----------------------------------------------------------------------------
- * Node
- * -----------------------------------------------------------------------------*/
-
-export function getNodePaths() {
-  return allNodes.map((doc) => `/node/${doc.slug}`)
-}
-
-export function getNodeDoc(_slug: string | string[]) {
-  const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allNodes.find((post) => post.frontmatter.slug === `/node/${slug}`)
+  return allJavaScripts.find((post) => post.frontmatter.slug === `/js/${slug}`)
 }
 
 /* -----------------------------------------------------------------------------
@@ -126,12 +112,12 @@ export function getNodeDoc(_slug: string | string[]) {
  * -----------------------------------------------------------------------------*/
 
 export function getRustPaths() {
-  return allRusts.map((doc) => `/node/${doc.slug}`)
+  return allRusts.map((doc) => `/rust/${doc.slug}`)
 }
 
 export function getRustDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allRusts.find((post) => post.frontmatter.slug === `/node/${slug}`)
+  return allRusts.find((post) => post.frontmatter.slug === `/rust/${slug}`)
 }
 
 /* -----------------------------------------------------------------------------
@@ -139,12 +125,12 @@ export function getRustDoc(_slug: string | string[]) {
  * -----------------------------------------------------------------------------*/
 
 export function getUnityPaths() {
-  return allUnity.map((doc) => `/node/${doc.slug}`)
+  return allUnity.map((doc) => `/unity/${doc.slug}`)
 }
 
 export function getUnityDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allUnity.find((post) => post.frontmatter.slug === `/node/${slug}`)
+  return allUnity.find((post) => post.frontmatter.slug === `/unity/${slug}`)
 }
 
 /* -----------------------------------------------------------------------------
@@ -157,7 +143,9 @@ export function getResourcesPaths() {
 
 export function getResourcesDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allResources.find((post) => post.frontmatter.slug === `/resources/${slug}`)
+  return allResources.find(
+    (post) => post.frontmatter.slug === `/resources/${slug}`,
+  )
 }
 
 /* -----------------------------------------------------------------------------

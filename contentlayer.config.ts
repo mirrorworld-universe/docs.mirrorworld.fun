@@ -144,30 +144,16 @@ const iOS = defineDocumentType(() => ({
   },
 }))
 
-const Web = defineDocumentType(() => ({
-  name: "Web",
-  filePathPattern: `web/**/*.mdx`,
+const JavaScript = defineDocumentType(() => ({
+  name: "JavaScript",
+  filePathPattern: `js/**/*.mdx`,
   contentType: "mdx",
   fields,
   computedFields: {
     ...computedFields,
     pathname: {
       type: "string",
-      resolve: () => `/web/[slug]`,
-    },
-  },
-}))
-
-const Node = defineDocumentType(() => ({
-  name: "Node",
-  filePathPattern: `node/**/*.mdx`,
-  contentType: "mdx",
-  fields,
-  computedFields: {
-    ...computedFields,
-    pathname: {
-      type: "string",
-      resolve: () => `/node/[slug]`,
+      resolve: () => `/js/[slug]`,
     },
   },
 }))
@@ -275,8 +261,7 @@ const contentLayerConfig = makeSource({
     Android,
     iOS,
     Rust,
-    Web,
-    Node,
+    JavaScript,
     Unity,
     Resources,
   ],

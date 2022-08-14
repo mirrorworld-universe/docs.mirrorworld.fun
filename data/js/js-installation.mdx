@@ -1,0 +1,80 @@
+---
+title: JavaScript SDK - Installation
+description: JavaScript - Mirror World Mobile SDK
+---
+
+# Javascript SDK
+
+The Mirror World SDK for JavaScript implements a TypeScript-compatible client that can be used both
+in the browser and in Node.js.
+
+## Installation
+1. Create a developer account the [developer dashboard](https://app.mirrorworld.fun).
+2. Create project and copy the API Key and `clientId` for your project.
+3. Install SDK in your project
+
+```bash
+yarn add @mirrorworld/web3.js
+```
+
+## Usage
+Import the SDK instance to initialize it.
+
+```ts
+import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_SECRET_API_KEY",
+  env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+  clientId: "YOUR_CLIENT_ID"
+})
+
+async function main() {
+  await mirrorworld.login()
+  await mirrorworld.getTokens()
+  await mirrorworld.getNFTs()
+}
+
+main()
+```
+
+## Full API Documentation
+You can view the JavaScript API documentation on the [JavaScript API Reference](/js/js-api) page.
+
+## Features
+### Authentication
+1. Social Authentication
+2. Login with Email/Password
+
+### Marketplace
+1. Get current user's NFTs
+2. Mint NFTs
+3. List NFTs
+4. Buy NFTs
+5. Cancel Listing
+6. Update Listing
+7. Transfer NFT
+8. Query NFTs by owners
+9. Query NFTs by creator addresses
+10. Query NFTs by update authorities
+11. Get NFT details
+
+### Wallet
+ 1. Get account activity
+ 2. Get account tokens
+ 3. Transfer SPL Tokens
+ 4. Transfer SOL
+
+## Roadmap
+See Roadmap here:
+1. **Wallet**
+- [-] Transaction signing (In progress)
+- [-] Crypto On-ramping (In progress)
+2. **Marketplace**
+- [-] Create Marketplace Instance (In progress)
+- [-] Collection indexing and querying (In progress)
+3. **Cross-chain Support**
+- [ ] Ethereum Support
+- [ ] Polygon Support
+- [ ] Aptos Support
+- [ ] Sui Support
