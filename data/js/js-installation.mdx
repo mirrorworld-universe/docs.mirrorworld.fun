@@ -1,0 +1,59 @@
+---
+title: JavaScript SDK - Installation
+description: JavaScript - Mirror World Mobile SDK
+---
+
+# Javascript SDK
+
+The Mirror World SDK for JavaScript implements a TypeScript-compatible client that can be used both
+in the browser and in Node.js.
+
+## Installation
+1. Create a developer account the [developer dashboard](https://app.mirrorworld.fun).
+2. Create project and copy the API Key and `clientId` for your project.
+3. Install SDK in your project
+
+<GithubButton label={"View Github Repository"} repository={"mirrorworld-universe/mirrorworld-sdk-js"} />
+
+## GitHub
+```bash
+yarn add @mirrorworld/web3.js
+```
+
+## Usage
+Import the SDK instance to initialize it.
+
+```ts
+import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_SECRET_API_KEY",
+  env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+  clientId: "YOUR_CLIENT_ID"
+})
+
+async function main() {
+  await mirrorworld.login()
+  await mirrorworld.getTokens()
+  await mirrorworld.getNFTs()
+}
+
+main()
+```
+
+## Full API Documentation
+You can view the JavaScript API documentation on the [JavaScript API Reference](/js/js-api) page.
+
+## Roadmap
+See Roadmap here:
+1. **Wallet**
+- [-] Transaction signing (In progress)
+- [-] Crypto On-ramping (In progress)
+2. **Marketplace**
+- [-] Create Marketplace Instance (In progress)
+- [-] Collection indexing and querying (In progress)
+3. **Cross-chain Support**
+- [ ] Ethereum Support
+- [ ] Polygon Support
+- [ ] Aptos Support
+- [ ] Sui Support

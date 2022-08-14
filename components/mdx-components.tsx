@@ -19,6 +19,10 @@ import NextImage from "next/image"
 import { ChainSupportTable } from "./support-table"
 import { ResourceSupportTable } from "./resource-support-table"
 import { SupportButton } from "./support-button"
+import { LanguageSupportTable } from "./language-support-table"
+import { Button } from "./button"
+import { ArrowRightIcon, GithubIcon } from "./icons"
+import { Link as CLink } from "@chakra-ui/layout"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -234,6 +238,28 @@ const components: Record<string, FC<Record<string, any>>> = {
   },
   SupportButton: (props) => {
     return <SupportButton {...props} />
+  },
+  LanguageSupportTable: (props) => {
+    return <LanguageSupportTable {...props} />
+  },
+  GithubButton: (props) => {
+    return (
+      <CLink
+        isExternal
+        href={`https://github.com/${props.repository}`}
+        outline="none"
+        rounded="4px"
+        _hover={{ textDecoration: "none" }}
+        w={{ base: "full", sm: "unset" }}
+      >
+        <Button px={6} w={{ base: "full", sm: "unset" }}>
+          <HStack spacing="2">
+            <Icon as={GithubIcon} />
+            <span>{props.label || "View on Github"}</span>
+          </HStack>
+        </Button>
+      </CLink>
+    )
   },
 }
 

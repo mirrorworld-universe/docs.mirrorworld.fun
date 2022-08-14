@@ -13,19 +13,11 @@ export const frameworks = {
   android: { icon: AiOutlineAndroid, label: "Android" },
   ios: { icon: SiSwift, label: "iOS (Swift)" },
   unity: { icon: SiUnity, label: "Unity" },
-  web: { icon: SiJavascript, label: "JavaScript" },
-  node: { icon: SiNodedotjs, label: "Node.js" },
+  js: { icon: SiJavascript, label: "JavaScript" },
   rust: { icon: SiRust, label: "Rust" },
 }
 
-export const FRAMEWORKS = [
-  "android",
-  "ios",
-  "unity",
-  "web",
-  "node",
-  "rust",
-] as const
+export const FRAMEWORKS = ["android", "ios", "unity", "js", "rust"] as const
 
 export type Framework = keyof typeof frameworks
 
