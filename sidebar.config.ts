@@ -103,6 +103,8 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       items: [
         { type: "doc", label: "Installation", id: "js-installation" },
         { type: "doc", label: "API Reference", id: "js-api" },
+        { type: "doc", label: "Authentication Guide", id: "js-authentication" },
+        { type: "doc", label: "Examples", id: "js-examples" },
       ],
     },
     {
