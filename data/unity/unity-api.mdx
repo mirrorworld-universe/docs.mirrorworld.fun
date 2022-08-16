@@ -1,0 +1,206 @@
+---
+title: Unity Full API Reference
+description: Full Unity API Reference
+---
+
+# Unity API Reference
+
+## Authentication Methods
+All authentication methods on the Unity SDK
+
+### `loginWithEmail`
+Logs in a user with email and password..
+
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        IMirrorWorldClient client = new MirrorWorldClient(mirrorworld_sdk_unity.Runtime.Environment.Staging, EnvironmentVersion.V1,
+            "xdK36g2iXgX05oXsCyvlkq6XvDQuhG1mUG2");
+
+StartCoroutine(client.Authentication.LoginWithEmail(
+            new BasicEmailLoginRequest()
+            {
+                Email = "<Emial>",
+                Password = "<Password>"
+            }, (r =>
+            {
+                string result = JsonConvert.SerializeObject(r);
+                responseText.text = result;
+                Debug.Log(result);
+            })));
+    }
+}
+```
+
+### `fetchUser`
+Fetches the current user's object.
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        IMirrorWorldClient client = new MirrorWorldClient(mirrorworld_sdk_unity.Runtime.Environment.Staging, EnvironmentVersion.V1,
+            "xdK36g2iXgX05oXsCyvlkq6XvDQuhG1mUG2");
+
+        StartCoroutine(client.Authentication.GetCurrentUserInfo(
+            "<AccessToken>", (r =>
+            {
+                string result = JsonConvert.SerializeObject(r);
+                responseText.text = result;
+                Debug.Log(result);
+            })));
+    }
+}
+```
+
+### `getTokens`
+Get's the current user's tokens
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        IMirrorWorldClient client = new MirrorWorldClient(mirrorworld_sdk_unity.Runtime.Environment.Staging, EnvironmentVersion.V1,
+            "xdK36g2iXgX05oXsCyvlkq6XvDQuhG1mUG2");
+
+        StartCoroutine(client.Wallet.GetWalletTokens(
+            "<AccessToken>", (r =>
+            {
+                string result = JsonConvert.SerializeObject(r);
+                responseText.text = result;
+                Debug.Log(result);
+            })));
+    }
+}
+```
+
+### `getNftDetails`
+Fetches an NFT's details by mint address
+
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        IMirrorWorldClient client = new MirrorWorldClient(mirrorworld_sdk_unity.Runtime.Environment.Staging, EnvironmentVersion.V1,
+            "xdK36g2iXgX05oXsCyvlkq6XvDQuhG1mUG2");
+
+        StartCoroutine(client.Marketplace.FetchSingleNftDetails(
+            "<mintAddress>", (r =>
+            {
+                string result = JsonConvert.SerializeObject(r);
+                responseText.text = result;
+                Debug.Log(result);
+            })));
+    }
+}
+```
+
+### `getNFTsOwnedByAddress`
+Fetches the NFTs owned by a specific address.
+
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.FetchMultipleNftsByOwners(
+            new FetchMultipleNftsByOwnersRequest()
+            {
+                Limit = 5,
+                Offset = 0,
+                Owners = new List<string>()
+                {
+                    "<Owner Address>"
+                }
+            }, (r =>
+            {
+                string result = JsonConvert.SerializeObject(r);
+                responseText.text = result;
+                Debug.Log(result);
+            })));
+    }
+}
+```
+
+## Wallet Methods
+### `transferSPLToken`
+Transfer SPL token to a recipient
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Wallet.TransferToken(new TransferTokenRequest()
+        {
+            TokenMint = "<TokenMintAddress>",
+            ToPublicKey = "ReceiverWalletPublicAddress",
+            Amount = 10000,
+            Decimals = 9
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            responseText.text = result;
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `transferSOL`
+Transfer SOL to wallet address
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Wallet.TransferSol(new TransferSolRequest()
+        {
+            Amount = 1000,
+            ToPublicKey = "ReceiverWalletPublicAddress"
+        }, "<AccessToken>", (r =>
+            {
+                string result = JsonConvert.SerializeObject(r);
+                responseText.text = result;
+                Debug.Log(result);
+            })));
+    }
+}
+```
