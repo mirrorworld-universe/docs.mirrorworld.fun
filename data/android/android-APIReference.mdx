@@ -2,7 +2,7 @@
 ## Authentication Methods
 ### StartLogin
 调用这个接口将会在Android端弹出一个Dialog，引导用户去完成登录流程。在这个页面，用户可选择谷歌、Discord及邮箱等登录手段去完成登录。
-```
+```java
 MirrorSDKJava.getInstance().StartLogin();
 ```
 
@@ -10,7 +10,7 @@ MirrorSDKJava.getInstance().StartLogin();
 ### StartLoginWithCallback
 与StartLogin方法功能相同，但使用StartLoginWithCallback，开发者可以传入回调以便监听登录完成消息。
 
-```
+```java
 MirrorSDKJava.getInstance().StartLoginWithCallback(new MirrorCallback() {
     @Override
     public void callback(String result) {
@@ -21,13 +21,13 @@ MirrorSDKJava.getInstance().StartLoginWithCallback(new MirrorCallback() {
 
 ### SetDebug
 设置是否使用Debug模式。在Debug模式下，开发者能够看到SDK的具体工作流程。
-```
+```java
 MirrorSDKJava.getInstance().SetDebug(true);
 ```
 
 ### SetAppID
 设置当前所使用的ApiKey，你能够在开发者后台找到它。
-```
+```java
 String apiKey = "Your api key";
 MirrorSDKJava.getInstance().SetAppID(apiKey);
 ```
@@ -35,7 +35,7 @@ MirrorSDKJava.getInstance().SetAppID(apiKey);
 ## Wallet Methods
 ### APIGetWalletAddress
 获取钱包地址
-```
+```java
 MirrorSDKJava.getInstance().APIGetWalletAddress(new MirrorCallback() {
     @Override
     public void callback(String result) {
@@ -46,14 +46,14 @@ MirrorSDKJava.getInstance().APIGetWalletAddress(new MirrorCallback() {
 
 ### GetAccessToken
 获取AccessToken以便访问接口。通常情况下，SDK会自动在缺乏授权的情况下去自动访问这个接口，开发者无需手动调用。
-```
+```java
 Activity activity;
 MirrorSDKJava.getInstance().GetAccessToken(activity);
 ```
 
 ### APIQueryUser
 查询用户信息，其中包含用户的钱包地址等基本信息。
-```
+```java
 String email = "youremail@xxx.com";
 MirrorSDKJava.getInstance().APIQueryUser(email, new MirrorCallback() {
     @Override
@@ -66,7 +66,7 @@ MirrorSDKJava.getInstance().APIQueryUser(email, new MirrorCallback() {
 ## Marketplace Methods
 ### APIFetchSingleNFT
 获取单个NFT的详细信息。
-```
+```java
 String mintAddress = "nft_mint_address";
 MirrorSDKJava.getInstance().APIFetchSingleNFT(mintAddress, new MirrorCallback() {
     @Override
@@ -78,7 +78,7 @@ MirrorSDKJava.getInstance().APIFetchSingleNFT(mintAddress, new MirrorCallback() 
 
 ### APIMintNewNFTOnCollection
 铸造一个新的NFT
-```
+```java
 String collectionAddress = "collection_address";
 String mintName = "NewNFT";
 String mintSymbol = "Symbol";
@@ -94,7 +94,7 @@ MirrorSDKJava.getInstance().APIMintNewNFTOnCollection(collectionAddress,mintName
 
 ### APIMintNewTopLevelCollection
 铸造一个顶级Collection
-```
+```java
 String mintName = "NewNFT";
 String mintSymbol = "Symbol";
 String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
@@ -109,7 +109,7 @@ MirrorSDKJava.getInstance().APIMintNewTopLevelCollection(mintName, mintSymbol, m
 
 ### APIMintNewLowerLevelCollection
 铸造一个低级Collection
-```
+```java
 String collectionAddress = "collection_address";
 String mintName = "NewNFT";
 String mintSymbol = "Symbol";
@@ -125,7 +125,7 @@ MirrorSDKJava.getInstance().APIMintNewLowerLevelCollection(collectionAddress,min
 
 ### APITransferNFTToAnotherSolanaWallet
 将NFT转移给其他Solana钱包
-```
+```java
 String mintAddress = "mint_address";
 String toWalletAddress = "wallet_address";
 
@@ -139,7 +139,7 @@ MirrorSDKJava.getInstance().APITransferNFTToAnotherSolanaWallet(mintAddress,toWa
 
 ### APICancelListingOfNFT
 取消NFT列表
-```
+```java
 String mintAddress = "mint_address";
 Double price = 123.99;
 
@@ -153,7 +153,7 @@ MirrorSDKJava.getInstance().APICancelListingOfNFT(mintAddress,price, new MirrorC
 
 ### APIBuyNFT
 购买NFT
-```
+```java
 String mintAddress = "mint_address";
 Double price = 123.99;
 
@@ -167,7 +167,7 @@ MirrorSDKJava.getInstance().APIBuyNFT(mintAddress,price, new MirrorCallback() {
 
 ### APIUpdateListingOfNFT
 更新NFT列表
-```
+```java
 String mintAddress = "mint_address";
 Double price = 123.99;
 
@@ -181,7 +181,7 @@ MirrorSDKJava.getInstance().APIUpdateListingOfNFT(mintAddress,price, new MirrorC
 
 ### APIListNFTOnTheMarketplace
 获取Marketplace中的NFT列表
-```
+```java
 String mintAddress = "mint_address";
 Double price = 123.99;
 
@@ -196,7 +196,7 @@ MirrorSDKJava.getInstance().APIListNFTOnTheMarketplace(mintAddress,price, new Mi
 
 ### APIFetchNFTsByUpdateAuthorityAddress
 获取NFT集合，通过AuthorityAddress
-```
+```java
 List<String> list = new ArrayList<>();
 list.add("authority_address_1");
 list.add("authority_address_2");
@@ -213,7 +213,7 @@ MirrorSDKJava.getInstance().APIFetchNFTsByUpdateAuthorityAddress(list,limit,offs
 
 ### APIFetchNFTsByCreatorAddress
 获取NFT集合，通过CreatorAddress
-```
+```java
 List<String> list = new ArrayList<>();
 list.add("authority_address_1");
 list.add("authority_address_2");
@@ -230,7 +230,7 @@ MirrorSDKJava.getInstance().APIFetchNFTsByCreatorAddress(list,limit,offset, new 
 
 ### APIFetchNFTsByMintAddress
 获取NFT集合，通过Mint Address
-```
+```java
 List<String> list = new ArrayList<>();
 list.add("mint_address_1");
 list.add("mint_address_2");
