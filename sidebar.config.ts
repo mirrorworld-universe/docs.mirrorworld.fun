@@ -90,6 +90,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       id: "unity",
       items: [
         { type: "doc", label: "Installation", id: "unity-installation" },
+        { type: "doc", label: "API Reference", id: "unity-api" },
         { type: "doc", label: "Authentication", id: "unity-authentication" },
         { type: "doc", label: "Marketplace", id: "unity-marketplace" },
         { type: "doc", label: "Tokenization", id: "unity-tokenization" },
