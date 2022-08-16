@@ -15,7 +15,7 @@ _提示 Android SDK 要求最低系统版本为 Android 4.4 Android SDK ( aar �
 1. 下载并解压 [Android SDK](www.baidu.com)
 2. libs 文件夹(如果目录下没有则需手动创建）中添加 MirrorSDK.aar
 3. 在 build.gradle 添加如下配置 
-```
+```java
 dependencies { implementation fileTree(dir: 'libs', include: ['*.jar','*.aar']) }
 ```
 
@@ -28,7 +28,7 @@ dependencies { implementation fileTree(dir: 'libs', include: ['*.jar','*.aar']) 
 用 MirrorSDK.instance 来获得单例句柄。在调用其他 API 前，调用 SetAppID 方法来设
 置 App 的 AppID。
 
-```
+```java
 MirrorSDK.Companion.get().SetAppID(mContext,"YourAppID");
 ```
 
@@ -37,7 +37,7 @@ MirrorSDK.Companion.get().SetAppID(mContext,"YourAppID");
 创建 LogtoClient 前，需要确保 Application 已经初始化。调用 InitSDK(Context)方法
 对 SDK 进行初始化，并传入上下文参数。
 
-```
+```java
 MirrorSDKJava.getInstance().InitSDK(this);
 ```
 
@@ -47,7 +47,7 @@ MirrorSDKJava.getInstance().InitSDK(this);
 token。建议将登录操作纳入目标应用，并作为用户登录应用的必要步骤之一。  
 调用 StartLogin 方法开始 SDK 的登录流程。
 
-```
+```java
 MirrorSDK.Companion.get().StartLogin(mContext);
 ```
 
