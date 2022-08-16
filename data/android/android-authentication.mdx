@@ -1,8 +1,58 @@
----
-title: Authentication
-description: Authentication
----
+# MarketSDK 安卓接入文档
 
-# Authentication
+最新版本为: 0.1.0 更新时间为: 2022-08-15
 
-Todo
+## 导入前准备
+
+1. 在[开发者后台](https://app.mirrorworld.fun/)创建一个开发者账号；
+2. 在开发者后台创建一个项目并保存它的 API Key，以便在后续的接入流程中使用。
+
+## 导入 SDK
+
+_提示 Android SDK 要求最低系统版本为 Android 4.4 Android SDK ( aar 格式) 大小约
+为 16 KB_
+
+1. 下载并解压 [Android SDK](www.baidu.com)
+2. libs 文件夹(如果目录下没有则需手动创建）中添加 MirrorSDK.aar
+3. 在 build.gradle 添加如下配置 
+```
+dependencies { implementation fileTree(dir: 'libs', include: ['*.jar','*.aar']) }
+```
+
+## 初始化 SDK
+
+1. 设置 ApiKey
+
+在 MirrorSDK 中，使用 MirrorSDK 单例来管理所有 SDK 的方法:  
+在 Java 中，请使用 MirrorSDKJava.getInstance()来获得单例句柄；在 Kotlin 中，请使
+用 MirrorSDK.instance 来获得单例句柄。在调用其他 API 前，调用 SetAppID 方法来设
+置 App 的 AppID。
+
+```
+MirrorSDK.Companion.get().SetAppID(mContext,"YourAppID");
+```
+
+2. 初始化 SDK
+
+创建 LogtoClient 前，需要确保 Application 已经初始化。调用 InitSDK(Context)方法
+对 SDK 进行初始化，并传入上下文参数。
+
+```
+MirrorSDKJava.getInstance().InitSDK(this);
+```
+
+3. 引导用户登录
+
+要使用 MirrorSDK 提供的接口服务，需要先引导用户进行登录流程以便 SDK 能够获取
+token。建议将登录操作纳入目标应用，并作为用户登录应用的必要步骤之一。  
+调用 StartLogin 方法开始 SDK 的登录流程。
+
+```
+MirrorSDK.Companion.get().StartLogin(mContext);
+```
+
+在之后的与 SDK 的互动中，如果用户没有正确地进行过登录，将会自动弹出登录界面引导
+用户登录（但这对用户是不友好的，强烈建议将登录流程集成入 App 的使用流程中）。
+
+4. 调用 MirrorSDK 提供的服务接口当完成以上步骤后，即可直接调用 SDK 提供的各个接
+   口获取服务。附：SDK 接口列表。
