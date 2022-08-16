@@ -14,6 +14,8 @@ Logs in a user with email and password..
 ```cs
 using mirrorworld_sdk_unity.Runtime;
 using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
 using mirrorworld_sdk_unity.Runtime.Services.Implementations;
 using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
 
@@ -32,7 +34,6 @@ StartCoroutine(client.Authentication.LoginWithEmail(
             }, (r =>
             {
                 string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
                 Debug.Log(result);
             })));
     }
@@ -44,6 +45,8 @@ Fetches the current user's object.
 ```cs
 using mirrorworld_sdk_unity.Runtime;
 using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
 using mirrorworld_sdk_unity.Runtime.Services.Implementations;
 using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
 
@@ -58,7 +61,6 @@ void Start()
             "<AccessToken>", (r =>
             {
                 string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
                 Debug.Log(result);
             })));
     }
@@ -70,6 +72,8 @@ Get's the current user's tokens
 ```cs
 using mirrorworld_sdk_unity.Runtime;
 using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
 using mirrorworld_sdk_unity.Runtime.Services.Implementations;
 using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
 
@@ -84,7 +88,6 @@ void Start()
             "<AccessToken>", (r =>
             {
                 string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
                 Debug.Log(result);
             })));
     }
@@ -97,6 +100,8 @@ Fetches an NFT's details by mint address
 ```cs
 using mirrorworld_sdk_unity.Runtime;
 using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
 using mirrorworld_sdk_unity.Runtime.Services.Implementations;
 using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
 
@@ -111,7 +116,6 @@ void Start()
             "<mintAddress>", (r =>
             {
                 string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
                 Debug.Log(result);
             })));
     }
@@ -124,6 +128,8 @@ Fetches the NFTs owned by a specific address.
 ```cs
 using mirrorworld_sdk_unity.Runtime;
 using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
 using mirrorworld_sdk_unity.Runtime.Services.Implementations;
 using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
 
@@ -143,7 +149,6 @@ void Start()
             }, (r =>
             {
                 string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
                 Debug.Log(result);
             })));
     }
@@ -156,6 +161,8 @@ Transfer SPL token to a recipient
 ```cs
 using mirrorworld_sdk_unity.Runtime;
 using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
 using mirrorworld_sdk_unity.Runtime.Services.Implementations;
 using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
 
@@ -172,7 +179,6 @@ void Start()
         }, "<AccessToken>", (r =>
         {
             string result = JsonConvert.SerializeObject(r);
-            responseText.text = result;
             Debug.Log(result);
         })));
     }
@@ -184,6 +190,8 @@ Transfer SOL to wallet address
 ```cs
 using mirrorworld_sdk_unity.Runtime;
 using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
 using mirrorworld_sdk_unity.Runtime.Services.Implementations;
 using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
 
@@ -198,9 +206,361 @@ void Start()
         }, "<AccessToken>", (r =>
             {
                 string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
                 Debug.Log(result);
             })));
+    }
+}
+```
+
+## Marketplace Methods
+### `createVerifiedCollection`
+Create a new Verified Collection
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.CreateCollection(new CreateCollectionRequest()
+        {
+            Name = "<Name>",
+            Symbol = "<Symbol>",
+            Url = "<MetadataUrl>"
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `createVerifiedSubCollection`
+Create a new Verified Sub Collection. A subcollection is a collection that belongs to a main collection
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.CreateSubCollection(new CreateSubCollectionRequest()
+        {
+            Name = "<Name>",
+            Symbol = "<Symbol>",
+            Url = "<MetadataUrl>",
+            CollectionMint = "<CollectionMintAddress>"
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `mintNFT`
+Mint NFT into collection
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.CreateNft(new CreateNftRequest()
+        {
+            Name = "<Name>",
+            Symbol = "<Symbol>",
+            Url = "<MetadataUrl>",
+            CollectionMint = "<CollectionMintAddress>"
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `listNFT`
+List NFT on Mirror World Marketplace
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.ListNftOnMarketplace(new ListNftOnMarketplaceRequest()
+        {
+            MintAddress = "NFTMintAddress",
+            Price = 3.1m
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `buyNFT`
+Purchase NFT on Mirror World Marketplace
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.BuyNftOnMarketplace(new BuyNftOnMarketplaceRequest()
+        {
+            MintAddress = "NFTMintAddress",
+            Price = 3.1m
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `updateNFTListing`
+Update NFT Listing on Mirror World Marketplace
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.UpdateNftListOnMarketplace(new UpdateNftListOnMarketplaceRequest()
+        {
+            MintAddress = "NFTMintAddress",
+            Price = 3.1m
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `cancelNFTListing`
+Cancel listing NFT on Mirror World Marketplace
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.CancelNftListOnMarketplace(new CancelNftListOnMarketplaceRequest()
+        {
+            MintAddress = "NFTMintAddress",
+            Price = 3.1m
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `transferNFT`
+Transfer NFT from holder's wallet to another address
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.TransferNft(new TransferNftRequest()
+        {
+            MintAddress = "NFTMintAddress",
+            ToWalletAddress = "<ToWalletAddress>"
+        }, "<AccessToken>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `fetchNFTsByMintAddresses`
+Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
+are provided
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.FetchMultipleNftsByMintAddresses(new FetchMultipleNftsByMintAddressesRequest()
+        {
+            MintAddresses = new List<string>(){"<MintAddress>"}
+        }, (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `fetchNFTsByCreatorAddresses`
+Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose `creatorAddresses`
+are provided
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.FetchMultipleNftsByCreators(new FetchMultipleNftsByCreatorsRequest()
+        {
+            Creators = new List<string>(){"<MintAddress>"}
+        }, (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `fetchNFTsByUpdateAuthorities`
+Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `updateAuthorities`
+are provided
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.FetchMultipleNftsByUpdateAuthorities(new FetchMultipleNftsByUpdateAuthoritiesRequest()
+        {
+            UpdateAuthorities = new List<string>(){"<MintAddress>"}
+        }, (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `fetchNFTsByOwnerAddresses`
+Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `owners`
+are provided
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.FetchMultipleNftsByOwners(new FetchMultipleNftsByOwnersRequest()
+        {
+            Owners = new List<string>(){"<MintAddress>"}
+        }, (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
+    }
+}
+```
+
+### `fetchNFTMarketplaceActivity`
+Fetch Solana NFT Marketplace Activity for an NFT
+```cs
+using mirrorworld_sdk_unity.Runtime;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Marketplace;
+using mirrorworld_sdk_unity.Runtime.Models.Request.Wallet;
+using mirrorworld_sdk_unity.Runtime.Services.Implementations;
+using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+
+public class ApiManager : MonoBehaviour
+{
+void Start()
+    {
+        StartCoroutine(client.Marketplace.ActivityOfSingleNft("<MintAddress>", (r =>
+        {
+            string result = JsonConvert.SerializeObject(r);
+            Debug.Log(result);
+        })));
     }
 }
 ```
