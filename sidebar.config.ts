@@ -45,6 +45,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "Getting started", id: "getting-started" },
         { type: "doc", label: "Features", id: "features" },
         { type: "doc", label: "Dashboard", id: "dashboard" },
+        { type: "doc", label: "Wallet Design", id: "wallet-design" },
         {
           type: "doc",
           label: "Platform Support",
