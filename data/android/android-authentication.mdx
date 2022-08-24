@@ -1,58 +1,52 @@
-# MarketSDK 安卓接入文档
+# Mirror World Android SDK
 
-最新版本为: 0.1.0 更新时间为: 2022-08-15
+Mirror World's Official Android SDK  
 
-## 导入前准备
+## Getting started
+Create a developer account at https://app.mirrorworld.fun. Create project and create an API Key.  
 
-1. 在[开发者后台](https://app.mirrorworld.fun/)创建一个开发者账号；
-2. 在开发者后台创建一个项目并保存它的 API Key，以便在后续的接入流程中使用。
+## Import SDK
+*Notice:
+The minimum version that SDK requires is Android 4.4.*
 
-## 导入 SDK
-
-_提示 Android SDK 要求最低系统版本为 Android 4.4 Android SDK ( aar 格式) 大小约
-为 16 KB_
-
-1. 下载并解压 [Android SDK](www.baidu.com)
-2. libs 文件夹(如果目录下没有则需手动创建）中添加 MirrorSDK.aar
-3. 在 build.gradle 添加如下配置 
+1. Download and uncompress [Mirror World Android SDK](http://games.mirrorworld.fun/market_sdk/mirrorsdk.aar).  
+2. Put the mirrorsdk.aar under folder 'libs'.If there is no libs folder,you may create one.
+![image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/boxcnm7QhYooAjDdWrAZYp8zB2e/?fallback_source=1&height=1280&mount_node_token=doxcnIIeWAQW8ESeiGush255kXd&mount_point=docx_image&policy=equal&width=1280)
+3. Add configeration to build.gradle:
 ```java
-dependencies { implementation fileTree(dir: 'libs', include: ['*.jar','*.aar']) }
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+}
 ```
 
-## 初始化 SDK
-
-1. 设置 ApiKey
-
-在 MirrorSDK 中，使用 MirrorSDK 单例来管理所有 SDK 的方法:  
-在 Java 中，请使用 MirrorSDKJava.getInstance()来获得单例句柄；在 Kotlin 中，请使
-用 MirrorSDK.instance 来获得单例句柄。在调用其他 API 前，调用 SetAppID 方法来设
-置 App 的 AppID。
-
+## Usage
+1. Initialization
+We can init Mirror World SDK with the following code:  
 ```java
-MirrorSDK.Companion.get().SetAppID(mContext,"YourAppID");
+MirrorSDKJava.getInstance().SetApiKey("your api key");
+MirrorSDKJava.getInstance().SetDebug(true);
+MirrorSDKJava.getInstance().InitSDK();
 ```
 
-2. 初始化 SDK
-
-创建 LogtoClient 前，需要确保 Application 已经初始化。调用 InitSDK(Context)方法
-对 SDK 进行初始化，并传入上下文参数。
-
+2. Guild user to login
+When user open your app, you may want to know whether this user needs to login, you can call the following code to know that.
 ```java
-MirrorSDKJava.getInstance().InitSDK(this);
+MirrorSDKJava.getInstance().CheckAuthenticated(emailAddr, new MirrorCallback() {
+    @Override
+    public void callback(boolean isLogin) {
+        Log.i("Mirror","This user's login state is:" + isLogin);
+    }
+});
+```
+If you want him to login(or again), you can use the following code:
+```java
+MirrorSDKJava.getInstance().StartLogin(new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        Log.i("MyApp","Login successed!");
+    }
+});
 ```
 
-3. 引导用户登录
-
-要使用 MirrorSDK 提供的接口服务，需要先引导用户进行登录流程以便 SDK 能够获取
-token。建议将登录操作纳入目标应用，并作为用户登录应用的必要步骤之一。  
-调用 StartLogin 方法开始 SDK 的登录流程。
-
-```java
-MirrorSDK.Companion.get().StartLogin(mContext);
-```
-
-在之后的与 SDK 的互动中，如果用户没有正确地进行过登录，将会自动弹出登录界面引导
-用户登录（但这对用户是不友好的，强烈建议将登录流程集成入 App 的使用流程中）。
-
-4. 调用 MirrorSDK 提供的服务接口当完成以上步骤后，即可直接调用 SDK 提供的各个接
-   口获取服务。附：SDK 接口列表。
+## Full API Documentation
+You can view the documentation for Mirror World SDK for Mobile on [our Official Documentation Site](https://docs.mirrorworld.fun/android/android-APIReference)
