@@ -39,7 +39,7 @@ MirrorSDKJava.getInstance().SetAppID(apiKey);
 ### GetWallet
 Get the user's Sol wallet address.
 ```java
-MirrorSDKJava.getInstance().APIGetWalletAddress(new MirrorCallback() {
+MirrorSDKJava.getInstance().GetWallet(new MirrorCallback() {
     @Override
     public void callback(String result) {
         Log.i("MyApp","my wallet response is xxxx");
@@ -54,11 +54,11 @@ Activity activity;
 MirrorSDKJava.getInstance().GetAccessToken(activity);
 ```
 
-### APIQueryUser
+### QueryUser
 Check user's info, then we can get user's base information such as wallet address and so on.  
 ```java
 String email = "youremail@xxx.com";
-MirrorSDKJava.getInstance().APIQueryUser(email, new MirrorCallback() {
+MirrorSDKJava.getInstance().QueryUser(email, new MirrorCallback() {
     @Override
     public void callback(String s) {
         Log.i("MyApp","User info is:"+s);
@@ -67,11 +67,11 @@ MirrorSDKJava.getInstance().APIQueryUser(email, new MirrorCallback() {
 ```
 
 ## Marketplace Methods
-### APIFetchSingleNFT
+### FetchSingleNFTDetails
 Fetch the details of a NFT.
 ```java
 String mintAddress = "nft_mint_address";
-MirrorSDKJava.getInstance().APIFetchSingleNFT(mintAddress, new MirrorCallback() {
+MirrorSDKJava.getInstance().FetchSingleNFTDetails(mintAddress, new MirrorCallback() {
     @Override
     public void callback(String s) {
         Log.i("MyApp","nft info is:"+s);
@@ -79,7 +79,7 @@ MirrorSDKJava.getInstance().APIFetchSingleNFT(mintAddress, new MirrorCallback() 
 });
 ```
 
-### APIMintNewNFTOnCollection
+### MintNFT
 Mint a new NFT.
 ```java
 String collectionAddress = "collection_address";
@@ -87,7 +87,7 @@ String mintName = "NewNFT";
 String mintSymbol = "Symbol";
 String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
 
-MirrorSDKJava.getInstance().APIMintNewNFTOnCollection(collectionAddress,mintName, mintSymbol, metaDataUri, new MirrorCallback() {
+MirrorSDKJava.getInstance().MintNFT(collectionAddress,mintName, mintSymbol, metaDataUri, new MirrorCallback() {
     @Override
     public void callback(String s) {
         Log.i("MyApp","New nft is:"+s);
@@ -95,14 +95,14 @@ MirrorSDKJava.getInstance().APIMintNewNFTOnCollection(collectionAddress,mintName
 });
 ```
 
-### APIMintNewTopLevelCollection
+### CreateVerifiedCollection
 Mint a parent NFT collection.
 ```java
 String mintName = "NewNFT";
 String mintSymbol = "Symbol";
 String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
 
-MirrorSDKJava.getInstance().APIMintNewTopLevelCollection(mintName, mintSymbol, metaDataUri, new MirrorCallback() {
+MirrorSDKJava.getInstance().CreateVerifiedCollection(mintName, mintSymbol, metaDataUri, new MirrorCallback() {
     @Override
     public void callback(String s) {
         Log.i("MyApp","New collection is:"+s);
@@ -110,7 +110,7 @@ MirrorSDKJava.getInstance().APIMintNewTopLevelCollection(mintName, mintSymbol, m
 });
 ```
 
-### APIMintNewLowerLevelCollection
+### CreateVerifiedSubCollection
 Mint a child NFT collection.
 ```java
 String collectionAddress = "collection_address";
@@ -118,7 +118,7 @@ String mintName = "NewNFT";
 String mintSymbol = "Symbol";
 String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
 
-MirrorSDKJava.getInstance().APIMintNewLowerLevelCollection(collectionAddress,mintName, mintSymbol, metaDataUri, new MirrorCallback() {
+MirrorSDKJava.getInstance().CreateVerifiedSubCollection(collectionAddress,mintName, mintSymbol, metaDataUri, new MirrorCallback() {
     @Override
     public void callback(String s) {
         Log.i("MyApp","New collection is:"+s);
@@ -126,13 +126,13 @@ MirrorSDKJava.getInstance().APIMintNewLowerLevelCollection(collectionAddress,min
 });
 ```
 
-### APITransferNFTToAnotherSolanaWallet
+### TransferNFTToAnotherSolanaWallet
 Transfer NFT to another Sol wallet.
 ```java
 String mintAddress = "mint_address";
 String toWalletAddress = "wallet_address";
 
-MirrorSDKJava.getInstance().APITransferNFTToAnotherSolanaWallet(mintAddress,toWalletAddress, new MirrorCallback() {
+MirrorSDKJava.getInstance().TransferNFTToAnotherSolanaWallet(mintAddress,toWalletAddress, new MirrorCallback() {
     @Override
     public void callback(String s) {
         Log.i("MyApp","Transfer result is:"+s);
@@ -140,13 +140,13 @@ MirrorSDKJava.getInstance().APITransferNFTToAnotherSolanaWallet(mintAddress,toWa
 });
 ```
 
-### APICancelListingOfNFT
+### CancelNFTListing
 Cancel listing of NFT.
 ```java
 String mintAddress = "mint_address";
 Double price = 123.99;
 
-MirrorSDKJava.getInstance().APICancelListingOfNFT(mintAddress,price, new MirrorCallback() {
+MirrorSDKJava.getInstance().CancelNFTListing(mintAddress,price, new MirrorCallback() {
     @Override
     public void callback(String s) {
         Log.i("MyApp","result is:"+s);
@@ -154,13 +154,13 @@ MirrorSDKJava.getInstance().APICancelListingOfNFT(mintAddress,price, new MirrorC
 });
 ```
 
-### APIBuyNFT
+### BuyNFT
 Buy a NFT on market place.
 ```java
 String mintAddress = "mint_address";
 Double price = 123.99;
 
-MirrorSDKJava.getInstance().APIBuyNFT(mintAddress,price, new MirrorCallback() {
+MirrorSDKJava.getInstance().BuyNFT(mintAddress,price, new MirrorCallback() {
     @Override
     public void callback(String s) {
         Log.i("MyApp","result is:"+s);
@@ -168,13 +168,13 @@ MirrorSDKJava.getInstance().APIBuyNFT(mintAddress,price, new MirrorCallback() {
 });
 ```
 
-### APIUpdateListingOfNFT
+### UpdateNFTListing
 Update the list of NFTs.
 ```java
 String mintAddress = "mint_address";
 Double price = 123.99;
 
-MirrorSDKJava.getInstance().APIUpdateListingOfNFT(mintAddress,price, new MirrorCallback() {
+MirrorSDKJava.getInstance().UpdateNFTListing(mintAddress,price, new MirrorCallback() {
     @Override
     public void callback(String s) {
         holder.mResultView.setText(s);
@@ -182,13 +182,13 @@ MirrorSDKJava.getInstance().APIUpdateListingOfNFT(mintAddress,price, new MirrorC
 });
 ```
 
-### APIListNFTOnTheMarketplace
+### ListNFT
 Get list of NFT on market place.
 ```java
 String mintAddress = "mint_address";
 Double price = 123.99;
 
-MirrorSDKJava.getInstance().APIListNFTOnTheMarketplace(mintAddress,price, new MirrorCallback() {
+MirrorSDKJava.getInstance().ListNFT(mintAddress,price, new MirrorCallback() {
     @Override
     public void callback(String s) {
         holder.mResultView.setText(s);
@@ -197,7 +197,7 @@ MirrorSDKJava.getInstance().APIListNFTOnTheMarketplace(mintAddress,price, new Mi
 
 ```
 
-### APIFetchNFTsByUpdateAuthorityAddress
+### FetchNFTsByUpdateAuthorities
 Get a collection of NFT by authority addresses.
 ```java
 List<String> list = new ArrayList<>();
@@ -206,7 +206,7 @@ list.add("authority_address_2");
 Double limit = 2;
 Double offset = "0.23";
 
-MirrorSDKJava.getInstance().APIFetchNFTsByUpdateAuthorityAddress(list,limit,offset, new MirrorCallback() {
+MirrorSDKJava.getInstance().FetchNFTsByUpdateAuthorities(list,limit,offset, new MirrorCallback() {
     @Override
     public void callback(String s) {
         holder.mResultView.setText(s);
@@ -214,7 +214,7 @@ MirrorSDKJava.getInstance().APIFetchNFTsByUpdateAuthorityAddress(list,limit,offs
 });
 ```
 
-### APIFetchNFTsByCreatorAddress
+### FetchNFTsByCreatorAddresses
 Get a collection of NFT by creator addresses.
 ```java
 List<String> list = new ArrayList<>();
@@ -223,7 +223,7 @@ list.add("authority_address_2");
 Double limit = 2;
 Double offset = "0.23";
 
-MirrorSDKJava.getInstance().APIFetchNFTsByCreatorAddress(list,limit,offset, new MirrorCallback() {
+MirrorSDKJava.getInstance().FetchNFTsByCreatorAddresses(list,limit,offset, new MirrorCallback() {
     @Override
     public void callback(String s) {
         holder.mResultView.setText(s);
@@ -231,14 +231,14 @@ MirrorSDKJava.getInstance().APIFetchNFTsByCreatorAddress(list,limit,offset, new 
 });
 ```
 
-### APIFetchNFTsByMintAddress
+### FetchNFTsByMintAddresses
 Get a collection of NFT by mint addresses.
 ```java
 List<String> list = new ArrayList<>();
 list.add("mint_address_1");
 list.add("mint_address_2");
 
-MirrorSDKJava.getInstance().APIFetchNFTsByMintAddress(list, new MirrorCallback() {
+MirrorSDKJava.getInstance().FetchNFTsByMintAddresses(list, new MirrorCallback() {
     @Override
     public void callback(String s) {
         holder.mResultView.setText(s);
