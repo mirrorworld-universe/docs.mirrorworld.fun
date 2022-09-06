@@ -186,6 +186,20 @@ const Unity = defineDocumentType(() => ({
   },
 }))
 
+const Architecture = defineDocumentType(() => ({
+  name: "Architecture",
+  filePathPattern: "architecture/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/architecture/[slug]`,
+    },
+  },
+}))
+
 const Resources = defineDocumentType(() => ({
   name: "Resources",
   filePathPattern: `resources/**/*.mdx`,
@@ -264,6 +278,7 @@ const contentLayerConfig = makeSource({
     JavaScript,
     Unity,
     Resources,
+    Architecture,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
