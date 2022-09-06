@@ -1,13 +1,8 @@
 import { ElementType } from "react"
 import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
 import { HiOutlineViewGrid } from "react-icons/hi"
-import {
-  SiJavascript,
-  SiNodedotjs,
-  SiRust,
-  SiSwift,
-  SiUnity,
-} from "react-icons/si"
+import { MdArchitecture } from "react-icons/md"
+import { SiJavascript, SiUnity } from "react-icons/si"
 
 type SidebarItem =
   | {
@@ -25,6 +20,7 @@ type SidebarItem =
       label: string
       new?: boolean
       href?: string
+      isExternal?: boolean
     }
   | {
       type: "link"
@@ -42,23 +38,20 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       id: "overview",
       items: [
         { type: "doc", label: "Introduction", id: "introduction" },
-        { type: "doc", label: "Getting started", id: "getting-started" },
-        { type: "doc", label: "Features", id: "features" },
-        { type: "doc", label: "Dashboard", id: "dashboard" },
-        { type: "doc", label: "Wallet Design", id: "wallet-design" },
         {
           type: "doc",
-          label: "Platform Support",
-          id: "platform-support",
+          label: "Getting started (~15 min)",
+          id: "getting-started",
         },
-        { type: "doc", label: "FAQ", id: "faq" },
-        {
-          type: "doc",
-          label: "Changelog",
-          id: "changelogs",
-          href: "/changelogs/latest",
-        },
+        // { type: "doc", label: "Features", id: "features" },
       ],
+    },
+    {
+      type: "category",
+      label: "Architecture",
+      icon: MdArchitecture,
+      id: "architecture",
+      items: [{ type: "doc", label: "Wallet Design", id: "wallet-design" }],
     },
     {
       type: "category",
@@ -68,22 +61,26 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       items: [
         { type: "doc", label: "Installation", id: "android-authentication" },
         { type: "doc", label: "API Reference", id: "android-APIReference" },
-        { type: "doc", label: "Authentication Tips", id: "android-AuthenticationTips" },
+        {
+          type: "doc",
+          label: "Authentication Tips",
+          id: "android-AuthenticationTips",
+        },
         { type: "doc", label: "Examples", id: "android-Examples" },
       ],
     },
-    {
-      type: "category",
-      label: "iOS",
-      icon: SiSwift,
-      id: "ios",
-      items: [
-        { type: "doc", label: "Installation", id: "ios-installation" },
-        { type: "doc", label: "Authentication", id: "ios-authentication" },
-        { type: "doc", label: "Marketplace", id: "ios-marketplace" },
-        { type: "doc", label: "Tokenization", id: "ios-tokenization" },
-      ],
-    },
+    // {
+    //   type: "category",
+    //   label: "iOS",
+    //   icon: SiSwift,
+    //   id: "ios",
+    //   items: [
+    //     { type: "doc", label: "Installation", id: "ios-installation" },
+    //     { type: "doc", label: "Authentication", id: "ios-authentication" },
+    //     { type: "doc", label: "Marketplace", id: "ios-marketplace" },
+    //     { type: "doc", label: "Tokenization", id: "ios-tokenization" },
+    //   ],
+    // },
     {
       type: "category",
       label: "Unity",
@@ -107,20 +104,28 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "API Reference", id: "js-api" },
         { type: "doc", label: "Authentication Guide", id: "js-authentication" },
         { type: "doc", label: "Examples", id: "js-examples" },
+        {
+          type: "doc",
+          label: "Changelog",
+          id: "changelogs",
+          new: true,
+          isExternal: true,
+          href: "https://github.com/mirrorworld-universe/mirrorworld-sdk-js/blob/main/packages/web/CHANGELOG.md",
+        },
       ],
     },
-    {
-      type: "category",
-      label: "Rust",
-      icon: SiRust,
-      id: "rust",
-      items: [
-        { type: "doc", label: "Installation", id: "rust-installation" },
-        { type: "doc", label: "Authentication", id: "rust-authentication" },
-        { type: "doc", label: "Marketplace", id: "rust-marketplace" },
-        { type: "doc", label: "Tokenization", id: "rust-tokenization" },
-      ],
-    },
+    // {
+    //   type: "category",
+    //   label: "Rust",
+    //   icon: SiRust,
+    //   id: "rust",
+    //   items: [
+    //     { type: "doc", label: "Installation", id: "rust-installation" },
+    //     { type: "doc", label: "Authentication", id: "rust-authentication" },
+    //     { type: "doc", label: "Marketplace", id: "rust-marketplace" },
+    //     { type: "doc", label: "Tokenization", id: "rust-tokenization" },
+    //   ],
+    // },
     {
       type: "category",
       label: "Resources",

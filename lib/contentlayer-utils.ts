@@ -10,6 +10,7 @@ import {
   allResources,
   allJavaScripts,
   allUnity,
+  allArchitectures,
 } from "contentlayer/generated"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -78,6 +79,21 @@ export function getAndroidDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
   return allAndroids.find(
     (post) => post.frontmatter.slug === `/android/${slug}`,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Architecture
+ * -----------------------------------------------------------------------------*/
+
+export function getArchitecturePaths() {
+  return allArchitectures.map((doc) => `/architecture/${doc.slug}`)
+}
+
+export function getArchitectureDocs(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allArchitectures.find(
+    (post) => post.frontmatter.slug === `/architecture/${slug}`,
   )
 }
 
