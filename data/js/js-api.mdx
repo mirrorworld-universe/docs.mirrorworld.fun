@@ -17,8 +17,7 @@ import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
-  env: ClusterEnvironment.mainnet,
-  clientId: "YOUR_CLIENT_ID"
+  env: ClusterEnvironment.mainnet
 })
 
 const { refreshToken } = await mirrorworld.login()
@@ -33,7 +32,6 @@ import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
   env: ClusterEnvironment.mainnet,
-  clientId: "YOUR_CLIENT_ID"
 })
 
 const { refreshToken } = await mirrorworld.loginWithEmail({
