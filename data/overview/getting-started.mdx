@@ -3,75 +3,54 @@ title: Getting started
 description: Getting started
 ---
 
-# Getting started
-
----
-title: Getting started
-description: Getting started
----
-
 # Get started (~15 mins)
 
 Welcome to Mirror World! If you are new to the Mirror World SDK, don't worry, in the next tutorials, we will show you how to use and play with our product.
 
-## What is dashboard?
-- Dashboard is where you can manage your projects and API keys, as well as get real-time metrics for projects. To start interacting with our SDK, you need to launch your projects on our dashboard platform to get some basic access permission codes (API keys, client_id, etc.). 
+## What is the Developer Dashboard?
+The Developer dashboard is where you can manage your projects and API keys, as well as get real-time metrics for projects. To start interacting with our SDK, you need to launch your projects on our dashboard platform to get some basic access permission codes (API keys, Client IDs, etc.). 
+
 ## Create an account
-- Firstly, please visit https://app.mirrorworld.fun/auth/login and sign up. You will need this account to access all the features we provided. If you have any issues with your account, you can email sdk@mirrorworld.fun or join our discord/ telegram to report to our team directly.
+To get started, visit [Create a developer account](https://app.mirrorworld.fun/auth/login). You will need this account to access all the features we provided. If you encounter any issues with your account, you can [contact us](mailto:sdk@mirrorworld.fun) or join our [Discord](https://mirrorworld.fun/discord) and [Telegram](https://mirrorworld.fun/telegram) communities to report to our team directly.
+
 ![alt](https://market-assets.mirrorworld.fun/process/step1.png)
 
 ## Create your project
-- Ok, right now you already have your account set up, just need one more step to integrate our SDK. Once you've signed in dashboard, you will be directed to our home page, which contains some resources that help you better understand how to use our SDK as well as find some support during the development process.
+Once you've signed in dashboard, you will be directed to our home page, which contains some resources that help you better understand how to use our SDK as well as find some support during the development process.
 
 
 ![alt](https://market-assets.mirrorworld.fun/process/step2.png)
-
 <p align="center">The Home page</p>
 
 
-- Go ahead and hit that "Create Project" button to start your first games! Once clicked, we will need to fill out your project name in the popup. 
+Go ahead and click the "Create Project" button to start your first project! Enter your project name in the popup and click "Create".
 
 
 ![alt](https://market-assets.mirrorworld.fun/process/step3.png)
-
 <p align="center">Create your project</p>
 
-> A clear name will let you know which game you are working on and will definitely be helpful when managing multiple games.
+> A clear name will let you know which game you are working on and will be helpful when managing multiple projects/games.
 
 
-## Find your API keys, Client_id and Client_secret
-1、To get access to our SDK, you will need to know 3 project codes that we generate for you when you set up your project:
-> - API Key: Authorizes a client to access our API. Without it, no requests can be authorized. 
-> - Client_id - Used as a publicly sharable project_Id that can be used in the place of the actual id primary key property. This key is also appended to the JWT in v1 login and signup endpoints. This will allow other services to identify which project this user has been authenticated for.
-> - Client_secret - A sensitive value that the project owner/developer will use to verify certain claims about their project on Mirror World SSO. For example, if a project authenticates with Mirror World, and hopes to access  another project user's data in their project, they will use this secret to verify the claims they submit via the verification endpoint.
+## Managing your application credentials
+Every project is created with 3 credentials that you will use when developing with Mirror World:
+1. **API Key** - Authorizes a client to access the Mirror World API. Without it, no requests can be authorized. A single project can have multiple API Keys. You can create as many as you need per project. If one API keys is compromised, you can delete it from your app, and create a new one for your project without affecting the operation of your project.
+2. **Client ID** - The Client ID can be used to publicly identify your project. We use this key internally to identify which project a specific request belongs.
+3. **Client Secret** - A sensitive credential that the project owner/developer will use to verify certain claims about their project on our Authentication services. For example, if your project authenticates with Mirror World, and hopes to access user data on your API, we will use this secret to verify the claims your back end submits via the verification endpoint.
 
-2、After you create your project, you will see it on the projects list (You can find the project list on the Home page or Projects page).  Click the name of your project, you will be directed to the project detail page that contains API keys, Client_id and Client_secret.
-
+You will find these credentials on the Project Page on the dashboard.
 
 ![alt](https://market-assets.mirrorworld.fun/process/step4.png)
-
 <p align="center">Visit from the Projects page</p>
-
-
-![alt](https://market-assets.mirrorworld.fun/process/step5.png)
-
-<p align="center">Visit from the Projects page</p>
-
 
 ![alt](https://market-assets.mirrorworld.fun/process/step6.png)
+<p align="center">Project credentials (API Keys, Client ID, Client Secret)</p>
 
-<p align="center">Project Information (API keys, Client_ID, Client_secret)</p>
 
-Congratulations! You have completed everything you need to prepare to integrate our SDK. In the next step, we will guide you on how to use our SDK in your project.
+## Start building
+Congratulations! You have completed everything you need to prepare to integrate our SDK. Below are some links to help you get started with developing for your app.
 
-## Build your API call in the project
 ### Import SDK
-  - [Using ANDROID](https://docs.mirrorworld.fun/android/android-authentication)
-    <p> https://github.com/mirrorworld-universe/mirrorworld-sdk-android </p>
-  - [Using UNITY ](https://docs.mirrorworld.fun/unity/unity-installation)
-    <p> https://github.com/mirrorworld-universe/mirrorworld-sdk-unity </p>
-  - [Using JAVASCRIPT](https://docs.mirrorworld.fun/unity/unity-installation)
-    <p> https://github.com/mirrorworld-universe/mirrorworld-sdk-js </p>
-  - Using RUST
-    <p> https://github.com/mirrorworld-universe/mirrorworld-sdk-rust </p>
-### Sample case - Interact with social auth
+  - [Android SDK](https://docs.mirrorworld.fun/android/android-authentication)
+  - [Unity SDK](https://docs.mirrorworld.fun/unity/unity-installation)
+  - [JavaScript / Typescript SDK](https://docs.mirrorworld.fun/js/js-installation)
