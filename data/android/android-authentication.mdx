@@ -1,18 +1,21 @@
 # Mirror World Android SDK
 
-Mirror World's Official Android SDK  
+Mirror World's Official Android SDK
 
 ## Getting started
-Create a developer account at https://app.mirrorworld.fun. Create project and create an API Key.  
+
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key.
 
 ## Import SDK
+
 *Notice:
 The minimum version that SDK requires is Android 4.4.*
 
-1. Download and uncompress [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/tag/v0.1.0).  
-2. Put the mirrorsdk.aar under folder 'libs'.If there is no libs folder,you may create one.
-![image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/boxcnm7QhYooAjDdWrAZYp8zB2e/?fallback_source=1&height=1280&mount_node_token=doxcnIIeWAQW8ESeiGush255kXd&mount_point=docx_image&policy=equal&width=1280)
-3. Add configeration to build.gradle:
+1.  Download and uncompress [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/tag/v1.1.0).
+2.  Put the mirrorsdk.aar under folder 'libs'.If there is no libs folder,you may create one.
+    ![image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/v2/cover/boxcnm7QhYooAjDdWrAZYp8zB2e/?fallback_source=1&height=1280&mount_node_token=doxcnIIeWAQW8ESeiGush255kXd&mount_point=docx_image&policy=equal&width=1280)
+3.  Add configeration to build.gradle:
+
 ```java
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
@@ -20,33 +23,48 @@ dependencies {
 ```
 
 ## Usage
-1. Initialization
-We can init Mirror World SDK with the following code:  
+
+1.  Initialization
+    We can init Mirror World SDK with the following code:
+
 ```java
-MirrorSDKJava.getInstance().SetApiKey("your api key");
-MirrorSDKJava.getInstance().SetDebug(true);
-MirrorSDKJava.getInstance().InitSDK();
+Activity activity = this;
+String apiKey = "your api key";
+boolean useDebugMode = true;
+
+MirrorSDK.getInstance().SetApiKey(apiKey);
+MirrorSDK.getInstance().SetDebug(useDebugMode);
+MirrorSDK.getInstance().InitSDK(activity,MirrorEnv.DevNet);
 ```
 
-2. Guild user to login
-When user open your app, you may want to know whether this user needs to login, you can call the following code to know that.
+1.  Guide user to login
+    When user open your app, you may want to know whether this user needs to login, you can call the following code to know that.
+
 ```java
-MirrorSDKJava.getInstance().CheckAuthenticated(emailAddr, new MirrorCallback() {
+MirrorSDK.getInstance().CheckAuthenticated(emailAddr, new BoolListener() {
     @Override
-    public void callback(boolean isLogin) {
-        Log.i("Mirror","This user's login state is:" + isLogin);
+    public void onBool(boolean boolValue) {
+        Log.i("Mirror","This user's login state is:" + boolean);
     }
 });
 ```
+
 If you want him to login(or again), you can use the following code:
+
 ```java
-MirrorSDKJava.getInstance().StartLogin(new MirrorCallback() {
+MirrorSDK.getInstance().StartLogin(new LoginListener() {
     @Override
-    public void callback(String result) {
-        Log.i("MyApp","Login successed!");
+    public void onLoginSuccess() {
+        Log.i("Mirror","User login success!");
+    }
+
+    @Override
+    public void onLoginFail() {
+        Log.i("Mirror","User login failed!");
     }
 });
 ```
 
 ## Full API Documentation
+
 You can view the documentation for Mirror World SDK for Mobile on [our Official Documentation Site](https://docs.mirrorworld.fun/android/android-APIReference)
