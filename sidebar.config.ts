@@ -2,7 +2,7 @@ import { ElementType } from "react"
 import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
 import { HiOutlineViewGrid } from "react-icons/hi"
 import { MdArchitecture } from "react-icons/md"
-import { SiJavascript, SiUnity } from "react-icons/si"
+import { SiJavascript, SiUnity, SiRust } from "react-icons/si"
 
 type SidebarItem =
   | {
@@ -114,18 +114,18 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         },
       ],
     },
-    // {
-    //   type: "category",
-    //   label: "Rust",
-    //   icon: SiRust,
-    //   id: "rust",
-    //   items: [
-    //     { type: "doc", label: "Installation", id: "rust-installation" },
-    //     { type: "doc", label: "Authentication", id: "rust-authentication" },
-    //     { type: "doc", label: "Marketplace", id: "rust-marketplace" },
-    //     { type: "doc", label: "Tokenization", id: "rust-tokenization" },
-    //   ],
-    // },
+    {
+      type: "category",
+      label: "Rust",
+      icon: SiRust,
+      id: "rust",
+      items: [
+        { type: "doc", label: "Installation", id: "rust-installation" },
+        { type: "doc", label: "API Reference", id: "rust-api" },
+        { type: "doc", label: "Examples", id: "rust-example" },
+        // { type: "doc", label: "Tokenization", id: "rust-tokenization" },
+      ],
+    },
     {
       type: "category",
       label: "Resources",
