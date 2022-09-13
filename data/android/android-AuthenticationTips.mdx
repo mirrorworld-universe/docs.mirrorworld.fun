@@ -1,16 +1,19 @@
 # Authentication Tips
 
 ## User login with different social accounts.
+
 Every kind of social account login will provide a new wallet for users. These wallets are not same.
 
 ## Login invalidation
+
 Token saved in local by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If token is invalidate, we should guild users to login again.
-For example, you can follow the logic like this:  
+For example, you can follow the logic like this:
 
 ```java
-MirrorSDKJava.getInstance().IsLoggedIn(new MirrorCallback(){
+MirrorSDK.getInstance().CheckAuthenticated(new BoolListener() {
     @Override
-    public void callback(boolean isLoggedIn) {
+    public void onBool(boolean boolValue) {
+        boolean isLoggedIn = boolValue;
         if(isLoggedIn){
             //todo: enter content directly
         }else {

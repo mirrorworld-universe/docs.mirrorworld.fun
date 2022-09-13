@@ -1,0 +1,500 @@
+---
+title: Rust
+description: Rust
+---
+
+# Rust API Reference
+
+## Authentication Methods
+
+All authentication methods on the Rust SDK Todo
+
+### set apikey or set auth
+
+```cs
+use mirrorworld_sdk_rust::{
+    set_apikey,
+    set_auth,
+    set_network,
+    get_auth,
+    get_apikey,
+};
+
+# set global apikey
+set_apikey("your apikey");
+
+# set global auth
+set_auth("your auth")
+
+# set network
+# (devnet or mainnet)
+set_network("devnet")
+
+# get network info
+get_network()
+
+# get your auth
+get_auth()
+
+# get apikey
+get_apikey();
+```
+
+### Completes user signup with email
+
+```cs
+use mirrorworld_sdk_rust::{
+    login_with_email,
+};
+
+let res = login_with_email({
+    LoginWithEmailParam {
+        email: "your email",
+        code: "your email code",
+        password: "your password",
+    }
+});
+
+# set global apikey
+set_apikey("your apikey");
+
+let response = if let Ok(Some(response)) = res {
+    response
+} else {
+    todo!()
+};
+
+# response
+{
+  "status": "Duis aute",
+  "data": {
+    "access_token": "et nulla pari",
+    "refresh_token": "adipisicing",
+    "user": {
+      "id": -65132526,
+      "eth_address": "sunt voluptate exercitation Ut",
+      "sol_address": "sint reprehenderit ullamco minim",
+      "email": "dolore consequat",
+      "email_verified": true,
+      "username": "et adipisic",
+      "wallet": {
+        "eth_address": "officia aliqua dolore in",
+        "sol_address": "ea"
+      },
+      "createdAt": "sint",
+      "updatedAt": "enim adipisicing cupidatat ex"
+    }
+  },
+  "code": 61006994,
+  "message": "ven"
+}
+```
+
+### Registers a user with email
+
+```cs
+use mirrorworld_sdk_rust::{
+    signup_email,
+};
+
+signup_email("liu_yangchina@126.com");
+
+# response
+{
+  "status": "success",
+  "data": {
+    "message": "Success"
+  },
+  "code": 0,
+  "message": "Successfully emailed \"email@example.com\" verification code. Please verify email to complete signup"
+}
+
+```
+
+### GETChecks whether is authenticated or not and returns the user object if true
+
+```cs
+use mirrorworld_sdk_rust::{
+    fetch_user,
+};
+
+fetch_user();
+
+
+# response
+{
+  "status": "officia dolor ipsum consectetur exercitation",
+  "data": {
+    "id": -61597821,
+    "eth_address": "enim magna laborum",
+    "sol_address": "labore aute",
+    "email": "non esse sint Duis anim",
+    "email_verified": false,
+    "username": "labore deserunt eiusmod dolor",
+    "wallet": {
+      "eth_address": "sed sint ex",
+      "sol_address": "dolore et quis"
+    },
+    "createdAt": "fugiat Lorem cillum culpa quis",
+    "updatedAt": "nisi sunt velit cupidatat"
+  },
+  "code": -83006001,
+  "message": "non fugiat"
+}
+
+```
+
+### Get wallet tokens.
+
+```cs
+use mirrorworld_sdk_rust::{
+    get_token,
+};
+get_token();
+
+# response
+{
+  sol: u32,
+  tokens: {
+     ata: String,
+     mint: String,
+     amount: u32,
+     decimals: u32
+  },
+}
+```
+
+### Logs in a user with email and password
+
+```cs
+use mirrorworld_sdk_rust::{
+    login,
+};
+login({
+  email: "your email",
+  password: "your pwd"
+});
+
+# response
+{
+  "status": "Duis aute",
+  "data": {
+    "access_token": "et nulla pari",
+    "refresh_token": "adipisicing",
+    "user": {
+      "id": -65132526,
+      "eth_address": "sunt voluptate exercitation Ut",
+      "sol_address": "sint reprehenderit ullamco minim",
+      "email": "dolore consequat",
+      "email_verified": true,
+      "username": "et adipisic",
+      "wallet": {
+        "eth_address": "officia aliqua dolore in",
+        "sol_address": "ea"
+      },
+      "createdAt": "sint",
+      "updatedAt": "enim adipisicing cupidatat ex"
+    }
+  },
+  "code": 61006994,
+  "message": "ven"
+}
+```
+
+### Fetches the wallet transactions for a user
+
+```cs
+use mirrorworld_sdk_rust::{
+    get_transactions
+};
+let result = get_transactions();
+let response = if let Ok(Some(response)) = result {
+    response
+} else {
+    todo!()
+};
+
+# response
+{
+  "status": "elit",
+  "data": {
+    "count": 10,
+    "next_before": "bvcofigBLTmy3DJ29P8Nfh5aJ1GHwS6ncSmTBZdYGfXCs2e5pvY7nV8zBXYefoeczggVXEkKAkNy1GAZPpHhmWi",
+    "transactions": [
+      {
+        "blockTime": 9919393.383649096,
+        "meta": {},
+        "slot": 1,
+        "transaction": {}
+      },
+      {
+        "blockTime": -26280240.22220181,
+        "meta": {},
+        "slot": 1,
+        "transaction": {}
+      }
+    ]
+  }
+}
+```
+
+### GET Fetch single NFT details
+
+```cs
+use mirrorworld_sdk_rust::{
+    get_nft_details
+};
+let result = get_nft_details("your token");
+let response = if let Ok(Some(response)) = result {
+    response
+} else {
+    todo!()
+};
+
+# response
+{
+  "data": {
+    "mintAddress": "9pd6wUcfZpPBsrQFxqEkMjfbyaqraQRsiQtD8D4wqa6W",
+    "auctionActivities": [
+      {
+        "id": 1,
+        "mintAddress": "5eGe5EaC5w5L9nCdmqM4eCe8ZLkBanBVMYBB4gj71qg",
+        "txSignature": "5a6RRY4q8rs8jAJqgiJ3LtKsCXVHzphKo28qy6CmY26RbgbWeqTrt26yagLmAvrd82Ut1vfCKnDqgL6ZW4G7dkFj",
+        "amount": 1,
+        "receiptType": "listing_receipt",
+        "tokenPrice": 1,
+        "blockTimeCreated": "2022-06-14T23:58:49.000Z",
+        "blockTimeCanceled": "2022-06-14T23:58:49.000Z",
+        "tradeState": "8edeoMHFf5xUdv3GcPRduyPKnP5UQ4vrYokvs4bMruVv",
+        "auctionHouseAddress": "FW6o4vELLA4NojBdTjNGz1F7apWoj6Jtwb1YNbSdyB1X",
+        "sellerAddress": "Aq4ijxZYAiyzTKqntBxkWorLKGn3dRp335aVemWHFNev",
+        "buyerAddress": "Aq4ijxZYAiyzTKqntBxkWorLKGn3dRp335aVemWHFNev",
+        "metadata": "67k4uxa8kkBjEtyU2hCnkmb9x67znYnXMtbRgfMQKQgU",
+        "blockTime": "2022-06-14T23:58:49.000Z"
+      },
+      {
+        "id": 1,
+        "mintAddress": "5eGe5EaC5w5L9nCdmqM4eCe8ZLkBanBVMYBB4gj71qg",
+        "txSignature": "5a6RRY4q8rs8jAJqgiJ3LtKsCXVHzphKo28qy6CmY26RbgbWeqTrt26yagLmAvrd82Ut1vfCKnDqgL6ZW4G7dkFj",
+        "amount": 1,
+        "receiptType": "listing_receipt",
+        "tokenPrice": 1,
+        "blockTimeCreated": "2022-06-14T23:58:49.000Z",
+        "blockTimeCanceled": "2022-06-14T23:58:49.000Z",
+        "tradeState": "8edeoMHFf5xUdv3GcPRduyPKnP5UQ4vrYokvs4bMruVv",
+        "auctionHouseAddress": "FW6o4vELLA4NojBdTjNGz1F7apWoj6Jtwb1YNbSdyB1X",
+        "sellerAddress": "Aq4ijxZYAiyzTKqntBxkWorLKGn3dRp335aVemWHFNev",
+        "buyerAddress": "Aq4ijxZYAiyzTKqntBxkWorLKGn3dRp335aVemWHFNev",
+        "metadata": "67k4uxa8kkBjEtyU2hCnkmb9x67znYnXMtbRgfMQKQgU",
+        "blockTime": "2022-06-14T23:58:49.000Z"
+      }
+    ],
+    "tokenTransfers": [
+      {
+        "id": 1,
+        "mintAddress": "5eGe5EaC5w5L9nCdmqM4eCe8ZLkBanBVMYBB4gj71qg",
+        "txSignature": "5a6RRY4q8rs8jAJqgiJ3LtKsCXVHzphKo28qy6CmY26RbgbWeqTrt26yagLmAvrd82Ut1vfCKnDqgL6ZW4G7dkFj",
+        "amount": 1,
+        "fromWalletAddress": "Aq4ijxZYAiyzTKqntBxkWorLKGn3dRp335aVemWHFNev",
+        "toWalletAddress": "Aq4ijxZYAiyzTKqntBxkWorLKGn3dRp335aVemWHFNev",
+        "blockTime": "2022-06-14T23:58:49.000Z",
+        "slot": 144875101
+      },
+      {
+        "id": 1,
+        "mintAddress": "5eGe5EaC5w5L9nCdmqM4eCe8ZLkBanBVMYBB4gj71qg",
+        "txSignature": "5a6RRY4q8rs8jAJqgiJ3LtKsCXVHzphKo28qy6CmY26RbgbWeqTrt26yagLmAvrd82Ut1vfCKnDqgL6ZW4G7dkFj",
+        "amount": 1,
+        "fromWalletAddress": "Aq4ijxZYAiyzTKqntBxkWorLKGn3dRp335aVemWHFNev",
+        "toWalletAddress": "Aq4ijxZYAiyzTKqntBxkWorLKGn3dRp335aVemWHFNev",
+        "blockTime": "2022-06-14T23:58:49.000Z",
+        "slot": 144875101
+      }
+    ]
+  }
+}
+```
+
+## Wallet Methods
+
+All wallet methods on the Rust SDK Todo
+
+### Transfer Token to another address
+
+```cs
+let result = transfer_sol((to_sol_address, amount));
+let response = if let Ok(Some(response)) = result {
+    response
+} else {
+    todo!()
+};
+let code = if let Some(code) = response.code {
+    code
+} else {
+    todo!()
+};
+
+# response
+{
+  "status": "exercitation magna",
+  "tx_signature": "3yNDq4sARQDw2fjazvBRchroA9KUGKCrpjQAtEaJJPPnPRpGjcB6YRWqSzz5rUw3uFku8Xt45ZFetPiJPhrQBuPV"
+}
+```
+
+### Transfer SOL to another address.
+
+```cs
+let result = transfer_spltoken((
+    to_publickey,
+    amount,
+    token_mint,
+    decimals
+));
+let response = if let Ok(Some(response)) = result {
+    response
+} else {
+    todo!()
+};
+let status = if let Some(status) = response.status {
+    status
+} else {
+    todo!()
+};
+
+# response
+{
+  "status": "exercitation magna",
+  "tx_signature": "3yNDq4sARQDw2fjazvBRchroA9KUGKCrpjQAtEaJJPPnPRpGjcB6YRWqSzz5rUw3uFku8Xt45ZFetPiJPhrQBuPV"
+}
+```
+
+## Marketplace Methods
+
+All marketplace methods on the Rust SDK Todo
+
+### init marketplace object,
+
+```cs
+use mirrorworld_sdk_rust::{marketplace::Marketplace, NetEnv};
+use mirrorworld_sdk_rust::marketplace::GeneralPayload;
+
+let KEY: &str = "your api key";
+let TOKEN: &str = "your access token";
+
+let market =  Marketplace::new(KEY.to_string(), NetEnv::DEVNET, TOKEN.to_string());
+
+```
+
+### create a collection
+
+```cs
+
+let name: String = String::from("your collection name");
+let symbol: String = String::from("your token symbol name");
+let uri: String = String::from("you collection metadata uri")
+let response = market.create_collection(name, symbol, uri).await.unwrap();
+if response.is_none() {
+    // your code
+} else {
+    // your code
+}
+```
+
+### mint an nft
+
+```cs
+let payload: GeneralPayload = GeneralPayload{
+        name: String::from("your nft name"),
+        symbol: "your symbol".to_string(),
+        url: "your nft metadta uri".to_string(),
+        collection_mint: "your collection".to_string()
+    };
+let response = market.solana_mint_nft(payload).await.unwrap();
+```
+
+### list an nft
+
+```cs
+let mint_address: String = String::from("your nft mint address");
+let price: f64 = 0.5; // amount in SOL
+let response = market.listing_nft(mint_address, price).await.unwrap();
+```
+
+### buy an nft
+
+```cs
+let mint_address: String = String::from("your nft mint address");
+let price: f64 = 0.5; // amount in SOL
+let response = market.buy_nft(mint_address, price).await.unwrap();
+```
+
+### update nft listing price
+
+```cs
+let mint_address: String = String::from("your nft mint address");
+let price: f64 = 0.5; // amount in SOL
+let response = market.update_nft_listing(mint_address, price).await.unwrap();
+```
+
+### cancel listing
+
+```cs
+let mint_address: String = String::from("your nft mint address");
+let price: f64 = 0.5; // amount in SOL
+let response = market.cancel_nft_listing(mint_address, price).await.unwrap();
+```
+
+### transfer nft
+
+```cs
+let mint_address = String::from("your nft mint address");
+let to_wallet_address = String::from("to wallet address");
+let response = market.transfer_nft(mint_address, to_wallet_address).await.unwrap();
+```
+
+### fetch nfts by mint address
+
+```cs
+let mut addresses = Vec::new();
+addresses.push("nft mint address".to_string());
+let limit: usize = 10;
+let offset: usize = 1;
+let response = market.fetch_nfts_by_mint_address(addresses, limit, offset).await.unwrap();
+```
+
+### fetch nfts by creator address
+
+```cs
+let mut addresses = Vec::new();
+addresses.push("creator address".to_string());
+let limit: usize = 10;
+let offset: usize = 1;
+let response = market.fetch_nfts_by_creator_address(addresses, limit, offset).await.unwrap();
+```
+
+### fetch nfts by update authorities
+
+```cs
+let mut addresses = Vec::new();
+addresses.push("update authorities address".to_string());
+let limit: usize = 10;
+let offset: usize = 1;
+let response = market.fetch_nfts_by_update_authorities(addresses, limit, offset).await.unwrap();
+```
+
+### fetch nfts by owner address
+
+```cs
+let mut addresses = Vec::new();
+addresses.push("owner address".to_string());
+let limit: usize = 10;
+let offset: usize = 1;
+let response = market.fetch_nfts_by_owner_addresses(addresses, limit, offset).await.unwrap();
+```
+
+### fetch nfts marketplace activity
+
+```cs
+let address = String::from("nft mint address");
+let response = market.fetch_nft_marketplace_activity(address).await.unwrap();
+```
