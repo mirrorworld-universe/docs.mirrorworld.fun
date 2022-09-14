@@ -41,7 +41,7 @@ Set if use debug mode. In this mode, developer can see details in whole flow.
 MirrorSDK.getInstance().SetDebug(true);
 ```
 
-### SetAppID
+### SetApiKey
 
 Set the api key which the current app uses. You can find it when you create a project on our website.
 
@@ -52,6 +52,14 @@ MirrorSDK.getInstance().SetAppID(apiKey);
 ```
 
 ## Wallet Methods
+
+### OpenWallet
+
+Open a webview which would show the wallet page.
+
+```java
+MirrorSDK.getInstance().OpenWallet();
+```
 
 ### GetAccessToken
 
