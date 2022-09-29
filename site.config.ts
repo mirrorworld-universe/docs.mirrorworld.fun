@@ -45,13 +45,13 @@ const siteConfig = {
       images: [
         {
           // url: `${baseConfig.url}/open-graph/website.png`,
-          url: '/images/sharelink.png',
+          url: `https://docs.mirrorworld.fun/images/sharelink.png`,
           width: 1240,
           height: 480,
         },
         {
           // url: `${baseConfig.url}/open-graph/twitter.png`,
-          url: '/images/sharelink.png',
+          url: `https://docs.mirrorworld.fun/images/sharelink.png`,
           width: 1012,
           height: 506,
         },
