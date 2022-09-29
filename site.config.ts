@@ -44,12 +44,14 @@ const siteConfig = {
       site_name: baseConfig.title,
       images: [
         {
-          url: `${baseConfig.url}/open-graph/website.png`,
+          // url: `${baseConfig.url}/open-graph/website.png`,
+          url: '/images.sharelink.png',
           width: 1240,
           height: 480,
         },
         {
-          url: `${baseConfig.url}/open-graph/twitter.png`,
+          // url: `${baseConfig.url}/open-graph/twitter.png`,
+          url: '/images.sharelink.png',
           width: 1012,
           height: 506,
         },
