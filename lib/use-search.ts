@@ -7,6 +7,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { searchData, SearchMetaResult } from "./search-meta"
 import { useUpdateEffect } from "./use-update-effect"
+import mixgather from "mixgather"
 
 export function useSearch() {
   const [dialog_state, dialog_send] = useMachine(
@@ -28,6 +29,9 @@ export function useSearch() {
       inputBehavior: "autohighlight",
       selectionBehavior: "clear",
       onSelect({ label }) {
+        mixgather.event("user_search_documentation", {
+          search_term: label
+        })
         try {
           const { pathname, slug, url } = JSON.parse(label)
           router.push({ pathname, query: { slug } }, url)

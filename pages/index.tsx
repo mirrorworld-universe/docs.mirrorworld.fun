@@ -32,6 +32,7 @@ import { FiBookOpen, FiUsers } from "react-icons/fi"
 import { AiOutlineShop } from "react-icons/ai"
 import { BiBadgeCheck } from "react-icons/bi"
 import { ChainSupportTable } from "../components/support-table"
+import mixgather from "mixgather"
 
 type FeatureItemProps = {
   title: string
@@ -102,6 +103,9 @@ export default function Home() {
                 variant="outline"
                 px={6}
                 w={{ base: "full", sm: "unset" }}
+                onClick={() => {
+                  mixgather.event("start_building ")
+                }}
               >
                 <HStack spacing="2">
                   <span>Start buidling</span>

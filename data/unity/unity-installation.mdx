@@ -13,20 +13,16 @@ import it to your project `Assets > Import Package > Custom Package` and select 
 
 ## Usage
 
-#### Configration with adding prefab manually
-![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/blob/master/CaseImage/case_prefab_example.jpg)
+### Configuration with adding prefab manually
+![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/blob/master/CaseImage/case_prefab_example.jpg?raw=true)
 
 Explanation of beyond image:
-- Api Key
-Input your aky key which requested on https://docs.mirrorworld.fun/ .  
-- Debug Mode
-If checking this, you could see all the flow and error notice on console.
-- Environment
-Choose the environment you want to use.
-- Debug Email and Password
-In pre-release beta, you can only login SDK with this function. Input your email and password on https://docs.mirrorworld.fun/ .
+- **Api Key**: Input your API key from the developer dashboard on https://app.mirrorworld.fun
+- **Debug Mode**: If checking this, you could see all the flow and error notice on console.
+- **Environment**: Choose the environment you want to use.
+- **Debug Email and Password**: In pre-release beta, you can only login SDK with this function. Input your email and password on https://docs.mirrorworld.fun.
 
-#### Configration dynamic
+### Configuration dynamic
 We can init Mirror World SDK with the following code:  
 ```cs
 GameObject mirrorObj = new GameObject("MirrorSDK", typeof(MirrorSDK));
@@ -37,15 +33,15 @@ Environment environment = Environment.StagingDevnet;
 MirrorSDK.InitSDK(apiKey, mirrorObj, debugMode, environment);
 ```
 
-2. Guild user to login
-When user open your app, you may want to know whether this user needs to login, you can call the following code to know that.
+2. Guide user to login
+When the user opens your app, you may want to know whether this user needs to log in, you can call the `IsLoggedIn` method. The boolean result is return in the callback.
 ```cs
 MirrorSDK.IsLoggedIn((isLoggedIn) => {
     Debug.Log("isLoggedIn:" + isLoggedIn);
 });
 ```
 
-If you want him to login(or again), you can use the following code:
+If you want the user to login, you can use the following code:
 ```cs
 MirrorSDK.StartLogin();
 ```
