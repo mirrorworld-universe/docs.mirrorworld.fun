@@ -233,8 +233,33 @@ export default function Home() {
           align={{ base: "flex-start", xl: "center" }}
         >
           <Box flex="1">
+            <chakra.h2 mb="8" maxW="24ch" textStyle="display.2xl">
+              <chakra.span color="mirror.400">Our Vision</chakra.span>
+            </chakra.h2>
+            <chakra.p maxW="64ch" fontSize="3xl">
+              The vision of the Mirror World Smart SDK is to{" "}
+              <chakra.span color="mirror.400" fontWeight="bold">
+                create and incentivize alternatives to traditional walled-garden
+                solutions to building mobile games and applications
+              </chakra.span>
+              . The Web 3 era ushered in the possibility of a world where this
+              is possible - a world where builders, gamers, authors, creators
+              and users have ownership of the things they create; and have the
+              tools to make interoperable ecosystems.
+            </chakra.p>
+          </Box>
+        </Flex>
+      </Box>
+
+      <Box as="section" my={{ base: "20", md: "32" }} layerStyle="contain">
+        <Flex
+          gap="64px"
+          direction={{ base: "column", xl: "row" }}
+          align={{ base: "flex-start", xl: "center" }}
+        >
+          <Box flex="1">
             <chakra.h2 mb="8" maxW="24ch" textStyle="display.xl">
-              Cross-chain support.{" "}
+              Multi-chain support.{" "}
               <chakra.span color="mirror.400">Buidl Anywhere.</chakra.span>
             </chakra.h2>
             <chakra.p maxW="64ch" fontSize="lg">

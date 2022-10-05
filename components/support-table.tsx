@@ -49,7 +49,7 @@ const supportDataTable: SupportField[] = [
   {
     chain: "Ethereum",
     status: "Live",
-    isOnMainnet: true,
+    isOnMainnet: false,
     isOnTestnet: true,
     icon: EthereumIcon,
   },
@@ -178,9 +178,7 @@ export const ChainSupportTable = (props: BoxProps) => {
                   <Td border="none" py="8" bg="#1E1E1E" px={8} fontSize="lg">
                     <Icon
                       color={
-                        chain.status === "Live"
-                          ? "mirror.400"
-                          : "whiteAlpha.600"
+                        chain.isOnMainnet ? "mirror.400" : "whiteAlpha.600"
                       }
                       as={FiCheckCircle}
                     />
@@ -188,9 +186,7 @@ export const ChainSupportTable = (props: BoxProps) => {
                   <Td border="none" py="8" bg="#1E1E1E" px={8} fontSize="lg">
                     <Icon
                       color={
-                        chain.status === "Live"
-                          ? "mirror.400"
-                          : "whiteAlpha.600"
+                        chain.isOnTestnet ? "mirror.400" : "whiteAlpha.600"
                       }
                       as={FiCheckCircle}
                     />

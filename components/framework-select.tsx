@@ -6,7 +6,7 @@ import { useFramework } from "./framework"
 
 export function FrameworkSelect() {
   const { framework, setFramework } = useFramework()
-  const { replace, asPath } = useRouter()
+  const { replace, asPath, pathname } = useRouter()
 
   return (
     <HStack>
@@ -25,21 +25,26 @@ export function FrameworkSelect() {
         color="mirror.500"
         outline="none"
         defaultValue={framework}
+        value={framework}
         onChange={(event) => {
           const newFramework = event.currentTarget.value as Framework
           setFramework(newFramework)
+          console.log("asPath", asPath)
+          console.log("pathname", pathname)
           if (asPath.includes(framework) && newFramework !== framework) {
-            const url = asPath.replace(framework, newFramework)
-            replace(url)
+            const url = asPath.replaceAll(framework, newFramework)
+            replace(url).then()
+          } else {
+            const url = `/${newFramework}/${newFramework}-installation`
+            replace(url).then()
           }
         }}
       >
-        <option value="android">Android</option>
-        <option value="ios">iOS (Swift)</option>
+        <option value="js">JavaScript</option>
         <option value="unity">Unity</option>
-        <option value="web">JavaScript</option>
-        <option value="node">Node.js</option>
+        <option value="android">Android</option>
         <option value="rust">Rust</option>
+        {/*<option value="ios">iOS (Swift)</option>*/}
       </chakra.select>
     </HStack>
   )
