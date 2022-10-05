@@ -59,14 +59,14 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       icon: AiOutlineAndroid,
       id: "android",
       items: [
-        { type: "doc", label: "Installation", id: "android-authentication" },
-        { type: "doc", label: "API Reference", id: "android-APIReference" },
+        { type: "doc", label: "Installation", id: "android-installation" },
+        { type: "doc", label: "API Reference", id: "android-api" },
         {
           type: "doc",
           label: "Authentication Tips",
-          id: "android-AuthenticationTips",
+          id: "android-authentication",
         },
-        { type: "doc", label: "Examples", id: "android-Examples" },
+        { type: "doc", label: "Examples", id: "android-examples" },
       ],
     },
     // {

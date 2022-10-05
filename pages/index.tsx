@@ -238,18 +238,40 @@ export default function Home() {
         >
           <Box flex="1">
             <chakra.h2 mb="8" maxW="24ch" textStyle="display.2xl">
-              <chakra.span color="mirror.400">Our Vision</chakra.span>
+              <chakra.span color="mirror.400">The Vision</chakra.span>
             </chakra.h2>
             <chakra.p maxW="64ch" fontSize="3xl">
-              The vision of the Mirror World Smart SDK is to{" "}
+              The vision of the Mirror World Smart SDK is to create
+              easy-to-integrate tools to{" "}
               <chakra.span color="mirror.400" fontWeight="bold">
-                create and incentivize alternatives to traditional walled-garden
-                solutions to building mobile games and applications
+                help creators step out of the walled-garden solutions to
+                building digital economies on decentralized applications and
+                games.
               </chakra.span>
-              . The Web 3 era ushered in the possibility of a world where this
-              is possible - a world where builders, gamers, authors, creators
-              and users have ownership of the things they create; and have the
-              tools to make interoperable ecosystems.
+            </chakra.p>
+          </Box>
+        </Flex>
+      </Box>
+      <Box as="section" my={{ base: "20", md: "32" }} layerStyle="contain">
+        <Flex
+          gap="64px"
+          direction={{ base: "column", xl: "row" }}
+          align={{ base: "flex-start", xl: "center" }}
+        >
+          <Box flex="1">
+            <chakra.h3 mb="8" maxW="24ch" textStyle="display.xl">
+              The Mission
+            </chakra.h3>
+            <chakra.p maxW="64ch" fontSize="3xl">
+              Mirror World's contribution to this vision is to{" "}
+              <chakra.span color="mirror.400" fontWeight="bold">
+                create top-class composable and easy-to-use APIs and SDKs for
+                building applications and games on a decentralized web without
+                limits.
+              </chakra.span>{" "}
+              Our core SDK primarily provides features around Authentication,
+              NFT APIs, Marketplaces and Storefronts, Tokenization and On-ramp
+              strategies.
             </chakra.p>
           </Box>
         </Flex>
