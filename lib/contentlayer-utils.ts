@@ -11,7 +11,6 @@ import {
   allJavaScripts,
   allUnity,
   allArchitectures,
-  allBlogs,
 } from "contentlayer/generated"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -181,14 +180,14 @@ export function getGuideDoc(slug: string | string[]) {
  * Blogs
  * -----------------------------------------------------------------------------*/
 
-export function getBlogPaths() {
-  return allBlogs.map((doc) => `/blog/${doc.slug}`)
-}
-
-export function getBlogDoc(_slug: string | string[]) {
-  const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allBlogs.find((post) => post.frontmatter.slug === `/blog/${slug}`)
-}
+// export function getBlogPaths() {
+//   return allBlogs.map((doc) => `/blog/${doc.slug}`)
+// }
+//
+// export function getBlogDoc(_slug: string | string[]) {
+//   const slug = Array.isArray(_slug) ? _slug[0] : _slug
+//   return allBlogs.find((post) => post.frontmatter.slug === `/blog/${slug}`)
+// }
 
 /* -----------------------------------------------------------------------------
  * Snippet
