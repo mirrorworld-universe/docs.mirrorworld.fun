@@ -51,6 +51,15 @@ String apiKey = "Your api key";
 MirrorSDK.getInstance().SetAppID(apiKey);
 ```
 
+### setWebviewNotice
+Our login page is not compatible with some low version webview.So when the target webview is lower than limit,we will show notice.
+
+```java
+String notice = "Please update your webview.";
+
+MirrorSDK.getInstance().setWebviewNotice(notice);
+```
+
 ## Wallet Methods
 
 ### OpenWallet
@@ -352,3 +361,29 @@ MirrorSDK.getInstance().FetchNFTsByOwnerAddresses(list, new FetchByOwnerListener
     }
 });
 ```
+
+# Authentication Tips
+
+## User login with different social accounts.
+
+Every kind of social account login will provide a new wallet for users. These wallets are not same.
+
+## Login invalidation
+
+Token saved in local by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If token is invalidate, we should guide users to login again.
+For example, you can follow the logic like this:
+
+```java
+MirrorSDK.getInstance().CheckAuthenticated(new BoolListener() {
+    @Override
+    public void onBool(boolean boolValue) {
+        boolean isLoggedIn = boolValue;
+        if(isLoggedIn){
+            //todo: enter content directly
+        }else {
+            //todo: show a button leading user to login.
+        }
+    }
+});
+```
+
