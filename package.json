@@ -29,12 +29,14 @@
     "@emotion/styled": "^11",
     "@fontsource/dm-sans": "^4.5.7",
     "@fontsource/poppins": "^4.5.8",
+    "@jlengstorf/get-share-image": "0.5.0",
     "@reach/portal": "^0.17.0",
     "@types/fs-extra": "^9.0.13",
     "@zag-js/combobox": "^0.1.12",
     "@zag-js/dialog": "^0.1.11",
     "@zag-js/react": "^0.1.13",
     "@zag-js/tabs": "^0.1.11",
+    "cloudinary-build-url": "^0.2.4",
     "contentlayer": "^0.2.3",
     "focus-visible": "^5.2.0",
     "framer-motion": "^6",
@@ -56,6 +58,7 @@
     "@types/react": "^17.0.37"
   },
   "devDependencies": {
+    "@cld-apis/types": "^0.1.6",
     "@types/react": "^17.0.37",
     "all-contributors-cli": "^6.20.0",
     "eslint": "8.4.0",
