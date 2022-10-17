@@ -1,6 +1,10 @@
 import { useMDX } from "components/mdx-components"
 import type { Component } from "contentlayer/generated"
-import { extractParams, getBlogDoc, getBlogPaths } from "lib/contentlayer-utils"
+import {
+  extractParams,
+  getGuideDoc,
+  getGuidePaths,
+} from "lib/contentlayer-utils"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { NextSeo } from "next-seo"
 import BlogLayout from "../../layouts/blog"
@@ -11,7 +15,7 @@ type PageProps = {
   shareImage: string
 }
 
-export default function BlogPage({ doc, shareImage }: PageProps) {
+export default function GuidesPage({ doc, shareImage }: PageProps) {
   const mdx = useMDX(doc.body.code)
   return (
     <div>
@@ -20,7 +24,7 @@ export default function BlogPage({ doc, shareImage }: PageProps) {
         description={doc.description}
         canonical={"https://docs.mirrorworld.fun"}
         openGraph={{
-          url: `https://docs.mirrorworld.fun/blog/${doc.slug}`,
+          url: `https://docs.mirrorworld.fun/guides/${doc.slug}`,
           title: doc.title,
           description: doc.description,
           images: [
@@ -38,12 +42,12 @@ export default function BlogPage({ doc, shareImage }: PageProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: getBlogPaths(), fallback: false }
+  return { paths: getGuidePaths(), fallback: false }
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = extractParams(ctx.params.slug as string[])
-  const doc = getBlogDoc(slug)
+  const doc = getGuideDoc(slug)
 
   const shareImage = buildUrl("jbakebwa.dev/twitter-cards/blog-card", {
     cloud: {
