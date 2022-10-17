@@ -51,6 +51,14 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           isExternal: true,
           href: "https://developer.mirrorworld.fun",
         },
+        {
+          type: "doc",
+          label: "Blog",
+          id: "blog",
+          new: true,
+          isExternal: true,
+          href: "/blog",
+        },
       ],
     },
     {
@@ -139,6 +147,14 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       icon: HiOutlineViewGrid,
       id: "resources",
       items: [
+        {
+          type: "doc",
+          label: "Blog",
+          id: "blog",
+          new: true,
+          isExternal: true,
+          href: "/blog",
+        },
         { type: "doc", label: "Support", id: "support" },
         { type: "doc", label: "Tutorials", id: "tutorials" },
         { type: "doc", label: "Guides", id: "guides" },
