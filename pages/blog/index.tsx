@@ -6,16 +6,16 @@ import {
   Stack,
   SimpleGrid,
   HStack,
-} from "@chakra-ui/layout"
+  Image,
+  Tag,
+} from "@chakra-ui/react"
 import { SkipNavLink } from "../../components/skip-nav"
 import { TopNavigation } from "../../components/top-navigation"
 import { chakra } from "@chakra-ui/system"
 import React from "react"
 import { allBlogs } from "contentlayer/generated"
 import { buildUrl } from "cloudinary-build-url"
-import { Image } from "@chakra-ui/image"
 import Link from "next/link"
-import { Tag } from "@chakra-ui/react"
 
 export default function Blog() {
   const blogs = allBlogs.map((blog) => ({
