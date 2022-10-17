@@ -214,6 +214,25 @@ const Resources = defineDocumentType(() => ({
   },
 }))
 
+const Blog = defineDocumentType(() => ({
+  name: "Blog",
+  filePathPattern: `blog/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    ...fields,
+    tags: { type: "json" },
+    date_published: { type: "string" },
+    author: { type: "json" },
+  },
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/blog/[slug]`,
+    },
+  },
+}))
+
 const Snippet = defineDocumentType(() => ({
   name: "Snippet",
   filePathPattern: "snippets/**/*.mdx",
@@ -279,6 +298,7 @@ const contentLayerConfig = makeSource({
     Unity,
     Resources,
     Architecture,
+    Blog,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
