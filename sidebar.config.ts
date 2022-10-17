@@ -3,6 +3,7 @@ import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
 import { HiOutlineViewGrid } from "react-icons/hi"
 import { MdArchitecture } from "react-icons/md"
 import { SiJavascript, SiUnity, SiRust } from "react-icons/si"
+import { FaHandsHelping } from "react-icons/fa"
 
 type SidebarItem =
   | {
@@ -50,14 +51,6 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           new: true,
           isExternal: true,
           href: "https://developer.mirrorworld.fun",
-        },
-        {
-          type: "doc",
-          label: "Blog",
-          id: "blog",
-          new: true,
-          isExternal: true,
-          href: "/blog",
         },
       ],
     },
@@ -153,11 +146,29 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           id: "blog",
           new: true,
           isExternal: true,
-          href: "/blog",
+          href: "https://blog.mirrorworld.fun",
         },
         { type: "doc", label: "Support", id: "support" },
         { type: "doc", label: "Tutorials", id: "tutorials" },
-        { type: "doc", label: "Guides", id: "guides" },
+        // { type: "doc", label: "Guides", id: "guides" },
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Guides",
+      icon: FaHandsHelping,
+      id: "guides",
+      items: [
+        { type: "doc", label: "All guides", id: "" },
+        // {
+        //   type: "doc",
+        //   label: "All Guides",
+        //   id: "guides",
+        //   new: true,
+        //   isExternal: true,
+        //   href: "/guides",
+        // },
       ],
     },
   ],

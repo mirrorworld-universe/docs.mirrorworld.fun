@@ -67,14 +67,6 @@ const Overview = defineDocumentType(() => ({
   },
 }))
 
-const Guide = defineDocumentType(() => ({
-  name: "Guide",
-  filePathPattern: "guides/**/*.mdx",
-  contentType: "mdx",
-  fields,
-  computedFields,
-}))
-
 const Component = defineDocumentType(() => ({
   name: "Component",
   filePathPattern: "components/**/*.mdx",
@@ -214,9 +206,9 @@ const Resources = defineDocumentType(() => ({
   },
 }))
 
-const Blog = defineDocumentType(() => ({
-  name: "Blog",
-  filePathPattern: `blog/**/*.mdx`,
+const Guides = defineDocumentType(() => ({
+  name: "Guides",
+  filePathPattern: `guides/**/*.mdx`,
   contentType: "mdx",
   fields: {
     ...fields,
@@ -228,7 +220,7 @@ const Blog = defineDocumentType(() => ({
     ...computedFields,
     pathname: {
       type: "string",
-      resolve: () => `/blog/[slug]`,
+      resolve: () => `/guides/[slug]`,
     },
   },
 }))
@@ -287,7 +279,6 @@ const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
     Overview,
-    Guide,
     Snippet,
     Component,
     Changelog,
@@ -298,7 +289,7 @@ const contentLayerConfig = makeSource({
     Unity,
     Resources,
     Architecture,
-    Blog,
+    Guides,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],

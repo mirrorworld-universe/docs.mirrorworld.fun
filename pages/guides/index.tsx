@@ -13,13 +13,13 @@ import { SkipNavLink } from "../../components/skip-nav"
 import { TopNavigation } from "../../components/top-navigation"
 import { chakra } from "@chakra-ui/system"
 import React from "react"
-import { allBlogs } from "contentlayer/generated"
+import { allGuides } from "contentlayer/generated"
 import { buildUrl } from "cloudinary-build-url"
 import Link from "next/link"
 
 export default function Blog() {
-  const blogs = allBlogs.map((blog) => ({
-    ...blog,
+  const guides = allGuides.map((guide) => ({
+    ...guide,
     shareImage: buildUrl("jbakebwa.dev/twitter-cards/blog-card", {
       cloud: {
         cloudName: "xtellar",
@@ -33,7 +33,7 @@ export default function Blog() {
             overlay: [
               `text:${sanitize(
                 "Poppins",
-              )}_64_semibold_line_spacing_-20:${sanitize(blog.title)}`,
+              )}_64_semibold_line_spacing_-20:${sanitize(guide.title)}`,
               "c_fit",
               "co_rgb:DCFF1C",
               "g_north_west",
@@ -45,7 +45,7 @@ export default function Blog() {
           {
             overlay: [
               `text:${sanitize("Poppins")}_48:${sanitize(
-                blog.tags.map((t) => `#${t}`).join(" "),
+                guide.tags.map((t) => `#${t}`).join(" "),
               )}`,
               "c_fit",
               "co_rgb:FFFFFF",
@@ -67,15 +67,15 @@ export default function Blog() {
         <Box maxW="8xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
           <Container as="main" maxW="4xl" className="mdx-content" pt="4">
             <Stack spacing={8}>
-              <Heading>Mirror World SDK Blog</Heading>
+              <Heading>Guides</Heading>
               <Text color="gray.300">
-                Tutorials & Guides on building on and interacting with the
-                Mirror World SDK. These guides cover topics in Solana
+                Technical Guides & Tutorials on building on and interacting with
+                the Mirror World SDK. These guides cover topics in Solana
                 fundamentals, NFTs, DeFi, Gaming Development and more!
               </Text>
               <SimpleGrid columns={[1, 1, 3]} spacing={10}>
-                {blogs.map((blog, i) => (
-                  <Link key={i} href={`/blog/${blog.slug}`}>
+                {guides.map((guide, i) => (
+                  <Link key={i} href={`/guides/${guide.slug}`}>
                     <Box
                       rounded="md"
                       overflow="hidden"
@@ -89,7 +89,7 @@ export default function Blog() {
                         shadow: "lg",
                       }}
                     >
-                      <Image src={blog.shareImage} alt={blog.title} />
+                      <Image src={guide.shareImage} alt={guide.title} />
                       <Stack px={4} py={3}>
                         <Heading
                           as={"h3"}
@@ -97,10 +97,10 @@ export default function Blog() {
                           fontWeight="bold"
                           noOfLines={2}
                         >
-                          {blog.title}
+                          {guide.title}
                         </Heading>
                         <HStack>
-                          {blog.tags.map((t, j) => (
+                          {guide.tags.map((t, j) => (
                             <Tag
                               rounded="full"
                               key={j}
@@ -116,7 +116,7 @@ export default function Blog() {
                           ))}
                         </HStack>
                         <Text color="gray.300" fontSize={"sm"} noOfLines={3}>
-                          {blog.description}
+                          {guide.description}
                         </Text>
                       </Stack>
                     </Box>
