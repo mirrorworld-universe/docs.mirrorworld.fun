@@ -150,7 +150,6 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         },
         { type: "doc", label: "Support", id: "support" },
         { type: "doc", label: "Tutorials", id: "tutorials" },
-        // { type: "doc", label: "Guides", id: "guides" },
       ],
     },
 
@@ -161,14 +160,11 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       id: "guides",
       items: [
         { type: "doc", label: "All guides", id: "" },
-        // {
-        //   type: "doc",
-        //   label: "All Guides",
-        //   id: "guides",
-        //   new: true,
-        //   isExternal: true,
-        //   href: "/guides",
-        // },
+        {
+          type: "doc",
+          label: "Usage with Next.js",
+          id: "next-js-guide-mirrorworld-sdk",
+        },
       ],
     },
   ],
