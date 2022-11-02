@@ -275,6 +275,7 @@ const Changelog = defineDocumentType(() => {
   }
 })
 
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [

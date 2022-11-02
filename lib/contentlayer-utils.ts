@@ -139,6 +139,17 @@ export function getRustDoc(_slug: string | string[]) {
 /* -----------------------------------------------------------------------------
  * Unity
  * -----------------------------------------------------------------------------*/
+export function getMarketPaths() {
+  return allRusts.map((doc) => `/marketplace/${doc.slug}`)
+}
+
+export function getMarketDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allRusts.find((post) => post.frontmatter.slug === `/marketplace/${slug}`)
+}
+/* -----------------------------------------------------------------------------
+ * Unity
+ * -----------------------------------------------------------------------------*/
 
 export function getUnityPaths() {
   return allUnity.map((doc) => `/unity/${doc.slug}`)
