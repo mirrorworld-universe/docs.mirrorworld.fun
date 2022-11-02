@@ -1,7 +1,7 @@
 import { ElementType } from "react"
 import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
 import { HiOutlineViewGrid } from "react-icons/hi"
-import { MdArchitecture } from "react-icons/md"
+import { MdArchitecture, MdAllInbox } from "react-icons/md"
 import { SiJavascript, SiUnity, SiRust } from "react-icons/si"
 
 type SidebarItem =
@@ -43,9 +43,16 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           label: "Getting started (~15 min)",
           id: "getting-started",
         },
-        // { type: "doc", label: "Features", id: "features" },
+        { type: "doc", label: "storefront", id: "storefront" },
       ],
     },
+    // {
+    //   type: "category",
+    //   label: "marketplace",
+    //   icon: MdAllInbox,
+    //   id: "marketplace",
+    //   items: [{ type: "doc", label: "Storefront Deployment", id: "storefront" }],
+    // },
     {
       type: "category",
       label: "Architecture",
@@ -53,6 +60,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       id: "architecture",
       items: [{ type: "doc", label: "Wallet Design", id: "wallet-design" }],
     },
+   
     {
       type: "category",
       label: "Android",

@@ -264,6 +264,20 @@ const Changelog = defineDocumentType(() => {
   }
 })
 
+const Marktplace = defineDocumentType(() => ({
+  name: "Marktplace",
+  filePathPattern: "marketplace/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/marketplace/[slug]`,
+    },
+  },
+}))
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
@@ -279,6 +293,7 @@ const contentLayerConfig = makeSource({
     Unity,
     Resources,
     Architecture,
+    Marktplace
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
