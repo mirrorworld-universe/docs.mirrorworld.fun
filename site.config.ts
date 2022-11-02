@@ -31,7 +31,7 @@ const siteConfig = {
     description: baseConfig.description,
     siteUrl: baseConfig.url,
     twitter: {
-      handle: "@mirrorworld_sdk",
+      handle: "@mirror_matrix",
       site: baseConfig.url,
       cardType: "summary_large_image",
     },
@@ -44,13 +44,11 @@ const siteConfig = {
       site_name: baseConfig.title,
       images: [
         {
-          // url: `${baseConfig.url}/open-graph/website.png`,
           url: `https://docs.mirrorworld.fun/images/sharelink.png`,
           width: 1240,
           height: 480,
         },
         {
-          // url: `${baseConfig.url}/open-graph/twitter.png`,
           url: `https://docs.mirrorworld.fun/images/sharelink.png`,
           width: 1012,
           height: 506,

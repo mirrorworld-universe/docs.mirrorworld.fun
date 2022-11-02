@@ -67,14 +67,6 @@ const Overview = defineDocumentType(() => ({
   },
 }))
 
-const Guide = defineDocumentType(() => ({
-  name: "Guide",
-  filePathPattern: "guides/**/*.mdx",
-  contentType: "mdx",
-  fields,
-  computedFields,
-}))
-
 const Component = defineDocumentType(() => ({
   name: "Component",
   filePathPattern: "components/**/*.mdx",
@@ -214,6 +206,25 @@ const Resources = defineDocumentType(() => ({
   },
 }))
 
+const Guides = defineDocumentType(() => ({
+  name: "Guides",
+  filePathPattern: `guides/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    ...fields,
+    tags: { type: "json" },
+    date_published: { type: "string" },
+    author: { type: "json" },
+  },
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/guides/[slug]`,
+    },
+  },
+}))
+
 const Snippet = defineDocumentType(() => ({
   name: "Snippet",
   filePathPattern: "snippets/**/*.mdx",
@@ -282,7 +293,6 @@ const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
     Overview,
-    Guide,
     Snippet,
     Component,
     Changelog,
@@ -293,6 +303,7 @@ const contentLayerConfig = makeSource({
     Unity,
     Resources,
     Architecture,
+    Guides,
     Marktplace
   ],
   mdx: {

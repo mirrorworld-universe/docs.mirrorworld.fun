@@ -3,6 +3,7 @@ import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
 import { HiOutlineViewGrid } from "react-icons/hi"
 import { MdArchitecture, MdAllInbox } from "react-icons/md"
 import { SiJavascript, SiUnity, SiRust } from "react-icons/si"
+import { FaHandsHelping } from "react-icons/fa"
 
 type SidebarItem =
   | {
@@ -40,10 +41,18 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "Introduction", id: "introduction" },
         {
           type: "doc",
-          label: "Getting started (~15 min)",
+          label: "Getting started (~5 mins)",
           id: "getting-started",
         },
-        { type: "doc", label: "storefront", id: "storefront" },
+        {
+          type: "doc",
+          label: "HTTP API",
+          id: "http-api",
+          new: true,
+          isExternal: true,
+          href: "https://developer.mirrorworld.fun",
+        },
+        { type: "doc", label: "Marketplace Storefront", id: "storefront" },
       ],
     },
     // {
@@ -67,14 +76,14 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       icon: AiOutlineAndroid,
       id: "android",
       items: [
-        { type: "doc", label: "Installation", id: "android-authentication" },
-        { type: "doc", label: "API Reference", id: "android-APIReference" },
+        { type: "doc", label: "Installation", id: "android-installation" },
+        { type: "doc", label: "API Reference", id: "android-api" },
         {
           type: "doc",
           label: "Authentication Tips",
-          id: "android-AuthenticationTips",
+          id: "android-authentication",
         },
-        { type: "doc", label: "Examples", id: "android-Examples" },
+        { type: "doc", label: "Examples", id: "android-examples" },
       ],
     },
     // {
@@ -140,9 +149,31 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       icon: HiOutlineViewGrid,
       id: "resources",
       items: [
+        {
+          type: "doc",
+          label: "Blog",
+          id: "blog",
+          new: true,
+          isExternal: true,
+          href: "https://blog.mirrorworld.fun",
+        },
         { type: "doc", label: "Support", id: "support" },
         { type: "doc", label: "Tutorials", id: "tutorials" },
-        { type: "doc", label: "Guides", id: "guides" },
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Guides",
+      icon: FaHandsHelping,
+      id: "guides",
+      items: [
+        { type: "doc", label: "All guides", id: "" },
+        {
+          type: "doc",
+          label: "Usage with Next.js",
+          id: "next-js-guide-mirrorworld-sdk",
+        },
       ],
     },
   ],
