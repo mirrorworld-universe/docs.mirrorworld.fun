@@ -55,13 +55,6 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "Marketplace Storefront", id: "storefront" },
       ],
     },
-    // {
-    //   type: "category",
-    //   label: "marketplace",
-    //   icon: MdAllInbox,
-    //   id: "marketplace",
-    //   items: [{ type: "doc", label: "Storefront Deployment", id: "storefront" }],
-    // },
     {
       type: "category",
       label: "Architecture",
