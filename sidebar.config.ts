@@ -1,7 +1,7 @@
 import { ElementType } from "react"
 import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
-import { HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
-import { MdArchitecture } from "react-icons/md"
+import { HiOutlineViewGrid } from "react-icons/hi"
+import { MdArchitecture, MdAllInbox } from "react-icons/md"
 import { SiJavascript, SiUnity, SiRust } from "react-icons/si"
 import { FaHandsHelping } from "react-icons/fa"
 
@@ -52,6 +52,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           isExternal: true,
           href: "https://developer.mirrorworld.fun",
         },
+        { type: "doc", label: "Marketplace Storefront", id: "storefront" },
       ],
     },
     {
@@ -61,6 +62,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       id: "architecture",
       items: [{ type: "doc", label: "Wallet Design", id: "wallet-design" }],
     },
+   
     {
       type: "category",
       label: "Android",
