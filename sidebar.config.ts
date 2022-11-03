@@ -1,6 +1,6 @@
 import { ElementType } from "react"
 import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
-import { HiOutlineViewGrid } from "react-icons/hi"
+import { HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
 import { MdArchitecture, MdAllInbox } from "react-icons/md"
 import { SiJavascript, SiUnity, SiRust } from "react-icons/si"
 import { FaHandsHelping } from "react-icons/fa"
