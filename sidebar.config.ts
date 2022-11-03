@@ -1,6 +1,6 @@
 import { ElementType } from "react"
 import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
-import { HiOutlineViewGrid } from "react-icons/hi"
+import { HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
 import { MdArchitecture } from "react-icons/md"
 import { SiJavascript, SiUnity, SiRust } from "react-icons/si"
 import { FaHandsHelping } from "react-icons/fa"
@@ -152,7 +152,6 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "Tutorials", id: "tutorials" },
       ],
     },
-
     {
       type: "category",
       label: "Guides",
@@ -164,6 +163,19 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           type: "doc",
           label: "Usage with Next.js",
           id: "next-js-guide-mirrorworld-sdk",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Showcase",
+      icon: HiBriefcase,
+      id: "showcase",
+      items: [
+        {
+          type: "doc",
+          label: "All showcases",
+          id: "all",
         },
       ],
     },

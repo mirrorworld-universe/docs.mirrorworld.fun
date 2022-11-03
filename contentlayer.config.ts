@@ -67,6 +67,20 @@ const Overview = defineDocumentType(() => ({
   },
 }))
 
+const Showcase = defineDocumentType(() => ({
+  name: "Showcase",
+  filePathPattern: "showcase/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/showcase/[slug]",
+    },
+  },
+}))
+
 const Component = defineDocumentType(() => ({
   name: "Component",
   filePathPattern: "components/**/*.mdx",
@@ -290,6 +304,7 @@ const contentLayerConfig = makeSource({
     Resources,
     Architecture,
     Guides,
+    Showcase,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],

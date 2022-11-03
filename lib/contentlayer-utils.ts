@@ -11,6 +11,7 @@ import {
   allJavaScripts,
   allUnity,
   allArchitectures,
+  allShowcases,
 } from "contentlayer/generated"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -174,6 +175,19 @@ export function getGuidePaths() {
 
 export function getGuideDoc(slug: string | string[]) {
   return allGuides.find((post) => post.frontmatter.slug === `/guides/${slug}`)
+}
+
+/* -----------------------------------------------------------------------------
+ * Showcase
+ * -----------------------------------------------------------------------------*/
+export function getShowcasePaths() {
+  return allShowcases.map((doc) => `/showcase/${doc.slug}`)
+}
+
+export function getShowcaseDoc(slug: string | string[]) {
+  return allShowcases.find(
+    (post) => post.frontmatter.slug === `/showcase/${slug}`,
+  )
 }
 
 /* -----------------------------------------------------------------------------
