@@ -1,40 +1,66 @@
 ---
-title: Marketplace storefront
-description: Marketplace storefront
+title: Marketplace Storefront Deployment Guide
+description: Development guide for deploying your Marketplace storefront
 ---
 
-# Create storefront
+# Marketplace Storefront Deployment Guide
+This guide will enable you to create an NFT Marketplace using the Mirror World Smart SDK.
 
-1. Prepare your storefront Link：GitHub link
+> The Marketplace on Mirror World is currently available on Solana Mainnet and Devnet.
 
-- Download the project from GitHub
-  https://github.com/mirrorworld-universe/marketplace-storefront
-- Run the code locally
-  - yarn install
-  - yarn dev
-  - preview：
-    <img
-      src="https://market-assets.mirrorworld.fun/dashboard/storefront.png"
-      width="100%"
-      height="auto"
-    />
-- Download your ObjectConfig file on the dashboard and update on your project
-  - Visit projects - Marketplace - your_own_project, click 'Download'
-    <img
-      src="https://market-assets.mirrorworld.fun/dashboard/dashboard2.png"
-      width="100%"
-      height="auto"
-    />
-  - Go back to your GitHub project and replace the 'userConfig.json' with your
-    download file. {" "}
-    <img
-      src="https://market-assets.mirrorworld.fun/dashboard/dashboard2.png"
-      width="100%"
-      height="auto"
-    />
-    Please make sure to update your configuration userConfig.json
 
-2. There are multiple ways to deploy your storefront：
+## Creating your Marketplace
+1. On the [developer dashboard](https://app.mirrorworld.fun), under the projects tab, create a Marketplace for your project by completing the prompts.
+2. Include the collections you would like to list on your marketplace.
 
-- Using vercel to deploy Check deployment tutorial - https://vercel.com/docs
-- You can choose other deployment methods.
+## Creating the Storefront
+After creating the Marketplace on the Developer Dashboard, you're ready to create a storefront. A storefront is a user interface that your users will use to buy and sell NFTs on your Marketplace. The storefront serves as the UI for your marketplace core.
+
+### Storefront creation guide
+### 1. Clone this template repo:
+```sh
+git clone git@github.com:mirrorworld-universe/marketplace-sdk.git
+```
+
+### 2. Install dependencies
+```sh
+yarn install
+```
+
+### 3. Setup storefront `userConfig.json` variables. 
+
+Please put your API Key and Collection addresses in this config.
+
+Example config:
+```json
+{
+  // Array of collection addresses
+  "collections": [
+    "DUuMbpmH3oiREntViXfGZhrLMbVcYBwGeBa4Wn9X8QfM"
+  ],
+  // API Key
+  "xApiKey": "mw_testAmRKdRbBsBbIAw3CeMqS9GORmcG5BRUCU4D",
+  // Marketplace commission fee in percentage
+  "serviceFee": 4.25,
+  // Marketplace storefront currency
+  "currencyOption": "SOL",
+  // Storefront name
+  "name": "Mirror Jump",
+  // Storefront Logo URL
+  "logo": "",
+  // Storefront Network
+  "network": "mainnet"
+}
+```
+![](https://market-assets.mirrorworld.fun/dashboard/dashboard2.png)
+
+###  4. Run dev server
+```sh
+yarn dev
+```
+
+Open browser on http://localhost:3001 to preview your storefront.
+![](https://market-assets.mirrorworld.fun/dashboard/storefront.png)
+
+### 5. That's it! Deploy your static site!
+You can deploy your Next.js site using [Vercel](https://vercel.com) or [Netlify](https://netlify.com), or [Cloudflare Pages](https://pages.cloudflare.dev).
