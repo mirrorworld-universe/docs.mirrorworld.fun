@@ -85,6 +85,23 @@ MirrorSDK.getInstance().GetAccessToken(activityContext, new MirrorCallback() {
 });
 ```
 
+### FetchUser
+Try to get current user's details.
+
+```java
+MirrorSDK.getInstance().FetchUser(new FetchUserListener() {
+                @Override
+                public void onUserFetched(UserResponse userResponse) {
+                   
+                }
+
+                @Override
+                public void onFetchFailed(long code, String message) {
+                   
+                }
+            });
+```
+
 ### QueryUser
 
 Check user's info, then we can get user's base information such as wallet address and so on.
