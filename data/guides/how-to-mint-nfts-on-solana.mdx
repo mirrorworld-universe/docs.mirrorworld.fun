@@ -1,0 +1,184 @@
+---
+title: How to mint NFTs on Solana
+description:
+  TypeScript/JavaScript Guide for getting started with the Mirror World Smart
+  SDK in a React/Next.js App
+author:
+  name: David Chuka
+  twitter: https://twitter.com/cnwadiogbu
+tags:
+  - JavaScript
+  - TypeScript
+  - React.js
+---
+
+Nonfungible tokens (NFTs) are a new form of asset that can represent anything
+from digital art to game items and are stored on the blockchain ledger. NFTs are
+unique, immutable and transparent.
+
+People collect NFTs for various reasons, one of which may include having access
+to certain communities or having access to games. For example, on Mirror world,
+you may collect an NFT play as a character in a game.
+
+In this guide, we’ll look at how to mint NFTs on the Solana blockchain using the
+mirrorworld SDK
+
+## Getting Started
+
+Before getting started, you want to make sure that you already have a
+Mirrorworld developer account and an already created project. If you're yet to
+create one, head over to https://app.mirrorworld.fun/auth/login to get started
+or go through this guide for a proper explanation.
+
+### Create a collection
+
+Collections are like a folder for your NFTs. This is where your NFTs are going
+to be stored for distribution later. To create a collection, sign in to your
+developer dashboard and click on the "NFT Collections" tab displayed on the
+sidebar underneath "Projects".
+
+![Collection label](https://res.cloudinary.com/dkegnossp/image/upload/v1668632118/1280X1280_i5vqoo.png)
+
+Click on the Create Collection button to create a new collection. You'll be
+redirected to a page asking you for more information about your collection.
+Please make sure to fill in every field with the appropriate information.
+
+After creating a collection, you should be redirected to the collections page
+and see your collection added to the collections list for your project.
+
+## Guide to minting an NFT.
+
+The process of minting an NFT could be quite tedious, but with the mirrorworld
+SDK, this process has been simplified to writing just a few lines of code. Let's
+go ahead and build this out using Javascript (React frontend).
+
+### Project Setup
+
+Create a simple React app using Vite by running this command in your terminal
+and selecting "React" from the prompt:
+
+```shell
+yarn create vite mint-nft
+```
+
+### Install the Mirror World SDK
+
+Next, let’s make sure we have the mirror world SDK installed in our project.
+This will enable us to implement the NFT minting feature the SDK provides. Run
+the following command in your project’s root directory, in the terminal:
+
+```shell
+yarn add @mirrorworld/web3.js
+```
+
+### Mint NFT
+
+Let's implement the mintNFT method into our app. In your App.jsx delete the
+starter code and add the following code to setup mirrorworld and authentication
+in our app. We add some extra code to fetch and use refreshToken which will help
+us validate requests.
+
+```jsx
+import { useState } from "react"
+import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+
+import "./App.css"
+
+function App() {
+  const [refresh, setRefreshTok] = useState(
+    localStorage.getItem(`app-refresh-token`),
+  )
+
+  const mirrorworld = new MirrorWorld({
+    apiKey: "YOUR_SECRET_API_KEY", //Replace this with your own API Key
+    env: ClusterEnvironment.testnet,
+    autoLoginCredentials: refresh ?? undefined, // we need this to validate our requests
+  })
+  const [user, setUser] = useState()
+
+  async function login() {
+    const { user, refreshToken } = await mirrorworld.login()
+    localStorage.setItem(`app-refresh-token`, refreshToken)
+    setRefreshTok(refreshToken)
+    setUser(user)
+  }
+
+  useEffect(() => {
+    if (refresh) {
+      console.log(refresh)
+      setMirrorWorld(
+        new MirrorWorld({
+          apiKey: "YOUR_SECRET_API_KEY",
+          env: ClusterEnvironment.testnet,
+          autoLoginCredentials: refresh,
+        }),
+      )
+    }
+  }, [refresh])
+
+  return (
+    <div className="App">
+      {!user ? <button onClick={login}>Login to Mirror World</button> : ""}
+      {user ? (
+        <div className="user-info">
+          <p>{user.username} is logged in</p>
+        </div>
+      ) : (
+        <p>No User available</p>
+      )}
+    </div>
+  )
+}
+
+export default App
+```
+
+Now that we have set up authentication, let's create and function to mint our
+NFT and add a button that invokes that function:
+
+```jsx
+...
+async function mintMyNft() {
+    await mirrorworld.mintNFT({
+      name: `YOUR_NFT_NAME`,
+      symbol: `NFT_SYMBOL`,
+      metadataUri: "YOUR_NFT_METADATAURI",
+      collection: "YOUR_COLLECTION_ID",
+    });
+  }
+
+  return (
+    <div className="App">
+      {!user ? (
+        <button onClick={login}>Login to Mirror World</button>
+      ) : (
+        <div>
+          <button onClick={mintMyNft}>Mint NFT</button>
+        </div>
+      )}
+      {user ? (
+        <div className="user-info">
+          <p>{user.username} successfully logged in</p>
+        </div>
+      ) : (
+        <p>No User available</p>
+      )}
+    </div>
+  );
+}
+```
+
+The `mintNFT` method takes in four parameters.
+
+1. name: The name of the NFT.
+2. symbol: The unique symbol of the NFT e.g
+3. metadataUri: This is where the metadata for the NFT is stored
+4. collection: The value of collection is the ID of the collection we created
+   earlier on a dashboard.
+
+We should now be able to successfully mint our NFT into our collection at the
+click of a button.
+
+To confirm that this transaction was successful, head over to
+explorer.solana.com, enter the signature or mint address returned from the
+transaction and you should find your newly minted NFT there!
