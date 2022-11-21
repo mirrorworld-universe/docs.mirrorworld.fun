@@ -1,11 +1,11 @@
 
 # iOS API Reference
 
-### Authentication Methods
+## Authentication Methods
 
 `public let MWSDK = MirrorWorldSDK.share`
 
-- StartLogin
+## StartLogin
 
 Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
 
@@ -17,7 +17,7 @@ MirrorWorldSDK.share.StartLogin { userInfo in
 }
 ```
 
-- CheckAuthenticated
+## CheckAuthenticated
 
 Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
 
@@ -27,7 +27,7 @@ MWSDK.CheckAuthenticated { onBool in
 }
 ```
 
-- Logs out a user
+### Logs out a user
 
 ```Swift
 MWSDK.loginOut {
@@ -37,9 +37,9 @@ MWSDK.loginOut {
 }
 ```
 
-### Wallet Methods
+## Wallet Methods
 
-- OpenWallet
+### OpenWallet
 
 Open a webview which would show the wallet page.
 
@@ -47,7 +47,7 @@ Open a webview which would show the wallet page.
 MWSDK.OpenWallet()
 ```
 
-- GetAccessToken
+### GetAccessToken
 
 Get access token so that users can visit APIs.
 
@@ -59,7 +59,7 @@ MWSDK.GetAccessToken(callBack: { token in
 
 ```
 
-- QueryUser
+### QueryUser
 
 Check user's info, then we can get user's base information such as wallet address and so on.
 
@@ -75,7 +75,8 @@ MWSDK.QueryUser(email: "user Email") { user in
 
 ## MarketPlace Method
 
-- FetchSingleNFT
+### FetchSingleNFT
+
 Fetch the details of a NFT.
 
 ```Swift
@@ -88,7 +89,8 @@ MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
 
 ```
 
-- MintNewNFTOnCollection
+### MintNewNFTOnCollection
+
 Mint a new NFT.
 
 ```Swift
@@ -100,7 +102,8 @@ MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA",
 
 ```
 
-- CreateVerifiedCollection
+### CreateVerifiedCollection
+
 Mint a parent NFT collection.
 
 ```Swift
@@ -111,7 +114,8 @@ MWSDK.MintNewCollection(name: "testNewCollection", symbol: "NA", url: "https://m
     })
 ```
 
-- CreateVerifiedSubCollection
+### CreateVerifiedSubCollection
+
 Mint a child NFT collection.
 
 ```Swift
@@ -122,7 +126,8 @@ MWSDK.CreateVerifiedSubCollection(name: "test", collection_mint: "xxxxxxxx", sym
     }
 ```
 
-- TransferNFTToAnotherSolanaWallet
+### TransferNFTToAnotherSolanaWallet
+
 Transfer NFT to another Sol wallet.
 
 ```Swift
@@ -135,20 +140,7 @@ MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", 
 
 ```
 
-- CancelNFTListing
-Cancel listing of NFT.
-
-```Swift
-
-MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
-        self.Log(data)
-
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
-```
-
-- BuyNFT
+### BuyNFT
 
 Buy a NFT on market place.
 
@@ -163,7 +155,8 @@ Buy a NFT on market place.
 
 ```
 
-- UpdateNFTListing
+### UpdateNFTListing
+
 Update the list of NFTs.
 
 ```Swift
@@ -174,7 +167,8 @@ MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
     }
 ```
 
-- ListNFT
+### ListNFT
+
 Get list of NFT on market place.
 
 ```Swift
@@ -185,7 +179,8 @@ MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "fi
     }
 ```
 
-- CancelNFTListing
+### CancelNFTListing
+
 Cancel listing of NFT.
 
 ```Swift
@@ -196,7 +191,8 @@ MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
     }
 ```
 
-- FetchNFTsByUpdateAuthorities
+### FetchNFTsByUpdateAuthorities
+
 Get a collection of NFT by authority addresses.
 
 ```Swift
@@ -207,7 +203,8 @@ MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offs
         }
 ```
 
-- FetchNFTsByCreatorAddresses
+### FetchNFTsByCreatorAddresses
+
 Get a collection of NFT by creator addresses
 
 ```Swift
@@ -220,7 +217,8 @@ MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { 
     }
 ```
 
-- FetchNFTsByOwnerAddresses
+### FetchNFTsByOwnerAddresses
+
 Get a collection of NFT by mint addresses.
 
 ```Swift
@@ -229,28 +227,6 @@ MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
     } onFailed: { code, message in
         self.Log("\(item):failed:\(code),\(message ?? "")")
     }
-```
-
-## Using iOS-SDK for Unity
-
-in Unity:
-
-```Unity
-
-using System.Runtime.InteropServices;
-public class MirrorSDK : MonoBehaviour
-{
-[DllImport("__Internal")]
-private static extern void initSDK(string apikey);
-
-private void Awake()
-{
-#elif (UNITY_IOS && !(UNITY_EDITOR))
-    initSDK(apiKey);
-#endif
-}
-}
-
 ```
 
 ## License
