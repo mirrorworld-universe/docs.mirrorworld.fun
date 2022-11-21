@@ -44,14 +44,14 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           label: "Getting started (~5 mins)",
           id: "getting-started",
         },
-        /*{
+        {
           type: "doc",
           label: "HTTP API",
           id: "http-api",
           new: true,
           isExternal: true,
           href: "https://developer.mirrorworld.fun",
-        },*/
+        },
         { type: "doc", label: "Marketplace Storefront", id: "storefront" },
       ],
     },
