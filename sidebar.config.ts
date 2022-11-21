@@ -82,7 +82,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
     {
       type: "category",
       label: "iOS",
-      icon: SiSwift,
+      icon: AiOutlineAndroid,//SiSwift
       id: "ios",
       items: [
         { type: "doc", label: "API Reference", id: "ios-api" },
