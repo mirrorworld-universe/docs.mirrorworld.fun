@@ -144,11 +144,11 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       items: [
         {
           type: "doc",
-          label: "Blog",
-          id: "blog",
+          label: "Blogs",
+          id: "resources-blogs",
           new: true,
-          isExternal: true,
-          href: "https://blog.mirrorworld.fun",
+          //isExternal: true,
+          //href: "https://blog.mirrorworld.fun",
         },
         { type: "doc", label: "Support", id: "support" },
         //{ type: "doc", label: "Tutorials", id: "tutorials" },
