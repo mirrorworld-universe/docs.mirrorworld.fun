@@ -7,9 +7,9 @@ Create a developer account at https://app.mirrorworld.fun. Create project and cr
 
 ## Import SDK
 
-1. One way,download assets [Mirror World Unity SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases/tag/v0.1.0).  
+1. One way is to download assets[Mirror World Unity SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases/tag/v0.1.0).  
 import it to your project `Assets > Import Package > Custom Package` and select the package you just downloaded.
-2. Besides, you can also search for the package in Unity Assets Store with the key word "com.mirror.sdk" and import it.
+2. Besides, you can also search for the package in the Unity Assets Store with the keyword "com.mirror.sdk" and import it.
 
 ## Usage
 
@@ -18,9 +18,9 @@ import it to your project `Assets > Import Package > Custom Package` and select 
 
 Explanation of beyond image:
 - **Api Key**: Input your API key from the developer dashboard on https://app.mirrorworld.fun
-- **Debug Mode**: If checking this, you could see all the flow and error notice on console.
+- **Debug Mode**: If checking this, you could see all the flow and error notices on the console.
 - **Environment**: Choose the environment you want to use.
-- **Debug Email and Password**: In pre-release beta, you can only login SDK with this function. Input your email and password on https://docs.mirrorworld.fun.
+- **Debug Email and Password**: In the pre-release beta, you can only login SDK with this function. Input your email and password at https://docs.mirrorworld.fun.
 
 ### Configuration dynamic
 We can init Mirror World SDK with the following code:  
@@ -34,7 +34,7 @@ MirrorSDK.InitSDK(apiKey, mirrorObj, debugMode, environment);
 ```
 
 2. Guide user to login
-When the user opens your app, you may want to know whether this user needs to log in, you can call the `IsLoggedIn` method. The boolean result is return in the callback.
+When the user opens your app, you may want to know whether this user needs to log in, you can call the `IsLoggedIn` method. The boolean result is returned in the callback.
 ```cs
 MirrorSDK.IsLoggedIn((isLoggedIn) => {
     Debug.Log("isLoggedIn:" + isLoggedIn);
