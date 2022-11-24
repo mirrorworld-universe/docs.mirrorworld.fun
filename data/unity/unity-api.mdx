@@ -36,7 +36,7 @@ MirrorWrapper.Instance.FetchUser(email, (response) =>
 ```
 
 ### `GetWalletTokens`
-Get's the current user's tokens
+Get the current user's tokens
 ```cs
 MirrorSDK.GetWalletTokens((response) => {
     long resCode = response.Code;
@@ -96,7 +96,7 @@ MirrorSDK.TransferSPLToken(amount,publicKey,(response) => {
 ```
 
 ### `TransferSol`
-Transfer SOL to wallet address
+Transfer SOL to the wallet address
 ```cs
 ulong amount = 1;
 string publicKey = "public_key";
@@ -128,7 +128,7 @@ MirrorSDK.CreateVerifiedCollection(collectionName,collectionSymbol,collectionUrl
 ```
 
 ### `CreateVerifiedSubCollection`
-Create a new Verified Sub Collection. A subcollection is a collection that belongs to a main collection
+Create a new Verified Sub Collection. A subcollection is a collection that belongs to the main collection
 ```cs
 string parentCollection = "collection_address";
 string collectionName = "SubCollection";
@@ -145,7 +145,7 @@ MirrorSDK.CreateVerifiedCollection(parentCollection,collectionName,collectionSym
 ```
 
 ### `MintNFT`
-Mint NFT into collection
+Mint NFT into a collection
 ```cs
 string parentCollection = "collection_address";
 string collectionName = "NewNFT";
@@ -222,7 +222,7 @@ MirrorSDK.CancelNFTListing(mintAddress,price,(response) => {
 ```
 
 ### `TransferNFT`
-Transfer NFT from holder's wallet to another address
+Transfer NFT from the holder's wallet to another address
 ```cs
 string mintAddress = "mint_address";
 string toWallet = "wallet_address";
