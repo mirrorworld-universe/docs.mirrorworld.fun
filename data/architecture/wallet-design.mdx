@@ -5,7 +5,7 @@ description: This article explains how to design the wallet.
 # Wallet Design
 ## Custodial Wallet
 
-When integrating with our wallet service, you don't need to worry about how to securely store and manage the private keys. We have done that job for you.
+When integrating with our wallet service, you don't need to worry about how to securely store and manage private keys. We have done that job for you.
 
 ![alt](https://market-assets.mirrorworld.fun/process/custodial_wallet_design.png)
 
@@ -15,7 +15,7 @@ Once a user is created through our SDK, we automatically create a wallet for tha
 
 ## How to Use the Wallet?
 
-The user can never retrieve the private key to the client side. If the user wants to sign a transaction to perform an operation (e.g. transfer SOL), the client side needs to call our wallet SDK to perform these actions.
+The user can never retrieve the private key to the client side. If the user wants to sign a transaction to operate (e.g. transfer SOL), the client side needs to call our wallet SDK to perform these actions.
 
 Operations we support:
 * transfer SOL
@@ -35,4 +35,4 @@ We don't store the plain-text private key. Instead, only the encrypted key is st
 
 ## Wallet V2: Non-custodial
 
-As to the developers who want a non-custodial solution, please keep tuned for our future announcement. If you have a question, please feel free to contact us.
+As to the developers who want a non-custodial solution, please keep tuned for our future announcements. If you have a question, please feel free to contact us.

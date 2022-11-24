@@ -10,7 +10,7 @@ description: Best practices to compose events and components
 Zag encourages the use of spread props to ensure we automatically attach all the
 event handlers and properties to elements.
 
-Sometimes, you may want to attach your own event handlers to the elements. To do
+Sometimes, you may want to attach your event handlers to the elements. To do
 that, import the `mergeProps` utility provided by zag for your framework.
 
 ```jsx
@@ -61,7 +61,7 @@ const [state, send] = useMachine(toggle.machine{ id: useId() })
 /// ...
 ```
 
-Internally, Zag maps the unique id provided to each component parts needed for
+Internally, Zag maps the unique id provided to each parts needed for
 the widget to work.
 
 In some cases, you might want to compose different machines together in a single
@@ -69,7 +69,7 @@ component. For example, you want to use the same trigger as a popover and
 tooltip trigger at the same time.
 
 To achieve this, you will need to pass custom `ids` to the machine's context.
-This will ensure that calling `document.getElementById(...)` within the toolip
+This will ensure that calling `document.getElementById(...)` within the tooltip
 and/or popover will return the same element.
 
 ```js {7,12}
@@ -105,9 +105,9 @@ In custom environments like iframe, Shadow DOM, Electron, etc., the machine
 might not work as expected because `document` may not be available.
 
 To provide the correct reference to root node or document, you can pass
-`getRootNode` function it to the machine's context.
+`getRootNode` function is to the machine's context.
 
-> In shadow DOM, the root node can be derived from calling
+> In shadow DOM, the root node can be derived by calling
 > `element.getRootNode()` method on any element.
 
 ```jsx {12,15,42}
