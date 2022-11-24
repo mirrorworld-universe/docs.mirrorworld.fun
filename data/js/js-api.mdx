@@ -24,7 +24,7 @@ const { refreshToken } = await mirrorworld.login()
 ```
 
 ### `loginWithEmail`
-Logs in a user with email and password. This method is accessible in the browser and in Node.js.
+Logs a user in using their email address and password. This method is accessible in the browser and Node.js.
 
 ```ts
 import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
@@ -172,7 +172,7 @@ export interface IVerifiedCollection {
 ```
 
 ### `createVerifiedSubCollection`
-Create a new Verified Sub Collection. A subcollection is a collection that belongs to a main collection
+Create a new Verified Sub Collection. A subcollection is a collection that belongs to the main collection
 ```ts
 const collection = await mirrorworld.createVerifiedSubCollection({
   name: "COLLECTION_NAME",
@@ -196,7 +196,7 @@ export interface IVerifiedCollection {
 ```
 
 ### `mintNFT`
-Mint NFT into collection
+Mint NFT into a collection
 ```ts
 const nft = await mirrorworld.mintNFT({
   name: `NFT_NAME`,
@@ -457,7 +457,7 @@ export interface SolanaNFTAuctionActivitiesPayload {
 ## Accessors
 
 ### `user`
-Get current user object
+Get the current user object
 ```ts
 const user: UserWithWallet = mirrorworld.user
 
@@ -490,7 +490,7 @@ export enum ClusterEnvironment {
 ```
 
 ### `wallet`
-Get current user's wallet
+Get the current user's wallet
 ```ts
 const wallet: Wallet = mirrorworld.wallet
 
@@ -565,7 +565,7 @@ export type MirrorWorldEvents = {
 };
 ```
 
-You can listen the these events using the `on()` method. For example To listen to the `login:email` event, we invoke the following event:
+You can listen to these events using the `on()` method. For example, To listen to the `login:email` event, we invoke the following event:
 ```ts
 mirrorworld.on("login:email", (user) => {
   console.log("Logged in User", user)
