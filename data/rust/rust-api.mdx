@@ -9,7 +9,7 @@ description: Rust
 
 All authentication methods on the Rust SDK Todo
 
-### set apikey or set auth
+### set API key or set auth
 
 ```cs
 use mirrorworld_sdk_rust::{
@@ -90,7 +90,7 @@ let response = if let Ok(Some(response)) = res {
 }
 ```
 
-### Registers a user with email
+### Registers a user with an email
 
 ```cs
 use mirrorworld_sdk_rust::{
@@ -106,7 +106,7 @@ signup_email("liu_yangchina@126.com");
     "message": "Success"
   },
   "code": 0,
-  "message": "Successfully emailed \"email@example.com\" verification code. Please verify email to complete signup"
+  "message": "Successfully emailed \"email@example.com\" verification code. Please verify the email to complete the signup"
 }
 
 ```
@@ -172,7 +172,7 @@ use mirrorworld_sdk_rust::{
 };
 login({
   email: "your email",
-  password: "your pwd"
+  password: "your password"
 });
 
 # response
@@ -319,7 +319,7 @@ let response = if let Ok(Some(response)) = result {
 
 All wallet methods on the Rust SDK Todo
 
-### Transfer Token to another address
+### Transfer the Token to another address
 
 ```cs
 let result = transfer_sol((to_sol_address, amount));
@@ -452,7 +452,7 @@ let to_wallet_address = String::from("to wallet address");
 let response = market.transfer_nft(mint_address, to_wallet_address).await.unwrap();
 ```
 
-### fetch nfts by mint address
+### fetch NFTs by mint address
 
 ```cs
 let mut addresses = Vec::new();
@@ -482,7 +482,7 @@ let offset: usize = 1;
 let response = market.fetch_nfts_by_update_authorities(addresses, limit, offset).await.unwrap();
 ```
 
-### fetch nfts by owner address
+### fetch NFTs by owner address
 
 ```cs
 let mut addresses = Vec::new();
@@ -492,7 +492,7 @@ let offset: usize = 1;
 let response = market.fetch_nfts_by_owner_addresses(addresses, limit, offset).await.unwrap();
 ```
 
-### fetch nfts marketplace activity
+### fetch NFTs marketplace activity
 
 ```cs
 let address = String::from("nft mint address");

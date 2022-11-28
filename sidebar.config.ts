@@ -100,8 +100,6 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "Installation", id: "unity-installation" },
         { type: "doc", label: "API Reference", id: "unity-api" },
         { type: "doc", label: "Authentication", id: "unity-authentication" },
-        { type: "doc", label: "Marketplace", id: "unity-marketplace" },
-        { type: "doc", label: "Tokenization", id: "unity-tokenization" },
       ],
     },
     {
@@ -117,7 +115,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         {
           type: "doc",
           label: "Changelog",
-          id: "changelogs",
+          id: "js-changelog",
           new: true,
           isExternal: true,
           href: "https://github.com/mirrorworld-universe/mirrorworld-sdk-js/blob/main/packages/web/CHANGELOG.md",
@@ -144,14 +142,14 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       items: [
         {
           type: "doc",
-          label: "Blog",
-          id: "blog",
+          label: "Blogs",
+          id: "resources-blogs",
           new: true,
           isExternal: true,
           href: "https://blog.mirrorworld.fun",
         },
         { type: "doc", label: "Support", id: "support" },
-        { type: "doc", label: "Tutorials", id: "tutorials" },
+        // { type: "doc", label: "Tutorials", id: "tutorials" },
       ],
     },
     {

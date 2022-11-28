@@ -18,7 +18,7 @@ import { buildUrl } from "cloudinary-build-url"
 import Link from "next/link"
 
 export default function Blog() {
-  const guides = allGuides.map((guide) => ({
+  const guides = allGuides?.map((guide) => ({
     ...guide,
     shareImage: buildUrl("jbakebwa.dev/twitter-cards/blog-card", {
       cloud: {
@@ -45,7 +45,7 @@ export default function Blog() {
           {
             overlay: [
               `text:${sanitize("Poppins")}_48:${sanitize(
-                guide.tags.map((t) => `#${t}`).join(" "),
+                guide?.tags?.map((t) => `#${t}`).join(" ") || "",
               )}`,
               "c_fit",
               "co_rgb:FFFFFF",
@@ -74,7 +74,7 @@ export default function Blog() {
                 fundamentals, NFTs, DeFi, Gaming Development and more!
               </Text>
               <SimpleGrid columns={[1, 1, 3]} spacing={10}>
-                {guides.map((guide, i) => (
+                {guides?.map((guide, i) => (
                   <Link key={i} href={`/guides/${guide.slug}`}>
                     <Box
                       rounded="md"
@@ -100,7 +100,7 @@ export default function Blog() {
                           {guide.title}
                         </Heading>
                         <HStack>
-                          {guide.tags.map((t, j) => (
+                          {guide?.tags?.map((t, j) => (
                             <Tag
                               rounded="full"
                               key={j}
