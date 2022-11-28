@@ -1,6 +1,8 @@
 ---
 title: Next.js Guide for Mirror World SDK
-description: TypeScript/JavaScript Guide for getting started with the Mirror World Smart SDK in a React/Next.js App
+description:
+  TypeScript/JavaScript Guide for getting started with the Mirror World Smart
+  SDK in a React/Next.js App
 author:
   name: David Chuka
   twitter: https://twitter.com/cnwadiogbu
@@ -10,48 +12,58 @@ tags:
   - Next.js
 ---
 
-The Mirror World SDK is a set of cross-platform tools that provides simple, declarative
-interfaces for developers with no blockchain development experience to seamlessly build
-Mobile and Web Applications into Web3 Architecture.
+The Mirror World SDK is a set of cross-platform tools that provides simple,
+declarative interfaces for developers with no blockchain development experience
+to seamlessly build Mobile and Web Applications into Web3 Architecture.
 
-It is the key you need to be able to build on Mirror World. With the Mirror World Smart SDK,
-you can easily authenticate your users, create secure wallets, mint NFTs and deploy marketplaces
-with just a few lines of code.
+It is the key you need to be able to build on Mirror World. With the Mirror
+World Smart SDK, you can easily authenticate your users, create secure wallets,
+mint NFTs and deploy marketplaces with just a few lines of code.
 
-Mirror World currently has SDK support for Android, iOS (in development), Unity, Javascript and
-Rust with support for more frameworks coming soon.
+Mirror World currently has SDK support for Android, iOS (in development), Unity,
+Javascript and Rust with support for more frameworks coming soon.
 
-In this tutorial, we’ll be taking a look at how to set up the SDK using JavaScript.
+In this tutorial, we’ll be taking a look at how to set up the SDK using
+JavaScript.
 
 ## Getting Started
 
 ### Create an Account
 
-In order to start using the SDK, you’ll need to [create a developer account](https://app.mirrorworld.fun/auth/login).
-Your account grants you access to all the features needed to build on mirror world and it can be
-created within seconds. If you run into any issues creating an account, Mirror World has active
-communities on [telegram](https://mirrorworld.fun/telegram) and [discord](https://mirrorworld.fun/discord)
-with people on the Mirror World team ready to help.
+In order to start using the SDK, you’ll need to
+[create a developer account](https://app.mirrorworld.fun/auth/login). Your
+account grants you access to all the features needed to build on mirror world
+and it can be created within seconds. If you run into any issues creating an
+account, Mirror World has active communities on
+[telegram](https://mirrorworld.fun/telegram) and
+[discord](https://mirrorworld.fun/discord) with people on the Mirror World team
+ready to help.
 
 ### Create a Project
-Once you’ve successfully created and verified your account, you’ll be able to sign in to your
-developer dashboard. The dashboard contains helpful resources that’ll assist you in the future when
-you start building. Go ahead and click the “Create Project” button to start your first project.
-Enter a clear project name in the popup and click “Create”.
+
+Once you’ve successfully created and verified your account, you’ll be able to
+sign in to your developer dashboard. The dashboard contains helpful resources
+that’ll assist you in the future when you start building. Go ahead and click the
+“Create Project” button to start your first project. Enter a clear project name
+in the popup and click “Create”.
 
 ### Project Credentials
 
-Every project is created with three major credentials that’ll be used in developing with Mirror World:
+Every project is created with three major credentials that’ll be used in
+developing with Mirror World:
 
 1. API Key: Used to authorize a client to access the Mirror World API.
 2. Client ID: Used to publicly identify your project.
-3. Client Secret: Sensitive credential that the project owner/developer will use to verify certain claims about their project on our Authentication services.
+3. Client Secret: Sensitive credential that the project owner/developer will use
+   to verify certain claims about their project on our Authentication services.
 
 ## Building the Application
 
-Let’s go ahead and build a simple application that integrates the Mirror World API.
+Let’s go ahead and build a simple application that integrates the Mirror World
+API.
 
-Our client is a Next js application that connects with the Mirror World API to log users in and displays their user details and wallet addresses.
+Our client is a Next js application that connects with the Mirror World API to
+log users in and displays their user details and wallet addresses.
 
 ### Project Setup
 
@@ -65,7 +77,8 @@ npx create-next-app@latest mirrorworld-js
 
 ### Install the Mirror World SDK
 
-Next, let’s make sure we have the mirror world SDK installed in our project. This will enable us to
+Next, let’s make sure we have the mirror world SDK installed in our project.
+This will enable us to
 
 Run the following command in your project’s root directory, in the terminal:
 
@@ -75,7 +88,8 @@ yarn add @mirrorworld/web3.js
 
 ### Implementing Login
 
-Let’s implement login functionality into our app using the Mirror World SDK. To use the SDK, we’ll need to create a new instance of the SDK.
+Let’s implement login functionality into our app using the Mirror World SDK. To
+use the SDK, we’ll need to create a new instance of the SDK.
 
 Edit your **index.js** file to look like this
 
@@ -83,53 +97,54 @@ Edit your **index.js** file to look like this
 
 ```tsx
 import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
-import styles from '../styles/Home.module.css'
+import styles from "../styles/Home.module.css"
 
 export default function Home() {
   const mirrorworld = new MirrorWorld({
     apiKey: "YOUR_SECRET_API_KEY", // Replace this with the API Key for your project
     env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
-  });
+  })
 
-  return (
-    <div className={styles.container}>
-    </div>
-  )
+  return <div className={styles.container}></div>
 }
 ```
 
-Next we’re going to create a function that logs the user in, and a button to trigger that function.
+Next we’re going to create a function that logs the user in, and a button to
+trigger that function.
 
 Update your **index.js** file to look like this
 
 ```tsx
-import { useState } from "react";
+import { useState } from "react"
 import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
-import styles from '../styles/Home.module.css'
+import styles from "../styles/Home.module.css"
 
-const [user, setUser] = useState();
+const [user, setUser] = useState()
 
 async function login() {
-    const { user } = await mirrorworld.login();
-    setUser(user);
-  }
+  const { user } = await mirrorworld.login()
+  setUser(user)
+}
 
-  return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <button onClick={login}>Login to Mirror World</button>
-      </main>
-    </div>
-  );
+return (
+  <div className={styles.container}>
+    <main className={styles.main}>
+      <button onClick={login}>Login to Mirror World</button>
+    </main>
+  </div>
+)
 ```
 
-As you can see, we’ve bound the login method to the button. When you click on the button a popup appears giving you multiple options to login to mirror world.
+As you can see, we’ve bound the login method to the button. When you click on
+the button a popup appears giving you multiple options to login to mirror world.
 
-![User wallet login](https://res.cloudinary.com/xtellar/image/upload/v1665995203/mirror-world/Untitled_1_n2xrdk.png)
+![User wallet login](https://res.cloudinary.com/xtellar/image/upload/v1665995199/mirror-world/image_hn4dzq.png)
 
-We also include a user state using the `useState` hook from React so that we can set the user object and use it in our app as we’ll see shortly.
+We also include a user state using the `useState` hook from React so that we can
+set the user object and use it in our app as we’ll see shortly.
 
-Let’s go ahead and display the user information in our app with this piece of code:
+Let’s go ahead and display the user information in our app with this piece of
+code:
 
 ```tsx
 return (
@@ -156,10 +171,17 @@ return (
 
 Try to log in again and you should see your user details display like this:
 
-![Displaying user info](https://res.cloudinary.com/xtellar/image/upload/v1665995199/mirror-world/image_hn4dzq.png)
+![Displaying user info](https://res.cloudinary.com/xtellar/image/upload/v1665995203/mirror-world/Untitled_1_n2xrdk.png)
 
 ## Where to go from here
 
-As you can see, the MirrorWorld SDK is quite easy to set up and work with. There are also a lot of other things you can do with the SDK such as swap tokens and mint NFTs, so don’t just stop at user authentication.
+As you can see, the MirrorWorld SDK is quite easy to set up and work with. There
+are also a lot of other things you can do with the SDK such as swap tokens and
+mint NFTs, so don’t just stop at user authentication.
 
-The documentation is a great place to start learning about all the things you can do with the SDK. The Mirror World team is constantly trying to provide the best development experience possible, it’ll be great if you joined the discord channel and reported issues encountered while developing on their [GitHub](https://github.com/mirrorworld-universe). Can’t wait to see what you build!
+The documentation is a great place to start learning about all the things you
+can do with the SDK. The Mirror World team is constantly trying to provide the
+best development experience possible, it’ll be great if you joined the discord
+channel and reported issues encountered while developing on their
+[GitHub](https://github.com/mirrorworld-universe). Can’t wait to see what you
+build!
