@@ -6,6 +6,7 @@ public/sitemap.xml
 public/feed.xml
 .vercel
 .env
+.gitpod.yml
 
 # Contentlayer
 .contentlayer
