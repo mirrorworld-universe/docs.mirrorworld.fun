@@ -218,26 +218,28 @@ export interface ISolanaNFTMintResult {
   status: string;
 }
 ```
-### `UpdateNFT` 
-Update users NFT
+### `updateNFT` 
+Updates the metadata of an NFT if the current user owns the NFT.
 ```ts 
-const result = updateNFTSchema.validate({
-    mint_address: payload.mintAddress,
-    name: payload.name,
-    symbol: payload.symbol,
-    url: payload.metadataUri,
-    update_authority: payload.updateAuthority,
-    seller_fee_basis_points: payload.sellerFeeBasisPoints,
-    confirmation: commitment,
-});
-if (result.error) {
-    throw result.error;
+const payload = {
+  name: "New NFT Name #001",
+  symbol: "NEW_SYMBOL",
+  metadataUri: "https://path-to-new-metadata-uri.json"
+};
+
+// Returns `ISolanaNFTMintResult`
+export interface ISolanaNFTMintResult {
+  mint_address: string;
+  url: string;
+  update_authority: string;
+  creator_address: string;
+  name: string;
+  symbol: string;
+  collection: string;
+  signature: string;
+  status: string;
 }
-const { authorization_token } = await this.getApprovalToken({
-  type: 'update_nft',
-  value: 0,
-  params: payload,
-});
+
 ```
 
 ### `listNFT`
@@ -478,51 +480,118 @@ export interface SolanaNFTAuctionActivitiesPayload {
 ### `createMarketplace` 
 Create a new marketplace
 ```ts 
-  const result = createMarketplaceSchema.validate({
-    treasury_mint: payload.treasuryMint,
-    collections: payload.collections,
-    seller_fee_basis_points: payload.sellerFeeBasisPoints,
-    storefront: payload.storefront,
-  });
-  if (result.error) {
-    throw result.error;
-  }
-  const { authorization_token } = await this.getApprovalToken({
-    type: 'create_marketplace',
-    value: 0,
-    params: payload,
-  });
+const createMarketplacePayload = {
+  treasuryMint: "INSERT_MARKETPLACE_TREASURY_MINT", // In this case the `treasuryMint` is the currency your marketplace will operate in. Defaults to SOL.
+  sellerFeeBasisPoints: 200,
+}
+
+const marketplace = await mirrorworld.createMarketplace(createMarketplacePayload)
+
+// Returns `Marketplace`
+export interface Marketplace {
+  id: number;
+  name: string;
+  client_id: string;
+  user_id: number;
+  auction_house: string;
+  authority: string;
+  auction_house_treasury: string;
+  auction_house_fee_account: string;
+  fee_withdrawal_destination: string;
+  requires_sign_off: boolean;
+  can_change_sale_price: boolean;
+  treasury_mint: string;
+  treasury_withdrawal_destination: string;
+  seller_fee_basis_points: number;
+  storefront_url?: null;
+  signature: string;
+  updatedAt: string;
+  createdAt: string;
+}
 ```
 ### `updateMarketplace` 
-Update marketplace
+Updates a marketplace instance
 ```ts 
-  const result = updateMarketplaceSchema.validate({
-    treasury_mint: payload.treasuryMint,
-    collections: payload.collections,
-    seller_fee_basis_points: payload.sellerFeeBasisPoints,
-    storefront: payload.storefront,
-    new_authority: payload.newAuthority,
-   });
-  if (result.error) {
-    throw result.error;
-  }
+const updateMarketplacePayload = {
+  sellerFeeBasisPoints: 300,
+}
 
-  const { authorization_token } = await this.getApprovalToken({
-    type: 'update_marketplace',
-    value: 0,
-    params: payload,
-  });
+const updatedMarketplace = await mirrorworld.updateMarketplace(updateMarketplacePayload)
+
+// Returns `Marketplace`
+export interface Marketplace {
+  id: number;
+  name: string;
+  client_id: string;
+  user_id: number;
+  auction_house: string;
+  authority: string;
+  auction_house_treasury: string;
+  auction_house_fee_account: string;
+  fee_withdrawal_destination: string;
+  requires_sign_off: boolean;
+  can_change_sale_price: boolean;
+  treasury_mint: string;
+  treasury_withdrawal_destination: string;
+  seller_fee_basis_points: number;
+  storefront_url?: null;
+  signature: string;
+  updatedAt: string;
+  createdAt: string;
+}
 ```
+
 ### `queryMarketplaces` 
-Querying the NFT marketplace
-```ts 
-  const params = qs.stringify({ ...query, ...pagination });
+Queries NFT marketplaces on Solana. Returns a paginated result.
 
-  const response = await this.api.get<
-    IPaginatedResponse<IMarketplaceQueryResult[]>
-  >(`/solana/marketplaces?${params}`);
+```ts
+const pagination = {
+  page: 1,
+  count: 24,
+}
 
-  return response.data.data.data;
+
+// This query will only return marketplaces whose seller_fee_basis_points are 200
+// and whose authority can change the sale price of a given listing.
+const query: MarketplaceQueryOptions = {
+  seller_fee_basis_points: 200,
+  can_change_sale_price: true
+}
+
+export type MarketplaceQueryOptions = Partial<
+  Pick<
+    Marketplace,
+    | 'name'
+    | 'client_id'
+    | 'authority'
+    | 'treasury_mint'
+    | 'auction_house_fee_account'
+    | 'auction_house_treasury'
+    | 'treasury_withdrawal_destination'
+    | 'fee_withdrawal_destination'
+    | 'seller_fee_basis_points'
+    | 'requires_sign_off'
+    | 'can_change_sale_price'
+  >
+>;
+
+const queryResult: IMarketplaceQueryResult[] = await mirrorworld.queryMarketplaces(query, pagination)
+
+// Returns `IMarketplaceQueryResult[]`
+export interface IMarketplaceQueryResult {
+  id: number;
+  name: string;
+  client_id: string;
+  authority: string;
+  auction_house_fee_account: string;
+  auction_house_treasury: string;
+  treasury_withdrawal_destination: string;
+  fee_withdrawal_destination: string;
+  treasury_mint: string;
+  seller_fee_basis_points: number;
+  requires_sign_off: boolean;
+  can_change_sale_price: boolean;
+}
 ```
 
 ## Accessors
