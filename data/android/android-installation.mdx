@@ -150,7 +150,7 @@ You can use all the confirmation we provide in 'Confirmation' enum. Here is an e
 - Default
 If you pass this kind of confirmation to an API,it will use a default confirmation to handle this call,most of the time,it equals 'Confirmed'.
 - Finalized:
-If you use this, API will wait for Solana to confirm the transaction before returning the HTTP response to you.
+If you use this, API will wait for Solana to finalize the transaction before returning the HTTP response to you.
 So the time will be longer more or less.
 - Confirmed:
 It is a fairly quick response to the user and is a reasonable promise that the transaction if processed, will be eventually finalized after a certain number of confirmations by the validator network.
