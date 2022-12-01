@@ -1,0 +1,123 @@
+---
+title: Updating NFT Metadata with the Mirror World Smart SDK
+description:
+  TypeScript/JavaScript Guide for updating NFT Metadata with the Mirror World
+  Smart SDK in a React/Next.js App
+author:
+  name: David C. Nwadiogbu
+  twitter: https://twitter.com/cnwadiogbu
+tags:
+  - Solana
+  - NFTs
+  - React.js
+---
+
+NFTs being digital mean they have metadata that identifies them. This metadata
+may include essential properties of the NFT such as its name, total supply, and
+transaction history.
+
+Is it possible to update NFT metadata after it has been minted? The answer is
+yes. Knowing how to update NFT metadata is very important and could save you a
+lot of time and resources.
+
+In this guide, we'll look at how to update the metadata of an NFT.
+
+## NFT metadata
+
+NFT metadata usually comes in `json` format and describes the characteristics
+and properties of the NFT. It is important to note that there are a few
+properties on an NFT that cannot be changed. For example, the token ID and
+contact addresses of an NFT cannot be altered. You should also be careful with
+how you manipulate an NFT's metadata as this could damage its rarity.
+
+## How to Update NFT metadata
+
+To update our NFT's metadata, we'll be making use of the `updateNFT` method
+available to us in the MirrorWorld smart SDK.
+
+Let's look at how this works. In a previous
+[guide](https://docs.mirrorworld.fun/guides/how-to-mint-nfts-on-solana) we
+successfully minted an NFT using the mintNFT method from our Mirrorworld smart
+SDK. In this guide, we're going to be updating the metadata of that NFT.
+
+If you haven't gone through that guide, please go ahead and do so because this
+guide will be making use of the code written there.
+
+### Fetch NFTs
+
+To update our NFT's metadata, we'll need our NFT's mint address, the
+`metadataUri` of the NFT, and the data we'd like to update it with. Without our
+mint address and `metadataUri` we wouldn't be able to update our NFT metadata,
+so let's make sure we have these two properties. You should have the
+`metadataUri` from when you minted your NFT. As for the mint address, we should
+be able to get it using the `getNFTs` method from the Mirrorworld smart SDK.
+
+Update your code to include a getNFTs button which will log an array of NFTs you
+have minted.
+
+```jsx
+...
+async function getMyNfts() {
+    const res = await mirrorworld.getNFTs({
+      limit: 5,
+      offset: 5
+    });
+    console.log(res);
+}
+
+return (
+    <div className="App">
+      {!user ? (
+        <button onClick={login}>Login to Mirror World</button>
+      ) : (
+        <div>
+          <button onClick={mintMyNft}>Mint NFT</button>
+          <button onClick={getMyNfts}>Get NFTs</button> //new
+        </div>
+      )}
+      {user ? (
+        <div className="user-info">
+          <p>{user.username} successfully logged in</p>
+        </div>
+      ) : (
+        <p>No User available</p>
+      )}
+    </div>
+ )
+...
+```
+
+After clicking the button, check your console to view the response logs and you
+should see a list of NFTs that you've minted.
+
+### Update NFT
+
+Copy the mint address of the NFT you want to update its metadata and update your
+code with an `updateMyNft` function and button like this:
+
+```jsx
+...
+  async function updateMyNft() {
+    const res = await mirrorworld.updateNFT({
+      mint_address: "MINT_ADDRESS", //Replace with your NFT mint address
+      metadataUri: "META_DATA_URI", //Replace this with the correct metadataUri of the NFT
+      name: "Chuka", // You can update the metadata with more than one property
+    });
+    console.log(res);
+  }
+
+  return (
+   <button onClick={updateMyNft}>Update NFT</button>
+    )
+   }
+...
+```
+
+As you can see from the code snippet above, we've created an `updateMyNft`
+function that calls the `updateNFT` method from our mirrorworld SDK and updates
+our NFT metadata with the payload passed into it. In our case, we're only
+updating the name of our NFT but you may update more metadata properties such as
+the description and url of the NFT. It's completely up to you.
+
+To confirm that our change/update was successful, we can call our `getMyNfts`
+function once again and view our recently applied changes.
