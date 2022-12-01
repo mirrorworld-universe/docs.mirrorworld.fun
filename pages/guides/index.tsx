@@ -88,6 +88,12 @@ export default function Blog() {
                         bg: "gray.800",
                         shadow: "lg",
                       }}
+                      onClick={() => {
+                        // @ts-ignore
+                        window.mixgather.event("view_guides", {
+                          guide_name: guide.title,
+                        })
+                      }}
                     >
                       <Image src={guide.shareImage} alt={guide.title} />
                       <Stack px={4} py={3}>

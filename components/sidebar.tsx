@@ -77,7 +77,16 @@ export function Sidebar() {
                           key={subItem.id + index}
                           href={subItem.href ?? href}
                         >
-                          {subItem.label}
+                          <span
+                            onClick={() => {
+                              //@ts-ignore
+                              window.mixgather.event("menu_name", {
+                                name: subItem.label,
+                              })
+                            }}
+                          >
+                            {subItem.label}
+                          </span>
                         </DocLink>
                       )
                     }

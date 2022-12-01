@@ -28,6 +28,7 @@ export interface SupportField {
   Platform: string
   How_to_submit: string
   type?: string
+  event?: string
 }
 const supportDataTable: SupportField[] = [
   {
@@ -35,18 +36,21 @@ const supportDataTable: SupportField[] = [
     Platform: "Disocrd",
     How_to_submit: "https://discord.gg/7wFeftDwZA",
     type: "link",
+    event: "join_discord",
   },
   {
     name: "Telegram Community Group",
     Platform: "Telegram",
     How_to_submit: "https://t.me/mirrorworld_sdk",
     type: "link",
+    event: "join_telegram",
   },
   {
     name: "Telegram Channel for Announcements:",
     Platform: "Telegram",
     How_to_submit: "https://t.me/mirrorworld_news",
     type: "link",
+    event: "join_telegram_for_news",
   },
   {
     name: "Telegram Support Group",
@@ -63,6 +67,7 @@ const supportDataTable: SupportField[] = [
     Platform: "Blog",
     How_to_submit: "https://blog.mirrorworld.fun",
     type: "link",
+    event: "join_telegram_for_news",
   },
 ]
 
@@ -167,7 +172,11 @@ export const ResourceSupportTable = (props: BoxProps) => {
                           color="mirror.400"
                           className="css-fdexvs"
                           target="_blank"
-                          href={chain.How_to_submit}
+                          onClick={() => {
+                            window.open(chain.How_to_submit)
+                            // @ts-ignore
+                            window.mixgather.event(chain.event)
+                          }}
                         >
                           {chain.How_to_submit}
                         </a>
