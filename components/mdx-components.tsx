@@ -127,7 +127,6 @@ const components: Record<string, FC<Record<string, any>>> = {
         className={`prose ${props.className}`}
       >
         {props.children}
-        <CopyButton content={codeContent} />
       </pre>
     )
   },

@@ -19,9 +19,34 @@ import { toKebabCase } from "./lib/to-kebab-case"
 import fs from "fs"
 
 const fields: FieldDefs = {
-  title: { type: "string" },
+  title: {
+    type: "string",
+    description: "The title of the page",
+    required: true,
+  },
   description: { type: "string" },
   package: { type: "string" },
+  // navTitle: {
+  //   type: "string",
+  //   description: "Override the title for display in nav",
+  // },
+  // label: {
+  //   type: "string",
+  // },
+  // excerpt: {
+  //   type: "string",
+  //   required: true,
+  // },
+  // collapsible: {
+  //   type: "boolean",
+  //   required: false,
+  //   default: false,
+  // },
+  // collapsed: {
+  //   type: "boolean",
+  //   required: false,
+  //   default: false,
+  // },
 }
 
 const getSlug = (doc: LocalDocument) =>
@@ -50,6 +75,20 @@ const computedFields: ComputedFields = {
       slug: `/${doc._raw.flattenedPath}`,
       toc: toc(doc.body.raw, { maxdepth: 3 }).json.filter((t) => t.lvl !== 1),
     }),
+  },
+  pathSegments: {
+    type: "json",
+    resolve: (doc) =>
+      doc._raw.flattenedPath
+        .split("/")
+        // skip the category prefix prefix
+        .slice(1)
+        .map((dirName) => {
+          const re = /^((\d+)-)?(.*)$/
+          const [, , orderStr, pathName] = dirName.match(re) ?? []
+          const order = orderStr ? parseInt(orderStr) : 0
+          return { order, pathName }
+        }),
   },
 }
 
@@ -289,6 +328,20 @@ const Snippet = defineDocumentType(() => ({
 //   }
 // })
 
+const Bible = defineDocumentType(() => ({
+  name: "Bible",
+  filePathPattern: "bible/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/bible/[slug]",
+    },
+  },
+}))
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
@@ -296,6 +349,7 @@ const contentLayerConfig = makeSource({
     Snippet,
     Component,
     // Changelog,
+
     Android,
     iOS,
     Rust,
@@ -305,6 +359,7 @@ const contentLayerConfig = makeSource({
     Architecture,
     Guides,
     Showcase,
+    Bible,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],

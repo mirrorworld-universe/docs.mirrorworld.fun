@@ -3,7 +3,6 @@ import {
   allOverviews,
   allGuides,
   allSnippets,
-  allChangelogs,
   allAndroids,
   allIOs,
   allRusts,
@@ -12,6 +11,8 @@ import {
   allUnity,
   allArchitectures,
   allShowcases,
+  allBibles,
+  DocumentTypes,
 } from "contentlayer/generated"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -146,7 +147,9 @@ export function getMarketPaths() {
 
 export function getMarketDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allRusts.find((post) => post.frontmatter.slug === `/marketplace/${slug}`)
+  return allRusts.find(
+    (post) => post.frontmatter.slug === `/marketplace/${slug}`,
+  )
 }
 /* -----------------------------------------------------------------------------
  * Unity
@@ -229,21 +232,23 @@ export function getSnippetDoc(slug: string | string[]) {
 }
 
 /* -----------------------------------------------------------------------------
- * Changelog
+ * Bible
  * -----------------------------------------------------------------------------*/
 
-export function getChangelogPaths() {
-  return allChangelogs.map((doc) => `/${doc.params.join("/")}`)
+export function _toParams(path: string): { params: { slug: string[] } } {
+  return { params: { slug: path.replace(/^\//, "").split("/") } }
 }
 
-export function getChanglogDoc(slug: string | string[]) {
-  if (slug === "latest") {
-    return allChangelogs.sort(sortByDate)[0]
-  }
+export function getBiblePaths() {
+  const paths = allBibles
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
 
-  return allChangelogs.find(
-    (doc) => doc.frontmatter.slug === `/changelogs/${slug}`,
-  )
+export function getBibleDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allBibles.find((post) => post.frontmatter.slug === `/bible/${slug}`)
 }
 
 const sortByDate = (a: any, b: any) => {
@@ -252,10 +257,44 @@ const sortByDate = (a: any, b: any) => {
   return bDate.getTime() - aDate.getTime()
 }
 
-export function getChangelogToc() {
-  return allChangelogs.sort(sortByDate).map((doc) => ({
-    slug: doc.slug,
-    content: doc.releaseDate,
-    lvl: 2,
-  }))
+export type PathSegment = { order: number; pathName: string }
+
+export type TreeNode = {
+  title: string
+  nav_title: string | null
+  url_path: string
+  children: TreeNode[]
 }
+
+export const buildSidebarTree = (
+  docs: DocumentTypes[],
+  parentPathNames: string[] = [],
+): TreeNode[] => {
+  const level = parentPathNames.length
+
+  return docs
+    .filter(
+      (_) =>
+        _.pathSegments.length === level + 1 &&
+        _.pathSegments
+          .map((_: PathSegment) => _.pathName)
+          .join("/")
+          .startsWith(parentPathNames.join("/")),
+    )
+    .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
+    .map<TreeNode>((doc) => ({
+      nav_title: doc.frontmatter.nav_title ?? doc.frontmatter.title ?? null,
+      title: doc.title,
+      url_path:
+        "" + doc.pathSegments.map((_: PathSegment) => _.pathName).join("/"),
+      children: buildSidebarTree(
+        docs,
+        doc.pathSegments.map((_: PathSegment) => _.pathName),
+      ),
+    }))
+}
+
+console.log(
+  "All Bibles",
+  JSON.stringify(buildSidebarTree([...allBibles]), null, 2),
+)
