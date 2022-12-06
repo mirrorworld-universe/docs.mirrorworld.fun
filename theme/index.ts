@@ -6,18 +6,18 @@ import { extendTheme } from "@chakra-ui/react"
 import "focus-visible/dist/focus-visible"
 import { theme as proTheme } from "@chakra-ui/pro-theme"
 import "@fontsource/dm-sans"
+import "@fontsource/ibm-plex-mono"
 
 const theme = {
   fonts: {
     heading: "'DM Sans', sans-serif",
     body: "'DM Sans', sans-serif",
+    mono: "IBM Plex Mono",
   },
   shadows: {
     "mirror-dark": `inset 0 4px 0 hsla(69,100%,55%,.3),inset 0 -4px 0 rgba(0,0,0,.25)!important;`,
   },
   colors: {
-    // dark: "#101520",
-    // dark: "#111314",
     dark: "#1b1f21",
     mirror: {
       base: "#dcff1c",
@@ -35,7 +35,7 @@ const theme = {
   },
   config: {
     useSystemColorMode: false,
-    initialColorMode: "light" as ColorMode,
+    initialColorMode: "dark" as ColorMode,
   },
   styles: {
     global: globalStyles,
@@ -43,6 +43,38 @@ const theme = {
   layerStyles,
   textStyles,
   components,
+  semanticTokens: {
+    colors: {
+      text: {
+        default: "gray.900",
+        _dark: "whiteAlpha.800",
+      },
+      body: {
+        default: "whiteAlpha.100",
+        _dark: "dark",
+      },
+      codeText: {
+        default: "pink.700",
+        _dark: "pink.50",
+      },
+      codeBg: {
+        default: "pink.50",
+        _dark: "pink.900",
+      },
+      topNavBody: {
+        default: "whiteAlpha.200",
+        _dark: "dark",
+      },
+      topNavText: {
+        default: "gray.900",
+        _dark: "mirror.base",
+      },
+      flatButtonHoverBg: {
+        default: "whiteAlpha.300",
+        _dark: "mirror.900",
+      },
+    },
+  },
 }
 
 type ColorMode = "light"

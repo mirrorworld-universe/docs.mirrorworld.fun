@@ -253,42 +253,41 @@ const Snippet = defineDocumentType(() => ({
   },
 }))
 
-const Changelog = defineDocumentType(() => {
-  const getSlug = (doc: LocalDocument) => toKebabCase(doc.releaseDate)
-  return {
-    name: "Changelog",
-    filePathPattern: "changelogs/**/*.mdx",
-    contentType: "mdx",
-    fields: {
-      releaseUrl: { type: "string" },
-      releaseDate: { type: "string" },
-    },
-    computedFields: {
-      editUrl: {
-        type: "string",
-        resolve: (doc) => `${siteConfig.repo.editUrl}/${doc._id}`,
-      },
-      params: {
-        type: "list",
-        resolve: (doc) => ["changelogs", getSlug(doc)],
-      },
-      frontmatter: {
-        type: "json",
-        resolve: (doc) => ({
-          title: "Changelog",
-          description: `The changes made as at ${doc.releaseDate}`,
-          slug: `/changelogs/${getSlug(doc)}`,
-          toc: [],
-        }),
-      },
-      slug: {
-        type: "string",
-        resolve: (doc) => `/changelogs/${getSlug(doc)}`,
-      },
-    },
-  }
-})
-
+// const Changelog = defineDocumentType(() => {
+//   const getSlug = (doc: LocalDocument) => toKebabCase(doc.releaseDate)
+//   return {
+//     name: "Changelog",
+//     filePathPattern: "changelogs/**/*.mdx",
+//     contentType: "mdx",
+//     fields: {
+//       releaseUrl: { type: "string" },
+//       releaseDate: { type: "string" },
+//     },
+//     computedFields: {
+//       editUrl: {
+//         type: "string",
+//         resolve: (doc) => `${siteConfig.repo.editUrl}/${doc._id}`,
+//       },
+//       params: {
+//         type: "list",
+//         resolve: (doc) => ["changelogs", getSlug(doc)],
+//       },
+//       frontmatter: {
+//         type: "json",
+//         resolve: (doc) => ({
+//           title: "Changelog",
+//           description: `The changes made as at ${doc.releaseDate}`,
+//           slug: `/changelogs/${getSlug(doc)}`,
+//           toc: [],
+//         }),
+//       },
+//       slug: {
+//         type: "string",
+//         resolve: (doc) => `/changelogs/${getSlug(doc)}`,
+//       },
+//     },
+//   }
+// })
 
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
@@ -296,7 +295,7 @@ const contentLayerConfig = makeSource({
     Overview,
     Snippet,
     Component,
-    Changelog,
+    // Changelog,
     Android,
     iOS,
     Rust,

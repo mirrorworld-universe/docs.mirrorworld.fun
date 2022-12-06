@@ -1,5 +1,5 @@
 import { Badge, Box, Flex, HStack } from "@chakra-ui/layout"
-import { Spacer, Button } from "@chakra-ui/react"
+import { Spacer, Button, IconButton, useColorMode } from "@chakra-ui/react"
 import { GithubIcon } from "components/icons"
 import { FaDiscord } from "react-icons/fa"
 import siteConfig from "site.config"
@@ -8,12 +8,18 @@ import { LogoWithLink } from "./logo"
 import { MobileNavigation } from "./mobile-navigation"
 import { BiHomeAlt, BiBookOpen } from "react-icons/bi"
 import { AiOutlineApi, AiOutlineExperiment } from "react-icons/ai"
+import { FiSun } from "react-icons/fi"
 import Link from "next/link"
 
 export function TopNavigation() {
+  const { colorMode, toggleColorMode } = useColorMode()
+  function handleToggleColorMode() {
+    console.log("colorMode", { colorMode, toggleColorMode })
+    toggleColorMode()
+  }
   return (
     <Box
-      bg="dark"
+      bg="topNavBody"
       backdropFilter="auto"
       backdropBlur="sm"
       position="sticky"
@@ -23,7 +29,7 @@ export function TopNavigation() {
       py="4"
       borderBottomWidth="1px"
       borderBottomColor="mirror.800"
-      color="mirror.500"
+      color="topNavText"
     >
       <Flex
         align="center"
@@ -49,12 +55,22 @@ export function TopNavigation() {
           <Spacer />
           <HStack>
             <Link href={"/"}>
-              <Button variant="nav" size="sm" leftIcon={<BiHomeAlt />}>
+              <Button
+                variant="nav"
+                size="sm"
+                leftIcon={<BiHomeAlt />}
+                color={"topNavText"}
+              >
                 Home
               </Button>
             </Link>
             <Link href={"/tutorials"}>
-              <Button variant="nav" size="sm" leftIcon={<BiBookOpen />}>
+              <Button
+                variant="nav"
+                size="sm"
+                leftIcon={<BiBookOpen />}
+                color={"topNavText"}
+              >
                 Tutorials
               </Button>
             </Link>
@@ -63,12 +79,18 @@ export function TopNavigation() {
                 variant="nav"
                 size="sm"
                 leftIcon={<AiOutlineExperiment />}
+                color={"topNavText"}
               >
                 Recipes
               </Button>
             </Link>
             <Link href={"/api-reference"}>
-              <Button variant="nav" size="sm" leftIcon={<AiOutlineApi />}>
+              <Button
+                variant="nav"
+                size="sm"
+                leftIcon={<AiOutlineApi />}
+                color={"topNavText"}
+              >
                 API Reference
               </Button>
             </Link>
@@ -98,6 +120,20 @@ export function TopNavigation() {
               href={siteConfig.discord.url}
               icon={FaDiscord}
               label="Join the Discord server"
+            />
+            <IconButton
+              aria-label={
+                colorMode === "light"
+                  ? "Switch to dark mode"
+                  : "Switch to light Mode"
+              }
+              icon={<FiSun />}
+              variant={"nav"}
+              color={"topNavText"}
+              size={"sm"}
+              w={8}
+              h={8}
+              onClick={handleToggleColorMode}
             />
             <MobileNavigation />
           </HStack>

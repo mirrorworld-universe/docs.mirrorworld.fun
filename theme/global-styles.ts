@@ -6,8 +6,8 @@ export const globalStyles: SystemStyleObject = {
     textRendering: "geometricprecision",
     textSizeAdjust: "100%",
     WebkitFontSmoothing: "antialiased",
-    bg: "dark",
-    color: "white",
+    bg: "body",
+    color: "text",
   },
 
   "*": {
@@ -23,7 +23,7 @@ export const globalStyles: SystemStyleObject = {
 
   ".has-highlight": {
     mark: {
-      color: "mirror.500",
+      color: "mirror.600",
       fontWeight: "semibold",
     },
   },

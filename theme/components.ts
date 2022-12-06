@@ -45,12 +45,12 @@ const Button: ComponentStyleConfig = {
     nav: {
       bg: "transparent",
       fontWeight: "bold",
-      color: "mirror.400",
+      color: "topNavText",
       rounded: "full",
       minW: "auto",
       boxShadow: "none",
       _hover: {
-        bg: "mirror.900",
+        bg: "flatButtonHoverBg",
       },
     },
   },

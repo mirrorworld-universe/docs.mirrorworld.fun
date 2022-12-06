@@ -22,7 +22,7 @@ export function FrameworkSelect() {
         id="framework-select"
         fontSize="sm"
         fontWeight="semibold"
-        color="mirror.500"
+        color="mirror.700"
         outline="none"
         value={framework}
         onChange={(event) => {
