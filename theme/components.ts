@@ -42,6 +42,17 @@ const Button: ComponentStyleConfig = {
         bg: "gray.900",
       },
     },
+    nav: {
+      bg: "transparent",
+      fontWeight: "bold",
+      color: "mirror.400",
+      rounded: "full",
+      minW: "auto",
+      boxShadow: "none",
+      _hover: {
+        bg: "mirror.900",
+      },
+    },
   },
   sizes: {
     sm: {
