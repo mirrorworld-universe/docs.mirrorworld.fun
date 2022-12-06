@@ -21,6 +21,12 @@ export default function App({ Component, pageProps }) {
       },
     })
   })
+
+  if (typeof window !== "undefined") {
+    // @ts-ignore
+    window.mixgather = mixgather
+  }
+
   return (
     <ChakraProvider theme={theme}>
       <DefaultSeo {...siteConfig.seo} />

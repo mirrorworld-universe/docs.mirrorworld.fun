@@ -4,38 +4,60 @@ description: Development guide for deploying your Marketplace storefront
 ---
 
 # Marketplace Storefront Deployment Guide
-This guide will enable you to create an NFT Marketplace using the Mirror World Smart SDK.
 
-> The Marketplace on Mirror World is currently available on Solana Mainnet and Devnet.
+This guide will enable you to create an NFT Marketplace using the Mirror World
+Smart SDK.
 
+> The Marketplace on Mirror World is currently available on Solana Mainnet and
+> Devnet.
 
 ## Creating your Marketplace
-1. On the [developer dashboard](https://app.mirrorworld.fun), under the projects tab, create a Marketplace for your project by completing the prompts.
+
+1. On the <span onClick = {()=> { window.mixgather.event("developer_dashboard")
+   window.open("https://app.mirrorworld.fun")}}>[Developer dashboard]()</span>,
+   under the projects tab, create a Marketplace for your project by completing
+   the prompts.
 2. Include the collections you would like to list on your marketplace.
 
 ## Creating the Storefront
-After creating the Marketplace on the Developer Dashboard, you're ready to create a storefront. A storefront is a user interface that your users will use to buy and sell NFTs on your Marketplace. The storefront serves as the UI for your marketplace core.
+
+After creating the Marketplace on the Developer Dashboard, you're ready to
+create a storefront. A storefront is a user interface that your users will use
+to buy and sell NFTs on your Marketplace. The storefront serves as the UI for
+your marketplace core.
 
 ### Storefront creation guide
-### 1. Clone [storefront template repository](https://github.com/mirrorworld-universe/marketplace-storefront)
+
+### 1. Clone <span onClick = {()=> { window.mixgather.event("clone_repository"); window.open("https://github.com/mirrorworld-universe/marketplace-storefront")}}>[storefront template repository]()</span>
+
 ```sh
 git clone git@github.com:mirrorworld-universe/marketplace-storefront.git
 ```
 
 ### 2. Install dependencies
+
 ```sh
 yarn install
 ```
 
-### 3. Setup storefront `userConfig.json` variables. 
+### 3. Setup storefront `userConfig.json` variables.
 
-Download your `userConfig.json` from your project's Marketplace on the [developer dashboard](https://app.mirrorworld.fun). It should look something like the example below:
+Download your `userConfig.json` from your project's Marketplace on the
+
+<span
+  onClick={() => {
+    window.mixgather.event("developer_dashboard")
+    window.open("https://app.mirrorworld.fun")
+  }}
+>
+  [developer dashboard]()
+</span>
+. It should look something like the example below:
+
 ```json
 {
   // Array of collection addresses
-  "collections": [
-    "DUuMbpmH3oiREntViXfGZhrLMbVcYBwGeBa4Wn9X8QfM"
-  ],
+  "collections": ["DUuMbpmH3oiREntViXfGZhrLMbVcYBwGeBa4Wn9X8QfM"],
   // API Key
   "xApiKey": "mw_testAmRKdRbBsBbIAw3CeMqS9GORmcG5BRUCU4D",
   // Marketplace commission fee in percentage
@@ -50,15 +72,48 @@ Download your `userConfig.json` from your project's Marketplace on the [develope
   "network": "mainnet"
 }
 ```
+
 ![](https://market-assets.mirrorworld.fun/dashboard/dashboard2.png)
 
-###  4. Run dev server
+### 4. Run dev server
+
 ```sh
 yarn dev
 ```
 
-Open the browser on http://localhost:3001 to preview your storefront.
+Open the browser on <span onClick = {()=> {
+window.mixgather.event("open_localhost"); }}>http://localhost:3001</span> to
+preview your storefront.
 ![](https://market-assets.mirrorworld.fun/dashboard/storefront.png)
 
 ### 5. That's it! Deploy your static site!
-You can deploy your Next.js site using [Vercel](https://vercel.com) or [Netlify](https://netlify.com), or [Cloudflare Pages](https://pages.cloudflare.dev).
+
+You can deploy your Next.js site using
+
+<span
+  onClick={() => {
+    window.mixgather.event("deploy_static", { search_term: "Vercel" })
+    window.open("https://vercel.com")
+  }}
+>
+  [Vercel]()
+</span>
+or
+<span
+  onClick={() => {
+    window.mixgather.event("deploy_static", { search_term: "Netlify" })
+    window.open("https://netlify.com")
+  }}
+>
+  [Netlify]()
+</span>
+, or
+<span
+  onClick={() => {
+    window.mixgather.event("deploy_static", { search_term: "Cloudflare Pages" })
+    window.open("https://pages.cloudflare.dev")
+  }}
+>
+  {" "}
+  [Cloudflare Pages]().
+</span>

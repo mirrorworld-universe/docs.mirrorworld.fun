@@ -30,11 +30,17 @@ JavaScript.
 
 ### Create an Account
 
-To start using the SDK, you’ll need to [create a developer account](https://app.mirrorworld.fun/auth/login).
-Your account grants you access to all the features needed to build on mirror world and it can be
-created within seconds. If you run into any issues creating an account, Mirror World has active
-communities on [telegram](https://mirrorworld.fun/telegram) and [discord](https://mirrorworld.fun/discord)
-with people on the Mirror World team ready to help.
+To start using the SDK, you’ll need to <span onClick = {()=> {
+window.mixgather.event("developer_dashboard")
+window.open("https://app.mirrorworld.fun")}}>[create a developer
+account]()</span>. Your account grants you access to all the features needed to
+build on mirror world and it can be created within seconds. If you run into any
+issues creating an account, Mirror World has active communities on <span onClick
+= {()=> { window.mixgather.event("join_telegram")
+window.open("https://mirrorworld.fun/telegram")}}>[telegram]()</span> and <span
+onClick = {()=> { window.mixgather.event("join_discord")
+window.open("https://mirrorworld.fun/discord");}}>[discord]()</span> with people
+on the Mirror World team ready to help.
 
 ### Create a Project
 
@@ -46,7 +52,8 @@ in the popup and click “Create”.
 
 ### Project Credentials
 
-Every project is created with three major credentials that’ll be used in developing Mirror World:
+Every project is created with three major credentials that’ll be used in
+developing Mirror World:
 
 1. API Key: Used to authorize a client to access the Mirror World API.
 2. Client ID: Used to publicly identify your project.
@@ -105,7 +112,8 @@ export default function Home() {
 }
 ```
 
-Next, we’re going to create a function that logs the user in, and a button to trigger that function.
+Next, we’re going to create a function that logs the user in, and a button to
+trigger that function.
 
 Update your **index.js** file to look like this
 
@@ -177,6 +185,7 @@ mint NFTs, so don’t just stop at user authentication.
 The documentation is a great place to start learning about all the things you
 can do with the SDK. The Mirror World team is constantly trying to provide the
 best development experience possible, it’ll be great if you joined the discord
-channel and reported issues encountered while developing on their
-[GitHub](https://github.com/mirrorworld-universe). Can’t wait to see what you
-build!
+channel and reported issues encountered while developing on their<span onClick =
+{()=> { window.mixgather.event("explore_github")
+window.open("https://github.com/mirrorworld-universe")}}>[GitHub]()</span> .
+Can’t wait to see what you build!
