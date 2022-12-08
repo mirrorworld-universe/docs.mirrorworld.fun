@@ -7,6 +7,7 @@ import {
   allComponents,
   allFurtherReadings,
   allGuides,
+  allIntegrationGuides,
   allIOs,
   allJavaScripts,
   allMarketplaceTutorials,
@@ -384,6 +385,20 @@ export function getAPIReferencePaths() {
 export function getAPIReferenceDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
   return allAPIReferences.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+export function getIntegrationGuidePaths() {
+  return allIntegrationGuides
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+}
+
+export function getIntegrationGuideDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allIntegrationGuides.find(
     (_) =>
       _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )

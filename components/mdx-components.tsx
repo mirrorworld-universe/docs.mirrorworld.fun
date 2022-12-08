@@ -24,6 +24,7 @@ import { Button } from "./button"
 import { GithubIcon } from "./icons"
 import { Link as CLink } from "@chakra-ui/layout"
 import { useState, useEffect, useRef } from "react"
+import { Scrollycoding } from "@code-hike/mdx/components"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -292,3 +293,5 @@ export function useMDX(code: string) {
   // @ts-ignore
   return <MDXComponent components={components} />
 }
+
+export { components as MirrorWorldMDXComponents }
