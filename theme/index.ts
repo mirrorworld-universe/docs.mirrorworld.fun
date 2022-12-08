@@ -119,7 +119,7 @@ const theme = {
         _dark: "mirror.base",
       },
       topNavButtonLayoutActive: {
-        default: "mirror.50",
+        default: "transparent",
         _dark: "mirror.900",
       },
       topNavButtonTextActive: {

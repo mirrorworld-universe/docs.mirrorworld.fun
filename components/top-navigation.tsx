@@ -145,7 +145,7 @@ export function TopNavigation() {
             <IconLink
               href={siteConfig.repo.url}
               icon={GithubIcon}
-              label="View Zag.js on Github"
+              label="View Mirror World on Github"
             />
             <IconLink
               href={siteConfig.discord.url}
