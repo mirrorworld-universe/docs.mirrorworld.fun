@@ -119,25 +119,20 @@ export function TopNavigation() {
                 Recipes
               </Button>
             </Link>
-            {/*<Link href={"/api-reference"}>*/}
-            <Button
-              variant="nav"
-              size="sm"
-              _hover={{
-                bg: "topNavButtonLayoutHover",
-                color: "topNavButtonTextHover",
-              }}
-              leftIcon={<AiOutlineApi />}
-              color={"topNavText"}
-              onClick={() =>
-                toast({
-                  description: "Coming soon 🤫",
-                })
-              }
-            >
-              API Reference
-            </Button>
-            {/*</Link>*/}
+            <Link href={"/api-reference"}>
+              <Button
+                variant="nav"
+                size="sm"
+                _hover={{
+                  bg: "topNavButtonLayoutHover",
+                  color: "topNavButtonTextHover",
+                }}
+                leftIcon={<AiOutlineApi />}
+                color={"topNavText"}
+              >
+                API Reference
+              </Button>
+            </Link>
           </HStack>
         </HStack>
         <HStack spacing="8">

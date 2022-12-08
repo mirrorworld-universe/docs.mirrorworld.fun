@@ -98,29 +98,28 @@ export function BottomMobileNavigation() {
             <Text fontSize="xs">Recipes</Text>
           </Stack>
         </Link>
-        <Stack alignItems="center">
-          {/*<Link href={"/api-reference"}>*/}
-          <IconButton
-            aria-label="Navigate to API Reference"
-            variant="nav"
-            size="md"
-            minWidth="unset"
-            w={10}
-            h={10}
-            icon={<AiOutlineApi />}
-            color={"topNavText"}
-            onClick={() =>
-              toast({
-                description: "Coming soon 🤫",
-              })
-            }
-          >
-            API Reference
-          </IconButton>
-          <Text fontSize="xs">API Reference</Text>
-        </Stack>
-        {/*</Link>*/}
-        {/*<MobileNavigation />*/}
+        <Link href={"/api-reference"}>
+          <Stack alignItems="center">
+            <IconButton
+              aria-label="Navigate to API Reference"
+              variant="nav"
+              size="md"
+              minWidth="unset"
+              w={10}
+              h={10}
+              icon={<AiOutlineApi />}
+              color={"topNavText"}
+              onClick={() =>
+                toast({
+                  description: "Coming soon 🤫",
+                })
+              }
+            >
+              API Reference
+            </IconButton>
+            <Text fontSize="xs">API Reference</Text>
+          </Stack>
+        </Link>
       </HStack>
       <HStack spacing="8">
         <nav hidden>
@@ -136,32 +135,6 @@ export function BottomMobileNavigation() {
             <li>Components</li>
           </HStack>
         </nav>
-        {/*<HStack spacing="4">*/}
-        {/*  <IconLink*/}
-        {/*    href={siteConfig.repo.url}*/}
-        {/*    icon={GithubIcon}*/}
-        {/*    label="View Zag.js on Github"*/}
-        {/*  />*/}
-        {/*  <IconLink*/}
-        {/*    href={siteConfig.discord.url}*/}
-        {/*    icon={FaDiscord}*/}
-        {/*    label="Join the Discord server"*/}
-        {/*  />*/}
-        {/*  <IconButton*/}
-        {/*    aria-label={*/}
-        {/*      colorMode === "light"*/}
-        {/*        ? "Switch to dark mode"*/}
-        {/*        : "Switch to light Mode"*/}
-        {/*    }*/}
-        {/*    icon={<FiSun />}*/}
-        {/*    variant={"nav"}*/}
-        {/*    color={"topNavText"}*/}
-        {/*    size={"sm"}*/}
-        {/*    w={8}*/}
-        {/*    h={8}*/}
-        {/*    onClick={handleToggleColorMode}*/}
-        {/*  />*/}
-        {/*</HStack>*/}
       </HStack>
     </Box>
   )

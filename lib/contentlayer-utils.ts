@@ -1,33 +1,35 @@
 import {
   allAndroids,
+  allAPIReferences,
   allArchitectures,
+  allAuthenticationTutorials,
   allBibles,
   allComponents,
+  allFurtherReadings,
   allGuides,
   allIOs,
   allJavaScripts,
+  allMarketplaceTutorials,
+  allNFTsTutorials,
   allOverviews,
   allResources,
   allRusts,
   allShowcases,
   allSnippets,
   allUnity,
-  allFurtherReadings,
-  DocumentTypes,
-  allAuthenticationTutorials,
   allWalletTutorials,
-  allMarketplaceTutorials,
-  allNFTsTutorials,
-  allAPIReferences,
+  DocumentTypes,
 } from "contentlayer/generated"
 import {
-  AiOutlineCompass,
+  AiOutlineAndroid,
   AiOutlineBook,
-  AiOutlineStar,
+  AiOutlineCompass,
   AiOutlineShop,
+  AiOutlineStar,
 } from "react-icons/ai"
 import { MdOutlineVerifiedUser } from "react-icons/md"
-import { BiWallet, BiImageAlt } from "react-icons/bi"
+import { BiImageAlt, BiWallet } from "react-icons/bi"
+import { SiJavascript } from "react-icons/si"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
 function toParams(str: string | string[]) {
@@ -369,6 +371,24 @@ export function getNftsTutorialsDoc(_slug: string | string[]) {
   )
 }
 
+/* -----------------------------------------------------------------------------
+ * API Reference Docs
+ * -----------------------------------------------------------------------------*/
+
+export function getAPIReferencePaths() {
+  return allAPIReferences
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+}
+
+export function getAPIReferenceDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allAPIReferences.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
 const sortByDate = (a: any, b: any) => {
   const aDate = new Date(a.releaseDate)
   const bDate = new Date(b.releaseDate)
@@ -395,7 +415,7 @@ export const buildSidebarTree = (
   return docs
     .filter(
       (_) =>
-        _.pathSegments.length === level + 1 &&
+        _.pathSegments.length >= level + 1 &&
         _.pathSegments
           .map((_: PathSegment) => _.pathName)
           .join("/")
@@ -462,19 +482,44 @@ export const tutorialsSidebar = [
   },
 ]
 
+export function stripNumbers(string) {
+  return string.replace(/[0-9].{0,3}/g, "")
+}
+
 export const apiReferenceSidebar = [
   {
     name: "JavaScript",
-    icon: MdOutlineVerifiedUser,
+    icon: SiJavascript,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences
+          .filter((_) => {
+            return stripNumbers(_.normalizedPath).startsWith("api-reference/js")
+          })
+          .map((__) => {
+            console.log(__)
+            return __
+          }),
+      ],
+      ["api-reference"],
+      "/api-reference/",
+    ),
+  },
+  {
+    name: "Android",
+    icon: AiOutlineAndroid,
     routes: buildSidebarTree(
       [
         ...allAPIReferences.filter((_) => {
-          console.log("_.slug", _._raw)
-          return _
+          return stripNumbers(_.normalizedPath).startsWith(
+            "api-reference/android",
+          )
         }),
       ],
-      [],
-      "/authentication/",
+      ["api-reference"],
+      "/api-reference/",
     ),
   },
 ]
+
+console.log("apiReferenceSidebar", apiReferenceSidebar)

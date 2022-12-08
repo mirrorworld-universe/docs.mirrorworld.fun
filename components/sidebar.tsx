@@ -5,7 +5,11 @@ import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
 import React, { useMemo } from "react"
 import { useFramework } from "./framework"
-import { homeSidebar, tutorialsSidebar } from "../lib/contentlayer-utils"
+import {
+  apiReferenceSidebar,
+  homeSidebar,
+  tutorialsSidebar,
+} from "../lib/contentlayer-utils"
 
 type DocLinkProps = {
   href: LinkProps["href"]
@@ -62,8 +66,10 @@ export function Sidebar() {
       )
     ) {
       return tutorialsSidebar
+    } else if (["api-reference"].includes(router.pathname.split("/")[1])) {
+      return apiReferenceSidebar
     } else {
-      return tutorialsSidebar
+      homeSidebar
     }
   }, [router.pathname])
 
