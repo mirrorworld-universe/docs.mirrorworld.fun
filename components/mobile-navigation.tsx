@@ -44,7 +44,7 @@ export function MobileNavigation() {
         px="2"
         border={"none"}
         shadow="none"
-        color={"currentColor"}
+        color={"text"}
       >
         <HStack>
           <HiMenu />
@@ -58,7 +58,10 @@ export function MobileNavigation() {
               {...api.contentProps}
               position="fixed"
               inset="0"
-              bg="dark"
+              bg="body"
+              color="text"
+              backdropFilter="auto"
+              backdropBlur="lg"
               zIndex="modal"
               pb="10"
               overflowY="auto"
@@ -76,6 +79,7 @@ export function MobileNavigation() {
                   px="2"
                   border={"none"}
                   shadow="none"
+                  color={"topNavText"}
                   {...api.closeButtonProps}
                 >
                   <HStack>
@@ -84,7 +88,7 @@ export function MobileNavigation() {
                 </Button>
               </Flex>
               <Box px="8">
-                <Spacer height="10" bg="dark" />
+                <Spacer height="10" bg="body" />
                 <Box mb="8">
                   <FrameworkSelect />
                 </Box>
