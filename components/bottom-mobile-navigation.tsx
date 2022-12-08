@@ -109,6 +109,8 @@ export function BottomMobileNavigation() {
               h={10}
               icon={<AiOutlineApi />}
               color={"topNavText"}
+              {...(["api-reference"].includes(router.pathname.split("/")[1]) &&
+                activeStyles)}
             >
               API Reference
             </IconButton>
