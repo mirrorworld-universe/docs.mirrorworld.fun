@@ -376,19 +376,33 @@ const AuthenticationTutorials = defineDocumentType(() => ({
   },
 }))
 
-// const AuthenticationTutorials = defineDocumentType(() => ({
-//   name: "AuthenticationTutorials",
-//   filePathPattern: "authentication/**/*.mdx",
-//   contentType: "mdx",
-//   fields,
-//   computedFields: {
-//     ...computedFields,
-//     pathname: {
-//       type: "string",
-//       resolve: () => "/authentication/[slug]",
-//     },
-//   },
-// }))
+const WalletTutorials = defineDocumentType(() => ({
+  name: "WalletTutorials",
+  filePathPattern: "wallet/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/wallet/[slug]",
+    },
+  },
+}))
+
+const MarketplaceTutorials = defineDocumentType(() => ({
+  name: "MarketplaceTutorials",
+  filePathPattern: "marketplace/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/marketplace/[slug]",
+    },
+  },
+}))
 
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
@@ -410,6 +424,8 @@ const contentLayerConfig = makeSource({
 
     // Tutorials
     AuthenticationTutorials,
+    WalletTutorials,
+    MarketplaceTutorials,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],

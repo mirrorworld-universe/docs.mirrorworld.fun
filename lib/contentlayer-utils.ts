@@ -15,6 +15,8 @@ import {
   allFurtherReadings,
   DocumentTypes,
   allAuthenticationTutorials,
+  allWalletTutorials,
+  allMarketplaceTutorials,
 } from "contentlayer/generated"
 import {
   AiOutlineCompass,
@@ -290,7 +292,7 @@ export function getFurtherReadingDoc(_slug: string | string[]) {
 }
 
 /* -----------------------------------------------------------------------------
- * Authentication
+ * Authentication Tutorials
  * -----------------------------------------------------------------------------*/
 
 export function getAuthenticationTutorialsPaths() {
@@ -303,6 +305,44 @@ export function getAuthenticationTutorialsPaths() {
 export function getAuthenticationTutorialsDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
   return allAuthenticationTutorials.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Wallet Tutorials
+ * -----------------------------------------------------------------------------*/
+
+export function getWalletTutorialsPaths() {
+  const paths = allWalletTutorials
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getWalletTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allWalletTutorials.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Marketplace Tutorials
+ * -----------------------------------------------------------------------------*/
+
+export function getMarketplaceTutorialsPaths() {
+  const paths = allMarketplaceTutorials
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getMarketplaceTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allMarketplaceTutorials.find(
     (_) =>
       _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )
@@ -387,11 +427,11 @@ export const tutorialsSidebar = [
   {
     name: "Wallets",
     icon: BiWallet,
-    routes: buildSidebarTree([], [], "/showcase/"),
+    routes: buildSidebarTree([...allWalletTutorials], [], "/wallet/"),
   },
   {
     name: "Marketplaces",
     icon: AiOutlineShop,
-    routes: buildSidebarTree([], [], "/further-reading/"),
+    routes: buildSidebarTree([...allMarketplaceTutorials], [], "/marketplace/"),
   },
 ]
