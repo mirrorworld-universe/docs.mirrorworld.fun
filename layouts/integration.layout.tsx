@@ -40,7 +40,10 @@ export default function IntegrationLayout({
           <SkipNavLink>Skip to main content</SkipNavLink>
           <chakra.div position="sticky" top="0" width="full" zIndex={50}>
             <TopNavigation position="relative" />
-            <IntegrationBuilderNav position="relative" />
+            <IntegrationBuilderNav
+              position="relative"
+              display={["none", "none", "block"]}
+            />
           </chakra.div>
           <chakra.div pt="10">
             <Box maxW="4xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>

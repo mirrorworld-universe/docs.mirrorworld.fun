@@ -2,51 +2,37 @@
 title: Integration Guide
 ---
 
-# Scrollycoding
+# Android Integration Guide
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
+This guide will walk you through the setup process for the Mirror World Smart SDK on Android.
 
-Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus. Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.
+## Step 1: Create a Developer Account
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key.
+
+## Step 2: Import the Mirror World SDK
+
+> **Notice:**
+
+*The minimum version that SDK requires is Android 4.4.*
+
+
+1.  Download and uncompress [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/tag/v1.1.0).
+2.  Put the `mirrorsdk.aar` under the 'libs' folder. You may create a 'libs' folder if it doesn't exist
+
+![https://market-assets.mirrorworld.fun/docs/build.png]()
+
 
 <CH.Scrollycoding>
+---
 
-## Step 1
+## Step 3: Add SDK to `build.gradle`.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing something about points, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+In your `build.gradle` file, please add the Mirror World SDK as a dependency.
 
-> Nova in illis at dabat legi harundine non, ova miratur? _Quid in_ sole aer
-> ad diffusa illis voluisti fidensque coniugiale laniata curam. Aras rivus
-> eripuit, qua fistula haec partus; serpens, negat.
-
-Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.
-
-```js app.js focus=3:10
-const { lorem, ipsum } = dolor({
-  sit: {
-    amet: 1,
-    consectetur: 2,
-    adipiscing: (elit) => ({
-      sed: elit,
-    }),
-      eiusmod: (tempor) => ({
-      incididunt: tempor,
-    }),
-      ut: (labore) => ({
-      et: labore,
-      dolore: labore + 1,
-    }),
-      magna: (aliqua) => ({
-      ut: aliqua,
-    }),
-      nostrud: (elit) => ({
-      exercitation: elit,
-      ullamco: elit,
-    }),
-      laboris: (elit) => ({
-      nisi: elit,
-    }),
-  },
-});
+```gradle build.gradle focus=2
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+}
 ```
 
 ---
