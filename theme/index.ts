@@ -118,6 +118,10 @@ const theme = {
         default: "gray.900",
         _dark: "mirror.base",
       },
+      topNavButtonLayoutHover: {
+        default: "mirror.50",
+        _dark: "whiteAlpha.50",
+      },
       topNavButtonLayoutActive: {
         default: "transparent",
         _dark: "mirror.900",
@@ -125,6 +129,10 @@ const theme = {
       topNavButtonTextActive: {
         default: "mirror.800",
         _dark: "mirror.base",
+      },
+      topNavButtonTextHover: {
+        default: "mirror.800",
+        _dark: "mirror.600",
       },
     },
   },

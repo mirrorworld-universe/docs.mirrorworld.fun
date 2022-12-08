@@ -30,9 +30,6 @@ export function TopNavigation() {
     bg: "topNavButtonLayoutActive",
     color: "topNavButtonTextActive",
     border: "1px solid currentColor",
-    _hover: {
-      bg: "whiteAlpha.100",
-    },
   }
 
   return (
@@ -76,6 +73,10 @@ export function TopNavigation() {
               <Button
                 variant="nav"
                 size="sm"
+                _hover={{
+                  bg: "topNavButtonLayoutHover",
+                  color: "topNavButtonTextHover",
+                }}
                 leftIcon={<BiHomeAlt />}
                 color={"topNavText"}
                 {...(["overview", "showcase", "further-reading"].includes(
@@ -89,6 +90,10 @@ export function TopNavigation() {
               <Button
                 variant="nav"
                 size="sm"
+                _hover={{
+                  bg: "topNavButtonLayoutHover",
+                  color: "topNavButtonTextHover",
+                }}
                 leftIcon={<BiBookOpen />}
                 color={"topNavText"}
                 {...(["authentication", "marketplace", "wallet"].includes(
@@ -102,6 +107,10 @@ export function TopNavigation() {
               <Button
                 variant="nav"
                 size="sm"
+                _hover={{
+                  bg: "topNavButtonLayoutHover",
+                  color: "topNavButtonTextHover",
+                }}
                 leftIcon={<AiOutlineExperiment />}
                 color={"topNavText"}
                 {...(["guides"].includes(router.pathname.split("/")[1]) &&
@@ -114,6 +123,10 @@ export function TopNavigation() {
             <Button
               variant="nav"
               size="sm"
+              _hover={{
+                bg: "topNavButtonLayoutHover",
+                color: "topNavButtonTextHover",
+              }}
               leftIcon={<AiOutlineApi />}
               color={"topNavText"}
               onClick={() =>
