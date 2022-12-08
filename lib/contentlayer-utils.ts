@@ -473,7 +473,7 @@ export const tutorialsSidebar = [
   {
     name: "NFTs & Collections",
     icon: BiImageAlt,
-    routes: buildSidebarTree([...allMarketplaceTutorials], [], "/nfts/"),
+    routes: buildSidebarTree([...allNFTsTutorials], [], "/nfts/"),
   },
   {
     name: "Marketplaces",
