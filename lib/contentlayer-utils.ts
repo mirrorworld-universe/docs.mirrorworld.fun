@@ -18,6 +18,7 @@ import {
   allWalletTutorials,
   allMarketplaceTutorials,
   allNFTsTutorials,
+  allAPIReferences,
 } from "contentlayer/generated"
 import {
   AiOutlineCompass,
@@ -458,5 +459,22 @@ export const tutorialsSidebar = [
     name: "Marketplaces",
     icon: AiOutlineShop,
     routes: buildSidebarTree([...allMarketplaceTutorials], [], "/marketplace/"),
+  },
+]
+
+export const apiReferenceSidebar = [
+  {
+    name: "JavaScript",
+    icon: MdOutlineVerifiedUser,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          console.log("_.slug", _._raw)
+          return _
+        }),
+      ],
+      [],
+      "/authentication/",
+    ),
   },
 ]

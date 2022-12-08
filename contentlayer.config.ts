@@ -96,6 +96,10 @@ const computedFields: ComputedFields = {
           return { order, pathName }
         }),
   },
+  normalizedPath: {
+    type: "string",
+    resolve: (doc) => doc._raw.flattenedPath.replace(/[0-9].{0,1}/g, ""),
+  },
 }
 
 const Overview = defineDocumentType(() => ({
@@ -419,6 +423,20 @@ const NFTsTutorials = defineDocumentType(() => ({
   },
 }))
 
+const APIReference = defineDocumentType(() => ({
+  name: "APIReference",
+  filePathPattern: "api-reference/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/api-reference/[slug]",
+    },
+  },
+}))
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
@@ -442,6 +460,7 @@ const contentLayerConfig = makeSource({
     WalletTutorials,
     MarketplaceTutorials,
     NFTsTutorials,
+    APIReference,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
