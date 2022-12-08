@@ -1,20 +1,8 @@
-import { Badge, Box, Flex, HStack } from "@chakra-ui/layout"
-import {
-  Spacer,
-  Button,
-  IconButton,
-  useColorMode,
-  useToast,
-} from "@chakra-ui/react"
-import { GithubIcon } from "components/icons"
-import { FaDiscord } from "react-icons/fa"
-import siteConfig from "site.config"
-import { IconLink } from "./icon-link"
-import { LogoWithLink } from "./logo"
+import { Box, Text, HStack, Stack } from "@chakra-ui/layout"
+import { IconButton, useColorMode, useToast } from "@chakra-ui/react"
 import { MobileNavigation } from "./mobile-navigation"
 import { BiHomeAlt, BiBookOpen } from "react-icons/bi"
 import { AiOutlineApi, AiOutlineExperiment } from "react-icons/ai"
-import { FiSun } from "react-icons/fi"
 import Link from "next/link"
 import { useRouter } from "next/router"
 
@@ -52,75 +40,87 @@ export function BottomMobileNavigation() {
     >
       <HStack justifyContent="space-evenly">
         <Link href={"/overview/introduction"}>
-          <IconButton
-            aria-label="Navigate to Home"
-            variant="nav"
-            size="md"
-            minWidth="unset"
-            w={10}
-            h={10}
-            icon={<BiHomeAlt />}
-            color={"topNavText"}
-            {...(["overview", "showcase", "further-reading"].includes(
-              router.pathname.split("/")[1],
-            ) && activeStyles)}
-          >
-            Home
-          </IconButton>
+          <Stack alignItems="center">
+            <IconButton
+              aria-label="Navigate to Home"
+              variant="nav"
+              size="md"
+              minWidth="unset"
+              w={10}
+              h={10}
+              icon={<BiHomeAlt />}
+              color={"topNavText"}
+              {...(["overview", "showcase", "further-reading"].includes(
+                router.pathname.split("/")[1],
+              ) && activeStyles)}
+            >
+              Home
+            </IconButton>
+            <Text fontSize="xs">Home</Text>
+          </Stack>
         </Link>
         <Link href={"/authentication"}>
-          <IconButton
-            aria-label="Navigate to Tutorials"
-            variant="nav"
-            size="md"
-            minWidth="unset"
-            w={10}
-            h={10}
-            icon={<BiBookOpen />}
-            color={"topNavText"}
-            {...(["authentication", "marketplace", "wallet"].includes(
-              router.pathname.split("/")[1],
-            ) && activeStyles)}
-          >
-            Tutorials
-          </IconButton>
+          <Stack alignItems="center">
+            <IconButton
+              aria-label="Navigate to Tutorials"
+              variant="nav"
+              size="md"
+              minWidth="unset"
+              w={10}
+              h={10}
+              icon={<BiBookOpen />}
+              color={"topNavText"}
+              {...(["authentication", "marketplace", "wallet"].includes(
+                router.pathname.split("/")[1],
+              ) && activeStyles)}
+            >
+              Tutorials
+            </IconButton>
+            <Text fontSize="xs">Tutorials</Text>
+          </Stack>
         </Link>
         <Link href={"/guides"}>
+          <Stack alignItems="center">
+            <IconButton
+              aria-label="Navigate to Recipes"
+              variant="nav"
+              size="md"
+              minWidth="unset"
+              w={10}
+              h={10}
+              icon={<AiOutlineExperiment />}
+              color={"topNavText"}
+              {...(["guides"].includes(router.pathname.split("/")[1]) &&
+                activeStyles)}
+            >
+              Recipes
+            </IconButton>
+            <Text fontSize="xs">Recipes</Text>
+          </Stack>
+        </Link>
+        <Stack alignItems="center">
+          {/*<Link href={"/api-reference"}>*/}
           <IconButton
-            aria-label="Navigate to Recipes"
+            aria-label="Navigate to API Reference"
             variant="nav"
             size="md"
             minWidth="unset"
             w={10}
             h={10}
-            icon={<AiOutlineExperiment />}
+            icon={<AiOutlineApi />}
             color={"topNavText"}
-            {...(["guides"].includes(router.pathname.split("/")[1]) &&
-              activeStyles)}
+            onClick={() =>
+              toast({
+                description: "Coming soon 🤫",
+              })
+            }
           >
-            Recipes
+            API Reference
           </IconButton>
-        </Link>
-        {/*<Link href={"/api-reference"}>*/}
-        <IconButton
-          aria-label="Navigate to API Reference"
-          variant="nav"
-          size="md"
-          minWidth="unset"
-          w={10}
-          h={10}
-          icon={<AiOutlineApi />}
-          color={"topNavText"}
-          onClick={() =>
-            toast({
-              description: "Coming soon 🤫",
-            })
-          }
-        >
-          API Reference
-        </IconButton>
+          <Text fontSize="xs">API Reference</Text>
+        </Stack>
         {/*</Link>*/}
-        <MobileNavigation />
+        {/*<MobileNavigation />*/}
       </HStack>
       <HStack spacing="8">
         <nav hidden>

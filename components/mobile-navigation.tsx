@@ -44,6 +44,7 @@ export function MobileNavigation() {
         px="2"
         border={"none"}
         shadow="none"
+        color={"currentColor"}
       >
         <HStack>
           <HiMenu />
