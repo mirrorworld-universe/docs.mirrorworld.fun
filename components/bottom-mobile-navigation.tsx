@@ -109,11 +109,6 @@ export function BottomMobileNavigation() {
               h={10}
               icon={<AiOutlineApi />}
               color={"topNavText"}
-              onClick={() =>
-                toast({
-                  description: "Coming soon 🤫",
-                })
-              }
             >
               API Reference
             </IconButton>
