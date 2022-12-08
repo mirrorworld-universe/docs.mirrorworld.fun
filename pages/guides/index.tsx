@@ -16,6 +16,7 @@ import React from "react"
 import { allGuides } from "contentlayer/generated"
 import { buildUrl } from "cloudinary-build-url"
 import Link from "next/link"
+import { BottomMobileNavigation } from "../../components/bottom-mobile-navigation"
 
 export default function Blog() {
   const guides = allGuides?.map((guide) => ({
@@ -132,6 +133,7 @@ export default function Blog() {
           </Container>
         </Box>
       </chakra.div>
+      <BottomMobileNavigation />
     </Box>
   )
 }

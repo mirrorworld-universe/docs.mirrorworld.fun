@@ -12,6 +12,7 @@ import { PathSegment, TreeNode } from "lib/contentlayer-utils"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
 import theme from "../theme"
+import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
 
 type DocsLayoutProps = {
   children: React.ReactNode
@@ -103,6 +104,7 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
             </Box>
           </Box>
         </chakra.div>
+        <BottomMobileNavigation />
       </Box>
     </ChakraProvider>
   )

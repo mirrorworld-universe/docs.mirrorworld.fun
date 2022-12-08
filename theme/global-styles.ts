@@ -8,6 +8,9 @@ export const globalStyles: SystemStyleObject = {
     WebkitFontSmoothing: "antialiased",
     bg: "body",
     color: "text",
+    // transition: "color 0.2s ease-in-out, background 0.2s ease-in-out",
+    transitionProperty: "background",
+    transitionDuration: "normal",
   },
 
   "*": {

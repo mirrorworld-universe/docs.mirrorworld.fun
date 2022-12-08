@@ -66,6 +66,7 @@ export function MobileNavigation() {
                 justify="space-between"
                 py="4"
                 px={{ base: "4", sm: "6", md: "8" }}
+                color="topNavText"
               >
                 <LogoWithLink />
                 <Button

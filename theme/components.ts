@@ -47,7 +47,6 @@ const Button: ComponentStyleConfig = {
       fontWeight: "bold",
       color: "topNavText",
       rounded: "full",
-      minW: "auto",
       boxShadow: "none",
       _hover: {
         bg: "flatButtonHoverBg",
@@ -61,10 +60,8 @@ const Button: ComponentStyleConfig = {
       py: "1",
     },
     md: {
-      minWidth: "180px",
       fontWeight: "semibold",
       fontSize: "lg",
-      height: "14",
     },
   },
   defaultProps: {
