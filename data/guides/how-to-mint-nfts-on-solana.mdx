@@ -1,8 +1,8 @@
 ---
-title: Minting Solana NFTs with the Mirror World SDK
+title: Minting Solana NFTs with the Mirror World Smart SDK
 description:
-  TypeScript/JavaScript Guide for minting NFTs on Solana with the Mirror World Smart
-  SDK in a React/Next.js App
+  TypeScript/JavaScript Guide for minting NFTs on Solana with the Mirror World
+  Smart SDK in a React/Next.js App
 author:
   name: David C. Nwadiogbu
   twitter: https://twitter.com/cnwadiogbu
@@ -12,30 +12,30 @@ tags:
   - React.js
 ---
 
-Nonfungible tokens (NFTs) are a new form of asset that can represent anything
-from digital art to game items and are stored on the blockchain ledger. NFTs are
-unique, immutable and transparent.
+Non-fungible tokens (NFTs) are a new form of asset that can represent anything
+from digital art to game items and are stored on the blockchain's distibuted
+ledger. NFTs are unique, immutable and transparent.
 
 People collect NFTs for various reasons, one of which may include having access
-to certain communities or having access to games. For example, on Mirror world,
+to certain communities or having access to games. For example, on Mirror World,
 you may collect an NFT play as a character in a game.
 
-In this guide, we’ll look at how to mint NFTs on the Solana blockchain using the
-mirrorworld SDK
+In this guide, we’ll look at how to mint NFTs on Solana using the Mirror World
+Smart SDK
 
 ## Getting Started
 
-Before getting started, you want to make sure that you already have a
-Mirrorworld developer account and an already created project. If you're yet to
-create one, head over to https://app.mirrorworld.fun/auth/login to get started
-or go through this guide for a proper explanation.
+Before getting started, you want to make sure that you already have a Mirror
+World developer account and an already created project. If you're yet to create
+one, head over to https://app.mirrorworld.fun/auth/login to get started or go
+through this guide for a proper explanation.
 
-### Create a collection
+### Create A Collection
 
 Collections are like a folder for your NFTs. This is where your NFTs are going
 to be stored for distribution later. To create a collection, sign in to your
 developer dashboard and click on the "NFT Collections" tab displayed on the
-sidebar underneath "Projects".
+sidebar underneath the "Project Info" button.
 
 ![Collection label](https://res.cloudinary.com/dkegnossp/image/upload/v1668632118/1280X1280_i5vqoo.png)
 
@@ -46,7 +46,7 @@ Please make sure to fill in every field with the appropriate information.
 After creating a collection, you should be redirected to the collections page
 and see your collection added to the collections list for your project.
 
-## Guide to minting an NFT.
+## Guide To Minting An NFT.
 
 The process of minting an NFT could be quite tedious, but with the mirrorworld
 SDK, this process has been simplified to writing just a few lines of code. Let's
@@ -61,11 +61,12 @@ and selecting "React" from the prompt:
 yarn create vite mint-nft
 ```
 
-### Install the Mirror World SDK
+### Install the Mirror World Smart SDK
 
-Next, let’s make sure we have the mirror world SDK installed in our project.
-This will enable us to implement the NFT minting feature the SDK provides. Run
-the following command in your project’s root directory, in the terminal:
+Next, let’s make sure we have the Mirror World Smart SDK installed in our
+project. This will enable us to implement the NFT minting feature the SDK
+provides. Run the following command in your project’s root directory in the
+terminal:
 
 ```shell
 yarn add @mirrorworld/web3.js
@@ -74,9 +75,9 @@ yarn add @mirrorworld/web3.js
 ### Mint NFT
 
 Let's implement the mintNFT method into our app. In your App.jsx delete the
-starter code and add the following code to setup mirrorworld and authentication
-in our app. We add some extra code to fetch and use refreshToken which will help
-us validate requests.
+starter code and add the following code to set up Mirror World and
+authentication in our app. We add some extra code to fetch and use refreshToken
+which will help us validate requests.
 
 ```jsx
 import { useState } from "react"
