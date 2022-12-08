@@ -57,7 +57,7 @@ export function Sidebar() {
     ) {
       return homeSidebar
     } else if (
-      ["authentication", "marketplace", "wallet"].includes(
+      ["authentication", "marketplace", "wallet", "nfts"].includes(
         router.pathname.split("/")[1],
       )
     ) {

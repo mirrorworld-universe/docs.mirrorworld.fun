@@ -17,6 +17,7 @@ import {
   allAuthenticationTutorials,
   allWalletTutorials,
   allMarketplaceTutorials,
+  allNFTsTutorials,
 } from "contentlayer/generated"
 import {
   AiOutlineCompass,
@@ -25,7 +26,7 @@ import {
   AiOutlineShop,
 } from "react-icons/ai"
 import { MdOutlineVerifiedUser } from "react-icons/md"
-import { BiWallet } from "react-icons/bi"
+import { BiWallet, BiImageAlt } from "react-icons/bi"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
 function toParams(str: string | string[]) {
@@ -348,6 +349,25 @@ export function getMarketplaceTutorialsDoc(_slug: string | string[]) {
   )
 }
 
+/* -----------------------------------------------------------------------------
+ * NFTs Tutorials
+ * -----------------------------------------------------------------------------*/
+
+export function getNftsTutorialsPaths() {
+  const paths = allNFTsTutorials
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getNftsTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allNFTsTutorials.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
 const sortByDate = (a: any, b: any) => {
   const aDate = new Date(a.releaseDate)
   const bDate = new Date(b.releaseDate)
@@ -428,6 +448,11 @@ export const tutorialsSidebar = [
     name: "Wallets",
     icon: BiWallet,
     routes: buildSidebarTree([...allWalletTutorials], [], "/wallet/"),
+  },
+  {
+    name: "NFTs & Collections",
+    icon: BiImageAlt,
+    routes: buildSidebarTree([...allMarketplaceTutorials], [], "/nfts/"),
   },
   {
     name: "Marketplaces",

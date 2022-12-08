@@ -288,7 +288,7 @@ const Snippet = defineDocumentType(() => ({
   name: "Snippet",
   filePathPattern: "snippets/**/*.mdx",
   contentType: "mdx",
-  fields,
+  // fields,
   computedFields: {
     ...computedFields,
     framework: {
@@ -404,6 +404,20 @@ const MarketplaceTutorials = defineDocumentType(() => ({
   },
 }))
 
+const NFTsTutorials = defineDocumentType(() => ({
+  name: "NFTsTutorials",
+  filePathPattern: "nfts/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/nfts/[slug]",
+    },
+  },
+}))
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
@@ -426,6 +440,7 @@ const contentLayerConfig = makeSource({
     AuthenticationTutorials,
     WalletTutorials,
     MarketplaceTutorials,
+    NFTsTutorials,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],

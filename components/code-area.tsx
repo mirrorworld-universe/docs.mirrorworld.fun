@@ -4,6 +4,7 @@ import { useMDX } from "./mdx-components"
 
 export function CodeArea({ slug }: { slug: string }) {
   const doc = getSnippetDoc(slug)
+  console.log("doc", { doc, slug })
   const Component = useMDX(doc.body.code)
   return (
     <Box
