@@ -81,10 +81,10 @@ const sidebarLink: SystemStyleObject = {
   display: "inline-block",
   paddingY: "1",
   transition: "color 0.2s ease-in-out",
-  _hover: {
-    textDecoration: "underline",
-    textUnderlineOffset: "2px",
-  },
+  // _hover: {
+  //   textDecoration: "underline",
+  //   textUnderlineOffset: "2px",
+  // },
   _activeLink: {
     textDecoration: "underline",
     textUnderlineOffset: "2px",

@@ -41,6 +41,26 @@ function DocLink(props: DocLinkProps) {
         <chakra.a
           aria-current={current ? "page" : undefined}
           textStyle="sidebarLink"
+          sx={{
+            color: "currentColor",
+            position: "relative",
+            "&:after": {
+              content: `""`,
+              position: "absolute",
+              width: "100%",
+              transform: "scaleX(0)",
+              height: "1px",
+              top: "85%",
+              left: 0,
+              backgroundColor: "currentColor",
+              transformOrigin: "bottom right",
+              transition: "transform .4s cubic-bezier(.86, 0, .07, 1)",
+            },
+            "&:hover::after": {
+              transform: "scaleX(1)",
+              transformOrigin: "bottom left",
+            },
+          }}
           {...(isExternal && { target: "_blank" })}
         >
           {children}

@@ -38,7 +38,7 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
             <Box
               display={{ base: "none", lg: "block" }}
               position="fixed"
-              zIndex={20}
+              zIndex={30}
               bottom="0"
               top="4rem"
               left="max(0px, calc(50% - 45rem))"
@@ -50,7 +50,13 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
               overscrollBehavior="contain"
             >
               <Box position="relative">
-                <Box position="sticky" top="0" bg="languageSelectBg" pb="8">
+                <Box
+                  position="sticky"
+                  zIndex={20}
+                  top="0"
+                  bg="languageSelectBg"
+                  pb="8"
+                >
                   <Spacer height="10" />
                   <Search />
                   <Spacer mt="px" height="5" />
