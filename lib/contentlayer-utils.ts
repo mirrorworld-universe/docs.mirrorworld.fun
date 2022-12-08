@@ -497,11 +497,10 @@ export const apiReferenceSidebar = [
             return stripNumbers(_.normalizedPath).startsWith("api-reference/js")
           })
           .map((__) => {
-            console.log(__)
             return __
           }),
       ],
-      ["api-reference"],
+      [],
       "/api-reference/",
     ),
   },
@@ -516,10 +515,8 @@ export const apiReferenceSidebar = [
           )
         }),
       ],
-      ["api-reference"],
+      [],
       "/api-reference/",
     ),
   },
 ]
-
-console.log("apiReferenceSidebar", apiReferenceSidebar)

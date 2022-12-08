@@ -69,7 +69,7 @@ export function Sidebar() {
     } else if (["api-reference"].includes(router.pathname.split("/")[1])) {
       return apiReferenceSidebar
     } else {
-      homeSidebar
+      return homeSidebar
     }
   }, [router.pathname])
 
