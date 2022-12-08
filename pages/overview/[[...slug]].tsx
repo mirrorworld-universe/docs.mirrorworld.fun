@@ -5,7 +5,7 @@ import { getOverviewDoc, getOverviewPaths } from "lib/contentlayer-utils"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { NextSeo } from "next-seo"
 
-export default function OverviewPage({ doc }: { doc: Overview }) {
+export default function BiblePage({ doc }: { doc: Overview }) {
   const Component = useMDX(doc.body.code)
   return (
     <>
@@ -22,5 +22,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<{ doc: Overview }> = async (
   ctx,
 ) => {
-  return { props: { doc: getOverviewDoc(ctx.params.slug) } }
+  const params = ctx.params as any
+  const pagePath = params.slug?.join("/") ?? ""
+  return { props: { doc: getOverviewDoc(pagePath) } }
 }

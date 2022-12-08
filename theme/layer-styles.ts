@@ -10,8 +10,11 @@ const blockquote: SystemStyleObject = {
   marginY: "5",
   paddingX: "4",
   paddingY: "3",
-  bg: "rgba(220, 255, 28, 0.2)",
-  color: "mirror.400",
+  bg: "calloutBg",
+  color: "calloutText",
+  borderLeftColor: "calloutBorderColor",
+  borderLeftWidth: "3px",
+  borderLeftStyle: "solid",
   rounded: "4px",
 }
 

@@ -52,10 +52,10 @@ export function LogoWithLink() {
     <Link href="/" passHref>
       <a
         aria-label="Go to homepage"
-        // aria-current={asPath === "/" ? "https://mirrorworld.fun/" : undefined}
-        onClick={() => {
-          window.open("https://mirrorworld.fun")
-        }}
+        aria-current={asPath === "/"}
+        // onClick={() => {
+        //   window.open("https://mirrorworld.fun")
+        // }}
       >
         <LogoIcon
           display={{ base: "block", sm: "none" }}

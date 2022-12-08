@@ -65,7 +65,7 @@ const text: Record<string, SystemStyleObject> = {
 }
 
 const link: SystemStyleObject = {
-  color: "mirror.500",
+  color: "textLink",
   cursor: "pointer",
   fontWeight: "medium",
   textDecoration: "underline",

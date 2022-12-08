@@ -62,8 +62,8 @@ const theme = {
         _dark: "pink.900",
       },
       topNavBody: {
-        default: "whiteAlpha.200",
-        _dark: "dark",
+        default: "whiteAlpha.600",
+        _dark: "blackAlpha.500",
       },
       topNavText: {
         default: "gray.900",
@@ -72,6 +72,22 @@ const theme = {
       flatButtonHoverBg: {
         default: "whiteAlpha.300",
         _dark: "mirror.900",
+      },
+      calloutBg: {
+        default: "rgba(220, 255, 28, 0.4)",
+        _dark: "rgba(220, 255, 28, 0.2)",
+      },
+      calloutText: {
+        default: "mirror.700",
+        _dark: "mirror.400",
+      },
+      calloutBorderColor: {
+        default: "mirror.600",
+        _dark: "mirror.400",
+      },
+      textLink: {
+        default: "mirror.700",
+        _dark: "mirror.400",
       },
     },
   },

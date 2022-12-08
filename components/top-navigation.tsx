@@ -10,13 +10,25 @@ import { BiHomeAlt, BiBookOpen } from "react-icons/bi"
 import { AiOutlineApi, AiOutlineExperiment } from "react-icons/ai"
 import { FiSun } from "react-icons/fi"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
 export function TopNavigation() {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode } = useColorMode()
+  const router = useRouter()
   function handleToggleColorMode() {
-    console.log("colorMode", { colorMode, toggleColorMode })
-    toggleColorMode()
+    // console.log("colorMode", { colorMode, toggleColorMode })
+    // toggleColorMode()
   }
+
+  const activeStyles = {
+    bg: "mirror.50",
+    color: "mirror.800",
+    border: "1px solid currentColor",
+    _hover: {
+      bg: "mirror.300",
+    },
+  }
+
   return (
     <Box
       bg="topNavBody"
@@ -54,22 +66,28 @@ export function TopNavigation() {
           </Badge>
           <Spacer />
           <HStack>
-            <Link href={"/"}>
+            <Link href={"/overview/introduction"}>
               <Button
                 variant="nav"
                 size="sm"
                 leftIcon={<BiHomeAlt />}
                 color={"topNavText"}
+                {...(["overview", "showcase", "further-reading"].includes(
+                  router.pathname.split("/")[1],
+                ) && activeStyles)}
               >
                 Home
               </Button>
             </Link>
-            <Link href={"/tutorials"}>
+            <Link href={"/authentication"}>
               <Button
                 variant="nav"
                 size="sm"
                 leftIcon={<BiBookOpen />}
                 color={"topNavText"}
+                {...(["authentication", "marketplace", "wallet"].includes(
+                  router.pathname.split("/")[1],
+                ) && activeStyles)}
               >
                 Tutorials
               </Button>

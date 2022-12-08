@@ -26,6 +26,12 @@ const fields: FieldDefs = {
   },
   description: { type: "string" },
   package: { type: "string" },
+  external_url: {
+    type: "string",
+  },
+  nav_title: {
+    type: "string",
+  },
   // navTitle: {
   //   type: "string",
   //   description: "Override the title for display in nav",
@@ -342,14 +348,54 @@ const Bible = defineDocumentType(() => ({
   },
 }))
 
+const FurtherReading = defineDocumentType(() => ({
+  name: "FurtherReading",
+  filePathPattern: "further-reading/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/further-reading/[slug]",
+    },
+  },
+}))
+
+const AuthenticationTutorials = defineDocumentType(() => ({
+  name: "AuthenticationTutorials",
+  filePathPattern: "authentication/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/authentication/[slug]",
+    },
+  },
+}))
+
+// const AuthenticationTutorials = defineDocumentType(() => ({
+//   name: "AuthenticationTutorials",
+//   filePathPattern: "authentication/**/*.mdx",
+//   contentType: "mdx",
+//   fields,
+//   computedFields: {
+//     ...computedFields,
+//     pathname: {
+//       type: "string",
+//       resolve: () => "/authentication/[slug]",
+//     },
+//   },
+// }))
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
     Overview,
     Snippet,
     Component,
-    // Changelog,
-
     Android,
     iOS,
     Rust,
@@ -360,6 +406,10 @@ const contentLayerConfig = makeSource({
     Guides,
     Showcase,
     Bible,
+    FurtherReading,
+
+    // Tutorials
+    AuthenticationTutorials,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],

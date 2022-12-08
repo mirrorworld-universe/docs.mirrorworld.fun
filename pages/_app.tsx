@@ -7,8 +7,10 @@ import mixgather from "mixgather"
 import { useEffect } from "react"
 import { __ENV__ } from "../lib/env"
 import Script from "next/script"
+import { useRedirect } from "../hooks/use-redirect"
 
 export default function App({ Component, pageProps }) {
+  useRedirect()
   useEffect(() => {
     mixgather.init({
       debug: process.env.NODE_ENV !== "production",

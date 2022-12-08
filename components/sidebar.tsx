@@ -1,12 +1,11 @@
 import Icon from "@chakra-ui/icon"
 import { Box, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { formatUrl } from "lib/pagination-utils"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
-import React from "react"
-import sidebar from "sidebar.config"
+import React, { useMemo } from "react"
 import { useFramework } from "./framework"
+import { homeSidebar, tutorialsSidebar } from "../lib/contentlayer-utils"
 
 type DocLinkProps = {
   href: LinkProps["href"]
@@ -30,10 +29,10 @@ function test(href: string, asPath: string) {
 
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
-  const { href, children, isExternal } = props
+  const { href, children, isExternal, ...rest } = props
   const current = test(href.toString(), asPath)
   return (
-    <Box key={asPath} as="li" fontSize="sm">
+    <Box key={asPath} as="li" fontSize="sm" {...rest}>
       <Link href={href} passHref>
         <chakra.a
           aria-current={current ? "page" : undefined}
@@ -49,55 +48,93 @@ function DocLink(props: DocLinkProps) {
 
 export function Sidebar() {
   const { framework } = useFramework()
+  const router = useRouter()
+  const currentSideBar = useMemo(() => {
+    if (
+      ["overview", "showcase", "further-reading"].includes(
+        router.pathname.split("/")[1],
+      )
+    ) {
+      return homeSidebar
+    } else if (
+      ["authentication", "marketplace", "wallet"].includes(
+        router.pathname.split("/")[1],
+      )
+    ) {
+      return tutorialsSidebar
+    } else {
+      return tutorialsSidebar
+    }
+  }, [router.pathname])
 
   return (
     <nav aria-label="Sidebar Navigation">
-      <Stack as="ul" listStyleType="none" direction="column" spacing="10">
-        {sidebar.docs.map((item) => {
-          if (item.type === "category") {
-            return (
-              <li className="sidebar__category" key={item.id}>
-                <HStack mb="3" color="mirror.600">
-                  <Icon as={item.icon} />
-                  <chakra.h5
-                    fontSize="xs"
-                    fontWeight="semibold"
-                    textTransform="uppercase"
-                  >
-                    {item.label}
-                  </chakra.h5>
-                </HStack>
+      <Stack as="ul" listStyleType="none" direction="column" spacing="6">
+        {currentSideBar.map((item) => {
+          return (
+            <li className="sidebar__category" key={item.name.toLowerCase()}>
+              <HStack mb="3" color="textLink">
+                <Icon as={item.icon} />
+                <chakra.h5
+                  fontSize="sm"
+                  fontWeight="semibold"
+                  textTransform="uppercase"
+                >
+                  {item.name}
+                </chakra.h5>
+              </HStack>
 
-                <Flex as="ul" listStyleType="none" direction="column">
-                  {item.items.map((subItem, index) => {
-                    const href = formatUrl(item.id, subItem.id, framework)
-                    if (subItem.type === "doc") {
-                      return (
-                        <DocLink
-                          key={subItem.id + index}
-                          href={subItem.href ?? href}
+              <Flex as="ul" listStyleType="none" direction="column">
+                {item.routes.map((subItem, index) => {
+                  return (
+                    <div key={subItem.url_path + index}>
+                      <DocLink
+                        href={subItem.external_url || subItem.url_path}
+                        isExternal={!!subItem.external_url}
+                      >
+                        <span
+                          onClick={() => {
+                            //@ts-ignore
+                            window.mixgather.event("menu_name", {
+                              name: subItem.nav_title,
+                            })
+                          }}
                         >
-                          <span
-                            onClick={() => {
-                              //@ts-ignore
-                              window.mixgather.event("menu_name", {
-                                name: subItem.label,
-                              })
-                            }}
-                          >
-                            {subItem.label}
-                          </span>
-                        </DocLink>
-                      )
-                    }
-                    return null
-                  })}
-                </Flex>
-              </li>
-            )
-          }
-
-          return null
+                          {subItem.nav_title}
+                        </span>
+                      </DocLink>
+                      {subItem.children.length
+                        ? subItem.children.map((_subItem, j) => {
+                            return (
+                              <DocLink
+                                key={_subItem.url_path + j}
+                                href={
+                                  _subItem.external_url || _subItem.url_path
+                                }
+                                isExternal={!!_subItem.external_url}
+                                //@ts-ignore
+                                pl={4}
+                              >
+                                <span
+                                  onClick={() => {
+                                    //@ts-ignore
+                                    window.mixgather.event("menu_name", {
+                                      name: _subItem.nav_title,
+                                    })
+                                  }}
+                                >
+                                  {_subItem.nav_title}
+                                </span>
+                              </DocLink>
+                            )
+                          })
+                        : null}
+                    </div>
+                  )
+                })}
+              </Flex>
+            </li>
+          )
         })}
       </Stack>
     </nav>

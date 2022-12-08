@@ -1,19 +1,29 @@
 import {
-  allComponents,
-  allOverviews,
-  allGuides,
-  allSnippets,
   allAndroids,
-  allIOs,
-  allRusts,
-  allResources,
-  allJavaScripts,
-  allUnity,
   allArchitectures,
-  allShowcases,
   allBibles,
+  allComponents,
+  allGuides,
+  allIOs,
+  allJavaScripts,
+  allOverviews,
+  allResources,
+  allRusts,
+  allShowcases,
+  allSnippets,
+  allUnity,
+  allFurtherReadings,
   DocumentTypes,
+  allAuthenticationTutorials,
 } from "contentlayer/generated"
+import {
+  AiOutlineCompass,
+  AiOutlineBook,
+  AiOutlineStar,
+  AiOutlineShop,
+} from "react-icons/ai"
+import { MdOutlineVerifiedUser } from "react-icons/md"
+import { BiWallet } from "react-icons/bi"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
 function toParams(str: string | string[]) {
@@ -59,13 +69,16 @@ export function getComponentDoc(slug: string) {
  * -----------------------------------------------------------------------------*/
 
 export function getOverviewPaths() {
-  return allOverviews.map((doc) => `/overview/${doc.slug}`)
+  return allOverviews
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
 }
 
 export function getOverviewDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
   return allOverviews.find(
-    (post) => post.frontmatter.slug === `/overview/${slug}`,
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )
 }
 
@@ -195,12 +208,15 @@ export function getGuideDoc(slug: string | string[]) {
  * Showcase
  * -----------------------------------------------------------------------------*/
 export function getShowcasePaths() {
-  return allShowcases.map((doc) => `/showcase/${doc.slug}`)
+  return allShowcases
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
 }
 
 export function getShowcaseDoc(slug: string | string[]) {
   return allShowcases.find(
-    (post) => post.frontmatter.slug === `/showcase/${slug}`,
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )
 }
 
@@ -231,13 +247,13 @@ export function getSnippetDoc(slug: string | string[]) {
   )
 }
 
-/* -----------------------------------------------------------------------------
- * Bible
- * -----------------------------------------------------------------------------*/
-
 export function _toParams(path: string): { params: { slug: string[] } } {
   return { params: { slug: path.replace(/^\//, "").split("/") } }
 }
+
+/* -----------------------------------------------------------------------------
+ * Bible
+ * -----------------------------------------------------------------------------*/
 
 export function getBiblePaths() {
   const paths = allBibles
@@ -248,7 +264,48 @@ export function getBiblePaths() {
 
 export function getBibleDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allBibles.find((post) => post.frontmatter.slug === `/bible/${slug}`)
+  return allBibles.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Futher Reading
+ * -----------------------------------------------------------------------------*/
+
+export function getFurtherReadingPaths() {
+  const paths = allFurtherReadings
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getFurtherReadingDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allFurtherReadings.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Authentication
+ * -----------------------------------------------------------------------------*/
+
+export function getAuthenticationTutorialsPaths() {
+  const paths = allAuthenticationTutorials
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getAuthenticationTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allAuthenticationTutorials.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
 }
 
 const sortByDate = (a: any, b: any) => {
@@ -263,12 +320,14 @@ export type TreeNode = {
   title: string
   nav_title: string | null
   url_path: string
+  external_url?: string
   children: TreeNode[]
 }
 
 export const buildSidebarTree = (
   docs: DocumentTypes[],
   parentPathNames: string[] = [],
+  prefix = "",
 ): TreeNode[] => {
   const level = parentPathNames.length
 
@@ -285,16 +344,54 @@ export const buildSidebarTree = (
     .map<TreeNode>((doc) => ({
       nav_title: doc.frontmatter.nav_title ?? doc.frontmatter.title ?? null,
       title: doc.title,
+      external_url: doc.external_url,
       url_path:
-        "" + doc.pathSegments.map((_: PathSegment) => _.pathName).join("/"),
+        `${prefix}` +
+        doc.pathSegments.map((_: PathSegment) => _.pathName).join("/"),
       children: buildSidebarTree(
         docs,
         doc.pathSegments.map((_: PathSegment) => _.pathName),
+        prefix,
       ),
     }))
 }
 
-console.log(
-  "All Bibles",
-  JSON.stringify(buildSidebarTree([...allBibles]), null, 2),
-)
+export const homeSidebar = [
+  {
+    name: "Overview",
+    icon: AiOutlineCompass,
+    routes: buildSidebarTree([...allOverviews], [], "/overview/"),
+  },
+  {
+    name: "Showcase",
+    icon: AiOutlineStar,
+    routes: buildSidebarTree([...allShowcases], [], "/showcase/"),
+  },
+  {
+    name: "Further Reading",
+    icon: AiOutlineBook,
+    routes: buildSidebarTree([...allFurtherReadings], [], "/further-reading/"),
+  },
+]
+
+export const tutorialsSidebar = [
+  {
+    name: "Authentication",
+    icon: MdOutlineVerifiedUser,
+    routes: buildSidebarTree(
+      [...allAuthenticationTutorials],
+      [],
+      "/authentication/",
+    ),
+  },
+  {
+    name: "Wallets",
+    icon: BiWallet,
+    routes: buildSidebarTree([], [], "/showcase/"),
+  },
+  {
+    name: "Marketplaces",
+    icon: AiOutlineShop,
+    routes: buildSidebarTree([], [], "/further-reading/"),
+  },
+]
