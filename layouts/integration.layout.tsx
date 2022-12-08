@@ -13,6 +13,7 @@ import theme from "../theme"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
 import { MDXProvider } from "@mdx-js/react"
 import { MirrorWorldMDXComponents } from "components/mdx-components"
+import { IntegrationBuilderNav } from "../components/navigation/integration-builder-navigation"
 
 type IntegrationLayoutProps = {
   children: React.ReactNode
@@ -37,48 +38,14 @@ export default function IntegrationLayout({
       <MDXProvider components={MirrorWorldMDXComponents}>
         <Box>
           <SkipNavLink>Skip to main content</SkipNavLink>
-          <TopNavigation />
+          <chakra.div position="sticky" top="0" width="full" zIndex={50}>
+            <TopNavigation position="relative" />
+            <IntegrationBuilderNav position="relative" />
+          </chakra.div>
           <chakra.div pt="10">
-            <Box maxW="8xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
-              <Box
-                display={{ base: "none", lg: "block" }}
-                position="fixed"
-                zIndex={30}
-                bottom="0"
-                top="4rem"
-                left="max(0px, calc(50% - 45rem))"
-                right="auto"
-                width="19.5rem"
-                pb="10"
-                px="8"
-                overflowY="auto"
-                overscrollBehavior="contain"
-              >
-                <Box position="relative">
-                  <Box
-                    position="sticky"
-                    zIndex={20}
-                    top="0"
-                    bg="languageSelectBg"
-                    pb="8"
-                  >
-                    <Spacer height="10" />
-                    <Search />
-                    <Spacer mt="px" height="5" />
-                    <FrameworkSelect />
-                  </Box>
-                  <Sidebar />
-                </Box>
-              </Box>
-
-              <Box
-                as="main"
-                className="mdx-content"
-                pl={{ lg: "19.5rem" }}
-                pt="4"
-                pr={{ xl: "16" }}
-              >
-                <Box mr={{ xl: "15.5rem" }}>
+            <Box maxW="4xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
+              <Box as="main" className="mdx-content" pt="4">
+                <Box>
                   {children}
                   <HStack
                     as="a"

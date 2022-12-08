@@ -61,8 +61,26 @@ Id aliquet risus feugiat in ante metus dictum at tempor. Sed blandit libero volu
 
 Morbi quis commodo.
 
-```js app.js focus=11:17
-
+```js app.js focus=11:15
+  const { lorem, ipsum } = dolor({
+    sit: {
+      amet: 1,
+      consectetur: 2,
+      adipiscing: (elit) => ({
+      sed: elit,
+    }),
+    eiusmod: (tempor) => ({
+      incididunt: tempor,
+    }),
+    ut: (labore) => ({
+      et: labore,
+      dolore: labore + 1,
+    }),
+    laboris: (elit) => ({
+      nisi: elit,
+    }),
+  },
+});
 ```
 
 </CH.Scrollycoding>

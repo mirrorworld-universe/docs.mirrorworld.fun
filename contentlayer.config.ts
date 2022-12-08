@@ -492,7 +492,7 @@ const contentLayerConfig = makeSource({
         {
           theme: codeTheme,
           // autoImport: false,
-          staticMediaQuery: "not screen, (max-width: 768px)",
+          staticMediaQuery: "not screen, (max-width: 992px)",
         },
       ],
     ],

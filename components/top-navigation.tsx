@@ -18,7 +18,7 @@ import { FiSun } from "react-icons/fi"
 import Link from "next/link"
 import { useRouter } from "next/router"
 
-export function TopNavigation() {
+export function TopNavigation(props: any) {
   const { colorMode, toggleColorMode } = useColorMode()
   const toast = useToast()
   const router = useRouter()
@@ -45,6 +45,7 @@ export function TopNavigation() {
       borderBottomWidth="1px"
       borderBottomColor="mirror.800"
       color="topNavText"
+      {...props}
     >
       <Flex
         align="center"

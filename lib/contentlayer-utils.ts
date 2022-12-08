@@ -30,7 +30,7 @@ import {
 } from "react-icons/ai"
 import { MdOutlineVerifiedUser } from "react-icons/md"
 import { BiImageAlt, BiWallet } from "react-icons/bi"
-import { SiJavascript } from "react-icons/si"
+import { SiJavascript, SiUnity, SiRust, SiIos } from "react-icons/si"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
 function toParams(str: string | string[]) {
@@ -535,3 +535,28 @@ export const apiReferenceSidebar = [
     ),
   },
 ]
+
+export const integrationGuidesConfig = {
+  languages: [
+    {
+      name: "Android",
+      icon: AiOutlineAndroid,
+    },
+    {
+      name: "iOS",
+      icon: SiIos,
+    },
+    {
+      name: "Unity",
+      icon: SiUnity,
+    },
+    {
+      name: "JavaScript",
+      icon: SiJavascript,
+    },
+    {
+      name: "Rust",
+      icon: SiRust,
+    },
+  ],
+}
