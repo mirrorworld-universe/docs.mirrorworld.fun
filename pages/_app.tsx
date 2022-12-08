@@ -1,13 +1,14 @@
-import { ChakraProvider } from "@chakra-ui/provider"
+import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react"
 import { DefaultSeo } from "next-seo"
 import theme from "theme"
-import "../styles/prism.css"
+import "../styles/prism.scss"
 import siteConfig from "site.config"
 import mixgather from "mixgather"
 import { useEffect } from "react"
 import { __ENV__ } from "../lib/env"
 import Script from "next/script"
 import { useRedirect } from "../hooks/use-redirect"
+import { TopNavigation } from "../components/top-navigation"
 
 export default function App({ Component, pageProps }) {
   useRedirect()
@@ -31,6 +32,13 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ChakraProvider theme={theme}>
+      {/*<ColorModeProvider*/}
+      {/*  options={{*/}
+      {/*    initialColorMode: theme.config.initialColorMode,*/}
+      {/*    disableTransitionOnChange: false,*/}
+      {/*    useSystemColorMode: false,*/}
+      {/*  }}*/}
+      {/*>*/}
       <DefaultSeo {...siteConfig.seo} />
       <Component {...pageProps} />
       {__ENV__ === "production" && (
@@ -57,6 +65,7 @@ export default function App({ Component, pageProps }) {
           />
         </>
       )}
+      {/*</ColorModeProvider>*/}
     </ChakraProvider>
   )
 }

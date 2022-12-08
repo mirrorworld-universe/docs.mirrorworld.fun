@@ -63,7 +63,7 @@ const theme = {
       },
       topNavBody: {
         default: "whiteAlpha.600",
-        _dark: "blackAlpha.500",
+        _dark: "hsl(200deg 10% 12% / 80%)",
       },
       topNavText: {
         default: "gray.900",
@@ -88,6 +88,42 @@ const theme = {
       textLink: {
         default: "mirror.700",
         _dark: "mirror.400",
+      },
+      languageSelectText: {
+        default: "mirror.700",
+        _dark: "mirror.400",
+      },
+      languageSelectBg: {
+        default: "white",
+        _dark: "dark",
+      },
+      searchTriggerText: {
+        default: "gray.500",
+        _dark: "mirror.400",
+      },
+      searchTriggerBg: {
+        default: "gray.100",
+        _dark: "mirror.900",
+      },
+      searchTriggerRingColor: {
+        default: "gray.300",
+        _dark: "mirror.600",
+      },
+      topNavButtonLayout: {
+        default: "gray.300",
+        _dark: "transparent",
+      },
+      topNavButtonText: {
+        default: "gray.900",
+        _dark: "mirror.base",
+      },
+      topNavButtonLayoutActive: {
+        default: "mirror.50",
+        _dark: "mirror.900",
+      },
+      topNavButtonTextActive: {
+        default: "mirror.800",
+        _dark: "mirror.base",
       },
     },
   },

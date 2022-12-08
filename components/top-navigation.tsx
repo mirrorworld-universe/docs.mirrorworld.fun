@@ -1,11 +1,5 @@
 import { Badge, Box, Flex, HStack } from "@chakra-ui/layout"
-import {
-  Spacer,
-  Button,
-  IconButton,
-  useColorMode,
-  useToast,
-} from "@chakra-ui/react"
+import { Spacer, Button, IconButton, useColorMode } from "@chakra-ui/react"
 import { GithubIcon } from "components/icons"
 import { FaDiscord } from "react-icons/fa"
 import siteConfig from "site.config"
@@ -19,20 +13,19 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 
 export function TopNavigation() {
-  const { colorMode } = useColorMode()
-  const toast = useToast()
+  const { colorMode, toggleColorMode } = useColorMode()
   const router = useRouter()
   function handleToggleColorMode() {
-    // console.log("colorMode", { colorMode, toggleColorMode })
-    // toggleColorMode()
+    console.log("colorMode", { colorMode, toggleColorMode })
+    toggleColorMode()
   }
 
   const activeStyles = {
-    bg: "mirror.50",
-    color: "mirror.800",
+    bg: "topNavButtonLayoutActive",
+    color: "topNavButtonTextActive",
     border: "1px solid currentColor",
     _hover: {
-      bg: "mirror.300",
+      bg: "whiteAlpha.100",
     },
   }
 
@@ -117,10 +110,11 @@ export function TopNavigation() {
               size="sm"
               leftIcon={<AiOutlineApi />}
               color={"topNavText"}
-              onClick={() =>
-                toast({
-                  description: "Coming soon 🤫",
-                })
+              onClick={
+                () => {}
+                // toast({
+                //   description: "Coming soon 🤫",
+                // })
               }
             >
               API Reference
