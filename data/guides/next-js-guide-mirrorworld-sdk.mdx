@@ -1,5 +1,5 @@
 ---
-title: Next.js Guide for Mirror World SDK
+title: Next.js Guide for Mirror World Smart SDK
 description:
   TypeScript/JavaScript Guide for getting started with the Mirror World Smart
   SDK in a React/Next.js App
@@ -12,12 +12,11 @@ tags:
   - Next.js
 ---
 
-The Mirror World SDK is a set of cross-platform tools that provides simple,
+The Mirror World Smart SDK is a set of cross-platform tools that provides simple,
 declarative interfaces for developers with no blockchain development experience
-to seamlessly build Mobile and Web Applications into Web3 Architecture.
+to seamlessly build mobile and web applications into Web3 architecture.
 
-It is the key you need to be able to build on Mirror World. With the Mirror
-World Smart SDK, you can easily authenticate your users, create secure wallets,
+With the Mirror World Smart SDK, you can easily authenticate your users, create secure wallets,
 mint NFTs and deploy marketplaces with just a few lines of code.
 
 Mirror World currently has SDK support for Android, iOS (in development), Unity,
@@ -30,17 +29,11 @@ JavaScript.
 
 ### Create an Account
 
-To start using the SDK, you’ll need to <span onClick = {()=> {
-window.mixgather.event("developer_dashboard")
-window.open("https://app.mirrorworld.fun")}}>[create a developer
-account]()</span>. Your account grants you access to all the features needed to
-build on mirror world and it can be created within seconds. If you run into any
-issues creating an account, Mirror World has active communities on <span onClick
-= {()=> { window.mixgather.event("join_telegram")
-window.open("https://mirrorworld.fun/telegram")}}>[telegram]()</span> and <span
-onClick = {()=> { window.mixgather.event("join_discord")
-window.open("https://mirrorworld.fun/discord");}}>[discord]()</span> with people
-on the Mirror World team ready to help.
+To start using the SDK, you’ll need to [create a developer account](https://app.mirrorworld.fun/auth/login).
+Your account grants you access to all the features needed to build on Mirror World and it can be
+created within seconds. If you run into any issues creating an account, Mirror World has active
+communities on [Telegram](https://mirrorworld.fun/telegram) and [Discord](https://mirrorworld.fun/discord)
+with people on the Mirror World team ready to help.
 
 ### Create a Project
 
@@ -52,8 +45,7 @@ in the popup and click “Create”.
 
 ### Project Credentials
 
-Every project is created with three major credentials that’ll be used in
-developing Mirror World:
+Every project is created with three major credentials that’ll be used in developing Mirror World using the SDK:
 
 1. API Key: Used to authorize a client to access the Mirror World API.
 2. Client ID: Used to publicly identify your project.
@@ -78,12 +70,10 @@ yarn create next-app mirrorworld-js
 npx create-next-app@latest mirrorworld-js
 ```
 
-### Install the Mirror World SDK
+### Install the Mirror World Smart SDK
 
-Next, let’s make sure we have the mirror world SDK installed in our project.
-This will enable us to
-
-Run the following command in your project’s root directory, in the terminal:
+Next, let’s make sure we have the Mirror World Smart SDK installed in our project.
+This will enable us to run the following command in your project’s root directory, in the terminal:
 
 ```shell
 yarn add @mirrorworld/web3.js
@@ -91,7 +81,7 @@ yarn add @mirrorworld/web3.js
 
 ### Implementing Login
 
-Let’s implement login functionality into our app using the Mirror World SDK. To
+Let’s implement login functionality into our app using the Mirror World Smart SDK. To
 use the SDK, we’ll need to create a new instance of the SDK.
 
 Edit your **index.js** file to look like this
@@ -172,20 +162,19 @@ return (
 }
 ```
 
-Try to log in again and you should see your user details display like this:
+Try to log in again and you should see your user details displayed like this:
 
 ![Displaying user info](https://res.cloudinary.com/xtellar/image/upload/v1665995203/mirror-world/Untitled_1_n2xrdk.png)
 
 ## Where to go from here
 
-As you can see, the MirrorWorld SDK is quite easy to set up and work with. There
+As you can see, the Mirror World Smart SDK is quite easy to set up and work with. There
 are also a lot of other things you can do with the SDK such as swap tokens and
 mint NFTs, so don’t just stop at user authentication.
 
 The documentation is a great place to start learning about all the things you
 can do with the SDK. The Mirror World team is constantly trying to provide the
-best development experience possible, it’ll be great if you joined the discord
-channel and reported issues encountered while developing on their<span onClick =
-{()=> { window.mixgather.event("explore_github")
-window.open("https://github.com/mirrorworld-universe")}}>[GitHub]()</span> .
-Can’t wait to see what you build!
+best development experience possible, it’ll be great if you joined the Discord
+channel and reported issues encountered while developing on their
+[GitHub](https://github.com/mirrorworld-universe). Can’t wait to see what you
+build!
