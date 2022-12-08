@@ -415,7 +415,7 @@ export const buildSidebarTree = (
   return docs
     .filter(
       (_) =>
-        _.pathSegments.length >= level + 1 &&
+        _.pathSegments.length === level + 1 &&
         _.pathSegments
           .map((_: PathSegment) => _.pathName)
           .join("/")
