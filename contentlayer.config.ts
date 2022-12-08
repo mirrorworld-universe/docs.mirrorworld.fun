@@ -286,6 +286,7 @@ const Guides = defineDocumentType(() => ({
 
 const Snippet = defineDocumentType(() => ({
   name: "Snippet",
+  fields,
   filePathPattern: "snippets/**/*.mdx",
   contentType: "mdx",
   // fields,
