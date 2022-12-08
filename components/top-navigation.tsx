@@ -98,6 +98,8 @@ export function TopNavigation() {
                 size="sm"
                 leftIcon={<AiOutlineExperiment />}
                 color={"topNavText"}
+                {...(["guides"].includes(router.pathname.split("/")[1]) &&
+                  activeStyles)}
               >
                 Recipes
               </Button>

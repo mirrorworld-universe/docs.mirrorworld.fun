@@ -1,8 +1,8 @@
 ---
-title: How to authenticate with self-custody wallets
+title: How to buy tokens with the wallet on-ramp
 ---
 
-# How to authenticate with self-custody wallets
+# How to  tokens with the wallet on-ramp
 
 Sibi in videbitur, cum bipennem cornuaque clamare, litora ac. Bacche semimarem
 ab [latebras huius](http://falsi.com/). Ad suas, per arcitenens undas, hunc
@@ -21,7 +21,7 @@ fratre, solet cavas Avernales. Sic nec vinxerat cum: recumbis aethera.
 import { useState } from "react";
 import { MirrorWorld } from "@mirrorworld/web3.js"
 
-export function App() {
+export async function run() {
   // 1. Initialize Mirror World SDK
   const mirrorworld = new MirrorWorld({
     apiKey: "SECRET_API_KEY",
@@ -30,26 +30,12 @@ export function App() {
   const [user, setUser] = useState()
 
   // 2. Login user with Social Auth Provider
-  async function loginWithGoogle() {
+  async function print() {
     const user = await mirrorworld.login()
     setUser(user)
   }
 
-  return (
-    <div>
-      Hello World
-      <button onClick={loginWithGoogle}>
-        Login
-      </button>
-
-      {/* 3. Display user wallet address if logged in */}
-      {user && (
-        <div>
-          Welcome, {user.wallet.sol_address}!
-        </div>
-      )}
-    </div>
-  )
+  await print()
 }
 ```
 
