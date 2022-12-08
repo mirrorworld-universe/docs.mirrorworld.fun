@@ -98,20 +98,20 @@ export const ChainSupportTable = (props: BoxProps) => {
         >
           <Table
             my={0}
-            bg={"dark"}
-            borderColor="mirror.700"
+            bg={"flatButtonHoverBg"}
+            borderColor="text"
             shadow="0px 8px 0px rgba(0, 0, 0, 0.3)"
             rounded="14px"
           >
             <Thead>
-              <Tr borderColor="mirror.700">
+              <Tr borderColor="calloutBorderColor">
                 <Th
                   fontSize="md"
                   fontWeight="bold"
-                  color="mirror.400"
+                  bg="supportTableHeadBg"
+                  color="text"
                   border="none"
                   py="8"
-                  bg="#2C2C2C"
                   shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                   roundedTopLeft="10px"
                   px={6}
@@ -125,10 +125,10 @@ export const ChainSupportTable = (props: BoxProps) => {
                 <Th
                   fontSize="md"
                   fontWeight="bold"
-                  color="mirror.400"
+                  bg="supportTableHeadBg"
+                  color="text"
                   border="none"
                   py="8"
-                  bg="#2C2C2C"
                   shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                   px={8}
                 >
@@ -137,10 +137,10 @@ export const ChainSupportTable = (props: BoxProps) => {
                 <Th
                   fontSize="md"
                   fontWeight="bold"
-                  color="mirror.400"
+                  bg="supportTableHeadBg"
+                  color="text"
                   border="none"
                   py="8"
-                  bg="#2C2C2C"
                   shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                   px={8}
                 >
@@ -149,10 +149,10 @@ export const ChainSupportTable = (props: BoxProps) => {
                 <Th
                   fontSize="md"
                   fontWeight="bold"
-                  color="mirror.400"
+                  bg="supportTableHeadBg"
+                  color="text"
                   border="none"
                   py="8"
-                  bg="#2C2C2C"
                   shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                   roundedTopRight="10px"
                   px={8}
@@ -164,29 +164,45 @@ export const ChainSupportTable = (props: BoxProps) => {
             <Tbody>
               {supportDataTable.map((chain, i) => (
                 <Tr key={i}>
-                  <Td border="none" py="8" bg="#1E1E1E" px={8}>
+                  <Td border="none" py="8" bg="supportTableCellBg" px={8}>
                     <HStack spacing="3">
                       <Icon as={chain.icon} />
                       <Text fontSize="md">{chain.chain}</Text>
                     </HStack>
                   </Td>
-                  <Td border="none" py="8" bg="#1E1E1E" px={8}>
+                  <Td border="none" py="8" bg="supportTableCellBg" px={8}>
                     <HStack spacing="3">
                       <Text fontSize="md">{chain.status}</Text>
                     </HStack>
                   </Td>
-                  <Td border="none" py="8" bg="#1E1E1E" px={8} fontSize="lg">
+                  <Td
+                    border="none"
+                    py="8"
+                    bg="supportTableCellBg"
+                    px={8}
+                    fontSize="lg"
+                  >
                     <Icon
                       color={
-                        chain.isOnMainnet ? "mirror.400" : "whiteAlpha.600"
+                        chain.isOnMainnet
+                          ? "supportTableCheckActive"
+                          : "supportTableCheckMute"
                       }
                       as={FiCheckCircle}
                     />
                   </Td>
-                  <Td border="none" py="8" bg="#1E1E1E" px={8} fontSize="lg">
+                  <Td
+                    border="none"
+                    py="8"
+                    bg="supportTableCellBg"
+                    px={8}
+                    fontSize="lg"
+                  >
                     <Icon
                       color={
-                        chain.isOnTestnet ? "mirror.400" : "whiteAlpha.600"
+                        chain.isOnTestnet
+                          ? "supportTableCheckActive"
+                          : "supportTableCheckMute"
                       }
                       as={FiCheckCircle}
                     />

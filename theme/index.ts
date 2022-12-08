@@ -134,6 +134,22 @@ const theme = {
         default: "mirror.800",
         _dark: "mirror.600",
       },
+      supportTableHeadBg: {
+        default: "gray.50",
+        _dark: "#2c2c2c",
+      },
+      supportTableCellBg: {
+        default: "#e0e0e0",
+        _dark: "#1E1E1E",
+      },
+      supportTableCheckActive: {
+        default: "green.400",
+        _dark: "mirror.base",
+      },
+      supportTableCheckMute: {
+        default: "gray.400",
+        _dark: "whiteAlpha.600",
+      },
     },
   },
 }
