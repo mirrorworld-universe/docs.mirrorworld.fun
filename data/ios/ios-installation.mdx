@@ -57,6 +57,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 
 func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+
     MirrorWorldSDK.share.handleOpen(url: url)
     return true
 }
