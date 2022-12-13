@@ -74,7 +74,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
         {
           overlay: [
             `text:${sanitize("Poppins")}_48:${sanitize(
-              doc.tags.map((t) => `#${t}`).join(" "),
+              doc?.tags?.map((t) => `#${t}`).join(" ") || "",
             )}`,
             "c_fit",
             "co_rgb:FFFFFF",

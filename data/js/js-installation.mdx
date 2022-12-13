@@ -5,22 +5,33 @@ description: JavaScript - Mirror World Smart SDK
 
 # Javascript SDK
 
-The Mirror World SDK for JavaScript implements a TypeScript-compatible client that can be used both
-in the browser and in Node.js.
+The Mirror World SDK for JavaScript implements a TypeScript-compatible client
+that can be used for both in the browser and Node.js.
 
 ## Installation
-1. Create a developer account the [developer dashboard](https://app.mirrorworld.fun).
-2. Create project and copy the API Key and `clientId` for your project.
+
+1. Create a developer account on the <span onClick = {()=> {
+   window.mixgather.event("developer_dashboard")
+   window.open("https://app.mirrorworld.fun")}}>[Developer dashboard]()</span>.
+2. Create a project and copy the API Key and `clientId` for your project.
 3. Install SDK in your project
 
-<GithubButton label={"View Github Repository"} repository={"mirrorworld-universe/mirrorworld-sdk-js"} />
+<GithubButton
+  onClick={() => {
+    window.mixgather.event("explore_github")
+  }}
+  label={"View Github Repository"}
+  repository={"mirrorworld-universe/mirrorworld-sdk-js"}
+/>
 
 ## GitHub
+
 ```bash
 yarn add @mirrorworld/web3.js
 ```
 
 ## Usage
+
 Import the SDK instance to initialize it.
 
 ```ts
@@ -40,8 +51,11 @@ async function main() {
 main()
 ```
 
-If you're building a React Application, you can follow [this guide](/guides/getting-started-with-mirrorworld-sdk) to get started with the JavaScript SDK.
+If you're building a React Application, you can follow
+[this guide](/guides/getting-started-with-mirrorworld-sdk) to get started with
+the JavaScript SDK.
 
 ## Full API Documentation
-You can view the JavaScript API documentation on the [JavaScript API Reference](/js/js-api) page.
 
+You can view the JavaScript API documentation on the
+[JavaScript API Reference](/js/js-api) page.

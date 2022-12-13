@@ -9,11 +9,14 @@ Mirror World's Official Rust SDK
 
 ## Installation
 
-1. Create a developer account the developer dashboard.
-2. Create project and copy the API Key and clientId for your project.
+1. Create a developer account on the developer dashboard.
+2. Create a project and copy the API Key and clientId for your project.
 3. Install SDK in your project Todo
 
 <GithubButton
+  onClick={() => {
+    window.mixgather.event("explore_github")
+  }}
   label={"View Github Repository"}
   repository={"mirrorworld-universe/mirrorworld-sdk-rust"}
 />
@@ -64,7 +67,7 @@ let TOKEN: &str = "your access token";
 // init marketplace object,
 let market =  Marketplace::new(KEY.to_string(), NetEnv::DEVNET, TOKEN.to_string());
 
-// create a collection
+// Create a collection
 let name: String = String::from("your collection name");
 let symbol: String = String::from("your token symbol name");
 let uri: String = String::from("you collection metadata uri")

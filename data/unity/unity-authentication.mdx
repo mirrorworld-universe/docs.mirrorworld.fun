@@ -3,15 +3,14 @@ title: Authentication
 description: Authentication
 ---
 
-## Authentication
+# Authentication
 
-## User login with different social accounts
-
-Every kind of social account login will provide a new wallet for users. These wallets are not same.
+## User login with different social accounts.
+Every kind of social account login will provide a new wallet for users. These wallets are not the same.
 
 ## Login invalidation
+Token saved locally by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If the token is invalidated, we should guide users to login again.
 
-Token saved in local by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If token is invalidate, we should guild users to login again.
 For example, you can follow the logic like this:  
 
 ```cs

@@ -1,29 +1,57 @@
 # Mirror World Unity SDK(v0.1.0)
 
-Mirror World's Official Unity SDK  
+Mirror World's Official Unity SDK
 
 ## Getting started
-Create a developer account at https://app.mirrorworld.fun. Create project and create an API Key.  
+
+<span
+  onClick={() => {
+    window.mixgather.event("developer_dashboard")
+    window.open("https://app.mirrorworld.fun")
+  }}
+>
+  Create a developer account at[https://app.mirrorworld.fun]()Create project and
+  create an API Key.
+</span>
 
 ## Import SDK
 
-1. One way,download assets [Mirror World Unity SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases/tag/v0.1.0).  
-import it to your project `Assets > Import Package > Custom Package` and select the package you just downloaded.
-2. Besides, you can also search for the package in Unity Assets Store with the key word "com.mirror.sdk" and import it.
+1.  <span
+      onClick={() => {
+        window.mixgather.event("download_unity_sdk")
+        window.open(
+          "https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases/tag/v0.1.0",
+        )
+      }}
+    >
+      One way is to download assets [MirrorWorld Unity SDK](). import it to your
+      project `Assets > Import Package > Custom Package` and select the package
+      you just downloaded.
+    </span>
+2.  Besides, you can also search for the package in the Unity Assets Store with
+    the keyword "com.mirror.sdk" and import it.
 
 ## Usage
 
 ### Configuration with adding prefab manually
+
 ![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/blob/master/CaseImage/case_prefab_example.jpg?raw=true)
 
 Explanation of beyond image:
-- **Api Key**: Input your API key from the developer dashboard on https://app.mirrorworld.fun
-- **Debug Mode**: If checking this, you could see all the flow and error notice on console.
+
+- **Api Key**: Input your API key from the developer dashboard on
+  https://app.mirrorworld.fun
+- **Debug Mode**: If checking this, you could see all the flow and error notices
+  on the console.
 - **Environment**: Choose the environment you want to use.
-- **Debug Email and Password**: In pre-release beta, you can only login SDK with this function. Input your email and password on https://docs.mirrorworld.fun.
+- **Debug Email and Password**: In the pre-release beta, you can only login SDK
+  with this function. Input your email and password at
+  https://docs.mirrorworld.fun.
 
 ### Configuration dynamic
-We can init Mirror World SDK with the following code:  
+
+We can init Mirror World SDK with the following code:
+
 ```cs
 GameObject mirrorObj = new GameObject("MirrorSDK", typeof(MirrorSDK));
 string apiKey = "your api key";
@@ -33,8 +61,10 @@ Environment environment = Environment.StagingDevnet;
 MirrorSDK.InitSDK(apiKey, mirrorObj, debugMode, environment);
 ```
 
-2. Guide user to login
-When the user opens your app, you may want to know whether this user needs to log in, you can call the `IsLoggedIn` method. The boolean result is return in the callback.
+2. Guide user to login When the user opens your app, you may want to know
+   whether this user needs to log in, you can call the `IsLoggedIn` method. The
+   boolean result is returned in the callback.
+
 ```cs
 MirrorSDK.IsLoggedIn((isLoggedIn) => {
     Debug.Log("isLoggedIn:" + isLoggedIn);
@@ -42,9 +72,12 @@ MirrorSDK.IsLoggedIn((isLoggedIn) => {
 ```
 
 If you want the user to login, you can use the following code:
+
 ```cs
 MirrorSDK.StartLogin();
 ```
 
 ## Full API Documentation
-You can view the documentation for Mirror World SDK for Mobile on [our Official Documentation Site](/unity/unity-api)
+
+You can view the documentation for Mirror World SDK for Mobile on
+[our Official Documentation Site](/unity/unity-api)

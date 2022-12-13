@@ -4,7 +4,7 @@
 
 ### StartLogin
 
-Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
+Calling this API would pop up a dialog, user can finish the login flow on it. In this dialog, the user can login with a third method like google, twitter. Or the user can login with the email which is registered on our website.
 
 ```java
 MirrorSDK.getInstance().StartLogin(new LoginListener() {
@@ -35,7 +35,7 @@ MirrorSDK.getInstance().CheckAuthenticated(new BoolListener() {
 
 ### SetDebug
 
-Set if use debug mode. In this mode, developer can see details in whole flow.
+In this mode, the developer can see details in the whole flow.
 
 ```java
 MirrorSDK.getInstance().SetDebug(true);
@@ -43,7 +43,7 @@ MirrorSDK.getInstance().SetDebug(true);
 
 ### SetApiKey
 
-Set the api key which the current app uses. You can find it when you create a project on our website.
+Set the API key that the current app uses. You can find it when you create a project on our website.
 
 ```java
 String apiKey = "Your api key";
@@ -52,7 +52,7 @@ MirrorSDK.getInstance().SetAppID(apiKey);
 ```
 
 ### setWebviewNotice
-Our login page is not compatible with some low version webview.So when the target webview is lower than limit,we will show notice.
+Our login page is not compatible with some low version webview.So when the target webview is lower than the limit, we will show notice.
 
 ```java
 String notice = "Please update your webview.";
@@ -64,7 +64,7 @@ MirrorSDK.getInstance().setWebviewNotice(notice);
 
 ### OpenWallet
 
-Open a webview which would show the wallet page.
+Open a webview that would show the wallet page.
 
 ```java
 MirrorSDK.getInstance().OpenWallet();
@@ -72,7 +72,7 @@ MirrorSDK.getInstance().OpenWallet();
 
 ### GetAccessToken
 
-Get access token so that users can visit APIs.
+Get an access token so that users can visit APIs.
 
 ```java
 Activity activity;
@@ -86,7 +86,7 @@ MirrorSDK.getInstance().GetAccessToken(activityContext, new MirrorCallback() {
 ```
 
 ### FetchUser
-Try to get current user's details.
+Try to get the current user's details.
 
 ```java
 MirrorSDK.getInstance().FetchUser(new FetchUserListener() {
@@ -104,7 +104,7 @@ MirrorSDK.getInstance().FetchUser(new FetchUserListener() {
 
 ### QueryUser
 
-Check user's info, then we can get user's base information such as wallet address and so on.
+Check the user's info, then we can get the user's base information such as wallet address and so on.
 
 ```java
 String email = "youremail@xxx.com";
@@ -126,7 +126,7 @@ MirrorSDK.getInstance().QueryUser(userEmail, new FetchUserListener() {
 
 ### FetchSingleNFT
 
-Fetch the details of a NFT.
+Fetch the details of an NFT.
 
 ```java
 String mintAddress = "nft_mint_address";
@@ -170,7 +170,7 @@ MirrorSDK.getInstance().MirrorSDK.getInstance().MintNFT(collectionAddress, mintN
 
 ### CreateVerifiedCollection
 
-Mint a parent NFT collection.
+Mint parent NFT collection.
 
 ```java
 String mintName = "NewNFT";
@@ -257,7 +257,7 @@ MirrorSDK.getInstance().CancelListingOfNFT(mintAddress,price, new CancelListList
 
 ### BuyNFT
 
-Buy a NFT on market place.
+Buy NFT from the marketplace.
 
 ```java
 String mintAddress = "mint_address";
@@ -299,7 +299,7 @@ MirrorSDK.getInstance().UpdateNFTListing(mintAddress,price, new UpdateListListen
 
 ### ListNFT
 
-Get list of NFT on market place.
+Get the list of NFTs on the marketplace.
 
 ```java
 String mintAddress = "mint_address";
@@ -340,7 +340,7 @@ MirrorSDK.getInstance().FetchNFTsByUpdateAuthorities(list,limit,offset, new Mirr
 
 ### FetchNFTsByCreatorAddresses
 
-Get a collection of NFT by creator addresses.
+Get a collection of NFTs by creator addresses.
 
 ```java
 List<String> list = new ArrayList<>();
@@ -359,7 +359,7 @@ MirrorSDK.getInstance().FetchNFTsByCreatorAddresses(list,limit,offset, new Mirro
 
 ### FetchNFTsByOwnerAddresses
 
-Get a collection of NFT by mint addresses.
+Get a collection of NFTs by mint addresses.
 
 ```java
 List<String> list = new ArrayList<>();
@@ -383,11 +383,11 @@ MirrorSDK.getInstance().FetchNFTsByOwnerAddresses(list, new FetchByOwnerListener
 
 ## User login with different social accounts.
 
-Every kind of social account login will provide a new wallet for users. These wallets are not same.
+Every kind of social account login will provide a new wallet for users. These wallets are not the same.
 
 ## Login invalidation
 
-Token saved in local by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If token is invalidate, we should guide users to login again.
+Token saved locally by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If the token is invalidated, we should guide users to login again.
 For example, you can follow the logic like this:
 
 ```java
@@ -398,7 +398,7 @@ MirrorSDK.getInstance().CheckAuthenticated(new BoolListener() {
         if(isLoggedIn){
             //todo: enter content directly
         }else {
-            //todo: show a button leading user to login.
+            //todo: show a button leading the user to login.
         }
     }
 });
