@@ -7,6 +7,7 @@ import {
   allComponents,
   allFurtherReadings,
   allGuides,
+  allIntegrationGuides,
   allIOs,
   allJavaScripts,
   allMarketplaceTutorials,
@@ -29,7 +30,7 @@ import {
 } from "react-icons/ai"
 import { MdOutlineVerifiedUser } from "react-icons/md"
 import { BiImageAlt, BiWallet } from "react-icons/bi"
-import { SiJavascript } from "react-icons/si"
+import { SiJavascript, SiUnity, SiRust, SiIos } from "react-icons/si"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
 function toParams(str: string | string[]) {
@@ -389,6 +390,20 @@ export function getAPIReferenceDoc(_slug: string | string[]) {
   )
 }
 
+export function getIntegrationGuidePaths() {
+  return allIntegrationGuides
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+}
+
+export function getIntegrationGuideDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allIntegrationGuides.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
 const sortByDate = (a: any, b: any) => {
   const aDate = new Date(a.releaseDate)
   const bDate = new Date(b.releaseDate)
@@ -409,13 +424,14 @@ export const buildSidebarTree = (
   docs: DocumentTypes[],
   parentPathNames: string[] = [],
   prefix = "",
+  depth = 0,
 ): TreeNode[] => {
   const level = parentPathNames.length
 
   return docs
     .filter(
       (_) =>
-        _.pathSegments.length === level + 1 &&
+        _.pathSegments.length === depth + level + 1 &&
         _.pathSegments
           .map((_: PathSegment) => _.pathName)
           .join("/")
@@ -488,6 +504,52 @@ export function stripNumbers(string) {
 
 export const apiReferenceSidebar = [
   {
+    name: "Android",
+    icon: AiOutlineAndroid,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith(
+            "api-reference/android",
+          )
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
+    name: "iOS",
+    icon: SiIos,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith("api-reference/ios")
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
+    name: "Unity",
+    icon: SiUnity,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith(
+            "api-reference/unity",
+          )
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
     name: "JavaScript",
     icon: SiJavascript,
     routes: buildSidebarTree(
@@ -502,21 +564,57 @@ export const apiReferenceSidebar = [
       ],
       [],
       "/api-reference/",
+      1,
     ),
   },
   {
-    name: "Android",
-    icon: AiOutlineAndroid,
+    name: "Rust",
+    icon: SiRust,
     routes: buildSidebarTree(
       [
-        ...allAPIReferences.filter((_) => {
-          return stripNumbers(_.normalizedPath).startsWith(
-            "api-reference/android",
-          )
-        }),
+        ...allAPIReferences
+          .filter((_) => {
+            return stripNumbers(_.normalizedPath).startsWith(
+              "api-reference/rust",
+            )
+          })
+          .map((__) => {
+            return __
+          }),
       ],
       [],
       "/api-reference/",
+      1,
     ),
   },
 ]
+
+export const integrationGuidesConfig = {
+  languages: [
+    {
+      name: "Android",
+      icon: AiOutlineAndroid,
+      normalizedName: "android",
+    },
+    {
+      name: "iOS",
+      icon: SiIos,
+      normalizedName: "ios",
+    },
+    {
+      name: "Unity",
+      icon: SiUnity,
+      normalizedName: "unity",
+    },
+    {
+      name: "JavaScript",
+      icon: SiJavascript,
+      normalizedName: "js",
+    },
+    {
+      name: "Rust",
+      icon: SiRust,
+      normalizedName: "rust",
+    },
+  ],
+}

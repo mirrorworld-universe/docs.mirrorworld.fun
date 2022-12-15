@@ -1,9 +1,9 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Flex, HStack, Stack } from "@chakra-ui/layout"
+import { Box, Code, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo } from "react"
 import { useFramework } from "./framework"
 import {
   apiReferenceSidebar,
@@ -41,6 +41,26 @@ function DocLink(props: DocLinkProps) {
         <chakra.a
           aria-current={current ? "page" : undefined}
           textStyle="sidebarLink"
+          sx={{
+            color: "currentColor",
+            position: "relative",
+            "&:after": {
+              content: `""`,
+              position: "absolute",
+              width: "100%",
+              transform: "scaleX(0)",
+              height: "1px",
+              top: "85%",
+              left: 0,
+              backgroundColor: "currentColor",
+              transformOrigin: "bottom right",
+              transition: "transform .4s cubic-bezier(.86, 0, .07, 1)",
+            },
+            "&:hover::after": {
+              transform: "scaleX(1)",
+              transformOrigin: "bottom left",
+            },
+          }}
           {...(isExternal && { target: "_blank" })}
         >
           {children}
@@ -53,6 +73,9 @@ function DocLink(props: DocLinkProps) {
 export function Sidebar() {
   const { framework } = useFramework()
   const router = useRouter()
+  const isApiReference = useMemo(() => {
+    return ["api-reference"].includes(router.pathname.split("/")[1])
+  }, [router.pathname])
   const currentSideBar = useMemo(() => {
     if (
       ["overview", "showcase", "further-reading"].includes(
@@ -66,7 +89,7 @@ export function Sidebar() {
       )
     ) {
       return tutorialsSidebar
-    } else if (["api-reference"].includes(router.pathname.split("/")[1])) {
+    } else if (isApiReference) {
       return apiReferenceSidebar
     } else {
       return homeSidebar
@@ -129,7 +152,18 @@ export function Sidebar() {
                                     })
                                   }}
                                 >
-                                  {_subItem.nav_title}
+                                  {isApiReference ? (
+                                    <chakra.code
+                                      className="prose"
+                                      layerStyle="inlineCode"
+                                      fontSize="xs"
+                                      fontWeight="inherit"
+                                    >
+                                      {_subItem.nav_title}
+                                    </chakra.code>
+                                  ) : (
+                                    _subItem.nav_title
+                                  )}
                                 </span>
                               </DocLink>
                             )

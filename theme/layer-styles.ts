@@ -30,8 +30,16 @@ const inlineCode: SystemStyleObject = {
   color: "codeText",
 }
 
+export const integrationDropdownList = {
+  bg: "integrationDropdownListBg",
+  color: "topNavText",
+  backdropFilter: "auto",
+  backdropBlur: "base",
+}
+
 export const layerStyles = {
   contain,
   blockquote,
   inlineCode,
+  integrationDropdownList,
 }

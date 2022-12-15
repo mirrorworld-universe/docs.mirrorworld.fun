@@ -13,12 +13,16 @@ import { IconLink } from "./icon-link"
 import { LogoWithLink } from "./logo"
 import { MobileNavigation } from "./mobile-navigation"
 import { BiHomeAlt, BiBookOpen } from "react-icons/bi"
-import { AiOutlineApi, AiOutlineExperiment } from "react-icons/ai"
+import {
+  AiOutlineApi,
+  AiOutlineExperiment,
+  AiOutlineRocket,
+} from "react-icons/ai"
 import { FiSun } from "react-icons/fi"
 import Link from "next/link"
 import { useRouter } from "next/router"
 
-export function TopNavigation() {
+export function TopNavigation(props: any) {
   const { colorMode, toggleColorMode } = useColorMode()
   const toast = useToast()
   const router = useRouter()
@@ -45,6 +49,7 @@ export function TopNavigation() {
       borderBottomWidth="1px"
       borderBottomColor="mirror.800"
       color="topNavText"
+      {...props}
     >
       <Flex
         align="center"
@@ -129,8 +134,27 @@ export function TopNavigation() {
                 }}
                 leftIcon={<AiOutlineApi />}
                 color={"topNavText"}
+                {...(["api-reference"].includes(
+                  router.pathname.split("/")[1],
+                ) && activeStyles)}
               >
                 API Reference
+              </Button>
+            </Link>
+            <Link href={"/integration"}>
+              <Button
+                variant="nav"
+                size="sm"
+                _hover={{
+                  bg: "topNavButtonLayoutHover",
+                  color: "topNavButtonTextHover",
+                }}
+                leftIcon={<AiOutlineRocket />}
+                color={"topNavText"}
+                {...(["integration"].includes(router.pathname.split("/")[1]) &&
+                  activeStyles)}
+              >
+                Integration Builder
               </Button>
             </Link>
           </HStack>

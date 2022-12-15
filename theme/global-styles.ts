@@ -13,6 +13,10 @@ export const globalStyles: SystemStyleObject = {
     transitionDuration: "normal",
   },
 
+  "pre, code, kbd, samp": {
+    fontFamily: "mono",
+  },
+
   "*": {
     borderColor: "mirror.700",
     borderStyle: "solid",
@@ -29,6 +33,10 @@ export const globalStyles: SystemStyleObject = {
       color: "mirror.600",
       fontWeight: "semibold",
     },
+  },
+
+  ".ch-scrollycoding-step-content[data-selected]": {
+    borderColor: "integrationSelected",
   },
 
   table: {

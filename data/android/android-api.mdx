@@ -190,29 +190,6 @@ MirrorSDK.getInstance().CreateVerifiedCollection(mintName, mintSymbol, metaDataU
 });
 ```
 
-### CreateVerifiedSubCollection
-
-Mint a child NFT collection.
-
-```java
-String collectionAddress = "collection_address";
-String mintName = "NewNFT";
-String mintSymbol = "Symbol";
-String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
-
-MirrorSDK.getInstance().CreateVerifiedSubCollection(collectionAddress,mintName, mintSymbol, metaDataUri, new CreateSubCollectionListener() {
-    @Override
-    public void onCreateSuccess(MintResponse userResponse) {
-       
-    }
-
-    @Override
-    public void onCreateFailed(long code, String message) {
-        
-    }
-});
-```
-
 ### TransferNFTToAnotherSolanaWallet
 
 Transfer NFT to another Sol wallet.
@@ -387,7 +364,7 @@ Every kind of social account login will provide a new wallet for users. These wa
 
 ## Login invalidation
 
-Token saved locally by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If the token is invalidated, we should guide users to login again.
+Authentication Tokens saved locally by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If the token is invalidated, we should guide users to login again.
 For example, you can follow the logic like this:
 
 ```java

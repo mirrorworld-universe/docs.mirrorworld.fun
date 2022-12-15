@@ -26,7 +26,7 @@ export function App() {
   const [user, setUser] = useState()
 
   // 2. Login user with Social Auth Provider
-  async function loginWithGoogle() {
+  async function loginWithGoogle(name: string) {
     const user = await mirrorworld.login()
     setUser(user)
   }

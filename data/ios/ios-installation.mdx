@@ -1,8 +1,67 @@
----
-title: Installation
-description: Installation
----
 
-# Installation
+# MirrorWorldSDK
 
-Todo
+Mirror World's Official iOS SDK
+
+## Getting started
+
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+
+### Use CocoaPods Install
+
+MirrorWorldSDK is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+pod 'MirrorWorldSDK'
+end
+
+```
+
+Then, run the following command:
+
+```sh
+pod install
+```
+
+## Usage
+
+`First, you should configure UrlScheme(mwsdk) in your project`
+
+Set UrlScheme in the info.plist file of your project ： `mwsdk`
+
+like this:
+![Image text](https://github.com/mirrorworld-universe/mirrorworld-sdk-ios/blob/master/Example/MirrorWorldSDK/infoplist-UrlScheme-desc.png)
+
+Then
+
+```Swift
+import MirrorWorldSDK
+
+```
+
+initialize SDK in the AppDelegate.
+
+```Swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+   
+    MWSDK.initSDK(env: .StagingDevNet, apiKey: "Your API Key")
+    
+    // ---------
+    return true
+}
+
+func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+
+    MirrorWorldSDK.share.handleOpen(url: url)
+    return true
+}
+
+```
+
+You can view the documentation for Mirror World SDK for Mobile on [our Official Documentation Site](https://docs.mirrorworld.fun/ios/ios-api)

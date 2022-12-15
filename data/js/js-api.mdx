@@ -439,7 +439,7 @@ export interface SolanaNFTExtended {
 ```
 
 ### `fetchNFTsByOwnerAddresses`
-Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `owners`
+Fetch NFTs By Owner Addresses. Returns a detailed payload of all NFTs whose `owners`
 are provided
 ```ts
 const nftsQueryResult: SolanaNFTExtended[] = await mirrorworld.fetchNFTsByOwnerAddresses({
@@ -477,6 +477,7 @@ export interface SolanaNFTAuctionActivitiesPayload {
   tokenTransfers: SolanaNFTTransfersEntity[];
 }
 ```
+
 ### `createMarketplace` 
 Create a new marketplace
 ```ts 

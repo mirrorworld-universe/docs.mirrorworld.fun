@@ -14,7 +14,7 @@ import remarkDirective from "remark-directive"
 import toc from "markdown-toc"
 import siteConfig from "./site.config"
 import { remarkAdmonition } from "./lib/remark-utils"
-import { toKebabCase } from "./lib/to-kebab-case"
+import { remarkCodeHike } from "@code-hike/mdx"
 
 import fs from "fs"
 
@@ -437,6 +437,20 @@ const APIReference = defineDocumentType(() => ({
   },
 }))
 
+const IntegrationGuide = defineDocumentType(() => ({
+  name: "IntegrationGuide",
+  filePathPattern: "integration/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/integration/[slug]",
+    },
+  },
+}))
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
@@ -461,9 +475,25 @@ const contentLayerConfig = makeSource({
     MarketplaceTutorials,
     NFTsTutorials,
     APIReference,
+
+    // Integration Guides
+    IntegrationGuide,
   ],
   mdx: {
-    remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
+    remarkPlugins: [
+      remarkGfm,
+      remarkDirective,
+      remarkAdmonition,
+      [
+        remarkCodeHike,
+        {
+          theme: "css-variables",
+          // autoImport: false,
+          showCopyButton: true,
+          staticMediaQuery: "not screen, (max-width: 992px)",
+        },
+      ],
+    ],
     rehypePlugins: [
       rehypeSlug,
       rehypeCodeTitles,

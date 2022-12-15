@@ -28,8 +28,6 @@ export function FrameworkSelect() {
         onChange={(event) => {
           const newFramework = event.currentTarget.value as Framework
           setFramework(newFramework)
-          console.log("asPath", asPath)
-          console.log("pathname", pathname)
           if (asPath.includes(framework) && newFramework !== framework) {
             const url = asPath.replaceAll(framework, newFramework)
             replace(url).then()
@@ -43,7 +41,7 @@ export function FrameworkSelect() {
         <option value="unity">Unity</option>
         <option value="android">Android</option>
         <option value="rust">Rust</option>
-        {/*<option value="ios">iOS (Swift)</option>*/}
+        <option value="ios">iOS (Swift)</option>
       </chakra.select>
     </HStack>
   )
