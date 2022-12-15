@@ -1,0 +1,26 @@
+---
+title: user
+---
+
+# `user`
+
+Get the current user object
+
+```ts
+const user: UserWithWallet = mirrorworld.user
+
+export interface UserWithWallet {
+  id: number;
+  eth_address: string;
+  sol_address: string;
+  email: string;
+  email_verified: boolean;
+  username: string;
+  createdAt: string;
+  updatedAt: string;
+  wallet: {
+    eth_address: string;
+    sol_address: string;
+  };
+}
+```

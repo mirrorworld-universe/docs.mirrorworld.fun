@@ -1,5 +1,5 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Flex, HStack, Stack } from "@chakra-ui/layout"
+import { Box, Code, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
@@ -73,6 +73,9 @@ function DocLink(props: DocLinkProps) {
 export function Sidebar() {
   const { framework } = useFramework()
   const router = useRouter()
+  const isApiReference = useMemo(() => {
+    return ["api-reference"].includes(router.pathname.split("/")[1])
+  }, [router.pathname])
   const currentSideBar = useMemo(() => {
     if (
       ["overview", "showcase", "further-reading"].includes(
@@ -86,7 +89,7 @@ export function Sidebar() {
       )
     ) {
       return tutorialsSidebar
-    } else if (["api-reference"].includes(router.pathname.split("/")[1])) {
+    } else if (isApiReference) {
       return apiReferenceSidebar
     } else {
       return homeSidebar
@@ -153,7 +156,13 @@ export function Sidebar() {
                                     })
                                   }}
                                 >
-                                  {_subItem.nav_title}
+                                  {isApiReference ? (
+                                    <Code fontSize="xs">
+                                      {_subItem.nav_title}
+                                    </Code>
+                                  ) : (
+                                    _subItem.nav_title
+                                  )}
                                 </span>
                               </DocLink>
                             )

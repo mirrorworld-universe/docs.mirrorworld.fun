@@ -1,0 +1,16 @@
+---
+title: tokens
+---
+
+# `tokens`
+
+Get current user tokens
+```ts
+const tokens: ISolanaToken[] = mirrorworld.tokens
+
+export interface ISolanaToken {
+  ata: string;
+  mint: string;
+  amount: string;
+}
+```

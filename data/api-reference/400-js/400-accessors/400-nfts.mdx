@@ -1,0 +1,24 @@
+---
+title: nfts
+---
+
+# `nfts`
+
+Get current user's nfts
+
+```ts
+const nfts: SolanaNFTExtended[] = mirrorworld.nfts
+
+export interface SolanaNFTExtended {
+  name: string;
+  sellerFeeBasisPoints: number;
+  updateAuthorityAddress: string;
+  description: string;
+  image: string;
+  externalUrl: string;
+  creators: Creator[];
+  owner: Owner;
+  attributes: MetadataAttributes[];
+  listings: SolanaNFTListing[];
+}
+```

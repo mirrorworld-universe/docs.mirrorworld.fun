@@ -1,0 +1,20 @@
+---
+title: loginWithEmail
+---
+
+# `loginWithEmail`
+Logs a user in using their email address and password. This method is accessible in the browser and Node.js.
+
+```ts
+import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_SECRET_API_KEY",
+  env: ClusterEnvironment.mainnet,
+})
+
+const { refreshToken } = await mirrorworld.loginWithEmail({
+  email: "email@example.com",
+  password: "super-secret-password"
+})
+```

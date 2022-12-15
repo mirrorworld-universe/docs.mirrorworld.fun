@@ -504,6 +504,52 @@ export function stripNumbers(string) {
 
 export const apiReferenceSidebar = [
   {
+    name: "Android",
+    icon: AiOutlineAndroid,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith(
+            "api-reference/android",
+          )
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
+    name: "iOS",
+    icon: SiIos,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith("api-reference/ios")
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
+    name: "Unity",
+    icon: SiUnity,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith(
+            "api-reference/unity",
+          )
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
     name: "JavaScript",
     icon: SiJavascript,
     routes: buildSidebarTree(
@@ -518,23 +564,27 @@ export const apiReferenceSidebar = [
       ],
       [],
       "/api-reference/",
-      2,
+      1,
     ),
   },
   {
-    name: "Android",
-    icon: AiOutlineAndroid,
+    name: "Rust",
+    icon: SiRust,
     routes: buildSidebarTree(
       [
-        ...allAPIReferences.filter((_) => {
-          return stripNumbers(_.normalizedPath).startsWith(
-            "api-reference/android",
-          )
-        }),
+        ...allAPIReferences
+          .filter((_) => {
+            return stripNumbers(_.normalizedPath).startsWith(
+              "api-reference/rust",
+            )
+          })
+          .map((__) => {
+            return __
+          }),
       ],
       [],
       "/api-reference/",
-      2,
+      1,
     ),
   },
 ]
