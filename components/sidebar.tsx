@@ -157,9 +157,14 @@ export function Sidebar() {
                                   }}
                                 >
                                   {isApiReference ? (
-                                    <Code fontSize="xs">
+                                    <chakra.code
+                                      className="prose"
+                                      layerStyle="inlineCode"
+                                      fontSize="xs"
+                                      fontWeight="inherit"
+                                    >
                                       {_subItem.nav_title}
-                                    </Code>
+                                    </chakra.code>
                                   ) : (
                                     _subItem.nav_title
                                   )}

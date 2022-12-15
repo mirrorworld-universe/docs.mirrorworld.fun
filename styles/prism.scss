@@ -1294,3 +1294,44 @@ body {
     top: 20vh
   }
 }
+
+
+.ch-codeblock {
+  box-shadow: none !important;
+}
+
+.ch-codeblock > .ch-code {
+  background-color: #fafafa !important;
+}
+
+:root {
+  --shiki-token-keyword: #a626a4;
+  --shiki-token-function: #4078f2;
+  --shiki-token-string: #50a14f;
+  --shiki-token-punctuation: #383a42;
+  --shiki-token-comment: #a0a1a7;
+  --shiki-color-text: #383a42;
+  --shiki-color-background: #fafafa;
+  --shiki-token-constant: hsl(35, 99%, 36%);;
+  --shiki-token-parameter: #383a42;
+  --shiki-token-string-expression: #50a14f;
+  --shiki-token-link: #383a42;
+}
+
+.chakra-ui-dark {
+  .ch-codeblock > .ch-code {
+    background-color: #282c34 !important;
+  }
+
+  --shiki-token-keyword: #c678dd;
+  --shiki-token-function: #61afef;
+  --shiki-token-string: #98c379;
+  --shiki-token-punctuation: #abb2bf;
+  --shiki-token-comment: #5c6370;
+  --shiki-color-text: #abb2bf;
+  --shiki-color-background: #282c34;
+  --shiki-token-constant: hsl(29, 54%, 61%);
+  --shiki-token-parameter: #abb2bf;
+  --shiki-token-string-expression: #98c379;
+  --shiki-token-link: #abb2bf;
+}

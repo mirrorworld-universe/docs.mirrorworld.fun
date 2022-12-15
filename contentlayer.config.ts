@@ -15,9 +15,6 @@ import toc from "markdown-toc"
 import siteConfig from "./site.config"
 import { remarkAdmonition } from "./lib/remark-utils"
 import { remarkCodeHike } from "@code-hike/mdx"
-import { createRequire } from "node:module"
-const require = createRequire(import.meta.url)
-const codeTheme = require("shiki/themes/github-dark.json")
 
 import fs from "fs"
 
