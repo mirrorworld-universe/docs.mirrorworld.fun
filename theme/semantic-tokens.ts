@@ -110,5 +110,9 @@ export const semanticTokens = {
       default: "whiteAlpha.600",
       _dark: "hsl(200deg 10% 12% / 90%)",
     },
+    integrationSelected: {
+      default: "blackAlpha.600",
+      _dark: "hsl(69deg 100% 55% / 64%)",
+    },
   },
 }

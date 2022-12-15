@@ -31,6 +31,10 @@ export const globalStyles: SystemStyleObject = {
     },
   },
 
+  ".ch-scrollycoding-step-content[data-selected]": {
+    borderColor: "integrationSelected",
+  },
+
   table: {
     width: "100%",
     marginY: "8",

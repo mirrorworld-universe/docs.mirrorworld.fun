@@ -1,5 +1,5 @@
 ---
-title: Integration Guide
+title: Android Integration Guide
 ---
 
 # Android Integration Guide
@@ -22,47 +22,47 @@ Create a developer account on the [Developer dashboard](https://app.mirrorworld.
 
 <CH.Scrollycoding>
 
-## Step 3: Add SDK to `build.gradle`.
+  ## Step 3: Add SDK to `build.gradle`.
 
-In your `build.gradle` file, please add the Mirror World SDK as a dependency.
+  In your `build.gradle` file, please add the Mirror World SDK as a dependency.
 
-```gradle build.gradle focus=2
-dependencies {
+  ```gradle build.gradle focus=2
+  dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
 }
-```
+  ```
 
----
+  ---
 
-## Step 2
+  ## Step 2
 
-Velit euismod in pellentesque massa placerat. Mi bibendum neque egestas congue quisque egestas diam in arcu. Nisi lacus sed viverra tellus in.
+  Velit euismod in pellentesque massa placerat. Mi bibendum neque egestas congue quisque egestas diam in arcu. Nisi lacus sed viverra tellus in.
 
-Praesent elementum facilisis leo vel fringilla est ullamcorper eget.
+  Praesent elementum facilisis leo vel fringilla est ullamcorper eget.
 
-Morbi quis commodo.
+  Morbi quis commodo.
 
-```js app.js focus=11:15
+  ```js app.js focus=11:15
   const { lorem, ipsum } = dolor({
-    sit: {
-      amet: 1,
-      consectetur: 2,
-      adipiscing: (elit) => ({
-      sed: elit,
-    }),
-    eiusmod: (tempor) => ({
-      incididunt: tempor,
-    }),
-    ut: (labore) => ({
-      et: labore,
-      dolore: labore + 1,
-    }),
-    laboris: (elit) => ({
-      nisi: elit,
-    }),
-  },
+  sit: {
+  amet: 1,
+  consectetur: 2,
+  adipiscing: (elit) => ({
+  sed: elit,
+}),
+  eiusmod: (tempor) => ({
+  incididunt: tempor,
+}),
+  ut: (labore) => ({
+  et: labore,
+  dolore: labore + 1,
+}),
+  laboris: (elit) => ({
+  nisi: elit,
+}),
+},
 });
-```
+  ```
 
 </CH.Scrollycoding>
 
