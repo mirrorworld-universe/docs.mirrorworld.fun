@@ -7,10 +7,12 @@ import Icon from "@chakra-ui/icon"
 import { integrationGuidesConfig } from "../../lib/contentlayer-utils"
 import { canUseDOM } from "@reach/utils"
 import { integrationDropdownList } from "../../theme/layer-styles"
+import { useRouter } from "next/router"
 
 const SELECTED_INTEGRATION_LANGUAGE = `mw-integration-lang`
 
 export function IntegrationBuilderNav(props: any) {
+  const router = useRouter()
   const [selectedLangName, setSelectedLangName] = useState<string>(
     canUseDOM()
       ? localStorage.getItem(SELECTED_INTEGRATION_LANGUAGE) ||
@@ -27,6 +29,7 @@ export function IntegrationBuilderNav(props: any) {
 
   useEffect(() => {
     localStorage.setItem(SELECTED_INTEGRATION_LANGUAGE, selectedLanguage.name)
+    router.push(`/integration/${selectedLanguage.normalizedName}`).then()
   }, [selectedLangName, selectedLanguage])
 
   return (

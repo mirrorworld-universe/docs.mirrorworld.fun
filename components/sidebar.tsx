@@ -3,7 +3,7 @@ import { Box, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo } from "react"
 import { useFramework } from "./framework"
 import {
   apiReferenceSidebar,
@@ -92,6 +92,10 @@ export function Sidebar() {
       return homeSidebar
     }
   }, [router.pathname])
+
+  useEffect(() => {
+    console.log("currentSideBar", currentSideBar)
+  }, [currentSideBar])
 
   return (
     <nav aria-label="Sidebar Navigation">

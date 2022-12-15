@@ -25,7 +25,7 @@ Mirror World's Official Rust SDK
 
 ### Install
 
-```ts
+```toml
 # /Cargo.toml
 [dependencies]
 mirrorworld-sdk-rust = "0.1.0"
@@ -35,7 +35,7 @@ mirrorworld-sdk-rust = "0.1.0"
 
 #### authentication && wallet
 
-```ts
+```rust
 use mirrorworld_sdk_rust::{
     login_with_email,
 };
@@ -58,7 +58,7 @@ let response = if let Ok(Some(response)) = res {
 
 #### marketplace
 
-```ts
+```rust
 use mirrorworld_sdk_rust::{marketplace::Marketplace, NetEnv};
 
 let KEY: &str = "your api key";

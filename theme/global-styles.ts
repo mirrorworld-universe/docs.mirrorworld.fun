@@ -13,6 +13,10 @@ export const globalStyles: SystemStyleObject = {
     transitionDuration: "normal",
   },
 
+  "pre, code, kbd, samp": {
+    fontFamily: "mono",
+  },
+
   "*": {
     borderColor: "mirror.700",
     borderStyle: "solid",

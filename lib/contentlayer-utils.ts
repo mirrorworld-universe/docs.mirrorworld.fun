@@ -424,13 +424,14 @@ export const buildSidebarTree = (
   docs: DocumentTypes[],
   parentPathNames: string[] = [],
   prefix = "",
+  depth = 0,
 ): TreeNode[] => {
   const level = parentPathNames.length
 
   return docs
     .filter(
       (_) =>
-        _.pathSegments.length === level + 1 &&
+        _.pathSegments.length === depth + level + 1 &&
         _.pathSegments
           .map((_: PathSegment) => _.pathName)
           .join("/")
@@ -517,6 +518,7 @@ export const apiReferenceSidebar = [
       ],
       [],
       "/api-reference/",
+      2,
     ),
   },
   {
@@ -532,6 +534,7 @@ export const apiReferenceSidebar = [
       ],
       [],
       "/api-reference/",
+      2,
     ),
   },
 ]
@@ -541,22 +544,27 @@ export const integrationGuidesConfig = {
     {
       name: "Android",
       icon: AiOutlineAndroid,
+      normalizedName: "android",
     },
     {
       name: "iOS",
       icon: SiIos,
+      normalizedName: "ios",
     },
     {
       name: "Unity",
       icon: SiUnity,
+      normalizedName: "unity",
     },
     {
       name: "JavaScript",
       icon: SiJavascript,
+      normalizedName: "js",
     },
     {
       name: "Rust",
       icon: SiRust,
+      normalizedName: "rust",
     },
   ],
 }

@@ -1282,3 +1282,15 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
     transform: scaleX(0);
   }
 }
+
+
+body {
+  --ch-scrollycoding-sticker-width: 600px;
+  --ch-scrollycoding-code-min-height: 50vh;
+}
+
+.mdx-content {
+  .ch-scrollycoding-sticker {
+    top: 20vh
+  }
+}

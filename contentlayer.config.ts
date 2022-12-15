@@ -490,8 +490,9 @@ const contentLayerConfig = makeSource({
       [
         remarkCodeHike,
         {
-          theme: codeTheme,
+          theme: "css-variables",
           // autoImport: false,
+          showCopyButton: true,
           staticMediaQuery: "not screen, (max-width: 992px)",
         },
       ],
