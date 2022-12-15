@@ -5,4 +5,12 @@ description: Authentication
 
 # Authentication
 
-Todo
+Token saved locally by SDK would be out of date. So when a user opens the app, they should check their authentication every time. If the token is invalidated, we should guide users to login again.
+
+For example, you can follow the logic like this:
+
+```Swift
+MWSDK.CheckAuthenticated { onBool in
+   print("CheckAuthenticated:\(onBool)")
+}
+```

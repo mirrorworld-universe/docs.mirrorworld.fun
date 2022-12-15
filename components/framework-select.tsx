@@ -43,7 +43,7 @@ export function FrameworkSelect() {
         <option value="unity">Unity</option>
         <option value="android">Android</option>
         <option value="rust">Rust</option>
-        {/*<option value="ios">iOS (Swift)</option>*/}
+        <option value="ios">iOS (Swift)</option>
       </chakra.select>
     </HStack>
   )
