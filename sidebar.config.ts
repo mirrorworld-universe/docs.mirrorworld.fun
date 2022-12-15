@@ -2,7 +2,7 @@ import { ElementType } from "react"
 import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
 import { HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
 import { MdArchitecture, MdAllInbox } from "react-icons/md"
-import { SiJavascript, SiUnity, SiRust } from "react-icons/si"
+import { SiJavascript, SiUnity, SiRust, SiSwift } from "react-icons/si"
 import { FaHandsHelping } from "react-icons/fa"
 
 type SidebarItem =
@@ -79,18 +79,19 @@ const sidebar: Record<"docs", SidebarItem[]> = {
         { type: "doc", label: "Examples", id: "android-examples" },
       ],
     },
-    // {
-    //   type: "category",
-    //   label: "iOS",
-    //   icon: SiSwift,
-    //   id: "ios",
-    //   items: [
-    //     { type: "doc", label: "Installation", id: "ios-installation" },
-    //     { type: "doc", label: "Authentication", id: "ios-authentication" },
-    //     { type: "doc", label: "Marketplace", id: "ios-marketplace" },
-    //     { type: "doc", label: "Tokenization", id: "ios-tokenization" },
-    //   ],
-    // },
+    {
+      type: "category",
+      label: "iOS",
+      icon: SiSwift,
+      id: "ios",
+      items: [
+        { type: "doc", label: "API Reference", id: "ios-api" },
+        { type: "doc", label: "Installation", id: "ios-installation" },
+        { type: "doc", label: "Authentication", id: "ios-authentication" },
+        { type: "doc", label: "Marketplace", id: "ios-marketplace" },
+        { type: "doc", label: "Tokenization", id: "ios-tokenization" },
+      ],
+    },
     {
       type: "category",
       label: "Unity",
