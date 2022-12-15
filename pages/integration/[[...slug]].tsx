@@ -24,7 +24,6 @@ export default function IntegrationGuidesPage({
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getIntegrationGuidePaths()
-  console.log("paths", paths)
   return { paths: paths, fallback: false }
 }
 

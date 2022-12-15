@@ -96,10 +96,6 @@ export function Sidebar() {
     }
   }, [router.pathname])
 
-  useEffect(() => {
-    console.log("currentSideBar", currentSideBar)
-  }, [currentSideBar])
-
   return (
     <nav aria-label="Sidebar Navigation">
       <Stack as="ul" listStyleType="none" direction="column" spacing="6">
