@@ -1296,13 +1296,27 @@ body {
 }
 
 
-.ch-codeblock {
-  box-shadow: none !important;
+.ch-codegroup {
+  .ch-scrollycoding-sticker, .ch-code-wrapper {
+    background-color: #efefef !important;
+  }
+
+  .ch-frame-title-bar {
+    background-color: #dfdfdf !important;
+  }
+
+  .ch-editor-tab {
+    background-color: #c9c9c9 !important;
+    color: var(--shiki-color-text) !important;
+    border-right-color: rgb(213 213 213) !important;
+    border-bottom-color: rgb(189 189 189) !important;
+    &.ch-editor-tab-active {
+      background-color: #ffffff !important;
+      color: var(--shiki-color-text) !important;
+    }
+  }
 }
 
-.ch-codeblock > .ch-code {
-  background-color: #fafafa !important;
-}
 
 :root {
   --shiki-token-keyword: #a626a4;
@@ -1321,6 +1335,33 @@ body {
 .chakra-ui-dark {
   .ch-codeblock > .ch-code {
     background-color: #282c34 !important;
+  }
+
+  .ch-codeblock {
+    .ch-scrollycoding-sticker, .ch-code-wrapper {
+      background-color: #282c34 !important;
+    }
+  }
+
+  .ch-codegroup {
+    .ch-scrollycoding-sticker, .ch-code-wrapper {
+      background-color: #282c34 !important;
+    }
+
+    .ch-frame-title-bar {
+      background-color: #343434 !important;
+    }
+
+    .ch-editor-tab {
+      background-color: #3b3b3b !important;
+      color: var(--shiki-color-text) !important;
+      border-right-color: rgb(44, 44, 44) !important;
+      border-bottom-color: rgb(37, 37, 37) !important;
+      &.ch-editor-tab-active {
+        background-color: #4d4d4d !important;
+        color: var(--shiki-color-text) !important;
+      }
+    }
   }
 
   --shiki-token-keyword: #c678dd;
