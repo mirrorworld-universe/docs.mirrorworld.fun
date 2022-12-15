@@ -7,7 +7,7 @@
 
 ## StartLogin
 
-Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
+Calling this API would popup a dialog, user can finish login flow on it. In which the user can login with another method like Google or Twitter. Or they can login with their registered email.
 
 ```Swift
 MirrorWorldSDK.share.StartLogin { userInfo in
@@ -19,7 +19,7 @@ MirrorWorldSDK.share.StartLogin { userInfo in
 
 ## CheckAuthenticated
 
-Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
+Checks whether the current user is logged in. You can use this function to check if a user needs to start the login flow.
 
 ```Swift
 MWSDK.CheckAuthenticated { onBool in
@@ -41,7 +41,7 @@ MWSDK.loginOut {
 
 ### OpenWallet
 
-Open a webview which would show the wallet page.
+Opens a web view which shows the wallet page.
 
 ```Swift
 MWSDK.OpenWallet()
@@ -49,7 +49,7 @@ MWSDK.OpenWallet()
 
 ### GetAccessToken
 
-Get access token so that users can visit APIs.
+Gets access token for users to use the API.
 
 ```Swift
 
