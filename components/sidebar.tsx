@@ -118,7 +118,11 @@ export function Sidebar() {
                   return (
                     <div key={subItem.url_path + index}>
                       <DocLink
-                        href={subItem.external_url || subItem.url_path}
+                        href={
+                          subItem.external_url ||
+                          subItem.internal_path ||
+                          subItem.url_path
+                        }
                         isExternal={!!subItem.external_url}
                       >
                         <span
@@ -138,7 +142,9 @@ export function Sidebar() {
                               <DocLink
                                 key={_subItem.url_path + j}
                                 href={
-                                  _subItem.external_url || _subItem.url_path
+                                  _subItem.external_url ||
+                                  _subItem.internal_path ||
+                                  _subItem.url_path
                                 }
                                 isExternal={!!_subItem.external_url}
                                 //@ts-ignore

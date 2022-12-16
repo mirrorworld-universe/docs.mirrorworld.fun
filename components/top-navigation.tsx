@@ -93,41 +93,22 @@ export function TopNavigation(props: any) {
                 Home
               </Button>
             </Link>
-            <Link href={"/authentication"}>
+            <Link href={"/integration"}>
               <Button
                 as="a"
-                href={"/authentication"}
+                href={"/integration"}
                 variant="nav"
                 size="sm"
                 _hover={{
                   bg: "topNavButtonLayoutHover",
                   color: "topNavButtonTextHover",
                 }}
-                leftIcon={<BiBookOpen />}
+                leftIcon={<AiOutlineRocket />}
                 color={"topNavText"}
-                {...(["authentication", "marketplace", "wallet"].includes(
-                  router.pathname.split("/")[1],
-                ) && activeStyles)}
-              >
-                Tutorials
-              </Button>
-            </Link>
-            <Link href={"/guides"}>
-              <Button
-                as="a"
-                href={"/guides"}
-                variant="nav"
-                size="sm"
-                _hover={{
-                  bg: "topNavButtonLayoutHover",
-                  color: "topNavButtonTextHover",
-                }}
-                leftIcon={<AiOutlineExperiment />}
-                color={"topNavText"}
-                {...(["guides"].includes(router.pathname.split("/")[1]) &&
+                {...(["integration"].includes(router.pathname.split("/")[1]) &&
                   activeStyles)}
               >
-                Recipes
+                Integration Builder
               </Button>
             </Link>
             <Link href={"/api-reference"}>
@@ -149,24 +130,49 @@ export function TopNavigation(props: any) {
                 API Reference
               </Button>
             </Link>
-            <Link href={"/integration"}>
+            <Link href={"/guides"}>
               <Button
                 as="a"
-                href={"/integration"}
+                href={"/guides"}
                 variant="nav"
                 size="sm"
                 _hover={{
                   bg: "topNavButtonLayoutHover",
                   color: "topNavButtonTextHover",
                 }}
-                leftIcon={<AiOutlineRocket />}
+                leftIcon={<AiOutlineExperiment />}
                 color={"topNavText"}
-                {...(["integration"].includes(router.pathname.split("/")[1]) &&
+                {...(["guides"].includes(router.pathname.split("/")[1]) &&
                   activeStyles)}
               >
-                Integration Builder
+                Recipes
               </Button>
             </Link>
+            {/*<Link href={"/authentication"}>*/}
+            <Button
+              // as="a"
+              // href={"/authentication"}
+              variant="nav"
+              size="sm"
+              _hover={{
+                bg: "topNavButtonLayoutHover",
+                color: "topNavButtonTextHover",
+              }}
+              leftIcon={<BiBookOpen />}
+              onClick={() =>
+                toast({
+                  description: "Tutorials section coming soon!",
+                  position: "top-right",
+                })
+              }
+              color={"topNavText"}
+              {...(["authentication", "marketplace", "wallet"].includes(
+                router.pathname.split("/")[1],
+              ) && activeStyles)}
+            >
+              Tutorials
+            </Button>
+            {/*</Link>*/}
           </HStack>
         </HStack>
         <HStack spacing="8">

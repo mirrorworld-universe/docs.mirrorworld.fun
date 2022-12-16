@@ -15,6 +15,7 @@ import {
   allOverviews,
   allResources,
   allRusts,
+  allSDKs,
   allShowcases,
   allSnippets,
   allUnity,
@@ -30,6 +31,7 @@ import {
 } from "react-icons/ai"
 import { MdOutlineVerifiedUser } from "react-icons/md"
 import { BiImageAlt, BiWallet } from "react-icons/bi"
+import { HiOutlinePuzzle } from "react-icons/hi"
 import { SiJavascript, SiUnity, SiRust, SiIos } from "react-icons/si"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -413,6 +415,7 @@ const sortByDate = (a: any, b: any) => {
 export type PathSegment = { order: number; pathName: string }
 
 export type TreeNode = {
+  internal_path?: string
   title: string
   nav_title: string | null
   url_path: string
@@ -458,6 +461,11 @@ export const homeSidebar = [
     name: "Overview",
     icon: AiOutlineCompass,
     routes: buildSidebarTree([...allOverviews], [], "/overview/"),
+  },
+  {
+    name: "SDK Integration",
+    icon: HiOutlinePuzzle,
+    routes: buildSidebarTree([...allSDKs], [], "/integration/"),
   },
   {
     name: "Showcase",

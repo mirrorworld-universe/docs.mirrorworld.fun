@@ -29,6 +29,9 @@ const fields: FieldDefs = {
   external_url: {
     type: "string",
   },
+  internal_path: {
+    type: "string",
+  },
   nav_title: {
     type: "string",
   },
@@ -288,6 +291,25 @@ const Guides = defineDocumentType(() => ({
   },
 }))
 
+const SDK = defineDocumentType(() => ({
+  name: "SDKs",
+  filePathPattern: `sdk/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    ...fields,
+    tags: { type: "json" },
+    date_published: { type: "string" },
+    author: { type: "json" },
+  },
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/sdk/[slug]`,
+    },
+  },
+}))
+
 const Snippet = defineDocumentType(() => ({
   name: "Snippet",
   fields,
@@ -468,6 +490,7 @@ const contentLayerConfig = makeSource({
     Showcase,
     Bible,
     FurtherReading,
+    SDK,
 
     // Tutorials
     AuthenticationTutorials,
