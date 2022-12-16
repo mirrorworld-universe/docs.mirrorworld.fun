@@ -3,20 +3,14 @@ title: StartLogin
 ---
 
 # `StartLogin`
-Calling this API would pop up a dialog, user can finish the login flow on it. In this dialog,
-the user can login with a third-party authentication method like Google, Twitter, Discord or Apple Login. Or the user can login with the
-email which is registered on our website.
 
-```java
-MirrorSDK.getInstance().StartLogin(new LoginListener() {
-  @Override
-  public void onLoginSuccess() {
+Calling this API would popup a dialog, user can finish login flow on it. In which the user can login with another method like Google or Twitter. Or they can login with their registered email.
 
-  }
-
-  @Override
-  public void onLoginFail() {
-
-  }
-});
+```swift
+MirrorWorldSDK.share.StartLogin { userInfo in
+    print("login success :\(userInfo?.toString() ?? "")")
+} onFail: {
+    print("login failed !")
+}
 ```
+

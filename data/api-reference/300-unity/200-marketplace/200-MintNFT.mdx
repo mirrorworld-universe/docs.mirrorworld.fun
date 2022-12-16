@@ -1,0 +1,25 @@
+---
+title: MintNFT
+---
+
+# `MintNFT`
+
+Mint NFT into collection.
+The "mintID" param is nullable,server will response that "minting is proceeding,please wait it" if detected one mintID is minted already.
+
+```csharp
+string parentCollection = "collection_address";
+string collectionName = "NewNFT";
+string collectionSymbol = "NFT";
+string collectionUrl = "https://example.com/path/detail.json";
+string confirmation = Confirmation.Default;
+string mintID = "randomID";
+
+MirrorSDK.MintNFT(parentCollection,collectionName,collectionSymbol,collectionUrl,confirmation,mintID,(response) => {
+    long resCode = response.Code;
+    MintResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

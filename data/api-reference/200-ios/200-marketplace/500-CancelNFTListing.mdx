@@ -1,0 +1,15 @@
+---
+title: CancelNFTListing
+---
+
+# `CancelNFTListing`
+
+Cancel listing of NFT.
+
+```swift
+MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
+```
