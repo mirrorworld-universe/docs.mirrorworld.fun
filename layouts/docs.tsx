@@ -60,7 +60,7 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
                   <Spacer height="10" />
                   <Search />
                   <Spacer mt="px" height="5" />
-                  <FrameworkSelect />
+                  {/*<FrameworkSelect />*/}
                 </Box>
                 <Sidebar />
               </Box>
