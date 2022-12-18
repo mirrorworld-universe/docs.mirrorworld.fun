@@ -5,11 +5,13 @@ import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
 import React, { useEffect, useMemo } from "react"
 import { useFramework } from "./framework"
+
 import {
   apiReferenceSidebar,
   homeSidebar,
   tutorialsSidebar,
 } from "../lib/contentlayer-utils"
+import { FiExternalLink } from "react-icons/fi"
 
 type DocLinkProps = {
   href: LinkProps["href"]
@@ -61,9 +63,19 @@ function DocLink(props: DocLinkProps) {
               transformOrigin: "bottom left",
             },
           }}
+          {...(current && {
+            borderLeftColor: "sideBarLinkBorderSelected",
+          })}
           {...(isExternal && { target: "_blank" })}
         >
-          {children}
+          {isExternal ? (
+            <HStack>
+              <chakra.div>{children}</chakra.div>
+              <Icon as={FiExternalLink} />
+            </HStack>
+          ) : (
+            children
+          )}
         </chakra.a>
       </Link>
     </Box>
@@ -136,8 +148,15 @@ export function Sidebar() {
                           {subItem.nav_title}
                         </span>
                       </DocLink>
-                      {subItem.children.length
-                        ? subItem.children.map((_subItem, j) => {
+                      {subItem.children.length ? (
+                        <chakra.div
+                          ml={2}
+                          pl={2}
+                          borderLeftColor={"sideBarLinkBorder"}
+                          borderLeftWidth="1px"
+                          borderLeftStyle="solid"
+                        >
+                          {subItem.children.map((_subItem, j) => {
                             return (
                               <DocLink
                                 key={_subItem.url_path + j}
@@ -148,7 +167,6 @@ export function Sidebar() {
                                 }
                                 isExternal={!!_subItem.external_url}
                                 //@ts-ignore
-                                pl={4}
                               >
                                 <span
                                   onClick={() => {
@@ -173,8 +191,9 @@ export function Sidebar() {
                                 </span>
                               </DocLink>
                             )
-                          })
-                        : null}
+                          })}
+                        </chakra.div>
+                      ) : null}
                     </div>
                   )
                 })}

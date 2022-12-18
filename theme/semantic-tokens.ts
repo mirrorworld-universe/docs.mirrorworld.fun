@@ -114,5 +114,13 @@ export const semanticTokens = {
       default: "blackAlpha.600",
       _dark: "hsl(69deg 100% 55% / 64%)",
     },
+    sideBarLinkBorder: {
+      default: "blackAlpha.300",
+      _dark: "whiteAlpha.300",
+    },
+    sideBarLinkBorderSelected: {
+      default: "mirror.800",
+      _dark: "mirror.base",
+    },
   },
 }

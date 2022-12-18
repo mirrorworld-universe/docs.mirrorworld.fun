@@ -31,7 +31,7 @@ import {
 } from "react-icons/ai"
 import { MdOutlineVerifiedUser } from "react-icons/md"
 import { BiImageAlt, BiWallet } from "react-icons/bi"
-import { HiOutlinePuzzle } from "react-icons/hi"
+import { HiOutlinePuzzle, HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
 import { SiJavascript, SiUnity, SiRust, SiIos } from "react-icons/si"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -471,6 +471,11 @@ export const homeSidebar = [
     name: "Showcase",
     icon: AiOutlineStar,
     routes: buildSidebarTree([...allShowcases], [], "/showcase/"),
+  },
+  {
+    name: "Resources",
+    icon: HiOutlineViewGrid,
+    routes: buildSidebarTree([...allResources], [], "/resources/"),
   },
   {
     name: "Further Reading",
