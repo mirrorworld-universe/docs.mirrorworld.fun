@@ -325,56 +325,6 @@ const Snippet = defineDocumentType(() => ({
   },
 }))
 
-// const Changelog = defineDocumentType(() => {
-//   const getSlug = (doc: LocalDocument) => toKebabCase(doc.releaseDate)
-//   return {
-//     name: "Changelog",
-//     filePathPattern: "changelogs/**/*.mdx",
-//     contentType: "mdx",
-//     fields: {
-//       releaseUrl: { type: "string" },
-//       releaseDate: { type: "string" },
-//     },
-//     computedFields: {
-//       editUrl: {
-//         type: "string",
-//         resolve: (doc) => `${siteConfig.repo.editUrl}/${doc._id}`,
-//       },
-//       params: {
-//         type: "list",
-//         resolve: (doc) => ["changelogs", getSlug(doc)],
-//       },
-//       frontmatter: {
-//         type: "json",
-//         resolve: (doc) => ({
-//           title: "Changelog",
-//           description: `The changes made as at ${doc.releaseDate}`,
-//           slug: `/changelogs/${getSlug(doc)}`,
-//           toc: [],
-//         }),
-//       },
-//       slug: {
-//         type: "string",
-//         resolve: (doc) => `/changelogs/${getSlug(doc)}`,
-//       },
-//     },
-//   }
-// })
-
-const Bible = defineDocumentType(() => ({
-  name: "Bible",
-  filePathPattern: "bible/**/*.mdx",
-  contentType: "mdx",
-  fields,
-  computedFields: {
-    ...computedFields,
-    pathname: {
-      type: "string",
-      resolve: () => "/bible/[slug]",
-    },
-  },
-}))
-
 const FurtherReading = defineDocumentType(() => ({
   name: "FurtherReading",
   filePathPattern: "further-reading/**/*.mdx",
@@ -488,7 +438,6 @@ const contentLayerConfig = makeSource({
     Architecture,
     Guides,
     Showcase,
-    Bible,
     FurtherReading,
     SDK,
 
