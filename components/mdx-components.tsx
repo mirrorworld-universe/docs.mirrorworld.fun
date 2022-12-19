@@ -26,6 +26,8 @@ import { Link as CLink } from "@chakra-ui/layout"
 import { useState, useEffect, useRef } from "react"
 import { ApiReferenceCards } from "./cards/api-reference-cards"
 import { IntegrationCards } from "./cards/integration-cards"
+import { MobileFrameworksCards } from "./cards/mobile-frameworks-cards"
+import { WebFrameworksCards } from "./cards/web-frameworks-cards"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -289,6 +291,8 @@ const components: Record<string, FC<Record<string, any>>> = {
   },
   ApiReferenceCards: (props) => <ApiReferenceCards {...props} />,
   IntegrationCards: (props) => <IntegrationCards {...props} />,
+  MobileFrameworksCards: (props) => <MobileFrameworksCards {...props} />,
+  WebFrameworksCards: (props) => <WebFrameworksCards {...props} />,
 }
 
 export function useMDX(code: string) {

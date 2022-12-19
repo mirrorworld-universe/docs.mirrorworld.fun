@@ -16,8 +16,12 @@ export const semanticTokens = {
     },
     codeBg: {
       default: "pink.50",
-      _dark: "pink.900",
+      _dark: "#21280f",
     },
+    // codeBg: {
+    //   default: "pink.50",
+    //   _dark: "pink.900",
+    // },
     topNavBody: {
       default: "whiteAlpha.600",
       _dark: "hsl(200deg 10% 12% / 80%)",

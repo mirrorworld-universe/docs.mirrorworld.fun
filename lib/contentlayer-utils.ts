@@ -31,6 +31,7 @@ import {
 import { MdOutlineVerifiedUser } from "react-icons/md"
 import { BiImageAlt, BiWallet } from "react-icons/bi"
 import { HiOutlinePuzzle, HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
+import { MdArchitecture } from "react-icons/md"
 import { SiJavascript, SiUnity, SiRust, SiSwift } from "react-icons/si"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -445,6 +446,11 @@ export const homeSidebar = [
     name: "Overview",
     icon: AiOutlineCompass,
     routes: buildSidebarTree([...allOverviews], [], "/overview/"),
+  },
+  {
+    name: "Architecture",
+    icon: MdArchitecture,
+    routes: buildSidebarTree([...allArchitectures], [], "/architecture/"),
   },
   {
     name: "SDK Integration",

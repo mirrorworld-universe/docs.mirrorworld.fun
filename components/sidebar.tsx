@@ -3,12 +3,13 @@ import { Box, Code, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
-import React, { useEffect, useMemo } from "react"
-import { useFramework } from "./framework"
+import React, { useCallback, useEffect, useMemo } from "react"
+import { RxCaretDown, RxCaretRight } from "react-icons/rx"
 
 import {
   apiReferenceSidebar,
   homeSidebar,
+  TreeNode,
   tutorialsSidebar,
 } from "../lib/contentlayer-utils"
 import { FiExternalLink } from "react-icons/fi"
@@ -75,7 +76,6 @@ function DocLink(props: DocLinkProps) {
 }
 
 export function Sidebar() {
-  const { framework } = useFramework()
   const router = useRouter()
   const isApiReference = useMemo(() => {
     return ["api-reference"].includes(router.pathname.split("/")[1])
@@ -100,6 +100,16 @@ export function Sidebar() {
     }
   }, [router.pathname])
 
+  const isActivePath = (navItem: TreeNode) => {
+    const path =
+      navItem.external_url || navItem.internal_path || navItem.url_path
+
+    return (
+      router.asPath.split("/")[isApiReference ? 2 : 1] ===
+      path.split("/")[isApiReference ? 2 : 1]
+    )
+  }
+
   return (
     <nav aria-label="Sidebar Navigation">
       <Stack as="ul" listStyleType="none" direction="column" spacing="6">
@@ -121,25 +131,34 @@ export function Sidebar() {
                 {item.routes.map((subItem, index) => {
                   return (
                     <div key={subItem.url_path + index}>
-                      <DocLink
-                        href={
-                          subItem.external_url ||
-                          subItem.internal_path ||
-                          subItem.url_path
-                        }
-                        isExternal={!!subItem.external_url}
-                      >
-                        <span
-                          onClick={() => {
-                            //@ts-ignore
-                            window.mixgather.event("menu_name", {
-                              name: subItem.nav_title,
-                            })
-                          }}
+                      <HStack>
+                        <DocLink
+                          href={
+                            subItem.external_url ||
+                            subItem.internal_path ||
+                            subItem.url_path
+                          }
+                          isExternal={!!subItem.external_url}
                         >
-                          {subItem.nav_title}
-                        </span>
-                      </DocLink>
+                          <span
+                            onClick={() => {
+                              //@ts-ignore
+                              window.mixgather.event("menu_name", {
+                                name: subItem.nav_title,
+                              })
+                            }}
+                          >
+                            {subItem.nav_title}
+                          </span>
+                        </DocLink>
+                        {subItem.children.length ? (
+                          <Icon
+                            as={
+                              isActivePath(subItem) ? RxCaretDown : RxCaretRight
+                            }
+                          />
+                        ) : null}
+                      </HStack>
                       {subItem.children.length ? (
                         <chakra.div
                           ml={2}
@@ -147,6 +166,7 @@ export function Sidebar() {
                           borderLeftColor={"sideBarLinkBorder"}
                           borderLeftWidth="1px"
                           borderLeftStyle="solid"
+                          hidden={!isActivePath(subItem)}
                         >
                           {subItem.children.map((_subItem, j) => {
                             return (
@@ -158,11 +178,10 @@ export function Sidebar() {
                                   _subItem.url_path
                                 }
                                 isExternal={!!_subItem.external_url}
-                                //@ts-ignore
                               >
                                 <span
                                   onClick={() => {
-                                    //@ts-ignore
+                                    // @ts-ignore
                                     window.mixgather.event("menu_name", {
                                       name: _subItem.nav_title,
                                     })
@@ -172,7 +191,7 @@ export function Sidebar() {
                                     <chakra.code
                                       className="prose"
                                       layerStyle="inlineCode"
-                                      fontSize="xs"
+                                      fontSize="0.8rem"
                                       fontWeight="inherit"
                                     >
                                       {_subItem.nav_title}

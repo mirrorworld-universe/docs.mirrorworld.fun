@@ -1,5 +1,6 @@
 import {
   allAPIReferences,
+  allArchitectures,
   allAuthenticationTutorials,
   allComponents,
   allFurtherReadings,
@@ -42,6 +43,7 @@ function getSearchMeta() {
     // ...allWalletTutorials,
     // ...allAuthenticationTutorials,
     // ...allNFTsTutorials,
+    ...allArchitectures,
     ...allFurtherReadings,
     ...allIntegrationGuides,
     ...allGuides,

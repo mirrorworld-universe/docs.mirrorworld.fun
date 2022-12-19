@@ -149,29 +149,29 @@ export function TopNavigation(props: any) {
               </Button>
             </Link>
             {/*<Link href={"/authentication"}>*/}
-            <Button
-              // as="a"
-              // href={"/authentication"}
-              variant="nav"
-              size="sm"
-              _hover={{
-                bg: "topNavButtonLayoutHover",
-                color: "topNavButtonTextHover",
-              }}
-              leftIcon={<BiBookOpen />}
-              onClick={() =>
-                toast({
-                  description: "Tutorials section coming soon!",
-                  position: "top-right",
-                })
-              }
-              color={"topNavText"}
-              {...(["authentication", "marketplace", "wallet"].includes(
-                router.pathname.split("/")[1],
-              ) && activeStyles)}
-            >
-              Tutorials
-            </Button>
+            {/*<Button*/}
+            {/*  // as="a"*/}
+            {/*  // href={"/authentication"}*/}
+            {/*  variant="nav"*/}
+            {/*  size="sm"*/}
+            {/*  _hover={{*/}
+            {/*    bg: "topNavButtonLayoutHover",*/}
+            {/*    color: "topNavButtonTextHover",*/}
+            {/*  }}*/}
+            {/*  leftIcon={<BiBookOpen />}*/}
+            {/*  onClick={() =>*/}
+            {/*    toast({*/}
+            {/*      description: "Tutorials section coming soon!",*/}
+            {/*      position: "top-right",*/}
+            {/*    })*/}
+            {/*  }*/}
+            {/*  color={"topNavText"}*/}
+            {/*  {...(["authentication", "marketplace", "wallet"].includes(*/}
+            {/*    router.pathname.split("/")[1],*/}
+            {/*  ) && activeStyles)}*/}
+            {/*>*/}
+            {/*  Tutorials*/}
+            {/*</Button>*/}
             {/*</Link>*/}
           </HStack>
         </HStack>
