@@ -1304,6 +1304,7 @@ body {
 }
 
 .ch-codegroup {
+  box-shadow: none !important;
   .ch-scrollycoding-sticker, .ch-code-wrapper {
     background-color: #efefef !important;
   }
@@ -1323,6 +1324,7 @@ body {
     }
   }
 }
+
 
 
 :root {
@@ -1345,12 +1347,16 @@ body {
   }
 
   .ch-codeblock {
+    box-shadow: none !important;
+
+
     .ch-scrollycoding-sticker, .ch-code-wrapper {
       background-color: #282c34 !important;
     }
   }
 
   .ch-codegroup {
+    box-shadow: none !important;
     .ch-scrollycoding-sticker, .ch-code-wrapper {
       background-color: #282c34 !important;
     }
