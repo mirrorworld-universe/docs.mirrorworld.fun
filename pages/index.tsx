@@ -69,7 +69,7 @@ export default function Home() {
             pt={{ base: "16", md: "24" }}
           >
             <chakra.h1 textStyle="display.2xl">
-              Buidl Rapidly & Effectively on Web3
+              Build Rapidly & Effectively on Web3
             </chakra.h1>
             <chakra.p className="has-highlight" textStyle="text.2xl" mt="6">
               <mark>Cross-chain SDKs and APIs.</mark> Zero-hassle blockchain
@@ -108,7 +108,7 @@ export default function Home() {
                 }}
               >
                 <HStack spacing="2">
-                  <span>Start buidling</span>
+                  <span>Start building</span>
                   <Icon as={ArrowRightIcon} />
                 </HStack>
               </Button>
@@ -175,7 +175,7 @@ export default function Home() {
           <Box flex="1">
             <chakra.h2 mb="8" maxW="24ch" textStyle="display.xl">
               Code less.{" "}
-              <chakra.span color="mirror.400">Buidl More.</chakra.span>
+              <chakra.span color="mirror.400">Build More.</chakra.span>
             </chakra.h2>
             <chakra.p maxW="64ch" fontSize="lg">
               Mirror World's cross-platform SDKs and powerful HTTP API can let
@@ -186,7 +186,7 @@ export default function Home() {
               {[
                 "Create a developer account",
                 "Create your project and API Key",
-                "Start buidling with SDK for your platform",
+                "Start building with SDK for your platform",
               ].map((item, index) => (
                 <ListItem key={index} display="flex" alignItems="flex-start">
                   <ListIcon
@@ -286,7 +286,7 @@ export default function Home() {
           <Box flex="1">
             <chakra.h2 mb="8" maxW="24ch" textStyle="display.xl">
               Multi-chain support.{" "}
-              <chakra.span color="mirror.400">Buidl Anywhere.</chakra.span>
+              <chakra.span color="mirror.400">Build Anywhere.</chakra.span>
             </chakra.h2>
             <chakra.p maxW="64ch" fontSize="lg">
               Multiple-chain support for your application needs
