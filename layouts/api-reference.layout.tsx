@@ -12,6 +12,7 @@ import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
 import theme from "../theme"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
+import { ApiReferenceNavigation } from "../components/navigation/api-reference-navigation"
 
 type DocsLayoutProps = {
   children: React.ReactNode
@@ -23,7 +24,11 @@ type DocsLayoutProps = {
   }
 }
 
-export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
+export default function ApiReferenceLayout({
+  children,
+  doc,
+  toc,
+}: DocsLayoutProps) {
   const tableOfContent = toc?.data ?? doc.frontmatter.toc
   const hideToc = tableOfContent.length < 2
 
@@ -31,7 +36,13 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
     <ChakraProvider theme={theme}>
       <Box>
         <SkipNavLink>Skip to main content</SkipNavLink>
-        <TopNavigation />
+        <chakra.div position="sticky" top="0" width="full" zIndex={50}>
+          <TopNavigation position="relative" />
+          <ApiReferenceNavigation
+            position="relative"
+            display={["none", "none", "block"]}
+          />
+        </chakra.div>
         <chakra.div pt="10">
           <Box maxW="8xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
             <Box
@@ -39,7 +50,7 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
               position="fixed"
               zIndex={30}
               bottom="0"
-              top="4rem"
+              top="8rem"
               left="max(0px, calc(50% - 45rem))"
               right="auto"
               width="19.5rem"
@@ -93,7 +104,7 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
               px="8"
               overflowY="auto"
               position="fixed"
-              top="3.8rem"
+              top="7.6rem"
               bottom="0"
               right="max(0px,calc(50% - 45rem))"
               display={{ base: "none", xl: "block" }}

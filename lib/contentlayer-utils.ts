@@ -31,7 +31,7 @@ import {
 import { MdOutlineVerifiedUser } from "react-icons/md"
 import { BiImageAlt, BiWallet } from "react-icons/bi"
 import { HiOutlinePuzzle, HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
-import { SiJavascript, SiUnity, SiRust, SiIos } from "react-icons/si"
+import { SiJavascript, SiUnity, SiRust, SiSwift } from "react-icons/si"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
 function toParams(str: string | string[]) {
@@ -518,7 +518,7 @@ export const apiReferenceSidebar = [
   },
   {
     name: "iOS",
-    icon: SiIos,
+    icon: SiSwift,
     routes: buildSidebarTree(
       [
         ...allAPIReferences.filter((_) => {
@@ -595,7 +595,7 @@ export const integrationGuidesConfig = {
     },
     {
       name: "iOS",
-      icon: SiIos,
+      icon: SiSwift,
       normalizedName: "ios",
     },
     {

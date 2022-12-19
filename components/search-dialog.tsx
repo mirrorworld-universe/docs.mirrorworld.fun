@@ -1,5 +1,6 @@
 import Icon from "@chakra-ui/icon"
 import { Box, Flex, HStack, Text } from "@chakra-ui/layout"
+import { Stack } from "@chakra-ui/react"
 import { chakra } from "@chakra-ui/system"
 import Portal from "@reach/portal"
 import { useSearch } from "lib/use-search"
@@ -116,7 +117,16 @@ export function Search() {
                                   {item.hierarchy.lvl1}
                                 </Box>
                               )}
-                              <Box fontWeight="semibold">{item.content}</Box>
+                              <Stack spacing={0} py={1}>
+                                <Box fontWeight="semibold">{item.content}</Box>
+                                <Box
+                                  fontWeight="thin"
+                                  fontSize={"0.8em"}
+                                  opacity={0.6}
+                                >
+                                  {item.url}
+                                </Box>
+                              </Stack>
                             </Box>
 
                             <Icon as={GrReturn} opacity={0.4} />

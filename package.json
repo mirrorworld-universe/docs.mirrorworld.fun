@@ -19,6 +19,7 @@
   "dependencies": {
     "@chakra-ui/cli": "1.9.0",
     "@chakra-ui/icon": "2.0.5",
+    "@chakra-ui/icons": "^2.0.14",
     "@chakra-ui/layout": "1.8.0",
     "@chakra-ui/pro-theme": "0.0.53",
     "@chakra-ui/provider": "1.7.14",

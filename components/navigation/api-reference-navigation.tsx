@@ -8,17 +8,15 @@ import { integrationGuidesConfig } from "../../lib/contentlayer-utils"
 import { integrationDropdownList } from "../../theme/layer-styles"
 import { useRouter } from "next/router"
 
-export function IntegrationBuilderNav(props: any) {
+export function ApiReferenceNavigation(props: any) {
   const router = useRouter()
-  const selectedLanguage = useMemo(
-    () =>
-      integrationGuidesConfig.languages.find(
-        (l) =>
-          l.normalizedName === router.asPath.split("/")[2] ||
-          integrationGuidesConfig.languages[0],
-      ) || integrationGuidesConfig.languages[0],
-    [router.asPath, integrationGuidesConfig],
-  )
+  const selectedLanguage = useMemo(() => {
+    return (
+      integrationGuidesConfig.languages.find((l) => {
+        return l.normalizedName === router.asPath.split("/")[2]
+      }) || integrationGuidesConfig.languages[0]
+    )
+  }, [router.asPath, integrationGuidesConfig, router.pathname])
 
   return (
     <Box
@@ -73,7 +71,7 @@ export function IntegrationBuilderNav(props: any) {
                     }}
                     key={i}
                     onClick={() =>
-                      router.push(`/integration/${lang.normalizedName}`)
+                      router.push(`/api-reference/${lang.normalizedName}`)
                     }
                   >
                     <HStack>

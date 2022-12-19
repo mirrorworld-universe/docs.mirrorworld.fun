@@ -3,6 +3,8 @@ import {
   allAuthenticationTutorials,
   allComponents,
   allFurtherReadings,
+  allGuides,
+  allIntegrationGuides,
   allMarketplaceTutorials,
   allNFTsTutorials,
   allOverviews,
@@ -36,11 +38,13 @@ function getSearchMeta() {
   const documents = [
     ...allOverviews,
     ...allShowcases,
-    ...allMarketplaceTutorials,
-    ...allWalletTutorials,
-    ...allAuthenticationTutorials,
-    ...allNFTsTutorials,
+    // ...allMarketplaceTutorials,
+    // ...allWalletTutorials,
+    // ...allAuthenticationTutorials,
+    // ...allNFTsTutorials,
     ...allFurtherReadings,
+    ...allIntegrationGuides,
+    ...allGuides,
     ...allAPIReferences,
   ]
 
