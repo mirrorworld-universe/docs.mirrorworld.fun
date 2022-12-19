@@ -3,7 +3,6 @@ import {
   allAPIReferences,
   allArchitectures,
   allAuthenticationTutorials,
-  allBibles,
   allComponents,
   allFurtherReadings,
   allGuides,
@@ -263,21 +262,6 @@ export function _toParams(path: string): { params: { slug: string[] } } {
 /* -----------------------------------------------------------------------------
  * Bible
  * -----------------------------------------------------------------------------*/
-
-export function getBiblePaths() {
-  const paths = allBibles
-    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
-    .map(_toParams)
-  return paths
-}
-
-export function getBibleDoc(_slug: string | string[]) {
-  const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allBibles.find(
-    (_) =>
-      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
-  )
-}
 
 /* -----------------------------------------------------------------------------
  * Futher Reading
