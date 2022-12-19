@@ -1,0 +1,78 @@
+---
+title: Integration Guide
+---
+
+# Android Integration Guide
+
+This guide will walk you through the setup process for the Mirror World Smart SDK on Android.
+
+## Step 1: Create a Developer Account
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+
+## Step 2: Import the Mirror World SDK
+
+> **Notice:**
+> *The minimum version that SDK requires is Android 4.4.*
+
+
+1.  Download and uncompress [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/tag/v1.1.0).
+2.  Put the `mirrorsdk.aar` under the `libs` folder. You may create a `libs` folder if it doesn't exist under your `Project root > app` directory.
+
+<br />
+
+<CH.Scrollycoding>
+
+## Step 3: Add SDK to `build.gradle`.
+
+In your `build.gradle` file, please add the Mirror World SDK as a dependency.
+
+```gradle build.gradle focus=2
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+}
+```
+
+---
+
+## Step 2
+
+Velit euismod in pellentesque massa placerat. Mi bibendum neque egestas congue quisque egestas diam in arcu. Nisi lacus sed viverra tellus in.
+
+Praesent elementum facilisis leo vel fringilla est ullamcorper eget.
+
+Morbi quis commodo.
+
+```js app.js focus=11:15
+  const { lorem, ipsum } = dolor({
+    sit: {
+      amet: 1,
+      consectetur: 2,
+      adipiscing: (elit) => ({
+      sed: elit,
+    }),
+    eiusmod: (tempor) => ({
+      incididunt: tempor,
+    }),
+    ut: (labore) => ({
+      et: labore,
+      dolore: labore + 1,
+    }),
+    laboris: (elit) => ({
+      nisi: elit,
+    }),
+  },
+});
+```
+
+</CH.Scrollycoding>
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.
+
+## Praesent elementum facilisis leo vel fringilla.
+Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.
+
+Praesent elementum facilisis leo vel fringilla. Congue mauris rhoncus aenean vel. Egestas sed tempus urna et pharetra pharetra massa massa ultricies.

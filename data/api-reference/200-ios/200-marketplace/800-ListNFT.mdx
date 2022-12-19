@@ -1,0 +1,15 @@
+---
+title: ListNFT
+---
+
+# `ListNFT`
+
+Update the list of NFTs.
+
+```swift
+MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
+```

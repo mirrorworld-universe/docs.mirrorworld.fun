@@ -1,0 +1,18 @@
+---
+title: BuyNFT
+---
+
+# `BuyNFT`
+
+Buy NFT from the marketplace.
+
+```swift
+    MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
+        self.Log(data)
+        self.loadingActive.stopAnimating()
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+        self.loadingActive.stopAnimating()
+    }
+
+```

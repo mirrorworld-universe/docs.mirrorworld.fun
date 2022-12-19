@@ -21,8 +21,10 @@ import { ResourceSupportTable } from "./resource-support-table"
 import { SupportButton } from "./support-button"
 import { LanguageSupportTable } from "./language-support-table"
 import { Button } from "./button"
-import { ArrowRightIcon, GithubIcon } from "./icons"
+import { GithubIcon } from "./icons"
 import { Link as CLink } from "@chakra-ui/layout"
+import { useState, useEffect, useRef } from "react"
+import { Scrollycoding } from "@code-hike/mdx/components"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -104,7 +106,30 @@ const components: Record<string, FC<Record<string, any>>> = {
     return <chakra.h4 textStyle="display.xs" mt="6" mb="2" {...props} />
   },
   pre(props) {
-    return <chakra.pre {...props} className={`prose ${props.className}`} />
+    const [isMounted, setIsMounted] = useState(false)
+    const [codeContent, setCodeContent] = useState("")
+
+    const codeRef = useRef<any>()
+    useEffect(() => {
+      if (isMounted) return
+      if (codeRef) {
+        setCodeContent(codeRef.current?.textContent)
+      }
+      return () => {
+        setIsMounted(true)
+      }
+    }, [isMounted, codeRef])
+
+    return (
+      <pre
+        {...props}
+        ref={codeRef}
+        style={{ position: "relative" }}
+        className={`prose ${props.className}`}
+      >
+        {props.children}
+      </pre>
+    )
   },
   li(props) {
     return (
@@ -268,3 +293,5 @@ export function useMDX(code: string) {
   // @ts-ignore
   return <MDXComponent components={components} />
 }
+
+export { components as MirrorWorldMDXComponents }

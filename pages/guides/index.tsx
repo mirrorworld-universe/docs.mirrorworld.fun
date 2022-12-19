@@ -16,6 +16,7 @@ import React from "react"
 import { allGuides } from "contentlayer/generated"
 import { buildUrl } from "cloudinary-build-url"
 import Link from "next/link"
+import { BottomMobileNavigation } from "../../components/bottom-mobile-navigation"
 
 export default function Blog() {
   const guides = allGuides?.map((guide) => ({
@@ -68,7 +69,7 @@ export default function Blog() {
           <Container as="main" maxW="4xl" className="mdx-content" pt="4">
             <Stack spacing={8}>
               <Heading>Guides</Heading>
-              <Text color="gray.300">
+              <Text>
                 Technical Guides & Tutorials on building on and interacting with
                 the Mirror World SDK. These guides cover topics in Solana
                 fundamentals, NFTs, DeFi, Gaming Development and more!
@@ -85,7 +86,6 @@ export default function Blog() {
                       cursor="pointer"
                       transition="all 0.2s ease-in-out"
                       _hover={{
-                        bg: "gray.800",
                         shadow: "lg",
                       }}
                       onClick={() => {
@@ -121,7 +121,7 @@ export default function Blog() {
                             </Tag>
                           ))}
                         </HStack>
-                        <Text color="gray.300" fontSize={"sm"} noOfLines={3}>
+                        <Text fontSize={"sm"} noOfLines={3}>
                           {guide.description}
                         </Text>
                       </Stack>
@@ -133,6 +133,7 @@ export default function Blog() {
           </Container>
         </Box>
       </chakra.div>
+      <BottomMobileNavigation />
     </Box>
   )
 }

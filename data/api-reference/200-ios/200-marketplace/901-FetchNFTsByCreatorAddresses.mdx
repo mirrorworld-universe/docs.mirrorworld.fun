@@ -1,0 +1,17 @@
+---
+title: FetchNFTsByCreatorAddresses
+---
+
+# `FetchNFTsByCreatorAddresses`
+
+Get a collection of NFTs by creator addresses.
+
+```swift
+MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { data in
+        self.Log(data)
+        self.loadingActive.stopAnimating()
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+        self.loadingActive.stopAnimating()
+    }
+```

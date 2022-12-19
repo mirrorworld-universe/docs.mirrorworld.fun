@@ -1,0 +1,22 @@
+---
+title: FetchNFTsByCreatorAddresses
+---
+
+# `FetchNFTsByCreatorAddresses`
+
+Get a collection of NFTs by creator addresses.
+
+```java
+List<String> list = new ArrayList<>();
+list.add("authority_address_1");
+list.add("authority_address_2");
+Double limit = 2;
+Double offset = "0.23";
+
+MirrorSDK.getInstance().FetchNFTsByCreatorAddresses(list,limit,offset, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+
+    }
+});
+```

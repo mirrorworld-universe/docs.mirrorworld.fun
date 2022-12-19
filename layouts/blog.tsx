@@ -15,6 +15,7 @@ import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
+import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
 
 type BlogLayoutProps = {
   children: React.ReactNode
@@ -94,6 +95,7 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
           </Box>
         </Box>
       </chakra.div>
+      <BottomMobileNavigation />
     </Box>
   )
 }

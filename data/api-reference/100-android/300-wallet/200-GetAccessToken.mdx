@@ -1,0 +1,17 @@
+---
+title: GetAccessToken
+---
+
+# `GetAccessToken`
+Get an access token so that users can visit APIs.
+
+```java
+Activity activity;
+
+MirrorSDK.getInstance().GetAccessToken(activityContext, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        Log.i("MyApp","Access token is:" + result);
+    }
+});
+```

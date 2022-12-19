@@ -22,15 +22,12 @@ export function FrameworkSelect() {
         id="framework-select"
         fontSize="sm"
         fontWeight="semibold"
-        color="mirror.500"
+        color="languageSelectText"
         outline="none"
-        defaultValue={framework}
         value={framework}
         onChange={(event) => {
           const newFramework = event.currentTarget.value as Framework
           setFramework(newFramework)
-          console.log("asPath", asPath)
-          console.log("pathname", pathname)
           if (asPath.includes(framework) && newFramework !== framework) {
             const url = asPath.replaceAll(framework, newFramework)
             replace(url).then()

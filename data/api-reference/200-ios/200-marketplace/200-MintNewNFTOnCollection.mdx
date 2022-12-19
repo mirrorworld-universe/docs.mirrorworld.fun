@@ -1,0 +1,16 @@
+---
+title: MintNewNFTOnCollection
+---
+
+# `MintNewNFTOnCollection`
+Mint a new NFT.
+
+
+```swift
+MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA", url: "", seller_fee_basis_points: 100, confirmation: "finalized") { data in
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
+
+```
