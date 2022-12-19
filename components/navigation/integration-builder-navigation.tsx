@@ -13,24 +13,18 @@ const SELECTED_INTEGRATION_LANGUAGE = `mw-integration-lang`
 
 export function IntegrationBuilderNav(props: any) {
   const router = useRouter()
-  const [selectedLangName, setSelectedLangName] = useState<string>(
-    canUseDOM()
-      ? localStorage.getItem(SELECTED_INTEGRATION_LANGUAGE) ||
-          integrationGuidesConfig.languages[0].name
-      : integrationGuidesConfig.languages[0].name,
-  )
   const selectedLanguage = useMemo(
     () =>
       integrationGuidesConfig.languages.find(
-        (l) => l.name === selectedLangName,
+        (l) => l.normalizedName === router.asPath.split("/")[2],
       ),
-    [selectedLangName, integrationGuidesConfig.languages],
+    [router.asPath, integrationGuidesConfig.languages],
   )
 
-  useEffect(() => {
-    localStorage.setItem(SELECTED_INTEGRATION_LANGUAGE, selectedLanguage.name)
-    router.push(`/integration/${selectedLanguage.normalizedName}`).then()
-  }, [selectedLangName, selectedLanguage])
+  // useEffect(() => {
+  //   localStorage.setItem(SELECTED_INTEGRATION_LANGUAGE, selectedLanguage.name)
+  //   router.push(`/integration/${selectedLanguage.normalizedName}`).then()
+  // }, [selectedLangName, selectedLanguage])
 
   return (
     <Box
@@ -84,7 +78,9 @@ export function IntegrationBuilderNav(props: any) {
                       bg: "topNavButtonLayoutHover",
                     }}
                     key={i}
-                    onClick={() => setSelectedLangName(lang.name)}
+                    onClick={() =>
+                      router.push(`/integration/${lang.normalizedName}`)
+                    }
                   >
                     <HStack>
                       <Icon as={lang.icon} />
