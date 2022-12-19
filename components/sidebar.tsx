@@ -22,21 +22,13 @@ type DocLinkProps = {
 const sanitize = (href: string) =>
   href.replace(/#.*/, "").split("/").filter(Boolean)
 
-function test(href: string, asPath: string) {
-  const a = sanitize(href)
-  const b = sanitize(asPath)
-
-  if (asPath.startsWith("/changelogs")) {
-    return a[0] === b[0]
-  }
-
-  return a[a.length - 1] === b[b.length - 1]
-}
-
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
   const { href, children, isExternal, ...rest } = props
-  const current = test(href.toString(), asPath)
+  const current = useMemo(
+    () => href.toString() === asPath,
+    [props.href, asPath],
+  )
   return (
     <Box key={asPath} as="li" fontSize="sm" {...rest}>
       <Link href={href} passHref>

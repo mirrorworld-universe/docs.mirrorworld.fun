@@ -1,0 +1,15 @@
+---
+title: set_network
+---
+
+# `set_network`
+Sets the current network from the SDK instance. This will accept either
+`NetEnv::DEVNET` or `NetEnv::DEVNET`. These variables can be imported from the `NetEnv` module.
+
+```rust
+use mirrorworld_sdk_rust::{ set_network, NetEnv };
+
+fn main() {
+    set_network(NetEnv::DEVNET);
+}
+```

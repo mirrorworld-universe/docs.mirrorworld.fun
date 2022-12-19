@@ -1,0 +1,32 @@
+---
+title: transfer_sol
+---
+
+# `transfer_sol`
+Transfers SOL from the user's wallet to another wallet address
+
+```rust
+use mirrorworld_sdk_rust::{ transfer_sol };
+
+fn main() {
+    let recipient: &str = "2BrLoxPTkPLyLuD3sPitNKXQRA9y8zzZ9P6vYwMTtgBL";
+    let amount: &str = "1000";
+    let result: TransferSpltoken = transfer_sol(recipient, amount).await?;
+}
+
+// Return Types
+// ============
+
+ #[derive(Debug, Serialize, Deserialize)]
+pub struct TransferSpltoken  {
+  pub tx_signature: String
+}
+
+// Error response if any
+// =====================
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Err {
+  #[serde(rename = "InstructionError")]
+  pub instruction_error: Option<String>,
+}
+```
