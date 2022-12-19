@@ -5,11 +5,8 @@ import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react"
 import { useEffect, useMemo, useState } from "react"
 import Icon from "@chakra-ui/icon"
 import { integrationGuidesConfig } from "../../lib/contentlayer-utils"
-import { canUseDOM } from "@reach/utils"
 import { integrationDropdownList } from "../../theme/layer-styles"
 import { useRouter } from "next/router"
-
-const SELECTED_INTEGRATION_LANGUAGE = `mw-integration-lang`
 
 export function IntegrationBuilderNav(props: any) {
   const router = useRouter()
@@ -18,13 +15,8 @@ export function IntegrationBuilderNav(props: any) {
       integrationGuidesConfig.languages.find(
         (l) => l.normalizedName === router.asPath.split("/")[2],
       ),
-    [router.asPath, integrationGuidesConfig.languages],
+    [router.asPath, integrationGuidesConfig],
   )
-
-  // useEffect(() => {
-  //   localStorage.setItem(SELECTED_INTEGRATION_LANGUAGE, selectedLanguage.name)
-  //   router.push(`/integration/${selectedLanguage.normalizedName}`).then()
-  // }, [selectedLangName, selectedLanguage])
 
   return (
     <Box
