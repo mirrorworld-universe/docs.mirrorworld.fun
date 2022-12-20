@@ -1,6 +1,7 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Code, Flex, HStack, Stack } from "@chakra-ui/layout"
+import { Box, Circle, Code, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
+import { Collapse, IconButton, useDisclosure } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
 import React, { useCallback, useEffect, useMemo } from "react"
@@ -16,6 +17,7 @@ import { FiExternalLink } from "react-icons/fi"
 
 type DocLinkProps = {
   href: LinkProps["href"]
+  item: TreeNode
   children: React.ReactNode
   isExternal?: boolean
 }
@@ -25,53 +27,130 @@ const sanitize = (href: string) =>
 
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
-  const { href, children, isExternal, ...rest } = props
+  const { href, children, isExternal, item, ...rest } = props
   const current = useMemo(
     () => href.toString() === asPath,
     [props.href, asPath],
   )
+
+  const { isOpen, onToggle, onOpen, onClose } = useDisclosure()
+
+  const router = useRouter()
+  const isApiReference = useMemo(() => {
+    return ["api-reference"].includes(router.pathname.split("/")[1])
+  }, [router.pathname])
+
+  const isActivePath = (navItem: TreeNode) => {
+    const path =
+      navItem.external_url || navItem.internal_path || navItem.url_path
+
+    const isActive =
+      router.asPath.split("/")[isApiReference ? 2 : 1] ===
+      path.split("/")[isApiReference ? 2 : 1]
+
+    return isActive
+  }
+
   return (
-    <Box key={asPath} as="li" fontSize="sm" {...rest}>
-      <Link href={href} passHref>
-        <chakra.a
-          aria-current={current ? "page" : undefined}
-          textStyle="sidebarLink"
-          sx={{
-            color: "currentColor",
-            position: "relative",
-            "&:after": {
-              content: `""`,
-              position: "absolute",
-              width: "100%",
-              transform: "scaleX(0)",
-              height: "1px",
-              top: "85%",
-              left: 0,
-              backgroundColor: "currentColor",
-              transformOrigin: "bottom right",
-              transition: "transform .4s cubic-bezier(.86, 0, .07, 1)",
-            },
-            "&:hover::after": {
-              transform: "scaleX(1)",
-              transformOrigin: "bottom left",
-            },
-          }}
-          {...(current && {
-            borderLeftColor: "sideBarLinkBorderSelected",
-          })}
-          {...(isExternal && { target: "_blank" })}
-        >
-          {isExternal ? (
-            <HStack>
-              <chakra.div>{children}</chakra.div>
-              <Icon as={FiExternalLink} />
-            </HStack>
-          ) : (
-            children
-          )}
-        </chakra.a>
-      </Link>
-    </Box>
+    <chakra.div>
+      <HStack key={asPath} as="li" fontSize="sm" {...rest}>
+        <Link href={href} passHref>
+          <chakra.a
+            aria-current={current ? "page" : undefined}
+            textStyle="sidebarLink"
+            sx={{
+              color: "currentColor",
+              position: "relative",
+              "&:after": {
+                content: `""`,
+                position: "absolute",
+                width: "100%",
+                transform: "scaleX(0)",
+                height: "1px",
+                top: "85%",
+                left: 0,
+                backgroundColor: "currentColor",
+                transformOrigin: "bottom right",
+                transition: "transform .4s cubic-bezier(.86, 0, .07, 1)",
+              },
+              "&:hover::after": {
+                transform: "scaleX(1)",
+                transformOrigin: "bottom left",
+              },
+            }}
+            {...(current && {
+              borderLeftColor: "sideBarLinkBorderSelected",
+            })}
+            {...(isExternal && { target: "_blank" })}
+          >
+            {isExternal ? (
+              <HStack>
+                <chakra.div>{children}</chakra.div>
+                <Icon as={FiExternalLink} />
+              </HStack>
+            ) : (
+              children
+            )}
+          </chakra.a>
+        </Link>
+        {item.children.length ? (
+          <Circle p={1} cursor="pointer" onClick={onToggle}>
+            <Icon
+              as={isOpen || isActivePath(item) ? RxCaretDown : RxCaretRight}
+            />
+          </Circle>
+        ) : null}
+      </HStack>
+      {item.children.length ? (
+        <Collapse in={isOpen || isActivePath(item)}>
+          <chakra.div
+            ml={2}
+            pl={2}
+            borderLeftColor={"sideBarLinkBorder"}
+            borderLeftWidth="1px"
+            borderLeftStyle="solid"
+            data-sub-navitem
+          >
+            {item.children.map((_subItem, j) => {
+              return (
+                <DocLink
+                  item={_subItem}
+                  key={_subItem.url_path + j}
+                  href={
+                    _subItem.external_url ||
+                    _subItem.internal_path ||
+                    _subItem.url_path
+                  }
+                  isExternal={!!_subItem.external_url}
+                >
+                  <span
+                    onClick={() => {
+                      // @ts-ignore
+                      window.mixgather.event("menu_name", {
+                        name: _subItem.nav_title,
+                      })
+                    }}
+                  >
+                    {isApiReference ? (
+                      <chakra.code
+                        className="prose"
+                        layerStyle="inlineCode"
+                        fontSize="0.8rem"
+                        fontWeight="inherit"
+                      >
+                        {_subItem.nav_title}
+                      </chakra.code>
+                    ) : (
+                      _subItem.nav_title
+                    )}
+                  </span>
+                </DocLink>
+              )
+            })}
+          </chakra.div>
+        </Collapse>
+      ) : null}
+    </chakra.div>
   )
 }
 
@@ -130,9 +209,13 @@ export function Sidebar() {
               <Flex as="ul" listStyleType="none" direction="column">
                 {item.routes.map((subItem, index) => {
                   return (
-                    <div key={subItem.url_path + index}>
+                    <div
+                      key={subItem.url_path + index}
+                      data-navitem={subItem.url_path.split("/")[0]}
+                    >
                       <HStack>
                         <DocLink
+                          item={subItem}
                           href={
                             subItem.external_url ||
                             subItem.internal_path ||
@@ -151,60 +234,7 @@ export function Sidebar() {
                             {subItem.nav_title}
                           </span>
                         </DocLink>
-                        {subItem.children.length ? (
-                          <Icon
-                            as={
-                              isActivePath(subItem) ? RxCaretDown : RxCaretRight
-                            }
-                          />
-                        ) : null}
                       </HStack>
-                      {subItem.children.length ? (
-                        <chakra.div
-                          ml={2}
-                          pl={2}
-                          borderLeftColor={"sideBarLinkBorder"}
-                          borderLeftWidth="1px"
-                          borderLeftStyle="solid"
-                          hidden={!isActivePath(subItem)}
-                        >
-                          {subItem.children.map((_subItem, j) => {
-                            return (
-                              <DocLink
-                                key={_subItem.url_path + j}
-                                href={
-                                  _subItem.external_url ||
-                                  _subItem.internal_path ||
-                                  _subItem.url_path
-                                }
-                                isExternal={!!_subItem.external_url}
-                              >
-                                <span
-                                  onClick={() => {
-                                    // @ts-ignore
-                                    window.mixgather.event("menu_name", {
-                                      name: _subItem.nav_title,
-                                    })
-                                  }}
-                                >
-                                  {isApiReference ? (
-                                    <chakra.code
-                                      className="prose"
-                                      layerStyle="inlineCode"
-                                      fontSize="0.8rem"
-                                      fontWeight="inherit"
-                                    >
-                                      {_subItem.nav_title}
-                                    </chakra.code>
-                                  ) : (
-                                    _subItem.nav_title
-                                  )}
-                                </span>
-                              </DocLink>
-                            )
-                          })}
-                        </chakra.div>
-                      ) : null}
                     </div>
                   )
                 })}
