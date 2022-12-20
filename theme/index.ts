@@ -36,7 +36,7 @@ const theme = {
   },
   config: {
     useSystemColorMode: false,
-    initialColorMode: "dark" as ColorMode,
+    initialColorMode: "light" as ColorMode,
     disableTransitionOnChange: false,
   },
   styles: {

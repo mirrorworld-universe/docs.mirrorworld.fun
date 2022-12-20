@@ -57,6 +57,18 @@ export const globalStyles: SystemStyleObject = {
     bg: "transparent",
   },
 
+  '[data-with-integration-guide=""]': {
+    ".mdx-content": {
+      "h2,h3,h4": {
+        scrollMarginTop: "36",
+        "&:hover": {
+          "a.anchor": { opacity: 1 },
+        },
+        "a:focus": { opacity: 1 },
+      },
+    },
+  },
+
   ".mdx-content": {
     output: {
       fontFeatureSettings: "tnum",

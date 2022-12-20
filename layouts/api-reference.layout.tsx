@@ -44,7 +44,12 @@ export default function ApiReferenceLayout({
           />
         </chakra.div>
         <chakra.div pt="10">
-          <Box maxW="8xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
+          <Box
+            data-with-integration-guide=""
+            maxW="8xl"
+            mx="auto"
+            px={{ sm: "6", base: "4", md: "8" }}
+          >
             <Box
               display={{ base: "none", lg: "block" }}
               position="fixed"

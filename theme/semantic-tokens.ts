@@ -111,8 +111,8 @@ export const semanticTokens = {
       _dark: "whiteAlpha.600",
     },
     integrationDropdownListBg: {
-      default: "whiteAlpha.600",
-      _dark: "hsl(200deg 10% 12% / 90%)",
+      default: "white",
+      _dark: "dark",
     },
     integrationSelected: {
       default: "blackAlpha.600",

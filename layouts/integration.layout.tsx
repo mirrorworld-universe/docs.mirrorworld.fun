@@ -46,9 +46,14 @@ export default function IntegrationLayout({
             />
           </chakra.div>
           <chakra.div pt="10">
-            <Box maxW="5xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
+            <Box
+              data-with-integration-guide=""
+              maxW="5xl"
+              mx="auto"
+              px={{ sm: "6", base: "4", md: "8" }}
+            >
               <Box as="main" className="mdx-content" pt="4">
-                <Box>
+                <Box data-with-integration-guide="">
                   {children}
                   <HStack
                     as="a"
