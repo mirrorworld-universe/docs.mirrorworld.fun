@@ -4,6 +4,7 @@ import {
   allArchitectures,
   allAuthenticationTutorials,
   allComponents,
+  allFeatures,
   allFurtherReadings,
   allGuides,
   allIntegrationGuides,
@@ -377,6 +378,24 @@ export function getAPIReferenceDoc(_slug: string | string[]) {
   )
 }
 
+/* -----------------------------------------------------------------------------
+ * Features Docs
+ * -----------------------------------------------------------------------------*/
+
+export function getFeaturesPaths() {
+  return allFeatures
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+}
+
+export function getFeaturesDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allFeatures.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
 export function getIntegrationGuidePaths() {
   return allIntegrationGuides
     .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
@@ -448,9 +467,9 @@ export const homeSidebar = [
     routes: buildSidebarTree([...allOverviews], [], "/overview/"),
   },
   {
-    name: "Architecture",
+    name: "Features",
     icon: MdArchitecture,
-    routes: buildSidebarTree([...allArchitectures], [], "/architecture/"),
+    routes: buildSidebarTree([...allFeatures], [], "/features/"),
   },
   {
     name: "SDK Integration",
