@@ -51,6 +51,14 @@ function DocLink(props: DocLinkProps) {
     return isActive
   }
 
+  useEffect(() => {
+    const isActive =
+      router.asPath.split("/")[isApiReference ? 2 : 1] ===
+      href.toString().split("/")[isApiReference ? 2 : 1]
+
+    if (!isActive) onClose()
+  }, [router.asPath])
+
   return (
     <chakra.div>
       <HStack key={asPath} as="li" fontSize="sm" {...rest}>
