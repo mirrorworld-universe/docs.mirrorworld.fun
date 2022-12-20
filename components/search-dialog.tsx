@@ -20,7 +20,7 @@ export function Search() {
           <Box
             position="fixed"
             inset="0"
-            bg="blackAlpha.700"
+            bg="topNavBody"
             zIndex="modal"
             {...dialog_api.backdropProps}
           />
@@ -39,7 +39,7 @@ export function Search() {
               width="full"
               maxW="600px"
               rounded="md"
-              bg="gray.900"
+              bg="searchTriggerBg"
               position="relative"
               pointerEvents="auto"
               {...dialog_api.contentProps}
@@ -63,14 +63,14 @@ export function Search() {
                 >
                   <Icon
                     as={BiSearch}
-                    color="gray.300"
+                    color="textLink"
                     mr="4"
                     fontSize="1.3em"
                   />
                   <chakra.input
                     width="full"
                     outline="0"
-                    bg="gray.900"
+                    bg="searchTriggerBg"
                     {...combobox_api.inputProps}
                   />
                 </Flex>
@@ -91,7 +91,7 @@ export function Search() {
                           <chakra.li
                             px="3"
                             py="1"
-                            _selected={{ bg: "gray.800" }}
+                            _selected={{ bg: "topNavButtonLayoutActive" }}
                             display="flex"
                             alignItems="center"
                             minHeight="14"

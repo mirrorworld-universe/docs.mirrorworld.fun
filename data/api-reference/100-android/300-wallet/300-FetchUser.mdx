@@ -1,0 +1,20 @@
+---
+title: FetchUser
+---
+
+# `FetchUser`
+Try to get the current user's details.
+
+```java
+MirrorSDK.getInstance().FetchUser(new FetchUserListener() {
+    @Override
+    public void onUserFetched(UserResponse userResponse) {
+
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+
+    }
+});
+```

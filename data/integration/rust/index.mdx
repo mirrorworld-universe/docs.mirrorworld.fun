@@ -1,0 +1,54 @@
+---
+title: Rust Integration Guide
+---
+
+# Rust Integration Guide
+
+This guide will walk you through the setup process for the Mirror World Smart SDK on Rust.
+
+## Step 1: Create a Developer Account
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+
+
+<CH.Scrollycoding>
+
+  ## Step 2 - Install dependencies
+
+  Add the `mirrorworld-sdk-rust` to your `Cargo.toml`. Alternativly you can run
+  `cargo add mirrorworld-sdk-rust`.
+
+  ```sh shell.sh
+  cargo add mirrorworld-sdk-rust
+  ```
+  ---
+
+  ## Step 3 - Import the SDK in your file
+  Import the installed SDK into your file and start building!
+
+  ```rs main.rs
+  // Import all modules
+  use mirrorworld_sdk_rust::*;
+
+  // Or you may import specific methods
+  use mirrorworld_sdk_rust::{
+    // ...
+    login_with_email,
+    // ...
+  };
+  ```
+
+
+</CH.Scrollycoding>
+
+## Going Further
+Great! At this point you're pretty much ready to start doing building with the
+Rust SDK for Mirror World. There are a few things you can do to proceed from here:
+
+- Explore the [Full Rust API Reference](/api-reference/rust) to learn more.
+- Explore our [SDK Tutorials](/tutorials).
+- Looking for inspiration? Take a look at our [Recipes](/recipes) or see what builders are building in the [Showcase](/showcase).
+- [Join the Mirror World Developer community](https://mirrorworld.fun/discord)! We're a vibrant community of builders!
+
+
+### Getting Support
+If you're stuck or just looking for support, you may also [schedule a support call](https://mirrorworld.fun/support) with our team.

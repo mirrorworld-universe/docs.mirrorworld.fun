@@ -1,0 +1,118 @@
+---
+title: Android Integration Guide
+---
+
+# Android Integration Guide
+
+This guide will walk you through the setup process for the Mirror World Smart SDK on Android.
+
+## Step 1: Create a Developer Account
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+
+## Step 2: Import the Mirror World SDK
+
+> **Notice:**
+> *The minimum version that SDK requires is Android 4.4.*
+
+
+1.  Download and uncompress [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/tag/v1.1.0).
+2.  Put the `mirrorsdk.aar` under the `libs` folder. You may create a `libs` folder if it doesn't exist under your `Project root > app` directory.
+
+<br />
+
+<CH.Scrollycoding>
+
+  ## Step 3 - Install SDK dependency.
+
+  In your `build.gradle` file, please add the Mirror World SDK as a dependency.
+
+  ```gradle build.gradle focus=2
+  dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+  }
+  ```
+
+  ---
+
+  ## Step 4 - Initialize SDK
+
+  In you `MainActivity.java` or file of choice, you can now initialize the Mirror World SDK.
+
+  ```java MainActivity.java focus=1:7
+  Activity activity = this;
+  String apiKey = "YOUR_SECRET_API_KEY";
+  boolean useDebugMode = true;
+
+  MirrorSDK.getInstance().SetApiKey(apiKey);
+  MirrorSDK.getInstance().SetDebug(useDebugMode);
+  MirrorSDK.getInstance().InitSDK(activity, MirrorEnv.DevNet);
+
+
+  MirrorSDK.getInstance().StartLogin(new LoginListener() {
+    @Override
+      public void onLoginSuccess() {
+      Log.i("MirrorWorld", "User login success!");
+    }
+
+    @Override
+      public void onLoginFail() {
+      Log.i("MirrorWorld", "User login failed!");
+    }
+  });
+  ```
+
+  ---
+
+  ## Step 5 - Guide user to login
+  In order to access authenticated features on the Mirror World SDK, you may
+  need to guide the user to login. The following code is an example:
+
+  ```java MainActivity.java focus=10:19
+  Activity activity = this;
+  String apiKey = "YOUR_SECRET_API_KEY";
+  boolean useDebugMode = true;
+
+  MirrorSDK.getInstance().SetApiKey(apiKey);
+  MirrorSDK.getInstance().SetDebug(useDebugMode);
+  MirrorSDK.getInstance().InitSDK(activity, MirrorEnv.DevNet);
+
+
+  MirrorSDK.getInstance().StartLogin(new LoginListener() {
+    @Override
+      public void onLoginSuccess() {
+      Log.i("MirrorWorld", "User login success!");
+    }
+
+    @Override
+      public void onLoginFail() {
+      Log.i("MirrorWorld", "User login failed!");
+    }
+  });
+  ```
+
+  ---
+
+  ## Step 6 - Open Wallet
+  Users may want to check their wallet in your dApp or game. You can use `OpenWallet` method:
+
+  ```java SomeActivity.java
+  // The `OpenWallet` method can be used
+  // to open the Wallet UI for the user.
+  MirrorSDK.getInstance().OpenWallet();
+  ```
+
+
+</CH.Scrollycoding>
+
+## Going Further
+Great! At this point you're pretty much ready to start doing building with the
+Android SDK for Mirror World. There are a few things you can do to proceed from here:
+
+- Explore the [Full Android API Reference](/api-reference/android) to learn more.
+- Explore our [SDK Tutorials](/tutorials).
+- Looking for inspiration? Take a look at our [Recipes](/recipes) or see what builders are building in the [Showcase](/showcase).
+- [Join the Mirror World Developer community](https://mirrorworld.fun/discord)! We're a vibrant community of builders!
+
+
+### Getting Support
+If you're stuck or just looking for support, you may also [schedule a support call](https://mirrorworld.fun/support) with our team.

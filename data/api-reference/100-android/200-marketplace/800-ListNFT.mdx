@@ -1,0 +1,24 @@
+---
+title: ListNFT
+---
+
+# `ListNFT`
+
+Update the list of NFTs.
+
+```java
+String mintAddress = "mint_address";
+Double price = 123.99;
+
+MirrorSDK.getInstance().UpdateNFTListing(mintAddress,price, new UpdateListListener() {
+    @Override
+    public void onUpdateSuccess(ListingResponse listingResponse) {
+        holder.mResultView.setText("UpdateNFTListing success! New price:"+listingResponse.price);
+    }
+
+    @Override
+    public void onUpdateFailed(long code, String message) {
+        holder.mResultView.setText(MirrorStringUtils.GetFailedNotice("UpdateNFTListing",code,message));
+    }
+});
+```

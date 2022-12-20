@@ -1,0 +1,38 @@
+---
+title: Authentication
+---
+
+# Authentication Methods | Android API Reference
+
+- [`StartLogin`](/api-reference/android/authentication/StartLogin)
+- [`CheckAuthenticated`](/api-reference/android/authentication/CheckAuthenticated)
+- [`SetDebug`](/api-reference/android/authentication/SetDebug)
+- [`SetApiKey`](/api-reference/android/authentication/SetApiKey)
+- [`setWebviewNotice`](/api-reference/android/authentication/setWebviewNotice)
+
+
+## Authentication Tips
+
+### User login with different social accounts.
+Mirror World uniquely identifies a user by their email address. Whereas you may login with different accounts,
+if the email address associated with that social account is different,
+then we shall create a new account for the users. Likewise, the wallets associated with those accounts are not the same.
+
+### Login invalidation
+
+Authentication tokens saved locally by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If the token is invalidated, we should guide users to login again.
+For example, you can follow the logic like this:
+
+```java
+MirrorSDK.getInstance().CheckAuthenticated(new BoolListener() {
+    @Override
+    public void onBool(boolean boolValue) {
+        boolean isLoggedIn = boolValue;
+        if(isLoggedIn){
+            //todo: enter content directly
+        }else {
+            //todo: show a button leading the user to login.
+        }
+    }
+});
+```

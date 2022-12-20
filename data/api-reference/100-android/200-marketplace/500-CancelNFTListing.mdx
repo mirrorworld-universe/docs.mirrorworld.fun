@@ -1,0 +1,24 @@
+---
+title: CancelNFTListing
+---
+
+# `CancelNFTListing`
+
+Cancel listing of NFT.
+
+```java
+String mintAddress = "mint_address";
+Double price = 123.99;
+
+MirrorSDK.getInstance().CancelListingOfNFT(mintAddress,price, new CancelListListener() {
+    @Override
+    public void onCancelSuccess(ListingResponse listingResponse) {
+
+    }
+
+    @Override
+    public void onCancelFailed(long code, String message) {
+
+    }
+});
+```

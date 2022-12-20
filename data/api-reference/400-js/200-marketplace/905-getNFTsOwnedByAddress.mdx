@@ -1,0 +1,14 @@
+---
+title: getNFTsOwnedByAddress
+---
+
+# `getNFTsOwnedByAddress`
+Fetches the NFTs owned by a specific address.
+
+```ts
+const walletAddress = "C64RkD2jnvrFF8mi9FUBwfhNHuuiPuRMzCLRSWcyJKUG"
+const nft = await mirrorworld.getNFTsOwnedByAddress(walletAddress, {
+  limit: 20, // page size
+  offset: 0 // page number
+})
+```

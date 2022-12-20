@@ -14,7 +14,7 @@ All authentication methods on the Unity SDK
 
 Call up the login web page.If the user finishes the flow,the action will be called.
 
-```cs
+```csharp
 MirrorSDK.StartLogin((loginResponse)=> {
     Debug.Log("Login result:" + loginResponse.ToString());
 });
@@ -24,7 +24,7 @@ MirrorSDK.StartLogin((loginResponse)=> {
 
 Logs in a user with email and password.
 
-```cs
+```csharp
 MirrorSDK.LoginWithEmail(debugEmail, debugPassword, (response) =>
 {
     long resCode = response.Code;
@@ -39,7 +39,7 @@ MirrorSDK.LoginWithEmail(debugEmail, debugPassword, (response) =>
 
 Logout current account
 
-```cs
+```csharp
 MirrorSDK.Logout(() =>
 {
     Debug.Log("User logout.");
@@ -51,7 +51,7 @@ MirrorSDK.Logout(() =>
 Open wallet page.
 The param is a callback which will be called when user click 'Logout' button in wallet page.
 
-```cs
+```csharp
 MirrorSDK.OpenWalletPage(()=> {
     Debug.Log("User clicked logout button on the wallet page.");
 });
@@ -63,7 +63,7 @@ MirrorSDK.OpenWalletPage(()=> {
 
 Fetches the current user's object.
 
-```cs
+```csharp
 MirrorSDK.FetchUser(email, (response) =>
 {
     long resCode = response.Code;
@@ -78,7 +78,7 @@ MirrorSDK.FetchUser(email, (response) =>
 
 Get the current user's tokens
 
-```cs
+```csharp
 MirrorSDK.GetWalletTokens((response) => {
     long resCode = response.Code;
     WalletTokenResponse details = response.Data;
@@ -92,7 +92,7 @@ MirrorSDK.GetWalletTokens((response) => {
 
 Get the transactions of user's wallet.
 
-```cs
+```csharp
 float price = 0.1f;
 string nextBefore = "nextBefore";
 MirrorSDK.GetWalletTransactions(price,nextBefore,(res)=> {
@@ -105,7 +105,7 @@ MirrorSDK.GetWalletTransactions(price,nextBefore,(res)=> {
 
 Fetches an NFT's details by mint address
 
-```cs
+```csharp
 string mintAddress = "mint_address";
 
 MirrorSDK.GetNFTDetails(mintAddress,(response) => {
@@ -121,7 +121,7 @@ MirrorSDK.GetNFTDetails(mintAddress,(response) => {
 
 Fetches the NFTs owned by a specific address.
 
-```cs
+```csharp
 List<string> owners = new List<string>();
 owners.Add("owner_address_1");
 owners.Add("owner_address_2");
@@ -144,7 +144,7 @@ MirrorSDK.GetNFTsOwnedByAddress(owners,limit,offset,(response) => {
 
 Transfer SPL token to a recipient
 
-```cs
+```csharp
 ulong amount = 1;
 string publicKey = "public_key";
 
@@ -161,7 +161,7 @@ MirrorSDK.TransferSPLToken(amount,publicKey,(response) => {
 
 Transfer SOL to wallet address
 
-```cs
+```csharp
 ulong amount = 1;
 string publicKey = "public_key";
 string confirmation = Confirmation.Finalized;
@@ -181,7 +181,7 @@ MirrorSDK.TransferSol(amount,publicKey,confirmation,(response) => {
 
 Create a new Verified Collection
 
-```cs
+```csharp
 string collectionName = "TopCollection";
 string collectionSymbol = "Top";
 string collectionUrl = "https://example.com/path/detail.json";
@@ -201,7 +201,7 @@ MirrorSDK.CreateVerifiedCollection(collectionName,collectionSymbol,collectionUrl
 Mint NFT into collection.
 The "mintID" param is nullable,server will response that "minting is proceeding,please wait it" if detected one mintID is minted already.
 
-```cs
+```csharp
 string parentCollection = "collection_address";
 string collectionName = "NewNFT";
 string collectionSymbol = "NFT";
@@ -223,7 +223,7 @@ MirrorSDK.MintNFT(parentCollection,collectionName,collectionSymbol,collectionUrl
 List NFT on Mirror World Marketplace.
 AuctionHouse:If you give the auctionHouse param,you can specify which market you want to list in.
 
-```cs
+```csharp
 string mintAddress = "mint_address";
 decimal price = 1;
 string confirmation = Confirmation.Default;
@@ -242,7 +242,7 @@ MirrorSDK.ListNFT(mintAddress,price,auctionHouse,confirmation,(response) => {
 
 Purchase NFT on Mirror World Marketplace
 
-```cs
+```csharp
 string mintAddress = "mint_address";
 decimal price = 1;
 string auctionHouse = "your_market_auction_house";
@@ -260,7 +260,7 @@ MirrorSDK.BuyNFT(mintAddress,price,auctionHouse,(response) => {
 
 Update NFT Listing on Mirror World Marketplace
 
-```cs
+```csharp
 string mintAddress = "mint_address";
 decimal price = 1;
 string auctionHouse = "your_market_auction_house";
@@ -279,7 +279,7 @@ MirrorSDK.UpdateNFTListing(mintAddress,price,auctionHouse,confirmation,(response
 
 Cancel listing NFT on Mirror World Marketplace
 
-```cs
+```csharp
 string mintAddress = "mint_address";
 decimal price = 1;
 string auctionHouse = "your_market_auction_house";
@@ -298,7 +298,7 @@ MirrorSDK.CancelNFTListing(mintAddress,price,auctionHouse,confirmation,(response
 
 Transfer NFT from holder's wallet to another address
 
-```cs
+```csharp
 string mintAddress = "mint_address";
 string toWallet = "wallet_address";
 
@@ -316,7 +316,7 @@ MirrorSDK.TransferNFT(mintAddress,toWallet,(response) => {
 Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
 are provided
 
-```cs
+```csharp
 List<string> addresses = new List<string>();
 addresses.Add("mint_address_1");
 addresses.Add("mint_address_2");
@@ -335,7 +335,7 @@ MirrorSDK.FetchNFTsByMintAddresses(addresses,(response) => {
 Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose `creatorAddresses`
 are provided
 
-```cs
+```csharp
 List<string> creators = new List<string>();
 creators.Add("address_1");
 creators.Add("address_2");
@@ -354,7 +354,7 @@ MirrorSDK.FetchNFTsByCreatorAddresses(creators,(response) => {
 Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `updateAuthorities`
 are provided
 
-```cs
+```csharp
 List<string> addresses = new List<string>();
 addresses.Add("address_1");
 addresses.Add("address_2");
@@ -373,7 +373,7 @@ MirrorSDK.FetchNFTsByUpdateAuthorities(addresses,creators,(response) => {
 Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `owners`
 are provided
 
-```cs
+```csharp
 List<string> addresses = new List<string>();
 addresses.Add("address_1");
 addresses.Add("address_2");

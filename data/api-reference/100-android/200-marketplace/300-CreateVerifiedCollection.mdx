@@ -1,0 +1,25 @@
+---
+title: CreateVerifiedCollection
+---
+
+# `CreateVerifiedCollection`
+
+Mint parent NFT collection.
+
+```java
+String mintName = "NewNFT";
+String mintSymbol = "Symbol";
+String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
+
+MirrorSDK.getInstance().CreateVerifiedCollection(mintName, mintSymbol, metaDataUri, new CreateTopCollectionListener() {
+    @Override
+    public void onCreateSuccess(MintResponse mintResponse) {
+
+    }
+
+    @Override
+    public void onCreateFailed(long code, String message) {
+
+    }
+});
+```

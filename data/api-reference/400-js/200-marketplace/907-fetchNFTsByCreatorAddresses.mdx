@@ -1,0 +1,29 @@
+---
+title: fetchNFTsByCreatorAddresses
+---
+
+# `fetchNFTsByCreatorAddresses`
+Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose `creatorAddresses`
+are provided.
+
+```ts
+const nftsQueryResult: SolanaNFTExtended[] = await mirrorworld.fetchNFTsByMintAddresses({
+  creatorAddresses: [`Hc2My3GQCQTXTjV34Pi1pQGYUeckT1mEcMRiZZaH7Ydr`],
+  limit: 20, // page size
+  offset: 0 // page number
+})
+
+// Returns `SolanaNFTExtended[]`
+export interface SolanaNFTExtended {
+  name: string;
+  sellerFeeBasisPoints: number;
+  updateAuthorityAddress: string;
+  description: string;
+  image: string;
+  externalUrl: string;
+  creators: Creator[];
+  owner: Owner;
+  attributes: MetadataAttributes[];
+  listings: SolanaNFTListing[];
+}
+```

@@ -1,0 +1,24 @@
+---
+title: TransferNFTToAnotherSolanaWallet
+---
+
+# `TransferNFTToAnotherSolanaWallet`
+
+Transfer NFT to another Sol wallet.
+
+```java
+String mintAddress = "mint_address";
+String toWalletAddress = "wallet_address";
+
+MirrorSDK.getInstance().TransferNFTToAnotherSolanaWallet(mintAddress,toWalletAddress, new TransferNFTListener() {
+    @Override
+    public void onTransferSuccess(ListingResponse listingResponse) {
+
+    }
+
+    @Override
+    public void onTransferFailed(long code, String message) {
+
+    }
+});
+```

@@ -52,7 +52,7 @@ Explanation of beyond image:
 
 We can init Mirror World SDK with the following code:
 
-```cs
+```csharp
 GameObject mirrorObj = new GameObject("MirrorSDK", typeof(MirrorSDK));
 string apiKey = "your api key";
 bool debugMode = true;
@@ -65,7 +65,7 @@ MirrorSDK.InitSDK(apiKey, mirrorObj, debugMode, environment);
    whether this user needs to log in, you can call the `IsLoggedIn` method. The
    boolean result is returned in the callback.
 
-```cs
+```csharp
 MirrorSDK.IsLoggedIn((isLoggedIn) => {
     Debug.Log("isLoggedIn:" + isLoggedIn);
 });
@@ -73,7 +73,7 @@ MirrorSDK.IsLoggedIn((isLoggedIn) => {
 
 If you want the user to login, you can use the following code:
 
-```cs
+```csharp
 MirrorSDK.StartLogin();
 ```
 

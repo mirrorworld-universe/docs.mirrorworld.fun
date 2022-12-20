@@ -1,0 +1,86 @@
+---
+title: Unity Integration Guide
+---
+
+# Unity Integration Guide
+
+This guide will walk you through the setup process for the Mirror World Smart SDK on Unity.
+
+## Step 1 - Create a Developer Account
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+
+## Step 2 - Import the Mirror World SDK
+There are 2 ways to install the Mirror World Unity SDK:
+
+1. One way is to [download the latest release assets](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases) from the official GitHub repository. Import it to your
+project `Assets > Import Package > Custom Package` and select the package
+you just downloaded.
+
+2. You may also search for the package in the [Unity Assets Store](https://assetstore.unity.com/) with
+the keyword "`com.mirror.sdk`" and import it.
+
+## Step 3 - Configuration with adding prefab manually
+
+![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/blob/master/CaseImage/case_prefab_example.jpg?raw=true)
+
+Explanation of the fields above image:
+
+- **Api Key**: Input your API key from the [developer dashboard](https://app.mirrorworld.fun).
+- **Debug Mode**: If you check this, you will be able to see all the console output and error notices
+on the console.
+- **Environment**: Choose the environment you want to use.
+- **Debug Email and Password**: In the pre-release beta, you can only login to the SDK using this function.
+
+<br />
+
+<CH.Scrollycoding>
+
+  ## Step 4 - Initialize the Mirror World SDK
+
+  In your project, you may now initialize the Mirror World SDK as a `GameObject`.
+
+  ```csharp SomeActivity.cs
+  GameObject mirrorObj = new GameObject("MirrorSDK", typeof(MirrorSDK));
+  string apiKey = "your api key";
+  bool debugMode = true;
+  Environment environment = Environment.StagingDevnet;
+
+  MirrorSDK.InitSDK(apiKey, mirrorObj, debugMode, environment);
+  ```
+
+  ---
+
+  ## Step 5 - Authenticate the user
+
+  For the best user experience, guide the user to authenticate when they open your app.
+
+  You may want to know whether this user needs to log in. You can call the `IsLoggedIn` method to determine this.
+  A boolean result is returned in the callback.
+
+  ```csharp AuthenticationCheck.cs
+  MirrorSDK.IsLoggedIn((isLoggedIn) => {
+    Debug.Log("isLoggedIn:" + isLoggedIn);
+  });
+  ```
+
+  ---
+  If you want the user to login, you can use the following code:
+
+  ```csharp StartAuthentication.cs
+  MirrorSDK.StartLogin();
+  ```
+
+</CH.Scrollycoding>
+
+## Going Further
+Great! At this point you're pretty much ready to start doing building with the
+Unity SDK for Mirror World. There are a few things you can do to proceed from here:
+
+- Explore the [Full Unity API Reference](/api-reference/unity) to learn more.
+- Explore our [SDK Tutorials](/tutorials).
+- Looking for inspiration? Take a look at our [Recipes](/recipes) or see what builders are building in the [Showcase](/showcase).
+- [Join the Mirror World Developer community](https://mirrorworld.fun/discord)! We're a vibrant community of builders!
+
+
+### Getting Support
+If you're stuck or just looking for support, you may also [schedule a support call](https://mirrorworld.fun/support) with our team.

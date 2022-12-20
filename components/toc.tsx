@@ -39,7 +39,8 @@ export function TableOfContents({
           >
             <NextLink href={getSlug(item.slug)} passHref>
               <a>
-                <chakra.span mr="1">{item.lvl > 2 ? "—" : null}</chakra.span>{" "}
+                <chakra.span mr="1">{item.lvl > 2 ? "—" : null}</chakra.span>
+                {""}
                 {item.content}
               </a>
             </NextLink>

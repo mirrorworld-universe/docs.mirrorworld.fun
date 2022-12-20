@@ -6,8 +6,15 @@ export const globalStyles: SystemStyleObject = {
     textRendering: "geometricprecision",
     textSizeAdjust: "100%",
     WebkitFontSmoothing: "antialiased",
-    bg: "dark",
-    color: "white",
+    bg: "body",
+    color: "text",
+    // transition: "color 0.2s ease-in-out, background 0.2s ease-in-out",
+    transitionProperty: "background",
+    transitionDuration: "normal",
+  },
+
+  "pre, code, kbd, samp": {
+    fontFamily: "mono",
   },
 
   "*": {
@@ -23,9 +30,13 @@ export const globalStyles: SystemStyleObject = {
 
   ".has-highlight": {
     mark: {
-      color: "mirror.500",
+      color: "mirror.600",
       fontWeight: "semibold",
     },
+  },
+
+  ".ch-scrollycoding-step-content[data-selected]": {
+    borderColor: "integrationSelected",
   },
 
   table: {

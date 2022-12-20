@@ -1,0 +1,23 @@
+---
+title: QueryUser
+---
+
+# `QueryUser`
+
+Check the user's info, then we can get the user's base information such as wallet address and so on.
+
+```java
+String email = "youremail@xxx.com";
+
+MirrorSDK.getInstance().QueryUser(userEmail, new FetchUserListener() {
+    @Override
+    public void onUserFetched(UserResponse userResponse) {
+
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+
+    }
+});
+```
