@@ -80,62 +80,6 @@ MirrorSDK.OpenWalletPage(logoutAction);
 ```
 If you don't need to do anything if user clicked logout button in wallet page,passing 'logoutAction' to this function would be ok.
 
-### User get their NFTs
-To get user's NFTs,you can call API 'GetNFTsOwnedByAddress' following the below code:
-
-```cs
-List<string> owners = new List<string>();
-list.Add("owner1_wallet_address");
-list.Add("owner2_wallet_address");
-
-MirrorSDK.GetNFTsOwnedByAddress(owners, (res) => {
-    List<SingleNFTResponseObj> = res.nfts;
-    //todo: anything with these NFTs
-    
-});
-```
-
-Or you can fetch NFTs another way:
-- FetchNFTsByMintAddress
-- FetchNFTsByCreatorAddresses
-- FetchNFTsByUpdateAuthorities
-
-You can refer to these APIs on [API document](https://docs.mirrorworld.fun/unity/unity-api).
-
-### Transfer & List
-#### Transfer
-If you want to transfer a NFT to another wallet,you can use this code:
-
-```cs
-string walletAddress = "some_wallet_address";
-string mintAddress = "NFT_mint_address";
-
-MirrorSDK.TransferNFT(mintAddress,walletAddress,(res)=> {
-    Debug.Log("Result of tranfering:"+res):
-});
-```
-
-#### List
-If you want to list an NFT on a marketplace,you may use these code:
-
-```cs
-string mintAddress = "mint_address";
-decimal price = 1;
-string confirmation = Confirmation.Default;
-string auctionHouse = "your_market_auction_house";
-
-MirrorSDK.ListNFT(mintAddress,price,auctionHouse,confirmation,(response) => {
-    long resCode = response.Code;
-    ListingResponse result = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
-});
-```
-
-- The param 'auctionHouse' means which market you want to list.
-- The param 'conformation' is a confirmation with chain,you can learn it from its explanation in this document.
-
 ### Confirmation
 When we call some API of SDK, you are allowed to pass a param named 'confirmation' to it.
 You can use all the confirmation we provide in 'Confirmation' enum. Here is an explanation for every kind of them:
