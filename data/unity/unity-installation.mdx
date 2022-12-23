@@ -83,15 +83,11 @@ If you don't need to do anything if user clicked logout button in wallet page,pa
 ### Confirmation
 When we call some API of SDK, you are allowed to pass a param named 'confirmation' to it.
 You can use all the confirmation we provide in 'Confirmation' enum. Here is an explanation for every kind of them:
-- Default
-If you pass this kind of confirmation to an API,it will use a default confirmation to handle this call,most of the time,it equals 'Confirmed'.
-- Finalized:
-If you use this, API will wait for Solana to confirm the transaction before returning the HTTP response to you.
+- `Default`: If you pass this kind of confirmation to an API,it will use a default confirmation to handle this call,most of the time,it equals 'Confirmed'.
+- `Finalized`: If you use this, API will wait for Solana to confirm the transaction before returning the HTTP response to you.
 So the time will be longer more or less.
-- Confirmed:
- It is a fairly quick response to the user and is a reasonable promise that the transaction if processed, will be eventually finalized after a certain number of confirmations by the validator network.
-- Processed:
-The node will query its most recent block. Note that the block may still be skipped by the cluster.
+- `Confirmed`: It is a fairly quick response to the user and is a reasonable promise that the transaction if processed, will be eventually finalized after a certain number of confirmations by the validator network.
+- `Processed`: The node will query its most recent block. Note that the block may still be skipped by the cluster.
 
 ### Package
 You need to do some configuation if you want to package your app.
