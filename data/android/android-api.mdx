@@ -1,406 +1,424 @@
-# Android API Reference
+***
+
+title: Unity Full API Reference
+description: Full Unity API Reference
+-------------------------------------
+
+# Unity API Reference v1.3.0
 
 ## Authentication Methods
 
-### StartLogin
+All authentication methods on the Unity SDK
 
-Calling this API would pop up a dialog, user can finish the login flow on it. In this dialog, the user can login with a third method like google, twitter. Or the user can login with the email which is registered on our website.
+### `startLogin`
+
+Call up the login web page. If the user finishes the flow, the action will be called.
 
 ```java
-MirrorSDK.getInstance().StartLogin(new LoginListener() {
-    @Override
-    public void onLoginSuccess() {
-
-    }
-
-    @Override
-    public void onLoginFail() {
-
-    }
+MirrorWorld.startLogin((loginResponse)=> {
+    Debug.Log("Login result:" + loginResponse.ToString());
 });
 ```
 
-### CheckAuthenticated
+### `loginWithEmail`
 
-Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
+Logs in a user with email and password.
 
 ```java
-MirrorSDK.getInstance().CheckAuthenticated(new BoolListener() {
+MirrorWorld.loginWithEmail(debugEmail, debugPassword, (response) =>
+{
+    long resCode = response.Code;
+    LoginResponse details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `logout`
+
+Logout current account
+
+```java
+MirrorWorld.logout(new BoolListener() {
     @Override
     public void onBool(boolean boolValue) {
-        Log.i("MyApp","This device's login state is:" + boolValue);
+        Log.d("Logout result:"+boolValue);
     }
 });
 ```
 
-### SetDebug
+### `openWallet`
 
-In this mode, the developer can see details in the whole flow.
-
-```java
-MirrorSDK.getInstance().SetDebug(true);
-```
-
-### SetApiKey
-
-Set the API key that the current app uses. You can find it when you create a project on our website.
+Open wallet page.
+The param is a callback which will be called when the user clicks the 'Logout' button on the wallet page.
 
 ```java
-String apiKey = "Your api key";
-
-MirrorSDK.getInstance().SetAppID(apiKey);
-```
-
-### setWebviewNotice
-Our login page is not compatible with some low version webview.So when the target webview is lower than the limit, we will show notice.
-
-```java
-String notice = "Please update your webview.";
-
-MirrorSDK.getInstance().setWebviewNotice(notice);
-```
-
-## Wallet Methods
-
-### OpenWallet
-
-Open a webview that would show the wallet page.
-
-```java
-MirrorSDK.getInstance().OpenWallet();
-```
-
-### GetAccessToken
-
-Get an access token so that users can visit APIs.
-
-```java
-Activity activity;
-
-MirrorSDK.getInstance().GetAccessToken(activityContext, new MirrorCallback() {
+MirrorWorld.openWallet(new MirrorCallback() {
     @Override
     public void callback(String result) {
-        Log.i("MyApp","Access token is:" + result);
+        Log.d("MirrorSDK","User logout from wallet page.");
     }
 });
 ```
 
-### FetchUser
-Try to get the current user's details.
+### `isLoggedIn`
 
+Check a user if logged in.
 ```java
-MirrorSDK.getInstance().FetchUser(new FetchUserListener() {
-                @Override
-                public void onUserFetched(UserResponse userResponse) {
-                   
-                }
-
-                @Override
-                public void onFetchFailed(long code, String message) {
-                   
-                }
-            });
+MirrorWorld.isLoggedIn(new BoolListener() {
+    @Override
+    public void onBool(boolean boolValue) {
+        Log.d("MirrorSDK","User log status:"+boolValue);
+    }
+});
 ```
 
-### QueryUser
+## Query API
 
-Check the user's info, then we can get the user's base information such as wallet address and so on.
+### `fetchUser`
+
+Fetches the current user's object.
 
 ```java
-String email = "youremail@xxx.com";
-
-MirrorSDK.getInstance().QueryUser(userEmail, new FetchUserListener() {
+MirrorWorld.fetchUser(new FetchUserListener() {
     @Override
     public void onUserFetched(UserResponse userResponse) {
-        
+        Log.d("MirrorSDK","Fetched user details:"+userResponse);
     }
 
     @Override
     public void onFetchFailed(long code, String message) {
-       
+        Log.d("MirrorSDK","Fetched user failed.");
     }
+});
+```
+
+### `getTokens`
+
+Get the current user's tokens
+
+```java
+MirrorWorld.getTokens(new GetWalletTokenListener() {
+    @Override
+    public void onSuccess(GetWalletTokenResponse walletTokenResponse) {
+        Log.d("MirrorSDK","Get wallet token success!");
+    }
+
+    @Override
+    public void onFailed(long code, String message) {
+        Log.d("MirrorSDK","Get tokens failed.");
+    }
+});
+```
+
+### `getTransactions`
+
+Get the transactions of user's wallet.
+
+```java
+float price = 0.1f;
+string nextBefore = "nextBefore";
+
+MirrorWorld.getTransactions(limit, before, new GetWalletTransactionListener() {
+    @Override
+    public void onSuccess(GetWalletTransactionsResponse walletTransactionsResponse) {
+        Log.d("Result","GetTransactions success! count is "+walletTransactionsResponse.count);
+    }
+
+    @Override
+    public void onFailed(long code, String message) {
+        Log.d("Result","Get failed,message:"+message);
+    }
+});
+```
+
+### `getNFTDetails`
+
+Fetches an NFT's details by mint address
+
+```java
+string mintAddress = "mint_address";
+
+MirrorWorld.getNFTDetails(mint_address, new FetchSingleNFTListener() {
+    @Override
+    public void onFetchSuccess(SingleNFTResponse nftObject) {
+        Log.d("Result","NFT details is:"+MirrorGsonUtils.getInstance().toJson(nftObject));
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        Log.d("Result",message);
+    }
+});
+```
+
+### `getNFTsOwnedByAddress`
+
+Fetches the NFTs owned by a specific address.
+
+```java
+List<string> owners = new List<string>();
+owners.Add("owner_address_1");
+owners.Add("owner_address_2");
+
+long limit = 1;
+long offset = 1;
+
+MirrorWorld.getNFTsOwnedByAddress(owners,limit,offset,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+## Wallet Methods
+
+### `transferSPLToken`
+
+Transfer SPL token to a recipient
+
+```java
+ulong amount = 1;
+string publicKey = "public_key";
+
+MirrorWorld.transferSPLToken(amount,publicKey,(response) => {
+    long resCode = response.Code;
+    TransferTokenResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `transferSol`
+
+Transfer SOL to wallet address
+
+```java
+ulong amount = 1;
+string publicKey = "public_key";
+string confirmation = Confirmation.Finalized;
+
+MirrorWorld.transferSol(amount,publicKey,confirmation,(response) => {
+    long resCode = response.Code;
+    TransferSolResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
 ## Marketplace Methods
 
-### FetchSingleNFT
+### `createVerifiedCollection`
 
-Fetch the details of an NFT.
+Create a new Verified Collection
 
 ```java
-String mintAddress = "nft_mint_address";
+string collectionName = "TopCollection";
+string collectionSymbol = "Top";
+string collectionUrl = "https://example.com/path/detail.json";
+string confirmation = Confirmation.Finalized;
 
-MirrorSDK.getInstance().GetNFTDetails(mintAddress, new FetchSingleNFTListener() {
-
-    @Override
-    public void onFetchSuccess(SingleNFTResponse nftResponse) {
-        
-    }
-
-    @Override
-    public void onFetchFailed(long code, String message) {
-
-    }
+MirrorWorld.createVerifiedCollection(collectionName,collectionSymbol,collectionUrl,confirmation,(response) => {
+    long resCode = response.Code;
+    MintResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### MintNewNFTOnCollection
+### `mintNFT`
 
-Mint a new NFT.
+Mint NFT into collection.
+The "mintID" parameter is nullable, server will respond with "minting is proceeding, please wait for it" if it detects that a mintID has been minted already.
 
 ```java
-String collectionAddress = "collection_address";
-String mintName = "NewNFT";
-String mintSymbol = "Symbol";
-String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
+string parentCollection = "collection_address";
+string collectionName = "NewNFT";
+string collectionSymbol = "NFT";
+string collectionUrl = "https://example.com/path/detail.json";
+string confirmation = Confirmation.Default;
+string mintID = "randomID";
 
-MirrorSDK.getInstance().MirrorSDK.getInstance().MintNFT(collectionAddress, mintName, mintSymbol, metaDataUri, new MintNFTListener() {
-    @Override
-    public void onMintSuccess(MintResponse userResponse) {
-    
-    }
-    
-    @Override
-    public void onMintFailed(long code, String message) {
-    
-    }
+MirrorWorld.mintNFT(parentCollection,collectionName,collectionSymbol,collectionUrl,confirmation,mintID,(response) => {
+    long resCode = response.Code;
+    MintResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### CreateVerifiedCollection
+### `listingNFT`
 
-Mint parent NFT collection.
+List NFT on Mirror World Marketplace.
+AuctionHouse: If you give the auctionHouse param, you can specify which market you want to list in.
 
 ```java
-String mintName = "NewNFT";
-String mintSymbol = "Symbol";
-String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
+string mintAddress = "mint_address";
+decimal price = 1;
+string confirmation = Confirmation.Default;
+string auctionHouse = "your_market_auction_house";
 
-MirrorSDK.getInstance().CreateVerifiedCollection(mintName, mintSymbol, metaDataUri, new CreateTopCollectionListener() {
-    @Override
-    public void onCreateSuccess(MintResponse mintResponse) {
-        
-    }
-
-    @Override
-    public void onCreateFailed(long code, String message) {
-       
-    }
+MirrorWorld.listingNFT(mintAddress,price,auctionHouse,confirmation,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### CreateVerifiedSubCollection
+### `buyNFT`
 
-Mint a child NFT collection.
+Purchase NFT on Mirror World Marketplace
 
 ```java
-String collectionAddress = "collection_address";
-String mintName = "NewNFT";
-String mintSymbol = "Symbol";
-String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
+string mintAddress = "mint_address";
+decimal price = 1;
+string auctionHouse = "your_market_auction_house";
 
-MirrorSDK.getInstance().CreateVerifiedSubCollection(collectionAddress,mintName, mintSymbol, metaDataUri, new CreateSubCollectionListener() {
-    @Override
-    public void onCreateSuccess(MintResponse userResponse) {
-       
-    }
-
-    @Override
-    public void onCreateFailed(long code, String message) {
-        
-    }
+MirrorWorld.buyNFT(mintAddress,price,auctionHouse,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### TransferNFTToAnotherSolanaWallet
+### `updateNFT`
 
-Transfer NFT to another Sol wallet.
+Update NFT Listing on Mirror World Marketplace
 
 ```java
-String mintAddress = "mint_address";
-String toWalletAddress = "wallet_address";
+string mintAddress = "mint_address";
+decimal price = 1;
+string auctionHouse = "your_market_auction_house";
+string confirmation = Confirmation.Default;
 
-MirrorSDK.getInstance().TransferNFTToAnotherSolanaWallet(mintAddress,toWalletAddress, new TransferNFTListener() {
-    @Override
-    public void onTransferSuccess(ListingResponse listingResponse) {
-       
-    }
-
-    @Override
-    public void onTransferFailed(long code, String message) {
-      
-    }
+MirrorWorld.updateNFT(mintAddress,price,auctionHouse,confirmation,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### CancelNFTListing
+### `cancelNFTListing`
 
-Cancel listing of NFT.
+Cancel listing NFT on Mirror World Marketplace
 
 ```java
-String mintAddress = "mint_address";
-Double price = 123.99;
+string mintAddress = "mint_address";
+decimal price = 1;
+string auctionHouse = "your_market_auction_house";
+string confirmation = Confirmation.Default;
 
-MirrorSDK.getInstance().CancelListingOfNFT(mintAddress,price, new CancelListListener() {
-    @Override
-    public void onCancelSuccess(ListingResponse listingResponse) {
-    
-    }
-
-    @Override
-    public void onCancelFailed(long code, String message) {
-        
-    }
+MirrorWorld.cancelNFTListing(mintAddress,price,auctionHouse,confirmation,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### BuyNFT
+### `transferNFT`
 
-Buy NFT from the marketplace.
+Transfer NFT from holder's wallet to another address
 
 ```java
-String mintAddress = "mint_address";
-Double price = 123.99;
+string mintAddress = "mint_address";
+string toWallet = "wallet_address";
 
-MirrorSDK.getInstance().BuyNFT(mintAddress,price, new BuyNFTListener() {
-    @Override
-    public void onBuySuccess(ListingResponse listingResponse) {
-        holder.mResultView.setText(listingResponse.mint_address);
-    }
-
-    @Override
-    public void onBuyFailed(long code, String message) {
-        holder.mResultView.setText(message);
-    }
+MirrorWorld.transferNFT(mintAddress,toWallet,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### UpdateNFTListing
+### `fetchNFTsByMintAddresses`
 
-Update the list of NFTs.
+Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
+are provided
 
 ```java
-String mintAddress = "mint_address";
-Double price = 123.99;
+List<string> addresses = new List<string>();
+addresses.Add("mint_address_1");
+addresses.Add("mint_address_2");
 
-MirrorSDK.getInstance().UpdateNFTListing(mintAddress,price, new UpdateListListener() {
-    @Override
-    public void onUpdateSuccess(ListingResponse listingResponse) {
-        holder.mResultView.setText("UpdateNFTListing success! New price:"+listingResponse.price);
-    }
-
-    @Override
-    public void onUpdateFailed(long code, String message) {
-        holder.mResultView.setText(MirrorStringUtils.GetFailedNotice("UpdateNFTListing",code,message));
-    }
+MirrorWorld.fetchNFTsByMintAddresses(addresses,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### ListNFT
+### `fetchNFTsByCreatorAddresses`
 
-Get the list of NFTs on the marketplace.
-
-```java
-String mintAddress = "mint_address";
-Double price = 123.99;
-
-MirrorSDK.getInstance().ListNFT(mintAddress,price, new ListNFTListener() {
-    @Override
-    public void onListSuccess(ListingResponse listingResponse) {
-       
-    }
-
-    @Override
-    public void onListFailed(long code, String message) {
-        
-    }
-});
-
-```
-
-### FetchNFTsByUpdateAuthorities
-
-Get a collection of NFT by authority addresses.
+Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose `creatorAddresses`
+are provided
 
 ```java
-List<String> list = new ArrayList<>();
-list.add("authority_address_1");
-list.add("authority_address_2");
-Double limit = 2;
-Double offset = "0.23";
+List<string> creators = new List<string>();
+creators.Add("address_1");
+creators.Add("address_2");
 
-MirrorSDK.getInstance().FetchNFTsByUpdateAuthorities(list,limit,offset, new MirrorCallback() {
-    @Override
-    public void callback(String result) {
-        
-    }
+MirrorWorld.fetchNFTsByCreatorAddresses(creators,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### FetchNFTsByCreatorAddresses
+### `fetchNFTsByUpdateAuthorities`
 
-Get a collection of NFTs by creator addresses.
+Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `updateAuthorities`
+are provided
 
 ```java
-List<String> list = new ArrayList<>();
-list.add("authority_address_1");
-list.add("authority_address_2");
-Double limit = 2;
-Double offset = "0.23";
+List<string> addresses = new List<string>();
+addresses.Add("address_1");
+addresses.Add("address_2");
 
-MirrorSDK.getInstance().FetchNFTsByCreatorAddresses(list,limit,offset, new MirrorCallback() {
-    @Override
-    public void callback(String result) {
-        
-    }
+MirrorWorld.fetchNFTsByUpdateAuthorities(addresses,creators,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
 
-### FetchNFTsByOwnerAddresses
+### `fetchNFTsByOwnerAddresses`
 
-Get a collection of NFTs by mint addresses.
-
-```java
-List<String> list = new ArrayList<>();
-list.add("mint_address_1");
-list.add("mint_address_2");
-
-MirrorSDK.getInstance().FetchNFTsByOwnerAddresses(list, new FetchByOwnerListener() {
-    @Override
-    public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
-        holder.mResultView.setText(multipleNFTsResponse.nfts.size());
-    }
-
-    @Override
-    public void onFetchFailed(long code, String message) {
-        holder.mResultView.setText(message);
-    }
-});
-```
-
-# Authentication Tips
-
-## User login with different social accounts.
-
-Every kind of social account login will provide a new wallet for users. These wallets are not the same.
-
-## Login invalidation
-
-Token saved locally by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If the token is invalidated, we should guide users to login again.
-For example, you can follow the logic like this:
+Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `owners`
+are provided
 
 ```java
-MirrorSDK.getInstance().CheckAuthenticated(new BoolListener() {
-    @Override
-    public void onBool(boolean boolValue) {
-        boolean isLoggedIn = boolValue;
-        if(isLoggedIn){
-            //todo: enter content directly
-        }else {
-            //todo: show a button leading the user to login.
-        }
-    }
+List<string> addresses = new List<string>();
+addresses.Add("address_1");
+addresses.Add("address_2");
+
+MirrorWorld.fetchNFTsByOwnerAddresses(addresses,creators,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
 });
 ```
-
