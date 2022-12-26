@@ -44,10 +44,10 @@ get_apikey();
 
 ```cs
 use mirrorworld_sdk_rust::{
-    login_with_email,
+    complete_signup,
 };
 
-let res = login_with_email({
+let res = complete_signup({
     LoginWithEmailParam {
         email: "your email",
         code: "your email code",
@@ -148,9 +148,9 @@ fetch_user();
 
 ```cs
 use mirrorworld_sdk_rust::{
-    get_token,
+    get_tokens,
 };
-get_token();
+get_tokens();
 
 # response
 {
