@@ -145,7 +145,7 @@ export function TopNavigation(props: any) {
                 {...(["guides"].includes(router.pathname.split("/")[1]) &&
                   activeStyles)}
               >
-                Recipes
+                Guides
               </Button>
             </Link>
             {/*<Link href={"/authentication"}>*/}

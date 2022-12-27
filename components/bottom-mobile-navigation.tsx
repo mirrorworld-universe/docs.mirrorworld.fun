@@ -82,7 +82,7 @@ export function BottomMobileNavigation() {
         <Link href={"/guides"}>
           <Stack alignItems="center">
             <IconButton
-              aria-label="Navigate to Recipes"
+              aria-label="Navigate to Guides"
               variant="nav"
               size="md"
               minWidth="unset"
@@ -95,7 +95,7 @@ export function BottomMobileNavigation() {
             >
               Recipes
             </IconButton>
-            <Text fontSize="xs">Recipes</Text>
+            <Text fontSize="xs">Guides</Text>
           </Stack>
         </Link>
         <Link href={"/api-reference"}>
