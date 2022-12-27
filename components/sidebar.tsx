@@ -64,12 +64,14 @@ function DocLink(props: DocLinkProps) {
       if (linkRef.current) {
         linkRef.current.scrollIntoView({
           behavior: "smooth",
+          block: "center",
         })
       }
     }
   }, [router.asPath])
 
   return (
+    // @ts-ignore
     <chakra.div ref={linkRef}>
       <HStack key={asPath} as="li" fontSize="sm" {...rest}>
         <Link href={href} passHref>
