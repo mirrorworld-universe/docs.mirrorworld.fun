@@ -45,10 +45,10 @@ Completes user signup with email
 
 ```rust
 use mirrorworld_sdk_rust::{
-    login_with_email,
+    complete_signup,
 };
 
-let res = login_with_email({
+let res = complete_signup({
     LoginWithEmailParam {
         email: "your email",
         code: "your email code",
@@ -152,9 +152,9 @@ Get wallet tokens.
 
 ```rust
 use mirrorworld_sdk_rust::{
-    get_token,
+    get_tokens,
 };
-get_token();
+get_tokens();
 
 // response
 {
@@ -249,7 +249,7 @@ let response = if let Ok(Some(response)) = result {
 use mirrorworld_sdk_rust::{
     get_nft_details
 };
-let result = get_nft_details("your token");
+let result = get_nft_details("mint_address");
 let response = if let Ok(Some(response)) = result {
     response
 } else {
