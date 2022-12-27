@@ -4,12 +4,14 @@ title: FetchNFTsByUpdateAuthorities
 
 # `FetchNFTsByUpdateAuthorities`
 
-Get a collection of NFT by authority addresses.
+Fetch a list of NFTs by authority addresses.
 
 ```swift
+public let MWSDK = MirrorWorldSDK.share
+
 MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offset: 0.1) { data in
-            self.Log(data)
-        } onFailed: { code, message in
-            self.Log("\(item):failed:\(code),\(message ?? "")")
-        }
+      self.Log(data)
+  } onFailed: { code, message in
+      self.Log("\(item):failed:\(code),\(message ?? "")")
+  }
 ```

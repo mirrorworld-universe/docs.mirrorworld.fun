@@ -7,11 +7,11 @@ Fetch the details of an NFT.
 
 
 ```swift
+public let MWSDK = MirrorWorldSDK.share
 
-MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
+MWSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
     self.Log(data)
 } onFailed: { code, message in
     self.Log("\(item):failed:\(code),\(message ?? "")")
 }
-
 ```

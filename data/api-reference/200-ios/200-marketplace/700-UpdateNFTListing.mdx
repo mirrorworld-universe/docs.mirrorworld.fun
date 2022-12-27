@@ -4,9 +4,11 @@ title: UpdateNFTListing
 
 # `UpdateNFTListing`
 
-Update the list of NFTs.
+Update the listing of an NFT on the marketplace.
 
 ```swift
+public let MWSDK = MirrorWorldSDK.share
+
 MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
         self.Log(data)
     } onFailed: { code, message in

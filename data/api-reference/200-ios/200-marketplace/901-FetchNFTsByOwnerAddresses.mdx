@@ -1,12 +1,14 @@
 ---
-title: FetchNFTsByCreatorAddresses
+title: FetchNFTsByOwnerAddress
 ---
 
-# `FetchNFTsByCreatorAddresses`
+# `FetchNFTsByOwnerAddress`
 
-Get a collection of NFTs by creator addresses.
+Fetch a list of NFTs by owner addresses.
 
 ```swift
+public let MWSDK = MirrorWorldSDK.share
+
 MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
         self.Log(data)
     } onFailed: { code, message in

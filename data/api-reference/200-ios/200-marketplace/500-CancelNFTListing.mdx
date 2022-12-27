@@ -7,9 +7,11 @@ title: CancelNFTListing
 Cancel listing of NFT.
 
 ```swift
+public let MWSDK = MirrorWorldSDK.share
+
 MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
-        self.Log(data)
-    } onFailed: { code, message in
-        self.Log("\(item):failed:\(code),\(message ?? "")")
-    }
+    self.Log(data)
+} onFailed: { code, message in
+    self.Log("\(item):failed:\(code),\(message ?? "")")
+}
 ```
