@@ -1,8 +1,9 @@
 ---
 title: Mirror World Unity SDK Installation
+description: Mirror World Unity SDK Installation
 ---
 
-# Mirror World Unity SDK
+# Mirror World Unity SDK Installation
 
 >Mirror World's Official Unity SDK
 ## Getting started
@@ -91,7 +92,7 @@ So the time will be longer more or less.
 - `Processed`: The node will query its most recent block. Note that the block may still be skipped by the cluster.
 
 ### Package
-You need to do some configuration if you want to package your app.
+You need to do some configuation if you want to package your app.
 
 #### Android
 
@@ -99,7 +100,7 @@ You need to do some configuration if you want to package your app.
 Find File -> Build and settings -> Choose Android platform (If you are not) -> Click switch platform button.`
 
 **Edit Androidmanifest.xml**
-Find:File->Build and settings->Player Settings->Publishing Settings->Build->Custom Main Manifest
+Find:File->Build and settings->Player Settings->Publishing Settins->Build->Custom Main Manifest
 
 Check it, and you may see the path of this file.Let's edit it.
 
@@ -217,7 +218,7 @@ Second, add this to openUrl function:
 [[MirrorWorldSDK share] handleOpenWithUrl:url];
 ```
 
-So, finally your openUrl function may looked like this:
+So, finnaly your openUrl function may looked like this:
 ```swift
 - (BOOL)application:(UIApplication*)app openURL:(NSURL*)url options:(NSDictionary<NSString*, id>*)options
 {

@@ -86,7 +86,6 @@ MirrorWorld.fetchUser(new FetchUserListener() {
     public void onUserFetched(UserResponse userResponse) {
         Log.d("MirrorSDK","Fetched user details:"+userResponse);
     }
-
     @Override
     public void onFetchFailed(long code, String message) {
         Log.d("MirrorSDK","Fetched user failed.");
@@ -104,7 +103,6 @@ MirrorWorld.getTokens(new GetWalletTokenListener() {
     public void onSuccess(GetWalletTokenResponse walletTokenResponse) {
         Log.d("MirrorSDK","Get wallet token success!");
     }
-
     @Override
     public void onFailed(long code, String message) {
         Log.d("MirrorSDK","Get tokens failed.");
@@ -119,13 +117,11 @@ Get the transactions of user's wallet.
 ```java
 float price = 0.1f;
 string nextBefore = "nextBefore";
-
 MirrorWorld.getTransactions(limit, before, new GetWalletTransactionListener() {
     @Override
     public void onSuccess(GetWalletTransactionsResponse walletTransactionsResponse) {
         Log.d("Result","GetTransactions success! count is "+walletTransactionsResponse.count);
     }
-
     @Override
     public void onFailed(long code, String message) {
         Log.d("Result","Get failed,message:"+message);
@@ -139,13 +135,11 @@ Fetches an NFT's details by mint address
 
 ```java
 string mintAddress = "mint_address";
-
 MirrorWorld.getNFTDetails(mint_address, new FetchSingleNFTListener() {
     @Override
     public void onFetchSuccess(SingleNFTResponse nftObject) {
         Log.d("Result","NFT details is:"+MirrorGsonUtils.getInstance().toJson(nftObject));
     }
-
     @Override
     public void onFetchFailed(long code, String message) {
         Log.d("Result",message);
@@ -161,10 +155,8 @@ Fetches the NFTs owned by a specific address.
 List<string> owners = new List<string>();
 owners.Add("owner_address_1");
 owners.Add("owner_address_2");
-
 long limit = 1;
 long offset = 1;
-
 MirrorWorld.getNFTsOwnedByAddress(owners,limit,offset,(response) => {
     long resCode = response.Code;
     MultipleNFTsResponse details = response.Data;
@@ -183,7 +175,6 @@ Transfer SPL token to a recipient
 ```java
 ulong amount = 1;
 string publicKey = "public_key";
-
 MirrorWorld.transferSPLToken(amount,publicKey,(response) => {
     long resCode = response.Code;
     TransferTokenResponse result = response.Data;
@@ -201,7 +192,6 @@ Transfer SOL to wallet address
 ulong amount = 1;
 string publicKey = "public_key";
 string confirmation = Confirmation.Finalized;
-
 MirrorWorld.transferSol(amount,publicKey,confirmation,(response) => {
     long resCode = response.Code;
     TransferSolResponse result = response.Data;
@@ -222,7 +212,6 @@ string collectionName = "TopCollection";
 string collectionSymbol = "Top";
 string collectionUrl = "https://example.com/path/detail.json";
 string confirmation = Confirmation.Finalized;
-
 MirrorWorld.createVerifiedCollection(collectionName,collectionSymbol,collectionUrl,confirmation,(response) => {
     long resCode = response.Code;
     MintResponse result = response.Data;
@@ -244,7 +233,6 @@ string collectionSymbol = "NFT";
 string collectionUrl = "https://example.com/path/detail.json";
 string confirmation = Confirmation.Default;
 string mintID = "randomID";
-
 MirrorWorld.mintNFT(parentCollection,collectionName,collectionSymbol,collectionUrl,confirmation,mintID,(response) => {
     long resCode = response.Code;
     MintResponse result = response.Data;
@@ -264,7 +252,6 @@ string mintAddress = "mint_address";
 decimal price = 1;
 string confirmation = Confirmation.Default;
 string auctionHouse = "your_market_auction_house";
-
 MirrorWorld.listingNFT(mintAddress,price,auctionHouse,confirmation,(response) => {
     long resCode = response.Code;
     ListingResponse result = response.Data;
@@ -282,7 +269,6 @@ Purchase NFT on Mirror World Marketplace
 string mintAddress = "mint_address";
 decimal price = 1;
 string auctionHouse = "your_market_auction_house";
-
 MirrorWorld.buyNFT(mintAddress,price,auctionHouse,(response) => {
     long resCode = response.Code;
     ListingResponse result = response.Data;
@@ -301,7 +287,6 @@ string mintAddress = "mint_address";
 decimal price = 1;
 string auctionHouse = "your_market_auction_house";
 string confirmation = Confirmation.Default;
-
 MirrorWorld.updateNFT(mintAddress,price,auctionHouse,confirmation,(response) => {
     long resCode = response.Code;
     ListingResponse result = response.Data;
@@ -320,7 +305,6 @@ string mintAddress = "mint_address";
 decimal price = 1;
 string auctionHouse = "your_market_auction_house";
 string confirmation = Confirmation.Default;
-
 MirrorWorld.cancelNFTListing(mintAddress,price,auctionHouse,confirmation,(response) => {
     long resCode = response.Code;
     ListingResponse result = response.Data;
@@ -337,7 +321,6 @@ Transfer NFT from holder's wallet to another address
 ```java
 string mintAddress = "mint_address";
 string toWallet = "wallet_address";
-
 MirrorWorld.transferNFT(mintAddress,toWallet,(response) => {
     long resCode = response.Code;
     ListingResponse result = response.Data;
@@ -356,7 +339,6 @@ are provided
 List<string> addresses = new List<string>();
 addresses.Add("mint_address_1");
 addresses.Add("mint_address_2");
-
 MirrorWorld.fetchNFTsByMintAddresses(addresses,(response) => {
     long resCode = response.Code;
     MultipleNFTsResponse result = response.Data;
@@ -375,7 +357,6 @@ are provided
 List<string> creators = new List<string>();
 creators.Add("address_1");
 creators.Add("address_2");
-
 MirrorWorld.fetchNFTsByCreatorAddresses(creators,(response) => {
     long resCode = response.Code;
     MultipleNFTsResponse result = response.Data;
@@ -394,7 +375,6 @@ are provided
 List<string> addresses = new List<string>();
 addresses.Add("address_1");
 addresses.Add("address_2");
-
 MirrorWorld.fetchNFTsByUpdateAuthorities(addresses,creators,(response) => {
     long resCode = response.Code;
     MultipleNFTsResponse result = response.Data;
@@ -413,7 +393,6 @@ are provided
 List<string> addresses = new List<string>();
 addresses.Add("address_1");
 addresses.Add("address_2");
-
 MirrorWorld.fetchNFTsByOwnerAddresses(addresses,creators,(response) => {
     long resCode = response.Code;
     MultipleNFTsResponse result = response.Data;
