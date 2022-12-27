@@ -57,6 +57,7 @@ function DocLink(props: DocLinkProps) {
       href.toString().split("/")[isApiReference ? 2 : 1]
 
     if (!isActive) onClose()
+    else onOpen()
   }, [router.asPath])
 
   return (
@@ -110,7 +111,7 @@ function DocLink(props: DocLinkProps) {
         ) : null}
       </HStack>
       {item.children.length ? (
-        <Collapse in={isOpen || isActivePath(item)}>
+        <Collapse in={isOpen}>
           <chakra.div
             ml={2}
             pl={2}
