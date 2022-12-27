@@ -1,0 +1,22 @@
+---
+title: createVerifiedCollection
+---
+
+# `createVerifiedCollection`
+Create a new Verified Collection
+
+
+```java
+string collectionName = "TopCollection";
+string collectionSymbol = "Top";
+string collectionUrl = "https://example.com/path/detail.json";
+string confirmation = Confirmation.Finalized;
+
+MirrorWorld.createVerifiedCollection(collectionName,collectionSymbol,collectionUrl,confirmation,(response) => {
+    long resCode = response.Code;
+    MintResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

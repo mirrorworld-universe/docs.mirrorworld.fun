@@ -1,0 +1,20 @@
+---
+title: transferSol
+---
+
+# `transferSol`
+Transfer SOL to wallet address
+
+```java
+ulong amount = 1;
+string publicKey = "public_key";
+string confirmation = Confirmation.Finalized;
+
+MirrorWorld.transferSol(amount,publicKey,confirmation,(response) => {
+    long resCode = response.Code;
+    TransferSolResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

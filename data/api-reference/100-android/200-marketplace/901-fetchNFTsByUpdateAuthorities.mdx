@@ -1,0 +1,23 @@
+---
+title: fetchNFTsByUpdateAuthorities
+---
+
+
+### `fetchNFTsByUpdateAuthorities`
+
+Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `updateAuthorities`
+are provided
+
+```java
+List<string> addresses = new List<string>();
+addresses.Add("address_1");
+addresses.Add("address_2");
+
+MirrorWorld.fetchNFTsByUpdateAuthorities(addresses,creators,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
