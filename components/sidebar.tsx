@@ -4,7 +4,7 @@ import { chakra } from "@chakra-ui/system"
 import { Collapse, IconButton, useDisclosure } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
-import React, { useCallback, useEffect, useMemo } from "react"
+import React, { useCallback, useEffect, useMemo, useRef } from "react"
 import { RxCaretDown, RxCaretRight } from "react-icons/rx"
 
 import {
@@ -35,6 +35,8 @@ function DocLink(props: DocLinkProps) {
 
   const { isOpen, onToggle, onOpen, onClose } = useDisclosure()
 
+  const linkRef = useRef<HTMLElement>()
+
   const router = useRouter()
   const isApiReference = useMemo(() => {
     return ["api-reference"].includes(router.pathname.split("/")[1])
@@ -57,11 +59,18 @@ function DocLink(props: DocLinkProps) {
       href.toString().split("/")[isApiReference ? 2 : 1]
 
     if (!isActive) onClose()
-    else onOpen()
+    else {
+      onOpen()
+      if (linkRef.current) {
+        linkRef.current.scrollIntoView({
+          behavior: "smooth",
+        })
+      }
+    }
   }, [router.asPath])
 
   return (
-    <chakra.div>
+    <chakra.div ref={linkRef}>
       <HStack key={asPath} as="li" fontSize="sm" {...rest}>
         <Link href={href} passHref>
           <chakra.a
