@@ -92,7 +92,7 @@ export function Search() {
                           <chakra.li
                             px="3"
                             py="1"
-                            _selected={{ bg: "topNavButtonLayoutActive" }}
+                            _selected={{ bg: "topNavButtonLayoutHover" }}
                             display="flex"
                             alignItems="center"
                             minHeight="14"
