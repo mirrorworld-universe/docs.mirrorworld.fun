@@ -1,11 +1,11 @@
 import { useMDX } from "components/mdx-components"
-import { Features } from "contentlayer/generated"
+import { Solutions } from "contentlayer/generated"
 import DocsLayout from "layouts/docs"
-import { getFeaturesDoc, getFeaturesPaths } from "lib/contentlayer-utils"
+import { getSolutionsDoc, getSolutionsPaths } from "lib/contentlayer-utils"
 import { GetStaticPaths, GetStaticProps } from "next"
 import { NextSeo } from "next-seo"
 
-export default function FeaturesPages({ doc }: { doc: Features }) {
+export default function SolutionsPages({ doc }: { doc: Solutions }) {
   const Component = useMDX(doc.body.code)
   return (
     <>
@@ -16,13 +16,13 @@ export default function FeaturesPages({ doc }: { doc: Features }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: getFeaturesPaths(), fallback: false }
+  return { paths: getSolutionsPaths(), fallback: false }
 }
 
-export const getStaticProps: GetStaticProps<{ doc: Features }> = async (
+export const getStaticProps: GetStaticProps<{ doc: Solutions }> = async (
   ctx,
 ) => {
   const params = ctx.params as any
   const pagePath = params.slug?.join("/") ?? ""
-  return { props: { doc: getFeaturesDoc(pagePath) } }
+  return { props: { doc: getSolutionsDoc(pagePath) } }
 }

@@ -423,16 +423,16 @@ const IntegrationGuide = defineDocumentType(() => ({
   },
 }))
 
-const Features = defineDocumentType(() => ({
-  name: "Features",
-  filePathPattern: "features/**/*.mdx",
+const Solutions = defineDocumentType(() => ({
+  name: "Solutions",
+  filePathPattern: "solutions/**/*.mdx",
   contentType: "mdx",
   fields,
   computedFields: {
     ...computedFields,
     pathname: {
       type: "string",
-      resolve: () => "/features/[slug]",
+      resolve: () => "/solutions/[slug]",
     },
   },
 }))
@@ -454,7 +454,7 @@ const contentLayerConfig = makeSource({
     Showcase,
     FurtherReading,
     SDK,
-    Features,
+    Solutions,
 
     // Tutorials
     AuthenticationTutorials,
