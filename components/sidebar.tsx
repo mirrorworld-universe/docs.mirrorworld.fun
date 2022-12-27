@@ -104,9 +104,7 @@ function DocLink(props: DocLinkProps) {
         </Link>
         {item.children.length ? (
           <Circle p={1} cursor="pointer" onClick={onToggle}>
-            <Icon
-              as={isOpen || isActivePath(item) ? RxCaretDown : RxCaretRight}
-            />
+            <Icon as={isOpen ? RxCaretDown : RxCaretRight} />
           </Circle>
         ) : null}
       </HStack>

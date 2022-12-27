@@ -48,7 +48,7 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
                       <Link
                         isExternal
                         href={doc.author.twitter}
-                        color={"mirror.base"}
+                        color={"textLink"}
                         textDecoration="underline"
                       >
                         {doc.author.name}
