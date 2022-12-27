@@ -13,7 +13,7 @@ export function ApiReferenceNavigation(props: any) {
   const selectedLanguage = useMemo(() => {
     return (
       integrationGuidesConfig.languages.find((l) => {
-        return router.asPath.split("/")[2].startsWith(l.normalizedName)
+        return router.asPath.split("/")[2]?.startsWith(l.normalizedName)
       }) || integrationGuidesConfig.languages[0]
     )
   }, [router.asPath, integrationGuidesConfig, router.pathname])
