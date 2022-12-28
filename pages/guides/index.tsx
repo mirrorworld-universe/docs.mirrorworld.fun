@@ -8,58 +8,93 @@ import {
   HStack,
   Image,
   Tag,
+  TagLabel,
+  AspectRatio,
 } from "@chakra-ui/react"
 import { SkipNavLink } from "../../components/skip-nav"
 import { TopNavigation } from "../../components/top-navigation"
 import { chakra } from "@chakra-ui/system"
-import React from "react"
-import { allGuides } from "contentlayer/generated"
+import React, { useMemo } from "react"
+import { allGuides, Guides } from "contentlayer/generated"
 import { buildUrl } from "cloudinary-build-url"
 import Link from "next/link"
 import { BottomMobileNavigation } from "../../components/bottom-mobile-navigation"
+import { useRouter } from "next/router"
+
+type GroupedArticle = Record<string, Guides[]>
+
+const guides = allGuides?.map((guide) => ({
+  ...guide,
+  shareImage: buildUrl("jbakebwa.dev/twitter-cards/blog-card", {
+    cloud: {
+      cloudName: "xtellar",
+    },
+    transformations: {
+      resize: {
+        width: 1280,
+      },
+      chaining: [
+        {
+          overlay: [
+            `text:${sanitize(
+              "Poppins",
+            )}_64_semibold_line_spacing_-20:${sanitize(guide.title)}`,
+            "c_fit",
+            "co_rgb:DCFF1C",
+            "g_north_west",
+            "x_76",
+            "y_200",
+            "w_960",
+          ].join(","),
+        },
+        {
+          overlay: [
+            `text:${sanitize("Poppins")}_48:${sanitize(
+              guide?.tags?.map((t) => `#${t}`).join(" ") || "",
+            )}`,
+            "c_fit",
+            "co_rgb:FFFFFF",
+            "g_south_west",
+            "y_200",
+            "x_76",
+            "w_960",
+          ].join(","),
+        },
+      ],
+    },
+  }),
+}))
 
 export default function Blog() {
-  const guides = allGuides?.map((guide) => ({
-    ...guide,
-    shareImage: buildUrl("jbakebwa.dev/twitter-cards/blog-card", {
-      cloud: {
-        cloudName: "xtellar",
-      },
-      transformations: {
-        resize: {
-          width: 1280,
-        },
-        chaining: [
-          {
-            overlay: [
-              `text:${sanitize(
-                "Poppins",
-              )}_64_semibold_line_spacing_-20:${sanitize(guide.title)}`,
-              "c_fit",
-              "co_rgb:DCFF1C",
-              "g_north_west",
-              "x_76",
-              "y_200",
-              "w_960",
-            ].join(","),
-          },
-          {
-            overlay: [
-              `text:${sanitize("Poppins")}_48:${sanitize(
-                guide?.tags?.map((t) => `#${t}`).join(" ") || "",
-              )}`,
-              "c_fit",
-              "co_rgb:FFFFFF",
-              "g_south_west",
-              "y_200",
-              "x_76",
-              "w_960",
-            ].join(","),
-          },
-        ],
-      },
-    }),
-  }))
+  const router = useRouter()
+
+  const articlesByTag = useMemo(() => {
+    return guides.reduce((accumulator, currentValue) => {
+      const tags = currentValue.tags as string[]
+      tags.forEach((tag) => {
+        if (accumulator[tag]) {
+          accumulator[tag].push(currentValue)
+        } else {
+          accumulator[tag] = [currentValue]
+        }
+      })
+      return accumulator
+    }, {} as GroupedArticle)
+  }, [guides])
+
+  const articleGroups = useMemo(
+    () => Object.keys(articlesByTag),
+    [articlesByTag],
+  )
+
+  const selectedArticles = useMemo(() => {
+    if (articleGroups.includes(router.query?.tag as string)) {
+      return articlesByTag[router.query?.tag as string]
+    }
+
+    return guides
+  }, [router.query, articlesByTag, articleGroups])
+
   return (
     <Box>
       <SkipNavLink>Skip to main content</SkipNavLink>
@@ -74,8 +109,36 @@ export default function Blog() {
                 the Mirror World SDK. These guides cover topics in Solana
                 fundamentals, NFTs, DeFi, Gaming Development and more!
               </Text>
+
+              <HStack spacing={4}>
+                <Link href={`/guides`}>
+                  <Tag
+                    bg="#dcff1a99"
+                    size="lg"
+                    color="mirror.900"
+                    rounded="full"
+                    cursor="pointer"
+                  >
+                    <TagLabel>All</TagLabel>
+                  </Tag>
+                </Link>
+                {articleGroups.map((article) => (
+                  <Link href={`/guides?tag=${article}`} key={article}>
+                    <Tag
+                      bg="#dcff1a99"
+                      size="lg"
+                      color="mirror.900"
+                      rounded="full"
+                      cursor="pointer"
+                    >
+                      <TagLabel>{article}</TagLabel>
+                    </Tag>
+                  </Link>
+                ))}
+              </HStack>
+
               <SimpleGrid columns={[1, 1, 3]} spacing={10}>
-                {guides?.map((guide, i) => (
+                {selectedArticles?.map((guide, i) => (
                   <Link key={i} href={`/guides/${guide.slug}`}>
                     <Box
                       rounded="md"
@@ -95,7 +158,10 @@ export default function Blog() {
                         })
                       }}
                     >
-                      <Image src={guide.shareImage} alt={guide.title} />
+                      <AspectRatio ratio={1.7}>
+                        {/*@ts-ignore*/}
+                        <Image src={guide.shareImage} alt={guide.title} />
+                      </AspectRatio>
                       <Stack px={4} py={3}>
                         <Heading
                           as={"h3"}
