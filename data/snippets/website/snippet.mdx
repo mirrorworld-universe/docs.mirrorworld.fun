@@ -1,18 +1,18 @@
 ```jsx
 import { useState } from "react";
-import MirrorWorld from "@mirrorworld/web3.js"
+import { MirrorWorld } from "@mirrorworld/web3.js"
 
 export function App() {
   // 1. Initialize Mirror World SDK
   const mirrorworld = new MirrorWorld({
-    apiKey: "SECRET_API_KEY"
+    apiKey: "SECRET_API_KEY",
   })
 
   const [user, setUser] = useState()
 
   // 2. Login user with Social Auth Provider
   async function loginWithGoogle() {
-    const user = await mirrorworld.auth.login("google")
+    const user = await mirrorworld.login()
     setUser(user)
   }
 
@@ -26,7 +26,7 @@ export function App() {
       {/* 3. Display user wallet address if logged in */}
       {user && (
         <div>
-          Welcome, {user.sol_address}!
+          Welcome, {user.wallet.sol_address}!
         </div>
       )}
     </div>

@@ -10,6 +10,8 @@ import {
   allResources,
   allJavaScripts,
   allUnity,
+  allArchitectures,
+  allShowcases,
 } from "contentlayer/generated"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
@@ -82,6 +84,21 @@ export function getAndroidDoc(_slug: string | string[]) {
 }
 
 /* -----------------------------------------------------------------------------
+ * Architecture
+ * -----------------------------------------------------------------------------*/
+
+export function getArchitecturePaths() {
+  return allArchitectures.map((doc) => `/architecture/${doc.slug}`)
+}
+
+export function getArchitectureDocs(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allArchitectures.find(
+    (post) => post.frontmatter.slug === `/architecture/${slug}`,
+  )
+}
+
+/* -----------------------------------------------------------------------------
  * iOS
  * -----------------------------------------------------------------------------*/
 
@@ -123,6 +140,17 @@ export function getRustDoc(_slug: string | string[]) {
 /* -----------------------------------------------------------------------------
  * Unity
  * -----------------------------------------------------------------------------*/
+export function getMarketPaths() {
+  return allRusts.map((doc) => `/marketplace/${doc.slug}`)
+}
+
+export function getMarketDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allRusts.find((post) => post.frontmatter.slug === `/marketplace/${slug}`)
+}
+/* -----------------------------------------------------------------------------
+ * Unity
+ * -----------------------------------------------------------------------------*/
 
 export function getUnityPaths() {
   return allUnity.map((doc) => `/unity/${doc.slug}`)
@@ -159,6 +187,32 @@ export function getGuidePaths() {
 export function getGuideDoc(slug: string | string[]) {
   return allGuides.find((post) => post.frontmatter.slug === `/guides/${slug}`)
 }
+
+/* -----------------------------------------------------------------------------
+ * Showcase
+ * -----------------------------------------------------------------------------*/
+export function getShowcasePaths() {
+  return allShowcases.map((doc) => `/showcase/${doc.slug}`)
+}
+
+export function getShowcaseDoc(slug: string | string[]) {
+  return allShowcases.find(
+    (post) => post.frontmatter.slug === `/showcase/${slug}`,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Blogs
+ * -----------------------------------------------------------------------------*/
+
+// export function getBlogPaths() {
+//   return allBlogs.map((doc) => `/blog/${doc.slug}`)
+// }
+//
+// export function getBlogDoc(_slug: string | string[]) {
+//   const slug = Array.isArray(_slug) ? _slug[0] : _slug
+//   return allBlogs.find((post) => post.frontmatter.slug === `/blog/${slug}`)
+// }
 
 /* -----------------------------------------------------------------------------
  * Snippet

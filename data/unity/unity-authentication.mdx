@@ -5,4 +5,41 @@ description: Authentication
 
 # Authentication
 
-Todo
+## User login with different social accounts.
+Every kind of social account login will provide a new wallet for users. These wallets are not the same.
+
+## Login invalidation
+Token saved locally by SDK would be out of date. So when a user opens the app, the developer should check his authentication every time. If the token is invalidated, we should guide users to login again.
+
+For example, you can follow the logic like this:  
+
+```cs
+MirrorSDK.IsLoggedIn((isLoggedIn)=>{
+    if(isLoggedIn){
+        //TODO: Show content directely
+    }else{
+        //TODO: Show login page
+    }
+});
+```
+
+## How does a developer login on Unity Editor?
+
+You can input your information like the above image.Then you can call the StartLogin API to open login web page and login on it.
+
+![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/raw/master/Assets/SampleImages/debug_1.png?raw=true)
+
+**There are several points that need to be mentioned:**
+
+1. The APIKey must be owned to the debug email;
+
+2. The debug email must be the same as the one used in developer dashboard.
+![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/raw/master/Assets/SampleImages/debug-2.png?raw=true)
+
+3. Change the environment. Only Production environment can be used.
+![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/raw/master/Assets/SampleImages/debug-3.png?raw=true)
+
+4. On the popup login page,use the same email to login.
+![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/raw/master/Assets/SampleImages/debug-5.png?raw=true)
+
+If there are still any problems,you can try to ask our customer.

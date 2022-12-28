@@ -1,8 +1,85 @@
 ---
-title: Installation
-description: Installation
+title: Rust SDK
+description: Rust SDK
 ---
 
-# Installation
+# Rust SDK
 
-Todo
+Mirror World's Official Rust SDK
+
+## Installation
+
+1. Create a developer account on the developer dashboard.
+2. Create a project and copy the API Key and clientId for your project.
+3. Install SDK in your project Todo
+
+<GithubButton
+  onClick={() => {
+    window.mixgather.event("explore_github")
+  }}
+  label={"View Github Repository"}
+  repository={"mirrorworld-universe/mirrorworld-sdk-rust"}
+/>
+
+## Quick Setup
+
+### Install
+
+```ts
+# /Cargo.toml
+[dependencies]
+mirrorworld-sdk-rust = "0.1.0"
+```
+
+### Setup
+
+#### authentication && wallet
+
+```ts
+use mirrorworld_sdk_rust::{
+    login_with_email,
+};
+# Completes user signup with email
+let res = login_with_email({
+    LoginWithEmailParam {
+        email: "your email",
+        code: "your email code",
+        password: "your password",
+    }
+});
+
+let response = if let Ok(Some(response)) = res {
+    response
+} else {
+    todo!()
+};
+
+```
+
+#### marketplace
+
+```ts
+use mirrorworld_sdk_rust::{marketplace::Marketplace, NetEnv};
+
+let KEY: &str = "your api key";
+let TOKEN: &str = "your access token";
+
+// init marketplace object,
+let market =  Marketplace::new(KEY.to_string(), NetEnv::DEVNET, TOKEN.to_string());
+
+// Create a collection
+let name: String = String::from("your collection name");
+let symbol: String = String::from("your token symbol name");
+let uri: String = String::from("you collection metadata uri")
+let response = market.create_collection(name, symbol, uri).await.unwrap();
+if response.is_none() {
+    // your code
+} else {
+    // your code
+}
+```
+
+## Full API Documentation
+
+You can view the documentation for Mirror World SDK for Mobile on
+[our Official Documentation Site](/rust/rust-api)

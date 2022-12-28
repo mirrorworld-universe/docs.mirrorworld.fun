@@ -11,6 +11,7 @@ import { useFramework } from "./framework"
 type DocLinkProps = {
   href: LinkProps["href"]
   children: React.ReactNode
+  isExternal?: boolean
 }
 
 const sanitize = (href: string) =>
@@ -29,7 +30,7 @@ function test(href: string, asPath: string) {
 
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
-  const { href, children } = props
+  const { href, children, isExternal } = props
   const current = test(href.toString(), asPath)
   return (
     <Box key={asPath} as="li" fontSize="sm">
@@ -37,6 +38,7 @@ function DocLink(props: DocLinkProps) {
         <chakra.a
           aria-current={current ? "page" : undefined}
           textStyle="sidebarLink"
+          {...(isExternal && { target: "_blank" })}
         >
           {children}
         </chakra.a>
@@ -75,7 +77,16 @@ export function Sidebar() {
                           key={subItem.id + index}
                           href={subItem.href ?? href}
                         >
-                          {subItem.label}
+                          <span
+                            onClick={() => {
+                              //@ts-ignore
+                              window.mixgather.event("menu_name", {
+                                name: subItem.label,
+                              })
+                            }}
+                          >
+                            {subItem.label}
+                          </span>
                         </DocLink>
                       )
                     }

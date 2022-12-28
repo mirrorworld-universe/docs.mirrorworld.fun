@@ -67,12 +67,18 @@ const Overview = defineDocumentType(() => ({
   },
 }))
 
-const Guide = defineDocumentType(() => ({
-  name: "Guide",
-  filePathPattern: "guides/**/*.mdx",
+const Showcase = defineDocumentType(() => ({
+  name: "Showcase",
+  filePathPattern: "showcase/**/*.mdx",
   contentType: "mdx",
   fields,
-  computedFields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/showcase/[slug]",
+    },
+  },
 }))
 
 const Component = defineDocumentType(() => ({
@@ -186,6 +192,20 @@ const Unity = defineDocumentType(() => ({
   },
 }))
 
+const Architecture = defineDocumentType(() => ({
+  name: "Architecture",
+  filePathPattern: "architecture/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/architecture/[slug]`,
+    },
+  },
+}))
+
 const Resources = defineDocumentType(() => ({
   name: "Resources",
   filePathPattern: `resources/**/*.mdx`,
@@ -196,6 +216,25 @@ const Resources = defineDocumentType(() => ({
     pathname: {
       type: "string",
       resolve: () => `/resources/[slug]`,
+    },
+  },
+}))
+
+const Guides = defineDocumentType(() => ({
+  name: "Guides",
+  filePathPattern: `guides/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    ...fields,
+    tags: { type: "json" },
+    date_published: { type: "string" },
+    author: { type: "json" },
+  },
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/guides/[slug]`,
     },
   },
 }))
@@ -250,11 +289,11 @@ const Changelog = defineDocumentType(() => {
   }
 })
 
+
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
   documentTypes: [
     Overview,
-    Guide,
     Snippet,
     Component,
     Changelog,
@@ -264,6 +303,9 @@ const contentLayerConfig = makeSource({
     JavaScript,
     Unity,
     Resources,
+    Architecture,
+    Guides,
+    Showcase,
   ],
   mdx: {
     remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],

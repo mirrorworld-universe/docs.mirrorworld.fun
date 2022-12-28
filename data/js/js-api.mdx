@@ -17,15 +17,14 @@ import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
-  env: ClusterEnvironment.mainnet,
-  clientId: "YOUR_CLIENT_ID"
+  env: ClusterEnvironment.mainnet
 })
 
 const { refreshToken } = await mirrorworld.login()
 ```
 
 ### `loginWithEmail`
-Logs in a user with email and password. This method is accessible in the browser and in Node.js.
+Logs a user in using their email address and password. This method is accessible in the browser and Node.js.
 
 ```ts
 import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
@@ -33,7 +32,6 @@ import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
   env: ClusterEnvironment.mainnet,
-  clientId: "YOUR_CLIENT_ID"
 })
 
 const { refreshToken } = await mirrorworld.loginWithEmail({
@@ -102,7 +100,7 @@ Fetches the NFTs owned by a specific address.
 
 ```ts
 const walletAddress = "C64RkD2jnvrFF8mi9FUBwfhNHuuiPuRMzCLRSWcyJKUG"
-const nft = await mirrorworld.getNftDetails(walletAddress, {
+const nft = await mirrorworld.getNFTsOwnedByAddress(walletAddress, {
   limit: 20, // page size
   offset: 0 // page number
 })
@@ -174,7 +172,7 @@ export interface IVerifiedCollection {
 ```
 
 ### `createVerifiedSubCollection`
-Create a new Verified Sub Collection. A subcollection is a collection that belongs to a main collection
+Create a new Verified Sub Collection. A subcollection is a collection that belongs to the main collection
 ```ts
 const collection = await mirrorworld.createVerifiedSubCollection({
   name: "COLLECTION_NAME",
@@ -198,7 +196,7 @@ export interface IVerifiedCollection {
 ```
 
 ### `mintNFT`
-Mint NFT into collection
+Mint NFT into a collection
 ```ts
 const nft = await mirrorworld.mintNFT({
   name: `NFT_NAME`,
@@ -219,6 +217,29 @@ export interface ISolanaNFTMintResult {
   signature: string;
   status: string;
 }
+```
+### `updateNFT` 
+Updates the metadata of an NFT if the current user owns the NFT.
+```ts 
+const payload = {
+  name: "New NFT Name #001",
+  symbol: "NEW_SYMBOL",
+  metadataUri: "https://path-to-new-metadata-uri.json"
+};
+
+// Returns `ISolanaNFTMintResult`
+export interface ISolanaNFTMintResult {
+  mint_address: string;
+  url: string;
+  update_authority: string;
+  creator_address: string;
+  name: string;
+  symbol: string;
+  collection: string;
+  signature: string;
+  status: string;
+}
+
 ```
 
 ### `listNFT`
@@ -456,10 +477,127 @@ export interface SolanaNFTAuctionActivitiesPayload {
   tokenTransfers: SolanaNFTTransfersEntity[];
 }
 ```
+### `createMarketplace` 
+Create a new marketplace
+```ts 
+const createMarketplacePayload = {
+  treasuryMint: "INSERT_MARKETPLACE_TREASURY_MINT", // In this case the `treasuryMint` is the currency your marketplace will operate in. Defaults to SOL.
+  sellerFeeBasisPoints: 200,
+}
+
+const marketplace = await mirrorworld.createMarketplace(createMarketplacePayload)
+
+// Returns `Marketplace`
+export interface Marketplace {
+  id: number;
+  name: string;
+  client_id: string;
+  user_id: number;
+  auction_house: string;
+  authority: string;
+  auction_house_treasury: string;
+  auction_house_fee_account: string;
+  fee_withdrawal_destination: string;
+  requires_sign_off: boolean;
+  can_change_sale_price: boolean;
+  treasury_mint: string;
+  treasury_withdrawal_destination: string;
+  seller_fee_basis_points: number;
+  storefront_url?: null;
+  signature: string;
+  updatedAt: string;
+  createdAt: string;
+}
+```
+### `updateMarketplace` 
+Updates a marketplace instance
+```ts 
+const updateMarketplacePayload = {
+  sellerFeeBasisPoints: 300,
+}
+
+const updatedMarketplace = await mirrorworld.updateMarketplace(updateMarketplacePayload)
+
+// Returns `Marketplace`
+export interface Marketplace {
+  id: number;
+  name: string;
+  client_id: string;
+  user_id: number;
+  auction_house: string;
+  authority: string;
+  auction_house_treasury: string;
+  auction_house_fee_account: string;
+  fee_withdrawal_destination: string;
+  requires_sign_off: boolean;
+  can_change_sale_price: boolean;
+  treasury_mint: string;
+  treasury_withdrawal_destination: string;
+  seller_fee_basis_points: number;
+  storefront_url?: null;
+  signature: string;
+  updatedAt: string;
+  createdAt: string;
+}
+```
+
+### `queryMarketplaces` 
+Queries NFT marketplaces on Solana. Returns a paginated result.
+
+```ts
+const pagination = {
+  page: 1,
+  count: 24,
+}
+
+
+// This query will only return marketplaces whose seller_fee_basis_points are 200
+// and whose authority can change the sale price of a given listing.
+const query: MarketplaceQueryOptions = {
+  seller_fee_basis_points: 200,
+  can_change_sale_price: true
+}
+
+export type MarketplaceQueryOptions = Partial<
+  Pick<
+    Marketplace,
+    | 'name'
+    | 'client_id'
+    | 'authority'
+    | 'treasury_mint'
+    | 'auction_house_fee_account'
+    | 'auction_house_treasury'
+    | 'treasury_withdrawal_destination'
+    | 'fee_withdrawal_destination'
+    | 'seller_fee_basis_points'
+    | 'requires_sign_off'
+    | 'can_change_sale_price'
+  >
+>;
+
+const queryResult: IMarketplaceQueryResult[] = await mirrorworld.queryMarketplaces(query, pagination)
+
+// Returns `IMarketplaceQueryResult[]`
+export interface IMarketplaceQueryResult {
+  id: number;
+  name: string;
+  client_id: string;
+  authority: string;
+  auction_house_fee_account: string;
+  auction_house_treasury: string;
+  treasury_withdrawal_destination: string;
+  fee_withdrawal_destination: string;
+  treasury_mint: string;
+  seller_fee_basis_points: number;
+  requires_sign_off: boolean;
+  can_change_sale_price: boolean;
+}
+```
+
 ## Accessors
 
 ### `user`
-Get current user object
+Get the current user object
 ```ts
 const user: UserWithWallet = mirrorworld.user
 
@@ -492,7 +630,7 @@ export enum ClusterEnvironment {
 ```
 
 ### `wallet`
-Get current user's wallet
+Get the current user's wallet
 ```ts
 const wallet: Wallet = mirrorworld.wallet
 
@@ -567,7 +705,7 @@ export type MirrorWorldEvents = {
 };
 ```
 
-You can listen the these events using the `on()` method. For example To listen to the `login:email` event, we invoke the following event:
+You can listen to these events using the `on()` method. For example, To listen to the `login:email` event, we invoke the following event:
 ```ts
 mirrorworld.on("login:email", (user) => {
   console.log("Logged in User", user)

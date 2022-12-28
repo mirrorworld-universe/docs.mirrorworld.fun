@@ -1,6 +1,9 @@
 import { Html, Head, Main, NextScript } from "next/document"
+import { __ENV__ } from "../lib/env"
+import Script from "next/script"
 
 export default function Document() {
+  console.log("__ENV__", __ENV__)
   return (
     <Html lang="en">
       <Head>

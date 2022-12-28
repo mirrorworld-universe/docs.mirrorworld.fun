@@ -27,7 +27,7 @@ npm install @zag-js/react
 yarn add @zag-js/react
 ```
 
-> Congrats! You're ready to use toggle machine in your project.
+> Congrats! You're ready to use the toggle machine in your project.
 
 ## Using the machine
 
@@ -84,12 +84,12 @@ export default defineComponent({
 })
 ```
 
-There are some extra functions that need to be used in order to make it work:
+Some extra functions need to be used to make it work:
 
 - `normalizeProps` - Converts the props of the component into the format that is
   compatible with Vue.
 - `computed` - Ensures that the toggle's `api` is always up to date with the
-  current state of the machine.
+  the current state of the machine.
 
 ### Usage with Solid.js
 
@@ -114,16 +114,16 @@ export default function Toggle() {
 }
 ```
 
-There are some extra functions that need to be used in order to make it work:
+Some extra functions need to be used to make it work:
 
 - `normalizeProps` - Converts the props of the component into the format that is
   compatible with Solid.
 - `createMemo` - Ensures that the toggle's `api` is always up to date with the
-  current state of the machine.
+  the current state of the machine.
 
 ### About prop normalization
 
-There are subtle difference between how JSX attributes are named across
+There is a subtle difference between how JSX attributes are named across
 frameworks like React, Solid and Vue. Here are some examples:
 
 **Keydown listener**
@@ -135,14 +135,14 @@ frameworks like React, Solid and Vue. Here are some examples:
 
 - React: Pass a numeric value for margin attributes like `{ marginBottom: 4 }`.
 - Solid: It has to be `{ "margin-bottom": "4px" }`.
-- Vue: You need to ensure the value is a string with unit.
+- Vue: You need to ensure the value is a string with a unit.
   `{ marginBottom: "4px" }`.
 
 These little nuances between frameworks are handled automatically when you use
 `normalizeProps`.
 
 > The goal of Zag is to help you abstract the interaction and accessibility
-> patterns into a statechart so you never have to re-invent the wheel.
+> patterns into a statechart so you never have to reinvent the wheel.
 
 Thanks for reading! If you're curious about how state machines work, the next
-page will give you a quick overview.
+the page will give you a quick overview.

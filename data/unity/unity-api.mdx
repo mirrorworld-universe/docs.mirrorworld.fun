@@ -1,206 +1,388 @@
----
+***
+
 title: Unity Full API Reference
 description: Full Unity API Reference
----
+-------------------------------------
 
 # Unity API Reference
 
 ## Authentication Methods
+
 All authentication methods on the Unity SDK
 
-### `loginWithEmail`
-Logs in a user with email and password..
+### `StartLogin`
+
+Call up the login web page.If the user finishes the flow,the action will be called.
 
 ```cs
-using mirrorworld_sdk_unity.Runtime;
-using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
-using mirrorworld_sdk_unity.Runtime.Services.Implementations;
-using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
-
-public class ApiManager : MonoBehaviour
-{
-void Start()
-    {
-        IMirrorWorldClient client = new MirrorWorldClient(mirrorworld_sdk_unity.Runtime.Environment.Staging, EnvironmentVersion.V1,
-            "xdK36g2iXgX05oXsCyvlkq6XvDQuhG1mUG2");
-
-StartCoroutine(client.Authentication.LoginWithEmail(
-            new BasicEmailLoginRequest()
-            {
-                Email = "<Emial>",
-                Password = "<Password>"
-            }, (r =>
-            {
-                string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
-                Debug.Log(result);
-            })));
-    }
-}
+MirrorSDK.StartLogin((loginResponse)=> {
+    Debug.Log("Login result:" + loginResponse.ToString());
+});
 ```
 
-### `fetchUser`
+### `LoginWithEmail`
+
+Logs in a user with email and password.
+
+```cs
+MirrorSDK.LoginWithEmail(debugEmail, debugPassword, (response) =>
+{
+    long resCode = response.Code;
+    LoginResponse details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `Logout`
+
+Logout current account
+
+```cs
+MirrorSDK.Logout(() =>
+{
+    Debug.Log("User logout.");
+});
+```
+
+### `OpenWalletPage`
+
+Open wallet page.
+The param is a callback which will be called when user click 'Logout' button in wallet page.
+
+```cs
+MirrorSDK.OpenWalletPage(()=> {
+    Debug.Log("User clicked logout button on the wallet page.");
+});
+```
+
+## Query API
+
+### `FetchUser`
+
 Fetches the current user's object.
+
 ```cs
-using mirrorworld_sdk_unity.Runtime;
-using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
-using mirrorworld_sdk_unity.Runtime.Services.Implementations;
-using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
-
-public class ApiManager : MonoBehaviour
+MirrorSDK.FetchUser(email, (response) =>
 {
-void Start()
-    {
-        IMirrorWorldClient client = new MirrorWorldClient(mirrorworld_sdk_unity.Runtime.Environment.Staging, EnvironmentVersion.V1,
-            "xdK36g2iXgX05oXsCyvlkq6XvDQuhG1mUG2");
-
-        StartCoroutine(client.Authentication.GetCurrentUserInfo(
-            "<AccessToken>", (r =>
-            {
-                string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
-                Debug.Log(result);
-            })));
-    }
-}
+    long resCode = response.Code;
+    UserResponse details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
 ```
 
-### `getTokens`
-Get's the current user's tokens
+### `GetWalletTokens`
+
+Get the current user's tokens
+
 ```cs
-using mirrorworld_sdk_unity.Runtime;
-using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
-using mirrorworld_sdk_unity.Runtime.Services.Implementations;
-using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
-
-public class ApiManager : MonoBehaviour
-{
-void Start()
-    {
-        IMirrorWorldClient client = new MirrorWorldClient(mirrorworld_sdk_unity.Runtime.Environment.Staging, EnvironmentVersion.V1,
-            "xdK36g2iXgX05oXsCyvlkq6XvDQuhG1mUG2");
-
-        StartCoroutine(client.Wallet.GetWalletTokens(
-            "<AccessToken>", (r =>
-            {
-                string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
-                Debug.Log(result);
-            })));
-    }
-}
+MirrorSDK.GetWalletTokens((response) => {
+    long resCode = response.Code;
+    WalletTokenResponse details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
 ```
 
-### `getNftDetails`
+### `GetWalletTransactions`
+
+Get the transactions of user's wallet.
+
+```cs
+float price = 0.1f;
+string nextBefore = "nextBefore";
+MirrorSDK.GetWalletTransactions(price,nextBefore,(res)=> {
+    var body = JsonUtility.ToJson(res);
+    Debug.Log("result:" + body);
+});
+```
+
+### `GetNFTDetails`
+
 Fetches an NFT's details by mint address
 
 ```cs
-using mirrorworld_sdk_unity.Runtime;
-using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
-using mirrorworld_sdk_unity.Runtime.Services.Implementations;
-using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+string mintAddress = "mint_address";
 
-public class ApiManager : MonoBehaviour
-{
-void Start()
-    {
-        IMirrorWorldClient client = new MirrorWorldClient(mirrorworld_sdk_unity.Runtime.Environment.Staging, EnvironmentVersion.V1,
-            "xdK36g2iXgX05oXsCyvlkq6XvDQuhG1mUG2");
-
-        StartCoroutine(client.Marketplace.FetchSingleNftDetails(
-            "<mintAddress>", (r =>
-            {
-                string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
-                Debug.Log(result);
-            })));
-    }
-}
+MirrorSDK.GetNFTDetails(mintAddress,(response) => {
+    long resCode = response.Code;
+    SingleNFTResponseObj details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
 ```
 
-### `getNFTsOwnedByAddress`
+### `GetNFTsOwnedByAddress`
+
 Fetches the NFTs owned by a specific address.
 
 ```cs
-using mirrorworld_sdk_unity.Runtime;
-using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
-using mirrorworld_sdk_unity.Runtime.Services.Implementations;
-using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+List<string> owners = new List<string>();
+owners.Add("owner_address_1");
+owners.Add("owner_address_2");
 
-public class ApiManager : MonoBehaviour
-{
-void Start()
-    {
-        StartCoroutine(client.Marketplace.FetchMultipleNftsByOwners(
-            new FetchMultipleNftsByOwnersRequest()
-            {
-                Limit = 5,
-                Offset = 0,
-                Owners = new List<string>()
-                {
-                    "<Owner Address>"
-                }
-            }, (r =>
-            {
-                string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
-                Debug.Log(result);
-            })));
-    }
-}
+long limit = 1;
+long offset = 1;
+
+MirrorSDK.GetNFTsOwnedByAddress(owners,limit,offset,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
 ```
 
 ## Wallet Methods
-### `transferSPLToken`
-Transfer SPL token to a recipient
-```cs
-using mirrorworld_sdk_unity.Runtime;
-using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
-using mirrorworld_sdk_unity.Runtime.Services.Implementations;
-using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
 
-public class ApiManager : MonoBehaviour
-{
-void Start()
-    {
-        StartCoroutine(client.Wallet.TransferToken(new TransferTokenRequest()
-        {
-            TokenMint = "<TokenMintAddress>",
-            ToPublicKey = "ReceiverWalletPublicAddress",
-            Amount = 10000,
-            Decimals = 9
-        }, "<AccessToken>", (r =>
-        {
-            string result = JsonConvert.SerializeObject(r);
-            responseText.text = result;
-            Debug.Log(result);
-        })));
-    }
-}
+### `TransferSPLToken`
+
+Transfer SPL token to a recipient
+
+```cs
+ulong amount = 1;
+string publicKey = "public_key";
+
+MirrorSDK.TransferSPLToken(amount,publicKey,(response) => {
+    long resCode = response.Code;
+    TransferTokenResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
 ```
 
-### `transferSOL`
-Transfer SOL to wallet address
-```cs
-using mirrorworld_sdk_unity.Runtime;
-using mirrorworld_sdk_unity.Runtime.Models.Request.Authentication;
-using mirrorworld_sdk_unity.Runtime.Services.Implementations;
-using mirrorworld_sdk_unity.Runtime.Services.Interfaces;
+### `TransferSol`
 
-public class ApiManager : MonoBehaviour
-{
-void Start()
-    {
-        StartCoroutine(client.Wallet.TransferSol(new TransferSolRequest()
-        {
-            Amount = 1000,
-            ToPublicKey = "ReceiverWalletPublicAddress"
-        }, "<AccessToken>", (r =>
-            {
-                string result = JsonConvert.SerializeObject(r);
-                responseText.text = result;
-                Debug.Log(result);
-            })));
-    }
-}
+Transfer SOL to wallet address
+
+```cs
+ulong amount = 1;
+string publicKey = "public_key";
+string confirmation = Confirmation.Finalized;
+
+MirrorSDK.TransferSol(amount,publicKey,confirmation,(response) => {
+    long resCode = response.Code;
+    TransferSolResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+## Marketplace Methods
+
+### `CreateVerifiedCollection`
+
+Create a new Verified Collection
+
+```cs
+string collectionName = "TopCollection";
+string collectionSymbol = "Top";
+string collectionUrl = "https://example.com/path/detail.json";
+string confirmation = Confirmation.Finalized;
+
+MirrorSDK.CreateVerifiedCollection(collectionName,collectionSymbol,collectionUrl,confirmation,(response) => {
+    long resCode = response.Code;
+    MintResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `MintNFT`
+
+Mint NFT into collection.
+The "mintID" param is nullable,server will response that "minting is proceeding,please wait it" if detected one mintID is minted already.
+
+```cs
+string parentCollection = "collection_address";
+string collectionName = "NewNFT";
+string collectionSymbol = "NFT";
+string collectionUrl = "https://example.com/path/detail.json";
+string confirmation = Confirmation.Default;
+string mintID = "randomID";
+
+MirrorSDK.MintNFT(parentCollection,collectionName,collectionSymbol,collectionUrl,confirmation,mintID,(response) => {
+    long resCode = response.Code;
+    MintResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `ListNFT`
+
+List NFT on Mirror World Marketplace.
+AuctionHouse:If you give the auctionHouse param,you can specify which market you want to list in.
+
+```cs
+string mintAddress = "mint_address";
+decimal price = 1;
+string confirmation = Confirmation.Default;
+string auctionHouse = "your_market_auction_house";
+
+MirrorSDK.ListNFT(mintAddress,price,auctionHouse,confirmation,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `BuyNFT`
+
+Purchase NFT on Mirror World Marketplace
+
+```cs
+string mintAddress = "mint_address";
+decimal price = 1;
+string auctionHouse = "your_market_auction_house";
+
+MirrorSDK.BuyNFT(mintAddress,price,auctionHouse,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `UpdateNFTListing`
+
+Update NFT Listing on Mirror World Marketplace
+
+```cs
+string mintAddress = "mint_address";
+decimal price = 1;
+string auctionHouse = "your_market_auction_house";
+string confirmation = Confirmation.Default;
+
+MirrorSDK.UpdateNFTListing(mintAddress,price,auctionHouse,confirmation,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `CancelNFTListing`
+
+Cancel listing NFT on Mirror World Marketplace
+
+```cs
+string mintAddress = "mint_address";
+decimal price = 1;
+string auctionHouse = "your_market_auction_house";
+string confirmation = Confirmation.Default;
+
+MirrorSDK.CancelNFTListing(mintAddress,price,auctionHouse,confirmation,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `TransferNFT`
+
+Transfer NFT from holder's wallet to another address
+
+```cs
+string mintAddress = "mint_address";
+string toWallet = "wallet_address";
+
+MirrorSDK.TransferNFT(mintAddress,toWallet,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `FetchNFTsByMintAddresses`
+
+Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
+are provided
+
+```cs
+List<string> addresses = new List<string>();
+addresses.Add("mint_address_1");
+addresses.Add("mint_address_2");
+
+MirrorSDK.FetchNFTsByMintAddresses(addresses,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `FetchNFTsByCreatorAddresses`
+
+Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose `creatorAddresses`
+are provided
+
+```cs
+List<string> creators = new List<string>();
+creators.Add("address_1");
+creators.Add("address_2");
+
+MirrorSDK.FetchNFTsByCreatorAddresses(creators,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `FetchNFTsByUpdateAuthorities`
+
+Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `updateAuthorities`
+are provided
+
+```cs
+List<string> addresses = new List<string>();
+addresses.Add("address_1");
+addresses.Add("address_2");
+
+MirrorSDK.FetchNFTsByUpdateAuthorities(addresses,creators,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```
+
+### `FetchNFTsByOwnerAddresses`
+
+Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `owners`
+are provided
+
+```cs
+List<string> addresses = new List<string>();
+addresses.Add("address_1");
+addresses.Add("address_2");
+
+MirrorSDK.FetchNFTsByOwnerAddresses(addresses,creators,(response) => {
+    long resCode = response.Code;
+    MultipleNFTsResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
 ```

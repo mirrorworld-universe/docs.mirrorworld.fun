@@ -32,6 +32,7 @@ import { FiBookOpen, FiUsers } from "react-icons/fi"
 import { AiOutlineShop } from "react-icons/ai"
 import { BiBadgeCheck } from "react-icons/bi"
 import { ChainSupportTable } from "../components/support-table"
+import mixgather from "mixgather"
 
 type FeatureItemProps = {
   title: string
@@ -68,7 +69,7 @@ export default function Home() {
             pt={{ base: "16", md: "24" }}
           >
             <chakra.h1 textStyle="display.2xl">
-              Buidl Rapidly & Effectively on Web3
+              Build Rapidly & Effectively on Web3
             </chakra.h1>
             <chakra.p className="has-highlight" textStyle="text.2xl" mt="6">
               <mark>Cross-chain SDKs and APIs.</mark> Zero-hassle blockchain
@@ -102,9 +103,12 @@ export default function Home() {
                 variant="outline"
                 px={6}
                 w={{ base: "full", sm: "unset" }}
+                onClick={() => {
+                  mixgather.event("start_building ")
+                }}
               >
                 <HStack spacing="2">
-                  <span>Start buidling</span>
+                  <span>Start building</span>
                   <Icon as={ArrowRightIcon} />
                 </HStack>
               </Button>
@@ -171,7 +175,7 @@ export default function Home() {
           <Box flex="1">
             <chakra.h2 mb="8" maxW="24ch" textStyle="display.xl">
               Code less.{" "}
-              <chakra.span color="mirror.400">Buidl More.</chakra.span>
+              <chakra.span color="mirror.400">Build More.</chakra.span>
             </chakra.h2>
             <chakra.p maxW="64ch" fontSize="lg">
               Mirror World's cross-platform SDKs and powerful HTTP API can let
@@ -182,7 +186,7 @@ export default function Home() {
               {[
                 "Create a developer account",
                 "Create your project and API Key",
-                "Start buidling with SDK for your platform",
+                "Start building with SDK for your platform",
               ].map((item, index) => (
                 <ListItem key={index} display="flex" alignItems="flex-start">
                   <ListIcon
@@ -233,9 +237,56 @@ export default function Home() {
           align={{ base: "flex-start", xl: "center" }}
         >
           <Box flex="1">
+            <chakra.h2 mb="8" maxW="24ch" textStyle="display.2xl">
+              <chakra.span color="mirror.400">The Vision</chakra.span>
+            </chakra.h2>
+            <chakra.p maxW="64ch" fontSize="3xl">
+              The vision of the Mirror World Smart SDK is to create
+              easy-to-integrate tools to{" "}
+              <chakra.span color="mirror.400" fontWeight="bold">
+                help creators step out of the walled-garden solutions to
+                building digital economies on decentralized applications and
+                games.
+              </chakra.span>
+            </chakra.p>
+          </Box>
+        </Flex>
+      </Box>
+      <Box as="section" my={{ base: "20", md: "32" }} layerStyle="contain">
+        <Flex
+          gap="64px"
+          direction={{ base: "column", xl: "row" }}
+          align={{ base: "flex-start", xl: "center" }}
+        >
+          <Box flex="1">
+            <chakra.h3 mb="8" maxW="24ch" textStyle="display.xl">
+              The Mission
+            </chakra.h3>
+            <chakra.p maxW="64ch" fontSize="3xl">
+              Mirror World's contribution to this vision is to{" "}
+              <chakra.span color="mirror.400" fontWeight="bold">
+                create top-class composable and easy-to-use APIs and SDKs for
+                building applications and games on a decentralized web without
+                limits.
+              </chakra.span>{" "}
+              Our core SDK primarily provides features around Authentication,
+              NFT APIs, Marketplaces and Storefronts, Tokenization and On-ramp
+              strategies.
+            </chakra.p>
+          </Box>
+        </Flex>
+      </Box>
+
+      <Box as="section" my={{ base: "20", md: "32" }} layerStyle="contain">
+        <Flex
+          gap="64px"
+          direction={{ base: "column", xl: "row" }}
+          align={{ base: "flex-start", xl: "center" }}
+        >
+          <Box flex="1">
             <chakra.h2 mb="8" maxW="24ch" textStyle="display.xl">
-              Cross-chain support.{" "}
-              <chakra.span color="mirror.400">Buidl Anywhere.</chakra.span>
+              Multi-chain support.{" "}
+              <chakra.span color="mirror.400">Build Anywhere.</chakra.span>
             </chakra.h2>
             <chakra.p maxW="64ch" fontSize="lg">
               Multiple-chain support for your application needs
