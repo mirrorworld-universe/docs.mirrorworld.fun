@@ -84,7 +84,7 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
             bottom="0"
             right="max(0px, calc(50% - 32rem))"
             display={{ base: "none", xl: "block" }}
-            width="19.5rem"
+            width="21rem"
             visibility={hideToc ? "hidden" : undefined}
           >
             <TableOfContents

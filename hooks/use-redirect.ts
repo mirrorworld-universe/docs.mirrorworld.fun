@@ -17,7 +17,6 @@ export function useRedirect() {
   const router = useRouter()
   const fullPath = useMemo(() => router.asPath, [router.asPath])
   useEffect(() => {
-    console.log("router.pathname", fullPath)
     if (fullPath in redirects) {
       router
         .push({

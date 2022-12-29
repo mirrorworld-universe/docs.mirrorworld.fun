@@ -58,7 +58,7 @@ export default function ApiReferenceLayout({
               top="8rem"
               left="max(0px, calc(50% - 45rem))"
               right="auto"
-              width="19.5rem"
+              width="21rem"
               pb="10"
               px="8"
               overflowY="auto"
@@ -83,7 +83,7 @@ export default function ApiReferenceLayout({
             <Box
               as="main"
               className="mdx-content"
-              pl={{ lg: "19.5rem" }}
+              pl={{ lg: "21rem" }}
               pt="4"
               pr={{ xl: "16" }}
             >
@@ -113,7 +113,7 @@ export default function ApiReferenceLayout({
               bottom="0"
               right="max(0px,calc(50% - 45rem))"
               display={{ base: "none", xl: "block" }}
-              width="19.5rem"
+              width="21rem"
               visibility={hideToc ? "hidden" : undefined}
             >
               <TableOfContents

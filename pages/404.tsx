@@ -30,7 +30,7 @@ export default function Custom404Page() {
                 top="4rem"
                 left="max(0px, calc(50% - 45rem))"
                 right="auto"
-                width="19.5rem"
+                width="21rem"
                 pb="10"
                 px="8"
                 overflowY="auto"
@@ -56,7 +56,7 @@ export default function Custom404Page() {
               <Box
                 as="main"
                 className="mdx-content"
-                pl={{ lg: "19.5rem" }}
+                pl={{ lg: "21rem" }}
                 pt="4"
                 pr={{ xl: "16" }}
               >
