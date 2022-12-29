@@ -11,7 +11,7 @@ All authentication methods on the Rust SDK Todo
 
 ### set API key or set auth
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{
     set_apikey,
     set_auth,
@@ -42,7 +42,7 @@ get_apikey();
 
 ### Completes user signup with email
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{
     complete_signup,
 };
@@ -92,12 +92,12 @@ let response = if let Ok(Some(response)) = res {
 
 ### Registers a user with an email
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{
     signup_email,
 };
 
-signup_email("liu_yangchina@126.com");
+signup_email("email@example.com");
 
 # response
 {
@@ -113,7 +113,7 @@ signup_email("liu_yangchina@126.com");
 
 ### GETChecks whether is authenticated or not and returns the user object if true
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{
     fetch_user,
 };
@@ -146,7 +146,7 @@ fetch_user();
 
 ### Get wallet tokens.
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{
     get_tokens,
 };
@@ -166,7 +166,7 @@ get_tokens();
 
 ### Logs in a user with email and password
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{
     login,
 };
@@ -203,7 +203,7 @@ login({
 
 ### Fetches the wallet transactions for a user
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{
     get_transactions
 };
@@ -240,7 +240,7 @@ let response = if let Ok(Some(response)) = result {
 
 ### GET Fetch single NFT details
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{
     get_nft_details
 };
@@ -321,7 +321,7 @@ All wallet methods on the Rust SDK Todo
 
 ### Transfer the Token to another address
 
-```cs
+```rust
 let result = transfer_sol((to_sol_address, amount));
 let response = if let Ok(Some(response)) = result {
     response
@@ -343,7 +343,7 @@ let code = if let Some(code) = response.code {
 
 ### Transfer SOL to another address.
 
-```cs
+```rust
 let result = transfer_spltoken((
     to_publickey,
     amount,
@@ -374,7 +374,7 @@ All marketplace methods on the Rust SDK Todo
 
 ### init marketplace object,
 
-```cs
+```rust
 use mirrorworld_sdk_rust::{marketplace::Marketplace, NetEnv};
 use mirrorworld_sdk_rust::marketplace::GeneralPayload;
 
@@ -387,7 +387,7 @@ let market =  Marketplace::new(KEY.to_string(), NetEnv::DEVNET, TOKEN.to_string(
 
 ### create a collection
 
-```cs
+```rust
 
 let name: String = String::from("your collection name");
 let symbol: String = String::from("your token symbol name");
@@ -403,7 +403,7 @@ if response.is_none() {
 
 ### mint an nft
 
-```cs
+```rust
 let payload: GeneralPayload = GeneralPayload{
         name: String::from("your nft name"),
         symbol: "your symbol".to_string(),
@@ -415,7 +415,7 @@ let response = market.mint_nft(payload).await.unwrap();
 
 ### list an nft
 
-```cs
+```rust
 let mint_address: String = String::from("your nft mint address");
 let price: f64 = 0.5; // amount in SOL
 let auction_house: String = String::from("your auction house address");
@@ -424,7 +424,7 @@ let response = market.list_nft(mint_address, price, auction_house).await.unwrap(
 
 ### buy an nft
 
-```cs
+```rust
 let mint_address: String = String::from("your nft mint address");
 let price: f64 = 0.5; // amount in SOL
 let auction_house: String = String::from("your auction house address");
@@ -433,7 +433,7 @@ let response = market.buy_nft(mint_address, price, auction_house).await.unwrap()
 
 ### update nft listing price
 
-```cs
+```rust
 let mint_address: String = String::from("your nft mint address");
 let price: f64 = 0.5; // amount in SOL
 let auction_house: String = String::from("your auction house address");
@@ -442,7 +442,7 @@ let response = market.update_nft_listing(mint_address, price, auction_house).awa
 
 ### cancel listing
 
-```cs
+```rust
 let mint_address: String = String::from("your nft mint address");
 let price: f64 = 0.5; // amount in SOL
 let auction_house: String = String::from("your auction house address");
@@ -450,7 +450,8 @@ let response = market.cancel_nft_listing(mint_address, price, auction_house).awa
 ```
 
 ### update nft
-```cs
+
+```rust
 let mint_address = String::from("nft mint address");
 
 let payload = UpdateNftPayload{
@@ -467,7 +468,7 @@ let response = m.update_nft(payload).await.unwrap();
 
 ### transfer nft
 
-```cs
+```rust
 let mint_address = String::from("your nft mint address");
 let to_wallet_address = String::from("to wallet address");
 let response = market.transfer_nft(mint_address, to_wallet_address).await.unwrap();
@@ -475,7 +476,7 @@ let response = market.transfer_nft(mint_address, to_wallet_address).await.unwrap
 
 ### fetch NFTs by mint address
 
-```cs
+```rust
 let mut addresses = Vec::new();
 addresses.push("nft mint address".to_string());
 let limit: usize = 10;
@@ -485,7 +486,7 @@ let response = market.fetch_nfts_by_mint_address(addresses, limit, offset).await
 
 ### fetch nfts by creator address
 
-```cs
+```rust
 let mut addresses = Vec::new();
 addresses.push("creator address".to_string());
 let limit: usize = 10;
@@ -495,7 +496,7 @@ let response = market.fetch_nfts_by_creator_address(addresses, limit, offset).aw
 
 ### fetch nfts by update authorities
 
-```cs
+```rust
 let mut addresses = Vec::new();
 addresses.push("update authorities address".to_string());
 let limit: usize = 10;
@@ -505,7 +506,7 @@ let response = market.fetch_nfts_by_update_authorities(addresses, limit, offset)
 
 ### fetch NFTs by owner address
 
-```cs
+```rust
 let mut addresses = Vec::new();
 addresses.push("owner address".to_string());
 let limit: usize = 10;
