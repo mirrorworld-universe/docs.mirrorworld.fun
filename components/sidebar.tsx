@@ -62,9 +62,14 @@ function DocLink(props: DocLinkProps) {
     else {
       onOpen()
       if (linkRef.current) {
-        linkRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
+        // linkRef.current.scrollIntoView({
+        //   behavior: "smooth",
+        //   block: "center",
+        //   inline: "center",
+        // })
+        linkRef.current.scrollTo({
+          top: 350,
+          left: 0,
         })
       }
     }
@@ -72,7 +77,7 @@ function DocLink(props: DocLinkProps) {
 
   return (
     // @ts-ignore
-    <chakra.div ref={linkRef}>
+    <chakra.div ref={linkRef} scrollBehavior="smooth">
       <HStack key={asPath} as="li" fontSize="sm" {...rest}>
         <Link href={href} passHref>
           <chakra.a
