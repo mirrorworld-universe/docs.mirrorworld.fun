@@ -400,15 +400,6 @@ if response.is_none() {
 }
 ```
 
-#### create a sub collection
-```cs
-
-let name: String = String::from("your sub collection");
-let symbol: String = String::from("you sub collection token symbol");
-let uri: String = String::from("your sub collection metadata uri");
-let parent_collection: String = String::from("your parent collection"); // your parent collection
-let response = market.create_sub_collection(name, symbol, uri, parent_collection).await.unwrap();
-```
 
 ### mint an nft
 
