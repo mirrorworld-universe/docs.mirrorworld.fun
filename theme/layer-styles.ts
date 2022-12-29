@@ -10,25 +10,36 @@ const blockquote: SystemStyleObject = {
   marginY: "5",
   paddingX: "4",
   paddingY: "3",
-  bg: "rgba(220, 255, 28, 0.2)",
-  color: "mirror.400",
+  bg: "calloutBg",
+  color: "calloutText",
+  borderLeftColor: "calloutBorderColor",
+  borderLeftWidth: "3px",
+  borderLeftStyle: "solid",
   rounded: "4px",
 }
 
 const inlineCode: SystemStyleObject = {
   whiteSpace: "nowrap",
-  bg: "pink.900",
+  bg: "codeBg",
   rounded: "base",
   paddingY: "0.5",
   paddingX: "1",
-  fontSize: "14px",
+  // fontSize: "14px",
   fontFamily: "mono",
   fontWeight: "semibold",
-  color: "pink.200",
+  color: "codeText",
+}
+
+export const integrationDropdownList = {
+  bg: "integrationDropdownListBg",
+  color: "topNavText",
+  backdropFilter: "auto",
+  backdropBlur: "base",
 }
 
 export const layerStyles = {
   contain,
   blockquote,
   inlineCode,
+  integrationDropdownList,
 }

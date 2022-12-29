@@ -6,8 +6,15 @@ export const globalStyles: SystemStyleObject = {
     textRendering: "geometricprecision",
     textSizeAdjust: "100%",
     WebkitFontSmoothing: "antialiased",
-    bg: "dark",
-    color: "white",
+    bg: "body",
+    color: "text",
+    // transition: "color 0.2s ease-in-out, background 0.2s ease-in-out",
+    transitionProperty: "background",
+    transitionDuration: "normal",
+  },
+
+  "pre, code, kbd, samp": {
+    fontFamily: "mono",
   },
 
   "*": {
@@ -23,16 +30,20 @@ export const globalStyles: SystemStyleObject = {
 
   ".has-highlight": {
     mark: {
-      color: "mirror.500",
+      color: "mirror.600",
       fontWeight: "semibold",
     },
+  },
+
+  ".ch-scrollycoding-step-content[data-selected]": {
+    borderColor: "integrationSelected",
   },
 
   table: {
     width: "100%",
     marginY: "8",
     th: {
-      bg: "gray.100",
+      bg: "topNavBody",
     },
     "th, td": {
       borderWidth: "1px",
@@ -44,6 +55,18 @@ export const globalStyles: SystemStyleObject = {
 
   mark: {
     bg: "transparent",
+  },
+
+  '[data-with-integration-guide=""]': {
+    ".mdx-content": {
+      "h2,h3,h4": {
+        scrollMarginTop: "36",
+        "&:hover": {
+          "a.anchor": { opacity: 1 },
+        },
+        "a:focus": { opacity: 1 },
+      },
+    },
   },
 
   ".mdx-content": {

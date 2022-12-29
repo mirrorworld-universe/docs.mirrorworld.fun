@@ -1,0 +1,44 @@
+---
+title: get_nft_details
+---
+
+# `get_nft_details`
+Gets the details of a single NFT by it's mint address.
+
+```rust
+use mirrorworld_sdk_rust::{ get_nft_details };
+
+fn main() {
+    let mint_address: &str = "5eGe5EaC5w5L9nCdmqM4eCe8ZLkBanBVMYBB4gj71qg";
+
+    let result: ISolanaNFT = get_nft_details(mint_address).await?;
+}
+
+// Return Types
+// ============
+
+ #[derive(Debug, Serialize, Deserialize)]
+ pub struct ISolanaNFT {
+   pub name: Option<String>,
+   #[serde(rename = "sellerFeeBasisPoints")]
+   pub seller_fee_basis_points: Option<u32>,
+   #[serde(rename = "updateAuthorityAddress")]
+   pub update_authority_address: Option<String>,
+   pub description: Option<String>,
+   pub image: Option<String>,
+   #[serde(rename = "externalUrl")]
+   pub external_url: Option<String>,
+   pub creators: Option<Vec<Creator>>,
+   pub owner: Owner,
+   pub attributes: Option<Vec<MetadataAttribute>>,
+   pub listings: Option<Vec<String>>,
+ }
+
+// Error response if any
+// =====================
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Err {
+  #[serde(rename = "InstructionError")]
+  pub instruction_error: Option<String>,
+}
+```

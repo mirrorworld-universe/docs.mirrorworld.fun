@@ -42,6 +42,16 @@ const Button: ComponentStyleConfig = {
         bg: "gray.900",
       },
     },
+    nav: {
+      bg: "transparent",
+      fontWeight: "bold",
+      color: "topNavText",
+      rounded: "full",
+      boxShadow: "none",
+      _hover: {
+        bg: "flatButtonHoverBg",
+      },
+    },
   },
   sizes: {
     sm: {
@@ -50,10 +60,8 @@ const Button: ComponentStyleConfig = {
       py: "1",
     },
     md: {
-      minWidth: "180px",
       fontWeight: "semibold",
       fontSize: "lg",
-      height: "14",
     },
   },
   defaultProps: {

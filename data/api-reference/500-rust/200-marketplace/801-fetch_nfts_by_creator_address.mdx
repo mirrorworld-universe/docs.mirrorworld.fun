@@ -1,0 +1,62 @@
+---
+title: fetch_nfts_by_creator_address
+---
+
+# `fetch_nfts_by_creator_address`
+Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose creator addresses
+are provided.
+
+```rust
+use mirrorworld_sdk_rust::{ marketplace::Marketplace, NetEnv };
+
+fn main() {
+    // First create the SDK instance
+    let api_key: &str = "SUPER_SECRET_API_KEY"; // Can be gotten from the developer dashboard
+    let access_token: &str = "USER_AUTH_ACCESS_TOKEN"; // Current user's auth token
+    let marketplace =  Marketplace::new(api_key.to_string(), NetEnv::DEVNET, access_token.to_string());
+
+    // fetch_nfts_by_creator_address params
+    // You may add as many creator addresses as you wish to this vector
+    let mut addresses = Vec::new();
+    let limit: usize = 10; // Page size for pagination
+    let offset: usize = 1; // Page number for pagination
+
+    let creator_address: &str = "2BrLoxPTkPLyLuD3sPitNKXQRA9y8zzZ9P6vYwMTtgBL";
+    addresses.push(creator_address);
+
+    let result: SolanaNFTs = marketplace.fetch_nfts_by_creator_address(addresses, limit, offset).await.unwrap();
+}
+
+// Return Types
+// ============
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SolanaNFTs {
+    pub nfts: Vec<SolanaNFTExtended>
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SolanaNFTExtended {
+    pub name: String,
+    #[serde(rename = "sellerFeeBasisPoints")]
+    pub seller_fee_basic_points: usize,
+    #[serde(rename = "updateAuthorityAddress")]
+    pub update_authority_address: String,
+    pub description: Option<String>,
+    pub image: Option<String>,
+    #[serde(rename = "externalUrl")]
+    pub external_url: Option<String>,
+    pub creators: Vec<Creator>,
+    pub owner: Option<Owner>,
+    pub attributes: Option<Vec<MetadataAttribute>>,
+    pub listings: Option<Vec<SolanaNFTListing>>,
+}
+
+// Error response if any
+// =====================
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Err {
+  #[serde(rename = "InstructionError")]
+  pub instruction_error: Option<String>,
+}
+```

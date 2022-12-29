@@ -1,0 +1,17 @@
+---
+title: TransferNFTToAnotherSolanaWallet
+---
+
+# `TransferNFTToAnotherSolanaWallet`
+
+Transfer NFT to another Sol wallet.
+
+```swift
+public let MWSDK = MirrorWorldSDK.share
+
+MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
+    self.Log(data)
+} onFailed: { code, message in
+    self.Log("\(item):failed:\(code),\(message ?? "")")
+}
+```

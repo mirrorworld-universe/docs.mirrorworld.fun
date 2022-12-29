@@ -1,0 +1,21 @@
+---
+title: BuyNFT
+---
+
+# `BuyNFT`
+
+Purchase NFT on Mirror World Marketplace
+
+```csharp
+string mintAddress = "mint_address";
+decimal price = 1;
+string auctionHouse = "your_market_auction_house";
+
+MirrorSDK.BuyNFT(mintAddress,price,auctionHouse,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

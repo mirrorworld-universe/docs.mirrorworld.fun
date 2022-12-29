@@ -1,0 +1,42 @@
+---
+title: transfer_spltoken
+---
+
+# `transfer_spltoken`
+Transfers an SPL Token from the user's wallet to another wallet address
+
+```rust
+use mirrorworld_sdk_rust::{ transfer_spltoken };
+
+fn main() {
+
+    // In this example, we shall transfer USDC 1000 SPL
+    // to this wallet address: 2BrLoxPTkPLyLuD3sPitNKXQRA9y8zzZ9P6vYwMTtgBL
+
+    // See USDC in the Solana explorer: https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+
+
+    let recipient_public_key: &str = "2BrLoxPTkPLyLuD3sPitNKXQRA9y8zzZ9P6vYwMTtgBL";
+    let amount: &str = "1000";
+    let token_mint_address: &str = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
+    let token_decimals: &str = "6";
+
+    let result: TransferSpltoken = transfer_spltoken(recipient, amount).await?;
+}
+
+// Return Types
+// ============
+
+ #[derive(Debug, Serialize, Deserialize)]
+pub struct TransferSpltoken  {
+  pub tx_signature: String
+}
+
+// Error response if any
+// =====================
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Err {
+  #[serde(rename = "InstructionError")]
+  pub instruction_error: Option<String>,
+}
+```

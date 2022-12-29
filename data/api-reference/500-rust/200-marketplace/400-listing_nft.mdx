@@ -1,0 +1,52 @@
+---
+title: listing_nft
+---
+
+# `listing_nft`
+List NFT on a given marketplace.
+
+```rust
+use mirrorworld_sdk_rust::{ marketplace::Marketplace, NetEnv };
+
+fn main() {
+    // First create the SDK instance
+    let api_key: &str = "SUPER_SECRET_API_KEY"; // Can be gotten from the developer dashboard
+    let access_token: &str = "USER_AUTH_ACCESS_TOKEN"; // Current user's auth token
+    let marketplace =  Marketplace::new(api_key.to_string(), NetEnv::DEVNET, access_token.to_string());
+
+    // List NFT params
+    let mint_address: &str = "5eGe5EaC5w5L9nCdmqM4eCe8ZLkBanBVMYBB4gj71qg";
+    let price: f64 = 0.5; // amount in marketplace settlement currency
+
+    let listing_result: NftListing = marketplace.listing_nft(mint_address, price).await.unwrap();
+}
+
+// Return Types
+// ============
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct NftListing {
+    pub id: usize,
+    #[serde(rename = "type")]
+    pub type_name: String,
+    pub wallet_address: String,
+    pub mint_address: String,
+    pub price: String,
+    pub seller_address: String,
+    pub to_wallet_address: Option<String>,
+    pub signature: String,
+    pub status: String,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+}
+
+// Error response if any
+// =====================
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Err {
+  #[serde(rename = "InstructionError")]
+  pub instruction_error: Option<String>,
+}
+```

@@ -6,7 +6,7 @@ import { Pagination } from "./pagination"
 export function MdxFooter() {
   return (
     <chakra.footer mt="12">
-      <Pagination />
+      {/*<Pagination />*/}
       <Box
         pt="10"
         borderTopWidth="1px"

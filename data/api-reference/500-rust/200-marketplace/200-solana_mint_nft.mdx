@@ -1,0 +1,60 @@
+---
+title: solana_mint_nft
+---
+
+# `solana_mint_nft`
+Mints a new NFT to a verified NFT collection.
+
+```rust
+use mirrorworld_sdk_rust::{ marketplace::Marketplace, NetEnv };
+use mirrorworld_sdk_rust::marketplace::GeneralPayload;
+
+// Payload types
+pub struct GeneralPayload {
+   pub name: String,
+   pub symbol: String,
+   pub url: String,
+   pub collection_mint: String,
+}
+
+fn main() {
+    // First create the SDK instance
+    let api_key: &str = "SUPER_SECRET_API_KEY"; // Can be gotten from the developer dashboard
+    let access_token: &str = "USER_AUTH_ACCESS_TOKEN"; // Current user's auth token
+    let marketplace =  Marketplace::new(api_key.to_string(), NetEnv::DEVNET, access_token.to_string());
+
+    // Create collection process
+    let payload: GeneralPayload = GeneralPayload {
+        name: "YOUR_NFT_NAME",
+        symbol: "YOUR_NFT_SYMBOL",
+        url: "YOUR_NFT_METADATA_URI",
+        collection_mint: "YOUR_COLLECTION_MINT_ADDRESS"
+    };
+
+    let nft_result: SolanaMintNftResult = marketplace.solana_mint_nft(payload).await.unwrap();
+}
+
+// Return Types
+// ============
+
+ #[derive(Debug, Serialize, Deserialize)]
+pub struct SolanaMintNftResult {
+    pub mint_address: String,
+    pub url: String,
+    pub update_authority: String,
+    pub creator_address: String,
+    pub name: String,
+    pub symbol: String,
+    pub collection: String,
+    pub signature: String,
+    pub status: String,
+}
+
+// Error response if any
+// =====================
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Err {
+  #[serde(rename = "InstructionError")]
+  pub instruction_error: Option<String>,
+}
+```

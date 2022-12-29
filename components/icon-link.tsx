@@ -12,7 +12,7 @@ export function IconLink({ label, href, icon }: IconLinkProps) {
   return (
     <Center width="6" height="6" as="a" href={href} target="_blank">
       <Box srOnly>{label}</Box>
-      <Icon as={icon} fontSize="lg" color="white" />
+      <Icon as={icon} fontSize="lg" />
     </Center>
   )
 }

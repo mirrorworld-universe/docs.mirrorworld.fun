@@ -1,0 +1,19 @@
+---
+title: transferSPLToken
+---
+
+# `transferSPLToken`
+Transfer SPL token to a recipient
+
+```java
+ulong amount = 1;
+string publicKey = "public_key";
+
+MirrorWorld.transferSPLToken(amount,publicKey,(response) => {
+    long resCode = response.Code;
+    TransferTokenResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

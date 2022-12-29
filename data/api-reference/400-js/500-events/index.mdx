@@ -1,0 +1,25 @@
+---
+title: Events
+---
+
+# Events | JS API Reference
+
+The SDK also emits events when specific events happen in the SDK
+
+```ts
+export type MirrorWorldEvents = {
+  'login:email': UserWithWallet;
+  login: unknown;
+  logout: unknown;
+  ready: undefined;
+  'auth:refreshToken'?: string;
+  'update:user'?: undefined;
+};
+```
+
+You can listen to these events using the `on()` method. For example, To listen to the `login:email` event, we invoke the following event:
+```ts
+mirrorworld.on("login:email", (user) => {
+  console.log("Logged in User", user)
+})
+```

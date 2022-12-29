@@ -1,0 +1,22 @@
+---
+title: UpdateNFTListing
+---
+
+# `UpdateNFTListing`
+
+Update NFT Listing on Mirror World Marketplace
+
+```csharp
+string mintAddress = "mint_address";
+decimal price = 1;
+string auctionHouse = "your_market_auction_house";
+string confirmation = Confirmation.Default;
+
+MirrorSDK.UpdateNFTListing(mintAddress,price,auctionHouse,confirmation,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

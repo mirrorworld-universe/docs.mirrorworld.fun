@@ -1,0 +1,48 @@
+---
+title: create_collection
+---
+
+# `create_collection`
+Creates a new verified NFT collection
+
+```rust
+use mirrorworld_sdk_rust::{ marketplace::Marketplace, NetEnv };
+
+fn main() {
+    // First create the SDK instance
+    let api_key: &str = "SUPER_SECRET_API_KEY"; // Can be gotten from the developer dashboard
+    let access_token: &str = "USER_AUTH_ACCESS_TOKEN"; // Current user's auth token
+    let marketplace =  Marketplace::new(api_key.to_string(), NetEnv::DEVNET, access_token.to_string());
+
+    // Create collection process
+    let name: &str = "YOUR_COLLECTION_NAME";
+    let symbol: &str = "YOUR_COLLECTION_SYMBOL";
+    let uri: &str = "YOUR_COLLECTION_METADATA_URI";
+
+    let collection: CreateCollectionData = marketplace.create_collection(name, symbol, uri).await.unwrap();
+}
+
+// Return Types
+// ============
+
+ #[derive(Debug, Serialize, Deserialize)]
+pub struct CreateCollectionData {
+    pub mint_address: String,
+    pub url: String,
+    pub update_authority: String,
+    pub creator_address: String,
+    pub name: String,
+    pub symbol: String,
+    pub collection: Option<String>,
+    pub signature: String,
+    pub status: Option<String>,
+}
+
+// Error response if any
+// =====================
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Err {
+  #[serde(rename = "InstructionError")]
+  pub instruction_error: Option<String>,
+}
+```

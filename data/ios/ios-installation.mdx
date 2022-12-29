@@ -5,7 +5,7 @@ Mirror World's Official iOS SDK
 
 ## Getting started
 
-Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key.
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
 
 ### Use CocoaPods Install
 
@@ -40,14 +40,14 @@ like this:
 
 Then
 
-```Swift
+```swift
 import MirrorWorldSDK
 
 ```
 
 initialize SDK in the AppDelegate.
 
-```Swift
+```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
    
     MWSDK.initSDK(env: .StagingDevNet, apiKey: "Your API Key")

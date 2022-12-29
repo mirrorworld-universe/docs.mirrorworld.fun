@@ -1,0 +1,52 @@
+---
+title: login_with_email
+---
+
+# `login_with_email`
+Completes a user signup with email and password.
+
+```rust
+use mirrorworld_sdk_rust::{ login_with_email, NetEnv };
+
+pub struct LoginWithEmailParam <'a> {
+   pub email: &'a str,
+   pub code: &'a str,
+   pub password: &'a str,
+}
+
+fn main() {
+    let payload = LoginWithEmailParam {
+        email: "email@example.com",
+        password: "super-safe-password",
+        code: "123456"
+    };
+    let res: &LoginWithEmailRes = login_with_email(payload);
+}
+
+// Response types
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct LoginWithEmailRes {
+    pub access_token: Option<String>,
+    pub refresh_token: Option<String>,
+    pub user: Option<LoginWithEmailUserAttribute>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct LoginWithEmailUserAttribute {
+      pub allow_spend: bool,
+      pub id: usize,
+      pub eth_address: Option<String>,
+      pub sol_address: Option<String>,
+      pub email: String,
+      pub email_verified: bool,
+      pub is_subaccount: bool,
+      pub username: String,
+      pub main_user_id: Option<String>,
+      pub wallet: LoginWithEmailWalletAttribute,
+      #[serde(rename = "createdAt")]
+      pub created_at: String,
+      #[serde(rename = "updatedAt")]
+      pub updated_at: String,
+}
+```

@@ -1,0 +1,26 @@
+---
+title: signup_email
+---
+
+# `signup_email`
+Registers a user with an email
+
+```rust
+use mirrorworld_sdk_rust::{ signup_email };
+
+
+fn main() {
+    let email: &str = "email@example.com";
+    let res: &LoginWithEmailRes = signup_email(email);
+}
+
+// response
+// {
+//   "status": "success",
+//   "data": {
+//     "message": "Success"
+//   },
+//   "code": 0,
+//   "message": "Successfully emailed \"email@example.com\" verification code. Please verify the email to complete the signup"
+// }
+```

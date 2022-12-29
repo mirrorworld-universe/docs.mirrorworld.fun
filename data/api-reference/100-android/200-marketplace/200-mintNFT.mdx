@@ -1,0 +1,23 @@
+---
+title: mintNFT
+---
+
+# `mintNFT`
+Mint NFT into collection. The `mintID` parameter is nullable, server will respond with `"minting is proceeding, please wait for it` if it detects that a `mintID` has been minted already.
+
+```java
+string parentCollection = "collection_address";
+string collectionName = "NewNFT";
+string collectionSymbol = "NFT";
+string collectionUrl = "https://example.com/path/detail.json";
+string confirmation = Confirmation.Default;
+string mintID = "randomID";
+
+MirrorWorld.mintNFT(parentCollection,collectionName,collectionSymbol,collectionUrl,confirmation,mintID,(response) => {
+    long resCode = response.Code;
+    MintResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

@@ -49,13 +49,13 @@ export function LogoIcon(props: HTMLChakraProps<"svg">) {
 export function LogoWithLink() {
   const { asPath } = useRouter()
   return (
-    <Link href="/" passHref>
+    <Link href="/overview/introduction" passHref>
       <a
         aria-label="Go to homepage"
-        // aria-current={asPath === "/" ? "https://mirrorworld.fun/" : undefined}
-        onClick={() => {
-          window.open("https://mirrorworld.fun")
-        }}
+        aria-current={asPath === "/overview/introduction"}
+        // onClick={() => {
+        //   window.open("https://mirrorworld.fun")
+        // }}
       >
         <LogoIcon
           display={{ base: "block", sm: "none" }}

@@ -1,14 +1,18 @@
-# Mirror World Unity SDK
+---
+title: Mirror World Unity SDK Installation
+description: Mirror World Unity SDK Installation
+---
 
->Mirror World's Official Unity SDK  
+# Mirror World Unity SDK Installation
 
+>Mirror World's Official Unity SDK
 ## Getting started
 1. You should have a MirrorWorld developer account,you can register for it at [our official site](https://app.mirrorworld.fun).
 2. You need to prepare an APIKey. If you don't have one,you can acquire it `following Home->Create Project` and create a new project for yourself.
 
 ## Import SDK
 
-1. One way,download assets [Mirror World Unity SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases).  
+1. One way,download assets [Mirror World Unity SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases).
 import it to your project `Assets > Import Package > Custom Package` and select the package you just downloaded.
 2. Besides, you can also search for the package in Unity Assets Store with the key word "com.mirror.sdk" and import it.
 
@@ -19,7 +23,7 @@ import it to your project `Assets > Import Package > Custom Package` and select 
 
 Explanation of beyond image:
 - Api Key
-Input your aky key which requested on https://docs.mirrorworld.fun/ .  
+Input your aky key which requested on https://docs.mirrorworld.fun/ .
 - Debug Mode
 If checking this, you could see all the flow and error notice on console.
 - Environment
@@ -28,20 +32,19 @@ Choose the environment you want to use.
 In pre-release beta, you can only login SDK with this function. Input your email and password on https://docs.mirrorworld.fun/ .
 
 #### Configration dynamic
-If you don't want to add a game object to your scene,you can init Mirror World SDK with the following code:  
+If you don't want to add a game object to your scene,you can init Mirror World SDK with the following code:
 ```cs
 GameObject mirrorObj = new GameObject("MirrorSDK", typeof(MirrorSDK));
 string apiKey = "your api key";
 bool debugMode = true;
 Environment environment = Environment.StagingDevnet;
-
 MirrorSDK.InitSDK(apiKey, mirrorObj, debugMode, environment);
 ```
 
 ### Login
 And then,if you want to call some API of SDK in your app,you should lead users to login first.
 
-1. Call up login page  
+1. Call up login page
 
 If you want him to login(or again), you can use the following code:
 ```cs
@@ -75,7 +78,6 @@ User may want to check their wallet in your app,you can open their wallet by fol
 Action logoutAction = ()=> {
     MirrorWrapper.Instance.LogFlow("Wallet logout.");
 }
-
 MirrorSDK.OpenWalletPage(logoutAction);
 ```
 If you don't need to do anything if user clicked logout button in wallet page,passing 'logoutAction' to this function would be ok.
@@ -221,7 +223,6 @@ So, finnaly your openUrl function may looked like this:
 - (BOOL)application:(UIApplication*)app openURL:(NSURL*)url options:(NSDictionary<NSString*, id>*)options
 {
     id sourceApplication = options[UIApplicationOpenURLOptionsSourceApplicationKey], annotation = options[UIApplicationOpenURLOptionsAnnotationKey];
-
     NSMutableDictionary<NSString*, id>* notifData = [NSMutableDictionary dictionaryWithCapacity: 3];
     if (url)
     {
@@ -230,7 +231,6 @@ So, finnaly your openUrl function may looked like this:
     }
     if (sourceApplication) notifData[@"sourceApplication"] = sourceApplication;
     if (annotation) notifData[@"annotation"] = annotation;
-
     AppController_SendNotificationWithArg(kUnityOnOpenURL, notifData);
     [[MirrorWorldSDK share] handleOpenWithUrl:url];
     return YES;

@@ -1,0 +1,22 @@
+---
+title: getTokens
+---
+
+# `getTokens`
+Get the current user's tokens
+
+
+```java
+MirrorWorld.getTokens(new GetWalletTokenListener() {
+    @Override
+    public void onSuccess(GetWalletTokenResponse walletTokenResponse) {
+        Log.d("MirrorSDK","Get wallet token success!");
+    }
+
+    @Override
+    public void onFailed(long code, String message) {
+        Log.d("MirrorSDK","Get tokens failed.");
+    }
+});
+
+```

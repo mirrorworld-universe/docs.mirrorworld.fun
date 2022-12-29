@@ -1,0 +1,43 @@
+---
+title: Marketplace
+description: Marketplace - Rust | API Reference
+---
+
+# Marketplace | Rust API Reference
+
+When developing with the Marketplace service on the Mirror World Rust SDK,
+you need to create an instance of the `Marketplace` interface to access these methods.
+
+Here's an example of how the `Marketplace` is instantiated.
+
+> Always make sure you have an instance of the `Marketplace` in your
+> context before invoking the marketplace service methods.
+
+```rust
+use mirrorworld_sdk_rust::{ marketplace::Marketplace, NetEnv };
+use mirrorworld_sdk_rust::marketplace::GeneralPayload;
+
+fn main() {
+  let APIKEY: &str = "SUPER_SECRET_API_KEY"; // Can be gotten from the developer dashboard
+  let ACCESS_TOKEN: &str = "USER_AUTH_ACCESS_TOKEN"; // Current user's auth token
+
+  let marketplace =  Marketplace::new(KEY.to_string(), NetEnv::DEVNET, TOKEN.to_string());
+}
+
+```
+
+## Methods
+
+- [`create_collection`](/api-reference/rust/marketplace/create_collection)
+- [`solana_mint_nft`](/api-reference/rust/marketplace/solana_mint_nft)
+- [`transfer_nft`](/api-reference/rust/marketplace/transfer_nft)
+- [`listing_nft`](/api-reference/rust/marketplace/listing_nft)
+- [`buy_nft`](/api-reference/rust/marketplace/buy_nft)
+- [`update_nft_listing`](/api-reference/rust/marketplace/update_nft_listing)
+- [`cancel_nft_listing`](/api-reference/rust/marketplace/cancel_nft_listing)
+- [`fetch_nfts_by_mint_address`](/api-reference/rust/marketplace/fetch_nfts_by_mint_address)
+- [`fetch_nfts_by_creator_address`](/api-reference/rust/marketplace/fetch_nfts_by_creator_address)
+- [`fetch_nfts_by_update_authorities`](/api-reference/rust/marketplace/fetch_nfts_by_update_authorities)
+- [`fetch_nfts_by_owner_addresses`](/api-reference/rust/marketplace/fetch_nfts_by_owner_addresses)
+- [`fetch_nft_marketplace_activity`](/api-reference/rust/marketplace/fetch_nft_marketplace_activity)
+- [`get_nft_details`](/api-reference/rust/marketplace/get_nft_details)

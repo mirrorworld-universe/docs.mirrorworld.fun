@@ -1,0 +1,17 @@
+---
+title: ListNFT
+---
+
+# `ListNFT`
+
+List an NFT on the marketplace
+
+```swift
+public let MWSDK = MirrorWorldSDK.share
+
+MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
+        self.Log(data)
+    } onFailed: { code, message in
+        self.Log("\(item):failed:\(code),\(message ?? "")")
+    }
+```

@@ -8,9 +8,10 @@ export function CopyButton({ content }: { content: string }) {
   const icon = copied ? HiCheck : HiOutlineClipboardCopy
   return (
     <HStack
-      bg="white"
+      bg="topNavBody"
+      color="topNavText"
       px="2"
-      py="1"
+      py="2"
       spacing="1"
       borderWidth="1px"
       position="absolute"
@@ -19,6 +20,9 @@ export function CopyButton({ content }: { content: string }) {
       as="button"
       type="button"
       fontSize="xs"
+      rounded="lg"
+      backdropFilter="auto"
+      backdropBlur="sm"
       onClick={() => {
         navigator.clipboard.writeText(content)
         setCopied(true)
@@ -26,7 +30,7 @@ export function CopyButton({ content }: { content: string }) {
       }}
     >
       <Icon as={icon} fontSize="md" />
-      <span>{copied ? "Copied" : "Copy"}</span>
+      {copied && <span>Copied</span>}
     </HStack>
   )
 }

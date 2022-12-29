@@ -1,0 +1,40 @@
+---
+title: Wallet Design
+description: This article explains how to design the wallet.
+---
+
+# Wallet Design
+
+## Wallet V1: Custodial Wallet
+
+When integrating with our wallet service, you don't need to worry about how to securely store and manage private keys. We have done that job for you.
+
+![alt](https://market-assets.mirrorworld.fun/process/custodial_wallet_design.png)
+
+### Key Generation
+
+Once a user is created through our SDK, we automatically create a wallet for that user. The private key is encrypted and securely stored in our cloud infrastructure.
+
+### How to Use the Wallet?
+
+The user can never retrieve the private key to the client side. If the user wants to sign a transaction to operate (e.g. transfer SOL), the client side needs to call our wallet SDK to perform these actions.
+
+Operations we support:
+* Transfer SOL
+* Transfer token
+* On-ramp
+* View historical transactions
+
+### How to Keep Your Key Secure
+
+1. The user's private key never leaves our cloud infrastructure.
+
+The key generation, encryption, decryption, and storage are all happening in the cloud. The overall process is never exposed to the external.
+
+2. The user's key is encrypted by the third-part KMS(Key Management System).
+
+We don't store the plain-text private key. Instead, only the encrypted key is stored in our backend. The encryption is done by a trustable third-party KMS provider with strict access control policies to protect the data encryption data. Moreover, the encryption key never leaves the KMS.
+
+## Wallet V2: Non-custodial Wallet
+
+As to the developers who want a non-custodial solution, please keep tuned for our future announcements. If you have a question, please feel free to contact us on our email at sdk@mirrorworld.fun.

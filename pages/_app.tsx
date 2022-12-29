@@ -1,14 +1,17 @@
-import { ChakraProvider } from "@chakra-ui/provider"
+import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react"
 import { DefaultSeo } from "next-seo"
 import theme from "theme"
-import "../styles/prism.css"
+import "../styles/prism.scss"
 import siteConfig from "site.config"
 import mixgather from "mixgather"
 import { useEffect } from "react"
 import { __ENV__ } from "../lib/env"
 import Script from "next/script"
+import { useRedirect } from "../hooks/use-redirect"
+import "@code-hike/mdx/dist/index.css"
 
 export default function App({ Component, pageProps }) {
+  useRedirect()
   useEffect(() => {
     mixgather.init({
       debug: process.env.NODE_ENV !== "production",
@@ -55,6 +58,7 @@ export default function App({ Component, pageProps }) {
           />
         </>
       )}
+      {/*</ColorModeProvider>*/}
     </ChakraProvider>
   )
 }

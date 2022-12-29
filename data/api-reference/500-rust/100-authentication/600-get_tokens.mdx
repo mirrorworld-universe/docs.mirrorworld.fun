@@ -1,0 +1,29 @@
+---
+title: get_token
+---
+
+# `get_token`
+Get wallet tokens for an authenticated user
+
+```rust
+use mirrorworld_sdk_rust::{ get_token, login };
+
+fn main() {
+    // User should be authenticated
+    login( /*...*/ );
+    let res: &WalletTokens = get_token();
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct WalletTokens {
+     pub sol: u32,
+     pub tokens: Option<Vec<WalletToken>>,
+}
+#[derive(Debug, Serialize, Deserialize)]
+pub struct WalletToken {
+     pub ata: Option<String>,
+     pub mint: Option<String>,
+     pub amount: Option<u32>,
+     pub decimals: Option<u32>
+}
+```

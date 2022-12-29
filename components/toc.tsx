@@ -31,7 +31,7 @@ export function TableOfContents({
           <chakra.li
             data-selected={activeId === item.slug || undefined}
             key={item.slug + index}
-            paddingLeft={item.lvl > 2 ? "4" : undefined}
+            paddingLeft={item.lvl > 2 ? `${2 ** item.lvl * 2}px` : undefined}
             _selected={{
               textDecoration: "underline",
               textUnderlineOffset: "2px",
@@ -39,7 +39,8 @@ export function TableOfContents({
           >
             <NextLink href={getSlug(item.slug)} passHref>
               <a>
-                <chakra.span mr="1">{item.lvl > 2 ? "—" : null}</chakra.span>{" "}
+                <chakra.span mr="1">{item.lvl > 2 ? "—" : null}</chakra.span>
+                {""}
                 {item.content}
               </a>
             </NextLink>
