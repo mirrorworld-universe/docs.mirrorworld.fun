@@ -5,6 +5,13 @@ description: The what and why of Mirror World Smart SDK
 
 # SDK Usage in Mirrors Jump
 
+Mirrors Jump is a mini-game that fully utilizes the Mirror World Smart SDK and is dedicated to helping more developers understand the features of the Smart SDK. This game is developed in the unity engine and deployed on Solana.
+
+In this game we have integrated Smart Auth, Smart Wallet, Smart Marketplace and Smart NFT Creation, all in just 30 minutes.
+
+- [Download the Game](https://games.mirrorworld.fun/game/mirror_jump/AndroidMainEnv/MirrorsJumpV22113018.apk)
+- [Github](https://github.com/mirrorworld-universe/mirrorworld-demo-mirrorsjump)
+
 ## How to integrate Smart Wallet into your Game
 
 ### What is Smart Wallet?
@@ -34,15 +41,24 @@ Smart Wallet integrated in Mirrors Jump
 ### Integration Steps
 
 1. Download Unity SDK
-
-1. Enter the following code
+2. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](https://docs.mirrorworld.fun/unity/unity-installation#config-with-prefab)
+3. Let users login with the following code:
 
 ```csharp
-MirrorSDK.StartLogin((loginResponse) => {
-    MirrorSDK.OpenWalletPage(() => {
-        //todo:wallet logout.
-    });
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    // ... Your code
 });
+```
+4. Open user's wallet:
+```csharp
+// The action that user logout from wallet
+Action walletLogoutAction = ()=> {
+    // ... Your code
+}
+
+MirrorSDK.OpenWalletPage(walletLogoutAction);
 ```
 
 ## How to mint NFTs in your Game?
@@ -109,55 +125,67 @@ For example, the NFT metadata information in Mirrors Jump:
 
 1. Download Unity SDK
 2. Create a NFT Colletion
-1. [Dashboard](https://app.mirrorworld.fun/auth/login) --\> Project --\> NFT Collections --\> Create a Collection
+  1. [Dashboard](https://app.mirrorworld.fun/auth/login) --\> Project --\> NFT Collections --\> Create a Collection
+  2. Get NFT Collection address
 3. Get NFT Metadata JSON URL
-1. Upload NFT Metadata text in JSON format to your server
-4. Follow the code
-1. Mint NFT
+  1. Upload NFT Metadata text in JSON format to your server
+4. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](https://docs.mirrorworld.fun/unity/unity-installation#config-with-prefab)
+5. Let users login with the following code:
 
 ```csharp
-string collection = "You can get this collection address from your dashboard.";
-string name = "this string will not be displayed to the user, you can define it as you wish";
-string symbol = "this string will not be displayed to the user, you can define it as you wish";
-string nftJsonUrl = "You need to upload your nft config and get this";
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    //todo
+});
+```
 
-MirrorSDK.MintNFT(collection,name,symbol,nftJsonUrl,Confirmation.Confirmed,(result) =>
-    {
-        if (result.status == "success")
-        {
-           // Mint Success
-           Debug.log("Mint Success!");
-        }
-        else
-        {
-           // Printing failure message
-            Debug.log(result.message);
-        }
-    });
-   ```
+6. Mint NFT and transfer token with the following code
+  1. Mint NFT
 
-2. Transfer token (If you want the user mint NFT to be paid, then you need to execute the following code）
+  ```csharp
+  string collection = "You can get this collection address from your dashboard.";
+  string name = "this string will not be displayed to the user, you can define it as you wish";
+  string symbol = "this string will not be displayed to the user, you can define it as you wish";
+  string nftJsonUrl = "You need to upload your nft config and get this";
 
-```csharp
-// transfer amout
-ulong amout = 100000000;
-string publicKey = "Your public key";
-
-MirrorSDK.TransferSol(amout,publicKey,(result) =>
-    {
-        if (result.status == "success")
-        {
-             // transfer sol Success
+  MirrorSDK.MintNFT(collection,name,symbol,nftJsonUrl,Confirmation.Confirmed,(result) =>
+      {
+          if (result.status == "success")
+          {
+             // Mint Success
              Debug.log("Mint Success!");
-        }
-        else
-        {
-            // Printing failure message
-            Debug.log(result.message);
-        }
+          }
+          else
+          {
+             // Printing failure message
+              Debug.log(result.message);
+          }
 
-    });
-   ```
+      });
+  ```
+  2. Transfer token (If you want the user mint NFT to be paid, then you need to execute the following code）
+
+  ```csharp
+  // transfer amout
+  ulong amout = 100000000;
+  string publicKey = "Your public key";
+
+  MirrorSDK.TransferSol(amout,publicKey,(result) =>
+      {
+          if (result.status == "success")
+          {
+               // transfer sol Success
+               Debug.log("Mint Success!");
+          }
+          else
+          {
+              // Printing failure message
+              Debug.log(result.message);
+          }
+
+      });
+  ```
 
 ## How to transfer your NFTs from the game to your friend?
 
@@ -169,9 +197,20 @@ MirrorSDK.TransferSol(amout,publicKey,(result) =>
 ### Integration Steps
 
 1. Download Unity SDK
-2. Get NFT Mint Address
-3. When you mint an NFT successfully, you will get this NFT mint address
-4. Follow the code
+2. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](https://docs.mirrorworld.fun/unity/unity-installation#config-with-prefab)
+3. Let users login with the following code:
+
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    //todo
+});
+```
+
+4. Get NFT Mint Address
+  1. When you mint an NFT successfully, you will get this NFT mint address
+5. Transfer NFT with the following code
 
 ```csharp
 string nftMintAddress = "mint address of your nft";
@@ -179,21 +218,18 @@ string transferAddress = "the wallet address you want to transfer to";
 
 MirrorSDK.TransferNFT(nftMintAddress,transferAddress,(result) =>
 {
-
-       if (result.status == "success")
-        {
-           // Transfer Success
-           Debug.log("Transfer Success!");
-        }
-        else
-        {
-           // Printing failure message
-            Debug.log(result.message);
-        }
-
+    if (result.status == "success")
+    {
+       // Transfer Success
+       Debug.log("Transfer Success!");
+    }
+    else
+    {
+       // Printing failure message
+       Debug.log("Transfer failed! The message is:" + result.message);
+    }
 });
 ```
-
 ## How to build an in-game NFT backpack?
 
 ### What is an NFT backpack?
@@ -209,8 +245,17 @@ In Mirrors Jump, you can view your own NFT in the NFT backpack.
 
 ### Integration Steps
 1. Download Unity SDK
-2. Follow the code
+2. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](https://docs.mirrorworld.fun/unity/unity-installation#config-with-prefab)
+3. Let users login with the following code:
 
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    //todo
+});
+```
+4. Build an NFT backpack with the following code
 ```csharp
 
 string ownerAddress = "nft owner address";
@@ -224,45 +269,21 @@ int offset = 0;
 //Limit of length
 int limit = 100;
 
-string specifiedCollection = "specified collection";
-
 MirrorSDK.GetNFTsOwnedByAddress(owners, limit,offset,(Mutiple) =>
 {
-      if (result.status == "success")
-        {
-           // Transfer Success
-           Debug.log("Transfer Success!");
+    if (result.status == "success")
+    {
+       //Your NFT data entities
+       List<SingleNFTResponseObj> nfts = Mutiple.data.nfts;
 
-           // Customize your nft data entities
-           List<NFTCellData> datas = new List<NFTCellData>();
+       //Todo: show them in your ui
 
-           for (int i = 0; i < Mutiple.data.nfts.Count; i++)
-            {
-
-               // Filter the under the specified collection
-               //a.Equals("safjmk");
-               if(Mutiple.data.nfts[i].mintAddress.Equals(specifiedCollection)){
-
-                 NFTCellData nftCellData = new NFTCellData();
-                 SingleNFTResponseObj NftData = Mutiple.data.nfts[i];
-                 nftCellData.NftData = NftData;
-                 datas.Add(nftCellData);
-
-               }
-
-           }
-
-
-           // refresh your nft package
-           NftPackageManager.RefreshData(datas);
-
-        }
-        else
-        {
-           // Printing failure message
-            Debug.log(result.message);
-        }
-
+    }
+    else
+    {
+       // Printing failure message
+        Debug.log("Get NFTs failed, the reason is:" + result.message);
+    }
 });
 ```
 
@@ -275,12 +296,20 @@ MirrorSDK.GetNFTsOwnedByAddress(owners, limit,offset,(Mutiple) =>
 
 ### Integration Steps
 
-1. Download the unity SDK
-2. Get the Actionhouse Address
-3. You could create your Marketplace following this path:
-1. [Dashboard](https://app.mirrorworld.fun/auth/login) --\> Project --\> NFT Marketplace --\> Create a Marketplace
-4. Follow the code
+1. Download Unity SDK
+2. Create a NFT Marketplace
+  1. [Dashboard](https://app.mirrorworld.fun/auth/login) --\> Project --\> NFT Marketplace --\> Create a Marketplace
+3. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](https://docs.mirrorworld.fun/unity/unity-installation#config-with-prefab)
+4. Let users login with the following code:
 
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    //todo
+});
+```
+5. Sell NFT With the following code
 ```csharp
 
 string nftMintAddress = "mint address of your nft";
@@ -288,16 +317,53 @@ float price = 99.99;
 string ActionHouse = "your actionHouse";
 
 MirrorSDK.ListNFT(nftMintAddress,price,ActionHouse,(result) =>
-        {
-            if (result.status == "success")
-            {
-                Debug.log(List Success!);
-            }
-             else
-            {
-                // Printing failure message
-                Debug.log(result.message);
-            }
+{
+    if (result.status == "success")
+    {
+       // Printing success message
+        Debug.log("List Success!");
+    }
+    else
+    {
+       // Printing failure message
+        Debug.log("List Failed, the reason is:" + result.message);
+    }
+});
+```
 
-        });
+## How to build an in-game NFT marketplace?
+### What is the NFT Marketplace?
+An NFT (non-fungible token) marketplace is a platform that allows users to buy, sell, and trade NFTs.
+
+### Why should you have your own NFT Marketplace?
+There are a few reasons why you might want to have your own NFT marketplace:
+1. **Control**: Having your own NFT marketplace allows you to have full control over the platform, including the design, features, and policies.
+2. **Branding**: By creating your own NFT marketplace, you can establish your own brand and create a unique user experience that aligns with your values and vision. This can help you stand out in a crowded market and build a loyal customer base.
+3. **Revenue**: If your NFT marketplace becomes popular and attracts a lot of users, you may be able to generate significant revenue through transaction fees, advertising, and other sources.
+4. **Community**: An NFT marketplace can be a great way to build a community of like-minded people who are interested in your work or the types of NFTs you offer. This can help you foster relationships with fans and customers and create a sense of belonging and connection.
+
+### Scenarios in Mirrors Jump
+
+| ![](/images/mj/demo3.gif) | In Mirrors Jump, you can open the NFT Marketplace directly in the game, browse other players' NFTs, and buy NFTs that are on sale. |
+|-----------------| --- |
+
+### Integration Steps
+
+1. Download Unity SDK
+2. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](https://docs.mirrorworld.fun/unity/unity-installation#config-with-prefab)
+3. Let users login with the following code:
+
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    // ... your code
+});
+```
+
+4. Create your Marketplace: You can refer to [Marketplace Storefront Deployment Guide - Mirror World](https://docs.mirrorworld.fun/overview/storefront)
+5. Open it in SDK with the following code:
+```csharp
+string marketUrl = "Your deployed marketplace url";
+MirrorSDK.OpenMarketPage(marketUrl);
 ```
