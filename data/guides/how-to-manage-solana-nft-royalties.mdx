@@ -1,0 +1,129 @@
+---
+title: How are NFT royalties distributed in Solana?
+description: Guide on NFT creator royalty distribution on Solana
+author:
+  name: Jonathan Bakebwa
+  twitter: https://twitter.com/codebender828
+tags:
+  - Solana
+  - NFTs
+  - Royalties
+---
+
+# How are NFT royalties distributed in Solana?
+
+## Introduction to NFTs
+
+NFTs, or non-fungible tokens, are unique digital assets that represent ownership of a specific item or idea. One popular use case for NFTs is in the art and collectibles market, where creators can mint and sell unique digital works to collectors.
+
+In the Solana ecosystem, NFTs can include a feature called royalty distribution, which allows the creator of an NFT to earn a percentage of the sales price every time their NFT is resold. This can be useful for creators to continue earning income from their work even after the initial sale.
+
+## Royalty Distribution In Action
+
+To implement royalty distribution in a Solana NFT, the creator must first set up a public key that will receive the royalty payments. This public key can be any valid Solana address, including a multi-sig address or a smart contract.
+
+### Mint stage
+
+Once the creator has set up their public key or array of creator public keys, they can specify the percentage of the sales price that they want to receive as royalties. This percentage, defined by the `seller_fee_basis_points` field of the Metadata account of the NFT,  is typically set at the time of minting the NFT, but it can also be modified later if desired.
+
+When a collector buys an NFT with royalty distribution enabled, a small percentage of the sales price is set aside as the royalty payment. This payment is then sent to the creator's public key at the time of the sale.
+
+### Transaction stage
+
+If the NFT is later resold to another collector, the process repeats itself. The new buyer pays a small percentage of the sales price as a royalty, which is then sent to the creator's public key. This process continues every time the NFT is resold, allowing the creator to earn income from their work continually.
+
+## Managing Royalties for NFT as a creator
+
+It's important to note that the `seller_fee_basis_points` are first determined at the time of minting the NFT. However, it can be updated by the `update authority` of the NFT. This can easily be done through the Mirror World SDK in the steps shown below:
+
+### Initialize the Mirror World SDK
+
+```tsx
+import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+
+// Initialize the SDK
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_SECRET_API_KEY",
+  env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+})
+```
+
+### Prepare your Metadata
+
+Your Metadata contains all the information about the NFT. Take note of the `seller_fee_basis_points` field of the sample metadata JSON provided below: In this NFT, it has been set to `425` points, which is equal to 4.25%.
+
+```json
+{
+  "name": "Mirrors #15976",
+  "symbol": "MIRROR",
+  "description": "Mirror World is the World's First interoperable GameFi Matrix inhabited by AI NFTs. This is Mirror Generation 2 collection, which contains 3 factions: Vida, Xeon and Nova, and within each faction, Mirror can be minted in Common, Rare, Elite, Legendary and Mythical rarities, and these AI-Powered Assets can be used in the Mirror World Matrix.",
+  "seller_fee_basis_points": 425,
+  "image": "https://storage.mirrorworld.fun/nft/15976_vida_epic_953_f0875ffb53ac4463b1ce54e5545f396f.png",
+  "external_url": "https://mirrorworld.fun",
+  "attributes": [{
+    "trait_type": "Rarity",
+    "value": "Elite"
+  }, {
+    "trait_type": "Background",
+    "value": "FORMC Suit-Background"
+  }, {
+    "trait_type": "Shoes",
+    "value": "E-9 Suit-Shoes"
+  }, {
+    "trait_type": "Clothes",
+    "value": "FORMC Suit-Clothes"
+  }, {
+    "trait_type": "Hat",
+    "value": "E-9 Suit-Hat"
+  }, {
+    "trait_type": "Pants",
+    "value": "SGM Suit-Pants"
+  }, {
+    "trait_type": "Soul",
+    "value": "pmurT dlanoD"
+  }, {
+    "trait_type": "Faction",
+    "value": "Vida"
+  }],
+  "collection": {
+    "name": "Mirrors Gen 2",
+    "family": "Mirrors"
+  },
+  "properties": {
+    "category": "image",
+    "files": [{
+      "uri": "https://storage.mirrorworld.fun/nft/15976_vida_epic_953_f0875ffb53ac4463b1ce54e5545f396f.png",
+      "type": "image/png"
+    }],
+    "creators": [{
+      "address": "FU1tDd78JKyLqDT6jRUhgLkxdnuYu1Z9nJL2QfwjtWuv",
+      "share": 100
+    }]
+  }
+}
+```
+
+Lastly upload your Metadata JSON to Decentralized Object Storage like IPFS, [NFT.Storage](http://NFT.Storage) or Pinata. You may also use a Centralized Object Storage service like AWS S3. Make sure to record the metadata object URI returned from your storage service of choice. We shall use it while minting the NFT.
+
+### Mint your NFT
+
+When minting your NFT, set the `metadataUri` field of the `MirrorWorld.mintNFT` method to the value of the URI for your metadata JSON as shown below:
+
+```tsx
+async function mintMyNft() {
+  await mirrorworld.mintNFT({
+    name: `YOUR_NFT_NAME`,
+    symbol: `NFT_SYMBOL`,
+    metadataUri: "YOUR_NFT_METADATA_URI",
+    collection: "YOUR_COLLECTION_ID",
+  });
+}
+```
+
+Voila! Your minting is done, and the creator royalties are designated to your NFT!
+
+Overall, the concept of NFT royalty distribution in the Solana ecosystem is useful for creators to continue earning income from their work even after the initial sale. By setting up a public key and specifying a percentage of the sales price as royalties, creators can ensure that they are compensated for the ongoing value of their work.
+
+### Learn More
+
+Get started with the Mirror World Smart SDK by exploring our [documentation](https://docs.mirrorworld.fun) to get started! Happy Hacking!

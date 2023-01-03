@@ -10,4 +10,5 @@ public/feed.xml
 
 # Contentlayer
 .contentlayer
+.yarn
 create-files.ts
