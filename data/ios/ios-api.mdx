@@ -229,6 +229,102 @@ MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
     }
 ```
 
+
+## Storefront Methods
+### openMarketPlacePage
+Open the market place page which publish before.
+You can refer to [How to publish self Storefront](https://docs.mirrorworld.fun/overview/storefront).
+```Swift
+let marketUrl = "Your market place url"
+MWSDK.openMarketPlacePage(url: url)
+```
+
+### GetCollectionFilterInfo
+Get collection filters info.
+```Swift
+MWSDK.GetCollectionFilterInfo(collection: "Your collection address") { data in
+    print("<iOS_MWSDK_LOG>: GetCollectionFilterInfo result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### GetNFTInfo
+Get NFT info. You need to parse the rawJsonString by yourself, cause SDK don't know what format your NFT is like.
+
+```Swift
+MWSDK.GetNFTInfo(mint_address: "your address") { data in
+    print("<iOS_MWSDK_LOG>: GetNFTInfo result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: GetNFTInfo faild, code is \(code) message is \(message)")
+}
+```
+
+### GetCollectionInfo
+Get collections info by collection addresses.
+
+```Swift
+MWSDK.GetCollectionInfo(collections: ["Your collection address 1"]) { data in
+    print("<iOS_MWSDK_LOG>: GetCollectionFilterInfo result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### GetNFTEvents
+Get NFT's events.
+```Swift
+MWSDK.GetNFTEvents(mint_address: "NFT address", page: 1, page_size: 10) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTEvents result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### SearchNFTs
+Search NFTs by given search string.
+```Swift
+MWSDK.SearchNFTs(collections: ["collection address 1"], search: "price") { data in
+    print("<iOS_MWSDK_LOG>: SearchNFTs result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### RecommendSearchNFT
+Search NFTs by recommend, server will give 10 NFT as recommend NFT at most.
+Developer may use them to fill some blank of searching UI.
+
+```Swift
+MWSDK.RecommentSearchNFT(collections: ["collection address 1"]) { data in
+    print("<iOS_MWSDK_LOG>: RecommentSearchNFT result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### GetNFTsByUnabridgedParams
+Get NFTs by unabridged rules.
+```Swift
+MWSDK.GetNFTsByUnabridgedParams(collection: "collection address", page: 1, page_size: 10, order: ["price"], sale: 1, filter: ["price"]) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTsByUnabridgedParams result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### GetNFTRealPrice
+Get real price of a NFT.
+The param 'fee' is deduct rate of server. So if you input '4250', server will deduct 4.25%.
+
+```Swift
+MWSDK.GetNFTRealPrice(price: "1.2", fee: 1250) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTRealPrice result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
 ## License
 
 MirrorWorldSDK is available under the MIT license. See the LICENSE file for more info.
