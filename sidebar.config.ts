@@ -85,11 +85,9 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       icon: SiSwift,
       id: "ios",
       items: [
-        { type: "doc", label: "API Reference", id: "ios-api" },
         { type: "doc", label: "Installation", id: "ios-installation" },
-        { type: "doc", label: "Authentication", id: "ios-authentication" },
-        { type: "doc", label: "Marketplace", id: "ios-marketplace" },
-        { type: "doc", label: "Tokenization", id: "ios-tokenization" },
+        { type: "doc", label: "API Reference", id: "ios-api" },
+        { type: "doc", label: "Authentication Tip", id: "ios-authentication" },
       ],
     },
     {
