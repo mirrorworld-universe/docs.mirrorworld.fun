@@ -38,6 +38,12 @@ export const globalStyles: SystemStyleObject = {
   ".ch-scrollycoding-step-content": {
     minH: "auto",
     px: "12px !important",
+    transition: "all 0.2s ease-in-out",
+    "&:hover": {
+      cursor: "pointer",
+      transition: "all 0.2s ease-in-out",
+      bg: "hoverBackground",
+    },
   },
 
   ".ch-scrollycoding-step-content[data-selected]": {

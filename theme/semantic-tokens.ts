@@ -130,5 +130,9 @@ export const semanticTokens = {
       default: "rgb(0 0 0 / 3%)",
       _dark: "whiteAlpha.100",
     },
+    hoverBackground: {
+      default: "rgb(0 0 0 / 1.5%)",
+      _dark: "whiteAlpha.50",
+    },
   },
 }

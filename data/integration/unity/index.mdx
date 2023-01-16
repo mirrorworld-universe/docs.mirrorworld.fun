@@ -2,84 +2,306 @@
 title: Unity Integration Guide
 ---
 
-# Unity Integration Guide
-
-This guide will walk you through the setup process for the Mirror World Smart SDK on Unity.
-
-## Step 1 - Create a Developer Account
-Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
-
-## Step 2 - Import the Mirror World SDK
-There are 2 ways to install the Mirror World Unity SDK:
-
-1. One way is to [download the latest release assets](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases) from the official GitHub repository. Import it to your
-project `Assets > Import Package > Custom Package` and select the package
-you just downloaded.
-
-2. You may also search for the package in the [Unity Assets Store](https://assetstore.unity.com/) with
-the keyword "`com.mirror.sdk`" and import it.
-
-## Step 3 - Configuration with adding prefab manually
-
-![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/blob/master/CaseImage/case_prefab_example.jpg?raw=true)
-
-Explanation of the fields above image:
-
-- **Api Key**: Input your API key from the [developer dashboard](https://app.mirrorworld.fun).
-- **Debug Mode**: If you check this, you will be able to see all the console output and error notices
-on the console.
-- **Environment**: Choose the environment you want to use.
-- **Debug Email and Password**: In the pre-release beta, you can only login to the SDK using this function.
-
-<br />
-
 <CH.Scrollycoding>
 
-  ## Step 4 - Initialize the Mirror World SDK
+  # Unity Integration Guide
 
-  In your project, you may now initialize the Mirror World SDK as a `GameObject`.
+  This guide will walk you through the setup process for the Mirror World Smart SDK on Unity.
 
-  ```csharp SomeActivity.cs
+  ## 1. Create a Developer Account
+  Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+
+  ## 2. Import the Mirror World SDK
+  There are 2 ways to install the Mirror World Unity SDK:
+
+  1. One way is to [download the latest release assets](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/releases) from the official GitHub repository. Import it to your
+  project `Assets > Import Package > Custom Package` and select the package
+  you just downloaded.
+
+  2. You may also search for the package in the [Unity Assets Store](https://assetstore.unity.com/) with
+  the keyword "`com.mirror.sdk`" and import it.
+
+  ## 3. Configuration
+  ### Manual configuration with prefab
+
+  ![image](https://github.com/mirrorworld-universe/mirrorworld-sdk-unity/blob/master/CaseImage/case_prefab_example.jpg?raw=true)
+
+  Explanation of the fields above image:
+
+  - `**Api Key**`: Input your API key from the [developer dashboard](https://app.mirrorworld.fun).
+  - `**Debug Mode**`: If you check this, you will be able to see all the console output and error notices
+  on the console.
+  - `**Environment**`: Choose the environment you want to use.
+  - `**Debug Email and Password**`: In the pre-release beta, you can only login to the SDK using this function.
+
+  ### Dynamic Configuration
+
+  If you don't want to add a game object to your scene,you can init Mirror World SDK with the following code:
+
+  ```csharp DynamicConfiguration
   GameObject mirrorObj = new GameObject("MirrorSDK", typeof(MirrorSDK));
   string apiKey = "your api key";
   bool debugMode = true;
   Environment environment = Environment.StagingDevnet;
-
   MirrorSDK.InitSDK(apiKey, mirrorObj, debugMode, environment);
   ```
 
   ---
 
-  ## Step 5 - Authenticate the user
+  ## 4. Authentication
 
-  For the best user experience, guide the user to authenticate when they open your app.
+  After configuring the SDK, if you want to call some API of SDK in your app, you should lead users to login first.
 
-  You may want to know whether this user needs to log in. You can call the `IsLoggedIn` method to determine this.
-  A boolean result is returned in the callback.
+  ---
 
-  ```csharp AuthenticationCheck.cs
-  MirrorSDK.IsLoggedIn((isLoggedIn) => {
-    Debug.Log("isLoggedIn:" + isLoggedIn);
+  ### 1. Call up login page
+  ```csharp LoginActivity.cs
+  MirrorSDK.StartLogin();
+  ```
+
+  And if you want to do something after the logging is successful,you can pass an action to it as follows code:
+  ```csharp LoginWithCallback.cs
+  MirrorSDK.StartLogin((isSuccess) => {
+    if(isSuccess){
+      Debug.Log("Login success!");
+    } else{
+      Debug.Log("Login failed!");
+    }
   });
   ```
 
   ---
-  If you want the user to login, you can use the following code:
 
-  ```csharp StartAuthentication.cs
-  MirrorSDK.StartLogin();
+  ### 2. Check if user needs to login.
+  When a user opens your app, you may want to know whether this user has logged in before,
+  instead of letting them login every time, you can call the following code to know that.
+
+  ```csharp
+  MirrorSDK.IsLoggedIn((isLoggedIn) => {
+    Debug.Log("If they are logged in:" + isLoggedIn);
+  });
   ```
+  ---
+
+
+  ### Open wallet
+  User may want to check their wallet in your app,you can open their wallet by following code:
+
+  ```csharp
+  Action logoutAction = ()=> {
+    MirrorWrapper.Instance.LogFlow("Wallet logout.");
+  }
+
+  MirrorSDK.OpenWalletPage(logoutAction);
+  ```
+
+  If you don't need to do anything if user clicked logout button in wallet page,passing 'logoutAction' to this function would be ok.
+
+  ---
+
+  ### Confirmation
+
+  When we call some API of SDK, you are allowed to pass a param named `confirmation` to it.
+  You can use all the confirmation we provide in `Confirmation` enum. Here is an explanation for every kind of them:
+
+  - `Default`: If you pass this kind of confirmation to an API, it will use a default confirmation to handle this call, most of the time, it equals `Confirmed`.
+  - `Finalized`: If you use this, API will wait for transaction to be finalized before returning the HTTP response to you. So the time will be longer more or less.
+  - `Confirmed`: It is a fairly quick response to the user and is a reasonable promise that the transaction if processed, will be eventually finalized after a certain number of confirmations by the validator network.
+  - `Processed`: The node will query its most recent block. Note that the block may still be skipped by the cluster.
+
+  ---
+
+  ## Packaging Your Application
+
+  After development, you need to do some configuration if you want to package your app for distribution.
+
+  ### Packaging for Android
+
+  **Switch to Android platform**
+  Find File -> Build and settings -> Choose Android platform (If you are not) -> Click switch platform button.`
+
+  **Edit `AndroidManifest.xml`**
+  Find: File &rarr; Build and settings &rarr; Player Settings &rarr; Publishing Settings  &rarr; Build &rarr; Custom Main Manifest
+
+  Check it, and you may see the path of this file.Let's edit it.
+
+  #### Add permissions for internet
+  ```xml AndroidManifest.xml
+  <uses-permission android:name="android.permission.INTERNET" />
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <category android:name="android.intent.category.BROWSABLE" />
+      <data android:scheme="https"/>
+    </intent>
+  </queries>
+  ```
+
+  ---
+
+  #### 2. Register this activity
+  Register Activity
+  ```xml AndroidManifest.xml
+  <activity
+    android:name="com.mirror.sdk.activities.RedirectActivity"
+    android:exported="true">
+
+    <intent-filter>
+      <action android:name="android.intent.action.VIEW"/>
+      <category android:name="android.intent.category.DEFAULT"/>
+      <category android:name="android.intent.category.BROWSABLE"/>
+      <data android:scheme="mwsdk"/>
+    </intent-filter>
+  </activity>
+  ```
+
+  ---
+
+  Finally your `AndroidManifest.xml` file should look like this:
+
+  ```xml AndroidManifest.xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            package="com.mirror.mirrorworld_sdk_android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https"/>
+      </intent>
+    </queries>
+
+    <application
+      android:allowBackup="true"
+      android:dataExtractionRules="@xml/data_extraction_rules"
+      android:fullBackupContent="@xml/backup_rules"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:networkSecurityConfig="@xml/network_security_config"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:supportsRtl="true"
+      android:theme="@style/Theme.Mirrorworldsdkandroid"
+      tools:targetApi="31">
+
+      <activity
+        android:name=".MainActivity"
+        android:launchMode="singleTask"
+        android:exported="true">
+        <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+
+
+      <activity
+        android:name="com.mirror.sdk.activities.RedirectActivity"
+        android:exported="true">
+
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"/>
+          <category android:name="android.intent.category.DEFAULT"/>
+          <category android:name="android.intent.category.BROWSABLE"/>
+          <data android:scheme="mwsdk"/>
+        </intent-filter>
+      </activity>
+    </application>
+  </manifest>
+  ```
+  ---
+
+  #### Configure `launcherTemplate.gradle`
+  Use the same function to open your `launcherTemplate.gradle` file.
+  Add this to dependencies:
+
+  So the final dependencies may like this:
+
+  ```gradle launcherTemplate.gradle
+  apply plugin: 'com.android.application'
+
+  dependencies {
+    implementation project(':unityLibrary')
+    implementation 'androidx.browser:browser:1.3.0'
+  }
+  ```
+
+  ---
+
+  ### Configure `gradleTemplate.properties`
+
+  Add these lines to the end of the file:
+
+  ```properties gradleTemplate.properties
+  android.useAndroidX=true
+  android.enableJetifier=true
+  ```
+
+  For more information, you can refer to the official Android documentation.
+
+
+  ---
+
+  ### Packaging For iOS
+
+  #### Build your XCode project
+  Find File &rarr; Build and settings &rarr; iOS &rarr; Switch Platform  &rarr; Build
+
+  #### Add Mirror World Framework
+
+  Open the build XCode project.
+
+  Select your project root &rarr; TARGETS / Unity-iPhone &rarr; Build pharses &rarr; Copy Files
+  Change the destination to "Frameworks" and click "+" button to add `MirrorWorldSDK.framework` to your project.
+
+  #### Edit `UnityAppController.mm`
+  First, add this import to head of the file:
+  ```swift
+  // Import statement at head of file
+  #import <MirrorWorldSDK/MirrorWorldSDK-Swift.h>
+
+  // Then add this to the openUrl function
+  [[MirrorWorldSDK share] handleOpenWithUrl:url];
+  ```
+
+  ---
+
+  So, finally your openUrl function should look like this:
+  ```swift
+
+  - (BOOL)application:(UIApplication*)app openURL:(NSURL*)url options:(NSDictionary<NSString*, id>*)options
+  {
+    id sourceApplication = options[UIApplicationOpenURLOptionsSourceApplicationKey], annotation = options[UIApplicationOpenURLOptionsAnnotationKey];
+    NSMutableDictionary<NSString*, id>* notifData = [NSMutableDictionary dictionaryWithCapacity: 3];
+    if (url)
+  {
+    notifData[@"url"] = url;
+    UnitySetAbsoluteURL(url.absoluteString.UTF8String);
+  }
+    if (sourceApplication) notifData[@"sourceApplication"] = sourceApplication;
+    if (annotation) notifData[@"annotation"] = annotation;
+    AppController_SendNotificationWithArg(kUnityOnOpenURL, notifData);
+    [[MirrorWorldSDK share] handleOpenWithUrl:url];
+    return YES;
+  }
+  ```
+
+  ---
+
+  ## Going Further
+  Great! At this point you're pretty much ready to start doing building with the
+  Unity SDK for Mirror World. There are a few things you can do to proceed from here:
+
+  - Explore the [Full Unity API Reference](/api-reference/unity) to learn more.
+  - Looking for inspiration? Take a look at our [Guides](/guides) or see what builders are building in the [Showcase](/showcase).
+  - [Join the Mirror World Developer community](https://mirrorworld.fun/discord)! We're a vibrant community of builders!
+
+
+  ### Getting Support
+  If you're stuck or just looking for support, you may also [schedule a support call](https://mirrorworld.fun/support) with our team.
+
 
 </CH.Scrollycoding>
 
-## Going Further
-Great! At this point you're pretty much ready to start doing building with the
-Unity SDK for Mirror World. There are a few things you can do to proceed from here:
-
-- Explore the [Full Unity API Reference](/api-reference/unity) to learn more.
-- Looking for inspiration? Take a look at our [Guides](/guides) or see what builders are building in the [Showcase](/showcase).
-- [Join the Mirror World Developer community](https://mirrorworld.fun/discord)! We're a vibrant community of builders!
-
-
-### Getting Support
-If you're stuck or just looking for support, you may also [schedule a support call](https://mirrorworld.fun/support) with our team.

@@ -1308,6 +1308,9 @@ body {
   box-shadow: none !important;
   .ch-scrollycoding-sticker, .ch-code-wrapper {
     background-color: #efefef !important;
+    .ch-code-scroll-parent {
+      color: rgb(71 71 71) !important;
+    }
   }
 
   .ch-frame-title-bar {
@@ -1360,6 +1363,11 @@ body {
     box-shadow: none !important;
     .ch-scrollycoding-sticker, .ch-code-wrapper {
       background-color: #282c34 !important;
+      color: #a0a1a7;
+
+      .ch-code-scroll-parent {
+        color: #a0a1a7 !important;
+      }
     }
 
     .ch-frame-title-bar {
