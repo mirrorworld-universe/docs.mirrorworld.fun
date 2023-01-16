@@ -17,6 +17,7 @@ import { remarkAdmonition } from "./lib/remark-utils"
 import { remarkCodeHike } from "@code-hike/mdx"
 
 import fs from "fs"
+import remarkParse from "remark-parse"
 
 const fields: FieldDefs = {
   title: {
@@ -468,6 +469,7 @@ const contentLayerConfig = makeSource({
   ],
   mdx: {
     remarkPlugins: [
+      remarkParse,
       remarkGfm,
       remarkDirective,
       remarkAdmonition,
