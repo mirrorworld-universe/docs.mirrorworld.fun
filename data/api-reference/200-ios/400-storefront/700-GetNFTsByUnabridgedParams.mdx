@@ -1,14 +1,13 @@
 ---
-title: GetNFTRealPrice
+title: GetNFTsByUnabridgedParams
 ---
 
-# `GetNFTRealPrice`
-Get real price of a NFT.
-The param `fee` is deduct rate of server. So if you input `4250`, server will deduct 4.25%.
+# `GetNFTsByUnabridgedParams`
+Get NFTs by unabridged rules.
 
 ```swift
-MWSDK.GetNFTRealPrice(price: "1.2", fee: 1250) { data in
-    print("<iOS_MWSDK_LOG>: GetNFTRealPrice result:\(data)")
+MWSDK.GetNFTsByUnabridgedParams(collection: "collection address", page: 1, page_size: 10, order: ["price"], sale: 1, filter: ["price"]) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTsByUnabridgedParams result:\(data)")
 } onFailed: { code, message in
     print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
 }

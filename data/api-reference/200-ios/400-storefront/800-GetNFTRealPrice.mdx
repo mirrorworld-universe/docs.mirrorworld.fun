@@ -1,14 +1,15 @@
 ---
-title: RecommendSearchNFT
+title: GetNFTRealPrice
 ---
 
-# `RecommendSearchNFT`
-Search NFTs by recommend, server will give 10 NFT as recommend NFT at most.
-Developer may use them to fill some blank of searching UI.
+# `GetNFTRealPrice`
+
+Get real price of a NFT.
+The param 'fee' is deduct rate of server. So if you input '4250', server will deduct 4.25%.
 
 ```swift
-MWSDK.RecommentSearchNFT(collections: ["collection address 1"]) { data in
-    print("<iOS_MWSDK_LOG>: RecommentSearchNFT result:\(data)")
+MWSDK.GetNFTRealPrice(price: "1.2", fee: 1250) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTRealPrice result:\(data)")
 } onFailed: { code, message in
     print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
 }
