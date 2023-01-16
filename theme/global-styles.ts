@@ -87,9 +87,6 @@ export const globalStyles: SystemStyleObject = {
       fontVariantNumeric: "tabular-nums",
     },
 
-    "&.integration": {
-      // pl: ["0", "20rem", "11rem"],
-    },
     // android-install
     img: {
       "&[alt='screen-shot']": {

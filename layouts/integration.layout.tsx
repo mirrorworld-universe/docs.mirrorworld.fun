@@ -84,13 +84,13 @@ export default function IntegrationLayout({
               <Box
                 as="main"
                 className="mdx-content integration"
-                pl={useBreakpointValue({
+                pl={{
                   "2xl": "11rem",
                   xl: "20rem",
                   lg: "18rem",
                   md: "0",
                   sm: "0",
-                })}
+                }}
                 pt="4"
                 pr={{ lg: "4rem" }}
                 mt={"-50px"}

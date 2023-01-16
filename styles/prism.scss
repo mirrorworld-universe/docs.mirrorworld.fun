@@ -1296,25 +1296,55 @@ body {
   }
 }
 
-.ch-codeblock {
+.ch-codeblock, .ch-code-browser-content {
   box-shadow: none !important;
 }
 
-.ch-codeblock > .ch-code {
+.ch-codeblock > .ch-code, .ch-code-browser-content {
   background-color: #efefef !important;
+}
+
+.ch-code-browser-content {
+  font-family: var(--chakra-fonts-mono) !important;
+  background-color: #dadada !important;
+  color: rgb(83 83 83) !important;
 }
 
 .ch-codegroup {
   box-shadow: none !important;
-  .ch-scrollycoding-sticker, .ch-code-wrapper {
+  .ch-scrollycoding-sticker, .ch-code-wrapper,  {
     background-color: #efefef !important;
-    .ch-code-scroll-parent {
+    .ch-code-scroll-parent, .ch-code-browser-content {
       color: rgb(71 71 71) !important;
     }
   }
 
   .ch-frame-title-bar {
     background-color: #dfdfdf !important;
+  }
+
+
+  .ch-code-browser-sidebar {
+    font-family: var(--chakra-fonts-mono);
+    background-color: #dfdfdf !important;
+    color: var(--shiki-color-text) !important;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    .ch-code-browser-sidebar-file {
+      --ch-list-selection-background: #a2a2a2;
+      --ch-list-selection-foreground: #252525;
+      &:hover {
+        background-color: #d3d3d3 !important;
+      }
+
+    }
+
+    & > div {
+      width: 100%;
+    }
   }
 
   .ch-editor-tab {
@@ -1346,7 +1376,7 @@ body {
 }
 
 .chakra-ui-dark {
-  .ch-codeblock > .ch-code {
+  .ch-codeblock > .ch-code, .ch-code-browser-content {
     background-color: #282c34 !important;
   }
 
@@ -1357,6 +1387,12 @@ body {
     .ch-scrollycoding-sticker, .ch-code-wrapper {
       background-color: #282c34 !important;
     }
+  }
+
+  .ch-code-browser-content {
+    font-family: var(--chakra-fonts-mono) !important;
+    background-color: #282c34 !important;
+    color: #a0a1a7 !important;
   }
 
   .ch-codegroup {
@@ -1382,6 +1418,29 @@ body {
       &.ch-editor-tab-active {
         background-color: #4d4d4d !important;
         color: var(--shiki-color-text) !important;
+      }
+    }
+
+    .ch-code-browser-sidebar {
+      font-family: var(--chakra-fonts-mono);
+      background-color: #2f2f2f !important;
+      color: var(--shiki-color-text) !important;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      .ch-code-browser-sidebar-file {
+        --ch-list-selection-background: #484848;
+        --ch-list-selection-foreground: var(--shiki-color-text);
+        &:hover {
+          background-color: #525252 !important;
+        }
+
+      }
+
+      & > div {
+        width: 100%;
       }
     }
   }
