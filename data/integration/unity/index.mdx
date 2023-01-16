@@ -76,7 +76,7 @@ title: Unity Integration Guide
   When a user opens your app, you may want to know whether this user has logged in before,
   instead of letting them login every time, you can call the following code to know that.
 
-  ```csharp
+  ```csharp IsLoggedIn.cs
   MirrorSDK.IsLoggedIn((isLoggedIn) => {
     Debug.Log("If they are logged in:" + isLoggedIn);
   });
@@ -87,7 +87,7 @@ title: Unity Integration Guide
   ### Open wallet
   User may want to check their wallet in your app,you can open their wallet by following code:
 
-  ```csharp
+  ```csharp OpenWalletPage.cs
   Action logoutAction = ()=> {
     MirrorWrapper.Instance.LogFlow("Wallet logout.");
   }
@@ -258,7 +258,8 @@ title: Unity Integration Guide
 
   #### Edit `UnityAppController.mm`
   First, add this import to head of the file:
-  ```swift
+
+  ```swift UnityAppController.cs
   // Import statement at head of file
   #import <MirrorWorldSDK/MirrorWorldSDK-Swift.h>
 
@@ -269,7 +270,7 @@ title: Unity Integration Guide
   ---
 
   So, finally your openUrl function should look like this:
-  ```swift
+  ```swift UnityAppController.cs
 
   - (BOOL)application:(UIApplication*)app openURL:(NSURL*)url options:(NSDictionary<NSString*, id>*)options
   {
