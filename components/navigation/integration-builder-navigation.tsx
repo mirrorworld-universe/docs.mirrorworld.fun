@@ -13,7 +13,9 @@ export function IntegrationBuilderNav(props: any) {
   const selectedLanguage = useMemo(() => {
     return (
       integrationGuidesConfig.languages.find((l) => {
-        return l.normalizedName === router.asPath.split("/")[2]
+        const languageFull = router.asPath.split("/")[2]
+        const [language] = languageFull.split("#")
+        return l.normalizedName === language
       }) || integrationGuidesConfig.languages[0]
     )
   }, [router.asPath, integrationGuidesConfig, router.pathname])
