@@ -1314,6 +1314,7 @@ body {
   box-shadow: none !important;
   .ch-scrollycoding-sticker, .ch-code-wrapper,  {
     background-color: #efefef !important;
+    --ch-selection-background: #00ffdc !important;
     .ch-code-scroll-parent, .ch-code-browser-content {
       color: rgb(71 71 71) !important;
     }
@@ -1392,6 +1393,7 @@ body {
 
 
     .ch-scrollycoding-sticker, .ch-code-wrapper {
+      --ch-selection-background: #004a42 !important;
       background-color: #282c34 !important;
     }
   }
