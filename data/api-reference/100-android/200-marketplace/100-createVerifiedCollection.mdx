@@ -7,16 +7,19 @@ Create a new Verified Collection
 
 
 ```java
-string collectionName = "TopCollection";
-string collectionSymbol = "Top";
-string collectionUrl = "https://example.com/path/detail.json";
-string confirmation = Confirmation.Finalized;
+String mintName = "NewNFT";
+String mintSymbol = "Symbol";
+String metaDataUri: "https://my-collection-metadata-uri/metadata.json";
 
-MirrorWorld.createVerifiedCollection(collectionName,collectionSymbol,collectionUrl,confirmation,(response) => {
-    long resCode = response.Code;
-    MintResponse result = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
+MirrorSDK.getInstance().createVerifiedCollection(mintName, mintSymbol, metaDataUri, new CreateTopCollectionListener() {
+    @Override
+    public void onCreateSuccess(MintResponse mintResponse) {
+        //todo
+    }
+
+    @Override
+    public void onCreateFailed(long code, String message) {
+       //todo
+    }
 });
 ```

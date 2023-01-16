@@ -7,10 +7,10 @@ Get the transactions of user's wallet.
 
 
 ```java
-float price = 0.1f;
-string nextBefore = "nextBefore";
+int limit = 1;
+String nextBefore = "nextBefore";
 
-MirrorWorld.getTransactions(limit, before, new GetWalletTransactionListener() {
+MirrorWorld.getTransactions(limit, nextBefore, new GetWalletTransactionListener() {
     @Override
     public void onSuccess(GetWalletTransactionsResponse walletTransactionsResponse) {
         Log.d("Result","GetTransactions success! count is "+walletTransactionsResponse.count);

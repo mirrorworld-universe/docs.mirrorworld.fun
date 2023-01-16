@@ -7,14 +7,18 @@ title: transferNFT
 Transfer NFT from holder's wallet to another address
 
 ```java
-string mintAddress = "mint_address";
-string toWallet = "wallet_address";
+String mintAddress = "NFT mint address";
+String toWallet = "to wallet address";
 
-MirrorWorld.transferNFT(mintAddress,toWallet,(response) => {
-    long resCode = response.Code;
-    ListingResponse result = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
+MirrorWorld.transferNFT(mintAddress, toWallet, new TransferNFTListener() {
+    @Override
+    public void onTransferSuccess(ListingResponse listingResponse) {
+        Log.d("MirrorSDK","Transfer success,the NFT is:"+listingResponse.mint_address);
+    }
+
+    @Override
+    public void onTransferFailed(long code, String message) {
+        Log.d("MirrorSDK","Transfer NFT faild,code:"+code+" message:"+message);
+    }
 });
 ```

@@ -8,15 +8,22 @@ Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose `c
 are provided
 
 ```java
-List<string> creators = new List<string>();
-creators.Add("address_1");
-creators.Add("address_2");
+List<string> creatorAddresses = new ArrayList<>();
+creatorAddresses.add("creator wallet address 1");
+creatorAddresses.Add("creator wallet address 2");
+int limit = 99;
+int offset = 1;
 
-MirrorWorld.fetchNFTsByCreatorAddresses(creators,(response) => {
-    long resCode = response.Code;
-    MultipleNFTsResponse result = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
+MirrorWorld.fetchNFTsByCreatorAddresses(creatorAddresses, limit, offset, new FetchNFTsListener() {
+    @Override
+    public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
+        List<NFTObject> nfts = multipleNFTsResponse.nfts;
+        Log.d("MirrorSDK","Fetched "+nft.size()+" NFTs");
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        Log.d("MirrorSDK","Fetching NFTs faild,code:"+code+" message:"+message);
+    }
 });
 ```

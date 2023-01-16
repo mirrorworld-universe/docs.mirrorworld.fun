@@ -35,6 +35,11 @@ export const globalStyles: SystemStyleObject = {
     },
   },
 
+  ".ch-scrollycoding-step-content": {
+    minH: "auto",
+    px: "12px !important",
+  },
+
   ".ch-scrollycoding-step-content[data-selected]": {
     bg: "selectedBackground",
     border: "transparent",

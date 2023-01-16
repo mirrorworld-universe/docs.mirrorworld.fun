@@ -8,15 +8,22 @@ Fetch NFTs By Owner Addresses. Returns a detailed payload of all NFTs whose `own
 are provided
 
 ```java
-List<string> addresses = new List<string>();
-addresses.Add("address_1");
-addresses.Add("address_2");
+List<String> owners = new ArrayList<>();
+owners.add("owner address 1");
+int limit = 99;
+int offset = 1;
 
-MirrorWorld.fetchNFTsByOwnerAddresses(addresses,creators,(response) => {
-    long resCode = response.Code;
-    MultipleNFTsResponse result = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
+ MirrorWorld.fetchNFTsByOwnerAddresses(owners, limit, offset, new FetchByOwnerListener() {
+    @Override
+    public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
+        int count = multipleNFTsResponse.nfts.size();
+        String countStr = "You have " + count + " NFTs";
+        Log.d("MirrorSDK",countStr);
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        Log.d("MirrorSDK","fetchNFTsByOwnerAddresses faild,code:"+code+" message:"+message);
+    }
 });
 ```

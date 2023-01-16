@@ -6,14 +6,15 @@ title: transferSPLToken
 Transfer SPL token to a recipient
 
 ```java
-ulong amount = 1;
-string publicKey = "public_key";
+String toPublicKey = "to public key";
+float amount = "1.1f";
+String tokenMint = "mint address";
+float decimals = "2f";
 
-MirrorWorld.transferSPLToken(amount,publicKey,(response) => {
-    long resCode = response.Code;
-    TransferTokenResponse result = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
+MirrorWorld.transferSPLToken(toPublicKey, amount, tokenMint, decimals, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
 });
 ```

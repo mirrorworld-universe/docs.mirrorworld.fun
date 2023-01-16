@@ -7,18 +7,17 @@ title: getNFTsOwnedByAddress
 Fetches the NFTs owned by a specific list of addresses.
 
 ```java
-List<string> owners = new List<string>();
-owners.Add("owner_address_1");
-owners.Add("owner_address_2");
+String ownerWalletAddress = "owner wallet";
 
-long limit = 1;
-long offset = 1;
+MirrorWorld.getNFTsOwnedByAddress(ownerWalletAddress, new FetchNFTsListener() {
+    @Override
+    public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
+        //todo
+    }
 
-MirrorWorld.getNFTsOwnedByAddress(owners,limit,offset,(response) => {
-    long resCode = response.Code;
-    MultipleNFTsResponse details = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
+    @Override
+    public void onFetchFailed(long code, String message) {
+        //todo
+    }
 });
 ```

@@ -7,8 +7,16 @@ Calling this API would pop up a dialog, user can finish the login flow on it. In
 the user can login with a third method like google, twitter. Or the user can login with the
 email which is registered on our website.
 ```java
-MirrorWorld.startLogin((loginResponse)=> {
-    Debug.Log("Login result:" + loginResponse.ToString());
+MirrorWorld.startLogin(new LoginListener() {
+    @Override
+    public void onLoginSuccess() {
+        //todo
+    }
+
+    @Override
+    public void onLoginFail() {
+        //todo
+    }
 });
 ```
 

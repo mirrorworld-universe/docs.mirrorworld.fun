@@ -11,11 +11,10 @@ Logs in a user with email and password.
 String emailAddress = "email@example.com";
 String password = "super-secret-password";
 
-MirrorWorld.loginWithEmail(emailAddress, password, (response) => {
-    Long resCode = response.Code;
-    LoginResponse details = response.Data;
-    String error = response.Error;
-    String message = response.Message;
-    String status = response.Status;
+MirrorWorld.loginWithEmail(emailAddress, password, new MirrorCallback () {
+    @Override
+    public void callback(String loginRawResult) {
+        Log.d("MirrorSDK","login result is" + loginRawResult);
+    }
 });
 ```

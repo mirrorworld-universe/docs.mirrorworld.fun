@@ -229,7 +229,7 @@ title: Android Integration Guide
   ### Initialization
   We can initialize Mirror World SDK with the following code:
 
-  ```java MainActivity.java
+  ```java Initialize SDK
   Activity activity = this;
   String apiKey = "your-api-key";
   boolean useDebugMode = true;
@@ -244,7 +244,7 @@ title: Android Integration Guide
 
   Users need to log in to use some MirrorSDK features (or APIs). If you want them to login for the first time or once again, use the following code:
 
-  ```java startLogin.java
+  ```java Start Login
   MirrorWorld.startLogin(new LoginListener() {
     @Override
       public void onLoginSuccess() {
@@ -264,7 +264,7 @@ title: Android Integration Guide
   already logged in. According the result, you can show them a login button or hide your login button and make
   them enter your dApp or game directly.
 
-  ```java CheckAuthenticated.java
+  ```java CheckAuthenticated
   MirrorWorld.isLoggedIn(new BoolListener() {
     @Override
       public void onBool(boolean boolValue) {
@@ -285,7 +285,87 @@ title: Android Integration Guide
   ---
 
   ### User get NFTs
+  Fetch a user's NFTs by calling `GetNFTsOwnedByAddress`
 
+  ```java Get NFTs Owned By Address
+  List<String> owners = new ArrayList<>();
+  owners.add("owner_wallet_address_1");
+  owners.add("owner_wallet_address_2");
+
+  MirrorWorld.fetchNFTsByOwnerAddresses(owners, new FetchByOwnerListener() {
+    @Override
+      public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
+      Log.d("Fetch result","success");
+    }
+
+      @Override
+      public void onFetchFailed(long code, String message) {
+      Log.d("Fetch result","failed,code:"+code+",message:"+message);
+    }
+  });
+  ```
+
+  You can also fetch NFTs by other parameters:
+  - [`fetchNFTsByMintAddresses`](/api-reference/android/marketplace/fetchNFTsByMintAddresses)
+  - [`fetchNFTsByOwnerAddresses`](/api-reference/android/marketplace/fetchNFTsByOwnerAddresses)
+  - [`fetchNFTsByCreatorAddresses`](/api-reference/android/marketplace/fetchNFTsByCreatorAddresses)
+  - [`fetchNFTsByUpdateAuthorities`](/api-reference/android/marketplace/fetchNFTsByUpdateAuthorities)
+  Refer to the documentation for the complete [API Reference](/api-reference/android/).
+
+  ---
+
+  ### Transferring NFTs
+
+  You can transfer an NFT to another wallet:
+
+  ```java Transfer NFTs
+  String mint_address = "address";
+  String to_wallet_address = "target_wallet";
+
+  MirrorWorld.transferNFT(mint_address, to_wallet_address, new TransferNFTListener() {
+    @Override
+      public void onTransferSuccess(ListingResponse listingResponse) {
+      Log.d("Transfer result","success");
+    }
+      @Override
+      public void onTransferFailed(long code, String message) {
+      Log.d("Transfer result","failed");
+    }
+  });
+  ```
+
+  ---
+  ### Listing NFTs
+
+  If you want to list an NFT on a marketplace, you may use these code:
+
+  ```java
+  String mint_address = "nft_mint_address";
+  Double price = 0.1;
+
+  MirrorWorld.listingNFT(mint_address, price, MirrorConfirmation.Finalized, new ListNFTListener() {
+    @Override
+      public void onListSuccess(ListingResponse listingResponse) {
+      Log.d("ListNFT success","price is:"+listingResponse.price);
+    }
+      @Override
+      public void onListFailed(long code, String message) {
+      Log.d("ListNFT faild",message);
+    }
+  });
+  ```
+
+  ---
+
+  ### Confirmation
+
+  When we call some API of SDK, you are allowed to pass a param named `confirmation` to it.
+  You can use all the confirmation we provide in `Confirmation` enum. Here is an explanation for every kind of them:
+
+  - `Default`: If you pass this kind of confirmation to an API, it will use a default confirmation to handle this call, most of the time, it equals `Confirmed`.
+  - `Finalized`: If you use this, API will wait for transaction to be finalized before returning the HTTP response to you. So the time will be longer more or less.
+  - `Confirmed`: It is a fairly quick response to the user and is a reasonable promise that the transaction if processed, will be eventually finalized after a certain number of confirmations by the validator network.
+  - `Processed`: The node will query its most recent block. Note that the block may still be skipped by the cluster.
 
   ---
 

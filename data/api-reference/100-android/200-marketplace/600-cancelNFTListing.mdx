@@ -7,16 +7,18 @@ title: cancelNFTListing
 Cancel NFT Listing on your marketplace instance.
 
 ```java
-string mintAddress = "mint_address";
-decimal price = 1;
-string auctionHouse = "your_market_auction_house";
-string confirmation = Confirmation.Default;
+String mintAddress = "mint_address";
+Doubld price = 1.0;
 
-MirrorWorld.cancelNFTListing(mintAddress,price,auctionHouse,confirmation,(response) => {
-    long resCode = response.Code;
-    ListingResponse result = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
+MirrorWorld.cancelNFTListing(mintAddress, price, new CancelListListener() {
+    @Override
+    public void onCancelSuccess(ListingResponse listingResponse) {
+        Log.d("MirrorSDK","CancelNFTListing success! Mint address is "+listingResponse.mint_address);
+    }
+
+    @Override
+    public void onCancelFailed(long code, String message) {
+        Log.d("MirrorSDK","Cancel NFT listing faild,code:"+code+" message:"+message);
+    }
 });
 ```

@@ -6,15 +6,18 @@ title: transferSol
 Transfer SOL to wallet address
 
 ```java
-ulong amount = 1;
-string publicKey = "public_key";
-string confirmation = Confirmation.Finalized;
+String publicKey = "";
+float amount = 1.1f;
 
-MirrorWorld.transferSol(amount,publicKey,confirmation,(response) => {
-    long resCode = response.Code;
-    TransferSolResponse result = response.Data;
-    string error = response.Error;
-    string message = response.Message;
-    string status = response.Status;
+MirrorWorld.transferSOL(publicKey, amount, new TransferSOLListener() {
+    @Override
+    public void onTransferSuccess(TransferResponse transferResponse) {
+        //todo
+    }
+
+    @Override
+    public void onTransferFailed(long code, String message) {
+        //todo
+    }
 });
 ```
