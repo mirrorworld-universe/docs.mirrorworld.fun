@@ -1,0 +1,91 @@
+---
+title: Creating a Solana NFT Collection with the Mirror World Smart SDK
+description:
+  Guide for creating a Solana NFT Collection with the Mirror World Smart SDK
+author:
+  name: David C. Nwadiogbu
+  twitter: https://twitter.com/cnwadiogbu
+tags:
+  - Solana
+  - NFTs
+  - Marketplace
+---
+
+An NFT Collection is made up of a variety of several unique NFTs. 
+Usually, NFT collections may consist of various NFTs that share some similar characteristics with slight variations across each individual token. 
+A good example of this is the popular [okay bears](https://www.okaybears.com/) NFT collection.
+NFT collections can come in a variety of different forms, including but not limited to music albums, sports trading cards, etc. 
+Some people like to create NFT collections with a theme while some prefer one with a diverse range of NFTs. Whatever it is, creating your own NFT collection is a big step in your NFT journey.
+In this guide, we’re going to learn how to create NFT Collections on Solana with the Mirror World SDK.
+
+## Getting Started
+
+To create an NFT collection, you want to make sure that you already have a Mirror World developer account. 
+A developer account grants you access to numerous features that can help you build on Mirror World and it can be created within seconds. 
+If you do not yet have an account, head over to https://app.mirrorworld.fun/auth/login to get started. 
+You’ll be redirected to the Mirror World dashboard after successfully signing up.
+
+## Create a Project
+
+Creating a project is a necessary step in your NFT collection creation process. A project is the foundation for developing with Mirror World.  Every project is created with three major credentials:
+
+1. **API Key:** Used to authorize a client to access the Mirror World API.
+2. **Client ID:** Used to publicly identify your project.
+3. **Client Secret:** Sensitive credential that the project owner/developer will use to verify certain claims about their project on our Authentication services.
+
+These credentials can be found on the Mirror World developer dashboard within the project.
+
+## How to Create an NFT Collection
+
+After going through the aforementioned steps, let’s look at the different ways we can create our NFT Collection using the Mirror World Smart SDK.
+
+### Using the Mirror World Developer Dashboard
+
+Using the developer dashboard is the fastest and easiest way to get started creating your NFT collection. Click on the “NFT Collections” tab displayed on the sidebar underneath “Projects”
+
+![Collection label](https://res.cloudinary.com/dkegnossp/image/upload/v1668632118/1280X1280_i5vqoo.png)
+
+You’ll be redirected to the Collections page with details about creating an NFT Collection.
+
+![Creating a collection](https://res.cloudinary.com/dkegnossp/image/upload/v1673868935/Screenshot_2023-01-12_at_21.13.44_p9vvo5.png)
+
+Click on the on the "Create Collection" button to create a new collection. You'll be redirected to a page asking you for more information about your collection. Please make sure to fill in every field with the appropriate information. After creating a collection, you should be redirected to the collections page and see your collection added to the collections list for your project.
+
+### Using the Mirror World API
+
+There’s also the option to use our API in creating your collection. All you need to do is call the `createVerifiedCollection` method:
+
+As you can see, from its name, `createVerifiedCollection` helps you create a verified NFT collection. Verified collections help others know that the NFTs come from an authentic source.
+This is necessary especially if you intend to make money off of your NFTs as collectors tend to only buy from collections that are verified. 
+
+The Mirror World API helps in simplifying the verification process significantly as seen in the code below:
+
+**example.tsx** 
+
+```tsx
+const collection = await mirrorworld.createVerifiedCollection({
+  name: "COLLECTION_NAME",
+  symbol: "COLLECTION_SYMBOL",
+  metadataUri: "https://my-collection-metadata-uri/metadata.json"
+})
+
+// Returns `IVerifiedCollection`
+export interface IVerifiedCollection {
+  mint_address: string;
+  url: string;
+  update_authority: string;
+  creator_address: string;
+  name: string;
+  symbol: string;
+  collection?: null;
+  signature: string;
+  status: string;
+}
+```
+
+*Remember, you need to have set up a project and configured your app to use its API keys before you can successfully call this and other methods.*
+
+## Where to go from here
+
+The Mirror World SDK spans across multiple frameworks and aims to help developers to seamlessly build Web 3 infrastructure rapidly and effectively for mobile and the web. The developer dashboard greatly improves this experience with its simple and easy to navigate interface.
+Your journey doesn’t have to end at creating collections. Check out this guide to learn [how to mint NFTs](https://docs.mirrorworld.fun/guides/how-to-mint-nfts-on-solana) to your collection, [how to create an NFT marketplace](https://docs.mirrorworld.fun/guides/how-to-create-nft-marketplace) and a list of [Marketplace transactions you can perform with the Mirror World Smart SDK](https://docs.mirrorworld.fun/guides/marketplace-transactions-with-mirrorworld-sdk)
