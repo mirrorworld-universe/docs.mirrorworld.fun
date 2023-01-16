@@ -48,13 +48,13 @@ title: Unity Integration Guide
 
   ---
 
-  ## 4. Authentication
+  ## Usage
 
   After configuring the SDK, if you want to call some API of SDK in your app, you should lead users to login first.
 
   ---
 
-  ### 1. Call up login page
+  ### Call up login page
   ```csharp LoginActivity.cs
   MirrorSDK.StartLogin();
   ```
@@ -72,45 +72,6 @@ title: Unity Integration Guide
 
   ---
 
-  ### 2. Check if user needs to login.
-  When a user opens your app, you may want to know whether this user has logged in before,
-  instead of letting them login every time, you can call the following code to know that.
-
-  ```csharp IsLoggedIn.cs
-  MirrorSDK.IsLoggedIn((isLoggedIn) => {
-    Debug.Log("If they are logged in:" + isLoggedIn);
-  });
-  ```
-  ---
-
-
-  ### Open wallet
-  User may want to check their wallet in your app,you can open their wallet by following code:
-
-  ```csharp OpenWalletPage.cs
-  Action logoutAction = ()=> {
-    MirrorWrapper.Instance.LogFlow("Wallet logout.");
-  }
-
-  MirrorSDK.OpenWalletPage(logoutAction);
-  ```
-
-  If you don't need to do anything if user clicked logout button in wallet page,passing 'logoutAction' to this function would be ok.
-
-  ---
-
-  ### Confirmation
-
-  When we call some API of SDK, you are allowed to pass a param named `confirmation` to it.
-  You can use all the confirmation we provide in `Confirmation` enum. Here is an explanation for every kind of them:
-
-  - `Default`: If you pass this kind of confirmation to an API, it will use a default confirmation to handle this call, most of the time, it equals `Confirmed`.
-  - `Finalized`: If you use this, API will wait for transaction to be finalized before returning the HTTP response to you. So the time will be longer more or less.
-  - `Confirmed`: It is a fairly quick response to the user and is a reasonable promise that the transaction if processed, will be eventually finalized after a certain number of confirmations by the validator network.
-  - `Processed`: The node will query its most recent block. Note that the block may still be skipped by the cluster.
-
-  ---
-
   ## Packaging Your Application
 
   After development, you need to do some configuration if you want to package your app for distribution.
@@ -123,9 +84,8 @@ title: Unity Integration Guide
   **Edit `AndroidManifest.xml`**
   Find: File &rarr; Build and settings &rarr; Player Settings &rarr; Publishing Settings  &rarr; Build &rarr; Custom Main Manifest
 
-  Check it, and you may see the path of this file.Let's edit it.
+  Check it, and you may see the path of this file. Let's edit it to add permissions for internet
 
-  #### Add permissions for internet
   ```xml AndroidManifest.xml
   <uses-permission android:name="android.permission.INTERNET" />
   <queries>
@@ -139,7 +99,7 @@ title: Unity Integration Guide
 
   ---
 
-  #### 2. Register this activity
+  #### Register this activity
   Register Activity
   ```xml AndroidManifest.xml
   <activity
