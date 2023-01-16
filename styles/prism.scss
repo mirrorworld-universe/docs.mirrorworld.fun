@@ -1474,7 +1474,7 @@ body {
 }
 
 .ch-frame-title-bar {
-  div {
+  > div {
     &:last-of-type {
       min-width: 70px !important;
     }
@@ -1483,7 +1483,7 @@ body {
 
 .ch-editor-button {
   z-index: 100;
-  box-shadow: var(--chakra-shadows-sm);
+  color: var(--shiki-color-text) !important;
   position: absolute;
   right: 32px;
 
