@@ -74,6 +74,11 @@ export const globalStyles: SystemStyleObject = {
       fontFeatureSettings: "tnum",
       fontVariantNumeric: "tabular-nums",
     },
+
+    "img[alt='screen-shot']": {
+      width: [null, null, "310px"],
+      minWidth: [null, null, "310px"],
+    },
     "li:not([role])": {
       marginY: "1",
     },

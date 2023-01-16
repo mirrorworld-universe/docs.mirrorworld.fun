@@ -108,6 +108,9 @@ const components: Record<string, FC<Record<string, any>>> = {
   h4(props) {
     return <chakra.h4 textStyle="display.xs" mt="6" mb="2" {...props} />
   },
+  img(props) {
+    return <chakra.img {...props} />
+  },
   pre(props) {
     const [isMounted, setIsMounted] = useState(false)
     const [codeContent, setCodeContent] = useState("")
