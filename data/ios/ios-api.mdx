@@ -9,7 +9,7 @@
 
 Calling this API would popup a dialog, user can finish login flow on it. In which the user can login with another method like Google or Twitter. Or they can login with their registered email.
 
-```swift
+```Swift
 MirrorWorldSDK.share.StartLogin { userInfo in
     print("login success :\(userInfo?.toString() ?? "")")
 } onFail: {
@@ -21,16 +21,15 @@ MirrorWorldSDK.share.StartLogin { userInfo in
 
 Checks whether the current user is logged in. You can use this function to check if a user needs to start the login flow.
 
-```swift
+```Swift
 MWSDK.CheckAuthenticated { onBool in
     print("This device's login state is:\(onBool)")
 }
 ```
 
 ### Logs out a user
-Logs out a user
 
-```swift
+```Swift
 MWSDK.Logout {
     print("Logs out a user : success")
 } onFail: {
@@ -44,7 +43,7 @@ MWSDK.Logout {
 
 Opens a web view which shows the wallet page.
 
-```swift
+```Swift
 MWSDK.OpenWallet()
 ```
 
@@ -52,7 +51,7 @@ MWSDK.OpenWallet()
 
 Gets access token for users to use the API.
 
-```swift
+```Swift
 
 MWSDK.GetAccessToken(callBack: { token in
     self.Log("Access Token is : \(token)")
@@ -64,7 +63,7 @@ MWSDK.GetAccessToken(callBack: { token in
 
 Check user's info, then we can get user's base information such as wallet address and so on.
 
-```swift
+```Swift
 
 MWSDK.QueryUser(email: "user Email") { user in
   self.Log(user ?? "null")
@@ -80,7 +79,7 @@ MWSDK.QueryUser(email: "user Email") { user in
 
 Fetch the details of a NFT.
 
-```swift
+```Swift
 
 MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
     self.Log(data)
@@ -94,7 +93,7 @@ MirrorWorldSDK.share.FetchSingleNFT(mint_Address: "mint address") { data in
 
 Mint a new NFT.
 
-```swift
+```Swift
 MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA", url: "", seller_fee_basis_points: 100, confirmation: "finalized") { data in
         self.Log(data)
     } onFailed: { code, message in
@@ -107,7 +106,7 @@ MWSDK.MintNewNFT(collection_mint: "collection_mint", name: "test", symbol: "NA",
 
 Mint a parent NFT collection.
 
-```swift
+```Swift
 MWSDK.MintNewCollection(name: "testNewCollection", symbol: "NA", url: "https://market-assets.mirrorworld.fun/gen1/1.json", confirmation: "finalized", seller_fee_basis_points: 200, onSuccess: { data in
         self.Log(data)
     }, onFailed: { code,message in
@@ -115,12 +114,11 @@ MWSDK.MintNewCollection(name: "testNewCollection", symbol: "NA", url: "https://m
     })
 ```
 
-
 ### TransferNFTToAnotherSolanaWallet
 
 Transfer NFT to another Sol wallet.
 
-```swift
+```Swift
 
 MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", confirmation: "") { data in
         self.Log(data)
@@ -132,9 +130,9 @@ MWSDK.TransferNFTToAnotherSolanaWallet(mint_address: "", to_wallet_address: "", 
 
 ### BuyNFT
 
-Buy a NFT on marketplace.
+Buy a NFT on market place.
 
-```swift
+```Swift
     MWSDK.BuyNFT(mint_address: "test", price: 1.1) { data in
         self.Log(data)
         self.loadingActive.stopAnimating()
@@ -149,7 +147,7 @@ Buy a NFT on marketplace.
 
 Update the list of NFTs.
 
-```swift
+```Swift
 MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
         self.Log(data)
     } onFailed: { code, message in
@@ -161,7 +159,7 @@ MWSDK.UpdateNFTListing(mint_address: "mint address", price: 1) { data in
 
 Get list of NFT on market place.
 
-```swift
+```Swift
 MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "finalized") { data in
         self.Log(data)
     } onFailed: { code, message in
@@ -173,7 +171,7 @@ MirrorWorldSDK.share.ListNFT(mint_address: "test", price: 1.1, confirmation: "fi
 
 Cancel listing of NFT.
 
-```swift
+```Swift
 MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
         self.Log(data)
     } onFailed: { code, message in
@@ -185,7 +183,7 @@ MWSDK.CancelNFTListing(mint_address: "test", price: 1.1) { data in
 
 Get a collection of NFT by authority addresses.
 
-```swift
+```Swift
 MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offset: 0.1) { data in
             self.Log(data)
         } onFailed: { code, message in
@@ -197,7 +195,7 @@ MWSDK.FetchNFTsByUpdateAuthorities(update_authorities: ["test"], limit: 10, offs
 
 Get a collection of NFT by creator addresses
 
-```swift
+```Swift
 MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { data in
         self.Log(data)
         self.loadingActive.stopAnimating()
@@ -211,10 +209,112 @@ MWSDK.FetchNFTsByCreatorAddresses(creators: ["test"], limit: 10, offset: 0.1) { 
 
 Get a collection of NFT by mint addresses.
 
-```swift
+```Swift
 MWSDK.FetchNFTsByOwnerAddress(owners: ["test"], limit: 1, offset: 0.1) { data in
         self.Log(data)
     } onFailed: { code, message in
         self.Log("\(item):failed:\(code),\(message ?? "")")
     }
 ```
+
+
+## Storefront Methods
+### openMarketPlacePage
+Open the market place page which publish before.
+You can refer to [How to publish self Storefront](https://docs.mirrorworld.fun/overview/storefront).
+```Swift
+let marketUrl = "Your market place url"
+MWSDK.openMarketPlacePage(url: url)
+```
+
+### GetCollectionFilterInfo
+Get collection filters info.
+```Swift
+MWSDK.GetCollectionFilterInfo(collection: "Your collection address") { data in
+    print("<iOS_MWSDK_LOG>: GetCollectionFilterInfo result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### GetNFTInfo
+Get NFT info. You need to parse the rawJsonString by yourself, cause SDK don't know what format your NFT is like.
+
+```Swift
+MWSDK.GetNFTInfo(mint_address: "your address") { data in
+    print("<iOS_MWSDK_LOG>: GetNFTInfo result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: GetNFTInfo faild, code is \(code) message is \(message)")
+}
+```
+
+### GetCollectionInfo
+Get collections info by collection addresses.
+
+```Swift
+MWSDK.GetCollectionInfo(collections: ["Your collection address 1"]) { data in
+    print("<iOS_MWSDK_LOG>: GetCollectionFilterInfo result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### GetNFTEvents
+Get NFT's events.
+```Swift
+MWSDK.GetNFTEvents(mint_address: "NFT address", page: 1, page_size: 10) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTEvents result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### SearchNFTs
+Search NFTs by given search string.
+```Swift
+MWSDK.SearchNFTs(collections: ["collection address 1"], search: "price") { data in
+    print("<iOS_MWSDK_LOG>: SearchNFTs result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### RecommendSearchNFT
+Search NFTs by recommend, server will give 10 NFT as recommend NFT at most.
+Developer may use them to fill some blank of searching UI.
+
+```Swift
+MWSDK.RecommentSearchNFT(collections: ["collection address 1"]) { data in
+    print("<iOS_MWSDK_LOG>: RecommentSearchNFT result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### GetNFTsByUnabridgedParams
+Get NFTs by unabridged rules.
+```Swift
+MWSDK.GetNFTsByUnabridgedParams(collection: "collection address", page: 1, page_size: 10, order: ["price"], sale: 1, filter: ["price"]) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTsByUnabridgedParams result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+### GetNFTRealPrice
+Get real price of a NFT.
+The param 'fee' is deduct rate of server. So if you input '4250', server will deduct 4.25%.
+
+```Swift
+MWSDK.GetNFTRealPrice(price: "1.2", fee: 1250) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTRealPrice result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```
+
+## License
+
+MirrorWorldSDK is available under the MIT license. See the LICENSE file for more info.
+
+[`markdownlint/Ruby`](https://github.com/markdownlint/markdownlint) for the inspiration and [`markdown-it`](https://github.com/markdown-it/markdown-it) for the parser and interactive demo idea!

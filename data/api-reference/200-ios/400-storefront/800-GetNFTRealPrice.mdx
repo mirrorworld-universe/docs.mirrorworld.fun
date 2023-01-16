@@ -1,0 +1,15 @@
+---
+title: RecommendSearchNFT
+---
+
+# `RecommendSearchNFT`
+Search NFTs by recommend, server will give 10 NFT as recommend NFT at most.
+Developer may use them to fill some blank of searching UI.
+
+```swift
+MWSDK.RecommentSearchNFT(collections: ["collection address 1"]) { data in
+    print("<iOS_MWSDK_LOG>: RecommentSearchNFT result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+``````

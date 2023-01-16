@@ -19,17 +19,23 @@ use mirrorworld_sdk_rust::{
     get_auth,
     get_apikey,
 };
+
 # set global apikey
 set_apikey("your apikey");
+
 # set global auth
 set_auth("your auth")
+
 # set network
 # (devnet or mainnet)
 set_network("devnet")
+
 # get network info
 get_network()
+
 # get your auth
 get_auth()
+
 # get apikey
 get_apikey();
 ```
@@ -40,6 +46,7 @@ get_apikey();
 use mirrorworld_sdk_rust::{
     complete_signup,
 };
+
 let res = complete_signup({
     LoginWithEmailParam {
         email: "your email",
@@ -47,13 +54,16 @@ let res = complete_signup({
         password: "your password",
     }
 });
+
 # set global apikey
 set_apikey("your apikey");
+
 let response = if let Ok(Some(response)) = res {
     response
 } else {
     todo!()
 };
+
 # response
 {
   "status": "Duis aute",
@@ -86,7 +96,9 @@ let response = if let Ok(Some(response)) = res {
 use mirrorworld_sdk_rust::{
     signup_email,
 };
+
 signup_email("email@example.com");
+
 # response
 {
   "status": "success",
@@ -96,6 +108,7 @@ signup_email("email@example.com");
   "code": 0,
   "message": "Successfully emailed \"email@example.com\" verification code. Please verify the email to complete the signup"
 }
+
 ```
 
 ### GETChecks whether is authenticated or not and returns the user object if true
@@ -104,7 +117,10 @@ signup_email("email@example.com");
 use mirrorworld_sdk_rust::{
     fetch_user,
 };
+
 fetch_user();
+
+
 # response
 {
   "status": "officia dolor ipsum consectetur exercitation",
@@ -125,6 +141,7 @@ fetch_user();
   "code": -83006001,
   "message": "non fugiat"
 }
+
 ```
 
 ### Get wallet tokens.
@@ -134,6 +151,7 @@ use mirrorworld_sdk_rust::{
     get_tokens,
 };
 get_tokens();
+
 # response
 {
   sol: u32,
@@ -156,6 +174,7 @@ login({
   email: "your email",
   password: "your password"
 });
+
 # response
 {
   "status": "Duis aute",
@@ -194,6 +213,7 @@ let response = if let Ok(Some(response)) = result {
 } else {
     todo!()
 };
+
 # response
 {
   "status": "elit",
@@ -230,6 +250,7 @@ let response = if let Ok(Some(response)) = result {
 } else {
     todo!()
 };
+
 # response
 {
   "data": {
@@ -312,6 +333,7 @@ let code = if let Some(code) = response.code {
 } else {
     todo!()
 };
+
 # response
 {
   "status": "exercitation magna",
@@ -338,6 +360,7 @@ let status = if let Some(status) = response.status {
 } else {
     todo!()
 };
+
 # response
 {
   "status": "exercitation magna",
@@ -354,14 +377,18 @@ All marketplace methods on the Rust SDK Todo
 ```rust
 use mirrorworld_sdk_rust::{marketplace::Marketplace, NetEnv};
 use mirrorworld_sdk_rust::marketplace::GeneralPayload;
+
 let KEY: &str = "your api key";
 let TOKEN: &str = "your access token";
+
 let market =  Marketplace::new(KEY.to_string(), NetEnv::DEVNET, TOKEN.to_string());
+
 ```
 
 ### create a collection
 
 ```rust
+
 let name: String = String::from("your collection name");
 let symbol: String = String::from("your token symbol name");
 let uri: String = String::from("you collection metadata uri")
@@ -423,8 +450,10 @@ let response = market.cancel_nft_listing(mint_address, price, auction_house).awa
 ```
 
 ### update nft
+
 ```rust
 let mint_address = String::from("nft mint address");
+
 let payload = UpdateNftPayload{
         mint_address,
         name: String::from("nft name"),
