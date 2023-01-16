@@ -10,6 +10,7 @@ import { RxCaretDown, RxCaretRight } from "react-icons/rx"
 import {
   apiReferenceSidebar,
   homeSidebar,
+  integrationSidebar,
   TreeNode,
   tutorialsSidebar,
 } from "../lib/contentlayer-utils"
@@ -182,6 +183,11 @@ export function Sidebar() {
   const isApiReference = useMemo(() => {
     return ["api-reference"].includes(router.pathname.split("/")[1])
   }, [router.pathname])
+
+  const isIntegrationGuide = useMemo(() => {
+    return ["integration"].includes(router.pathname.split("/")[1])
+  }, [router.pathname])
+
   const currentSideBar = useMemo(() => {
     if (
       ["overview", "showcase", "further-reading"].includes(
@@ -197,6 +203,8 @@ export function Sidebar() {
       return tutorialsSidebar
     } else if (isApiReference) {
       return apiReferenceSidebar
+    } else if (isIntegrationGuide) {
+      return integrationSidebar
     } else {
       return homeSidebar
     }

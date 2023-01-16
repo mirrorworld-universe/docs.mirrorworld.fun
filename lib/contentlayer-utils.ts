@@ -493,6 +493,14 @@ export const homeSidebar = [
   },
 ]
 
+export const integrationSidebar = [
+  {
+    name: "Languages",
+    icon: HiOutlinePuzzle,
+    routes: buildSidebarTree([...allSDKs], [], "/integration/"),
+  },
+]
+
 export const tutorialsSidebar = [
   {
     name: "Authentication",
