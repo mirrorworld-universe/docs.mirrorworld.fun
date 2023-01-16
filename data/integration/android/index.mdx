@@ -8,7 +8,7 @@ title: Android Integration Guide
 
   This guide will walk you through the setup process for the Mirror World Smart SDK on Android.
 
-  ## Create a Developer Account
+  ## 1. Create a Developer Account
   Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
 
   ### Import the Mirror World SDK
@@ -31,10 +31,10 @@ title: Android Integration Guide
   ```
 
   ---
-  ## Configuring CustomTab
+  ## 2. Configuring CustomTab
   If you want to use CustomTab to show content to users (Recommended), you need to configure the following on your `AndroidManifest.xml`.
 
-  ### 1. Add permission for internet
+  ### Add permission for internet
 
   If you want to use CustomTab to show content to users (Recommended), you need to configure the following on your `AndroidManifest.xml`.
 
@@ -93,7 +93,7 @@ title: Android Integration Guide
   </manifest>
   ```
 
-  ### 2. Update dependencies
+  ### Update dependencies
   Then add this to your gradle file:
 
   ```gradle build.gradle
@@ -102,7 +102,7 @@ title: Android Integration Guide
 
   ---
 
-  ### 3. Register this activity
+  ### Register this activity
 
   If you want to use CustomTab to show content to users (Recommended), you need to configure the following on your `AndroidManifest.xml`.
 
@@ -164,7 +164,7 @@ title: Android Integration Guide
 
   ---
 
-  ### 4. Complete Android Manifest
+  ### Complete Android Manifest
   The final file will look something like this:
 
   ```xml AndroidManifest.xml
@@ -225,7 +225,7 @@ title: Android Integration Guide
 
   ---
 
-  ## Usage
+  ## 3. Usage
   ### Initialization
   We can initialize Mirror World SDK with the following code:
 
