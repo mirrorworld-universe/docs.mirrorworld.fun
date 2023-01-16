@@ -13,3 +13,4 @@ public/feed.xml
 create-files.ts
 /.yarn/
 .yarnrc.yml
+out

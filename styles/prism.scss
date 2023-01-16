@@ -1321,6 +1321,8 @@ body {
 
   .ch-frame-title-bar {
     background-color: #dfdfdf !important;
+    z-index: 0
+  ;
   }
 
 
@@ -1469,4 +1471,23 @@ body {
 
 .ch-editor-tab-inactive {
   opacity: 0.9;
+}
+
+.ch-frame-title-bar {
+  div {
+    &:last-of-type {
+      min-width: 70px !important;
+    }
+  }
+}
+
+.ch-editor-button {
+  z-index: 100;
+  box-shadow: var(--chakra-shadows-sm);
+  position: absolute;
+  right: 32px;
+
+  &:last-of-type {
+    right: 4px;
+  }
 }
