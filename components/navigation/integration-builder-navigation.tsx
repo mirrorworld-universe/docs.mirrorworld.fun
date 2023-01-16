@@ -14,7 +14,7 @@ export function IntegrationBuilderNav(props: any) {
     return (
       integrationGuidesConfig.languages.find((l) => {
         const languageFull = router.asPath.split("/")[2]
-        const [language] = languageFull.split("#")
+        const [language] = languageFull?.split("#") || [languageFull]
         return l.normalizedName === language
       }) || integrationGuidesConfig.languages[0]
     )
