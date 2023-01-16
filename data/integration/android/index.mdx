@@ -2,116 +2,304 @@
 title: Android Integration Guide
 ---
 
-# Android Integration Guide
-
-This guide will walk you through the setup process for the Mirror World Smart SDK on Android.
-
-## Step 1: Create a Developer Account
-Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
-
-## Step 2: Import the Mirror World SDK
-
-> **Notice:**
-> *The minimum version that SDK requires is Android 4.4.*
-
-
-1.  Download and uncompress [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/tag/v1.1.0).
-2.  Put the `mirrorsdk.aar` under the `libs` folder. You may create a `libs` folder if it doesn't exist under your `Project root > app` directory.
-
-<br />
-
 <CH.Scrollycoding>
 
-  ## Step 3 - Install SDK dependency.
+  # Android Integration Guide
 
-  In your `build.gradle` file, please add the Mirror World SDK as a dependency.
+  This guide will walk you through the setup process for the Mirror World Smart SDK on Android.
 
-  ```gradle build.gradle focus=2
+  ## Create a Developer Account
+  Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+
+  ### Import the Mirror World SDK
+
+  > **Notice:**
+  > *The minimum version that SDK requires is Android 4.4.*
+
+
+  1.  Download and uncompress [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/tag/v1.1.0).
+  2.  Put the `mirrorsdk.aar` under the `libs` folder. You may create a `libs` folder if it doesn't exist under your `Project root > app` directory.
+
+  ![android-install](/images/android/install-1.png)
+
+  3. Install SDK dependency. In your `build.gradle` file, please add the Mirror World SDK as a dependency.
+
+  ```gradle build.gradle
   dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
   }
   ```
 
   ---
+  ## Configuring CustomTab
+  If you want to use CustomTab to show content to users (Recommended), you need to configure the following on your `AndroidManifest.xml`.
 
-  ## Step 4 - Initialize SDK
+  ### 1. Add permission for internet
 
-  In you `MainActivity.java` or file of choice, you can now initialize the Mirror World SDK.
+  If you want to use CustomTab to show content to users (Recommended), you need to configure the following on your `AndroidManifest.xml`.
 
-  ```java MainActivity.java focus=1:7
+  ```xml AndroidManifest.xml focus=6:15
+  <?xml version="1.0" encoding="utf-8"?>
+  <manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mirror.mirrorworld_sdk_android"
+  >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https"/>
+      </intent>
+    </queries>
+
+    <application
+      android:allowBackup="true"
+      android:dataExtractionRules="@xml/data_extraction_rules"
+      android:fullBackupContent="@xml/backup_rules"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:networkSecurityConfig="@xml/network_security_config"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:supportsRtl="true"
+      android:theme="@style/Theme.Mirrorworldsdkandroid"
+      tools:targetApi="31"
+    >
+      <activity
+        android:name=".MainActivity"
+        android:launchMode="singleTask"
+        android:exported="true"
+      >
+        <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+
+      <activity
+        android:name="com.mirror.sdk.activities.RedirectActivity"
+        android:exported="true"
+      >
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"/>
+          <category android:name="android.intent.category.DEFAULT"/>
+          <category android:name="android.intent.category.BROWSABLE"/>
+          <data android:scheme="mwsdk"/>
+        </intent-filter>
+      </activity>
+    </application>
+  </manifest>
+  ```
+
+  ### 2. Update dependencies
+  Then add this to your gradle file:
+
+  ```gradle build.gradle
+  implementation 'androidx.browser:browser:1.4.0'
+  ```
+
+  ---
+
+  ### 3. Register this activity
+
+  If you want to use CustomTab to show content to users (Recommended), you need to configure the following on your `AndroidManifest.xml`.
+
+  ```xml AndroidManifest.xml focus=40:50
+  <?xml version="1.0" encoding="utf-8"?>
+  <manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mirror.mirrorworld_sdk_android"
+  >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https"/>
+      </intent>
+    </queries>
+
+    <application
+      android:allowBackup="true"
+      android:dataExtractionRules="@xml/data_extraction_rules"
+      android:fullBackupContent="@xml/backup_rules"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:networkSecurityConfig="@xml/network_security_config"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:supportsRtl="true"
+      android:theme="@style/Theme.Mirrorworldsdkandroid"
+      tools:targetApi="31"
+    >
+      <activity
+        android:name=".MainActivity"
+        android:launchMode="singleTask"
+        android:exported="true"
+      >
+        <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+
+      <activity
+        android:name="com.mirror.sdk.activities.RedirectActivity"
+        android:exported="true"
+      >
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"/>
+          <category android:name="android.intent.category.DEFAULT"/>
+          <category android:name="android.intent.category.BROWSABLE"/>
+          <data android:scheme="mwsdk"/>
+        </intent-filter>
+      </activity>
+    </application>
+
+  </manifest>
+  ```
+
+  ---
+
+  ### 4. Complete Android Manifest
+  The final file will look something like this:
+
+  ```xml AndroidManifest.xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mirror.mirrorworld_sdk_android"
+  >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https"/>
+      </intent>
+    </queries>
+
+    <application
+      android:allowBackup="true"
+      android:dataExtractionRules="@xml/data_extraction_rules"
+      android:fullBackupContent="@xml/backup_rules"
+      android:icon="@mipmap/ic_launcher"
+      android:label="@string/app_name"
+      android:networkSecurityConfig="@xml/network_security_config"
+      android:roundIcon="@mipmap/ic_launcher_round"
+      android:supportsRtl="true"
+      android:theme="@style/Theme.Mirrorworldsdkandroid"
+      tools:targetApi="31"
+    >
+      <activity
+        android:name=".MainActivity"
+        android:launchMode="singleTask"
+        android:exported="true"
+      >
+        <intent-filter>
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+
+      <activity
+        android:name="com.mirror.sdk.activities.RedirectActivity"
+        android:exported="true"
+      >
+        <intent-filter>
+          <action android:name="android.intent.action.VIEW"/>
+          <category android:name="android.intent.category.DEFAULT"/>
+          <category android:name="android.intent.category.BROWSABLE"/>
+          <data android:scheme="mwsdk"/>
+        </intent-filter>
+      </activity>
+    </application>
+
+  </manifest>
+  ```
+
+  ---
+
+  ## Usage
+  ### Initialization
+  We can initialize Mirror World SDK with the following code:
+
+  ```java MainActivity.java
   Activity activity = this;
-  String apiKey = "YOUR_SECRET_API_KEY";
+  String apiKey = "your-api-key";
   boolean useDebugMode = true;
 
-  MirrorSDK.getInstance().SetApiKey(apiKey);
-  MirrorSDK.getInstance().SetDebug(useDebugMode);
-  MirrorSDK.getInstance().InitSDK(activity, MirrorEnv.DevNet);
+  MirrorWorld.setDebug(useDebugMode);
+  MirrorWorld.initMirrorWorld(activity,apiKey,MirrorEnv.DevNet);
+  ```
 
+  ---
 
-  MirrorSDK.getInstance().StartLogin(new LoginListener() {
+  ### Guide user to login
+
+  Users need to log in to use some MirrorSDK features (or APIs). If you want them to login for the first time or once again, use the following code:
+
+  ```java startLogin.java
+  MirrorWorld.startLogin(new LoginListener() {
     @Override
       public void onLoginSuccess() {
-      Log.i("MirrorWorld", "User login success!");
+      Log.i("Mirror","User login success!");
     }
 
-    @Override
+      @Override
       public void onLoginFail() {
-      Log.i("MirrorWorld", "User login failed!");
+      Log.i("Mirror","User login failed!");
     }
   });
   ```
 
   ---
 
-  ## Step 5 - Guide user to login
-  In order to access authenticated features on the Mirror World SDK, you may
-  need to guide the user to login. The following code is an example:
+  You may not want to let the user login every time, so you can use CheckAuthenticated API to check if they have
+  already logged in. According the result, you can show them a login button or hide your login button and make
+  them enter your dApp or game directly.
 
-  ```java MainActivity.java focus=10:19
-  Activity activity = this;
-  String apiKey = "YOUR_SECRET_API_KEY";
-  boolean useDebugMode = true;
-
-  MirrorSDK.getInstance().SetApiKey(apiKey);
-  MirrorSDK.getInstance().SetDebug(useDebugMode);
-  MirrorSDK.getInstance().InitSDK(activity, MirrorEnv.DevNet);
-
-
-  MirrorSDK.getInstance().StartLogin(new LoginListener() {
+  ```java CheckAuthenticated.java
+  MirrorWorld.isLoggedIn(new BoolListener() {
     @Override
-      public void onLoginSuccess() {
-      Log.i("MirrorWorld", "User login success!");
-    }
-
-    @Override
-      public void onLoginFail() {
-      Log.i("MirrorWorld", "User login failed!");
+      public void onBool(boolean boolValue) {
+      Log.i("Mirror","This user's login state is:" + boolean);
     }
   });
   ```
 
   ---
 
-  ## Step 6 - Open Wallet
-  Users may want to check their wallet in your dApp or game. You can use `OpenWallet` method:
+  ### Open wallet
+  Users may want to check their wallet in the app, you can use the `openWallet` API for this:
 
-  ```java SomeActivity.java
-  // The `OpenWallet` method can be used
-  // to open the Wallet UI for the user.
-  MirrorSDK.getInstance().OpenWallet();
+  ```java openWallet.java
+  MirrorWorld.openWallet();
   ```
+
+  ---
+
+  ### User get NFTs
+
+
+  ---
+
+  ## Going Further
+  Great! At this point you're pretty much ready to start doing building with the
+  Android SDK for Mirror World. There are a few things you can do to proceed from here:
+
+  - Explore the [Full Android API Reference](/api-reference/android) to learn more.
+  - Looking for inspiration? Take a look at our [Guides](/guides) or see what builders are building in the [Showcase](/showcase).
+  - [Join the Mirror World Developer community](https://mirrorworld.fun/discord)! We're a vibrant community of builders!
+
+
+  ### Getting Support
+  If you're stuck or just looking for support, you may also [schedule a support call](https://mirrorworld.fun/support) with our team.
 
 
 </CH.Scrollycoding>
-
-## Going Further
-Great! At this point you're pretty much ready to start doing building with the
-Android SDK for Mirror World. There are a few things you can do to proceed from here:
-
-- Explore the [Full Android API Reference](/api-reference/android) to learn more.
-- Looking for inspiration? Take a look at our [Guides](/guides) or see what builders are building in the [Showcase](/showcase).
-- [Join the Mirror World Developer community](https://mirrorworld.fun/discord)! We're a vibrant community of builders!
-
-
-### Getting Support
-If you're stuck or just looking for support, you may also [schedule a support call](https://mirrorworld.fun/support) with our team.

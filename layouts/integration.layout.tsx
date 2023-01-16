@@ -1,7 +1,6 @@
 import Icon from "@chakra-ui/icon"
 import { Box, HStack, Spacer } from "@chakra-ui/layout"
-import { ChakraProvider, chakra } from "@chakra-ui/react"
-import { FrameworkSelect } from "components/framework-select"
+import { ChakraProvider, chakra, useBreakpointValue } from "@chakra-ui/react"
 import { MdxFooter } from "components/mdx-footer"
 import { Search } from "components/search-dialog"
 import { Sidebar } from "components/sidebar"
@@ -48,12 +47,55 @@ export default function IntegrationLayout({
           <chakra.div pt="10">
             <Box
               data-with-integration-guide=""
-              maxW="5xl"
-              mx="auto"
+              maxW="8xl"
+              ml="auto"
               px={{ sm: "6", base: "4", md: "8" }}
             >
-              <Box as="main" className="mdx-content" pt="4">
-                <Box data-with-integration-guide="">
+              <Box
+                display={{ base: "none", lg: "block" }}
+                position="fixed"
+                zIndex={30}
+                bottom="0"
+                top="8rem"
+                left="max(0px, calc(50% - 45rem))"
+                right="auto"
+                width="21rem"
+                pb="10"
+                px="8"
+                overflowY="auto"
+                overscrollBehavior="contain"
+              >
+                <Box position="relative">
+                  <Box
+                    position="sticky"
+                    zIndex={20}
+                    top="0"
+                    bg="languageSelectBg"
+                    pb="8"
+                  >
+                    <Spacer height="10" />
+                    <Search />
+                    <Spacer mt="px" height="5" />
+                  </Box>
+                  <Sidebar />
+                </Box>
+              </Box>
+
+              <Box
+                as="main"
+                className="mdx-content integration"
+                pl={useBreakpointValue({
+                  "2xl": "11rem",
+                  xl: "20rem",
+                  lg: "18rem",
+                  md: "0",
+                  sm: "0",
+                })}
+                pt="4"
+                pr={{ lg: "4rem" }}
+                mt={"-50px"}
+              >
+                <Box>
                   {children}
                   <HStack
                     as="a"

@@ -1286,12 +1286,13 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
 
 body {
   --ch-scrollycoding-sticker-width: 600px;
-  --ch-scrollycoding-code-min-height: 50vh;
+  --ch-scrollycoding-code-min-height: calc(100vh - 200px);
 }
 
 .mdx-content {
+  --ch-scrollycoding-sticker-width: 50%;
   .ch-scrollycoding-sticker {
-    top: 20vh
+    top: 152px
   }
 }
 

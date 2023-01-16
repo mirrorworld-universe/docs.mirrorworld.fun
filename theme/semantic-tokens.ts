@@ -126,5 +126,9 @@ export const semanticTokens = {
       default: "mirror.800",
       _dark: "mirror.base",
     },
+    selectedBackground: {
+      default: "rgb(0 0 0 / 3%)",
+      _dark: "whiteAlpha.100",
+    },
   },
 }

@@ -36,7 +36,8 @@ export const globalStyles: SystemStyleObject = {
   },
 
   ".ch-scrollycoding-step-content[data-selected]": {
-    borderColor: "integrationSelected",
+    bg: "selectedBackground",
+    border: "transparent",
   },
 
   table: {
@@ -75,9 +76,20 @@ export const globalStyles: SystemStyleObject = {
       fontVariantNumeric: "tabular-nums",
     },
 
-    "img[alt='screen-shot']": {
-      width: [null, null, "310px"],
-      minWidth: [null, null, "310px"],
+    "&.integration": {
+      // pl: ["0", "20rem", "11rem"],
+    },
+    // android-install
+    img: {
+      "&[alt='screen-shot']": {
+        width: [null, null, "310px"],
+        minWidth: [null, null, "310px"],
+      },
+      "&[alt='android-install']": {
+        width: [null, null, "310px"],
+        minWidth: [null, null, "310px"],
+        mx: "auto",
+      },
     },
     "li:not([role])": {
       marginY: "1",
