@@ -1481,6 +1481,10 @@ body {
   }
 }
 
+.ch-no-scroll {
+  overflow: auto;
+}
+
 .ch-editor-button {
   z-index: 100;
   color: var(--shiki-color-text) !important;
