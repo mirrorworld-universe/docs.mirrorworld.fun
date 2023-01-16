@@ -145,7 +145,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
           id: "resources-blogs",
           new: true,
           isExternal: true,
-          href: "https://blog.mirrorworld.fun",
+          href: "https://mirrorworld.fun/blog",
         },
         { type: "doc", label: "Support", id: "support" },
         // { type: "doc", label: "Tutorials", id: "tutorials" },
