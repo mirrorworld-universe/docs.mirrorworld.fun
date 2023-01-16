@@ -107,6 +107,13 @@ Check it, and you may see the path of this file.Let's edit it.
 **Add permission of internet.**
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
+<queries>
+    <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <data android:scheme="https"/>
+    </intent>
+</queries>
 ```
 
 **Register this activity**
@@ -132,6 +139,13 @@ So, the finnaly file would looked as this:
     package="com.mirror.mirrorworld_sdk_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https"/>
+        </intent>
+    </queries>
 
     <application
         android:allowBackup="true"

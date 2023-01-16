@@ -16,7 +16,6 @@ Init sdk, you need to have an API key first, you can get one from [SDK official 
 ```java
 Activity activity = this;
 String APIKey = "your API key";
-
 MirrorWorld.initMirrorWorld(activity,APIKey, MirrorEnv.DevNet);
 ```
 
@@ -392,7 +391,6 @@ MirrorWorld.fetchNFTsByMintAddresses(mintAddresses, new FetchNFTsListener() {
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         Log.d("MirrorSDK","Fetched " + multipleNFTsResponse.nfts.size() + " NFTs");
     }
-
     @Override
     public void onFetchFailed(long code, String message) {
         Log.d("MirrorSDK","Fetching NFTs faild,code:"+code+" message:"+message);
@@ -631,6 +629,27 @@ MirrorMarket.getNFTsByUnabridgedParams(collection,page,pageSize,keyWord,desc,sal
     public void onFail(long code, String message) {
         Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
     }
+});
+```
+
+### getNFTRealPrice
+Get NFT real price which is calculated by fee rate. The param fee means how much server will deducted.
+
+```java
+String price = "1.2";
+int fee = 4250;
+
+MirrorMarket.getNFTRealPrice(price,fee, new GetNFTRealPriceListener() {
+    @Override
+    public void onSuccess(GetNFTRealPriceRes result) {
+        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
+    }
+
+   @Override
+    public void onFail(long code, String message) {
+        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
+    }
+   
 });
 ```
 
