@@ -1350,9 +1350,14 @@ body {
   .ch-editor-tab {
     background-color: #c9c9c9 !important;
     color: var(--shiki-color-text) !important;
-    border-right-color: rgb(213 213 213) !important;
-    border-bottom-color: rgb(189 189 189) !important;
+
+    .ch-editor-tab-inactive {
+      border: none
+    }
+
     &.ch-editor-tab-active {
+      border-right-color: rgb(213 213 213) !important;
+      border-bottom-color: rgb(189 189 189) !important;
       background-color: #ffffff !important;
       color: var(--shiki-color-text) !important;
     }
@@ -1411,11 +1416,15 @@ body {
     }
 
     .ch-editor-tab {
-      background-color: #3b3b3b !important;
+      background-color: #343434 !important;
       color: var(--shiki-color-text) !important;
-      border-right-color: rgb(44, 44, 44) !important;
-      border-bottom-color: rgb(37, 37, 37) !important;
+
+      .ch-editor-tab-inactive {
+        border: none
+      }
       &.ch-editor-tab-active {
+        border-right-color: rgb(44, 44, 44) !important;
+        border-bottom-color: rgb(37, 37, 37) !important;
         background-color: #4d4d4d !important;
         color: var(--shiki-color-text) !important;
       }
@@ -1456,4 +1465,8 @@ body {
   --shiki-token-parameter: #abb2bf;
   --shiki-token-string-expression: #98c379;
   --shiki-token-link: #abb2bf;
+}
+
+.ch-editor-tab-inactive {
+  opacity: 0.9;
 }

@@ -138,10 +138,14 @@ MirrorSDK.StartLogin((loginResponse)=>
 });
 ```
 
-6. Mint NFT and transfer token with the following code
-  1. Mint NFT
+6. Mint NFT and transfer tokens with the following code
 
-  ```csharp
+
+  ```cs
+
+  // STEP 1
+  // Mint NFT
+
   string collection = "You can get this collection address from your dashboard.";
   string name = "this string will not be displayed to the user, you can define it as you wish";
   string symbol = "this string will not be displayed to the user, you can define it as you wish";
@@ -161,11 +165,11 @@ MirrorSDK.StartLogin((loginResponse)=>
           }
 
       });
-  ```
-  2. Transfer token (If you want the user mint NFT to be paid, then you need to execute the following code）
 
-  ```csharp
-  // transfer amout
+  // STEP 2
+  // Transfer token (If you want the user mint NFT to be paid, then you need to execute the following code）
+
+  // transfer amount
   ulong amout = 100000000;
   string publicKey = "Your public key";
 

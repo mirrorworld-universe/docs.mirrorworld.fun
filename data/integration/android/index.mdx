@@ -229,7 +229,7 @@ title: Android Integration Guide
   ### Initialization
   We can initialize Mirror World SDK with the following code:
 
-  ```java Initialize SDK
+  ```java InitializeSDK.java
   Activity activity = this;
   String apiKey = "your-api-key";
   boolean useDebugMode = true;
@@ -244,7 +244,7 @@ title: Android Integration Guide
 
   Users need to log in to use some MirrorSDK features (or APIs). If you want them to login for the first time or once again, use the following code:
 
-  ```java Start Login
+  ```java startLogin.java
   MirrorWorld.startLogin(new LoginListener() {
     @Override
       public void onLoginSuccess() {
@@ -264,7 +264,7 @@ title: Android Integration Guide
   already logged in. According the result, you can show them a login button or hide your login button and make
   them enter your dApp or game directly.
 
-  ```java CheckAuthenticated
+  ```java CheckAuthenticated.java
   MirrorWorld.isLoggedIn(new BoolListener() {
     @Override
       public void onBool(boolean boolValue) {
@@ -287,7 +287,7 @@ title: Android Integration Guide
   ### User get NFTs
   Fetch a user's NFTs by calling `GetNFTsOwnedByAddress`
 
-  ```java Get NFTs Owned By Address
+  ```java fetchNFTsByOwnerAddresses.java
   List<String> owners = new ArrayList<>();
   owners.add("owner_wallet_address_1");
   owners.add("owner_wallet_address_2");
@@ -318,7 +318,7 @@ title: Android Integration Guide
 
   You can transfer an NFT to another wallet:
 
-  ```java Transfer NFTs
+  ```java transferNFT.java
   String mint_address = "address";
   String to_wallet_address = "target_wallet";
 
@@ -339,11 +339,11 @@ title: Android Integration Guide
 
   If you want to list an NFT on a marketplace, you may use these code:
 
-  ```java
+  ```java listNFT.java
   String mint_address = "nft_mint_address";
   Double price = 0.1;
 
-  MirrorWorld.listingNFT(mint_address, price, MirrorConfirmation.Finalized, new ListNFTListener() {
+  MirrorWorld.listNFT(mint_address, price, MirrorConfirmation.Finalized, new ListNFTListener() {
     @Override
       public void onListSuccess(ListingResponse listingResponse) {
       Log.d("ListNFT success","price is:"+listingResponse.price);
