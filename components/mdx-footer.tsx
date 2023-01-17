@@ -5,7 +5,7 @@ import { Pagination } from "./pagination"
 
 export function MdxFooter(props: any) {
   return (
-    <chakra.footer mt="12" {...props}>
+    <chakra.footer mt="12" maxW="8xl" mx="auto" {...props}>
       {/*<Pagination />*/}
       <Box
         pt="4"

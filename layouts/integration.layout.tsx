@@ -71,17 +71,22 @@ export default function IntegrationLayout({
               >
                 <Box>
                   {children}
-                  <HStack
-                    as="a"
-                    display="inline-flex"
-                    href={doc.editUrl}
-                    textStyle="a"
-                    fontSize="sm"
+                  <Box
+                    maxW="8xl"
+                    mx="auto"
                     mt="8"
                   >
-                    <Icon as={HiPencilAlt} />
-                    <p>Edit this page on GitHub</p>
-                  </HStack>
+                    <HStack
+                      as="a"
+                      display="inline-flex"
+                      href={doc.editUrl}
+                      textStyle="a"
+                      fontSize="sm"
+                      >
+                      <Icon as={HiPencilAlt} />
+                      <p>Edit this page on GitHub</p>
+                    </HStack>
+                  </Box>
                   <MdxFooter mt="4" />
                 </Box>
               </Box>
