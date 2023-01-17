@@ -5,11 +5,11 @@ import { integrationGuidesConfig } from "../../lib/contentlayer-utils"
 
 export const IntegrationCards = (props: any) => {
   return (
-    <chakra.div maxW="6xl" mx="auto">
+    <chakra.div maxW="8xl" mx="auto" px={{ base: "4", sm: "6", md: "10" }}>
       <chakra.h1 id="skip-nav" textStyle="display.lg" mb="5" maxW="85ch" tabIndex={-1}>
         Integration Guide
       </chakra.h1>
-      <SimpleGrid columns={[1, null, 3]} spacing="5" {...props}>
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing="5" {...props}>
         {integrationGuidesConfig.languages.map((language, i) => (
           <Link key={i} href={`/integration/${language.normalizedName}`}>
             <Stack

@@ -6,7 +6,7 @@ import { Search } from "components/search-dialog"
 import { Sidebar } from "components/sidebar"
 import { SkipNavLink } from "components/skip-nav"
 import { TopNavigation } from "components/top-navigation"
-import React from "react"
+import React, { useMemo } from "react"
 import { HiPencilAlt } from "react-icons/hi"
 import theme from "../theme"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
@@ -35,6 +35,9 @@ export default function IntegrationLayout({
   const hideToc = tableOfContent.length < 2
 
   const router = useRouter()
+  const isRootPage = useMemo(() => {
+    return router.asPath === "/integration"
+  }, [router])
 
   return (
     <ChakraProvider theme={theme}>
@@ -42,11 +45,17 @@ export default function IntegrationLayout({
         <Box>
           <SkipNavLink>Skip to main content</SkipNavLink>
           <chakra.div position="sticky" top="0" width="full" zIndex={50}>
-            <TopIntegrationNavigation position="relative" />
-            <IntegrationBuilderNav
-              position="relative"
-              display={["none", "none", "block"]}
-            />
+            {isRootPage ? (
+              <TopNavigation />
+            ): (
+              <>
+                <TopIntegrationNavigation position="relative" />
+                <IntegrationBuilderNav
+                  position="relative"
+                  display={["none", "none", "block"]}
+                />
+              </>
+            )}
           </chakra.div>
           <chakra.div pt={router.asPath === "/integration" ? 10 : 0}>
             <Box
