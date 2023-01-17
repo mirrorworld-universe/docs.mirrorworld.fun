@@ -38,7 +38,10 @@ export const globalStyles: SystemStyleObject = {
   ".ch-scrollycoding-step-content": {
     minH: "auto",
     px: "12px !important",
+    borderWidth: "0px !important",
+    paddingInlineStart: [4, 8],
     transition: "all 0.2s ease-in-out",
+    position: "relative",
     "&:hover": {
       cursor: "pointer",
       transition: "all 0.2s ease-in-out",
@@ -48,7 +51,17 @@ export const globalStyles: SystemStyleObject = {
 
   ".ch-scrollycoding-step-content[data-selected]": {
     bg: "selectedBackground",
-    border: "transparent",
+    border: "none !important",
+
+    "&::before": {
+      content: "''",
+      position: "absolute",
+      left: "8px",
+      top: "0",
+      width: "8px",
+      height: "100%",
+      bg: "calloutBorderColor"
+    }
   },
 
   table: {

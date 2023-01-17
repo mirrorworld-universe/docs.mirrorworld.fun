@@ -1286,13 +1286,13 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
 
 body {
   --ch-scrollycoding-sticker-width: 600px;
-  --ch-scrollycoding-code-min-height: calc(100vh - 200px);
+  --ch-scrollycoding-code-min-height: calc(100vh - 151px);
 }
 
 .mdx-content {
-  --ch-scrollycoding-sticker-width: 40%;
+  --ch-scrollycoding-sticker-width: 60%;
   .ch-scrollycoding-sticker {
-    top: 152px
+    top: 172px
   }
 }
 
@@ -1310,8 +1310,26 @@ body {
   color: rgb(83 83 83) !important;
 }
 
+//.ch-scrollycoding-step-content {
+//  border-width: 0 !important;
+//}
+//.ch-scrollycoding-step-content[data-selected] {
+//  border: none !important;
+//
+//  &::before {
+//    content: "''";
+//    position: absolute;
+//    left: 0;
+//    top: 0;
+//    width: 4px;
+//    height: 100%;
+//  }
+//}
+
 .ch-codegroup {
   box-shadow: none !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
   .ch-scrollycoding-sticker, .ch-code-wrapper,  {
     background-color: #efefef !important;
     --ch-selection-background: #00ffdc !important;

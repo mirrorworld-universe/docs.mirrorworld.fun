@@ -13,6 +13,8 @@ import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
 import { MDXProvider } from "@mdx-js/react"
 import { MirrorWorldMDXComponents } from "components/mdx-components"
 import { IntegrationBuilderNav } from "../components/navigation/integration-builder-navigation"
+import {useRouter} from "next/router";
+import { TopIntegrationNavigation } from "../components/navigation/top-integration-navigation";
 
 type IntegrationLayoutProps = {
   children: React.ReactNode
@@ -32,55 +34,27 @@ export default function IntegrationLayout({
   const tableOfContent = toc?.data ?? doc.frontmatter.toc
   const hideToc = tableOfContent.length < 2
 
+  const router = useRouter()
+
   return (
     <ChakraProvider theme={theme}>
       <MDXProvider components={MirrorWorldMDXComponents}>
         <Box>
           <SkipNavLink>Skip to main content</SkipNavLink>
           <chakra.div position="sticky" top="0" width="full" zIndex={50}>
-            <TopNavigation position="relative" />
+            <TopIntegrationNavigation position="relative" />
             <IntegrationBuilderNav
               position="relative"
               display={["none", "none", "block"]}
             />
           </chakra.div>
-          <chakra.div pt="10">
+          <chakra.div pt={router.asPath === "/integration" ? 10 : 0}>
             <Box
               data-with-integration-guide=""
               maxW="10xl"
               ml="auto"
-              px={{ sm: "6", base: "4", md: "8" }}
+              pr={{ sm: "6", base: "4", md: "8" }}
             >
-              <Box
-                display={{ base: "none", lg: "block" }}
-                position="fixed"
-                zIndex={30}
-                bottom="0"
-                top="8rem"
-                left="0px"
-                right="auto"
-                width="11rem"
-                pb="10"
-                px="8"
-                overflowY="auto"
-                overscrollBehavior="contain"
-              >
-                <Box position="relative" pt={8}>
-                  {/*<Box*/}
-                  {/*  position="sticky"*/}
-                  {/*  zIndex={20}*/}
-                  {/*  top="0"*/}
-                  {/*  bg="languageSelectBg"*/}
-                  {/*  pb="8"*/}
-                  {/*>*/}
-                  {/*  <Spacer height="10" />*/}
-                  {/*  <Search />*/}
-                  {/*  <Spacer mt="px" height="5" />*/}
-                  {/*</Box>*/}
-                  {/* <Sidebar /> */}
-                </Box>
-              </Box>
-
               <Box
                 as="main"
                 className="mdx-content integration"
@@ -94,12 +68,12 @@ export default function IntegrationLayout({
                     href={doc.editUrl}
                     textStyle="a"
                     fontSize="sm"
-                    mt="14"
+                    mt="8"
                   >
                     <Icon as={HiPencilAlt} />
                     <p>Edit this page on GitHub</p>
                   </HStack>
-                  <MdxFooter />
+                  <MdxFooter mt="4" />
                 </Box>
               </Box>
             </Box>

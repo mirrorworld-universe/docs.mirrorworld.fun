@@ -39,9 +39,8 @@ export function IntegrationBuilderNav(props: any) {
       <Flex
         align="center"
         justify="space-between"
-        maxW="8xl"
         mx="auto"
-        px={{ base: "4", sm: "6", md: "8" }}
+        px={{ base: "4", sm: "6" }}
       >
         <HStack spacing={5}>
           <Search />
