@@ -480,6 +480,7 @@ const contentLayerConfig = makeSource({
           // autoImport: false,
           showCopyButton: true,
           staticMediaQuery: "not screen, (max-width: 992px)",
+          lineNumbers: true,
         },
       ],
     ],
