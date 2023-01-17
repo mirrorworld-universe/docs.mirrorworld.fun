@@ -77,23 +77,14 @@ export default function IntegrationLayout({
                   {/*  <Search />*/}
                   {/*  <Spacer mt="px" height="5" />*/}
                   {/*</Box>*/}
-                  <Sidebar />
+                  {/* <Sidebar /> */}
                 </Box>
               </Box>
 
               <Box
                 as="main"
                 className="mdx-content integration"
-                pl={{
-                  "2xl": "11rem",
-                  // xl: "20rem",
-                  lg: "11rem",
-                  md: "0",
-                  sm: "0",
-                }}
-                pt="4"
-                // pr={{ lg: "4rem" }}
-                mt={"-50px"}
+                mt={"0"}
               >
                 <Box>
                   {children}
