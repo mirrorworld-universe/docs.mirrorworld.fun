@@ -1,0 +1,17 @@
+---
+title: getNFTInfo
+---
+
+# `getNFTInfo`
+Get details of a NFT in Marketplace.
+
+```java
+String mint_address = "nft mint address";
+
+MirrorMarket.getNFTInfo(mint_address, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        Log.d("MirrorSDK","Visiting result:"+MirrorGsonUtils.getInstance().toJson(result));
+    }
+});
+```

@@ -1,0 +1,17 @@
+---
+title: logout
+---
+
+# `logout`
+
+Logout current account
+
+
+```java
+MirrorWorld.logout(new BoolListener() {
+    @Override
+    public void onBool(boolean boolValue) {
+        Log.d("Logout result:"+ boolValue);
+    }
+});
+```

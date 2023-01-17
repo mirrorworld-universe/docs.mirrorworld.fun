@@ -15,6 +15,7 @@ import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
+import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
 
 type BlogLayoutProps = {
   children: React.ReactNode
@@ -47,7 +48,7 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
                       <Link
                         isExternal
                         href={doc.author.twitter}
-                        color={"mirror.base"}
+                        color={"textLink"}
                         textDecoration="underline"
                       >
                         {doc.author.name}
@@ -83,7 +84,7 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
             bottom="0"
             right="max(0px, calc(50% - 32rem))"
             display={{ base: "none", xl: "block" }}
-            width="19.5rem"
+            width="21rem"
             visibility={hideToc ? "hidden" : undefined}
           >
             <TableOfContents
@@ -94,6 +95,7 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
           </Box>
         </Box>
       </chakra.div>
+      <BottomMobileNavigation />
     </Box>
   )
 }

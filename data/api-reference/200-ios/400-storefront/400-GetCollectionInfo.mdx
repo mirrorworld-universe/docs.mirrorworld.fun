@@ -1,0 +1,14 @@
+---
+title: GetCollectionInfo
+---
+
+# `GetCollectionInfo`
+Get collections info by collection addresses.
+
+```swift
+MWSDK.GetCollectionInfo(collections: ["Your collection address 1"]) { data in
+    print("<iOS_MWSDK_LOG>: GetCollectionFilterInfo result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```

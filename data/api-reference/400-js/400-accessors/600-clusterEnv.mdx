@@ -1,0 +1,18 @@
+---
+title: clusterEnv
+---
+
+# `clusterEnv`
+
+Get instance's environment
+
+```ts
+const mirrorworld = new MirrorWorld(/* ... */)
+const clusterEnv: ClusterEnvironment = mirrorworld.clusterEnv
+
+export enum ClusterEnvironment {
+  mainnet = 'mainnet',
+  testnet = 'testnet',
+  local = 'local',
+}
+```

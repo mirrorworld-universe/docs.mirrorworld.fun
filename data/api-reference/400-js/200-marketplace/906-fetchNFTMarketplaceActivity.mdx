@@ -1,0 +1,18 @@
+---
+title: fetchNFTMarketplaceActivity
+---
+
+# `fetchNFTMarketplaceActivity`
+Fetch Solana NFT Marketplace Activity for an NFT
+```ts
+const mintAddress = "Ct1GvgpBzzhMtKb7nKc3U3kouPA3fHncAahPY1HthB9E"
+
+const activityEvents: SolanaNFTAuctionActivitiesPayload[] = await mirrorworld.fetchNFTMarketplaceActivity(mintAddress)
+
+// Returns `SolanaNFTAuctionActivitiesPayload[]`
+export interface SolanaNFTAuctionActivitiesPayload {
+  mintAddress: string;
+  auctionActivities: SolanaNFTAuctionActivity[];
+  tokenTransfers: SolanaNFTTransfersEntity[];
+}
+```

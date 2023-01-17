@@ -1,0 +1,14 @@
+---
+title: SearchNFTs
+---
+
+# `SearchNFTs`
+Search NFTs by given search string.
+
+```swift
+MWSDK.SearchNFTs(collections: ["collection address 1"], search: "price") { data in
+    print("<iOS_MWSDK_LOG>: SearchNFTs result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```

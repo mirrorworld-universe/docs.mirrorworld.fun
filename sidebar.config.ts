@@ -1,9 +1,19 @@
 import { ElementType } from "react"
-import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
 import { HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
 import { MdArchitecture, MdAllInbox } from "react-icons/md"
+import { AiOutlineCompass, AiOutlineAndroid } from "react-icons/ai"
 import { SiJavascript, SiUnity, SiRust, SiSwift } from "react-icons/si"
 import { FaHandsHelping } from "react-icons/fa"
+
+type SidebarItemDoc = {
+  type: "doc"
+  id: string
+  label: string
+  new?: boolean
+  href?: string
+  isExternal?: boolean
+  children?: SidebarItemDoc[]
+}
 
 type SidebarItem =
   | {
@@ -15,14 +25,7 @@ type SidebarItem =
       collapsed?: boolean
       items: SidebarItem[]
     }
-  | {
-      type: "doc"
-      id: string
-      label: string
-      new?: boolean
-      href?: string
-      isExternal?: boolean
-    }
+  | SidebarItemDoc
   | {
       type: "link"
       id: string
@@ -62,7 +65,7 @@ const sidebar: Record<"docs", SidebarItem[]> = {
       id: "architecture",
       items: [{ type: "doc", label: "Wallet Design", id: "wallet-design" }],
     },
-   
+
     {
       type: "category",
       label: "Android",

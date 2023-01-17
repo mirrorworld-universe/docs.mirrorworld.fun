@@ -1,0 +1,13 @@
+---
+title: GetNFTEvents
+---
+
+# `GetNFTEvents`
+Get NFT's events.
+```swift
+MWSDK.GetNFTEvents(mint_address: "NFT address", page: 1, page_size: 10) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTEvents result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```

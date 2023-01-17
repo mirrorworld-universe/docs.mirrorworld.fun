@@ -6,8 +6,15 @@ export const globalStyles: SystemStyleObject = {
     textRendering: "geometricprecision",
     textSizeAdjust: "100%",
     WebkitFontSmoothing: "antialiased",
-    bg: "dark",
-    color: "white",
+    bg: "body",
+    color: "text",
+    // transition: "color 0.2s ease-in-out, background 0.2s ease-in-out",
+    transitionProperty: "background",
+    transitionDuration: "normal",
+  },
+
+  "pre, code, kbd, samp": {
+    fontFamily: "mono",
   },
 
   "*": {
@@ -23,16 +30,45 @@ export const globalStyles: SystemStyleObject = {
 
   ".has-highlight": {
     mark: {
-      color: "mirror.500",
+      color: "mirror.600",
       fontWeight: "semibold",
     },
+  },
+
+  ".ch-scrollycoding-step-content": {
+    minH: "auto",
+    px: "12px !important",
+    borderWidth: "0px !important",
+    paddingInlineStart: [4, 8],
+    transition: "all 0.2s ease-in-out",
+    position: "relative",
+    "&:hover": {
+      cursor: "pointer",
+      transition: "all 0.2s ease-in-out",
+      bg: "hoverBackground",
+    },
+  },
+
+  ".ch-scrollycoding-step-content[data-selected]": {
+    bg: "selectedBackground",
+    border: "none !important",
+
+    "&::before": {
+      content: "''",
+      position: "absolute",
+      left: "8px",
+      top: "0",
+      width: "8px",
+      height: "100%",
+      bg: "calloutBorderColor"
+    }
   },
 
   table: {
     width: "100%",
     marginY: "8",
     th: {
-      bg: "gray.100",
+      bg: "topNavBody",
     },
     "th, td": {
       borderWidth: "1px",
@@ -46,10 +82,35 @@ export const globalStyles: SystemStyleObject = {
     bg: "transparent",
   },
 
+  '[data-with-integration-guide=""]': {
+    ".mdx-content": {
+      "h2,h3,h4": {
+        scrollMarginTop: "36",
+        "&:hover": {
+          "a.anchor": { opacity: 1 },
+        },
+        "a:focus": { opacity: 1 },
+      },
+    },
+  },
+
   ".mdx-content": {
     output: {
       fontFeatureSettings: "tnum",
       fontVariantNumeric: "tabular-nums",
+    },
+
+    // android-install
+    img: {
+      "&[alt='screen-shot']": {
+        width: [null, null, "310px"],
+        minWidth: [null, null, "310px"],
+      },
+      "&[alt='android-install']": {
+        width: [null, null, "310px"],
+        minWidth: [null, null, "310px"],
+        mx: "auto",
+      },
     },
     "li:not([role])": {
       marginY: "1",

@@ -1,18 +1,39 @@
 import {
-  allComponents,
-  allOverviews,
-  allGuides,
-  allSnippets,
-  allChangelogs,
   allAndroids,
-  allIOs,
-  allRusts,
-  allResources,
-  allJavaScripts,
-  allUnity,
+  allAPIReferences,
   allArchitectures,
+  allAuthenticationTutorials,
+  allComponents,
+  allSolutions,
+  allFurtherReadings,
+  allGuides,
+  allIntegrationGuides,
+  allIOs,
+  allJavaScripts,
+  allMarketplaceTutorials,
+  allNFTsTutorials,
+  allOverviews,
+  allResources,
+  allRusts,
+  allSDKs,
   allShowcases,
+  allSnippets,
+  allUnity,
+  allWalletTutorials,
+  DocumentTypes,
 } from "contentlayer/generated"
+import {
+  AiOutlineAndroid,
+  AiOutlineBook,
+  AiOutlineCompass,
+  AiOutlineShop,
+  AiOutlineStar,
+} from "react-icons/ai"
+import { MdOutlineVerifiedUser } from "react-icons/md"
+import { BiImageAlt, BiWallet } from "react-icons/bi"
+import { HiOutlinePuzzle, HiOutlineViewGrid, HiBriefcase } from "react-icons/hi"
+import { MdArchitecture } from "react-icons/md"
+import { SiJavascript, SiUnity, SiRust, SiSwift } from "react-icons/si"
 import { Framework, FRAMEWORKS, isFramework } from "./framework-utils"
 
 function toParams(str: string | string[]) {
@@ -58,13 +79,16 @@ export function getComponentDoc(slug: string) {
  * -----------------------------------------------------------------------------*/
 
 export function getOverviewPaths() {
-  return allOverviews.map((doc) => `/overview/${doc.slug}`)
+  return allOverviews
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
 }
 
 export function getOverviewDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
   return allOverviews.find(
-    (post) => post.frontmatter.slug === `/overview/${slug}`,
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )
 }
 
@@ -146,7 +170,9 @@ export function getMarketPaths() {
 
 export function getMarketDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
-  return allRusts.find((post) => post.frontmatter.slug === `/marketplace/${slug}`)
+  return allRusts.find(
+    (post) => post.frontmatter.slug === `/marketplace/${slug}`,
+  )
 }
 /* -----------------------------------------------------------------------------
  * Unity
@@ -192,12 +218,15 @@ export function getGuideDoc(slug: string | string[]) {
  * Showcase
  * -----------------------------------------------------------------------------*/
 export function getShowcasePaths() {
-  return allShowcases.map((doc) => `/showcase/${doc.slug}`)
+  return allShowcases
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
 }
 
 export function getShowcaseDoc(slug: string | string[]) {
   return allShowcases.find(
-    (post) => post.frontmatter.slug === `/showcase/${slug}`,
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )
 }
 
@@ -228,21 +257,156 @@ export function getSnippetDoc(slug: string | string[]) {
   )
 }
 
-/* -----------------------------------------------------------------------------
- * Changelog
- * -----------------------------------------------------------------------------*/
-
-export function getChangelogPaths() {
-  return allChangelogs.map((doc) => `/${doc.params.join("/")}`)
+export function _toParams(path: string): { params: { slug: string[] } } {
+  return { params: { slug: path.replace(/^\//, "").split("/") } }
 }
 
-export function getChanglogDoc(slug: string | string[]) {
-  if (slug === "latest") {
-    return allChangelogs.sort(sortByDate)[0]
-  }
+/* -----------------------------------------------------------------------------
+ * Bible
+ * -----------------------------------------------------------------------------*/
 
-  return allChangelogs.find(
-    (doc) => doc.frontmatter.slug === `/changelogs/${slug}`,
+/* -----------------------------------------------------------------------------
+ * Futher Reading
+ * -----------------------------------------------------------------------------*/
+
+export function getFurtherReadingPaths() {
+  const paths = allFurtherReadings
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getFurtherReadingDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allFurtherReadings.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Authentication Tutorials
+ * -----------------------------------------------------------------------------*/
+
+export function getAuthenticationTutorialsPaths() {
+  const paths = allAuthenticationTutorials
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getAuthenticationTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allAuthenticationTutorials.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Wallet Tutorials
+ * -----------------------------------------------------------------------------*/
+
+export function getWalletTutorialsPaths() {
+  const paths = allWalletTutorials
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getWalletTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allWalletTutorials.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Marketplace Tutorials
+ * -----------------------------------------------------------------------------*/
+
+export function getMarketplaceTutorialsPaths() {
+  const paths = allMarketplaceTutorials
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getMarketplaceTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allMarketplaceTutorials.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * NFTs Tutorials
+ * -----------------------------------------------------------------------------*/
+
+export function getNftsTutorialsPaths() {
+  const paths = allNFTsTutorials
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getNftsTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allNFTsTutorials.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * API Reference Docs
+ * -----------------------------------------------------------------------------*/
+
+export function getAPIReferencePaths() {
+  return allAPIReferences
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+}
+
+export function getAPIReferenceDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allAPIReferences.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Features Docs
+ * -----------------------------------------------------------------------------*/
+
+export function getSolutionsPaths() {
+  return allSolutions
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+}
+
+export function getSolutionsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allSolutions.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+export function getIntegrationGuidePaths() {
+  return allIntegrationGuides
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+}
+
+export function getIntegrationGuideDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allIntegrationGuides.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )
 }
 
@@ -252,10 +416,235 @@ const sortByDate = (a: any, b: any) => {
   return bDate.getTime() - aDate.getTime()
 }
 
-export function getChangelogToc() {
-  return allChangelogs.sort(sortByDate).map((doc) => ({
-    slug: doc.slug,
-    content: doc.releaseDate,
-    lvl: 2,
-  }))
+export type PathSegment = { order: number; pathName: string }
+
+export type TreeNode = {
+  internal_path?: string
+  title: string
+  nav_title: string | null
+  url_path: string
+  external_url?: string
+  children: TreeNode[]
+}
+
+export const buildSidebarTree = (
+  docs: DocumentTypes[],
+  parentPathNames: string[] = [],
+  prefix = "",
+  depth = 0,
+): TreeNode[] => {
+  const level = parentPathNames.length
+
+  return docs
+    .filter(
+      (_) =>
+        _.pathSegments.length === depth + level + 1 &&
+        _.pathSegments
+          .map((_: PathSegment) => _.pathName)
+          .join("/")
+          .startsWith(parentPathNames.join("/")),
+    )
+    .sort((a, b) => a.pathSegments[level].order - b.pathSegments[level].order)
+    .map<TreeNode>((doc) => ({
+      nav_title: doc.frontmatter.nav_title ?? doc.frontmatter.title ?? null,
+      title: doc.title,
+      external_url: doc.external_url,
+      url_path:
+        `${prefix}` +
+        doc.pathSegments.map((_: PathSegment) => _.pathName).join("/"),
+      children: buildSidebarTree(
+        docs,
+        doc.pathSegments.map((_: PathSegment) => _.pathName),
+        prefix,
+      ),
+    }))
+}
+
+export const homeSidebar = [
+  {
+    name: "Overview",
+    icon: AiOutlineCompass,
+    routes: buildSidebarTree([...allOverviews], [], "/overview/"),
+  },
+  {
+    name: "Solutions",
+    icon: MdArchitecture,
+    routes: buildSidebarTree([...allSolutions], [], "/solutions/"),
+  },
+  {
+    name: "SDK Integration",
+    icon: HiOutlinePuzzle,
+    routes: buildSidebarTree([...allSDKs], [], "/integration/"),
+  },
+  {
+    name: "Showcase",
+    icon: AiOutlineStar,
+    routes: buildSidebarTree([...allShowcases], [], "/showcase/"),
+  },
+  {
+    name: "Resources",
+    icon: HiOutlineViewGrid,
+    routes: buildSidebarTree([...allResources], [], "/resources/"),
+  },
+  {
+    name: "Further Reading",
+    icon: AiOutlineBook,
+    routes: buildSidebarTree([...allFurtherReadings], [], "/further-reading/"),
+  },
+]
+
+export const integrationSidebar = [
+  {
+    name: "Languages",
+    icon: HiOutlinePuzzle,
+    routes: buildSidebarTree([...allSDKs], [], "/integration/"),
+  },
+]
+
+export const tutorialsSidebar = [
+  {
+    name: "Authentication",
+    icon: MdOutlineVerifiedUser,
+    routes: buildSidebarTree(
+      [...allAuthenticationTutorials],
+      [],
+      "/authentication/",
+    ),
+  },
+  {
+    name: "Wallets",
+    icon: BiWallet,
+    routes: buildSidebarTree([...allWalletTutorials], [], "/wallet/"),
+  },
+  {
+    name: "NFTs & Collections",
+    icon: BiImageAlt,
+    routes: buildSidebarTree([...allNFTsTutorials], [], "/nfts/"),
+  },
+  {
+    name: "Marketplaces",
+    icon: AiOutlineShop,
+    routes: buildSidebarTree([...allMarketplaceTutorials], [], "/marketplace/"),
+  },
+]
+
+export function stripNumbers(string) {
+  return string.replace(/[0-9].{0,3}/g, "")
+}
+
+export const apiReferenceSidebar = [
+  {
+    name: "Android",
+    icon: AiOutlineAndroid,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith(
+            "api-reference/android",
+          )
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
+    name: "iOS",
+    icon: SiSwift,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith("api-reference/ios")
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
+    name: "Unity",
+    icon: SiUnity,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences.filter((_) => {
+          return stripNumbers(_.normalizedPath).startsWith(
+            "api-reference/unity",
+          )
+        }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
+    name: "JavaScript",
+    icon: SiJavascript,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences
+          .filter((_) => {
+            return stripNumbers(_.normalizedPath).startsWith("api-reference/js")
+          })
+          .map((__) => {
+            return __
+          }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+  {
+    name: "Rust",
+    icon: SiRust,
+    routes: buildSidebarTree(
+      [
+        ...allAPIReferences
+          .filter((_) => {
+            return stripNumbers(_.normalizedPath).startsWith(
+              "api-reference/rust",
+            )
+          })
+          .map((__) => {
+            return __
+          }),
+      ],
+      [],
+      "/api-reference/",
+      1,
+    ),
+  },
+]
+
+export const integrationGuidesConfig = {
+  languages: [
+    {
+      name: "Android",
+      icon: AiOutlineAndroid,
+      normalizedName: "android",
+    },
+    {
+      name: "iOS",
+      icon: SiSwift,
+      normalizedName: "ios",
+    },
+    {
+      name: "Unity",
+      icon: SiUnity,
+      normalizedName: "unity",
+    },
+    {
+      name: "JavaScript",
+      icon: SiJavascript,
+      normalizedName: "js",
+    },
+    {
+      name: "Rust",
+      icon: SiRust,
+      normalizedName: "rust",
+    },
+  ],
 }

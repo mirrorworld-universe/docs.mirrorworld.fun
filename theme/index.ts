@@ -5,19 +5,20 @@ import { textStyles } from "./text-styles"
 import { extendTheme } from "@chakra-ui/react"
 import "focus-visible/dist/focus-visible"
 import { theme as proTheme } from "@chakra-ui/pro-theme"
+import { semanticTokens } from "./semantic-tokens"
 import "@fontsource/dm-sans"
+import "@fontsource/ibm-plex-mono"
 
 const theme = {
   fonts: {
     heading: "'DM Sans', sans-serif",
     body: "'DM Sans', sans-serif",
+    mono: "IBM Plex Mono",
   },
   shadows: {
     "mirror-dark": `inset 0 4px 0 hsla(69,100%,55%,.3),inset 0 -4px 0 rgba(0,0,0,.25)!important;`,
   },
   colors: {
-    // dark: "#101520",
-    // dark: "#111314",
     dark: "#1b1f21",
     mirror: {
       base: "#dcff1c",
@@ -35,7 +36,8 @@ const theme = {
   },
   config: {
     useSystemColorMode: false,
-    initialColorMode: "light" as ColorMode,
+    initialColorMode: "dark" as ColorMode,
+    disableTransitionOnChange: false,
   },
   styles: {
     global: globalStyles,
@@ -43,6 +45,7 @@ const theme = {
   layerStyles,
   textStyles,
   components,
+  semanticTokens,
 }
 
 type ColorMode = "light"

@@ -1,10 +1,10 @@
 import {
+  chakra,
   Box,
   BoxProps,
   HStack,
   Stack,
   Text,
-  Icon,
   Table,
   Tbody,
   Td,
@@ -14,14 +14,6 @@ import {
 } from "@chakra-ui/react"
 
 import { Spacer } from "@chakra-ui/layout"
-
-export type Chain =
-  | "Solana"
-  | "Ethereum"
-  | "BNB Chain"
-  | "Polygon"
-  | "Aptos"
-  | "Sui"
 
 export interface SupportField {
   name: string
@@ -33,15 +25,15 @@ export interface SupportField {
 const supportDataTable: SupportField[] = [
   {
     name: "Discord Developer Community",
-    Platform: "Disocrd",
-    How_to_submit: "https://discord.gg/7wFeftDwZA",
+    Platform: "Discord",
+    How_to_submit: "https://mirrorworld.fun/discord",
     type: "link",
     event: "join_discord",
   },
   {
     name: "Telegram Community Group",
     Platform: "Telegram",
-    How_to_submit: "https://t.me/mirrorworld_sdk",
+    How_to_submit: "https://mirrorworld.fun/telegram",
     type: "link",
     event: "join_telegram",
   },
@@ -86,20 +78,20 @@ export const ResourceSupportTable = (props: BoxProps) => {
         >
           <Table
             my={0}
-            bg={"dark"}
-            borderColor="mirror.700"
+            bg={"flatButtonHoverBg"}
+            borderColor="text"
             shadow="0px 8px 0px rgba(0, 0, 0, 0.3)"
             rounded="14px"
           >
             <Thead>
-              <Tr borderColor="mirror.700">
+              <Tr borderColor="calloutBorderColor">
                 <Th
                   fontSize="md"
                   fontWeight="bold"
-                  color="mirror.400"
+                  bg="supportTableHeadBg"
+                  color="topNavButtonTextActive"
                   border="none"
                   py="8"
-                  bg="#2C2C2C"
                   shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                   roundedTopLeft="10px"
                   px={6}
@@ -111,10 +103,10 @@ export const ResourceSupportTable = (props: BoxProps) => {
                 <Th
                   fontSize="md"
                   fontWeight="bold"
-                  color="mirror.400"
+                  color="topNavButtonTextActive"
                   border="none"
                   py="8"
-                  bg="#2C2C2C"
+                  bg="supportTableHeadBg"
                   shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                   px={8}
                 >
@@ -123,10 +115,10 @@ export const ResourceSupportTable = (props: BoxProps) => {
                 <Th
                   fontSize="md"
                   fontWeight="bold"
-                  color="mirror.400"
+                  color="topNavButtonTextActive"
                   border="none"
                   py="8"
-                  bg="#2C2C2C"
+                  bg="supportTableHeadBg"
                   shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                   roundedTopRight="10px"
                   width="300"
@@ -139,7 +131,7 @@ export const ResourceSupportTable = (props: BoxProps) => {
             <Tbody>
               {supportDataTable.map((chain, i) => (
                 <Tr key={i}>
-                  <Td border="none" py="8" bg="#1E1E1E" px={8}>
+                  <Td border="none" py="8" bg="supportTableCellBg" px={8}>
                     <HStack spacing="3">
                       <Text
                         maxWidth={"200px"}
@@ -150,7 +142,7 @@ export const ResourceSupportTable = (props: BoxProps) => {
                       </Text>
                     </HStack>
                   </Td>
-                  <Td border="none" py="8" bg="#1E1E1E" px={8}>
+                  <Td border="none" py="8" bg="supportTableCellBg" px={8}>
                     <HStack spacing="3">
                       <Text
                         maxWidth={"200px"}
@@ -161,17 +153,22 @@ export const ResourceSupportTable = (props: BoxProps) => {
                       </Text>
                     </HStack>
                   </Td>
-                  <Td border="none" py="8" bg="#1E1E1E" px={8} fontSize="lg">
+                  <Td
+                    border="none"
+                    py="8"
+                    bg="supportTableCellBg"
+                    px={8}
+                    fontSize="lg"
+                  >
                     <Text
                       maxWidth={"300px"}
                       style={{ whiteSpace: "break-spaces" }}
                     >
                       {chain.type === "link" ? (
-                        <a
+                        <chakra.a
                           rel="noreferrer"
-                          color="mirror.400"
-                          className="css-fdexvs"
                           target="_blank"
+                          color={"textLink"}
                           onClick={() => {
                             window.open(chain.How_to_submit)
                             // @ts-ignore
@@ -179,7 +176,7 @@ export const ResourceSupportTable = (props: BoxProps) => {
                           }}
                         >
                           {chain.How_to_submit}
-                        </a>
+                        </chakra.a>
                       ) : (
                         chain.How_to_submit
                       )}

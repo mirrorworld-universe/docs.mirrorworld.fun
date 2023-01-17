@@ -1,0 +1,369 @@
+---
+title: Mirrors Jump
+description: The what and why of Mirror World Smart SDK
+---
+
+# SDK Usage in Mirrors Jump
+
+Mirrors Jump is a mini-game that fully utilizes the Mirror World Smart SDK and is dedicated to helping more developers understand the features of the Smart SDK. This game is developed in the unity engine and deployed on Solana.
+
+In this game we have integrated Smart Auth, Smart Wallet, Smart Marketplace and Smart NFT Creation, all in just 30 minutes.
+
+- [Download the Game](https://games.mirrorworld.fun/game/mirror_jump/AndroidMainEnv/MirrorsJumpV22113018.apk)
+- [Github](https://github.com/mirrorworld-universe/mirrorworld-demo-mirrorsjump)
+
+## How to integrate Smart Wallet into your Game
+
+### What is Smart Wallet?
+
+We believe you also want to make it low cost, easy and seamless for more users to access your product and buy crypto and use crypto directly and securely in your product.
+
+In response to these needs, we have developed the Smart Wallet with the following features:
+
+1. **Multiple Social Login Options** : Google, Discord, Twitter, Facebook and Email.
+
+2. **Non-custodial Wallet (MPC-TSS) Generated**: no need for users to store private keys.
+
+3. **Fiat to Crypto Onramp** : users in 200+ regions around the world can easily buy cryptocurrency
+
+4. **Token Transfer** : users can transfer assets freely
+
+5. **User-side Transaction Approval** : secondary confirmation of payment
+
+### Scenarios in Mirrors Jump
+
+
+| <video src="/images/mj/demo1.mp4" poster="https://market-assets.mirrorworld.fun/first/1.png" autoPlay={true} muted={true} preload="auto" loop={true} /> | <video src="/images/mj/demo2-1.mp4" poster="https://market-assets.mirrorworld.fun/first/2-1.png" autoPlay={true} muted={true} preload="auto" loop={true} /> | <video src="/images/mj/demo2-2.mp4" poster="https://market-assets.mirrorworld.fun/first/2-2.png" autoPlay={true} muted={true} preload="auto" loop={true} /> |
+|-------------------------|---------------------------|---------------------------|
+
+Smart Wallet integrated in Mirrors Jump
+
+### Integration Steps
+
+1. Download Unity SDK
+2. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](/integration/unity#manual-configuration-with-prefab)
+3. Let users login with the following code:
+
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    // ... Your code
+});
+```
+4. Open user's wallet:
+```csharp
+// The action that user logout from wallet
+Action walletLogoutAction = ()=> {
+    // ... Your code
+}
+
+MirrorSDK.OpenWalletPage(walletLogoutAction);
+```
+
+## How to mint NFTs in your Game?
+
+### What is an NFT?
+NFT, or non-fungible token, is a type of cryptographic token that represents a unique digital asset. Unlike fungible tokens, which are interchangeable and have the same value, non-fungible tokens are unique and cannot be replaced or exchanged for other tokens. NFTs are often used to represent collectible items, digital art, and other digital assets that are unique and have value.
+
+### Why turn your game assets into NFT?
+
+There are several reasons why game developers and players might want to turn their game assets into non-fungible tokens (NFTs). Some of the main benefits of using NFTs for game assets include:
+
+1. **Ownership** : NFTs allow players to own their game assets in a verifiable and transparent way. This can give players a sense of ownership and control over their assets, and it can prevent issues like theft or fraud.
+
+2. **Trading** : NFTs can be easily traded and exchanged, allowing players to buy and sell their game assets on various online marketplaces. This can create new opportunities for players to monetize their assets and make a profit.
+
+3. **Scarcity** : NFTs can be used to create scarcity around game assets, which can increase their value and appeal to players. For example, developers can create limited edition items or unique collectibles that can only be obtained through certain methods, such as special events or in-game challenges.
+
+4. **Integration** : NFTs can be easily integrated into existing game systems and platforms, allowing players to use their assets in different ways. For example, NFTs can be used as in-game currency, as items to be used in the game, or as part of the game's ecosystem.
+
+Overall, turning game assets into NFTs can provide many benefits for both game developers and players, and it is likely to become an increasingly popular trend in the gaming industry.
+
+### Scenarios in Mirrors Jump
+
+In Mirrors Jump, we have 5 different types of NFTs, mainly differentiated by the type of character:
+
+| ![](/images/mj/t1.png) | ![](/images/mj/t2.png) | ![](/images/mj/t3.png) | ![](/images/mj/t4.png) | ![](/images/mj/t5.png) |
+|------------------------|------------------------|------------------------|------------------------|------------------------|
+
+| ![screen-shot](/images/mj/demo4-2-1.gif) | In the design of Mirrors Jump, we give each player a free character, which can then be Minted into NFT. This is the process of turning a game asset into an NFT in Mirrors Jump. |
+|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+#### Metadata
+
+NFT metadata is information that is associated with a non-fungible token (NFT). This information is typically stored in the blockchain and is accessible to anyone who holds or has access to the NFT.
+
+**NFT metadata can include various types of information, such as the name and description of the asset, the date and time it was created, the creator's name and address, and any other relevant information**. NFT metadata is important because it provides context and information about the NFT and the asset it represents. It can help users understand the value and significance of the NFT, and it can be used for various purposes, such as verifying the authenticity of the NFT or tracking its history and ownership.
+
+For example, the NFT metadata information in Mirrors Jump:
+
+```json
+{
+    "name": "Mirrors Jump #1",
+    "symbol": "MJNFT",
+    "description": "Mirrors Jump is our tribute to Doodle Jump, powered by Mirror World SDK. We hope that this game will help players to better understand the fun aspects of Web3 games and help developers to better understand how to use the Mirror World SDK.",
+    "image": "http://metadata-assets.mirrorworld.fun/mirror_jump/images/Rare_Pirate Captain.png",
+    "seller_fee_basis_points": 425,
+    "collection": {
+        "name": "Mirrors Jump NFT",
+        "family": "Mirrors Jump NFT"
+    },
+    "attributes": [
+        {
+            "trait_type": "Rarity",
+            "value": "Rare"
+        },
+        {
+            "trait_type": "Type",
+            "value": "Pirate Captain"
+        }
+    ]
+}
+```
+### Integration Steps
+
+1. Download Unity SDK
+2. Create an NFT Collection. This can be found on the Developer dashboard at: [Dashboard](https://app.mirrorworld.fun/auth/login) --\> Project --\> NFT Collections --\> Create a Collection
+3. After creating your NFT collection, copy NFT Collection address. We shall use this later.
+4. Upload NFT Metadata text in JSON format to your server, and Get the NFT Metadata JSON URL.
+5. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](/integration/unity#manual-configuration-with-prefab)
+6. Let users login with the following code:
+
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    //todo
+});
+```
+
+7. Mint NFT and transfer tokens with the following code
+
+
+  ```csharp
+
+  // STEP 1
+  // Mint NFT
+
+  string collection = "You can get this collection address from your dashboard.";
+  string name = "this string will not be displayed to the user, you can define it as you wish";
+  string symbol = "this string will not be displayed to the user, you can define it as you wish";
+  string nftJsonUrl = "You need to upload your nft config and get this";
+
+  MirrorSDK.MintNFT(collection,name,symbol,nftJsonUrl,Confirmation.Confirmed,(result) =>
+      {
+          if (result.status == "success")
+          {
+             // Mint Success
+             Debug.log("Mint Success!");
+          }
+          else
+          {
+             // Printing failure message
+              Debug.log(result.message);
+          }
+
+      });
+
+  // STEP 2
+  // Transfer token (If you want the user mint NFT to be paid, then you need to execute the following code）
+
+  // transfer amount
+  ulong amout = 100000000;
+  string publicKey = "Your public key";
+
+  MirrorSDK.TransferSol(amout,publicKey,(result) =>
+      {
+          if (result.status == "success")
+          {
+               // transfer sol Success
+               Debug.log("Mint Success!");
+          }
+          else
+          {
+              // Printing failure message
+              Debug.log(result.message);
+          }
+
+      });
+  ```
+
+## How to transfer your NFTs from the game to your friend?
+
+### Scenarios in Mirrors Jump
+
+| ![screen-shot](/images/mj/demo4-2-2.gif) | As long as you have your friend's wallet address, you can easily give them NFT as a gift.|
+| --- | --- |
+
+### Integration Steps
+
+1. Download Unity SDK
+2. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](/integration/unity#manual-configuration-with-prefab)
+3. Let users login with the following code:
+
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    //todo
+});
+```
+
+4. Get NFT Mint Address. This is the address that uniquely identifies an NFT on the blockchain. You will get tht NFT mint address whenever you mint an NFT.
+5. Transfer NFT with the following code
+
+```csharp
+string nftMintAddress = "mint address of your nft";
+string transferAddress = "the wallet address you want to transfer to";
+
+MirrorSDK.TransferNFT(nftMintAddress,transferAddress,(result) =>
+{
+    if (result.status == "success")
+    {
+       // Transfer Success
+       Debug.log("Transfer Success!");
+    }
+    else
+    {
+       // Printing failure message
+       Debug.log("Transfer failed! The message is:" + result.message);
+    }
+});
+```
+## How to build an in-game NFT backpack?
+
+### What is an NFT backpack?
+
+An NFT backpack, or non-fungible token backpack, is a digital wallet or storage system that is specifically designed to hold and manage non-fungible tokens (NFTs). An NFT backpack is similar to a regular cryptocurrency wallet, but it is specifically designed to store and manage NFTs.
+
+### Scenarios in Mirrors Jump
+
+In Mirrors Jump, you can view your own NFT in the NFT backpack.
+
+| ![](/images/mj/t6.jpg) | ![](/images/mj/t7.jpg) |
+|-----------------|----------------------|
+
+### Integration Steps
+1. Download Unity SDK
+2. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](/integration/unity#manual-configuration-with-prefab)
+3. Let users login with the following code:
+
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    //todo
+});
+```
+4. Build an NFT backpack with the following code
+```csharp
+
+string ownerAddress = "nft owner address";
+
+List<string> owners = new List<string>();
+owners.Add(ownerAddress);
+
+// Start index
+int offset = 0;
+
+//Limit of length
+int limit = 100;
+
+MirrorSDK.GetNFTsOwnedByAddress(owners, limit,offset,(Mutiple) =>
+{
+    if (result.status == "success")
+    {
+       //Your NFT data entities
+       List<SingleNFTResponseObj> nfts = Mutiple.data.nfts;
+
+       //Todo: show them in your ui
+
+    }
+    else
+    {
+       // Printing failure message
+        Debug.log("Get NFTs failed, the reason is:" + result.message);
+    }
+});
+```
+
+## How to sell your NFTs in the game?
+
+### Scenarios in Mirrors Jump
+
+| ![screen-shot](/images/mj/demo4-2-3.gif) | You can set a specified price and sell your NFTs on the marketplace. |
+|-----------------| --- |
+
+### Integration Steps
+
+1. Download Unity SDK
+2. Get your Marketplace's Auction House Address. You can retrieve this address form the Developer Dashboard at this path: [Dashboard](https://app.mirrorworld.fun/auth/login) --\> Project --\> NFT Marketplace --\> Create a Marketplace
+3. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](/integration/unity#manual-configuration-with-prefab)
+4. Let users login with the following code:
+
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    //todo
+});
+```
+5. Sell NFT With the following code
+```csharp
+
+string nftMintAddress = "mint address of your nft";
+float price = 99.99;
+string ActionHouse = "your actionHouse";
+
+MirrorSDK.ListNFT(nftMintAddress,price,ActionHouse,(result) =>
+{
+    if (result.status == "success")
+    {
+       // Printing success message
+        Debug.log("List Success!");
+    }
+    else
+    {
+       // Printing failure message
+        Debug.log("List Failed, the reason is:" + result.message);
+    }
+});
+```
+
+## How to build an in-game NFT marketplace?
+### What is the NFT Marketplace?
+An NFT (non-fungible token) marketplace is a platform that allows users to buy, sell, and trade NFTs.
+
+### Why should you have your own NFT Marketplace?
+There are a few reasons why you might want to have your own NFT marketplace:
+1. **Control**: Having your own NFT marketplace allows you to have full control over the platform, including the design, features, and policies.
+2. **Branding**: By creating your own NFT marketplace, you can establish your own brand and create a unique user experience that aligns with your values and vision. This can help you stand out in a crowded market and build a loyal customer base.
+3. **Revenue**: If your NFT marketplace becomes popular and attracts a lot of users, you may be able to generate significant revenue through transaction fees, advertising, and other sources.
+4. **Community**: An NFT marketplace can be a great way to build a community of like-minded people who are interested in your work or the types of NFTs you offer. This can help you foster relationships with fans and customers and create a sense of belonging and connection.
+
+### Scenarios in Mirrors Jump
+
+| ![screen-shot](/images/mj/demo3.gif) | In Mirrors Jump, you can open the NFT Marketplace directly in the game, browse other players' NFTs, and buy NFTs that are on sale. |
+|-----------------| --- |
+
+### Integration Steps
+
+1. Download Unity SDK
+2. Init your SDK with adding MirrorSDK prefab, you can follow the documentation here: [InitWithPrefab](/integration/unity#manual-configuration-with-prefab)
+3. Let users login with the following code:
+
+```csharp
+MirrorSDK.StartLogin((loginResponse)=>
+{
+    UserResponse userInfo = loginResponse.user;
+    // ... your code
+});
+```
+
+4. Create your Marketplace: You can refer to [Marketplace Storefront Deployment Guide - Mirror World](/guides/how-to-deploy-your-nft-marketplace-storefront)
+5. Open it in SDK with the following code:
+```csharp
+string marketUrl = "Your deployed marketplace url";
+MirrorSDK.OpenMarketPage(marketUrl);
+```

@@ -1,0 +1,84 @@
+---
+title: Deploying Your NFT Marketplace Storefront
+description: Development guide for deploying your Solana Marketplace storefront
+author:
+  name: Jonathan Bakebwa
+  twitter: https://twitter.com/codebender828
+tags:
+  - Solana
+  - Marketplace
+  - React
+---
+
+This guide will enable you to create an NFT Marketplace using the Mirror World
+Smart SDK.
+
+> The Marketplace on Mirror World is currently available on Solana Mainnet and
+> Devnet.
+
+## Creating your Marketplace
+
+1. On the <span onClick = {()=> window.mixgather.event("developer_dashboard")}>[Developer dashboard](https://app.mirrorworld.fun)</span>,
+under the projects tab, create a Marketplace for your project by completing
+the prompts.
+2. Include the collections you would like to list on your marketplace.
+
+## Creating the Storefront
+
+After creating the Marketplace on the Developer Dashboard, you're ready to
+create a storefront. A storefront is a user interface that your users will use
+to buy and sell NFTs on your Marketplace. The storefront serves as the UI for
+your marketplace core.
+
+### Storefront creation guide
+
+### 1. Clone Storefront UI Template Repository
+
+```shell
+git clone git@github.com:mirrorworld-universe/marketplace-storefront.git
+```
+
+### 2. Install dependencies
+
+```shell
+yarn install
+```
+
+### 3. Setup storefront `userConfig.json` variables.
+
+Download your `userConfig.json` from your project's Marketplace on the [developer dashboard](https://app.mirrorworld.fun). It should look something like the example below:
+
+```json
+{
+  // Array of collection addresses
+  "collections": ["DUuMbpmH3oiREntViXfGZhrLMbVcYBwGeBa4Wn9X8QfM"],
+  // API Key
+  "xApiKey": "mw_testAmRKdRbBsBbIAw3CeMqS9GORmcG5BRUCU4D",
+  // Marketplace commission fee in percentage
+  "serviceFee": 4.25,
+  // Marketplace storefront currency
+  "currencyOption": "SOL",
+  // Storefront name
+  "name": "Mirrors Jump",
+  // Storefront Logo URL
+  "logo": "",
+  // Storefront Network
+  "network": "mainnet"
+}
+```
+
+![](https://market-assets.mirrorworld.fun/dashboard/dashboard2.png)
+
+### 4. Run dev server
+
+```shell
+yarn dev
+```
+
+Open the browser on `http://localhost:3000` to preview your storefront.
+
+![](https://market-assets.mirrorworld.fun/dashboard/storefront.png)
+
+### 5. That's it! Deploy your static site!
+
+You can now deploy your Next.js site using [Vercel](https://vercel.com), [Netlify](https://netlify.com) or [Cloudflare Pages](https://pages.cloudflare.dev).

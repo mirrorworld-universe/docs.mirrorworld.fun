@@ -8,7 +8,7 @@ const baseConfig = {
 const siteConfig = {
   ...baseConfig,
   projectName: "docs.mirrorworld.fun",
-  copyright: `Copyright &copy; ${new Date().getFullYear()}`,
+  copyright: `Copyright &copy; Mirror World, Inc. ${new Date().getFullYear()}`,
   openCollective: {
     url: "",
   },
