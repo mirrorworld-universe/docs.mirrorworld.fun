@@ -68,6 +68,10 @@ const guides = allGuides?.map((guide) => ({
 export default function Blog() {
   const router = useRouter()
 
+  const tag = useMemo(() => {
+    return router.query.tag as string
+  }, [router.asPath])
+
   const articlesByTag = useMemo(() => {
     return guides.reduce((accumulator, currentValue) => {
       const tags = currentValue.tags as string[]
@@ -88,8 +92,8 @@ export default function Blog() {
   )
 
   const selectedArticles = useMemo(() => {
-    if (articleGroups.includes(router.query?.tag as string)) {
-      return articlesByTag[router.query?.tag as string]
+    if (articleGroups.includes(tag)) {
+      return articlesByTag[tag]
     }
 
     return guides

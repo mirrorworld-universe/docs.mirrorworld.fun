@@ -59,7 +59,7 @@ export default function IntegrationLayout({
                 top="8rem"
                 left="0px"
                 right="auto"
-                width="21rem"
+                width="11rem"
                 pb="10"
                 px="8"
                 overflowY="auto"
