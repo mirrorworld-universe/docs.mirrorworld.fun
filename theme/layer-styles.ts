@@ -24,7 +24,7 @@ const inlineCode: SystemStyleObject = {
   rounded: "base",
   paddingY: "0.5",
   paddingX: "1",
-  // fontSize: "14px",
+  fontSize: "1em",
   fontFamily: "mono",
   fontWeight: "semibold",
   color: "codeText",

@@ -2,11 +2,12 @@ import { Button } from "@chakra-ui/react"
 import { Box, Flex, HStack, Text } from "@chakra-ui/layout"
 import { AiOutlineCaretDown } from "react-icons/ai"
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react"
-import { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import Icon from "@chakra-ui/icon"
 import { integrationGuidesConfig } from "../../lib/contentlayer-utils"
 import { integrationDropdownList } from "../../theme/layer-styles"
 import { useRouter } from "next/router"
+import { Search } from "../search-dialog"
 
 export function IntegrationBuilderNav(props: any) {
   const router = useRouter()
@@ -43,6 +44,7 @@ export function IntegrationBuilderNav(props: any) {
         px={{ base: "4", sm: "6", md: "8" }}
       >
         <HStack spacing={5}>
+          <Search />
           <HStack>
             <Text>Language: </Text>
             <Menu>

@@ -6,13 +6,8 @@ import { extendTheme } from "@chakra-ui/react"
 import "focus-visible/dist/focus-visible"
 import { theme as proTheme } from "@chakra-ui/pro-theme"
 import { semanticTokens } from "./semantic-tokens"
-import "@fontsource/dm-sans/400.css"
-import "@fontsource/dm-sans/500.css"
-import "@fontsource/dm-sans/700.css"
-import "@fontsource/ibm-plex-mono/300.css"
-import "@fontsource/ibm-plex-mono/400.css"
-import "@fontsource/ibm-plex-mono/500.css"
-import "@fontsource/ibm-plex-mono/700.css"
+import "@fontsource/dm-sans"
+import "@fontsource/ibm-plex-mono"
 
 const theme = {
   fonts: {
@@ -41,7 +36,7 @@ const theme = {
   },
   config: {
     useSystemColorMode: false,
-    initialColorMode: "light" as ColorMode,
+    initialColorMode: "dark" as ColorMode,
     disableTransitionOnChange: false,
   },
   styles: {

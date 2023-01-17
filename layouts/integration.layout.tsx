@@ -47,7 +47,7 @@ export default function IntegrationLayout({
           <chakra.div pt="10">
             <Box
               data-with-integration-guide=""
-              maxW="8xl"
+              maxW="10xl"
               ml="auto"
               px={{ sm: "6", base: "4", md: "8" }}
             >
@@ -57,7 +57,7 @@ export default function IntegrationLayout({
                 zIndex={30}
                 bottom="0"
                 top="8rem"
-                left="max(0px, calc(50% - 45rem))"
+                left="0px"
                 right="auto"
                 width="21rem"
                 pb="10"
@@ -65,18 +65,18 @@ export default function IntegrationLayout({
                 overflowY="auto"
                 overscrollBehavior="contain"
               >
-                <Box position="relative">
-                  <Box
-                    position="sticky"
-                    zIndex={20}
-                    top="0"
-                    bg="languageSelectBg"
-                    pb="8"
-                  >
-                    <Spacer height="10" />
-                    <Search />
-                    <Spacer mt="px" height="5" />
-                  </Box>
+                <Box position="relative" pt={8}>
+                  {/*<Box*/}
+                  {/*  position="sticky"*/}
+                  {/*  zIndex={20}*/}
+                  {/*  top="0"*/}
+                  {/*  bg="languageSelectBg"*/}
+                  {/*  pb="8"*/}
+                  {/*>*/}
+                  {/*  <Spacer height="10" />*/}
+                  {/*  <Search />*/}
+                  {/*  <Spacer mt="px" height="5" />*/}
+                  {/*</Box>*/}
                   <Sidebar />
                 </Box>
               </Box>
@@ -86,13 +86,13 @@ export default function IntegrationLayout({
                 className="mdx-content integration"
                 pl={{
                   "2xl": "11rem",
-                  xl: "20rem",
-                  lg: "18rem",
+                  // xl: "20rem",
+                  lg: "11rem",
                   md: "0",
                   sm: "0",
                 }}
                 pt="4"
-                pr={{ lg: "4rem" }}
+                // pr={{ lg: "4rem" }}
                 mt={"-50px"}
               >
                 <Box>

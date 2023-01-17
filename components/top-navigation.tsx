@@ -200,20 +200,20 @@ export function TopNavigation(props: any) {
               icon={FaDiscord}
               label="Join the Discord server"
             />
-            <IconButton
-              aria-label={
-                colorMode === "light"
-                  ? "Switch to dark mode"
-                  : "Switch to light Mode"
-              }
-              icon={<FiSun />}
-              variant={"nav"}
-              color={"topNavText"}
-              size={"sm"}
-              w={8}
-              h={8}
-              onClick={handleToggleColorMode}
-            />
+            {/*<IconButton*/}
+            {/*  aria-label={*/}
+            {/*    colorMode === "light"*/}
+            {/*      ? "Switch to dark mode"*/}
+            {/*      : "Switch to light Mode"*/}
+            {/*  }*/}
+            {/*  icon={<FiSun />}*/}
+            {/*  variant={"nav"}*/}
+            {/*  color={"topNavText"}*/}
+            {/*  size={"sm"}*/}
+            {/*  w={8}*/}
+            {/*  h={8}*/}
+            {/*  onClick={handleToggleColorMode}*/}
+            {/*/>*/}
             <MobileNavigation />
           </HStack>
         </HStack>
