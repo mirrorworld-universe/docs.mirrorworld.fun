@@ -1,0 +1,24 @@
+---
+title: checkStatusOfTransactions
+---
+
+# `checkStatusOfTransactions`
+Get status of transactions by their signatures.
+```java
+List<String> signatures = new ArrayList<>();
+signatures.add("signature 1");
+signatures.add("signature 2");
+
+MirrorWorld.checkStatusOfTransactions(signatures, new CheckStatusOfMintingListener() {
+
+    @Override
+    public void onSuccess(CheckStatusOfMintingResponse response) {
+        Log.d("MirrorSDK","checkStatusOfTransactions success!" + MirrorGsonUtils.getInstance().toJson(response));
+    }
+
+    @Override
+    public void onCheckFailed(long code, String message) {
+        Log.d("MirrorSDK","checkStatusOfTransactions failed!code:"+code+" message:"+message);
+    }
+});
+```
