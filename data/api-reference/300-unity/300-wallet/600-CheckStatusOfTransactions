@@ -1,0 +1,17 @@
+---
+title: CheckStatusOfTransactions
+---
+
+# `CheckStatusOfTransactions`
+Get status of transactions by their signatures.
+```cs
+List<string> signatures = new List<string>();
+signatures.Add("signature 1");
+signatures.Add("signature 2");
+
+MirrorSDK.CheckStatusOfTransactions(signatures, (res) =>
+{
+    var body = JsonUtility.ToJson(res);
+    Debug.Log("GetStatusOfTransactions result:" + body);
+});
+```
