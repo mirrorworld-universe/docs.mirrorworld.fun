@@ -33,6 +33,7 @@ import { AiOutlineShop } from "react-icons/ai"
 import { BiBadgeCheck } from "react-icons/bi"
 import { ChainSupportTable } from "../components/support-table"
 import mixgather from "mixgather"
+import SEO from 'components/seo'
 
 type FeatureItemProps = {
   title: string
@@ -56,11 +57,7 @@ function FeatureItem(props: FeatureItemProps) {
 export default function Home() {
   return (
     <Box>
-      <NextSeo title={siteConfig.title} description={siteConfig.description} openGraph={{
-        title: siteConfig.title,
-        description: siteConfig.description,
-        images: [{ url: `https://docs.mirrorworld.fun/images/sharelink.png` }]
-      }} />
+      <SEO image='https://docs.mirrorworld.fun/images/sharelink.png' title={siteConfig.title} description={siteConfig.description} />
       <TopNavigation />
 
       <Box as="header" position="relative">
