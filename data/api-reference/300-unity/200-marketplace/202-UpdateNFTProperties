@@ -4,7 +4,7 @@ title: UpdateNFTProperties
 
 # `UpdateNFTProperties`
 Get status of transactions by their signatures.
-```cs
+```csharp
 string mintAddress = "mint address";
 string name = "name";
 string symbol = "symbol";
