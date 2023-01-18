@@ -195,11 +195,7 @@ export function Sidebar() {
       )
     ) {
       return homeSidebar
-    } else if (
-      ["authentication", "marketplace", "wallet", "nfts"].includes(
-        router.pathname.split("/")[1],
-      )
-    ) {
+    } else if (router.pathname.startsWith("/tutorials")) {
       return tutorialsSidebar
     } else if (isApiReference) {
       return apiReferenceSidebar

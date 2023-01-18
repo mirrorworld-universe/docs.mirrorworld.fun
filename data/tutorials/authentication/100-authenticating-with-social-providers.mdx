@@ -1,0 +1,59 @@
+---
+title: How to authenticate users with social providers
+---
+
+# How to authenticate users with social providers
+
+Mirror World's Smart SDK supports authentication with the following providers:
+
+1. Google
+2. Twitter
+3. Facebook
+4. Discord
+
+Authenticating your users socially with the Mirror World SDK can be done by
+calling the login method of your framework of choice.
+
+## How social authentication works
+
+Mirror World's SDKs implement social authentication through the Wallet UI
+rendered when the login method for the corresponding SDK is invoked.
+
+When the login method is called, the wallet UI is opened, and the user may now
+login. After logging in, the method returns the user's information to your dApp.
+
+![screen-shot](/images/tutorials/authentication/social-login-ui.png)
+
+## Social Login Methods By Platform
+
+See the full API reference below
+
+- Android: [`startLogin`](/api-reference/android/authentication/startLogin)
+- iOS: [`StartLogin`](/api-reference/ios/authentication/StartLogin)
+- Unity: [`StartLogin`](/api-reference/unity/authentication/StartLogin)
+- JavaScript: [`login`](/api-reference/js/authentication/login)
+
+## Example
+
+For this example, we shall use follow the authentication guide for all
+frameworks.
+
+<CodeSnippet id="tutorial/installation.mdx" />
+
+> See [Android Installation Guide](/integration/android) and
+> [Unity Installation Guide](/integration/unity) for Android and Unity
+> respectively
+
+## Initialize your SDK
+
+After installing the SDK, you can create an instance of the SDK. The
+`super-secret-api-key` can be replaced with your API key acuquired from the
+[Developer Dashboard](https://app.mirrorworld.fun)
+
+<CodeSnippet id="tutorial/initialization.mdx" />
+
+## Invoke the login method
+
+Invoke the login method to invoke the Social Login Interface
+
+<CodeSnippet id="tutorial/authentication/login.mdx" />

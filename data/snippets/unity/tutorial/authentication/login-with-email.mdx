@@ -1,0 +1,10 @@
+```csharp
+MirrorSDK.LoginWithEmail(debugEmail, debugPassword, (response) =>
+{
+    long resCode = response.Code;
+    LoginResponse details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

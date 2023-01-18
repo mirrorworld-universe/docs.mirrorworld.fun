@@ -313,7 +313,12 @@ const SDK = defineDocumentType(() => ({
 
 const Snippet = defineDocumentType(() => ({
   name: "Snippet",
-  fields,
+  fields: {
+    title: {
+      type: "string",
+      description: "The title of the page",
+    },
+  },
   filePathPattern: "snippets/**/*.mdx",
   contentType: "mdx",
   // fields,
@@ -342,56 +347,56 @@ const FurtherReading = defineDocumentType(() => ({
 
 const AuthenticationTutorials = defineDocumentType(() => ({
   name: "AuthenticationTutorials",
-  filePathPattern: "authentication/**/*.mdx",
+  filePathPattern: "tutorials/authentication/**/*.mdx",
   contentType: "mdx",
   fields,
   computedFields: {
     ...computedFields,
     pathname: {
       type: "string",
-      resolve: () => "/authentication/[slug]",
+      resolve: () => "/tutorials/authentication/[slug]",
     },
   },
 }))
 
 const WalletTutorials = defineDocumentType(() => ({
   name: "WalletTutorials",
-  filePathPattern: "wallet/**/*.mdx",
+  filePathPattern: "tutorials/wallet/**/*.mdx",
   contentType: "mdx",
   fields,
   computedFields: {
     ...computedFields,
     pathname: {
       type: "string",
-      resolve: () => "/wallet/[slug]",
+      resolve: () => "/tutorials/wallet/[slug]",
     },
   },
 }))
 
 const MarketplaceTutorials = defineDocumentType(() => ({
   name: "MarketplaceTutorials",
-  filePathPattern: "marketplace/**/*.mdx",
+  filePathPattern: "tutorials/marketplace/**/*.mdx",
   contentType: "mdx",
   fields,
   computedFields: {
     ...computedFields,
     pathname: {
       type: "string",
-      resolve: () => "/marketplace/[slug]",
+      resolve: () => "/tutorials/marketplace/[slug]",
     },
   },
 }))
 
 const NFTsTutorials = defineDocumentType(() => ({
   name: "NFTsTutorials",
-  filePathPattern: "nfts/**/*.mdx",
+  filePathPattern: "tutorials/nfts/**/*.mdx",
   contentType: "mdx",
   fields,
   computedFields: {
     ...computedFields,
     pathname: {
       type: "string",
-      resolve: () => "/nfts/[slug]",
+      resolve: () => "/tutorials/nfts/[slug]",
     },
   },
 }))
@@ -480,7 +485,7 @@ const contentLayerConfig = makeSource({
           // autoImport: false,
           showCopyButton: true,
           staticMediaQuery: "not screen, (max-width: 992px)",
-          lineNumbers: true,
+          // lineNumbers: true,
         },
       ],
     ],

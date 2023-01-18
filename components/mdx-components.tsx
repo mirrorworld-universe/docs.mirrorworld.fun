@@ -6,7 +6,7 @@ import { normalizeProps, useMachine } from "@zag-js/react"
 import * as tabs from "@zag-js/tabs"
 import { MDX } from "contentlayer/core"
 import { allComponents, allSnippets } from "contentlayer/generated"
-import { frameworks, FRAMEWORKS } from "lib/framework-utils"
+import { Framework, frameworks, FRAMEWORKS } from "lib/framework-utils"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Link from "next/link"
 import { FC } from "react"
@@ -35,7 +35,7 @@ function SnippetItem({ body, id }: { body: MDX; id: string }) {
   return (
     <div className="prose" id="snippet" data-framework={id}>
       {content}
-      <CopyButton content={textContent} />
+      {/* <CopyButton content={textContent} /> */}
     </div>
   )
 }
@@ -159,69 +159,82 @@ const components: Record<string, FC<Record<string, any>>> = {
     return <div className="prose">{props.children}</div>
   },
   CodeSnippet(props) {
-    const { framework: userFramework } = useFramework()
+    const { framework = "js", setFramework } = useFramework()
 
     const snippets = allSnippets.filter((p) => {
-      const [_, __, ...rest] = p.params
+      const [_, framework, ...rest] = p.params
+
       const str = rest.join("/") + ".mdx"
-      return str === props.id
+      return frameworks[framework] && str === props.id
+    }).sort((a, b) => {
+      if (a.params[1] > b.params[1]) {
+        return 1;
+      }
+      if (b.params[1] > a.params[1]) {
+        return -1;
+      }
+      return 0;
     })
 
     const [state, send] = useMachine(
       tabs.machine({
         id: props.id,
-        value: userFramework ?? "react",
+        value: snippets[0].framework,
       }),
     )
 
     const api = tabs.connect(state, send, normalizeProps)
+
+    const _allSnippets = snippets.map(s => ({ ...s, framework: s.params[1] }))
 
     return (
       <Box
         width="full"
         maxW="768px"
         my="8"
-        bg="hsl(230, 1%, 98%)"
+        bg="languageSelectBg"
         rounded="6px"
         {...api.rootProps}
       >
-        <Box {...api.triggerGroupProps}>
-          {FRAMEWORKS.map((framework) => (
+        <Box {...api.triggerGroupProps} bg="languageSelectBg">
+          {_allSnippets.map((snippet) => (
             <chakra.button
               py="2"
               px="4"
               fontSize="sm"
               fontWeight="medium"
               borderBottom="2px solid"
-              borderBottomColor="gray.200"
+              borderBottomColor="supportTableCheckMute"
               _selected={{
-                borderBottomColor: "currentColor",
-                color: "green.500",
+                borderBottomColor: "textLink",
+                color: "textLink",
+                fontWeight: "bold"
               }}
               _focusVisible={{ outline: "2px solid blue" }}
-              {...api.getTriggerProps({ value: framework })}
-              key={framework}
+              {...api.getTriggerProps({ value: snippet.framework })}
+              key={snippet.framework}
+              data-framework={snippet.framework}
             >
               <HStack>
-                <Icon as={frameworks[framework].icon} />
-                <p>{frameworks[framework].label}</p>
+                <Icon as={frameworks[snippet.framework].icon} />
+                <p>{frameworks[snippet.framework].label}</p>
               </HStack>
             </chakra.button>
           ))}
         </Box>
         <Box {...api.contentGroupProps}>
-          {FRAMEWORKS.map((framework) => {
-            const snippet = snippets.find((p) => p.framework === framework)
+          {_allSnippets.map((snippet) => {
+            const _snippet = snippets.find((p) => p.framework === snippet.framework)
             return (
               <Box
-                {...api.getContentProps({ value: framework })}
+                {...api.getContentProps({ value: snippet.framework })}
                 position="relative"
-                key={framework}
+                key={snippet.framework}
                 mt="-6"
                 _focusVisible={{ outline: "2px solid blue" }}
               >
                 {snippet ? (
-                  <SnippetItem id={framework} body={snippet.body} />
+                  <SnippetItem id={snippet.framework} body={snippet.body} />
                 ) : (
                   <Box mt="6" padding="4" fontSize="sm" opacity="0.5">
                     Snippet not found :(

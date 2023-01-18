@@ -11,13 +11,13 @@ import {
 
 export const frameworks = {
   android: { icon: AiOutlineAndroid, label: "Android" },
-  // ios: { icon: SiSwift, label: "iOS (Swift)" },
+  ios: { icon: SiSwift, label: "iOS (Swift)" },
   unity: { icon: SiUnity, label: "Unity" },
   js: { icon: SiJavascript, label: "JavaScript" },
-  // rust: { icon: SiRust, label: "Rust" },
+  rust: { icon: SiRust, label: "Rust" },
 }
 
-export const FRAMEWORKS = ["android", "unity", "js"] as const
+export const FRAMEWORKS = ["android", "unity", "js", "ios", "rust"] as const
 
 export type Framework = keyof typeof frameworks
 

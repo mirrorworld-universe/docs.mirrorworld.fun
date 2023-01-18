@@ -1,0 +1,16 @@
+```rust
+pub struct LoginWithEmailParam <'a> {
+   pub email: &'a str,
+   pub code: &'a str,
+   pub password: &'a str,
+}
+
+fn main() {
+    let payload = LoginWithEmailParam {
+        email: "email@example.com",
+        password: "super-safe-password",
+        code: "123456"
+    };
+    let res: &LoginWithEmailRes = login_with_email(payload);
+}
+```

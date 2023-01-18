@@ -10,7 +10,6 @@ import { TopNavigation } from "components/top-navigation"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
-import SEO from 'components/seo'
 
 type DocsLayoutProps = {
   children: React.ReactNode

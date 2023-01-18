@@ -1,0 +1,15 @@
+```swift
+// In AppDelegate.swift
+
+import MirrorWorldSDK
+
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    MWSDK.initSDK(env: .StagingDevNet, apiKey: "YOUR_SECRET_API_KEY")
+    return true
+}
+
+func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+    MirrorWorldSDK.share.handleOpen(url: url)
+    return true
+}
+```

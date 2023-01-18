@@ -1,0 +1,53 @@
+---
+title: How to authenticate users with email
+---
+
+# How to authenticate users with email
+
+Mirror World's Smart SDK supports authentication with email and password.
+
+Authenticating your users by email Mirror World SDK can be done by calling the
+email login method of your framework of choice. This process is programmatic and
+does not invoke any user interface to run it.
+
+> You should be careful when handling user credentials like email and passwords.
+> We recommend authenticating your users with
+> [Social Authentication](/tutorials/authentication/authenticating-with-social-providers)
+> where possible.
+
+## Email Login Methods By Platform
+
+See the full API reference below
+
+- Android:
+  [`loginWithEmail`](/api-reference/android/authentication/loginWithEmail)
+- Unity: [`LoginWithEmail`](/api-reference/unity/authentication/LoginWithEmail)
+- JavaScript:
+  [`loginWithEmail`](/api-reference/js/authentication/loginWithEmail)
+
+## Example (JavaScript)
+
+For this example, we shall use JavaScript to authenticate users in a web
+application built with React.
+
+### Install dependencies
+
+<CodeSnippet id="tutorial/installation.mdx" />
+
+> See [Android Installation Guide](/integration/android) and
+> [Unity Installation Guide](/integration/unity) for Android and Unity
+> respectively
+
+### Initialize your SDK
+
+After installing the SDK, you can create an instance of the SDK. The
+`super-secret-api-key` can be replaced with your API key acuquired from the
+[Developer Dashboard](https://app.mirrorworld.fun)
+
+<CodeSnippet id="tutorial/initialization.mdx" />
+
+## Invoke the login with email method
+
+Invoke the login with email method to log the user in with their email address
+
+<CodeSnippet id="tutorial/authentication/login-with-email.mdx" />

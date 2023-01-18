@@ -16,10 +16,10 @@ module.exports = withContentlayer({
       destination: "/overview/introduction",
       permanent: true,
     },
-    {
-      source: "/tutorials",
-      destination: "/integration",
-      permanent: true,
-    },
+    // {
+    //   source: "/tutorials",
+    //   destination: "/integration",
+    //   permanent: true,
+    // },
   ],
 })

@@ -60,8 +60,8 @@ export const globalStyles: SystemStyleObject = {
       top: "0",
       width: "8px",
       height: "100%",
-      bg: "calloutBorderColor"
-    }
+      bg: "calloutBorderColor",
+    },
   },
 
   table: {
@@ -100,11 +100,28 @@ export const globalStyles: SystemStyleObject = {
       fontVariantNumeric: "tabular-nums",
     },
 
+    ".prose[data-framework]": {
+      overflow: "hidden",
+      mt: "24px",
+      ".ch-codeblock, .ch-codegroup": {
+        roundedBottom: "md",
+        roundedTopStart: "0 !important",
+        roundedTopEnd: "md",
+        my: "0 !important",
+
+        ".ch-frame-title-bar": {
+          display: "none !important",
+        },
+      },
+    },
+    // #snippet > div > div > div.ch-frame-title-bar
+
     // android-install
     img: {
       "&[alt='screen-shot']": {
         width: [null, null, "310px"],
         minWidth: [null, null, "310px"],
+        mx: "auto",
       },
       "&[alt='android-install']": {
         width: [null, null, "310px"],

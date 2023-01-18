@@ -361,6 +361,35 @@ export function getNftsTutorialsDoc(_slug: string | string[]) {
 }
 
 /* -----------------------------------------------------------------------------
+ * NFTs Tutorials
+ * -----------------------------------------------------------------------------*/
+
+export function getTutorialsPaths() {
+  const paths = [
+    ...allNFTsTutorials,
+    ...allMarketplaceTutorials,
+    ...allAuthenticationTutorials,
+    ...allWalletTutorials,
+  ]
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+  return paths
+}
+
+export function getTutorialsDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return [
+    ...allNFTsTutorials,
+    ...allMarketplaceTutorials,
+    ...allAuthenticationTutorials,
+    ...allWalletTutorials,
+  ].find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
  * API Reference Docs
  * -----------------------------------------------------------------------------*/
 
@@ -508,23 +537,29 @@ export const tutorialsSidebar = [
     routes: buildSidebarTree(
       [...allAuthenticationTutorials],
       [],
-      "/authentication/",
+      "/tutorials/",
+      1,
     ),
   },
   {
     name: "Wallets",
     icon: BiWallet,
-    routes: buildSidebarTree([...allWalletTutorials], [], "/wallet/"),
+    routes: buildSidebarTree([...allWalletTutorials], [], "/tutorials/", 1),
   },
   {
     name: "NFTs & Collections",
     icon: BiImageAlt,
-    routes: buildSidebarTree([...allNFTsTutorials], [], "/nfts/"),
+    routes: buildSidebarTree([...allNFTsTutorials], [], "/tutorials/", 1),
   },
   {
     name: "Marketplaces",
     icon: AiOutlineShop,
-    routes: buildSidebarTree([...allMarketplaceTutorials], [], "/marketplace/"),
+    routes: buildSidebarTree(
+      [...allMarketplaceTutorials],
+      [],
+      "/tutorials/",
+      1,
+    ),
   },
 ]
 

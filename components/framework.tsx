@@ -8,7 +8,7 @@ export const FrameworkContext = createContext<{
   setFramework?: (value: Framework) => void
 }>({
   framework: "android",
-  setFramework: () => {},
+  setFramework: () => { },
 })
 
 export function useFramework() {
@@ -20,16 +20,30 @@ type FrameworkProviderProps = {
   children: React.ReactNode
 }
 
+const FRAMEWORK_STORAGE_KEY = `mw-docs-user-framework`
+
+let isMounted = false
+
 export function FrameworkProvider({ value, children }: FrameworkProviderProps) {
-  const [framework, setFramework] = useState(value)
-  const router = useRouter()
+  const [framework, setFramework] = useState(value || "js")
   useEffect(() => {
-    const fw = router.pathname.split("/")[1] as Framework
-    if (!!fw && FRAMEWORKS.includes(fw)) {
+    if (!isMounted) return
+    localStorage.setItem(FRAMEWORK_STORAGE_KEY, framework)
+  }, [framework, setFramework])
+
+  useEffect(() => {
+    if (isMounted) return
+    else {
+      const fw = localStorage.getItem(FRAMEWORK_STORAGE_KEY) as Framework || value
       setFramework(fw)
+      isMounted = true
     }
-  }, [framework, setFramework, router])
-  const context = useMemo(() => ({ framework, setFramework }), [framework])
+    return () => {
+      isMounted = true
+    }
+  }, [])
+
+  const context = useMemo(() => ({ framework: framework || "js", setFramework }), [framework])
   return (
     <FrameworkContext.Provider value={context}>
       {children}

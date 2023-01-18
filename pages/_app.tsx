@@ -9,6 +9,7 @@ import { __ENV__ } from "../lib/env"
 import Script from "next/script"
 import { useRedirect } from "../hooks/use-redirect"
 import "@code-hike/mdx/dist/index.css"
+import { FrameworkProvider } from 'components/framework'
 
 export default function App({ Component, pageProps }) {
   useRedirect()
@@ -32,33 +33,35 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
-      {/* <DefaultSeo {...siteConfig.seo} /> */}
-      {__ENV__ === "production" && (
-        <>
-          {/* GTag */}
-          <Script
-            strategy="afterInteractive"
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-QTVY981GJR"
-          ></Script>
-          <Script
-            id="google-analytics"
-            strategy="afterInteractive"
-            async
-            dangerouslySetInnerHTML={{
-              __html: `
+      <FrameworkProvider value='android'>
+        <Component {...pageProps} />
+        {/* <DefaultSeo {...siteConfig.seo} /> */}
+        {__ENV__ === "production" && (
+          <>
+            {/* GTag */}
+            <Script
+              strategy="afterInteractive"
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-QTVY981GJR"
+            ></Script>
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              async
+              dangerouslySetInnerHTML={{
+                __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
           
             gtag('config', 'G-QTVY981GJR');
           `,
-            }}
-          />
-        </>
-      )}
-      {/*</ColorModeProvider>*/}
+              }}
+            />
+          </>
+        )}
+        {/*</ColorModeProvider>*/}
+      </FrameworkProvider>
     </ChakraProvider>
   )
 }
