@@ -47,19 +47,21 @@ export function generateShareImageUrl({
             "w_960",
           ].join(","),
         },
-        ...(description && [
-          {
-            overlay: [
-              `text:${sanitize("Poppins")}_48:${sanitize(description)}`,
-              "c_fit",
-              "co_rgb:FFFFFF",
-              "g_south_west",
-              "y_200",
-              "x_76",
-              "w_960",
-            ].join(","),
-          },
-        ]),
+        ...(description
+          ? [
+              {
+                overlay: [
+                  `text:${sanitize("Poppins")}_48:${sanitize(description)}`,
+                  "c_fit",
+                  "co_rgb:FFFFFF",
+                  "g_south_west",
+                  "y_200",
+                  "x_76",
+                  "w_960",
+                ].join(","),
+              },
+            ]
+          : []),
       ],
     },
   })
