@@ -24,6 +24,7 @@ export function generateShareImageUrl({
   title,
   description,
 }: GenerateShareImageUrlOptions) {
+  const position = description ? 200 : "240"
   return buildUrl("jbakebwa.dev/twitter-cards/mw-docs-card", {
     cloud: {
       cloudName: "xtellar",
@@ -42,21 +43,23 @@ export function generateShareImageUrl({
             "co_rgb:DCFF1C",
             "g_north_west",
             "x_76",
-            "y_200",
+            `y_${position}`,
             "w_960",
           ].join(","),
         },
-        {
-          overlay: [
-            `text:${sanitize("Poppins")}_48:${sanitize(description)}`,
-            "c_fit",
-            "co_rgb:FFFFFF",
-            "g_south_west",
-            "y_200",
-            "x_76",
-            "w_960",
-          ].join(","),
-        },
+        ...(description && [
+          {
+            overlay: [
+              `text:${sanitize("Poppins")}_48:${sanitize(description)}`,
+              "c_fit",
+              "co_rgb:FFFFFF",
+              "g_south_west",
+              "y_200",
+              "x_76",
+              "w_960",
+            ].join(","),
+          },
+        ]),
       ],
     },
   })
