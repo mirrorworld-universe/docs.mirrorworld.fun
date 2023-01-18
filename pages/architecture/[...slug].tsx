@@ -1,5 +1,6 @@
 import { FrameworkProvider } from "components/framework"
 import { useMDX } from "components/mdx-components"
+import SEO from 'components/seo'
 import type { Component } from "contentlayer/generated"
 import DocsLayout from "layouts/docs"
 import {
@@ -9,7 +10,6 @@ import {
 } from "lib/contentlayer-utils"
 import { Framework } from "lib/framework-utils"
 import { GetStaticPaths, GetStaticProps } from "next"
-import { NextSeo } from "next-seo"
 
 type PageProps = {
   doc: Component
@@ -20,7 +20,7 @@ export default function ArchitecturePage({ doc, framework }: PageProps) {
   const mdx = useMDX(doc.body.code)
   return (
     <FrameworkProvider value={framework}>
-      <NextSeo title={doc.title} description={doc.description} />
+      <SEO title={doc.title} description={doc.description} />
       <DocsLayout doc={doc}>{mdx}</DocsLayout>
     </FrameworkProvider>
   )

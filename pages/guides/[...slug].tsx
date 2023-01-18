@@ -9,6 +9,7 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import { NextSeo } from "next-seo"
 import BlogLayout from "../../layouts/blog"
 import { buildUrl } from "cloudinary-build-url"
+import siteConfig from 'site.config'
 
 type PageProps = {
   doc: Component
@@ -23,6 +24,7 @@ export default function GuidesPage({ doc, shareImage }: PageProps) {
         title={doc.title}
         description={doc.description}
         canonical={"https://docs.mirrorworld.fun"}
+        twitter={siteConfig.seo.twitter}
         openGraph={{
           url: `https://docs.mirrorworld.fun/guides/${doc.slug}`,
           title: doc.title,
