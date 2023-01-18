@@ -4,7 +4,7 @@ title: CheckStatusOfTransactions
 
 # `CheckStatusOfTransactions`
 Get status of transactions by their signatures.
-```cs
+```csharp
 List<string> signatures = new List<string>();
 signatures.Add("signature 1");
 signatures.Add("signature 2");
