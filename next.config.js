@@ -18,7 +18,7 @@ module.exports = withContentlayer({
     },
     {
       source: "/tutorials",
-      destination: "/authentication",
+      destination: "/integration",
       permanent: true,
     },
   ],
