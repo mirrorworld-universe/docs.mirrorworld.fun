@@ -4,7 +4,7 @@ title: Android Full API Reference
 description: Full Android API Reference
 -------------------------------------
 
-# Android API Reference v1.4.1
+# Android API Reference
 
 ## Authentication Methods
 
@@ -16,6 +16,7 @@ Init sdk, you need to have an API key first, you can get one from [SDK official 
 ```java
 Activity activity = this;
 String APIKey = "your API key";
+
 MirrorWorld.initMirrorWorld(activity,APIKey, MirrorEnv.DevNet);
 ```
 
@@ -32,6 +33,21 @@ MirrorWorld.startLogin(new LoginListener() {
     @Override
     public void onLoginFail() {
         //todo
+    }
+});
+```
+### `guestLogin`
+Use this API to make a user logged in as a guest who has a new account and a new wallet.
+```java
+MirrorWorld.guestLogin(new LoginListener() {
+    @Override
+    public void onLoginSuccess() {
+        //Todo: user login success
+    }
+
+    @Override
+    public void onLoginFail() {
+        //Todo: user login failed, may exist some error.
     }
 });
 ```
@@ -239,6 +255,27 @@ MirrorWorld.transferSOL(publicKey, amount, new TransferSOLListener() {
 });
 ```
 
+### `checkStatusOfTransactions`
+Get status of transactions by their signatures.
+```java
+List<String> signatures = new ArrayList<>();
+signatures.add("signature 1");
+signatures.add("signature 2");
+
+MirrorWorld.checkStatusOfTransactions(signatures, new CheckStatusOfMintingListener() {
+
+    @Override
+    public void onSuccess(CheckStatusOfMintingResponse response) {
+        Log.d("MirrorSDK","checkStatusOfTransactions success!" + MirrorGsonUtils.getInstance().toJson(response));
+    }
+
+    @Override
+    public void onCheckFailed(long code, String message) {
+        Log.d("MirrorSDK","checkStatusOfTransactions failed!code:"+code+" message:"+message);
+    }
+});
+```
+
 ## Marketplace Methods
 ### `createVerifiedCollection`
 Mint parent NFT collection.
@@ -277,6 +314,51 @@ MirrorWorld.mintNFT(collection, NFTName, symbol, detailUrl, new MintNFTListener(
     @Override
     public void onMintFailed(long code, String message) {
         Log.d("MirrorSDK","Mint failed,code is:"+code+" message:"+message);
+    }
+});
+```
+
+### `checkStatusOfMinting`
+Get status of a minting operation. Because minting may has some delay before success.
+
+```java
+List<String> addresses = new ArrayList<>(); addresses.add("mintAddress1"); addresses.add("mintAddress2");
+
+MirrorWorld.checkStatusOfMinting(addresses,new CheckStatusOfMintingListener() {
+
+    @Override
+    public void onSuccess(CheckStatusOfMintingResponse response) {
+        Log.d("MirrorSDK","result is:" + MirrorGsonUtils.getInstance().toJson(response));
+    }
+
+    @Override
+    public void onCheckFailed(long code, String message) {
+        Log.d("MirrorSDK",MirrorStringUtils.GetFailedNotice("CHECK_STATUS_OFMINTING",code,message));
+    }
+});
+```
+
+### `updateNFTProperties`
+Update properties of a NFT.
+
+```java
+String mintAddress = "NFT mint address";
+String name = "new name";
+String symbol = "new symbol";
+String updateAuthority = "updateAuthority";
+String NFTJsonUrl = "https://my_nft_detail.json";
+int seller_fee_basis_points = 100;
+
+MirrorWorld.updateNFTProperties(mintAddress, name, symbol, updateAuthority,NFTJsonUrl,seller_fee_basis_points, new MintNFTListener() {
+    @Override
+    public void onMintSuccess(MintResponse userResponse) {
+        Log.d("MirrorSDK","Update NFT result:"+MirrorGsonUtils.getInstance().toJson(userResponse));
+        holder.mResultView.setText("Update NFT result is:"+MirrorGsonUtils.getInstance().toJson(userResponse));
+    }
+
+    @Override
+    public void onMintFailed(long code, String message) {
+        Log.d("MirrorSDK",MirrorStringUtils.GetFailedNotice("CHECK_STATUS_OFMINTING",code,message));
     }
 });
 ```
@@ -391,6 +473,7 @@ MirrorWorld.fetchNFTsByMintAddresses(mintAddresses, new FetchNFTsListener() {
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         Log.d("MirrorSDK","Fetched " + multipleNFTsResponse.nfts.size() + " NFTs");
     }
+
     @Override
     public void onFetchFailed(long code, String message) {
         Log.d("MirrorSDK","Fetching NFTs faild,code:"+code+" message:"+message);
@@ -629,27 +712,6 @@ MirrorMarket.getNFTsByUnabridgedParams(collection,page,pageSize,keyWord,desc,sal
     public void onFail(long code, String message) {
         Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
     }
-});
-```
-
-### getNFTRealPrice
-Get NFT real price which is calculated by fee rate. The param fee means how much server will deducted.
-
-```java
-String price = "1.2";
-int fee = 4250;
-
-MirrorMarket.getNFTRealPrice(price,fee, new GetNFTRealPriceListener() {
-    @Override
-    public void onSuccess(GetNFTRealPriceRes result) {
-        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
-    }
-
-   @Override
-    public void onFail(long code, String message) {
-        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
-    }
-   
 });
 ```
 
