@@ -56,8 +56,11 @@ function FeatureItem(props: FeatureItemProps) {
 export default function Home() {
   return (
     <Box>
-      <NextSeo title={siteConfig.title} />
-
+      <NextSeo title={siteConfig.title} description={siteConfig.description} openGraph={{
+        title: siteConfig.title,
+        description: siteConfig.description,
+        images: [{ url: `https://docs.mirrorworld.fun/images/sharelink.png` }]
+      }} />
       <TopNavigation />
 
       <Box as="header" position="relative">

@@ -1,7 +1,6 @@
 import Icon from "@chakra-ui/icon"
 import { Box, HStack, Spacer } from "@chakra-ui/layout"
-import { ChakraProvider, chakra } from "@chakra-ui/react"
-import { FrameworkSelect } from "components/framework-select"
+import { chakra } from "@chakra-ui/react"
 import { MdxFooter } from "components/mdx-footer"
 import { Search } from "components/search-dialog"
 import { Sidebar } from "components/sidebar"
@@ -10,8 +9,8 @@ import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
-import theme from "../theme"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
+import SEO from 'components/seo'
 
 type DocsLayoutProps = {
   children: React.ReactNode
@@ -28,7 +27,7 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
   const hideToc = tableOfContent.length < 2
 
   return (
-    <ChakraProvider theme={theme}>
+    <>
       <Box>
         <SkipNavLink>Skip to main content</SkipNavLink>
         <TopNavigation />
@@ -110,6 +109,6 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
         </chakra.div>
         <BottomMobileNavigation />
       </Box>
-    </ChakraProvider>
+    </>
   )
 }

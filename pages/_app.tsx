@@ -1,4 +1,4 @@
-import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/react"
 import { DefaultSeo } from "next-seo"
 import theme from "theme"
 import "../styles/prism.scss"
@@ -32,8 +32,8 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ChakraProvider theme={theme}>
-      <DefaultSeo {...siteConfig.seo} />
       <Component {...pageProps} />
+      {/* <DefaultSeo {...siteConfig.seo} /> */}
       {__ENV__ === "production" && (
         <>
           {/* GTag */}
