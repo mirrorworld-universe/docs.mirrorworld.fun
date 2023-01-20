@@ -1,16 +1,15 @@
 ---
-title: StartLogin
+title: GuestLogin
 ---
 
-# `StartLogin`
+# `GuestLogin`
 
-Calling this API would popup a dialog, user can finish login flow on it. In which the user can login with another method like Google or Twitter. Or they can login with their registered email.
-
-```swift
-MirrorWorldSDK.share.StartLogin { userInfo in
-    print("login success :\(userInfo?.toString() ?? "")")
+Use this API to make a user logged in as a guest who has a new account and a new wallet.
+```Swift
+MWSDK.GuestLogin {
+    print("guest login success")
 } onFail: {
-    print("login failed !")
+    print("guest login failed")
 }
 ```
 
