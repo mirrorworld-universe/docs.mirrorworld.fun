@@ -1,0 +1,21 @@
+---
+title: UpdateNFTProperties
+---
+
+# `UpdateNFTProperties`
+Update properties of a NFT.
+```swift
+let mintAddress = "NFT mint address"
+let name = "Awsom NFT"
+let symbol = "My symbol"
+let updateAuthority = "Update authority"
+let url = "Your NFT json url"
+let points = 100
+let confirmation = "confirmed"
+
+MWSDK.UpdateNFTProperties(mintAddresses: mintAddress,name:name,symbol:symbol,updateAuthority:update_authority,NFTJsonUrl: url,seller_fee_basis_points:points,confirmation:confirmation) { data in
+    print(data)
+} _: { message in
+    print(message)
+}
+```
