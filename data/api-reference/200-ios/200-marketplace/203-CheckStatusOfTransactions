@@ -1,0 +1,14 @@
+---
+title: CheckStatusOfTransactions
+---
+
+# `CheckStatusOfTransactions`
+
+Get status of transactions by their signatures.
+```Swift
+MWSDK.CheckStatusOfTransactions(signatures: ["signature"]) { data in
+    print(data)
+} onFailed: { code, message in
+    print("CheckStatusOfTransactions failed,code is:\(code);message:\(message)")
+}
+```
