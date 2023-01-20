@@ -1,0 +1,60 @@
+```ts
+// client.ts
+
+import { ethers } from "ethers"
+
+class EVMClient {
+  private _provider: ethers.providers.Web3Provider
+  private _signer: ethers.providers.JsonRpcSigner
+
+  // User's wallet address
+  userAddress: string | undefined
+
+  constructor() {
+    if (typeof document !== "undefined") {
+      await window.ethereum?.enable()
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      this.initialize(provider, signer)
+    } else {
+      // Replace this with another provider if you want to use a different one
+      const provider = new ethers.providers.InfuraProvider(
+        "NETWORK_NAME",
+        "YOUR_INFURA_PROJECT_ID",
+      )
+      const signer = new ethers.Wallet(options.privateKey).connect(provider)
+      this.initialize(provider, signer)
+    }
+  }
+
+  private async getAccounts(): Promise<string> {
+    // Browser
+    if (typeof document !== "undefined") {
+      const [account] = await window.ethereum.request?.({
+        method: "eth_requestAccounts",
+      })
+      this.userAddress = account
+      return account
+    } else {
+      // Node.js
+      return await this.signer.getAddress()
+    }
+  }
+
+  get provider() {
+    return this._provider!
+  }
+
+  get signer() {
+    return this._signer!
+  }
+
+  async initialize(
+    provider: ethers.providers.Web3Provider,
+    signer: ethers.providers.JsonRpcSigner,
+  ) {
+    this._provider = provider
+    this._signer = signer
+    await this.getAccounts()
+  }
+}
+```

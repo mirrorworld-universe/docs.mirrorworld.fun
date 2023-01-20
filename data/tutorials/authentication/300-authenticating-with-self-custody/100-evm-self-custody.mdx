@@ -1,0 +1,27 @@
+---
+title: How to authenticate with EVM self-custodial wallet
+---
+
+# How to authenticate with EVM self-custodial wallet
+
+## Pre-requisites
+
+- Preficiency with Ethereum client libraries (web3.js or ethers.js)
+- Ethereum Provider (Metamask, Alchemy, Infura)
+
+## Install the `ethers.js` library
+
+The [ethers.js](https://docs.ethers.org/v5/) library aims to be a complete and
+compact library for interacting with the Ethereum Blockchain and its ecosystem.
+We shall use this library to handle signing of transactions for your users.
+
+<CodeSnippet id="tutorial/authentication/self-custody/evm/install-ethers.mdx" />
+
+## Creating a user wallet client.
+
+This wallet client will be used to package the methods for initializing your
+user's SDK.
+
+<CodeSnippet id="tutorial/authentication/self-custody/evm/create-client.mdx" />
+
+In your
