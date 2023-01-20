@@ -5,6 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "next build",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
@@ -52,6 +53,7 @@
     "next": "^12.1.5",
     "next-contentlayer": "^0.2.9",
     "next-seo": "^5.4.0",
+    "next-sitemap": "^3.1.45",
     "plop": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

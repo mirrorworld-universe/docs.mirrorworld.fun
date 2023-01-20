@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://docs.mirrorworld.fun
+
+# Sitemaps
+Sitemap: https://docs.mirrorworld.fun/sitemap.xml
