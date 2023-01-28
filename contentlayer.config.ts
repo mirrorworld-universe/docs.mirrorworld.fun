@@ -319,6 +319,9 @@ const Snippet = defineDocumentType(() => ({
       type: "string",
       description: "The title of the page",
     },
+    external_url: {
+      type: "string",
+    },
   },
   filePathPattern: "snippets/**/*.mdx",
   contentType: "mdx",
@@ -489,7 +492,6 @@ const contentLayerConfig = makeSource({
           // lineNumbers: true,
         },
       ],
-      // remarkTorchLight,
     ],
     rehypePlugins: [
       rehypeSlug,
