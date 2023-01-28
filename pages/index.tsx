@@ -224,7 +224,7 @@ export default function Home() {
               height="full"
               position="relative"
             >
-              <CodeArea slug="website/snippet" />
+              {/* <CodeArea slug="website/snippet" /> */}
             </Box>
           </Center>
         </Flex>
