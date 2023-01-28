@@ -15,6 +15,7 @@ import toc from "markdown-toc"
 import siteConfig from "./site.config"
 import { remarkAdmonition } from "./lib/remark-utils"
 import { remarkCodeHike } from "@code-hike/mdx"
+// import remarkTorchLight from "remark-torchlight"
 
 import fs from "fs"
 import remarkParse from "remark-parse"
@@ -488,6 +489,7 @@ const contentLayerConfig = makeSource({
           // lineNumbers: true,
         },
       ],
+      // remarkTorchLight,
     ],
     rehypePlugins: [
       rehypeSlug,
