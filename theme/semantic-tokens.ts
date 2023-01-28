@@ -134,8 +134,6 @@ export const semanticTokens = {
       default: "rgb(0 0 0 / 1.5%)",
       _dark: "whiteAlpha.50",
     },
-    stepContentHighlight: {
-      
-    }
+    stepContentHighlight: {},
   },
 }
