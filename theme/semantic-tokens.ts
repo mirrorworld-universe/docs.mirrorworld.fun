@@ -8,7 +8,7 @@ export const semanticTokens = {
     },
     body: {
       default: "whiteAlpha.100",
-      _dark: "dark",
+      _dark: "#121517",
     },
     codeText: {
       default: "pink.700",
@@ -24,7 +24,7 @@ export const semanticTokens = {
     // },
     topNavBody: {
       default: "whiteAlpha.600",
-      _dark: "hsl(200deg 10% 12% / 80%)",
+      _dark: "hsl(200deg 11% 10% / 80%)",
     },
     topNavText: {
       default: "gray.900",
@@ -56,7 +56,7 @@ export const semanticTokens = {
     },
     languageSelectBg: {
       default: "white",
-      _dark: "dark",
+      _dark: "#121517",
     },
     searchTriggerText: {
       default: "gray.500",
@@ -96,7 +96,7 @@ export const semanticTokens = {
     },
     supportTableHeadBg: {
       default: "gray.50",
-      _dark: "#2c2c2c",
+      _dark: "#2a2a2a",
     },
     supportTableCellBg: {
       default: "#e0e0e0",
@@ -112,7 +112,7 @@ export const semanticTokens = {
     },
     integrationDropdownListBg: {
       default: "white",
-      _dark: "dark",
+      _dark: "#121517",
     },
     integrationSelected: {
       default: "blackAlpha.600",
@@ -128,11 +128,11 @@ export const semanticTokens = {
     },
     selectedBackground: {
       default: "rgb(0 0 0 / 3%)",
-      _dark: "whiteAlpha.100",
+      _dark: "rgb(255 255 255 / 3%)",
     },
     hoverBackground: {
       default: "rgb(0 0 0 / 1.5%)",
-      _dark: "whiteAlpha.50",
+      _dark: "rgb(255 255 255 / 1%)",
     },
     stepContentHighlight: {},
   },
