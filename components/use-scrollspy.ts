@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 import { useRouter } from "next/router"
 
 const options: IntersectionObserverInit = {
@@ -10,6 +10,20 @@ export function useScrollSpy(selectors: string[]) {
   const observer = useRef<IntersectionObserver | null>(null)
   const str = selectors.toString()
   const router = useRouter()
+
+  const [_, hash] = useMemo(() => router.asPath.split("#"), [router])
+
+  useEffect(() => {
+    if (hash) {
+      const targetSelector = `[id="${hash}"]`
+      if (selectors.includes(targetSelector)) {
+        setTimeout(() => {
+          setActiveId(hash)
+        })
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hash])
 
   useEffect(() => {
     const els = selectors.map((selector) => document.querySelector(selector))
