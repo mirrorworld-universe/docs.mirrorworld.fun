@@ -36,21 +36,32 @@ export function useScrollSpy(selectors: string[]) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hash])
+  let startedScrolling = false
 
   useEffect(() => {
     const els = selectors.map((selector) => document.querySelector(selector))
-    observer.current?.disconnect()
-    observer.current = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry?.isIntersecting) {
-          setActiveId(entry.target.getAttribute("id"))
-        }
+
+    function handleUserScolled() {
+      observer.current?.disconnect()
+      observer.current = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry?.isIntersecting) {
+            setActiveId(entry.target.getAttribute("id"))
+          }
+        })
+      }, options)
+      els.forEach((el) => {
+        if (el) observer.current?.observe(el)
       })
-    }, options)
-    els.forEach((el) => {
-      if (el) observer.current?.observe(el)
+    }
+
+    window.addEventListener("scroll", handleUserScolled, {
+      once: true,
     })
-    return () => observer.current?.disconnect()
+    return () => {
+      observer.current?.disconnect()
+      window.removeEventListener("scroll", handleUserScolled)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [str, router.asPath])
 
