@@ -11,7 +11,19 @@ export function useScrollSpy(selectors: string[]) {
   const str = selectors.toString()
   const router = useRouter()
 
-  const [_, hash] = useMemo(() => router.asPath.split("#"), [router])
+  const asPath = useMemo(() => router.asPath, [router.asPath])
+  const [basePath] = useMemo(() => router.asPath.split("#"), [router.asPath])
+  const [_, hash] = useMemo(() => asPath.split("#"), [asPath])
+
+  useEffect(() => {
+    const firstEl = document.querySelector(selectors[0])
+    if (firstEl) {
+      setTimeout(() => {
+        setActiveId(firstEl.getAttribute("id"))
+      }, 5)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [basePath])
 
   useEffect(() => {
     if (hash) {
