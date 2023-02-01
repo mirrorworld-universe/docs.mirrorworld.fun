@@ -141,53 +141,32 @@ MirrorSDK.StartLogin((loginResponse)=>
 7. Mint NFT and transfer tokens with the following code
 
 
-  ```csharp
+```csharp
+string collection = "You can get this collection address from your dashboard";
+string name = "this string will not be displayed to the user, you can define it as you wish";
+string symbol = "this string will not be displayed to the user, you can define it as you wish";
+string nftJsonUrl = "You need to upload your nft config and get this";
+string mintID = "A client ID which you can generate it as your wish to identify which NFT is minting. If you use this id more than once to mint a NFT, you will not pass."
+string toWalletAddress = "Which wallet you want to receive tokens";
+double amountSol = 0.1;
 
-  // STEP 1
-  // Mint NFT
+Action approveAction = ()=>{
+	Debug.Log("Your operation is approved, now minting start...");
+}
+Action resultAction = (response)=>{
+	if (response.status == "success")
+	{
+		//todo: minting is success
+	}
+	else
+	{
+		//todo: minting is failed
+		Debug.Log("failed reason is:" + response.message);
+	}
+}
 
-  string collection = "You can get this collection address from your dashboard.";
-  string name = "this string will not be displayed to the user, you can define it as you wish";
-  string symbol = "this string will not be displayed to the user, you can define it as you wish";
-  string nftJsonUrl = "You need to upload your nft config and get this";
-
-  MirrorSDK.MintNFT(collection,name,symbol,nftJsonUrl,Confirmation.Confirmed,(result) =>
-      {
-          if (result.status == "success")
-          {
-             // Mint Success
-             Debug.log("Mint Success!");
-          }
-          else
-          {
-             // Printing failure message
-              Debug.log(result.message);
-          }
-
-      });
-
-  // STEP 2
-  // Transfer token (If you want the user mint NFT to be paid, then you need to execute the following code）
-
-  // transfer amount
-  ulong amout = 100000000;
-  string publicKey = "Your public key";
-
-  MirrorSDK.TransferSol(amout,publicKey,(result) =>
-      {
-          if (result.status == "success")
-          {
-               // transfer sol Success
-               Debug.log("Mint Success!");
-          }
-          else
-          {
-              // Printing failure message
-              Debug.log(result.message);
-          }
-
-      });
-  ```
+MirrorSDK.MintNFT(GlobalDef.ParentCollectionMainNet, name, symbol,nftJsonUrl, Confirmation.Confirmed,mintID,toWalletAddress,amountSol,approveAction,resultAction);
+```
 
 ## How to transfer your NFTs from the game to your friend?
 
