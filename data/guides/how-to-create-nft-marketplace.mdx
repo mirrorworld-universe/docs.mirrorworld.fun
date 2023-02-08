@@ -35,6 +35,13 @@ NFTs are usually available for purchase or auction at a set price determined by
 the NFT creator. Some popular NFT marketplaces include Hyperspace, MagicEden,
 SolSea, OpenSea, etc.
 
+However, the traditional NFT Marketplace will make your users jump back and
+forth between different apps, making the whole transaction process longer and
+affecting the user experience. To solve this issue, Mirror World provides
+In-game NFT store, where users do not need to jump out of the dApp, the whole
+trading process can be completed directly in the dApp, which greatly optimizes
+the user experience and helps you achieve the growth of trading volume.
+
 ## How To Create A Marketplace
 
 To create a marketplace on Solana, you'll need:
@@ -46,99 +53,87 @@ Luckily for us, Mirror World provides all the necessary tools to make this a
 quick and easy process. Let's look at all the steps that'll help us create our
 own marketplace.
 
+> 💡 Tip: Mirror World provides a demo collection for you to test your
+> marketplace on Devnet. When you deploy your marketplace on Mainnet, make sure
+> you involve a collection in your marketplace configure file.
+
 ### Step 1: Set up a Developer Account
 
 If you do not already have a developer account, please head over to
-https://app.mirrorworld.fun/auth/login to get started. A developer account
-grants you access to all the features needed to build with the Mirror World
-Smart SDK and it can be created within seconds. If you run into any issues
-creating an account, Mirror World has active communities on
-[Telegram](https://mirrorworld.fun/telegram) and
+[https://app.mirrorworld.fun/auth/login](https://app.mirrorworld.fun/auth/login)
+to get started. A developer account grants you access to all the features needed
+to build with the Mirror World Smart SDK and it can be created within seconds.
+If you run into any issues creating an account, Mirror World has active
+communities on [Telegram](https://mirrorworld.fun/telegram) and
 [Discord](https://mirrorworld.fun/discord) with people on the Mirror World team
 ready to help.
 
 ### Step 2: Fund your Wallet
 
-After creating your developer account, a wallet will be automatically created
-for you. You need to fund this wallet in order to successfully create a
-marketplace, because mutating the state of the blockchain requires the signer to
-pay a small gas fee. Take the following steps to successfully fund your wallet:
+Create your marketplace on Solana will requires around 0.01-0.02 SOL. Before
+creation on Mainnet, make sure you have enough fund in your developer account
+(the one you register on dashboard). Check How to buy cryptocurrency?
 
-1. Copy your wallet address. You can find and copy your wallet address on the
-   navigation bar of the dashboard.
-2. Go to [solfaucet.com](https://solfaucet.com) and airdrop 2 SOL on Devnet
+If you are test on Devnet, you can click “Airdrop Test Token” or go t
+ [solfaucet.com](https://solfaucet.com/) to get test SOL to your account,
 
-### Step 3: Create a collection
+### Step 3: Create a collection and mint NFTs
 
 Collections are a way to group your NFTs. Think of them as folders for your
-digital assets. You'll need a collection before you can create a marketplace on
-the developer dashboard. To create a collection, sign in to your developer
-dashboard and click on the "NFT Collections" tab displayed on the sidebar
-underneath "Projects".
+digital assets. You'll need a collection with NFT before you can create a
+marketplace on the developer dashboard. Check details here.
 
-![Collection label](https://res.cloudinary.com/dkegnossp/image/upload/v1668632118/1280X1280_i5vqoo.png)
+### Step 4: Setting up your Marketplace
 
-Click on the "Create Collection" button to create a new collection. You'll be
-redirected to a page asking you for more information about your collection.
-Please make sure to fill in every field with the appropriate information. After
-creating a collection, you should be redirected to the collections page and see
-your collection added to the collections list for your project.
+Now that we've already get collection with NFTs, we can now go ahead and create
+a marketplace for our digital assets. Mirror World allows you to create your own
+marketplace using open source storefront template. Click on the "Marketplace" to
+get started.
 
-### Step 4: Minting NFTs to the collection
+| ![截屏2023-02-03下午2.22.22.png](/images/tutorials/marketplace-1.png) | ![截屏2023-02-03下午2.22.22.png](/images/tutorials/marketplace-2.png) | ![截屏2023-02-03下午2.22.22.png](/images/tutorials/marketplace-3.png) |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 
-Adding NFTs that will be displayed on our marketplace is one of the most vital
-parts of our process. You can either mint NFTs directly from the dashboard, or
-follow this
-[guide](https://docs.mirrorworld.fun/guides/how-to-mint-nfts-on-solana) to learn
-how to mint NFTs using the Mirror World Smart SDK.
-
-### Step 5: Setting up your Marketplace
-
-Now that we've added NFTs to our collection, we can now go ahead and create a
-marketplace for our digital assets. Mirror World allows you to create your own
-marketplace using its open source storefront template. Click on the
-"Marketplace" tab underneath "Projects" to get started.
-
-![Marketplace label](https://res.cloudinary.com/dkegnossp/image/upload/v1670505151/marketplace_1_ktpegk.png)
-
-You should see a page that shares some important information about creating
-marketplaces on Mirror World.
-
-![Marketplace information](https://res.cloudinary.com/dkegnossp/image/upload/v1670505365/whatisamarketplace_rcvgby.png)
-
-You can create a new Marketplace at the click of the button on your developer
-dashboard. Click on the "Create Marketplace" button at the top right to create a
-new marketplace. You'll be required to fill out a form with the following
-fields:
-
-Name: This is the name of the marketplace. You may pick a name similar to the
-name of your NFT collection Logo: Upload a marketplace logo to give some
-identity to your brand. Service Fee: Set your service fee that will be deducted
-after each successful NFT transaction. Mirror World charges 3% of the service
-fee as SDK commission fee, so keep this in mind when setting a service fee for
-your marketplace. Currency Option: This is simply the currency you'd like to
-sell your NFTs in. Please note that this value cannot be changed once it's
-confirmed.
-
-Fill in the necessary details required, add a collection to the marketplace and
-click the "Create" button.
-
-![Marketplace details](https://res.cloudinary.com/dkegnossp/image/upload/v1670505494/gonartmarketplace_bfqiia.png)
+> 💡 Tips:
+>
+> 1. Once the payment token is confirmed, you are not allow to modify after
+>    submission.
+> 2. If you are building a marketplace on Devnet, we provide a demo collection
+>    to help you play around with. If you are building a marketplace on Mainnet,
+>    make sure you involve a collection before you deploy the marketplace
+>    frontend (you will need a collection with at lease one NFT to display).
 
 If everything goes well, you should see a popup confirming the creation of your
 marketplace:
 
-![Success Popup](https://res.cloudinary.com/dkegnossp/image/upload/v1670504738/marketplace_wfrhbx.png)
+![截屏2023-02-06 上午9.35.50.png](/images/tutorials/marketplace-4.png)
 
 Congratulations! You have successfully created a marketplace of your own. The
 next step would be to create a storefront which will serve as a user interface
 for users to buy and sell NFTs on your marketplace. Read this comprehensive
-[guide](https://docs.mirrorworld.fun/overview/storefront) to learn how to deploy
-a marketplace storefront quickly and easily.
+[guide](/guides/how-to-deploy-your-nft-marketplace-storefront) to learn how to
+deploy a marketplace storefront quickly and easily.
+
+### Step 5: Manage your marketplace
+
+1. Mange your marketplace information You are allow to change the information of
+   your marketplace. Click edit button and you can modify your marketplace name,
+   logo and service fee. Around 0.00001 SOL will be charged as gas fee.
+2. Mange your collection You are allow to change the collections that displayed
+   on your marketplace. Click “Mange collection” and make changes.
+
+> 💡 Notice: Once confirmed, please update the downloaded configuration file on
+> your storefront GitHub.
 
 ## Let's Recap
-At the end of this guide, you should have successfully created an NFT marketplace of your own. Let's summarize all the steps necessary to achieve this:
-1. Set up a Mirror World developer account in order to use all the best features of the Mirror World Smart SDK.
-2. Fund your Wallet. A small token will be required to create your marketplace. You can airdrop SOL into your wallet on [solfaucet.com](https://solfaucet.com)
+
+At the end of this guide, you should have successfully created an NFT
+marketplace of your own. Let's summarize all the steps necessary to achieve
+this:
+
+1. Set up a Mirror World developer account in order to use all the best features
+   of the Mirror World Smart SDK.
+2. Fund your Wallet. A small token will be required to create your marketplace.
+   You can airdrop SOL into your wallet on
+   [solfaucet.com](https://solfaucet.com/)
 3. Create a collection for your NFTs on Mirror World.
-4. Set up your Marketplace.
+4. Set up your Marketplace and deploy your storefront.
