@@ -17,29 +17,39 @@ access permission codes (API keys, Client IDs, etc.).
 
 ## Create an account
 
-To get started, visit <span onClick = {()=> {
+To get started, <span onClick = {()=> {
 window.mixgather.event("developer_dashboard");
-}}>[Create a developer account](https://app.mirrorworld.fun)</span>. You will need this account to access
-all the features we provided. If you encounter any issues with your account, you
-can <span onClick = {() => {window.mixgather.event("contact_us");}}>[contact us](mailto:sdk@mirrorworld.fun)</span> or
-join our<span onClick={() => {window.mixgather.event("join_telegram")}}> [Discord](https://mirrorworld.fun/discord)</span> and<span onClick={() =>{window.mixgather.event("join_discord")}} > [Telegram](https://mirrorworld.fun/telegram)</span> communities to report to our team directly.
+}}>[Create a developer account](https://app.mirrorworld.fun)</span>. You will
+need this account to access all the features we provide. If you encounter any
+issues with your account, you can <span 
+onClick = {() => {window.mixgather.event("contact_us")}}>[contact us](mailto:sdk@mirrorworld.fun)</span>
+or join our<span onClick={() => {window.mixgather.event("join_telegram")}}>
+[Discord](https://mirrorworld.fun/discord)</span> and<span 
+onClick={() =>{window.mixgather.event("join_discord")}}>
+[Telegram](https://mirrorworld.fun/telegram)</span> communities to report to our
+team directly.
 
-![alt](https://market-assets.mirrorworld.fun/process/step1.png)
+![Create Account](/images/tutorials/create-account.png)
 
 ## Create your project
 
 Once you've signed in to the dashboard, you will be directed to our home page,
-which contains some resources that help you better understand how to use our SDK
-as well as find some support during the development process.
+which contains some resources that help you better understand what our SDK can
+provide as well as find some support during the development process.
 
-![alt](https://market-assets.mirrorworld.fun/process/step2.png)
+> Mirror World prepares some valuable materials to help with your development.
+>
+> 1. Tutorials: Integration steps for Unity, iOS, Android, Rush, and JavaScript.
+> 2. YouTube: Mirror World SDK Usage Tutorial Videos.
+> 3. Community: Links for Discord, Twitter, Telegram, and Blog.
+
+![Create Project](/images/tutorials/create-project.png)
 
 <p align="center">The Home page</p>
 
-Go ahead and click the "Create Project" button to start your first project!
-Enter your project name in the popup and click "Create".
+Go ahead and click the "Add Project" button to start your first project! Enter your project name in the popup and click "Create".
 
-![alt](https://market-assets.mirrorworld.fun/process/step3.png)
+![Add Project](/images/tutorials/add-project.png)
 
 <p align="center">Create your project</p>
 
@@ -52,26 +62,26 @@ Every project is created with 3 credentials that you will use when developing
 with Mirror World:
 
 1. **API Key** - Authorizes a client to access the Mirror World API. Without it,
-no requests can be authorized. A single project can have multiple API Keys.
-You can create as many as you need per project. If one API keys is
-compromised, you can delete it from your app, and create a new one for your
-project without affecting the operation of your project.
+   no requests can be authorized. A single project can have multiple API Keys.
+   You can create as many as you need per project. If one API keys is
+   compromised, you can delete it from your app, and create a new one for your
+   project without affecting the operation of your project.
 2. **Client ID** - The Client ID can be used to publicly identify your project.
-We use this key internally to identify which project a specific request
-belongs.
+   We use this key internally to identify which project a specific request
+   belongs.
 3. **Client Secret** - A sensitive credential that the project owner/developer
-will use to verify certain claims about their project on our Authentication
-services. For example, if your project authenticates with Mirror World, and
-hopes to access user data on your API, we will use this secret to verify the
-claims your back end submits via the verification endpoint.
+   will use to verify certain claims about their project on our Authentication
+   services. For example, if your project authenticates with Mirror World, and
+   hopes to access user data on your API, we will use this secret to verify the
+   claims your back end submits via the verification endpoint.
 
 You will find these credentials on the Project Page on the dashboard.
 
-![alt](https://market-assets.mirrorworld.fun/process/step4.png)
+![Project Page Screenshot](/images/tutorials/project-scrnsht1.png)
 
 <p align="center">Visit from the Projects page</p>
 
-![alt](https://market-assets.mirrorworld.fun/process/step6.png)
+![Project Page Screenshot](/images/tutorials/project-scrnsht2.png)
 
 <p align="center">Project credentials (API Keys, Client ID, Client Secret)</p>
 
