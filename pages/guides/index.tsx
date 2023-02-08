@@ -103,7 +103,7 @@ export default function Blog() {
     <Box>
       <SkipNavLink>Skip to main content</SkipNavLink>
       <TopNavigation />
-      <chakra.div pt="10">
+      <chakra.div py="10">
         <Box maxW="8xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
           <Container as="main" maxW="4xl" className="mdx-content" pt="4">
             <Stack spacing={8}>
@@ -143,7 +143,7 @@ export default function Blog() {
 
               <SimpleGrid columns={[1, 1, 3]} spacing={10}>
                 {selectedArticles?.map((guide, i) => (
-                  <Link key={i} href={`/guides/${guide.slug}`}>
+                  <Link key={guide.slug} href={`/guides/${guide.slug}`}>
                     <Box
                       rounded="md"
                       overflow="hidden"
