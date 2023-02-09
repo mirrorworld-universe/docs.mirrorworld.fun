@@ -1,3 +1,9 @@
 {
-  "redirects": []
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/docs/:path*",
+      "permanent": false
+    }
+  ]
 }
