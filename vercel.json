@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/docs", "destination": "/" },
     {
       "source": "/:path((?!docs/).*)",
       "destination": "/docs/:path*",
