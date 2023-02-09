@@ -1,10 +1,11 @@
-const { withContentlayer } = require("next-contentlayer")
+const { withContentlayer } = require("next-contentlayer");
 
 /**
  * @type {import('next').NextConfig}
  */
 module.exports = withContentlayer({
   swcMinify: true,
+  /** Sample base path */
   basePath: "/docs",
   redirects: () => [
     {
@@ -24,4 +25,4 @@ module.exports = withContentlayer({
     },
   ],
   // noop
-})
+});
