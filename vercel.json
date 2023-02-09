@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    { "source": "/", "destination": "/docs" },
-    {
-      "source": "/:match*",
-      "destination": "/docs/:match*"
-    }
-  ]
-}
