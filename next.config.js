@@ -5,10 +5,11 @@ const { withContentlayer } = require("next-contentlayer")
  */
 module.exports = withContentlayer({
   swcMinify: true,
+  basePath: "/docs",
   redirects: () => [
     {
       source: "/discord",
-      destination: "https://discord.gg/ww6HE5xaZ2",
+      destination: "https://mirrorworld.fun/discord",
       permanent: true,
     },
     {
