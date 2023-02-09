@@ -3,7 +3,7 @@
     {
       "source": "/:path((?!docs/).*)",
       "destination": "/docs/:path*",
-      "permanent": true
+      "permanent": false
     }
   ]
 }
