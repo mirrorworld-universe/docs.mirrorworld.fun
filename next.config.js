@@ -5,6 +5,7 @@ const { withContentlayer } = require("next-contentlayer");
  */
 module.exports = withContentlayer({
   swcMinify: true,
+  // Docs base path is /docs
   basePath: "/docs",
   redirects: () => [
     {
