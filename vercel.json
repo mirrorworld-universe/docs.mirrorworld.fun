@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:path((?!docs/).*)",
+      "destination": "/docs/:path*",
+      "permanent": true
+    }
+  ]
+}
