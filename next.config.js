@@ -23,4 +23,5 @@ module.exports = withContentlayer({
       permanent: true,
     },
   ],
+  // noop
 })
