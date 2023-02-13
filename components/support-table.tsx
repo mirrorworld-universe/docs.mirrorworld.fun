@@ -30,7 +30,7 @@ export type Chain =
   | "Polygon"
   | "Aptos"
   | "Sui"
-export type ChainSupportStatus = "In Development" | "Live" | " In Private Beta"
+export type ChainSupportStatus = "In Development" | "Live" | "In Private Beta"
 export interface SupportField {
   chain: Chain
   status: ChainSupportStatus
