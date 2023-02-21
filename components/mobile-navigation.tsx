@@ -88,10 +88,6 @@ export function MobileNavigation() {
                 </Button>
               </Flex>
               <Box px="8">
-                <Spacer height="10" bg="body" />
-                <Box mb="8">
-                  <FrameworkSelect />
-                </Box>
                 <Sidebar />
               </Box>
             </Box>

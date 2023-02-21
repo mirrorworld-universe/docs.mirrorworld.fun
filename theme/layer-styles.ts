@@ -19,7 +19,7 @@ const blockquote: SystemStyleObject = {
 }
 
 const inlineCode: SystemStyleObject = {
-  whiteSpace: "nowrap",
+  whiteSpace: "break-spaces",
   bg: "codeBg",
   rounded: "base",
   paddingY: "0.5",

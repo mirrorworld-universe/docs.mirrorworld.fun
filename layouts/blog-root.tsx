@@ -3,6 +3,7 @@ import { Box, Container } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
 import { SkipNavLink } from "components/skip-nav"
 import { TopNavigation } from "components/top-navigation"
+import { useScrollToTop } from 'hooks/use-scroll-to-top'
 import React from "react"
 
 type BlogLayoutProps = {
@@ -19,8 +20,10 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
   const tableOfContent = toc?.data ?? doc.frontmatter.toc
   const hideToc = tableOfContent.length < 2
 
+  useScrollToTop()
+
   return (
-    <Box>
+    <Box id="top">
       <SkipNavLink>Skip to main content</SkipNavLink>
       <TopNavigation />
       <chakra.div pt="10">
