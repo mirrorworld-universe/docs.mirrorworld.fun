@@ -15,6 +15,7 @@ import { MirrorWorldMDXComponents } from "components/mdx-components"
 import { IntegrationBuilderNav } from "../components/navigation/integration-builder-navigation"
 import {useRouter} from "next/router";
 import { TopIntegrationNavigation } from "../components/navigation/top-integration-navigation";
+import { useScrollToTop } from 'hooks/use-scroll-to-top'
 
 type IntegrationLayoutProps = {
   children: React.ReactNode
@@ -38,11 +39,13 @@ export default function IntegrationLayout({
   const isRootPage = useMemo(() => {
     return router.asPath === "/integration"
   }, [router])
+  
+  useScrollToTop()
 
   return (
     <ChakraProvider theme={theme}>
       <MDXProvider components={MirrorWorldMDXComponents}>
-        <Box>
+        <Box id="top">
           <SkipNavLink>Skip to main content</SkipNavLink>
           <chakra.div position="sticky" top="0" width="full" zIndex={50}>
             {isRootPage ? (
@@ -62,7 +65,7 @@ export default function IntegrationLayout({
               data-with-integration-guide=""
               maxW="10xl"
               ml="auto"
-              pr={{ sm: "6", base: "4", md: "8" }}
+              pr={{ sm: "6", base: 0, md: "8" }}
             >
               <Box
                 as="main"

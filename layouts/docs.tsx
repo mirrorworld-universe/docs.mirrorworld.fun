@@ -11,6 +11,7 @@ import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
 import SEO from 'components/seo'
+import { useScrollToTop } from 'hooks/use-scroll-to-top'
 
 type DocsLayoutProps = {
   children: React.ReactNode
@@ -26,9 +27,11 @@ export default function DocsLayout({ children, doc, toc }: DocsLayoutProps) {
   const tableOfContent = toc?.data ?? doc.frontmatter.toc
   const hideToc = tableOfContent.length < 2
 
+  useScrollToTop()
+
   return (
     <>
-      <Box>
+      <Box id="top">
         <SkipNavLink>Skip to main content</SkipNavLink>
         <TopNavigation />
         <chakra.div pt="10">

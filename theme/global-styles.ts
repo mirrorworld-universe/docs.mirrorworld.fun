@@ -91,6 +91,10 @@ export const globalStyles: SystemStyleObject = {
         },
         "a:focus": { opacity: 1 },
       },
+
+      ".ch-scrollycoding-static": {
+        padding: [5, 5, null],
+      },
     },
   },
 

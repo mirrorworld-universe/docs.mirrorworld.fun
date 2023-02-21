@@ -13,6 +13,7 @@ import { HiPencilAlt } from "react-icons/hi"
 import theme from "../theme"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
 import { ApiReferenceNavigation } from "../components/navigation/api-reference-navigation"
+import { useScrollToTop } from 'hooks/use-scroll-to-top'
 
 type DocsLayoutProps = {
   children: React.ReactNode
@@ -32,9 +33,11 @@ export default function ApiReferenceLayout({
   const tableOfContent = toc?.data ?? doc.frontmatter.toc
   const hideToc = tableOfContent.length < 2
 
+  useScrollToTop()
+
   return (
     <ChakraProvider theme={theme}>
-      <Box>
+      <Box id="top">
         <SkipNavLink>Skip to main content</SkipNavLink>
         <chakra.div position="sticky" top="0" width="full" zIndex={50}>
           <TopNavigation position="relative" />

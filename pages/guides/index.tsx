@@ -114,9 +114,10 @@ export default function Blog() {
                 fundamentals, NFTs, DeFi, Gaming Development and more!
               </Text>
 
-              <HStack spacing={4}>
+              <HStack spacing={4} overflowX="scroll">
                 <Link href={`/guides`}>
                   <Tag
+                    flexShrink={0}
                     bg="#dcff1a99"
                     size="lg"
                     color="mirror.900"
@@ -129,6 +130,7 @@ export default function Blog() {
                 {articleGroups.map((article) => (
                   <Link href={`/guides?tag=${article}`} key={article}>
                     <Tag
+                      flexShrink={0}
                       bg="#dcff1a99"
                       size="lg"
                       color="mirror.900"

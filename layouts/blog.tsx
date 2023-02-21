@@ -13,6 +13,7 @@ import { MdxFooter } from "components/mdx-footer"
 import { SkipNavLink } from "components/skip-nav"
 import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
+import { useScrollToTop } from 'hooks/use-scroll-to-top'
 import React from "react"
 import { HiPencilAlt } from "react-icons/hi"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
@@ -31,8 +32,10 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
   const tableOfContent = toc?.data ?? doc.frontmatter.toc
   const hideToc = tableOfContent.length < 2
 
+  useScrollToTop()
+
   return (
-    <Box>
+    <Box id="top">
       <SkipNavLink>Skip to main content</SkipNavLink>
       <TopNavigation />
       <chakra.div pt="10">
@@ -40,7 +43,7 @@ export default function BlogLayout({ children, doc, toc }: BlogLayoutProps) {
           <Container as="main" maxW="5xl" className="mdx-content" pt="4">
             <Box mr={{ xl: "15.5rem" }}>
               <Stack spacing={6}>
-                <Heading>{doc.title}</Heading>
+                <Heading fontSize={["4xl", "5xl", "6xl"]} lineHeight={["3rem", "3.75rem", "4.5rem"]}>{doc.title}</Heading>
                 {doc.author?.name && (
                   <Text>
                     By{" "}
