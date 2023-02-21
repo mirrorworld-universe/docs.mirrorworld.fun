@@ -1,0 +1,342 @@
+{
+  "errors": {
+    "OK": {
+      "code": "0",
+      "error": "OK",
+      "message": "Success"
+    },
+    "EMAIL_NOT_FOUND": {
+      "code": "100001",
+      "error": "EMAIL_NOT_FOUND",
+      "message": "We could not find an account with this email address."
+    },
+    "FAILED_SOCIAL_AUTH": {
+      "code": "100002",
+      "error": "FAILED_SOCIAL_AUTH",
+      "message": "Failed to authenticate user with social auth"
+    },
+    "INVALID_OAUTH_PROVIDER": {
+      "code": "100003",
+      "error": "INVALID_OAUTH_PROVIDER",
+      "message": "Invalid Oauth Provider Type Provided. Please use one of Google, Facebook, Apple or Discord."
+    },
+    "CONFLICTING_AUTHENTICATION_METHODS": {
+      "code": "100004",
+      "error": "CONFLICTING_AUTHENTICATION_METHODS",
+      "message": "Critical error. We found duplicate social provider accounts for this user email."
+    },
+    "CONFLICTING_EMAIL_ADDRESS": {
+      "code": "100005",
+      "error": "CONFLICTING_EMAIL_ADDRESS",
+      "message": "An account already exists with this email address. Please login to continue"
+    },
+    "EXPIRED_EMAIL_VERIFICATION_CODE": {
+      "code": "100006",
+      "error": "EXPIRED_EMAIL_VERIFICATION_CODE",
+      "message": "This verification code has expired. Please request new code and try again"
+    },
+    "INVALID_EMAIL_VERIFICATION_CODE": {
+      "code": "100007",
+      "error": "INVALID_EMAIL_VERIFICATION_CODE",
+      "message": "Invalid verification code. Please use the code sent to your email address"
+    },
+    "VERIFICATION_FOR_EMAIL_IN_PROGRESS": {
+      "code": "100008",
+      "error": "VERIFICATION_FOR_EMAIL_IN_PROGRESS",
+      "message": "Email verification is already in progress for this email address. Please check your email address to find the verification code to complete signup"
+    },
+    "INVALID_REFRESH_TOKEN": {
+      "code": "100009",
+      "error": "INVALID_REFRESH_TOKEN",
+      "message": "Invalid or expired refresh token. Please login again to continue."
+    },
+    "INVALID_LOGIN_CREDENTIALS": {
+      "code": "100010",
+      "error": "INVALID_LOGIN_CREDENTIALS",
+      "message": "The email or password provided for login are incorrect. Please try again"
+    },
+    "DEVELOPER_ACCOUNT_NOT_FOUND": {
+      "code": "100011",
+      "error": "DEVELOPER_ACCOUNT_NOT_FOUND",
+      "message": "Could not find developer account for this user. Please create developer entity before using developer resources."
+    },
+    "INVALID_AUTH_TOKEN": {
+      "code": "100012",
+      "error": "INVALID_AUTH_TOKEN",
+      "message": "The authentication token you provided is either invalid or has expired. Please login to continue"
+    },
+    "NO_AUTH_TOKEN_ERROR": {
+      "code": "100013",
+      "error": "NO_AUTH_TOKEN_ERROR",
+      "message": "No auth token was provided for authenticated route."
+    },
+    "INVALID_API_KEY": {
+      "code": "100014",
+      "error": "INVALID_API_KEY",
+      "message": "We could not find the project for the API key your provided. Please check that the API key is provided correctly."
+    },
+    "TOKEN_LOGIN_SESSION_IN_PROGRESS": {
+      "code": "100015",
+      "error": "TOKEN_LOGIN_SESSION_IN_PROGRESS",
+      "message": "Token login session is already in progress for this email address. Please complete the current session before starting a new one"
+    },
+    "FAILED_SESSION_PROOF": {
+      "code": "100016",
+      "error": "FAILED_SESSION_PROOF",
+      "message": "The login session token you provided is either invalid or did not pass the proof of identity. Please verify that this is a real token that belongs to the user before proceeding."
+    },
+    "INCOMPLETE_SESSION_PROOF_ERROR": {
+      "code": "100017",
+      "error": "INCOMPLETE_SESSION_PROOF_ERROR",
+      "message": "This session_token has not yet been proven by the user. Please complete authentication and proof of ownership before requesting the user's tokens"
+    },
+    "EXPIRED_SESSION_PROOF": {
+      "code": "100018",
+      "error": "EXPIRED_SESSION_PROOF",
+      "message": "The login session token you provided has expired. Please start a new session to continue logging in."
+    },
+    "UNAUTHORIZED_APPLICATION_ACCESS": {
+      "code": "100019",
+      "error": "UNAUTHORIZED_APPLICATION_ACCESS",
+      "message": "A session can only be issued and completed by the same application. Please ensure that the API keys used to start and complete login session belong to the same project"
+    },
+    "INVALID_PASSCODE": {
+      "code": "100020",
+      "error": "INVALID_PASSCODE",
+      "message": "Invalid passcode. The passcode you provided is incorrect."
+    },
+    "EXPIRED_WALLET_PASSCODE_VERIFICATION": {
+      "code": "100021",
+      "error": "EXPIRED_WALLET_PASSCODE_VERIFICATION",
+      "message": "This verification code has expired. Please request new code and try again"
+    },
+    "INVALID_WALLET_PASSCODE_VERIFICATION_CODE": {
+      "code": "100022",
+      "error": "INVALID_WALLET_PASSCODE_VERIFICATION_CODE",
+      "message": "Invalid verification code. Please use the code sent to your email address"
+    },
+    "PENDING_ACTION_NOT_FOUND": {
+      "code": "100023",
+      "error": "PENDING_ACTION_NOT_FOUND",
+      "message": "Could not find pending user action. Please try again."
+    },
+    "ACTION_USER_NOT_FOUND": {
+      "code": "100024",
+      "error": "ACTION_USER_NOT_FOUND",
+      "message": "Could not find action user. Please try again."
+    },
+    "UNAUTHORIZED_DEVELOPER_ACCESS": {
+      "code": "100025",
+      "error": "UNAUTHORIZED_DEVELOPER_ACCESS",
+      "message": "Forbidden. You are trying to access a developer resource from a project of which you are not a member."
+    },
+    "REPEAT_PASSWORD_NOT_AGREEMENT": {
+      "code": "100026",
+      "error": "REPEAT_PASSWORD_NOT_AGREEMENT",
+      "message": "The two passwords are inconsistent, please re-enter."
+    },
+    "INVALID_ACTION_AUTHORIZATION": {
+      "code": "100027",
+      "error": "INVALID_ACTION_AUTHORIZATION",
+      "message": "The action token you provided is either invalid or has expired. Please request user to approve again."
+    },
+    "UNAUTHORIZED_ACTION": {
+      "code": "100028",
+      "error": "UNAUTHORIZED_ACTION",
+      "message": "The action you are trying to perform has not been authorized by the user."
+    },
+    "ACTION_NOT_FOUND": {
+      "code": "100029",
+      "error": "ACTION_NOT_FOUND",
+      "message": "Could not find an action with the provided uuid for this user. Please try again"
+    },
+    "MPC_WALLET_KEYGEN_FAILED": {
+      "code": "100030",
+      "error": "MPC_WALLET_KEYGEN_FAILED",
+      "message": "Failed to create mpc wallet. Please try again"
+    },
+    "PROJECT_NOT_FOUND": {
+      "code": "100031",
+      "error": "PROJECT_NOT_FOUND",
+      "message": "Could not find project. Please create project entity before using its resources."
+    },
+    "INVALID_SECRET_ACCESS_KEY": {
+      "code": "100031",
+      "error": "INVALID_SECRET_ACCESS_KEY",
+      "message": "The secret access key provided is no longer valid because it has been invalidated by the owner or has been compromised. Please generate a new token on the developer dashboard. Some helpful resources (1) Generate a secret access key: https://app.mirrorworld.fun (2) Managing Your Secret Access Key: https://docs.mirrorworld.fun/further-reading/security/access-secret-key"
+    },
+    "EXPIRED_SECRET_ACCESS_KEY": {
+      "code": "100032",
+      "error": "EXPIRED_SECRET_ACCESS_KEY",
+      "message": "This secret access key provided has already expired. Please generate a new token on the developer dashboard. Some helpful resources: (1) Generate a secret access key: https://app.mirrorworld.fun (2) Managing Your Secret Access Key: https://docs.mirrorworld.fun/further-reading/security/access-secret-key"
+    },
+    "UNAUTHORIZED_BOT_REQUEST": {
+      "code": "100100",
+      "error": "UNAUTHORIZED_BOT_REQUEST",
+      "message": "It looks like you are using a bot to access a protected resource. Access denied."
+    },
+    "BAD_REQUEST": {
+      "code": "100150",
+      "error": "BAD_REQUEST",
+      "message": "Bad request"
+    },
+    "REQUEST_VALIDATION_ERROR": {
+      "code": "120001",
+      "error": "REQUEST_VALIDATION_ERROR",
+      "message": "Request validation failed"
+    },
+    "NFT_OWNERSHIP_ERROR": {
+      "code": "120002",
+      "error": "NFT_OWNERSHIP_ERROR",
+      "message": "User is not the owner of this NFT"
+    },
+    "TRANSACTION_EXECUTION_ERROR": {
+      "code": "120003",
+      "error": "TRANSACTION_EXECUTION_ERROR",
+      "message": "Failed to execute transaction. Please try again."
+    },
+    "INSUFFICIENT_BALANCE_ERROR": {
+      "code": "120004",
+      "error": "INSUFFICIENT_BALANCE_ERROR",
+      "message": "Insufficient balance to process transaction. Wallet: %1$s"
+    },
+    "REQUEST_ERROR": {
+      "code": "120005",
+      "error": "REQUEST_ERROR",
+      "message": "Problem with request parameters"
+    },
+    "USER_WALLET_ERROR": {
+      "code": "120010",
+      "error": "USER_WALLET_ERROR",
+      "message": "User can't perform this operation"
+    },
+    "MARKETPLACE_DOES_NOT_EXIST": {
+      "code": "120006",
+      "error": "MARKETPLACE_DOES_NOT_EXIST",
+      "message": "Marketplace does not exist. Marketplace: %1$s"
+    },
+    "NOT_IMPLEMENTED": {
+      "code": "120100",
+      "error": "NOT_IMPLEMENTED",
+      "message": "Method is not implemented for this network"
+    },
+    "INSUFFICIENT_PERMISSIONS_ON_PROJECT": {
+      "code": "120101",
+      "error": "INSUFFICIENT_PERMISSIONS_ON_PROJECT",
+      "message": "Don't have sufficient permissions to execute action on the project"
+    },
+    "COLLECTION_NOT_FOUND": {
+      "code": "120102",
+      "error": "COLLECTION_NOT_FOUND",
+      "message": "Collection not found. Collection: %1$s"
+    },
+    "LISTING_ALREADY_EXISTS": {
+      "code": "120103",
+      "error": "LISTING_ALREADY_EXISTS",
+      "message": "Listing with this price already exists."
+    },
+    "LISTING_DOES_NOT_EXIST": {
+      "code": "120104",
+      "error": "LISTING_DOES_NOT_EXIST",
+      "message": "Listing does not exist."
+    },
+    "ACCOUNT_NOT_INITIALIZED": {
+      "code": "120200",
+      "error": "ACCOUNT_NOT_INITIALIZED",
+      "message": "Program Error: Account is not initialized"
+    },
+    "INVALID_MAX_WITHDRAW": {
+      "code": "120201",
+      "error": "INVALID_MAX_WITHDRAW",
+      "message": "Program Error: Max withdraw is not valid"
+    },
+    "INVALID_MIN_WITHDRAW": {
+      "code": "120202",
+      "error": "INVALID_MIN_WITHDRAW",
+      "message": "Program Error: Min withdraw is not valid"
+    },
+    "INVALID_TIMESTAMP": {
+      "code": "120203",
+      "error": "INVALID_TIMESTAMP",
+      "message": "Program Error: Timestamp is not valid"
+    },
+    "RPC_NODE_IS_BEHIND": {
+      "code": "120204",
+      "error": "RPC_NODE_IS_BEHIND",
+      "message": "RPC node is behind. Please try again."
+    },
+    "RPC_CONNECTION_RESET": {
+      "code": "120205",
+      "error": "RPC_CONNECTION_RESET",
+      "message": "RPC connection reset. Please try again."
+    },
+    "BLOCK_HEIGHT_EXCEEDED": {
+      "code": "120206",
+      "error": "BLOCK_HEIGHT_EXCEEDED",
+      "message": "Transactions block height exceeded limit. Please try again"
+    },
+    "ACCOUNT_DOES_NOT_EXIST": {
+      "code": "120207",
+      "error": "ACCOUNT_DOES_NOT_EXIST",
+      "message": "Account not found"
+    }
+  },
+  "keys": [
+    "OK",
+    "EMAIL_NOT_FOUND",
+    "FAILED_SOCIAL_AUTH",
+    "INVALID_OAUTH_PROVIDER",
+    "CONFLICTING_AUTHENTICATION_METHODS",
+    "CONFLICTING_EMAIL_ADDRESS",
+    "EXPIRED_EMAIL_VERIFICATION_CODE",
+    "INVALID_EMAIL_VERIFICATION_CODE",
+    "VERIFICATION_FOR_EMAIL_IN_PROGRESS",
+    "INVALID_REFRESH_TOKEN",
+    "INVALID_LOGIN_CREDENTIALS",
+    "DEVELOPER_ACCOUNT_NOT_FOUND",
+    "INVALID_AUTH_TOKEN",
+    "NO_AUTH_TOKEN_ERROR",
+    "INVALID_API_KEY",
+    "TOKEN_LOGIN_SESSION_IN_PROGRESS",
+    "FAILED_SESSION_PROOF",
+    "INCOMPLETE_SESSION_PROOF_ERROR",
+    "EXPIRED_SESSION_PROOF",
+    "UNAUTHORIZED_APPLICATION_ACCESS",
+    "INVALID_PASSCODE",
+    "EXPIRED_WALLET_PASSCODE_VERIFICATION",
+    "INVALID_WALLET_PASSCODE_VERIFICATION_CODE",
+    "PENDING_ACTION_NOT_FOUND",
+    "ACTION_USER_NOT_FOUND",
+    "UNAUTHORIZED_DEVELOPER_ACCESS",
+    "REPEAT_PASSWORD_NOT_AGREEMENT",
+    "INVALID_ACTION_AUTHORIZATION",
+    "UNAUTHORIZED_ACTION",
+    "ACTION_NOT_FOUND",
+    "MPC_WALLET_KEYGEN_FAILED",
+    "PROJECT_NOT_FOUND",
+    "INVALID_SECRET_ACCESS_KEY",
+    "EXPIRED_SECRET_ACCESS_KEY",
+    "UNAUTHORIZED_BOT_REQUEST",
+    "BAD_REQUEST",
+    "REQUEST_VALIDATION_ERROR",
+    "NFT_OWNERSHIP_ERROR",
+    "TRANSACTION_EXECUTION_ERROR",
+    "INSUFFICIENT_BALANCE_ERROR",
+    "REQUEST_ERROR",
+    "USER_WALLET_ERROR",
+    "MARKETPLACE_DOES_NOT_EXIST",
+    "NOT_IMPLEMENTED",
+    "INSUFFICIENT_PERMISSIONS_ON_PROJECT",
+    "COLLECTION_NOT_FOUND",
+    "LISTING_ALREADY_EXISTS",
+    "LISTING_DOES_NOT_EXIST",
+    "ACCOUNT_NOT_INITIALIZED",
+    "INVALID_MAX_WITHDRAW",
+    "INVALID_MIN_WITHDRAW",
+    "INVALID_TIMESTAMP",
+    "RPC_NODE_IS_BEHIND",
+    "RPC_CONNECTION_RESET",
+    "BLOCK_HEIGHT_EXCEEDED",
+    "ACCOUNT_DOES_NOT_EXIST"
+  ]
+}
