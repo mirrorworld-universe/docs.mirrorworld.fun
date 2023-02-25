@@ -19,15 +19,25 @@ perform transactions in the marketplace.
 In this guide, we’ll look at the different marketplace transactions that you can
 make using the Mirror World Smart SDK.
 
+### Pre-requisites
+1. You have created and minted your NFT collection and minted NFTs into it. If you haven't already done this, please follow this guide to [Creating NFT collections](https://mirrorworld.fun/docs/guides/how-to-create-solana-nft-collection)
+2. You have created your NFT Marketplace and have the auctionhouse address for your marketplace. This address uniquely identifies your marketplace on teh blockchain. If you do not yet have an auction house address, please follow this guide on [how to create NFT Marketplaces](https://docs.mirrorworld.fun/guides/how-to-create-nft-marketplace)
+3. Some familiarity with JavaScript and React.js.
+
+Once you meet the above 3 criterion, you are ready to continue with orchestrating your very own NFT marketplace with Mirror World.
+
+
 ## Mirror World Smart SDK Marketplace Transactions
 
 ### 1. Marketplace Methods
 
 You can create, update, and query marketplaces using the Mirror World Smart SDK.
 The SDK provides methods that make setting up your very own marketplace
-seamless. Go through this comprehensive guide on
-[how to create NFT Marketplaces](https://docs.mirrorworld.fun/guides/how-to-create-nft-marketplace)
-using the SDK to learn more.
+seamless.
+
+> After creating you marketplace, please take not of the `auction_house` address returned from the API. We shall use this
+> in the rest of the guide. If you created your marketplace from the developer dashboard, you can get it from the developer
+> Marketplace page of Project Area on the [developer dashboard](https://app.mirrorworld.fun/dashboard)
 
 ### 2. NFT Transaction Methods
 
@@ -36,7 +46,7 @@ NFTs.
 
 Let’s look at some of these methods and what they do:
 
-- **list NFT:** This is used to list an NFT on the marketplace.
+- **list NFT:** This is used to list an NFT on the marketplace for other users to buy. Replace the `mintAddress` and the `auctionHouse` address with your own addresses.
 
 ```jsx
 // how to list an NFT on a marketplace using the Mirror World JS SDK
@@ -44,11 +54,12 @@ Let’s look at some of these methods and what they do:
 const listing = await mirrorworld.listNFT({
   mintAddress: `Hc2My3GQCQTXTjV34Pi1pQGYUeckT1mEcMRiZZaH7Ydr`,
   price: 2, // Amount in SOL
+  auctionHouse: "YOUR_AUCTION_HOUSE_ADDRESS" // Replace this!
 })
 ```
 
 - **update NFT listing:** You may update NFT listing details on the marketplace.
-  e.g the price of the NFT.
+  e.g the price of the NFT. Replace the `mintAddress` and the `auctionHouse` address with your own addresses.
 
 ```jsx
 // how to update an NFT listing on a marketplace using the Mirror World JS SDK
@@ -56,10 +67,11 @@ const listing = await mirrorworld.listNFT({
 const listing = await mirrorworld.updateNFTListing({
   mintAddress: `Hc2My3GQCQTXTjV34Pi1pQGYUeckT1mEcMRiZZaH7Ydr`,
   price: 2, // Amount in SOL
+  auctionHouse: "YOUR_AUCTION_HOUSE_ADDRESS" // Replace this!
 })
 ```
 
-- **cancel NFT listing:** You may also cancel an NFT listing.
+- **cancel NFT listing:** You may also cancel an NFT listing. Replace the `mintAddress` and the `auctionHouse` address with your own addresses.
 
 ```jsx
 // how to cancel an NFT listing on a marketplace using the Mirror World JS SDK
@@ -67,11 +79,12 @@ const listing = await mirrorworld.updateNFTListing({
 const listing = await mirrorworld.cancelNFTListing({
   mintAddress: `Hc2My3GQCQTXTjV34Pi1pQGYUeckT1mEcMRiZZaH7Ydr`,
   price: 2, // Amount in SOL
+  auctionHouse: "YOUR_AUCTION_HOUSE_ADDRESS" // Replace this!
 })
 ```
 
 - **buy NFT:** This can be used to purchase an NFT on the Mirror World
-  marketplace.
+  marketplace.  Replace the `mintAddress` and the `auctionHouse` address with your own addresses.
 
 ```jsx
 // how to list buy an NFT on a marketplace using the Mirror World JS SDK
@@ -79,6 +92,7 @@ const listing = await mirrorworld.cancelNFTListing({
 const listing = await mirrorworld.buyNFT({
   mintAddress: `Hc2My3GQCQTXTjV34Pi1pQGYUeckT1mEcMRiZZaH7Ydr`,
   price: 2, // Amount in SOL
+  auctionHouse: "YOUR_AUCTION_HOUSE_ADDRESS" // Replace this!
 })
 ```
 
@@ -94,10 +108,10 @@ const listing = await mirrorworld.transferNFT({
 })
 ```
 
-### 3. Fetch NFTs
+### 3. Fetching NFT data
 
 There could be a number of reasons why you may want to fetch an NFT or a list of
-NFTs. It could be to display them in a dApp or list them on a marketplace.
+NFTs. It could be to display them in a dApp or list them on a marketplace for your users.
 Whatever the reason, the Mirror World Smart SDK provides a variety of ways in
 which you can successfully fetch these NFTs and work with them.
 
@@ -129,8 +143,7 @@ const nftsQueryResult = await mirrorworld.fetchNFTsByCreatorAddresses({
 })
 ```
 
-- **by Update Authorities:** update authorities are what identify the owner of
-  an NFT and allow them to be able to perform certain upgrades and mutate the
+- **by Update Authorities:** update authorities is the public key that has the ability to perform certain upgrades and mutate the
   state of the NFT. You may fetch NFTs using the update authority of that NFT.
 
 ```jsx
@@ -144,7 +157,7 @@ const nftsQueryResult = await mirrorworld.fetchNFTsByUpdateAuthorities({
 
 ## What’s Next
 
-It’s quite effortless and straightforward to start performing marketplace
+It requires little effort and is relatively easier to start performing marketplace
 transactions with the Mirror World Smart SDK. From creating a marketplace to
 listing an NFT on that marketplace, there are a lot of options available to you
 as a developer to start building your next killer dApp. Check out the
