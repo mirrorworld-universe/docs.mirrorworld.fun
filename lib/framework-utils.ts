@@ -8,6 +8,7 @@ import {
   SiSwift,
   SiUnity,
 } from "react-icons/si"
+import { BsCodeSlash } from "react-icons/bs"
 
 export const frameworks = {
   android: { icon: AiOutlineAndroid, label: "Android" },
@@ -15,9 +16,17 @@ export const frameworks = {
   unity: { icon: SiUnity, label: "Unity" },
   js: { icon: SiJavascript, label: "JavaScript" },
   rust: { icon: SiRust, label: "Rust" },
+  http: { icon: BsCodeSlash, label: "HTTP" },
 }
 
-export const FRAMEWORKS = ["android", "unity", "js", "ios", "rust"] as const
+export const FRAMEWORKS = [
+  "android",
+  "unity",
+  "js",
+  "ios",
+  "rust",
+  "http",
+] as const
 
 export type Framework = keyof typeof frameworks
 
