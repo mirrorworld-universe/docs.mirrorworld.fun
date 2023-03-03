@@ -26,8 +26,12 @@ import { Link as CLink } from "@chakra-ui/layout"
 import { useState, useEffect, useRef } from "react"
 import { ApiReferenceCards } from "./cards/api-reference-cards"
 import { IntegrationCards } from "./cards/integration-cards"
+import { IntegrationCardsMinimal } from "./cards/integration-cards-minimal"
 import { MobileFrameworksCards } from "./cards/mobile-frameworks-cards"
 import { WebFrameworksCards } from "./cards/web-frameworks-cards"
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from "@chakra-ui/alert"
+import { LightMode } from "@chakra-ui/color-mode"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -305,10 +309,44 @@ const components: Record<string, FC<Record<string, any>>> = {
       </CLink>
     )
   },
+  InlineButtonLink: (_props) => {
+    const { href, variant, children, ...props} = _props
+    return (
+      <chakra.span d="inline-block" mt={5}>
+        <CLink
+          isExternal
+          href={href}
+          outline="none"
+          rounded="4px"
+          _hover={{ textDecoration: "none" }}
+          w={{ base: "full", sm: "unset" }}
+        >
+          <Button variant={variant || "mirror"} px={6} w={{ base: "full", sm: "unset" }} {...props}>
+            <HStack spacing="2">
+              <span>{children}</span>
+              <Icon as={ExternalLinkIcon} />
+            </HStack>
+          </Button>
+        </CLink>
+      </chakra.span>
+    )
+  },
   ApiReferenceCards: (props) => <ApiReferenceCards {...props} />,
   IntegrationCards: (props) => <IntegrationCards {...props} />,
+  IntegrationCardsMinimal: (props) => <IntegrationCardsMinimal {...props} />,
   MobileFrameworksCards: (props) => <MobileFrameworksCards {...props} />,
   WebFrameworksCards: (props) => <WebFrameworksCards {...props} />,
+  AlertMessage: (props) => (
+    <Alert status={props.status || "warning"} variant={props.variant || "left-accent"}>
+      <AlertIcon />
+      <AlertTitle>{props.title}</AlertTitle>
+      <AlertDescription>{props.description}</AlertDescription>
+    </Alert>
+  ),
+  Alert: (props) => <Alert {...props} variant="left-accent" color="dark" my={5}/>,
+  AlertIcon: (props) => <AlertIcon {...props} />,
+  AlertTitle: (props) => <AlertTitle {...props} />,
+  AlertDescription: (props) => <AlertDescription {...props} />,
 }
 
 export function useMDX(code: string) {
