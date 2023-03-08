@@ -1,9 +1,9 @@
 ```tsx
-import { MirrorWorld, Solana } from "@mirrorworld/web3.js"
+import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY"
-  chainConfig: Solana("mainnet-beta")
+  env: ClusterEnvironment.testnet // This can be changed to mainnet using `ClusterEnvironment.mainnet`
 })
 
 const mintAddress = "Ct1GvgpBzzhMtKb7nKc3U3kouPA3fHncAahPY1HthB9E"
