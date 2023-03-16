@@ -145,59 +145,61 @@ export default function Blog() {
 
               <SimpleGrid columns={[1, 1, 3]} spacing={10}>
                 {selectedArticles?.map((guide, i) => (
-                  <Link key={guide.slug} href={`/guides/${guide.slug}`}>
-                    <Box
-                      rounded="md"
-                      overflow="hidden"
-                      border={"1px solid"}
-                      borderColor="mirror.800"
-                      backdropBlur={"sm"}
-                      cursor="pointer"
-                      transition="all 0.2s ease-in-out"
-                      _hover={{
-                        shadow: "lg",
-                      }}
-                      onClick={() => {
-                        // @ts-ignore
-                        window.mixgather.event("view_guides", {
-                          guide_name: guide.title,
-                        })
-                      }}
-                    >
-                      <AspectRatio ratio={1.7}>
-                        {/*@ts-ignore*/}
-                        <Image src={guide.shareImage} alt={guide.title} />
-                      </AspectRatio>
-                      <Stack px={4} py={3}>
-                        <Heading
-                          as={"h3"}
-                          size="2xs"
-                          fontWeight="bold"
-                          noOfLines={2}
-                        >
-                          {guide.title}
-                        </Heading>
-                        <HStack>
-                          {guide?.tags?.map((t, j) => (
-                            <Tag
-                              rounded="full"
-                              key={j}
-                              fontSize={"0.7em"}
-                              bg="#dcff1a99"
-                              color="mirror.900"
-                              px="2"
-                              py="0.5"
-                              letterSpacing="smaller"
-                            >
-                              {t}
-                            </Tag>
-                          ))}
-                        </HStack>
-                        <Text fontSize={"sm"} noOfLines={3}>
-                          {guide.description}
-                        </Text>
-                      </Stack>
-                    </Box>
+                  <Link key={guide.slug} href={`/guides/${guide.slug}`} passHref>
+                    <chakra.a>
+                      <Box
+                        rounded="md"
+                        overflow="hidden"
+                        border={"1px solid"}
+                        borderColor="mirror.800"
+                        backdropBlur={"sm"}
+                        cursor="pointer"
+                        transition="all 0.2s ease-in-out"
+                        _hover={{
+                          shadow: "lg",
+                        }}
+                        onClick={() => {
+                          // @ts-ignore
+                          window.mixgather.event("view_guides", {
+                            guide_name: guide.title,
+                          })
+                        }}
+                      >
+                        <AspectRatio ratio={1.7}>
+                          {/*@ts-ignore*/}
+                          <Image src={guide.shareImage} alt={guide.title} />
+                        </AspectRatio>
+                        <Stack px={4} py={3}>
+                          <Heading
+                            as={"h3"}
+                            size="2xs"
+                            fontWeight="bold"
+                            noOfLines={2}
+                          >
+                            {guide.title}
+                          </Heading>
+                          <HStack>
+                            {guide?.tags?.map((t, j) => (
+                              <Tag
+                                rounded="full"
+                                key={j}
+                                fontSize={"0.7em"}
+                                bg="#dcff1a99"
+                                color="mirror.900"
+                                px="2"
+                                py="0.5"
+                                letterSpacing="smaller"
+                              >
+                                {t}
+                              </Tag>
+                            ))}
+                          </HStack>
+                          <Text fontSize={"sm"} noOfLines={3}>
+                            {guide.description}
+                          </Text>
+                        </Stack>
+                      </Box>
+                    </chakra.a>
                   </Link>
                 ))}
               </SimpleGrid>
