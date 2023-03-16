@@ -13,7 +13,6 @@ export function MdxFooter(props: any) {
         display={{ sm: "flex" }}
         justifyContent="space-between"
       />
-
       <Box
         fontSize="sm"
         mt="4"

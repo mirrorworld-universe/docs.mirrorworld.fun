@@ -49,8 +49,8 @@ npx create-next-app@latest mirrorworld-js
 
 ### Install the Mirror World Smart SDK
 
-Next, let’s make sure we have the Mirror World Smart SDK installed in our
-project. This will enable us to run the following command in your project’s root
+Next, let's make sure we have the Mirror World Smart SDK installed in our
+project. This will enable us to run the following command in your project's root
 directory, in the terminal:
 
 ```shell
@@ -59,8 +59,8 @@ yarn add @mirrorworld/web3.js
 
 ### Implementing Login
 
-Let’s implement login functionality into our app using the Mirror World Smart
-SDK. To use the SDK, we’ll need to create a new instance of the SDK.
+Let's implement login functionality into our app using the Mirror World Smart
+SDK. To use the SDK, we'll need to create a new instance of the SDK.
 
 Edit your **index.tsx** file to look like this
 
@@ -80,7 +80,7 @@ export default function Home() {
 }
 ```
 
-Next, we’re going to create a function that logs the user in, and a button to
+Next, we're going to create a function that logs the user in, and a button to
 trigger that function.
 
 Update your **index.tsx** file to look like this
@@ -108,15 +108,15 @@ export default function Home() {
 }
 ```
 
-As you can see, we’ve bound the login method to the button. When you click on
+As you can see, we've bound the login method to the button. When you click on
 the button a popup appears giving you multiple options to login to mirror world.
 
 ![User wallet login](https://res.cloudinary.com/xtellar/image/upload/v1665995199/mirror-world/image_hn4dzq.png)
 
 We also include a user state using the `useState` hook from React so that we can
-set the user object and use it in our app as we’ll see shortly.
+set the user object and use it in our app as we'll see shortly.
 
-Let’s go ahead and display the user information in our app with this piece of
+Let's go ahead and display the user information in our app with this piece of
 code:
 
 ```tsx
