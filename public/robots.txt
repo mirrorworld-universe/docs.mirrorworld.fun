@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://docs.mirrorworld.fun
+Host: https://mirrorworld.fun/docs
 
 # Sitemaps
-Sitemap: https://docs.mirrorworld.fun/sitemap.xml
+Sitemap: https://mirrorworld.fun/docs/sitemap.xml
