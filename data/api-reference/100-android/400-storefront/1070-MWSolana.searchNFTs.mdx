@@ -1,5 +1,6 @@
 ---
-title: searchNFTs
+title: MWSolana.searchNFTs
+chain: Solana
 ---
 
 # `searchNFTs`
@@ -11,7 +12,7 @@ List<String> collections = new ArrayList<>();
 collections.add("collection address 1");
 String searchString = "weapon";
 
-MirrorMarket.searchNFTs(collections,searchString, new SearchNFTsListener() {
+MWSolana.searchNFTs(collections, searchString, new SearchNFTsListener() {
     @Override
     public void onSuccess(List<MirrorMarketSearchNFTObj> result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
