@@ -1,14 +1,17 @@
 ---
-title: checkStatusOfMinting
+title: MWSolana.checkStatusOfMinting
+chain: Solana
 ---
 
 # `checkStatusOfMinting`
 Get status of a minting operation. Because minting may has some delay before success.
 
 ```java
-List<String> addresses = new ArrayList<>(); addresses.add("mintAddress1"); addresses.add("mintAddress2");
+List<String> addresses = new ArrayList<>(); 
+addresses.add("mintAddress1"); 
+addresses.add("mintAddress2");
 
-MirrorWorld.checkStatusOfMinting(addresses,new CheckStatusOfMintingListener() {
+MWSolana.checkStatusOfMinting(addresses,new CheckStatusOfMintingListener() {
 
     @Override
     public void onSuccess(CheckStatusOfMintingResponse response) {
