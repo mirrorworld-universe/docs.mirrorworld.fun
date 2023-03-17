@@ -5,10 +5,11 @@ chain: EVM
 
 # `fetchUser`
 
-Fetches the current user's object.
+Fetche a user's info by email.
 
 ```java
-MWEVM.fetchUser(new FetchUserListener() {
+String email = "target-email-address";
+MWEVM.fetchUser(email, new FetchUserListener() {
     @Override
     public void onUserFetched(UserResponse userResponse) {
         Log.d("MirrorSDK","Fetched user details:"+userResponse);
