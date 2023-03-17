@@ -1,0 +1,24 @@
+---
+title: MWSolana.getTransactionsOfLoggedUser
+chain: Solana
+---
+
+# `getTransaction`
+Get single transaction with its signature.
+
+```java
+int limit = 1;
+String before = "before";
+
+MWSolana.getTransactionsOfLoggedUser(limit, before, new GetWalletTransactionListener() {
+    @Override
+    public void onSuccess(GetWalletTransactionsResponse walletTransactionsResponse) {
+        //todo
+    }
+
+    @Override
+    public void onFailed(long code, String message) {
+        //todo
+    }
+});
+```
