@@ -1,0 +1,16 @@
+---
+title: MWEVM.isLoggedIn
+chain: EVM
+---
+
+# `isLoggedIn`
+
+Checks whether the current user is logged in.
+```java
+MWEVM.isLoggedIn(new BoolListener() {
+    @Override
+    public void onBool(boolean boolValue) {
+        Log.d("MirrorSDK","User log status:"+boolValue);
+    }
+});
+```
