@@ -1,5 +1,6 @@
 ---
-title: getCollectionInfo
+title: MWSolana.getCollectionInfo
+chain: Solana
 ---
 
 # `getCollectionInfo`
@@ -9,7 +10,7 @@ Get collection info in marketplace.
 List<String> collections = new ArrayList<>();
 collections.add("your collection address");
 
-MirrorMarket.getCollectionInfo(collections, new GetCollectionInfoListener() {
+MWSolana.getCollectionInfo(collections, new GetCollectionInfoListener() {
     @Override
     public void onSuccess(List<GetCollectionInfoRes> result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
