@@ -1,13 +1,13 @@
 ---
-title: getTokens
+title: MWSolana.getTokens
+chain: Solana
 ---
 
 # `getTokens`
 Get the current user's tokens.
 
-
 ```java
-MirrorWorld.getTokens(new GetWalletTokenListener() {
+MWSolana.getTokens(new GetWalletTokenListener() {
     @Override
     public void onSuccess(GetWalletTokenResponse walletTokenResponse) {
         Log.d("MirrorSDK","Get wallet token success!");
