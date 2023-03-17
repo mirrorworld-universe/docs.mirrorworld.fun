@@ -1,0 +1,24 @@
+---
+title: MWSolana.getTransactionBySignature
+chain: Solana
+---
+
+# `getTransactionBySignature`
+Get the transactions by signature.
+
+
+```java
+String signature = "signature";
+
+MWSolana.getTransactionBySignature(signature, new GetOneWalletTransactionBySigListener() {
+    @Override
+    public void onSuccess(TransactionsDTO walletTransactions) {
+        //todo
+    }
+
+    @Override
+    public void onFailed(long code, String message) {
+        //todo
+    }
+});
+```
