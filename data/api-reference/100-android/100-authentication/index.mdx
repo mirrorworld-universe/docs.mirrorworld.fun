@@ -4,15 +4,35 @@ title: Authentication
 
 # Authentication Methods | Android API Reference
 
-- [`startLogin`](/api-reference/android/authentication/startLogin)
-- [`guestLogin`](/api-reference/android/authentication/guestLogin)
-- [`isLoggedIn`](/api-reference/android/authentication/isLoggedIn)
-- [`loginWithEmail`](/api-reference/android/authentication/loginWithEmail)
-- [`fetchUser`](/api-reference/android/authentication/fetchUser)
-- [`logout`](/api-reference/android/authentication/logout)
+- [`MWSolana.initSDK`](/api-reference/android/authentication/MWSolana.initSDK)
+- [`MWSolana.startLogin`](/api-reference/android/authentication/MWSolana.startLogin)
+- [`MWSolana.guestLogin`](/api-reference/android/authentication/MWSolana.guestLogin)
+- [`MWSolana.isLoggedIn`](/api-reference/android/authentication/MWSolana.isLoggedIn)
+- [`MWSolana.loginWithEmail`](/api-reference/android/authentication/MWSolana.loginWithEmail)
+- [`MWSolana.fetchUser`](/api-reference/android/authentication/MWSolana.fetchUser)
+- [`MWSolana.queryUser`](/api-reference/android/authentication/MWSolana.queryUser)
+- [`MWSolana.logout`](/api-reference/android/authentication/MWSolana.logout)
+- [`MWEVM.initSDK`](/api-reference/android/authentication/MWEVM.initSDK)
+- [`MWEVM.startLogin`](/api-reference/android/authentication/MWEVM.startLogin)
+- [`MWEVM.guestLogin`](/api-reference/android/authentication/MWEVM.guestLogin)
+- [`MWEVM.isLoggedIn`](/api-reference/android/authentication/MWEVM.isLoggedIn)
+- [`MWEVM.loginWithEmail`](/api-reference/android/authentication/MWEVM.loginWithEmail)
+- [`MWEVM.fetchUser`](/api-reference/android/authentication/MWEVM.fetchUser)
+- [`MWEVM.queryUser`](/api-reference/android/authentication/MWEVM.queryUser)
+- [`MWEVM.logout`](/api-reference/android/authentication/MWEVM.logout)
 
 
 ## Authentication Tips
+
+### Developer must choose which chain he wants to use
+Developers must use specified classes to call APIs on specified chains.  
+*For example, if they want to call init API on the BNB chain, they must call MWEVM.initSDK().*
+
+>And this is their correspondence:
+>- Solana:MWSolana
+>- Ethereum:MWEVM
+>- Polygon:MWEVM
+>- BNB Chain:MWEVM
 
 ### User login with different social accounts.
 Mirror World uniquely identifies a user by their email address. Whereas you may login with different accounts,
