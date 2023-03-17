@@ -1,5 +1,6 @@
 ---
-title: transferNFT
+title: MWSolana.transferNFT
+chain: Solana
 ---
 
 # `transferNFT`
@@ -7,10 +8,12 @@ title: transferNFT
 Transfer NFT from holder's wallet to another address.
 
 ```java
+Activity activity = this;
 String mintAddress = "NFT mint address";
 String toWallet = "to wallet address";
+String confirmation = MirrorConfirmation.Default;
 
-MirrorWorld.transferNFT(mintAddress, toWallet, new TransferNFTListener() {
+MWSolana.transferNFT(activity, mintAddress, toWallet, confirmation, new TransferNFTListener() {
     @Override
     public void onTransferSuccess(ListingResponse listingResponse) {
         Log.d("MirrorSDK","Transfer success,the NFT is:"+listingResponse.mint_address);
