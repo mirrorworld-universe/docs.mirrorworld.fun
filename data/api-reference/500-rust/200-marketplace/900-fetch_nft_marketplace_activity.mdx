@@ -1,0 +1,43 @@
+---
+title: fetch_nft_marketplace_activity
+---
+
+# `fetch_nft_marketplace_activity`
+Fetch NFT Marketplace Activity for an NFT by it's mint address
+
+```rust
+use mirrorworld_sdk_rust::{ marketplace::Marketplace, NetEnv };
+
+fn main() {
+    // First create the SDK instance
+    let api_key: &str = "SUPER_SECRET_API_KEY"; // Can be gotten from the developer dashboard
+    let access_token: &str = "USER_AUTH_ACCESS_TOKEN"; // Current user's auth token
+    let marketplace =  Marketplace::new(api_key.to_string(), NetEnv::DEVNET, access_token.to_string());
+
+    // fetch_nft_marketplace_activity process
+    let mint_address: &str = "5eGe5EaC5w5L9nCdmqM4eCe8ZLkBanBVMYBB4gj71qg";
+
+    let nft_marketplace_activity: SolanaNFTs = SolanaNFTAuctionActivities.fetch_nft_marketplace_activity(mint_address).await.unwrap();
+}
+
+// Return Types
+// ============
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SolanaNFTAuctionActivities {
+    #[serde(rename = "mintAddress")]
+    pub mint_address: String,
+    #[serde(rename = "auctionActivities")]
+    pub auction_activities: Vec<SolanaNFTAuctionActivity>,
+    #[serde(rename = "tokenTransfers")]
+    pub token_transfers: Vec<SolanaNFTTransfersEntity>,
+}
+
+
+// Error response if any
+// =====================
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Err {
+  #[serde(rename = "InstructionError")]
+  pub instruction_error: Option<String>,
+}
+```

@@ -14,14 +14,49 @@ import remarkDirective from "remark-directive"
 import toc from "markdown-toc"
 import siteConfig from "./site.config"
 import { remarkAdmonition } from "./lib/remark-utils"
-import { toKebabCase } from "./lib/to-kebab-case"
+import { remarkCodeHike } from "@code-hike/mdx"
 
 import fs from "fs"
+import remarkParse from "remark-parse"
 
 const fields: FieldDefs = {
-  title: { type: "string" },
+  title: {
+    type: "string",
+    description: "The title of the page",
+    required: true,
+  },
   description: { type: "string" },
   package: { type: "string" },
+  external_url: {
+    type: "string",
+  },
+  internal_path: {
+    type: "string",
+  },
+  nav_title: {
+    type: "string",
+  },
+  // navTitle: {
+  //   type: "string",
+  //   description: "Override the title for display in nav",
+  // },
+  // label: {
+  //   type: "string",
+  // },
+  // excerpt: {
+  //   type: "string",
+  //   required: true,
+  // },
+  // collapsible: {
+  //   type: "boolean",
+  //   required: false,
+  //   default: false,
+  // },
+  // collapsed: {
+  //   type: "boolean",
+  //   required: false,
+  //   default: false,
+  // },
 }
 
 const getSlug = (doc: LocalDocument) =>
@@ -50,6 +85,24 @@ const computedFields: ComputedFields = {
       slug: `/${doc._raw.flattenedPath}`,
       toc: toc(doc.body.raw, { maxdepth: 3 }).json.filter((t) => t.lvl !== 1),
     }),
+  },
+  pathSegments: {
+    type: "json",
+    resolve: (doc) =>
+      doc._raw.flattenedPath
+        .split("/")
+        // skip the category prefix prefix
+        .slice(1)
+        .map((dirName) => {
+          const re = /^((\d+)-)?(.*)$/
+          const [, , orderStr, pathName] = dirName.match(re) ?? []
+          const order = orderStr ? parseInt(orderStr) : 0
+          return { order, pathName }
+        }),
+  },
+  normalizedPath: {
+    type: "string",
+    resolve: (doc) => doc._raw.flattenedPath.replace(/[0-9].{0,1}/g, ""),
   },
 }
 
@@ -239,11 +292,31 @@ const Guides = defineDocumentType(() => ({
   },
 }))
 
+const SDK = defineDocumentType(() => ({
+  name: "SDKs",
+  filePathPattern: `sdk/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    ...fields,
+    tags: { type: "json" },
+    date_published: { type: "string" },
+    author: { type: "json" },
+  },
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/sdk/[slug]`,
+    },
+  },
+}))
+
 const Snippet = defineDocumentType(() => ({
   name: "Snippet",
+  fields,
   filePathPattern: "snippets/**/*.mdx",
   contentType: "mdx",
-  fields,
+  // fields,
   computedFields: {
     ...computedFields,
     framework: {
@@ -253,42 +326,117 @@ const Snippet = defineDocumentType(() => ({
   },
 }))
 
-const Changelog = defineDocumentType(() => {
-  const getSlug = (doc: LocalDocument) => toKebabCase(doc.releaseDate)
-  return {
-    name: "Changelog",
-    filePathPattern: "changelogs/**/*.mdx",
-    contentType: "mdx",
-    fields: {
-      releaseUrl: { type: "string" },
-      releaseDate: { type: "string" },
+const FurtherReading = defineDocumentType(() => ({
+  name: "FurtherReading",
+  filePathPattern: "further-reading/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/further-reading/[slug]",
     },
-    computedFields: {
-      editUrl: {
-        type: "string",
-        resolve: (doc) => `${siteConfig.repo.editUrl}/${doc._id}`,
-      },
-      params: {
-        type: "list",
-        resolve: (doc) => ["changelogs", getSlug(doc)],
-      },
-      frontmatter: {
-        type: "json",
-        resolve: (doc) => ({
-          title: "Changelog",
-          description: `The changes made as at ${doc.releaseDate}`,
-          slug: `/changelogs/${getSlug(doc)}`,
-          toc: [],
-        }),
-      },
-      slug: {
-        type: "string",
-        resolve: (doc) => `/changelogs/${getSlug(doc)}`,
-      },
-    },
-  }
-})
+  },
+}))
 
+const AuthenticationTutorials = defineDocumentType(() => ({
+  name: "AuthenticationTutorials",
+  filePathPattern: "authentication/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/authentication/[slug]",
+    },
+  },
+}))
+
+const WalletTutorials = defineDocumentType(() => ({
+  name: "WalletTutorials",
+  filePathPattern: "wallet/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/wallet/[slug]",
+    },
+  },
+}))
+
+const MarketplaceTutorials = defineDocumentType(() => ({
+  name: "MarketplaceTutorials",
+  filePathPattern: "marketplace/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/marketplace/[slug]",
+    },
+  },
+}))
+
+const NFTsTutorials = defineDocumentType(() => ({
+  name: "NFTsTutorials",
+  filePathPattern: "nfts/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/nfts/[slug]",
+    },
+  },
+}))
+
+const APIReference = defineDocumentType(() => ({
+  name: "APIReference",
+  filePathPattern: "api-reference/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/api-reference/[slug]",
+    },
+  },
+}))
+
+const IntegrationGuide = defineDocumentType(() => ({
+  name: "IntegrationGuide",
+  filePathPattern: "integration/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/integration/[slug]",
+    },
+  },
+}))
+
+const Solutions = defineDocumentType(() => ({
+  name: "Solutions",
+  filePathPattern: "solutions/**/*.mdx",
+  contentType: "mdx",
+  fields,
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => "/solutions/[slug]",
+    },
+  },
+}))
 
 const contentLayerConfig = makeSource({
   contentDirPath: "data",
@@ -296,7 +444,6 @@ const contentLayerConfig = makeSource({
     Overview,
     Snippet,
     Component,
-    Changelog,
     Android,
     iOS,
     Rust,
@@ -306,9 +453,37 @@ const contentLayerConfig = makeSource({
     Architecture,
     Guides,
     Showcase,
+    FurtherReading,
+    SDK,
+    Solutions,
+
+    // Tutorials
+    AuthenticationTutorials,
+    WalletTutorials,
+    MarketplaceTutorials,
+    NFTsTutorials,
+    APIReference,
+
+    // Integration Guides
+    IntegrationGuide,
   ],
   mdx: {
-    remarkPlugins: [remarkGfm, remarkDirective, remarkAdmonition],
+    remarkPlugins: [
+      remarkParse,
+      remarkGfm,
+      remarkDirective,
+      remarkAdmonition,
+      [
+        remarkCodeHike,
+        {
+          theme: "css-variables",
+          // autoImport: false,
+          showCopyButton: true,
+          staticMediaQuery: "not screen, (max-width: 992px)",
+          lineNumbers: true,
+        },
+      ],
+    ],
     rehypePlugins: [
       rehypeSlug,
       rehypeCodeTitles,

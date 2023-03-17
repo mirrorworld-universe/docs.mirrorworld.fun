@@ -1,0 +1,17 @@
+---
+title: FetchUser
+---
+
+# `FetchUser`
+Fetches the current user's object.
+
+```csharp
+MirrorSDK.FetchUser(email, (response) =>
+{
+    long resCode = response.Code;
+    UserResponse details = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

@@ -1,9 +1,11 @@
 import { Html, Head, Main, NextScript } from "next/document"
+import { ColorModeScript } from "@chakra-ui/react"
+import theme from "../theme"
 import { __ENV__ } from "../lib/env"
-import Script from "next/script"
+
+console.log("__ENV__", __ENV__)
 
 export default function Document() {
-  console.log("__ENV__", __ENV__)
   return (
     <Html lang="en">
       <Head>
@@ -158,6 +160,7 @@ export default function Document() {
         />
       </Head>
       <body>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <Main />
         <NextScript />
       </body>

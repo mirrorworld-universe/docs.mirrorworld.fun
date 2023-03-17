@@ -1,0 +1,24 @@
+---
+title: cancelNFTListing
+---
+
+# `cancelNFTListing`
+
+Cancel NFT Listing on your marketplace instance.
+
+```java
+String mintAddress = "mint_address";
+Doubld price = 1.0;
+
+MirrorWorld.cancelNFTListing(mintAddress, price, new CancelListListener() {
+    @Override
+    public void onCancelSuccess(ListingResponse listingResponse) {
+        Log.d("MirrorSDK","CancelNFTListing success! Mint address is "+listingResponse.mint_address);
+    }
+
+    @Override
+    public void onCancelFailed(long code, String message) {
+        Log.d("MirrorSDK","Cancel NFT listing faild,code:"+code+" message:"+message);
+    }
+});
+```

@@ -3,12 +3,12 @@ import { chakra } from "@chakra-ui/system"
 import siteConfig from "site.config"
 import { Pagination } from "./pagination"
 
-export function MdxFooter() {
+export function MdxFooter(props: any) {
   return (
-    <chakra.footer mt="12">
-      <Pagination />
+    <chakra.footer mt="12" maxW="8xl" mx="auto" {...props}>
+      {/*<Pagination />*/}
       <Box
-        pt="10"
+        pt="4"
         borderTopWidth="1px"
         display={{ sm: "flex" }}
         justifyContent="space-between"
@@ -17,7 +17,7 @@ export function MdxFooter() {
       <Box
         fontSize="sm"
         mt="4"
-        mb="28"
+        mb="10"
         opacity={0.5}
         dangerouslySetInnerHTML={{ __html: siteConfig.copyright }}
       />

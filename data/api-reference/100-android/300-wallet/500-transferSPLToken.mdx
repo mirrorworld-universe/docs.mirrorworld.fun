@@ -1,0 +1,20 @@
+---
+title: transferSPLToken
+---
+
+# `transferSPLToken`
+Transfer SPL token to a recipient
+
+```java
+String toPublicKey = "to public key";
+float amount = "1.1f";
+String tokenMint = "mint address";
+float decimals = "2f";
+
+MirrorWorld.transferSPLToken(toPublicKey, amount, tokenMint, decimals, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

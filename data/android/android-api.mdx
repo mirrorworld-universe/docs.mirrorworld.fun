@@ -16,7 +16,6 @@ Init sdk, you need to have an API key first, you can get one from [SDK official 
 ```java
 Activity activity = this;
 String APIKey = "your API key";
-
 MirrorWorld.initMirrorWorld(activity,APIKey, MirrorEnv.DevNet);
 ```
 
@@ -392,7 +391,6 @@ MirrorWorld.fetchNFTsByMintAddresses(mintAddresses, new FetchNFTsListener() {
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         Log.d("MirrorSDK","Fetched " + multipleNFTsResponse.nfts.size() + " NFTs");
     }
-
     @Override
     public void onFetchFailed(long code, String message) {
         Log.d("MirrorSDK","Fetching NFTs faild,code:"+code+" message:"+message);
@@ -647,166 +645,16 @@ MirrorMarket.getNFTRealPrice(price,fee, new GetNFTRealPriceListener() {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
     }
 
-    @Override
+   @Override
     public void onFail(long code, String message) {
         Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
     }
-});
-```
-
-## Market Place UI APIs
-### getCollectionFilterInfo
-Get details of a collection's filter.
-```java
-String collection = "your collection address";
-
-MirrorMarket.getCollectionFilterInfo(collection, new GetCollectionFilterInfoListener() {
-    @Override
-    public void onSuccess(GetCollectionFilterInfoRes result) {
-        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
-    }
-
-    @Override
-    public void onFail(long code, String message) {
-        Log.d("Visit Failed! code:"+code+" message:"+message);
-    }
-});
-```
-
-### getNFTInfo
-Get details of a NFT in Market Place.
-
-```java
-String mint_address = "nft mint address";
-
-MirrorMarket.getNFTInfo(mint_address, new MirrorCallback() {
-    @Override
-    public void callback(String result) {
-        Log.d("MirrorSDK","Visiting result:"+MirrorGsonUtils.getInstance().toJson(result));
-    }
-});
-```
-
-### getCollectionInfo
-Get collection info in market place.
-
-```java
-List<String> collections = new ArrayList<>();
-collections.add("your collection address");
-
-MirrorMarket.getCollectionInfo(collections, new GetCollectionInfoListener() {
-    @Override
-    public void onSuccess(List<GetCollectionInfoRes> result) {
-        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
-    }
-
-    @Override
-    public void onFail(long code, String message) {
-        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
-    }
-});
-```
-
-### getNFTEvents
-Get events of a NFT.
-
-```java
-String mint_address = "nft address";
-int page = 1;
-int page_size = 10;
-
-MirrorMarket.getNFTEvents(mint_address,page,page_size, new GetNFTEventsListener() {
-    @Override
-    public void onSuccess(GetNFTEventsRes result) {
-        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
-    }
-
-    @Override
-    public void onFail(long code, String message) {
-        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
-    }
-});
-```
-
-### searchNFTs
-Search NFTs by some words.
-
-```java
-
-List<String> collections = new ArrayList<>();
-collections.add("collection address 1");
-String searchString = "weapon";
-
-MirrorMarket.searchNFTs(collections,searchString, new SearchNFTsListener() {
-    @Override
-    public void onSuccess(List<MirrorMarketSearchNFTObj> result) {
-        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
-    }
-
-    @Override
-    public void onFail(long code, String message) {
-        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
-    }
-});
-```
-
-### recommondSearchNFT
-Search NFTs with recommond.
-
-```java
-List<String> collections = new ArrayList<>();
-collections.add("collection address 1");
-
-MirrorMarket.recommondSearchNFT(collections, new SearchNFTsListener() {
-    @Override
-    public void onSuccess(List<MirrorMarketSearchNFTObj> result) {
-        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
-    }
-
-    @Override
-    public void onFail(long code, String message) {
-        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
-    }
-});
-```
-
-### getNFTs
-Get NFTs by unabridged params.
-
-```java
-String collection = "collection address";
-int page = 1;
-int pageSize = 10;
-String keyWord = "price";
-boolean desc = true;
-Double salePrice = "1.1";
-
-JSONObject filter = new JSONObject();
-filter.put("filter_name","Rarity");
-filter.put("filter_type","enum");
-JSONArray values = new JSONArray();
-values.put("Common");
-filter.put("filter_value",values);
-filter.put("filter_type","enum");
-
-List<JSONObject> filters = new ArrayList<>();
-filters.add(filter);
-
-MirrorMarket.getNFTs(collection,page,pageSize,keyWord,desc,salePrice,filters, new GetNFTsListener() {
-    @Override
-    public void onSuccess(GetNFTsRes result) {
-        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
-    }
-
-    @Override
-    public void onFail(long code, String message) {
-        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
-    }
+   
 });
 ```
 
 ### getNFTRealPrice
-Get NFT real price.
+Get NFT real price which is calculated by fee rate. The param fee means how much server will deducted.
 
 ```java
 String price = "1.2";

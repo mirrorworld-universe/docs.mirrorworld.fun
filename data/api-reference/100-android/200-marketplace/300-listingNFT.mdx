@@ -1,0 +1,21 @@
+---
+title: listNFT
+---
+
+# `listNFT`
+List NFT on Mirror World Marketplace. AuctionHouse: If you give the auctionHouse param, you can specify which market you want to list in.
+
+```java
+string mintAddress = "mint_address";
+decimal price = 1;
+string confirmation = Confirmation.Default;
+string auctionHouse = "your_market_auction_house";
+
+MirrorWorld.listNFT(mintAddress,price,auctionHouse,confirmation,(response) => {
+    long resCode = response.Code;
+    ListingResponse result = response.Data;
+    string error = response.Error;
+    string message = response.Message;
+    string status = response.Status;
+});
+```

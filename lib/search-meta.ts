@@ -1,4 +1,17 @@
-import { allComponents, allOverviews } from "contentlayer/generated"
+import {
+  allAPIReferences,
+  allArchitectures,
+  allAuthenticationTutorials,
+  allComponents,
+  allFurtherReadings,
+  allGuides,
+  allIntegrationGuides,
+  allMarketplaceTutorials,
+  allNFTsTutorials,
+  allOverviews,
+  allShowcases,
+  allWalletTutorials,
+} from "contentlayer/generated"
 
 type SearchMetaItem = {
   content: string
@@ -23,7 +36,19 @@ type TOC = {
 }
 
 function getSearchMeta() {
-  const documents = [...allOverviews, ...allComponents]
+  const documents = [
+    ...allOverviews,
+    ...allShowcases,
+    // ...allMarketplaceTutorials,
+    // ...allWalletTutorials,
+    // ...allAuthenticationTutorials,
+    // ...allNFTsTutorials,
+    ...allArchitectures,
+    ...allFurtherReadings,
+    ...allIntegrationGuides,
+    ...allGuides,
+    ...allAPIReferences,
+  ]
 
   const result: SearchMetaResult = []
 
@@ -31,12 +56,11 @@ function getSearchMeta() {
     const { title, toc, slug } = doc.frontmatter
     const params = doc.params
     params.shift()
-
     result.push({
       content: title,
       id: doc._id,
       type: "lvl1",
-      url: slug,
+      url: slug.replace(/[0-9].{0,3}/g, ""),
       pathname: doc.pathname,
       slug: params,
       hierarchy: {
@@ -49,8 +73,8 @@ function getSearchMeta() {
         content: item.content,
         id: doc._id + item.slug,
         type: `lvl${item.lvl}` as any,
-        url: slug + `#${item.slug}`,
-        pathname: doc.pathname,
+        url: slug.replace(/[0-9].{0,3}/g, "") + `#${item.slug}`,
+        pathname: doc.pathname.replace(/[0-9].{0,3}/g, ""),
         slug: params,
         hierarchy: {
           lvl1: title,

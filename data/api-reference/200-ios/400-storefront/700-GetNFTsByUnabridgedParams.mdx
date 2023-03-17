@@ -1,0 +1,14 @@
+---
+title: GetNFTsByUnabridgedParams
+---
+
+# `GetNFTsByUnabridgedParams`
+Get NFTs by unabridged rules.
+
+```swift
+MWSDK.GetNFTsByUnabridgedParams(collection: "collection address", page: 1, page_size: 10, order: ["price"], sale: 1, filter: ["price"]) { data in
+    print("<iOS_MWSDK_LOG>: GetNFTsByUnabridgedParams result:\(data)")
+} onFailed: { code, message in
+    print("<iOS_MWSDK_LOG>: Visit faild, code is \(code) message is \(message)")
+}
+```

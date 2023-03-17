@@ -1,0 +1,23 @@
+---
+title: getNFTsOwnedByAddress
+---
+
+### `getNFTsOwnedByAddress`
+
+Fetches the NFTs owned by a specific list of addresses.
+
+```java
+String ownerWalletAddress = "owner wallet";
+
+MirrorWorld.getNFTsOwnedByAddress(ownerWalletAddress, new FetchNFTsListener() {
+    @Override
+    public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
+        //todo
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        //todo
+    }
+});
+```

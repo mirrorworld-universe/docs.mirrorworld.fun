@@ -1,0 +1,17 @@
+---
+title: QueryUser
+---
+
+# `QueryUser`
+
+Check user's info, then we can get user's base information such as wallet address and so on.
+
+```swift
+
+MWSDK.QueryUser(email: "user Email") { user in
+  self.Log(user ?? "null")
+} onFetchFailed: { code, error in
+ self.Log("\(code):\(error)")
+}
+
+```

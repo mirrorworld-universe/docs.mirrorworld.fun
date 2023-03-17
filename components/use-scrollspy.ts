@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/router"
 
 const options: IntersectionObserverInit = {
   rootMargin: "0% 0% -40% 0%",
@@ -8,6 +9,7 @@ export function useScrollSpy(selectors: string[]) {
   const [activeId, setActiveId] = useState<string>()
   const observer = useRef<IntersectionObserver | null>(null)
   const str = selectors.toString()
+  const router = useRouter()
 
   useEffect(() => {
     const els = selectors.map((selector) => document.querySelector(selector))
@@ -24,7 +26,7 @@ export function useScrollSpy(selectors: string[]) {
     })
     return () => observer.current?.disconnect()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [str])
+  }, [str, router.asPath])
 
   return activeId
 }

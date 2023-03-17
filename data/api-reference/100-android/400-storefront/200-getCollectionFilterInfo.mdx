@@ -1,0 +1,21 @@
+---
+title: getCollectionFilterInfo
+---
+
+# `getCollectionFilterInfo`
+Get details of a collection's filter.
+```java
+String collection = "your collection address";
+
+MirrorMarket.getCollectionFilterInfo(collection, new GetCollectionFilterInfoListener() {
+    @Override
+    public void onSuccess(GetCollectionFilterInfoRes result) {
+        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
+    }
+
+    @Override
+    public void onFail(long code, String message) {
+        Log.d("Visit Failed! code:"+code+" message:"+message);
+    }
+});
+```
