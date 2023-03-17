@@ -1,0 +1,21 @@
+---
+title: MWEVM.getNFTEvents
+chain: EVM
+---
+
+# `getNFTEvents`
+Get events of a NFT.
+
+```java
+String contract = "contract";
+String tokenID = "token ID";
+int page = 1;
+int page_size = 10;
+
+MWEVM.getNFTEvents(contract,tokenID, page, page_size, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```
