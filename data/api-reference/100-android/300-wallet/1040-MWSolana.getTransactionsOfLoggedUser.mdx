@@ -1,8 +1,9 @@
 ---
-title: getTransactions
+title: MWSolana.getTransactionsOfLoggedUser
+chain: Solana
 ---
 
-# `getTransactions`
+# `getTransactionsOfLoggedUser`
 Get the transactions of user's wallet.
 
 
@@ -10,7 +11,7 @@ Get the transactions of user's wallet.
 int limit = 1;
 String nextBefore = "nextBefore";
 
-MirrorWorld.getTransactions(limit, nextBefore, new GetWalletTransactionListener() {
+MWSolana.getTransactionsOfLoggedUser(limit, nextBefore, new GetWalletTransactionListener() {
     @Override
     public void onSuccess(GetWalletTransactionsResponse walletTransactionsResponse) {
         Log.d("Result","GetTransactions success! count is "+walletTransactionsResponse.count);
