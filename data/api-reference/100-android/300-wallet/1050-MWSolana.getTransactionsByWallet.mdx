@@ -1,0 +1,20 @@
+---
+title: MWSolana.getTransactionsByWallet
+chain: Solana
+---
+
+# `getTransactionsByWallet`
+Get the transactions of user's wallet.
+
+```java
+String walletAddress = "wallet address";
+int limit = 1;
+String nextBefore = "nextBefore";
+
+MWSolana.getTransactionsByWallet(walletAddress, limit, nextBeforeStr, new MirrorCallback() {
+    @Override
+    public void callback(String r) {
+        //todo
+    }
+});
+```
