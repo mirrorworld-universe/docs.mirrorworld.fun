@@ -1,15 +1,17 @@
 ---
-title: transferSol
+title: MWSolana.transferSol
+chain: Solana
 ---
 
 # `transferSol`
 Transfer SOL to wallet address.
 
 ```java
+Activity activity = this;
 String publicKey = "";
-float amount = 1.1f;
+int amount = 1;
 
-MirrorWorld.transferSOL(publicKey, amount, new TransferSOLListener() {
+MirrorWorld.transferSOL(activity, publicKey, amount, new TransferSOLListener() {
     @Override
     public void onTransferSuccess(TransferResponse transferResponse) {
         //todo
