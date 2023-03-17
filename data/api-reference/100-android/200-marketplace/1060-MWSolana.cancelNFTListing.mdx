@@ -1,5 +1,6 @@
 ---
-title: cancelNFTListing
+title: MWSolana.cancelNFTListing
+chain: Solana
 ---
 
 # `cancelNFTListing`
@@ -7,10 +8,12 @@ title: cancelNFTListing
 Cancel NFT Listing on your marketplace instance.
 
 ```java
+Activity activity = this;
 String mintAddress = "mint_address";
-Doubld price = 1.0;
+doubld price = 1.0;
+String auctionHouse = "auction_house";
 
-MirrorWorld.cancelNFTListing(mintAddress, price, new CancelListListener() {
+MWSolana.cancelNFTListing(activity, mintAddress, price, auctionHouse, new CancelListListener() {
     @Override
     public void onCancelSuccess(ListingResponse listingResponse) {
         Log.d("MirrorSDK","CancelNFTListing success! Mint address is "+listingResponse.mint_address);
