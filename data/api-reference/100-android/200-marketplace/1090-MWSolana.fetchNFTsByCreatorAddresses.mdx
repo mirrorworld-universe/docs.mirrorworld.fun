@@ -1,8 +1,10 @@
 ---
-title: fetchNFTsByCreatorAddresses
+title: MWSolana.fetchNFTsByCreatorAddresses
+chain: Solana
 ---
 
 ### `fetchNFTsByCreatorAddresses`
+*Notice: fetchNFTsByCreatorAddresses API can only run on MAINNET.*
 
 Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose `creatorAddresses`
 are provided.
@@ -14,7 +16,7 @@ creatorAddresses.Add("creator wallet address 2");
 int limit = 99;
 int offset = 1;
 
-MirrorWorld.fetchNFTsByCreatorAddresses(creatorAddresses, limit, offset, new FetchNFTsListener() {
+MWSolana.fetchNFTsByCreatorAddresses(creatorAddresses, limit, offset, new FetchNFTsListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         List<NFTObject> nfts = multipleNFTsResponse.nfts;
