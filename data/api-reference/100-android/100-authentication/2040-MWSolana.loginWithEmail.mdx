@@ -1,5 +1,6 @@
 ---
-title: loginWithEmail
+title: MWSolana.loginWithEmail
+chain: Solana
 ---
 
 # `loginWithEmail`
@@ -11,7 +12,7 @@ Logs in a user with email and password.
 String emailAddress = "email@example.com";
 String password = "super-secret-password";
 
-MirrorWorld.loginWithEmail(emailAddress, password, new MirrorCallback () {
+MWSolana.loginWithEmail(emailAddress, password, new MirrorCallback () {
     @Override
     public void callback(String loginRawResult) {
         Log.d("MirrorSDK","login result is" + loginRawResult);
