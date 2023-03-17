@@ -1,0 +1,19 @@
+---
+title: MWEVM.getTokensByWallet
+chain: EVM
+---
+
+# `getTokensByWallet`
+Get single transaction with its signature.
+
+```java
+String walletAddress = "wallet address";
+
+MWEVM.getTokensByWallet(walletAddress, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        String r = ("Get wallet token result:\n"+result);
+        runInUIThread(holder,r);
+    }
+});
+```
