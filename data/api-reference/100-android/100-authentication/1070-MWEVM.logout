@@ -1,0 +1,17 @@
+---
+title: MWEVM.logout
+chain: EVM
+---
+
+# `logout`
+
+Logout current account.
+
+```java
+MWEVM.logout(new BoolListener() {
+    @Override
+    public void onBool(boolean boolValue) {
+        Log.d("Logout result:"+ boolValue);
+    }
+});
+```
