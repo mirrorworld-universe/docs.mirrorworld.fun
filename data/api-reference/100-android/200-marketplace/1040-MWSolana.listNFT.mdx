@@ -1,0 +1,26 @@
+---
+title: MWSolana.listNFT
+chain: Solana
+---
+
+# `listNFT`
+List NFT on Mirror World Marketplace. AuctionHouse: If you give the auctionHouse param, you can specify which market you want to list in.
+
+```java
+Activity activity = this;
+string mintAddress = "mint_address";
+double price = 1;
+String confirmation = Confirmation.Default;
+
+MWSolana.listNFT(activity, mintAddress, price, confirmation, new ListNFTListener() {
+    @Override
+    public void onListSuccess(ListingResponse listingResponse) {
+        //todo
+    }
+
+    @Override
+    public void onListFailed(long code, String message) {
+        //todo
+    }
+});
+```
