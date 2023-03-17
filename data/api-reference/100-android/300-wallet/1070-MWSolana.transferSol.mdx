@@ -11,7 +11,7 @@ Activity activity = this;
 String publicKey = "";
 int amount = 1;
 
-MirrorWorld.transferSOL(activity, publicKey, amount, new TransferSOLListener() {
+MWSolana.transferSOL(activity, publicKey, amount, new TransferSOLListener() {
     @Override
     public void onTransferSuccess(TransferResponse transferResponse) {
         //todo
