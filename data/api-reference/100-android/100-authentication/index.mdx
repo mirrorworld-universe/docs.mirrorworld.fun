@@ -4,15 +4,35 @@ title: Authentication
 
 # Authentication Methods | Android API Reference
 
-- [`startLogin`](/api-reference/android/authentication/startLogin)
-- [`guestLogin`](/api-reference/android/authentication/guestLogin)
-- [`isLoggedIn`](/api-reference/android/authentication/isLoggedIn)
-- [`loginWithEmail`](/api-reference/android/authentication/loginWithEmail)
-- [`fetchUser`](/api-reference/android/authentication/fetchUser)
-- [`logout`](/api-reference/android/authentication/logout)
+- [`MWSolana.initSDK`](/api-reference/android/authentication/initSDK)
+- [`MWSolana.startLogin`](/api-reference/android/authentication/startLogin)
+- [`MWSolana.guestLogin`](/api-reference/android/authentication/guestLogin)
+- [`MWSolana.isLoggedIn`](/api-reference/android/authentication/isLoggedIn)
+- [`MWSolana.loginWithEmail`](/api-reference/android/authentication/loginWithEmail)
+- [`MWSolana.fetchUser`](/api-reference/android/authentication/fetchUser)
+- [`MWSolana.queryUser`](/api-reference/android/authentication/queryUser)
+- [`MWSolana.logout`](/api-reference/android/authentication/logout)
+- [`MWEVM.initSDK`](/api-reference/android/authentication/initSDK)
+- [`MWEVM.startLogin`](/api-reference/android/authentication/startLogin)
+- [`MWEVM.guestLogin`](/api-reference/android/authentication/guestLogin)
+- [`MWEVM.isLoggedIn`](/api-reference/android/authentication/isLoggedIn)
+- [`MWEVM.loginWithEmail`](/api-reference/android/authentication/loginWithEmail)
+- [`MWEVM.fetchUser`](/api-reference/android/authentication/fetchUser)
+- [`MWEVM.queryUser`](/api-reference/android/authentication/queryUser)
+- [`MWEVM.logout`](/api-reference/android/authentication/logout)
 
 
 ## Authentication Tips
+
+### Developer must choose which chain he wants to use
+Developers must use specified classes to call APIs on specified chains.  
+*For example, if they want to call init API on the BNB chain, they must call MWEVM.initSDK().*
+
+>And this is their correspondence:
+>- Solana:MWSolana
+>- Ethereum:MWEVM
+>- Polygon:MWEVM
+>- BNB Chain:MWEVM
 
 ### User login with different social accounts.
 Mirror World uniquely identifies a user by their email address. Whereas you may login with different accounts,
