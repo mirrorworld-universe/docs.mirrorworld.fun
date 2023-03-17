@@ -1,5 +1,6 @@
 ---
-title: getNFTsByUnabridgedParams
+title: MWSolana.getNFTsByUnabridgedParams
+chain: EVM
 ---
 
 # `getNFTsByUnabridgedParams`
@@ -25,7 +26,7 @@ filter.put("filter_type","enum");
 List<JSONObject> filters = new ArrayList<>();
 filters.add(filter);
 
-MirrorMarket.getNFTsByUnabridgedParams(collection,page,pageSize,keyWord,desc,salePrice,filters, new GetNFTsListener() {
+MWSolana.getNFTsByUnabridgedParams(collection,page,pageSize,keyWord,desc,salePrice,filters, new GetNFTsListener() {
     @Override
     public void onSuccess(GetNFTsRes result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
