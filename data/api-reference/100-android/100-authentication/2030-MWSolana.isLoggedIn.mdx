@@ -1,12 +1,13 @@
 ---
-title: isLoggedIn
+title: MWSolana.isLoggedIn
+chain: Solana
 ---
 
 # `isLoggedIn`
 
 Checks whether the current user is logged in.
 ```java
-MirrorWorld.isLoggedIn(new BoolListener() {
+MWSolana.isLoggedIn(new BoolListener() {
     @Override
     public void onBool(boolean boolValue) {
         Log.d("MirrorSDK","User log status:"+boolValue);
