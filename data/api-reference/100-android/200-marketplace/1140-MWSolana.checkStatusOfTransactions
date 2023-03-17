@@ -1,0 +1,26 @@
+---
+title: MWSolana.checkStatusOfTransactions
+chain: Solana
+---
+
+# `checkStatusOfTransactions`
+Get status of a minting operation. Because minting may has some delay before success.
+
+```java
+List<String> signatures = new ArrayList<>(); 
+signatures.add("signature 1"); 
+signatures.add("signature 2");
+
+MWSolana.checkStatusOfTransactions(signatures,new CheckStatusOfMintingListener() {
+
+    @Override
+    public void onSuccess(CheckStatusOfMintingResponse response) {
+        Log.d("MirrorSDK","result is:" + MirrorGsonUtils.getInstance().toJson(response));
+    }
+
+    @Override
+    public void onCheckFailed(long code, String message) {
+        Log.d("MirrorSDK",MirrorStringUtils.GetFailedNotice("CHECK_STATUS_OFMINTING",code,message));
+    }
+});
+```
