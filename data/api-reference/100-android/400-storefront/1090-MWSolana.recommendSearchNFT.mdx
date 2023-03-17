@@ -1,5 +1,6 @@
 ---
-title: recommendSearchNFT
+title: MWSolana.recommendSearchNFT
+chain: EVM
 ---
 
 # `recommendSearchNFT`
@@ -10,7 +11,7 @@ NFT info at most as recommend NFT. Developer can use this API to fill some recom
 List<String> collections = new ArrayList<>();
 collections.add("collection address 1");
 
-MirrorMarket.recommendSearchNFT(collections, new SearchNFTsListener() {
+MWSolana.recommendSearchNFT(collections, new SOLSearchNFTsListener() {
     @Override
     public void onSuccess(List<MirrorMarketSearchNFTObj> result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
