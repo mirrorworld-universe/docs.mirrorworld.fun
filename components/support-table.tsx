@@ -28,9 +28,8 @@ export type Chain =
   | "Ethereum"
   | "BNB Chain"
   | "Polygon"
-  | "Aptos"
   | "Sui"
-export type ChainSupportStatus = "In Development" | "Live" | "In Private Beta"
+export type ChainSupportStatus = "In Development" | "Live"
 export interface SupportField {
   chain: Chain
   status: ChainSupportStatus
@@ -48,30 +47,30 @@ const supportDataTable: SupportField[] = [
   },
   {
     chain: "Ethereum",
-    status: "In Private Beta",
+    status: "Live",
     isOnMainnet: false,
-    isOnTestnet: false,
+    isOnTestnet: true,
     icon: EthereumIcon,
   },
   {
     chain: "Polygon",
-    status: "In Private Beta",
-    isOnMainnet: false,
-    isOnTestnet: false,
+    status: "Live",
+    isOnMainnet: true,
+    isOnTestnet: true,
     icon: PolygonIcon,
   },
   {
     chain: "BNB Chain",
-    status: "In Private Beta",
-    isOnMainnet: false,
-    isOnTestnet: false,
+    status: "Live",
+    isOnMainnet: true,
+    isOnTestnet: true,
     icon: BNBChainIcon,
   },
   {
     chain: "Sui",
     status: "In Development",
     isOnMainnet: false,
-    isOnTestnet: false,
+    isOnTestnet: true,
     icon: SuiIcon,
   },
 ]
