@@ -1,5 +1,6 @@
 ---
-title: getCollectionFilterInfo
+title: MWSolana.getCollectionFilterInfo
+chain: Solana
 ---
 
 # `getCollectionFilterInfo`
@@ -7,7 +8,7 @@ Get details of a collection's filter.
 ```java
 String collection = "your collection address";
 
-MirrorMarket.getCollectionFilterInfo(collection, new GetCollectionFilterInfoListener() {
+MWSolana.getCollectionFilterInfo(collection, new GetCollectionFilterInfoListener() {
     @Override
     public void onSuccess(GetCollectionFilterInfoRes result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
