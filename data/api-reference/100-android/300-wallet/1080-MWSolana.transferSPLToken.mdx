@@ -1,17 +1,19 @@
 ---
-title: transferSPLToken
+title: MWSolana.transferSPLToken
+chain: Solana
 ---
 
 # `transferSPLToken`
 Transfer SPL token to a recipient.
 
 ```java
+Activity activity = this;
 String toPublicKey = "to public key";
 float amount = "1.1f";
 String tokenMint = "mint address";
-float decimals = "2f";
+int decimals = 1;
 
-MirrorWorld.transferSPLToken(toPublicKey, amount, tokenMint, decimals, new MirrorCallback() {
+MWSolana.transferSPLToken(activity, toPublicKey, amount, tokenMint, decimals, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo
