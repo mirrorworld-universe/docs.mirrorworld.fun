@@ -1,0 +1,18 @@
+---
+title: MWEVM.openWallet
+chain: EVM
+---
+
+# `openWallet`
+Open wallet page. The param is a `callback` which will be called when the user clicks the "Logout" button on the wallet page.
+
+```java
+Activity activity = this;
+
+MWEVM.openWallet(activity, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        Log.d("MirrorSDK","User logout from wallet page.");
+    }
+});
+```
