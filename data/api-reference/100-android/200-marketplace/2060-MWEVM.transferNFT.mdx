@@ -1,0 +1,22 @@
+---
+title: MWEVM.transferNFT
+chain: EVM
+---
+
+# `transferNFT`
+
+Transfer NFT from holder's wallet to another address.
+
+```java
+Activity activity = this;
+String collection = "collection address";
+String tokenID = "token ID";
+String toWalletAddress = "to wallet address";
+
+MWEVM.transferNFT(activity, collection, tokenID, toWalletAddress, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```
