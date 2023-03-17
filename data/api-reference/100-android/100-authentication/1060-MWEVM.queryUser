@@ -1,0 +1,22 @@
+---
+title: MWEVM.queryUser
+chain: EVM
+---
+
+# `fetchUser`
+
+Fetches the current user's object.
+
+```java
+MWEVM.fetchUser(new FetchUserListener() {
+    @Override
+    public void onUserFetched(UserResponse userResponse) {
+        Log.d("MirrorSDK","Fetched user details:"+userResponse);
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        Log.d("MirrorSDK","Fetched user failed.");
+    }
+});
+```
