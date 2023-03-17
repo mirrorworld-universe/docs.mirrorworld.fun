@@ -1,17 +1,18 @@
 ---
-title: mintNFT
+title: MWSolana.mintNFT
+chain: Solana
 ---
 
 # `mintNFT`
 Mint NFT into collection. The `mintID` parameter is nullable, server will respond with `"minting is proceeding, please wait for it"` if it detects that a `mintID` has been minted already.
 
 ```java
+Activity activity = this;
 String collection = "collection_address";
-String NFTName = "NewNFT";
-String symbol = "NFT";
+String confirmation = MirrorConfirmation.Default;
 String detailUrl = "https://example.com/path/detail.json";
 
-MirrorWorld.mintNFT(collection, NFTName, symbol, detailUrl, new MintNFTListener() {
+MWSolana.mintNFT(activity, collection, detailUrl, confirmation, new MintNFTListener() {
     @Override
     public void onMintSuccess(MintResponse userResponse) {
         Log.d("MirrorSDK","Mint result is:"+MirrorGsonUtils.getInstance().toJson(userResponse));
