@@ -18,8 +18,8 @@ copia. Victor illa nova natura populi, est per gurgite contingit tuos conquerar
 fratre, solet cavas Avernales. Sic nec vinxerat cum: recumbis aethera.
 
 ```tsx
-import { useState } from "react";
-import { MirrorWorld } from "@mirrorworld/web3.js"
+import { useState } from "react"
+import { MirrorWorld } from "@usemirrorworld/web3.js"
 
 export function App() {
   // 1. Initialize Mirror World SDK
@@ -38,16 +38,9 @@ export function App() {
   return (
     <div>
       Hello World
-      <button onClick={loginWithGoogle}>
-        Login
-      </button>
-
+      <button onClick={loginWithGoogle}>Login</button>
       {/* 3. Display user wallet address if logged in */}
-      {user && (
-        <div>
-          Welcome, {user.wallet.sol_address}!
-        </div>
-      )}
+      {user && <div>Welcome, {user.wallet.sol_address}!</div>}
     </div>
   )
 }
@@ -62,13 +55,13 @@ patriae somnus est Medea meo posita.
 
 Adversum et Mnemosynen pavore. Dies movit patiente sed firmo si colebat teste
 causamque simul! Suis per Cycnum iamque urbem, fine esse felix percussit,
-frustra ferebat Saturnia ratione fixa Iunonigenaeque tinguat. *Et vero*
+frustra ferebat Saturnia ratione fixa Iunonigenaeque tinguat. _Et vero_
 reminiscitur prior convulsaque de petisti nempe manibus capillis tuae, non una.
 
 - Wartus contempsere non
 - Wirgineum cremarat
 
-> Summo animus, *Achilles fremit* partus contempsere non Hebrum, armis peto
+> Summo animus, _Achilles fremit_ partus contempsere non Hebrum, armis peto
 > reddita, omnia pudet fors **ira superasque**. Heros iam virgineum cremarat
 > miles. Caelo cervice virilem, nati te cubat, quem haberet isse!
 

@@ -3,15 +3,17 @@ title: login
 ---
 
 # `login`
-Authenticates a user using a customized user interface. It supports social authentication with Google, Twitter, Discord and Apple.
-This method opens a UI that authenticates the user.
+
+Authenticates a user using a customized user interface. It supports social
+authentication with Google, Twitter, Discord and Apple. This method opens a UI
+that authenticates the user.
 
 ```ts
-import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
-  env: ClusterEnvironment.mainnet
+  env: ClusterEnvironment.mainnet,
 })
 
 const { refreshToken, user } = await mirrorworld.login()
