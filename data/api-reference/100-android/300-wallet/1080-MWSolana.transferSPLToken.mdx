@@ -1,0 +1,22 @@
+---
+title: MWSolana.transferSPLToken
+chain: Solana
+---
+
+# `transferSPLToken`
+Transfer SPL token to a recipient.
+
+```java
+Activity activity = this;
+String toPublicKey = "to public key";
+float amount = "1.1f";
+String tokenMint = "mint address";
+int decimals = 1;
+
+MWSolana.transferSPLToken(activity, toPublicKey, amount, tokenMint, decimals, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

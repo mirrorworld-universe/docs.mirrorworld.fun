@@ -1,0 +1,18 @@
+---
+title: MWEVM.getTransactionsOfLoggedUser
+chain: EVM
+---
+
+# `getTransactionsOfLoggedUser`
+Get the transactions of user's wallet.
+
+```java
+int limit = 1;
+
+MWEVM.getTransactionsOfLoggedUser(limit, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

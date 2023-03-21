@@ -1,0 +1,22 @@
+---
+title: MWEVM.listNFT
+chain: EVM
+---
+
+# `listNFT`
+List NFT on Mirror World Marketplace. AuctionHouse: If you give the auctionHouse param, you can specify which market you want to list in.
+
+```java
+Activity activity = this;
+string mintAddress = "mint_address";
+String tokenID = "token ID";
+double price = 1;
+String marketplaceAddress = "marketplace address";
+
+MWEVM.listNFT(activity, mintAddress, tokenID, price, marketplaceAddress, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

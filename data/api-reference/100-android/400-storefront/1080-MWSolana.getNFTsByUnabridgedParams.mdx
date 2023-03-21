@@ -1,0 +1,40 @@
+---
+title: MWSolana.getNFTsByUnabridgedParams
+chain: Solana
+---
+
+# `getNFTsByUnabridgedParams`
+Get NFTs by unabridged params.
+You can get all NFTs which fit the search parameters you gave.
+
+```java
+String collection = "collection address";
+int page = 1;
+int pageSize = 10;
+String keyWord = "price";
+boolean desc = true;
+Double salePrice = "1.1";
+
+JSONObject filter = new JSONObject();
+filter.put("filter_name","Rarity");
+filter.put("filter_type","enum");
+JSONArray values = new JSONArray();
+values.put("Common");
+filter.put("filter_value",values);
+filter.put("filter_type","enum");
+
+List<JSONObject> filters = new ArrayList<>();
+filters.add(filter);
+
+MWSolana.getNFTsByUnabridgedParams(collection,page,pageSize,keyWord,desc,salePrice,filters, new GetNFTsListener() {
+    @Override
+    public void onSuccess(GetNFTsRes result) {
+        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
+    }
+
+    @Override
+    public void onFail(long code, String message) {
+        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
+    }
+});
+```

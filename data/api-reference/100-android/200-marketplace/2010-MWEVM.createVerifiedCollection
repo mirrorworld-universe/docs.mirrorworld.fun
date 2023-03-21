@@ -1,0 +1,22 @@
+---
+title: MWEVM.createVerifiedCollection
+chain: EVM
+---
+
+# `createVerifiedCollection`
+Create a new Verified Collection.
+
+
+```java
+Activity activity = this;
+String contractType = "contract type";
+String metaDataUri = "https://my-collection-metadata-uri/metadata.json";
+String confirmation = MirrorConfirmation.Default;
+
+MWEVM.createVerifiedCollection(activity, contractType, metaDataUri, confirmation, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

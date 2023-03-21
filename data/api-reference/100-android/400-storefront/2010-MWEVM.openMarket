@@ -1,0 +1,12 @@
+---
+title: MWEVM.openMarket
+chain: EVM
+---
+
+# `openMarket`
+Open marketplace storefront.
+
+```java
+String marketUrl = "https://your-storefront-url.com";
+MWEVM.openMarket(marketUrl);
+```

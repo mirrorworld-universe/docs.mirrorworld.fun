@@ -1,0 +1,23 @@
+---
+title: MWSolana.getTokensByWallet
+chain: Solana
+---
+
+# `getTokensByWallet`
+Get single transaction with its signature.
+
+```java
+String walletAddress = "wallet address";
+
+MWSolana.getTokensByWallet(walletAddress, new GetWalletTokenListener() {
+    @Override
+    public void onSuccess(GetWalletTokenResponse walletTokenResponse) {
+        //todo
+    }
+
+    @Override
+    public void onFailed(long code, String message) {
+        //todo
+    }
+});
+```

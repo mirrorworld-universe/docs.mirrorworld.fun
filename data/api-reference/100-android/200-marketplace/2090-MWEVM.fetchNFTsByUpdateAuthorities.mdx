@@ -1,0 +1,30 @@
+---
+title: MWEVM.fetchNFTsByUpdateAuthorities
+chain: EVM
+---
+
+
+### `fetchNFTsByUpdateAuthorities`
+
+Fetch NFTs By Update Authorities. Returns a detailed payload of all NFTs whose `updateAuthorities`
+are provided.
+
+```java
+List<string> updateAuthorities = new ArrayList<>();
+creatorAddresses.add("authority address 1");
+creatorAddresses.Add("authority address 2");
+int limit = 99;
+int offset = 1;
+
+MWEVM.fetchNFTsByUpdateAuthorities(updateAuthorities, limit, offset, new FetchNFTsListener() {
+    @Override
+    public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
+        Log.d("MirrorSDK","FetchNFTsByUpdateAuthorities success!nft count is:"+multipleNFTsResponse.nfts.size());
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        Log.d("MirrorSDK","FetchNFTsByUpdateAuthorities faild,code:"+code+" message:"+message);
+    }
+});
+```
