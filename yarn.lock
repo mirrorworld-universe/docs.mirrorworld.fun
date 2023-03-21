@@ -2012,10 +2012,10 @@
     "@typescript-eslint/types" "5.37.0"
     eslint-visitor-keys "^3.3.0"
 
-"@usemirrorworld/web3.js@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@usemirrorworld/web3.js/-/web3.js-2.0.2.tgz#0017eb6e9636a69dd33de344b780165eff5d13a3"
-  integrity sha512-FN6JHhPs6VQ1y2kjXGMfTcXNCjxjnizEmvfPJ55cj6GCgzuEa4hzlHwx6H8pIFCUO40V0ZrFBLKZFsjzOYmyCg==
+"@usemirrorworld/web3.js@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@usemirrorworld/web3.js/-/web3.js-2.0.3.tgz#7b44ba9f7bf5ed50e1e5e325902523991133fcbf"
+  integrity sha512-dn/2RIq6aqnTRL8Bl6yD+BONwLz9nwzJyUuqZwOdFEFSHLwrp1UocamtXWn4o6xYiO9bmldAPl7XPaVRuRUaoQ==
   dependencies:
     "@babel/runtime" "^7.18.9"
     "@types/bson" "^4.2.0"

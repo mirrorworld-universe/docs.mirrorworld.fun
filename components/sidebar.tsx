@@ -155,17 +155,25 @@ function DocLink(props: DocLinkProps) {
                       })
                     }}
                   >
-                    {isApiReference ? (
-                      <chakra.code
-                        className="prose"
-                        layerStyle="inlineCode"
-                        fontSize="0.8rem"
-                        fontWeight="inherit"
-                      >
+                    {_subItem.children.length ? (
+                      <>
                         {_subItem.nav_title}
-                      </chakra.code>
-                    ) : (
-                      _subItem.nav_title
+                      </>
+                    ): (
+                      <>
+                        {isApiReference ? (
+                          <chakra.code
+                            className="prose"
+                            layerStyle="inlineCode"
+                            fontSize="0.8rem"
+                            fontWeight="inherit"
+                          >
+                            {_subItem.nav_title}
+                          </chakra.code>
+                        ) : (
+                          _subItem.nav_title
+                        )}
+                      </>
                     )}
                   </span>
                 </DocLink>

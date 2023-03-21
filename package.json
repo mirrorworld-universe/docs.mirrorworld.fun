@@ -41,7 +41,7 @@
     "@mdx-js/react": "^2.0.0-rc.2",
     "@reach/portal": "^0.17.0",
     "@types/fs-extra": "^9.0.13",
-    "@usemirrorworld/web3.js": "^2.0.2",
+    "@usemirrorworld/web3.js": "^2.0.3",
     "@zag-js/combobox": "^0.1.12",
     "@zag-js/dialog": "^0.1.11",
     "@zag-js/react": "^0.1.13",
