@@ -9,11 +9,11 @@ authentication with Google, Twitter, Discord and Apple. This method opens a UI
 that authenticates the user.
 
 ```ts
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
-  env: ClusterEnvironment.mainnet,
+  chainConfig: Solana("mainnet-beta"),
 })
 
 const { refreshToken, user } = await mirrorworld.login()

@@ -5,6 +5,11 @@
       "error": "OK",
       "message": "Success"
     },
+    "ROUTE_NOT_FOUND": {
+      "code": "100000",
+      "error": "ROUTE_NOT_FOUND",
+      "message": "Not Found %1$s %2$s"
+    },
     "EMAIL_NOT_FOUND": {
       "code": "100001",
       "error": "EMAIL_NOT_FOUND",
@@ -200,8 +205,18 @@
       "error": "INSUFFICIENT_BALANCE_ERROR",
       "message": "Insufficient balance to process transaction. Wallet: %1$s"
     },
-    "REQUEST_ERROR": {
+    "INSUFFICIENT_TOKEN_BALANCE_ERROR": {
       "code": "120005",
+      "error": "INSUFFICIENT_TOKEN_BALANCE_ERROR",
+      "message": "Insufficient token balance to process transaction. Wallet: %1$s Token: %2$s"
+    },
+    "MARKETPLACE_DOES_NOT_EXIST": {
+      "code": "120006",
+      "error": "MARKETPLACE_DOES_NOT_EXIST",
+      "message": "Marketplace does not exist. Marketplace: %1$s"
+    },
+    "REQUEST_ERROR": {
+      "code": "120007",
       "error": "REQUEST_ERROR",
       "message": "Problem with request parameters"
     },
@@ -209,11 +224,6 @@
       "code": "120010",
       "error": "USER_WALLET_ERROR",
       "message": "User can't perform this operation"
-    },
-    "MARKETPLACE_DOES_NOT_EXIST": {
-      "code": "120006",
-      "error": "MARKETPLACE_DOES_NOT_EXIST",
-      "message": "Marketplace does not exist. Marketplace: %1$s"
     },
     "NOT_IMPLEMENTED": {
       "code": "120100",
@@ -240,49 +250,125 @@
       "error": "LISTING_DOES_NOT_EXIST",
       "message": "Listing does not exist."
     },
+    "BUY_SELF_LISTING": {
+      "code": "120105",
+      "error": "BUY_SELF_LISTING",
+      "message": "Cannot buy your own listing."
+    },
     "ACCOUNT_NOT_INITIALIZED": {
-      "code": "120200",
+      "code": "666003",
       "error": "ACCOUNT_NOT_INITIALIZED",
-      "message": "Program Error: Account is not initialized"
+      "message": "the wallet account is not initialized."
     },
     "INVALID_MAX_WITHDRAW": {
-      "code": "120201",
+      "code": "666004",
       "error": "INVALID_MAX_WITHDRAW",
-      "message": "Program Error: Max withdraw is not valid"
+      "message": "invalid max withdraw."
     },
     "INVALID_MIN_WITHDRAW": {
-      "code": "120202",
+      "code": "666005",
       "error": "INVALID_MIN_WITHDRAW",
-      "message": "Program Error: Min withdraw is not valid"
+      "message": "invalid min withdraw."
     },
     "INVALID_TIMESTAMP": {
-      "code": "120203",
+      "code": "666006",
       "error": "INVALID_TIMESTAMP",
-      "message": "Program Error: Timestamp is not valid"
+      "message": "invalid timestamp"
     },
     "RPC_NODE_IS_BEHIND": {
-      "code": "120204",
+      "code": "666008",
       "error": "RPC_NODE_IS_BEHIND",
       "message": "RPC node is behind. Please try again."
     },
     "RPC_CONNECTION_RESET": {
-      "code": "120205",
+      "code": "666011",
       "error": "RPC_CONNECTION_RESET",
       "message": "RPC connection reset. Please try again."
     },
     "BLOCK_HEIGHT_EXCEEDED": {
-      "code": "120206",
+      "code": "666009",
       "error": "BLOCK_HEIGHT_EXCEEDED",
-      "message": "Transactions block height exceeded limit. Please try again"
+      "message": "Block height exceeded."
     },
     "ACCOUNT_DOES_NOT_EXIST": {
       "code": "120207",
       "error": "ACCOUNT_DOES_NOT_EXIST",
       "message": "Account not found"
+    },
+    "TRANSACTION_EXECUTION_TIMEOUT": {
+      "code": "120208",
+      "error": "TRANSACTION_EXECUTION_TIMEOUT",
+      "message": "Transactions block height exceeded limit. Please try again"
+    },
+    "PARAMS_ERROR": {
+      "code": "200001",
+      "error": "PARAMS_ERROR",
+      "message": "Request params validation failed"
+    },
+    "NFT_NOT_EXIST": {
+      "code": "200002",
+      "error": "NFT_NOT_EXIST",
+      "message": "Nft not exist"
+    },
+    "COLLECTION_NOT_EXIST": {
+      "code": "200003",
+      "error": "COLLECTION_NOT_EXIST",
+      "message": "Collection not exist"
+    },
+    "OUT_OF_MAX_PAGE": {
+      "code": "200004",
+      "error": "OUT_OF_MAX_PAGE",
+      "message": "Input page params out of max page"
+    },
+    "PRICE_PARSE_ERROR": {
+      "code": "200005",
+      "error": "PRICE_PARSE_ERROR",
+      "message": "Price parse failed"
+    },
+    "METADATE_SERVER_INTERNAL_ERROR": {
+      "code": "200100",
+      "error": "METADATE_SERVER_INTERNAL_ERROR",
+      "message": "Server internal error"
+    },
+    "AMOUNT_TOO_LOW_TO_COVER_RENT": {
+      "code": "666001",
+      "error": "AMOUNT_TOO_LOW_TO_COVER_RENT",
+      "message": "amount is too low to cover to_account's rent fee."
+    },
+    "INSUFFICIENT_BALANCE": {
+      "code": "666002",
+      "error": "INSUFFICIENT_BALANCE",
+      "message": "the wallet balance is insufficient."
+    },
+    "NO_ENOUGH_BALANCE": {
+      "code": "666007",
+      "error": "NO_ENOUGH_BALANCE",
+      "message": "no enough balance."
+    },
+    "ACCOUNT_NOT_EXIST": {
+      "code": "666010",
+      "error": "ACCOUNT_NOT_EXIST",
+      "message": "Account not found"
+    },
+    "TOKEN_ACCOUNT_NOT_INTIATED": {
+      "code": "666012",
+      "error": "TOKEN_ACCOUNT_NOT_INTIATED",
+      "message": "Token account is not initialized."
+    },
+    "TOKEN_ADDRESS_ALREADY_EXIST": {
+      "code": "666013",
+      "error": "TOKEN_ADDRESS_ALREADY_EXIST",
+      "message": "Token address is already existed."
+    },
+    "AIRDROP_LIMIT_REACHED": {
+      "code": "666014",
+      "error": "AIRDROP_LIMIT_REACHED",
+      "message": "Airdrop limit reached."
     }
   },
   "keys": [
     "OK",
+    "ROUTE_NOT_FOUND",
     "EMAIL_NOT_FOUND",
     "FAILED_SOCIAL_AUTH",
     "INVALID_OAUTH_PROVIDER",
@@ -322,14 +408,16 @@
     "NFT_OWNERSHIP_ERROR",
     "TRANSACTION_EXECUTION_ERROR",
     "INSUFFICIENT_BALANCE_ERROR",
+    "INSUFFICIENT_TOKEN_BALANCE_ERROR",
+    "MARKETPLACE_DOES_NOT_EXIST",
     "REQUEST_ERROR",
     "USER_WALLET_ERROR",
-    "MARKETPLACE_DOES_NOT_EXIST",
     "NOT_IMPLEMENTED",
     "INSUFFICIENT_PERMISSIONS_ON_PROJECT",
     "COLLECTION_NOT_FOUND",
     "LISTING_ALREADY_EXISTS",
     "LISTING_DOES_NOT_EXIST",
+    "BUY_SELF_LISTING",
     "ACCOUNT_NOT_INITIALIZED",
     "INVALID_MAX_WITHDRAW",
     "INVALID_MIN_WITHDRAW",
@@ -337,6 +425,27 @@
     "RPC_NODE_IS_BEHIND",
     "RPC_CONNECTION_RESET",
     "BLOCK_HEIGHT_EXCEEDED",
-    "ACCOUNT_DOES_NOT_EXIST"
+    "ACCOUNT_DOES_NOT_EXIST",
+    "TRANSACTION_EXECUTION_TIMEOUT",
+    "PARAMS_ERROR",
+    "NFT_NOT_EXIST",
+    "COLLECTION_NOT_EXIST",
+    "OUT_OF_MAX_PAGE",
+    "PRICE_PARSE_ERROR",
+    "METADATE_SERVER_INTERNAL_ERROR",
+    "AMOUNT_TOO_LOW_TO_COVER_RENT",
+    "INSUFFICIENT_BALANCE",
+    "ACCOUNT_NOT_INITIALIZED",
+    "INVALID_MAX_WITHDRAW",
+    "INVALID_MIN_WITHDRAW",
+    "INVALID_TIMESTAMP",
+    "NO_ENOUGH_BALANCE",
+    "RPC_NODE_IS_BEHIND",
+    "BLOCK_HEIGHT_EXCEEDED",
+    "ACCOUNT_NOT_EXIST",
+    "RPC_CONNECTION_RESET",
+    "TOKEN_ACCOUNT_NOT_INTIATED",
+    "TOKEN_ADDRESS_ALREADY_EXIST",
+    "AIRDROP_LIMIT_REACHED"
   ]
 }
