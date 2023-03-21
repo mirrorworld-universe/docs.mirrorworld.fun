@@ -4,18 +4,18 @@ Mirror World's Official Android SDK
 
 ## Getting started
 
-Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key.
 
 ## Import SDK
 
 
 > **Notice:**
-> 
+>
 > *The minimum version that SDK requires is Android 4.4.*
 
 1.  Download and uncompress [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/latest).
 2.  Put the `mirrorsdk.aar` under the 'libs' folder. You may create a 'libs' folder if it doesn't exist
-<img src="https://market-assets.mirrorworld.fun/docs/build.png" width="30%" height="30%" />
+    <img src="https://market-assets.mirrorworld.fun/docs/build.png" width="30%" height="30%" />
 
 3.  Add configeration to build.gradle:
 
@@ -26,18 +26,11 @@ dependencies {
 ```
 
 4. Config CustomTab!
-If you want to use CustomTab to show content to users (Recommended), you need to configure the following on your AndroidManifest.xml:
+   If you want to use CustomTab to show content to users (Recommended), you need to configure the following on your AndroidManifest.xml:
 
 **Add permission for internet**
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
-<queries>
-    <intent>
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="https"/>
-    </intent>
-</queries>
 ```
 
 **Register this activity**
@@ -63,13 +56,6 @@ The final file would look like this:
     package="com.mirror.mirrorworld_sdk_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https"/>
-        </intent>
-    </queries>
 
     <application
         android:allowBackup="true"
@@ -137,17 +123,27 @@ And finnaly,your activity config may like this:
 
 
 ## Usage
+### Choose your chain
+Developers must use specified classes to call APIs on specified chains.  
+*For example, if they want to call init API on the BNB chain, they must call MWEVM.initSDK().*
+
+>And this is their correspondence:
+>- Solana:MWSolana
+>- Ethereum:MWEVM
+>- Polygon:MWEVM
+>- BNB Chain:MWEVM
+
+In the following documents, we will use solana chain to show how to use Mirror SDK.
 
 ### Initialization
 We can initialize Mirror World SDK with the following code:
 
 ```java
-Activity activity = this;
+Context context = this;
 String apiKey = "your-api-key";
-boolean useDebugMode = true;
+MirrorEnv env = MirrorEnv.DevNet;
 
-MirrorWorld.setDebug(useDebugMode);
-MirrorWorld.initMirrorWorld(activity,apiKey,MirrorEnv.DevNet);
+MWSolana.initSDK(context,apiKey,env);
 ```
 
 ### Guide user to login
@@ -155,7 +151,7 @@ Users need to log in to use some MirrorSDK features (or APIs).
 If you want them to login for the first time or once again, use the following code:
 
 ```java
-MirrorWorld.startLogin(new LoginListener() {
+MWSolana.startLogin(new LoginListener() {
     @Override
     public void onLoginSuccess() {
         Log.i("Mirror","User login success!");
@@ -172,7 +168,7 @@ But you may not want to let them login every time, so you can use CheckAuthentic
 According the result, you can show them a login button or hide your login button and make them enter your dApp or game directly.
 
 ```java
-MirrorWorld.isLoggedIn(new BoolListener() {
+MWSolana.isLoggedIn(new BoolListener() {
     @Override
     public void onBool(boolean boolValue) {
         Log.i("Mirror","This user's login state is:" + boolean);
@@ -184,26 +180,31 @@ MirrorWorld.isLoggedIn(new BoolListener() {
 Users may want to check their wallet in the app, you can use the `openWallet` API for this:
 
 ```java
-MirrorWorld.openWallet();
+MWSolana.openWallet();
 ```
 
 ### User get NFTs
-Fetch a user's NFTs by calling `GetNFTsOwnedByAddress`
+Fetch a user's NFTs by calling `fetchNFTsByOwnerAddresses`
 
 ```java
 List<String> owners = new ArrayList<>();
 owners.add("owner_wallet_address_1");
 owners.add("owner_wallet_address_2");
+int limit = 1;
+int offset = 1;
 
-MirrorWorld.fetchNFTsByOwnerAddresses(owners, new FetchByOwnerListener() {
+MWSolana.fetchNFTsByOwnerAddresses(owners, limit, offset, new FetchByOwnerListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
-        Log.d("Fetch result","success");
+        int count = multipleNFTsResponse.nfts.size();
+        String countStr = "You have " + count + " NFTs";
+        Log.d("MirrorSDK",countStr);
     }
 
     @Override
     public void onFetchFailed(long code, String message) {
-        Log.d("Fetch result","failed,code:"+code+",message:"+message);
+        String errorString = "Fetch NFTs error, error code:" + code + " message:" + message;
+        Log.d("MirrorSDK",errorString);
     }
 });
 ```
@@ -220,54 +221,45 @@ MirrorWorld.fetchNFTsByOwnerAddresses(owners, new FetchByOwnerListener() {
 You can transfer an NFT to another wallet:
 
 ```java
-String mint_address = "address";
-String to_wallet_address = "target_wallet";
+String mint_address = "nft mint address";
+String to_wallet_address = "target wallet address";
+Activity activity = this;
+String confirmation = MirrorConfirmation.Default;
 
-MirrorWorld.transferNFT(mint_address, to_wallet_address, new TransferNFTListener() {
-@Override
-public void onTransferSuccess(ListingResponse listingResponse) {
-    Log.d("Transfer result","success");
-}
-
-@Override
-public void onTransferFailed(long code, String message) {
-   Log.d("Transfer result","failed");
-}
+MWSolana.transferNFT(activity, mint_address, to_wallet_address, confirmation, new TransferNFTListener() {
+    @Override
+    public void onTransferSuccess(ListingResponse listingResponse) {
+        Log.d("Transfer result","success");
+    }
+    
+    @Override
+    public void onTransferFailed(long code, String message) {
+        String errorString = "Fetch NFTs error, error code:" + code + " message:" + message;
+        Log.d("MirrorSDK",errorString);
+    }
 });
 ```
+
 #### List
 If you want to list an NFT on a marketplace,you may use these code:
 ```java
+Activity activity = this;
+String confirmation = MirrorConfirmation.Default;
 String mint_address = "nft_mint_address";
 Double price = 0.1;
 
-MirrorWorld.listingNFT(mint_address, price, MirrorConfirmation.Finalized, new ListNFTListener() {
-@Override
-public void onListSuccess(ListingResponse listingResponse) {
-    Log.d("ListNFT success","price is:"+listingResponse.price);
-}
-
-@Override
-public void onListFailed(long code, String message) {
-    Log.d("ListNFT faild",message);
-}
+MWSolana.listNFT(activity, mint_address, price, confirmation, new ListNFTListener() {
+    @Override
+    public void onListSuccess(ListingResponse listingResponse) {
+        Log.d("ListNFT success","price is:"+listingResponse.price);
+    }
+    
+    @Override
+    public void onListFailed(long code, String message) {
+        Log.d("ListNFT faild",message);
+    }
 });
 ```
-
-#### Confirmation
-When we call some API of SDK, you are allowed to pass a param named `confirmation` to it.
-You can use all the confirmation we provide in 'Confirmation' enum. Here is an explanation for every kind of them:
-
-- Default
-If you pass this kind of confirmation to an API, it will use a default confirmation to handle this call, most of the time, it equals 'Confirmed'.
-- Finalized:
-If you use this, API will wait for Solana to finalize the transaction before returning the HTTP response to you.
-So the time will be longer more or less.
-- Confirmed:
-It is a fairly quick response to the user and is a reasonable promise that the transaction if processed, will be eventually finalized after a certain number of confirmations by the validator network.
-- Processed:
-The node will query its most recent block. Note that the block may still be skipped by the cluster.
-
 
 ## Full API Documentation
 
