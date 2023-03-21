@@ -1,0 +1,19 @@
+---
+title: searchMarketplaceEvents
+description: Search BNB Chain Marketplace Events
+---
+
+# `searchMarketplaceEvents`
+
+Search Bnb Chain Marketplace Events
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Metadata.searchMarketplaceEvents()
+```

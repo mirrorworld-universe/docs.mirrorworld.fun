@@ -59,12 +59,12 @@ SDK in the steps shown below:
 ### Initialize the Mirror World SDK
 
 ```tsx
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 // Initialize the SDK
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
-  env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+  chainConfig: Solana("devnet"),
 })
 ```
 
@@ -151,11 +151,11 @@ method to the value of the URI for your metadata JSON as shown below:
 
 ```tsx
 async function mintMyNft() {
-  await mirrorworld.mintNFT({
+  await mirrorworld.Solana.Asset.mintNFT({
     name: `YOUR_NFT_NAME`,
     symbol: `NFT_SYMBOL`,
-    metadataUri: "YOUR_NFT_METADATA_URI",
-    collection: "YOUR_COLLECTION_ID",
+    uril: "YOUR_NFT_METADATA_URI",
+    collection_mint: "YOUR_COLLECTION_ID",
   })
 }
 ```

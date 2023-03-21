@@ -1,0 +1,19 @@
+---
+title: buyNFT
+description: Purchase NFT on BNB Chain Marketplace Address
+---
+
+# `buyNFT`
+
+Purchase Nft On Bnb Chain Marketplace Address
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Asset.buyNFT()
+```

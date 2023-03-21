@@ -1,0 +1,19 @@
+---
+title: searchCollectionNFT
+description: Search Ethereum Collection NFT
+---
+
+# `searchCollectionNFT`
+
+Search Ethereum Collection Nft
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Metadata.searchCollectionNFT()
+```

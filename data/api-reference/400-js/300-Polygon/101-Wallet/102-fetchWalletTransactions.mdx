@@ -1,0 +1,19 @@
+---
+title: fetchWalletTransactions
+description: Fetch Polygon Transactions in wallet address
+---
+
+# `fetchWalletTransactions`
+
+Fetch Polygon Transactions In Wallet Address
+
+```js
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+
+await mirrorworld.Polygon.Wallet.fetchWalletTransactions()
+```

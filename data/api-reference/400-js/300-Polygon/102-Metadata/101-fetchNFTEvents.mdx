@@ -1,0 +1,19 @@
+---
+title: fetchNFTEvents
+description: Fetch Polygon NFT Activity
+---
+
+# `fetchNFTEvents`
+
+Fetch Polygon Nft Activity
+
+```js
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+
+await mirrorworld.Polygon.Metadata.fetchNFTEvents()
+```

@@ -1,0 +1,19 @@
+---
+title: buyNFT
+description: Purchase NFT on Solana AuctionHouse Instance
+---
+
+# `buyNFT`
+
+Purchase Nft On Solana Auction House Instance
+
+```js
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet"),
+})
+
+await mirrorworld.Solana.Asset.buyNFT()
+```

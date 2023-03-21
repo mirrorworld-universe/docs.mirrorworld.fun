@@ -1,0 +1,19 @@
+---
+title: fetchNFTEvents
+description: Fetch Ethereum NFT Activity
+---
+
+# `fetchNFTEvents`
+
+Fetch Ethereum Nft Activity
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Metadata.fetchNFTEvents()
+```

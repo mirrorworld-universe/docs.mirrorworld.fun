@@ -1,0 +1,19 @@
+---
+title: fetchTokensInWallet
+description: Get Solana tokens in wallet by wallet address
+---
+
+# `fetchTokensInWallet`
+
+Get Solana Tokens In Wallet By Wallet Address
+
+```js
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet"),
+})
+
+await mirrorworld.Solana.Wallet.fetchTokensInWallet()
+```

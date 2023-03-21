@@ -1,6 +1,6 @@
 import Icon from "@chakra-ui/icon"
 import { Box, HStack, Spacer } from "@chakra-ui/layout"
-import { ChakraProvider, chakra } from "@chakra-ui/react"
+import { ChakraProvider, chakra, Stack, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Badge } from "@chakra-ui/react"
 import { FrameworkSelect } from "components/framework-select"
 import { MdxFooter } from "components/mdx-footer"
 import { Search } from "components/search-dialog"
@@ -8,12 +8,14 @@ import { Sidebar } from "components/sidebar"
 import { SkipNavLink } from "components/skip-nav"
 import { TableOfContents } from "components/toc"
 import { TopNavigation } from "components/top-navigation"
-import React from "react"
+import React, { useMemo } from "react"
 import { HiPencilAlt } from "react-icons/hi"
 import theme from "../theme"
 import { BottomMobileNavigation } from "../components/bottom-mobile-navigation"
 import { ApiReferenceNavigation } from "../components/navigation/api-reference-navigation"
 import { useScrollToTop } from 'hooks/use-scroll-to-top'
+import { useRouter } from 'next/router'
+import NextLink from "next/link"
 
 type DocsLayoutProps = {
   children: React.ReactNode
@@ -34,6 +36,17 @@ export default function ApiReferenceLayout({
   const hideToc = tableOfContent.length < 2
 
   useScrollToTop()
+
+  const router = useRouter()
+  const route = useMemo(() => router.asPath, [router.asPath])
+  const routeSegments = useMemo(() => {
+    const [base, framework, ...segments] = route.split("/").filter(s => s)
+    const _segments = segments.map((s) => ({
+      segment: s,
+      route: `/${base}/${framework}/${segments.slice(0, segments.indexOf(s) + 1).join("/")}`
+    }))
+    return _segments
+  }, [route])
 
   return (
     <ChakraProvider theme={theme}>
@@ -90,8 +103,25 @@ export default function ApiReferenceLayout({
               pt="4"
               pr={{ xl: "16" }}
             >
-              <Box mr={{ xl: "15.5rem" }}>
-                {children}
+              <Stack mr={{ xl: "15.5rem" }}>
+                <Breadcrumb>
+                  {routeSegments.map((segment, i) => 
+                  (
+                    <BreadcrumbItem key={i}>
+                      <NextLink href={segment.route} passHref>
+                        <BreadcrumbLink>
+                          <Badge>
+                            {segment.segment}
+                          </Badge>
+                        </BreadcrumbLink>
+                      </NextLink>
+                    </BreadcrumbItem>
+                  )
+                )}
+                </Breadcrumb>
+                <Box>
+                  {children}
+                </Box>
                 <HStack
                   as="a"
                   display="inline-flex"
@@ -104,7 +134,7 @@ export default function ApiReferenceLayout({
                   <p>Edit this page on GitHub</p>
                 </HStack>
                 <MdxFooter />
-              </Box>
+              </Stack>
             </Box>
 
             <Box

@@ -1,0 +1,19 @@
+---
+title: getCollections
+description: Creates a new verified collection on Solana 
+---
+
+# `getCollections`
+
+Creates A New Verified Collection On Solana
+
+```js
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet"),
+})
+
+await mirrorworld.Solana.Asset.getCollections()
+```

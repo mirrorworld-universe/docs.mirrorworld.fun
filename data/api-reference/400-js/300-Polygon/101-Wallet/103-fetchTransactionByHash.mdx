@@ -1,0 +1,19 @@
+---
+title: fetchTransactionByHash
+description: Fetch Polygon Transaction Data by transaction hash
+---
+
+# `fetchTransactionByHash`
+
+Fetch Polygon Transaction Data By Transaction Hash
+
+```js
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+
+await mirrorworld.Polygon.Wallet.fetchTransactionByHash()
+```

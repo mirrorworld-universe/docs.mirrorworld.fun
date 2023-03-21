@@ -1,0 +1,19 @@
+---
+title: transferBEP20Token
+description: Transfer BEP20 token form your address to another address
+---
+
+# `transferBEP20Token`
+
+Transfer Bep20 Token Form Your Address To Another Address
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Wallet.transferBEP20Token()
+```

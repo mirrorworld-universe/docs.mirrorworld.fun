@@ -1,0 +1,19 @@
+---
+title: searchCollectionNFT
+description: Search Polygon Collection NFT
+---
+
+# `searchCollectionNFT`
+
+Search Polygon Collection Nft
+
+```js
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+
+await mirrorworld.Polygon.Metadata.searchCollectionNFT()
+```

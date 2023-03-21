@@ -94,13 +94,13 @@ Edit your **index.js** file to look like this
 📁 **pages/index.js**
 
 ```tsx
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 import styles from "../styles/Home.module.css"
 
 export default function Home() {
   const mirrorworld = new MirrorWorld({
     apiKey: "YOUR_SECRET_API_KEY", // Replace this with the API Key for your project
-    env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+    chainConfig: Solana("devnet"),
   })
 
   return <div className={styles.container}></div>
@@ -114,7 +114,7 @@ Update your **index.js** file to look like this
 
 ```tsx
 import { useState } from "react"
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 import styles from "../styles/Home.module.css"
 
 const [user, setUser] = useState()

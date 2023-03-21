@@ -1,0 +1,19 @@
+---
+title: createCollection
+description: Creates a new verified collection on Ethereum
+---
+
+# `createCollection`
+
+Creates A New Verified Collection On Ethereum
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Asset.createCollection()
+```

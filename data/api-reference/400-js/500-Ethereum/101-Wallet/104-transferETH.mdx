@@ -1,0 +1,19 @@
+---
+title: transferETH
+description: Transfer ETH from EVM wallet to another EVM wallet
+---
+
+# `transferETH`
+
+Transfer Eth From Evm Wallet To Another Evm Wallet
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Wallet.transferETH()
+```

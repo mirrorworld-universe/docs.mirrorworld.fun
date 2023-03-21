@@ -1,0 +1,19 @@
+---
+title: fetchTransactionsByWallet
+description: Get the Transactions authored by an BNB Chain wallet address
+---
+
+# `fetchTransactionsByWallet`
+
+Get The Transactions Authored By An Bnb Chain Wallet Address
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Wallet.fetchTransactionsByWallet()
+```

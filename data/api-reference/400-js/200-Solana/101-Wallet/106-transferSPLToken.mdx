@@ -1,0 +1,19 @@
+---
+title: transferSPLToken
+description: Transfers SPL Tokens from user's wallet address to another wallet address
+---
+
+# `transferSPLToken`
+
+Transfers Spl Tokens From User S Wallet Address To Another Wallet Address
+
+```js
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet"),
+})
+
+await mirrorworld.Solana.Wallet.transferSPLToken()
+```

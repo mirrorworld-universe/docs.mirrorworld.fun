@@ -1,0 +1,19 @@
+---
+title: searchRecommendedNFTsInCollection
+description: Search Recommended NFT in BNB Chain Collection
+---
+
+# `searchRecommendedNFTsInCollection`
+
+Search Recommended Nft In Bnb Chain Collection
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Metadata.searchRecommendedNFTsInCollection()
+```

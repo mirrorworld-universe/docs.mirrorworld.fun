@@ -1,0 +1,19 @@
+---
+title: getCollections
+description: Queries the Polygon collections for an authenticated user
+---
+
+# `getCollections`
+
+Queries The Polygon Collections For An Authenticated User
+
+```js
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+
+await mirrorworld.Polygon.Asset.getCollections()
+```

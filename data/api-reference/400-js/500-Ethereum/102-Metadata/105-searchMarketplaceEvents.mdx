@@ -1,0 +1,19 @@
+---
+title: searchMarketplaceEvents
+description: Search Ethereum Marketplace Events
+---
+
+# `searchMarketplaceEvents`
+
+Search Ethereum Marketplace Events
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Metadata.searchMarketplaceEvents()
+```

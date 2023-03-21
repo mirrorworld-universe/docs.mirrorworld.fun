@@ -1,0 +1,19 @@
+---
+title: createCollection
+description: Creates a new verified collection on Polygon
+---
+
+# `createCollection`
+
+Creates A New Verified Collection On Polygon
+
+```js
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+
+await mirrorworld.Polygon.Asset.createCollection()
+```
