@@ -1,0 +1,19 @@
+---
+title: EVM.loginWithEmail
+chain: EVM
+---
+
+# `loginWithEmail`
+Logs in a user with email and password.
+
+```java
+String emailAddress = "email@example.com";
+String password = "super-secret-password";
+
+MWEVM.loginWithEmail(emailAddress, password, new MirrorCallback () {
+    @Override
+    public void callback(String loginRawResult) {
+        Log.d("MirrorSDK","login result is" + loginRawResult);
+    }
+});
+```

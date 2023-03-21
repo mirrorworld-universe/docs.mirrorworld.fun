@@ -1,0 +1,20 @@
+---
+title: MWEVM.searchNFTs
+chain: EVM
+---
+
+# `searchNFTs`
+Search NFTs by some words.
+
+```java
+List<String> collections = new ArrayList<>();
+collections.add("collection address 1");
+String searchString = "weapon";
+
+MWEVM.searchNFTs(collections, searchString, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

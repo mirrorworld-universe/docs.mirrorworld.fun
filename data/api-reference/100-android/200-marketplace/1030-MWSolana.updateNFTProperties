@@ -1,0 +1,30 @@
+---
+title: MWSolana.updateNFTProperties
+chain: Solana
+---
+
+# `updateNFTProperties`
+Update properties of a NFT.
+
+```java
+Activity activity = this;
+String mintAddress = "NFT mint address";
+String name = "new name";
+String symbol = "new symbol";
+String updateAuthority = "updateAuthority";
+String NFTJsonUrl = "https://my_nft_detail.json";
+int seller_fee_basis_points = 100;
+
+MWSolana.updateNFTProperties(activity, mintAddress, name, symbol, updateAuthority, NFTJsonUrl, seller_fee_basis_points, new MintNFTListener() {
+    @Override
+    public void onMintSuccess(MintResponse userResponse) {
+        Log.d("MirrorSDK","Update NFT result:"+MirrorGsonUtils.getInstance().toJson(userResponse));
+        holder.mResultView.setText("Update NFT result is:"+MirrorGsonUtils.getInstance().toJson(userResponse));
+    }
+
+    @Override
+    public void onMintFailed(long code, String message) {
+        Log.d("MirrorSDK",MirrorStringUtils.GetFailedNotice("CHECK_STATUS_OFMINTING",code,message));
+    }
+});
+```

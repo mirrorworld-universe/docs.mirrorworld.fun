@@ -1,0 +1,17 @@
+---
+title: MWSolana.logout
+chain: Solana
+---
+
+# `logout`
+
+Logout current account.
+
+```java
+MWSolana.logout(new BoolListener() {
+    @Override
+    public void onBool(boolean boolValue) {
+        Log.d("Logout result:"+ boolValue);
+    }
+});
+```

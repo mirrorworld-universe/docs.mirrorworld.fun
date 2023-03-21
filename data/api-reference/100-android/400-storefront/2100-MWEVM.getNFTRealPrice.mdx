@@ -1,0 +1,24 @@
+---
+title: MWEVM.getNFTRealPrice
+chain: EVM
+---
+
+# `getNFTRealPrice`
+Get NFT real price which is calculated by fee rate. The param fee means how much server will deducted.
+
+```java
+String price = "1.2";
+int fee = 4250;
+
+MWEVM.getNFTRealPrice(price,fee, new GetNFTRealPriceListener() {
+    @Override
+    public void onSuccess(GetNFTRealPriceRes result) {
+        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
+    }
+
+    @Override
+    public void onFail(long code, String message) {
+        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
+    }
+});
+```

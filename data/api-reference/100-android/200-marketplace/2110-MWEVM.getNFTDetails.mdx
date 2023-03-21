@@ -1,0 +1,20 @@
+---
+title: MWEVM.getNFTDetails
+chain: EVM
+---
+
+### `getNFTDetails`
+
+Fetches an NFT's details by mint address.
+
+```java
+String tokenAddress = "mint_address";
+String tokenID = "token ID";
+
+MWEVM.getNFTDetails(tokenAddress, tokenID, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```
