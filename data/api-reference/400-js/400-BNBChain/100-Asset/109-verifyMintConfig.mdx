@@ -1,0 +1,19 @@
+---
+title: verifyMintConfig
+description: Verifies the mint configuration of a BNB Chain NFT
+---
+
+# `verifyMintConfig`
+
+Verifies The Mint Configuration Of A Bnb Chain Nft
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Asset.verifyMintConfig()
+```

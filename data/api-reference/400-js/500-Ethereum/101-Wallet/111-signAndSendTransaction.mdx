@@ -1,0 +1,19 @@
+---
+title: signAndSendTransaction
+description: Signs a transaction and sends it to the network
+---
+
+# `signAndSendTransaction`
+
+Signs A Transaction And Sends It To The Network
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Wallet.signAndSendTransaction()
+```

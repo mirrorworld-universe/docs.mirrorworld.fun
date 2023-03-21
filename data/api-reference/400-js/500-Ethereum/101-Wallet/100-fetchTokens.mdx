@@ -1,0 +1,19 @@
+---
+title: fetchTokens
+description: Fetch authenticated user's Ethereum tokens
+---
+
+# `fetchTokens`
+
+Fetch Authenticated User S Ethereum Tokens
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Wallet.fetchTokens()
+```

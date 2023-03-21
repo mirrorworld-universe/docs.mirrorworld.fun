@@ -1,0 +1,19 @@
+---
+title: searchCollectionNFT
+description: Search Solana Collection NFT
+---
+
+# `searchCollectionNFT`
+
+Search Solana Collection Nft
+
+```js
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet"),
+})
+
+await mirrorworld.Solana.Metadata.searchCollectionNFT()
+```

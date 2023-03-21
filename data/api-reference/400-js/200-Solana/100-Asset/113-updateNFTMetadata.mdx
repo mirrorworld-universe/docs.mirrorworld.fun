@@ -1,0 +1,19 @@
+---
+title: updateNFTMetadata
+description: Updates the metadata account of an NFT on Solana
+---
+
+# `updateNFTMetadata`
+
+Updates The Metadata Account Of An Nft On Solana
+
+```js
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet"),
+})
+
+await mirrorworld.Solana.Asset.updateNFTMetadata()
+```

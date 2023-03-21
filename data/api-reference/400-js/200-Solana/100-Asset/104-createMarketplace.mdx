@@ -1,0 +1,19 @@
+---
+title: createMarketplace
+description: Create a new NFT Marketplace on Solana
+---
+
+# `createMarketplace`
+
+Create A New Nft Marketplace On Solana
+
+```js
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet"),
+})
+
+await mirrorworld.Solana.Asset.createMarketplace()
+```

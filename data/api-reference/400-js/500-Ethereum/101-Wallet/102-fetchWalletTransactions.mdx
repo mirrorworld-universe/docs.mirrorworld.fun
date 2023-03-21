@@ -1,0 +1,19 @@
+---
+title: fetchWalletTransactions
+description: Fetch Ethereum Transactions in wallet address
+---
+
+# `fetchWalletTransactions`
+
+Fetch Ethereum Transactions In Wallet Address
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Wallet.fetchWalletTransactions()
+```

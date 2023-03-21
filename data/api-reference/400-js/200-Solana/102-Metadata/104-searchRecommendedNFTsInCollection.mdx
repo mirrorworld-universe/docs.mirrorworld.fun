@@ -1,0 +1,19 @@
+---
+title: searchRecommendedNFTsInCollection
+description: Search Recommended NFT in Solana Collection
+---
+
+# `searchRecommendedNFTsInCollection`
+
+Search Recommended Nft In Solana Collection
+
+```js
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet"),
+})
+
+await mirrorworld.Solana.Metadata.searchRecommendedNFTsInCollection()
+```

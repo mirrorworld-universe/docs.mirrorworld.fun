@@ -1,0 +1,19 @@
+---
+title: searchNFTs
+description: Search EVM NFTs by their contract_addresses and token_ids
+---
+
+# `searchNFTs`
+
+Search Evm Nf Ts By Their Contract Addresses And Token Ids
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Asset.searchNFTs()
+```

@@ -1,0 +1,19 @@
+---
+title: searchNFTsByOwnerAddresses
+description: Searches BNB Chain NFTs by Owner Addresses
+---
+
+# `searchNFTsByOwnerAddresses`
+
+Searches Bnb Chain Nf Ts By Owner Addresses
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Asset.searchNFTsByOwnerAddresses()
+```

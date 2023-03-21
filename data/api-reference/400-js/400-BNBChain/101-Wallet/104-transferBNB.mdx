@@ -1,0 +1,19 @@
+---
+title: transferBNB
+description: Transfer BNB from EVM wallet to another EVM wallet
+---
+
+# `transferBNB`
+
+Transfer Bnb From Evm Wallet To Another Evm Wallet
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Wallet.transferBNB()
+```

@@ -1,0 +1,19 @@
+---
+title: signTypedData
+description: Performs off-chain signing of a an arbitrary typed message
+---
+
+# `signTypedData`
+
+Performs Off Chain Signing Of A An Arbitrary Typed Message
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Wallet.signTypedData()
+```

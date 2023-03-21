@@ -1,0 +1,19 @@
+---
+title: getCollections
+description: Queries the Ethereum collections for an authenticated user
+---
+
+# `getCollections`
+
+Queries The Ethereum Collections For An Authenticated User
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Asset.getCollections()
+```

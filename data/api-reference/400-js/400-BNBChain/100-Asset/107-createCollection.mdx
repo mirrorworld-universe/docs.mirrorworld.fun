@@ -1,0 +1,19 @@
+---
+title: createCollection
+description: Creates a new verified collection on BNB Chain
+---
+
+# `createCollection`
+
+Creates A New Verified Collection On Bnb Chain
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Asset.createCollection()
+```

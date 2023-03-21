@@ -1,0 +1,19 @@
+---
+title: searchNFTsByOwnerAddresses
+description: Searches Polygon NFTs by Owner Addresses
+---
+
+# `searchNFTsByOwnerAddresses`
+
+Searches Polygon Nf Ts By Owner Addresses
+
+```js
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+
+await mirrorworld.Polygon.Asset.searchNFTsByOwnerAddresses()
+```

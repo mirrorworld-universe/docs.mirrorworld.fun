@@ -67,13 +67,13 @@ Edit your **index.tsx** file to look like this
 📁 **pages/index.tsx**
 
 ```tsx
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 import styles from "../styles/Home.module.css"
 
 export default function Home() {
   const mirrorworld = new MirrorWorld({
     apiKey: "YOUR_SECRET_API_KEY", // Replace this with the API Key for your project
-    env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+    chainConfig: Solana("mainnet-beta"),
   })
 
   return <div className={styles.container}></div>
@@ -87,12 +87,17 @@ Update your **index.tsx** file to look like this
 
 ```tsx
 import { useState } from "react"
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 import styles from "../styles/Home.module.css"
 
-const [user, setUser] = useState()
-
 export default function Home() {
+  const [user, setUser] = useState()
+
+  const mirrorworld = new MirrorWorld({
+    apiKey: "YOUR_SECRET_API_KEY", // Replace this with the API Key for your project
+    chainConfig: Solana("mainnet-beta"),
+  })
+
   async function login() {
     const { user } = await mirrorworld.login()
     setUser(user)

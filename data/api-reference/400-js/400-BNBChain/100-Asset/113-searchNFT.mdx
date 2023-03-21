@@ -1,0 +1,19 @@
+---
+title: searchNFT
+description: Fetch BNB Chain NFT Info
+---
+
+# `searchNFT`
+
+Fetch Bnb Chain Nft Info
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Asset.searchNFT()
+```

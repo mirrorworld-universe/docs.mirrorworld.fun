@@ -1,0 +1,22 @@
+---
+title: registerCollection
+description:
+  Register an NFT collection info to Metadata service. After successful
+  registration, the Metadata Service will index the collection data.
+---
+
+# `registerCollection`
+
+Register An Nft Collection Info To Metadata Service After Successful
+Registration The Metadata Service Will Index The Collection Data
+
+```js
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+await mirrorworld.BNBChain.Metadata.registerCollection()
+```

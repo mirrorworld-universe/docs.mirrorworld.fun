@@ -1,0 +1,19 @@
+---
+title: queryMarketplaces
+description: Search NFT Marketplace on Ethereum
+---
+
+# `queryMarketplaces`
+
+Search Nft Marketplace On Ethereum
+
+```js
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+await mirrorworld.Ethereum.Asset.queryMarketplaces()
+```
