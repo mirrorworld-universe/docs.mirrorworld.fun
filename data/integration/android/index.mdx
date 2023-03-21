@@ -21,7 +21,7 @@ the next one.
 > **Notice:** > _The minimum version that SDK requires is Android 4.4._
 
 1.  Download and uncompress
-    [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases/tag/v1.1.0).
+    [Mirror World Android SDK](https://github.com/mirrorworld-universe/mirrorworld-sdk-android/releases).
 2.  Put the `mirrorsdk.aar` under the `libs` folder. You may create a `libs`
     folder if it doesn't exist under your `Project root > app` directory.
 
@@ -239,18 +239,28 @@ The final file will look something like this:
 ---
 
 ## 3. Usage
+### Choose your chain
+Developers must use specified classes to call APIs on specified chains.  
+*For example, if they want to call init API on the BNB chain, they must call MWEVM.initSDK().*
+
+>And this is their correspondence:
+>- Solana:MWSolana
+>- Ethereum:MWEVM
+>- Polygon:MWEVM
+>- BNB Chain:MWEVM
+
+In the following documents, we will use Solana chain to show how to use Mirror SDK.
 
 ### Initialization
 
 We can initialize Mirror World SDK with the following code:
 
 ```java InitializeSDK.java
-Activity activity = this;
+Context context = this;
 String apiKey = "your-api-key";
-boolean useDebugMode = true;
+MirrorEnv env = MirrorEnv.DevNet;
 
-MirrorWorld.setDebug(useDebugMode);
-MirrorWorld.initMirrorWorld(activity,apiKey,MirrorEnv.DevNet);
+MWSolana.initSDK(context,apiKey,env);
 ```
 
 ---
@@ -261,7 +271,7 @@ Users need to log in to use some MirrorSDK features (or APIs). If you want them
 to login for the first time or once again, use the following code:
 
 ```java startLogin.java
-MirrorWorld.startLogin(new LoginListener() {
+MWSolana.startLogin(new LoginListener() {
   @Override
     public void onLoginSuccess() {
     Log.i("Mirror","User login success!");
