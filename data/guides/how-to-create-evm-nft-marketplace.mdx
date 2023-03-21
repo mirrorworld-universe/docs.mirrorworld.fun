@@ -148,7 +148,7 @@ const payload = {
   seller_fee_basis_points: 100,
 }
 
-const marketplace = await mirrorworld.createEVMMarketplace(payload)
+const marketplace = await mirrorworld.Polygon.Asset.createMarketplace(payload)
 console.log("my new marketplace", marketplace)
 ```
 
@@ -218,7 +218,7 @@ const payload = const payload = {
   marketplace_address: 'YOUR_MARKETPLACE_ADDRESS',
 }
 
-const listing = await mirrorworld.listEVMNFT(payload);
+const listing = await mirrorworld.Polygon.Asset..listNFT(payload);
 console.log("token listing", listing)
 ```
 

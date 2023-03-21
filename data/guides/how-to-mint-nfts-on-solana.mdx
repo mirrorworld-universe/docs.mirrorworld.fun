@@ -81,7 +81,7 @@ which will help us validate requests.
 
 ```jsx
 import { useState } from "react"
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 import "./App.css"
 
@@ -92,7 +92,7 @@ function App() {
 
   const mirrorworld = new MirrorWorld({
     apiKey: "YOUR_SECRET_API_KEY", //Replace this with your own API Key
-    env: ClusterEnvironment.testnet,
+    chainConfig: Solana("devnet"),
     autoLoginCredentials: refresh ?? undefined, // we need this to validate our requests
   })
   const [user, setUser] = useState()
@@ -140,7 +140,7 @@ NFT and add a button that invokes that function:
 ```jsx
 ...
 async function mintMyNft() {
-    await mirrorworld.mintNFT({
+    await mirrorworld.Solana.Asset.mintNFT({
       name: `YOUR_NFT_NAME`,
       symbol: `NFT_SYMBOL`,
       metadataUri: "YOUR_NFT_METADATAURI",
