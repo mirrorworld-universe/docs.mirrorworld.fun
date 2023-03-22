@@ -71,12 +71,14 @@ function DocLink(props: DocLinkProps) {
   }
 
   useEffect(() => {
-    const depthDiff = rawHrefPathSegments.length - routePathSegments.length
-    const basePath = routePathSegments.slice(0, depthDiff).join("/")
-    const isActive = (depthDiff) === 1 && rawHrefPathSegments.join("/").startsWith(basePath) && rawHrefPathSegments.join("/").startsWith(asPath) && routePathSegments.join("/").startsWith(basePath)
+    const asPathSegments = sanitize(asPath)
+    const targetDepthDiff = rawHrefPathSegments.length - routePathSegments.length
+    const basePath = routePathSegments.slice(0, targetDepthDiff).join("/")
+    const baseDepthDiff = asPathSegments.slice(0, targetDepthDiff).join("/")
+    const isActive = (targetDepthDiff) === 1 && rawHrefPathSegments.join("/").startsWith(basePath) && rawHrefPathSegments.join("/").startsWith(asPath) && routePathSegments.join("/").startsWith(basePath)
     console.log("isActive", {
       basePath,
-      depthDiff,
+      depthDiff: targetDepthDiff,
       asPath,
       href,
       "rawHrefPathSegments.length": rawHrefPathSegments.length,
