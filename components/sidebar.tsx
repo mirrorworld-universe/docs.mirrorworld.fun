@@ -34,6 +34,22 @@ function DocLink(props: DocLinkProps) {
     [props.href, asPath],
   )
 
+  const rawHrefPathSegments = useMemo(() => sanitize(href.toString()), [href])
+  const routePathSegments = useMemo(() => sanitize(asPath.toString()), [asPath])
+  const rawHrefPath = useMemo(() => href.toString(), [href])
+  useEffect(() => {
+    const params = {
+      "route": asPath,
+      "routeSegments": routePathSegments,
+      "rawHrefPath": rawHrefPath,
+      "rawHrefPathSegments": rawHrefPathSegments,
+    }
+    // console.log("params", params)
+
+    // const isParentDepth = rawHrefPathSegments.length - routePathSegments.length === 1
+    
+  }, [asPath, rawHrefPath, rawHrefPathSegments])
+
   const { isOpen, onToggle, onOpen, onClose } = useDisclosure()
 
   const linkRef = useRef<HTMLElement>()
@@ -55,26 +71,34 @@ function DocLink(props: DocLinkProps) {
   }
 
   useEffect(() => {
-    const isActive =
-      router.asPath.split("/")[isApiReference ? 2 : 1] ===
-      href.toString().split("/")[isApiReference ? 2 : 1]
+    const depthDiff = rawHrefPathSegments.length - routePathSegments.length
+    const basePath = routePathSegments.slice(0, depthDiff).join("/")
+    const isActive = (depthDiff) === 1 && rawHrefPathSegments.join("/").startsWith(basePath) && rawHrefPathSegments.join("/").startsWith(asPath) && routePathSegments.join("/").startsWith(basePath)
+    console.log("isActive", {
+      basePath,
+      depthDiff,
+      asPath,
+      href,
+      "rawHrefPathSegments.length": rawHrefPathSegments.length,
+      "routePathSegments.length": routePathSegments.length
+    })
 
     if (!isActive) onClose()
     else {
       onOpen()
       if (linkRef.current) {
-        // linkRef.current.scrollIntoView({
-        //   behavior: "smooth",
-        //   block: "center",
-        //   inline: "center",
-        // })
-        linkRef.current.scrollTo({
-          top: 350,
-          left: 0,
+        linkRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
         })
+        // linkRef.current.scrollTo({
+        //   top: 350,
+        //   left: 0,
+        // })
       }
     }
-  }, [router.asPath])
+  }, [rawHrefPathSegments, routePathSegments, asPath, href])
 
   return (
     // @ts-ignore
