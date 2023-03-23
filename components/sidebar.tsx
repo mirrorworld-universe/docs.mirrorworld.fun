@@ -76,14 +76,16 @@ function DocLink(props: DocLinkProps) {
     const basePath = routePathSegments.slice(0, targetDepthDiff).join("/")
     const baseDepthDiff = asPathSegments.slice(0, targetDepthDiff).join("/")
     const isActive = (targetDepthDiff) === 1 && rawHrefPathSegments.join("/").startsWith(basePath) && rawHrefPathSegments.join("/").startsWith(asPath) && routePathSegments.join("/").startsWith(basePath)
-    console.log("isActive", {
-      basePath,
-      depthDiff: targetDepthDiff,
-      asPath,
-      href,
-      "rawHrefPathSegments.length": rawHrefPathSegments.length,
-      "routePathSegments.length": routePathSegments.length
-    })
+    if (asPath.includes("/api-reference/js/")) {
+      console.log("isActive", {
+        basePath,
+        depthDiff: targetDepthDiff,
+        asPath,
+        href,
+        "rawHrefPathSegments.length": rawHrefPathSegments.length,
+        "routePathSegments.length": routePathSegments.length
+      })
+    }
 
     if (!isActive) onClose()
     else {
