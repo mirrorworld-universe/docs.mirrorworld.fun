@@ -17,6 +17,7 @@ const routeMapping = {
   "/rust/rust-installation": "/integration/rust",
   "/rust/rust-api": "/api-reference/rust",
   "/rust/rust-authentication": "/api-reference/rust/authentication",
+  "/api-reference/js/authetication": "/api-reference/js/Authentication",
   "/api-reference/js/marketplace": "/api-reference/js/configuration",
   "/api-reference/js/wallet": "/api-reference/js/configuration",
 }

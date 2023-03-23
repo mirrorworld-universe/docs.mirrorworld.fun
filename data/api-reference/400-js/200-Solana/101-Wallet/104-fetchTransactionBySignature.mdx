@@ -1,6 +1,6 @@
 ---
 title: fetchTransactionBySignature
-description: Get raw transaction data from signature 
+description: Get raw transaction data from signature
 ---
 
 # `fetchTransactionBySignature`
@@ -12,7 +12,7 @@ import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
+  chainConfig: Solana("mainnet-beta"),
 })
 
 await mirrorworld.Solana.Wallet.fetchTransactionBySignature()

@@ -1,11 +1,12 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Circle, Code, Flex, HStack, Stack } from "@chakra-ui/layout"
+import { Circle, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { Collapse, IconButton, useDisclosure } from "@chakra-ui/react"
+import { Collapse, useDisclosure } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
-import React, { useCallback, useEffect, useMemo, useRef } from "react"
+import React, { useEffect, useMemo, useRef } from "react"
 import { RxCaretDown, RxCaretRight } from "react-icons/rx"
+import debounce from "lodash.debounce"
 
 import {
   apiReferenceSidebar,
@@ -31,6 +32,29 @@ const pathe = (item: TreeNode) =>
   item.internal_path ||
   item.url_path
 
+/**
+     * Recursively determines if the current item should be collapsed or not.
+     * @param item 
+     * @param currentLocation 
+     * @returns 
+     */
+function shouldCollapse(item: TreeNode, currentLocation: string): boolean {
+  function hasMatchingDecendant(routes: TreeNode[]): boolean {
+    for (const route of routes) {
+      const path = pathe(route)
+      if (path === currentLocation) {
+        return true;
+      }
+      if (route.children.length > 0 && hasMatchingDecendant(route.children)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  return hasMatchingDecendant(item.children);
+}
 
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
@@ -39,6 +63,7 @@ function DocLink(props: DocLinkProps) {
     () => href.toString() === asPath,
     [props.href, asPath],
   )
+
 
   const rawHrefPathSegments = useMemo(() => sanitize(href.toString()), [href])
   const routePathSegments = useMemo(() => sanitize(asPath.toString()), [asPath])
@@ -50,15 +75,13 @@ function DocLink(props: DocLinkProps) {
       "rawHrefPath": rawHrefPath,
       "rawHrefPathSegments": rawHrefPathSegments,
     }
-    // console.log("params", params)
-
-    // const isParentDepth = rawHrefPathSegments.length - routePathSegments.length === 1
-    
   }, [asPath, rawHrefPath, rawHrefPathSegments])
 
-  const { isOpen, onToggle, onOpen, onClose } = useDisclosure()
+  const { isOpen, onToggle, onOpen, onClose } = useDisclosure({
+    defaultIsOpen: shouldCollapse(item, asPath),
+  })
 
-  const linkRef = useRef<HTMLElement>()
+  const linkRef = useRef<HTMLElement>(null)
 
   const router = useRouter()
   const isApiReference = useMemo(() => {
@@ -77,44 +100,32 @@ function DocLink(props: DocLinkProps) {
   }
 
   useEffect(() => {
-    /**
-     * Recursively determines if the current item should be collapsed or not.
-     * @param item 
-     * @param currentLocation 
-     * @returns 
-     */
-    function shouldCollapse(item: TreeNode, currentLocation: string): boolean {
-      function hasMatchingDecendant(routes: TreeNode[]): boolean {
-        for (const route of routes) {
-          const path = pathe(route)
-          if (path === currentLocation) {
-            return true;
-          }
-          if (route.children.length > 0 && hasMatchingDecendant(route.children)) {
-            return true;
-          }
-        }
-    
-        return false;
-      }
-    
-      return hasMatchingDecendant(item.children);
-    }
     const isActive = shouldCollapse(item, asPath)
   
 
     if (!isActive) onClose()
     else {
       onOpen()
-      if (linkRef.current) {
-        linkRef.current.scrollTo({
-          top: 350,
-          left: 0,
-          behavior: "smooth",
-        })
-      }
     }
   }, [rawHrefPathSegments, routePathSegments, asPath, href, item, rawHrefPath])
+
+  function handleCollapseAnimationEnded() {
+    console.log("animation ended")
+    setTimeout(() => {
+      if (isOpen) {
+        if (linkRef.current) {
+          if (asPath === rawHrefPath) {
+            linkRef.current.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            })
+          }
+        }
+      }
+    }, 20);
+  }
+
+  const debouncedHandleCollapseAnimationEnded = debounce(handleCollapseAnimationEnded, 20)
 
   return (
     // @ts-ignore
@@ -166,7 +177,7 @@ function DocLink(props: DocLinkProps) {
         ) : null}
       </HStack>
       {item.children.length ? (
-        <Collapse in={isOpen}>
+        <Collapse in={isOpen} onAnimationEnd={debouncedHandleCollapseAnimationEnded}>
           <chakra.div
             ml={2}
             pl={2}

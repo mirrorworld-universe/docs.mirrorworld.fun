@@ -1,6 +1,7 @@
 ---
 title: queryAssetTransactionStatus
-description: Queries the transaction status of a Solana asset by the transaction signature
+description:
+  Queries the transaction status of a Solana asset by the transaction signature
 ---
 
 # `queryAssetTransactionStatus`
@@ -12,7 +13,7 @@ import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
+  chainConfig: Solana("mainnet-beta"),
 })
 
 await mirrorworld.Solana.Asset.queryAssetTransactionStatus()

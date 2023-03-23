@@ -74,7 +74,7 @@ export default function ApiReferenceLayout({
               top="8rem"
               left="max(0px, calc(50% - 45rem))"
               right="auto"
-              width="21rem"
+              width="22rem"
               pb="10"
               px="8"
               overflowY="auto"

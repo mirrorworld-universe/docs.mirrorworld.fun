@@ -1,18 +1,21 @@
 ---
 title: queryAssetMintsStatus
-description: Queries the mint status of a set of mint addresses. This is useful when performing batch minting for a large array of mint addresses
+description:
+  Queries the mint status of a set of mint addresses. This is useful when
+  performing batch minting for a large array of mint addresses
 ---
 
 # `queryAssetMintsStatus`
 
-Queries The Mint Status Of A Set Of Mint Addresses This Is Useful When Performing Batch Minting For A Large Array Of Mint Addresses
+Queries The Mint Status Of A Set Of Mint Addresses This Is Useful When
+Performing Batch Minting For A Large Array Of Mint Addresses
 
 ```js
 import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
+  chainConfig: Solana("mainnet-beta"),
 })
 
 await mirrorworld.Solana.Asset.queryAssetMintsStatus()

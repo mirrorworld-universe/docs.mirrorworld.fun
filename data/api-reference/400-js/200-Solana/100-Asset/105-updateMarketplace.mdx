@@ -1,6 +1,6 @@
 ---
 title: updateMarketplace
-description: Updates an existing NFT Marketplace on Solana 
+description: Updates an existing NFT Marketplace on Solana
 ---
 
 # `updateMarketplace`
@@ -12,7 +12,7 @@ import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
+  chainConfig: Solana("mainnet-beta"),
 })
 
 await mirrorworld.Solana.Asset.updateMarketplace()
