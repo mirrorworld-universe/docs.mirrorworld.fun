@@ -9,7 +9,7 @@ import {
   useEffect,
   useRef,
 } from "react"
-import { ClusterEnvironment, IUser, MirrorWorld } from "@usemirrorworld/web3.js"
+import { Solana, IUser, MirrorWorld } from "@usemirrorworld/web3.js"
 
 export interface IMirrorWorldContext {
   user?: IUser
@@ -66,7 +66,7 @@ export const MirrorWorldProvider = ({ children }: { children: ReactNode }) => {
     const refreshToken = localStorage.getItem(storageKey)
     const instance = new MirrorWorld({
       apiKey: "mw_YOUR_SUPER_SECRET_API_KEY",
-      env: ClusterEnvironment.mainnet,
+      chainConfig: Solana("mainnet-beta"),
       ...(refreshToken && { autoLoginCredentials: refreshToken }),
     })
 

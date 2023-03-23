@@ -110,7 +110,7 @@ function App() {
       setMirrorWorld(
         new MirrorWorld({
           apiKey: "YOUR_SECRET_API_KEY",
-          env: ClusterEnvironment.testnet,
+          chainConfig: Solana("devnet"),
           autoLoginCredentials: refresh,
         }),
       )
