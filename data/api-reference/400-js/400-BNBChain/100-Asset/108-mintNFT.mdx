@@ -5,15 +5,15 @@ description: Mints a new NFT to a collection on BNB Chain
 
 # `mintNFT`
 
-Mints A New NFT To A Collection On Bnb Chain
+Mints A New NFT To A Collection On BNB Chain
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type MintEVMNFTToCollectionV2Payload } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: MintEVMNFTToCollectionV2Payload = {
+  collection_address: "0xB11c14E2F322deC851795224A171Bcf03Dc8573D",
+  token_id: 4,
+}
 
-await mirrorworld.BNBChain.Asset.mintNFT()
+await mirrorworld.BNBChain.Asset.mintNFT(payload)
 ```

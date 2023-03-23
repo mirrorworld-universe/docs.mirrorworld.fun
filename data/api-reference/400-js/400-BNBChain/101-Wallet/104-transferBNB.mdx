@@ -8,12 +8,15 @@ description: Transfer BNB from EVM wallet to another EVM wallet
 Transfer Bnb From Evm Wallet To Another Evm Wallet
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type EVMTransferTokensPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: EVMTransferTokensPayloadV2 = {
+  amount: 1,
+  gasLimit: 100000,
+  gasPrice: 1.5,
+  to: "0x80Cd58A56643c958dFC29b85329f9FEda93Bdb56",
+  nonce: 696969,
+}
 
-await mirrorworld.BNBChain.Wallet.transferBNB()
+await mirrorworld.BNBChain.Wallet.transferBNB(payload)
 ```

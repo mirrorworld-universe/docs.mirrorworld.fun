@@ -8,12 +8,20 @@ description: Search Polygon NFTs by their contract_addresses and token_ids
 Search Polygon NFTs By Their Contract Addresses And Token Ids
 
 ```js
-import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+import { type SearchEVMNFTsPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Polygon("mumbai-mainnet"),
-})
+const payload: SearchEVMNFTsPayloadV2 = {
+  tokens: [
+    {
+      contract_address: "0x97FE0667736E897C1f60633b942278DbDc27A4fa",
+      token_id: "5",
+    },
+    {
+      contract_address: "0xb6F562f04E8B0BB7683a63d07D561387eBE002D0",
+      token_id: "1",
+    },
+  ],
+}
 
-await mirrorworld.Polygon.Asset.searchNFTs()
+await mirrorworld.Polygon.Asset.searchNFTs(payload)
 ```

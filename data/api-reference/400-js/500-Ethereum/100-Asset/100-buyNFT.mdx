@@ -8,12 +8,14 @@ description: Purchase NFT on Ethereum Marketplace Address
 Purchase NFT On Ethereum Marketplace Address
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type IBaseEVMAuctionPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: IBaseEVMAuctionPayloadV2 = {
+  marketplace_address: "0x69237C46C56823540e5B7D4794F77Ef3357010d5",
+  collection_address: "0xe26487A89C3C1c05DC308134eA02eEd5cc27D7b6",
+  token_id: 2,
+  price: 3,
+}
 
-await mirrorworld.Ethereum.Asset.buyNFT()
+await mirrorworld.Ethereum.Asset.buyNFT(payload)
 ```

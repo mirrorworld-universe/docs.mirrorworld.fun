@@ -5,15 +5,17 @@ description: Purchase NFT on BNB Chain Marketplace Address
 
 # `listNFT`
 
-Purchase NFT On Bnb Chain Marketplace Address
+Purchase NFT On BNB Chain Marketplace Address
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type IBaseEVMAuctionPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: IBaseEVMAuctionPayloadV2 = {
+  marketplace_address: "0x69237C46C56823540e5B7D4794F77Ef3357010d5",
+  collection_address: "0xe26487A89C3C1c05DC308134eA02eEd5cc27D7b6",
+  token_id: 2,
+  price: 3,
+}
 
-await mirrorworld.BNBChain.Asset.listNFT()
+await mirrorworld.BNBChain.Asset.listNFT(payload)
 ```

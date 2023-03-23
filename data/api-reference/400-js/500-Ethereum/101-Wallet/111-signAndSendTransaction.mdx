@@ -8,12 +8,16 @@ description: Signs a transaction and sends it to the network
 Signs A Transaction And Sends It To The Network
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type EVMSignAndSendTransactionPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: EVMSignAndSendTransactionPayloadV2 = {
+  nonce: 15,
+  gasPrice: "0x09284e242",
+  gasLimit: "0x31929",
+  to: "0xAeAd331622371228A0388E8D4909aC77681AF1b8",
+  value: "0x02",
+  data: "0x7f7465737432000000000000000000000000000000000000000000000000000000600057",
+}
 
-await mirrorworld.Ethereum.Wallet.signAndSendTransaction()
+await mirrorworld.Ethereum.Wallet.signAndSendTransaction(payload)
 ```

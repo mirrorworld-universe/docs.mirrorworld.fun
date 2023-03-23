@@ -8,12 +8,8 @@ description: Fetch Ethereum NFT Info
 Fetch Ethereum NFT Info
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+const contract_address = "0x495f947276749ce646f68ac8c248420045cb7b5e"
+const token_id = 4
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
-
-await mirrorworld.Ethereum.Asset.searchNFT()
+await mirrorworld.Ethereum.Asset.searchNFT(contract_address, token_id)
 ```

@@ -8,12 +8,5 @@ description: Fetch authenticated user's Polygon tokens
 Fetch Authenticated User S Polygon Tokens
 
 ```js
-import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
-
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Polygon("mumbai-mainnet"),
-})
-
 await mirrorworld.Polygon.Wallet.fetchTokens()
 ```

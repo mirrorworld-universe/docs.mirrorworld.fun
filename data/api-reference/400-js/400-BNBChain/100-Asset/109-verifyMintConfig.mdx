@@ -5,15 +5,14 @@ description: Verifies the mint configuration of a BNB Chain NFT
 
 # `verifyMintConfig`
 
-Verifies The Mint Configuration Of A Bnb Chain NFT
+Verifies The Mint Configuration Of A BNB Chain NFT
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type VerifyEVMMintConfigPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: VerifyEVMMintConfigPayloadV2 = {
+  url: "https://api.orangecomet.io/collectible-metadata/the-mayfair-witches-pass/",
+}
 
-await mirrorworld.BNBChain.Asset.verifyMintConfig()
+await mirrorworld.BNBChain.Asset.verifyMintConfig(payload)
 ```

@@ -5,15 +5,11 @@ description: Fetch BNB Chain Transaction Data by transaction hash
 
 # `fetchTransactionByHash`
 
-Fetch Bnb Chain Transaction Data By Transaction Hash
+Fetch BNB Chain Transaction Data By Transaction Hash
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+const hash =
+  "0x5a7712e4340fbf761521152ca44abfec786aa69cc447d9e936a362c0587f2037"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
-
-await mirrorworld.BNBChain.Wallet.fetchTransactionByHash()
+await mirrorworld.BNBChain.Wallet.fetchTransactionByHash(hash)
 ```

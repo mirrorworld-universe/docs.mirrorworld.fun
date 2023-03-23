@@ -8,12 +8,13 @@ description: Transfer Ethereum NFT to another address
 Transfer Ethereum NFT To Another Address
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type ITransferEVMNFTPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: ITransferEVMNFTPayloadV2 = {
+  collection_address: "0xe26487A89C3C1c05DC308134eA02eEd5cc27D7b6",
+  token_id: 2,
+  to_wallet_address: "0xEd03fffB89Fbca674A818E757Df3B3252e21D859",
+}
 
-await mirrorworld.Ethereum.Asset.transferNFT()
+await mirrorworld.Ethereum.Asset.transferNFT(payload)
 ```
