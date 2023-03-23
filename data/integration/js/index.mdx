@@ -52,9 +52,9 @@ const mirrorworld = new MirrorWorld({
 })
 
 async function main() {
-  await mirrorworld.login()
-  await mirrorworld.getTokens()
-  await mirrorworld.getNFTs()
+  const { user } = await mirrorworld.login()
+  const tokens = await mirrorworld.Solana.Wallet.fetchTokens()
+  const nfts = await mirrorworld.Solana.Asset.fetchNFTsByOwnerAddresses({ owners: [user.wallet.sol_address ]})
 }
 
 main()
@@ -75,9 +75,9 @@ const mirrorworld = new MirrorWorld({
 })
 
 async function main() {
-  await mirrorworld.login()
-  await mirrorworld.getTokens()
-  await mirrorworld.getNFTs()
+  const { user } = await mirrorworld.login()
+  const tokens = await mirrorworld.Solana.Wallet.fetchTokens()
+  const nfts = await mirrorworld.Solana.Asset.fetchNFTsByOwnerAddresses({ owners: [user.wallet.sol_address ]})
 }
 
 main()
@@ -98,9 +98,9 @@ const mirrorworld = new MirrorWorld({
 })
 
 async function main() {
-  await mirrorworld.login()
-  await mirrorworld.getTokens()
-  await mirrorworld.getNFTs()
+  const { user } = await mirrorworld.login()
+  const tokens = await mirrorworld.Solana.Wallet.fetchTokens()
+  const nfts = await mirrorworld.Solana.Asset.fetchNFTsByOwnerAddresses({ owners: [user.wallet.sol_address ]})
 }
 
 main()
