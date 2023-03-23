@@ -8,13 +8,20 @@ description:
 
 Queries Marketplaces By The Following Properties For An Authenticated User
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type MarketplaceQueryOptionsV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet-beta"),
-})
+/**
+ * Queryies all marketplaces whose treasury mint is SOL
+ * and whose marketplace authority can change the sale price of any listing.
+ */
+const payload: MarketplaceQueryOptionsV2 = {
+  treasury_mint: "So11111111111111111111111111111111111111112",
+  can_change_sale_price: true,
+}
 
-await mirrorworld.Solana.Asset.queryMarketplaces()
+await mirrorworld.Solana.Asset.queryMarketplaces(payload)
 ```
+
+> See all options for this method
+> [here](https://github.com/mirrorworld-universe/mirrorworld-sdk-js/blob/d4a2075770fb8ec1e39c23c35a64cf3e06874bfd/packages/core/src/types/marketplace.ts#L142)

@@ -5,26 +5,17 @@ description: Purchase NFT on Solana AuctionHouse Instance
 
 # `buyNFT`
 
-Purchase Nft On Solana Auction House Instance
+Purchase NFT On Solana Auction House Instance
 
 ```ts
-import {
-  MirrorWorld,
-  Solana,
-  type IBaseSolanaAuctionPayloadV2,
-} from "@usemirrorworld/web3.js"
-
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet-beta"),
-})
+import { type IBaseSolanaAuctionPayloadV2 } from "@usemirrorworld/web3.js"
 
 const payload: IBaseSolanaAuctionPayloadV2 = {
-  /** NFT Mint address */
+  // NFT Mint address
   mint_address: "DJhPp8Lgmvxdfy4SsRQWZD4gk3xtx5Uhs4dzBTDKTx6h",
-  /** NFT Price */
+  // NFT Price
   price: 0.1,
-  /** Marketplace address */
+  // Marketplace address
   auction_house: "G95uaFUfbB1c2cvzbfWnzuKSPveGx12wnyVgmhcdsn3L",
 }
 

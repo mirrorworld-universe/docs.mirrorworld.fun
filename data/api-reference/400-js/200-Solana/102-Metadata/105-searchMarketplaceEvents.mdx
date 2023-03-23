@@ -8,12 +8,13 @@ description: Search Solana Marketplace Events
 Search Solana Marketplace Events
 
 ```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import { type SearchSolanaMarketplaceEventsPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet-beta"),
-})
+const payload: SearchSolanaMarketplaceEventsPayloadV2 = {
+  marketplace_address: "FBqBFaPXHqpnDKnpmhgpUsf9WdY8nZvkDnMSeuxd6za9",
+  page: 1,
+  page_size: 24,
+}
 
-await mirrorworld.Solana.Metadata.searchMarketplaceEvents()
+await mirrorworld.Solana.Metadata.searchMarketplaceEvents(payload)
 ```

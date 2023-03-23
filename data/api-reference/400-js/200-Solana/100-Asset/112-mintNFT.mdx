@@ -5,15 +5,16 @@ description: Mints a new NFT to Solana collection
 
 # `mintNFT`
 
-Mints A New Nft To Solana Collection
+Mints A New NFT To Solana Collection
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type MintSolanaNFTToCollectionPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet-beta"),
-})
+const payload: MintSolanaNFTToCollectionPayloadV2 = {
+  name: "Bad Monkey #0001",
+  symbol: "BADMONKEY",
+  url: "https://url-to-bad-monkey-storage.site/0001.json",
+}
 
-await mirrorworld.Solana.Asset.mintNFT()
+await mirrorworld.Solana.Asset.mintNFT(payload)
 ```

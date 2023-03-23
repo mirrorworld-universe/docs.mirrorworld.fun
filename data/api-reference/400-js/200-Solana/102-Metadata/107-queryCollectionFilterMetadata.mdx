@@ -5,15 +5,10 @@ description: Search NFT Collection Filter Parameters
 
 # `queryCollectionFilterMetadata`
 
-Search Nft Collection Filter Parameters
+Search NFT Collection Filter Parameters
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+const collection = "3zPzwhsbwwD4z9NTNKzi3C7dPXJnxHzFiq459W2zVqQo"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet-beta"),
-})
-
-await mirrorworld.Solana.Metadata.queryCollectionFilterMetadata()
+await mirrorworld.Solana.Metadata.queryCollectionFilterMetadata(collection)
 ```

@@ -10,13 +10,13 @@ description:
 Queries The Mint Status Of A Set Of Mint Addresses This Is Useful When
 Performing Batch Minting For A Large Array Of Mint Addresses
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type QueryAssetMintsStatusPayload } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet-beta"),
-})
+const payload: QueryAssetMintsStatusPayload = {
+  mint_addresses: ["D3hLEigNvqhv2r6CSJvdKAxZPvrzfFRYUadGTHqTKghZ"];
+};
 
-await mirrorworld.Solana.Asset.queryAssetMintsStatus()
+await mirrorworld.Solana.Asset.queryAssetMintsStatus(payload);
+
 ```
