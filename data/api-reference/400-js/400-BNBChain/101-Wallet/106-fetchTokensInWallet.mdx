@@ -7,13 +7,7 @@ description: Get the ERC tokens inside an BNB Chain wallet address
 
 Get The Erc Tokens Inside An BNB Chain Wallet Address
 
-```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
-
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
-
-await mirrorworld.BNBChain.Wallet.fetchTokensInWallet()
+```ts
+const wallet = "0x137960064dA83737d3A761E9A239EF33887cdAf4"
+await mirrorworld.BNBChain.Wallet.fetchTokensInWallet(wallet)
 ```
