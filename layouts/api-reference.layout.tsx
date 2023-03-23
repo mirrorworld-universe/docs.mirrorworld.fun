@@ -74,7 +74,7 @@ export default function ApiReferenceLayout({
               top="8rem"
               left="max(0px, calc(50% - 45rem))"
               right="auto"
-              width="21rem"
+              width="22rem"
               pb="10"
               px="8"
               overflowY="auto"
@@ -104,7 +104,11 @@ export default function ApiReferenceLayout({
               pr={{ xl: "16" }}
             >
               <Stack mr={{ xl: "15.5rem" }}>
-                <Breadcrumb>
+                <Breadcrumb role="navigation" sx={{
+                  ".chakra-breadcrumb__list": {
+                    pl: "0 !important"
+                  }
+                }}>
                   {routeSegments.map((segment, i) => 
                   (
                     <BreadcrumbItem key={i}>

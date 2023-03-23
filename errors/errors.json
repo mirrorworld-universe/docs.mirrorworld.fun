@@ -308,7 +308,7 @@
     "NFT_NOT_EXIST": {
       "code": "200002",
       "error": "NFT_NOT_EXIST",
-      "message": "Nft not exist"
+      "message": "NFT not exist"
     },
     "COLLECTION_NOT_EXIST": {
       "code": "200003",

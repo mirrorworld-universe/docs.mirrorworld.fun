@@ -8,12 +8,15 @@ description: Transfer MATIC from EVM wallet to another EVM wallet
 Transfer Matic From Evm Wallet To Another Evm Wallet
 
 ```js
-import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+import { type EVMTransferTokensPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Polygon("mumbai-mainnet"),
-})
+const payload: EVMTransferTokensPayloadV2 = {
+  amount: 1,
+  gasLimit: 100000,
+  gasPrice: 1.5,
+  to: "0x80Cd58A56643c958dFC29b85329f9FEda93Bdb56",
+  nonce: 696969,
+}
 
-await mirrorworld.Polygon.Wallet.transferMATIC()
+await mirrorworld.Polygon.Wallet.transferMATIC(payload)
 ```

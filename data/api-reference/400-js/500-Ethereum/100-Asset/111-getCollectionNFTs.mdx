@@ -1,19 +1,14 @@
 ---
 title: getCollectionNFTs
-description: Queries the Ethereum NFTs minted to a collection 
+description: Queries the Ethereum NFTs minted to a collection
 ---
 
 # `getCollectionNFTs`
 
-Queries The Ethereum Nf Ts Minted To A Collection
+Queries The Ethereum NFTs Minted To A Collection
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+const collection_address = "0x262EE0FF0157E29eA05a2eb10a397DA00d39b37e"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
-
-await mirrorworld.Ethereum.Asset.getCollectionNFTs()
+await mirrorworld.Ethereum.Asset.getCollectionNFTs(collection_address)
 ```

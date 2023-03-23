@@ -5,15 +5,19 @@ description: Updates the metadata account of an NFT on Solana
 
 # `updateNFTMetadata`
 
-Updates The Metadata Account Of An Nft On Solana
+Updates The Metadata Account Of An NFT On Solana
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type UpdateSolanaNFTMetadataPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
-})
+const payload: UpdateSolanaNFTMetadataPayloadV2 = {
+  mint_address: "2Tj3kbLPtYgcrLDk6cx3vAs2pGS4rkF6vZ7Vmek8XNpB",
+  name: "Bad Monkey #0001",
+  symbol: "BADMONKEY",
+  url: "https://url-to-bad-monkey-storage.site/0001.json",
+  seller_fee_basis_points: 200,
+  update_authority: "8KC5PVfGcSxSuQu5sttRwbQMFNUPi7Nw8W7tpyy4UMLE",
+}
 
-await mirrorworld.Solana.Asset.updateNFTMetadata()
+await mirrorworld.Solana.Asset.updateNFTMetadata(payload)
 ```

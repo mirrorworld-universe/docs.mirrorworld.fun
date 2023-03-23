@@ -5,15 +5,10 @@ description: Queries the BNB Chain NFTs minted to a collection
 
 # `getCollectionNFTs`
 
-Queries The Bnb Chain Nf Ts Minted To A Collection
+Queries The BNB Chain NFTs Minted To A Collection
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+const collection_address = "0x262EE0FF0157E29eA05a2eb10a397DA00d39b37e"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
-
-await mirrorworld.BNBChain.Asset.getCollectionNFTs()
+await mirrorworld.BNBChain.Asset.getCollectionNFTs(collection_address)
 ```

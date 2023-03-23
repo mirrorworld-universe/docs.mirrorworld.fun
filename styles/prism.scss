@@ -1403,7 +1403,7 @@ body {
 
 .chakra-ui-dark {
   .ch-codeblock > .ch-code, .ch-code-browser-content {
-    background-color: #282c34 !important;
+    background-color: #17191e !important
   }
 
   .ch-codeblock {
@@ -1412,20 +1412,20 @@ body {
 
     .ch-scrollycoding-sticker, .ch-code-wrapper {
       --ch-selection-background: #004a42 !important;
-      background-color: #282c34 !important;
+      background-color: #17191e !important
     }
   }
 
   .ch-code-browser-content {
     font-family: var(--chakra-fonts-mono) !important;
-    background-color: #282c34 !important;
+    background-color: #17191e !important;
     color: #a0a1a7 !important;
   }
 
   .ch-codegroup {
     box-shadow: none !important;
     .ch-scrollycoding-sticker, .ch-code-wrapper {
-      background-color: #282c34 !important;
+      background-color: #17191e !important;
       color: #a0a1a7;
 
       .ch-code-scroll-parent {

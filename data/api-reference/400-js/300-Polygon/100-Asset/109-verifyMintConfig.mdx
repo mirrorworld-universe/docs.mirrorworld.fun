@@ -5,15 +5,14 @@ description: Verifies the mint configuration of a Polygon NFT
 
 # `verifyMintConfig`
 
-Verifies The Mint Configuration Of A Polygon Nft
+Verifies The Mint Configuration Of A Polygon NFT
 
 ```js
-import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+import { type VerifyEVMMintConfigPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Polygon("mumbai-mainnet"),
-})
+const payload: VerifyEVMMintConfigPayloadV2 = {
+  url: "https://api.orangecomet.io/collectible-metadata/the-mayfair-witches-pass/",
+}
 
-await mirrorworld.Polygon.Asset.verifyMintConfig()
+await mirrorworld.Polygon.Asset.verifyMintConfig(payload)
 ```

@@ -5,15 +5,36 @@ description: Fetch Ethereum NFTs Info. Accepts Filtering Metadata
 
 # `fetchNFTsInfo`
 
-Fetch Ethereum Nf Ts Info Accepts Filtering Metadata
+Fetch Ethereum NFTs Info Accepts Filtering Metadata
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import {
+  type QueryEVMNFTsPayloadV2,
+  QueryNFTsFilterType,
+} from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: QueryEVMNFTsPayloadV2 = {
+  contract: "0x011135F655e0916345C5188aA14fD4E2FEf1845E",
+  page: 1,
+  page_size: 10,
+  order: {
+    order_by: "price",
+    desc: true,
+  },
+  sale: true,
+  filter: [
+    {
+      filter_name: "color",
+      filter_type: QueryNFTsFilterType.enum,
+      filter_value: ["blue", "red"],
+    },
+    {
+      filter_name: "attack",
+      filter_type: QueryNFTsFilterType.range,
+      filter_value: [1, 10],
+    },
+  ],
+}
 
-await mirrorworld.Ethereum.Metadata.fetchNFTsInfo()
+await mirrorworld.Ethereum.Metadata.fetchNFTsInfo(payload)
 ```

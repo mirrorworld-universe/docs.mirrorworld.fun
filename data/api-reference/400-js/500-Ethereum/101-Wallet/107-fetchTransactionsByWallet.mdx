@@ -8,12 +8,6 @@ description: Get the Transactions authored by an Ethereum wallet address
 Get The Transactions Authored By An Ethereum Wallet Address
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
-
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
-
-await mirrorworld.Ethereum.Wallet.fetchTransactionsByWallet()
+const wallet = "0x137960064dA83737d3A761E9A239EF33887cdAf4"
+await mirrorworld.Ethereum.Wallet.fetchTransactionsByWallet(wallet)
 ```

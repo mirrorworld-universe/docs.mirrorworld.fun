@@ -8,12 +8,5 @@ description: Fetch authenticated user's Ethereum transactions
 Fetch Authenticated User S Ethereum Transactions
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
-
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
-
 await mirrorworld.Ethereum.Wallet.fetchTransactions()
 ```

@@ -1,0 +1,135 @@
+---
+title: Upgrading to v2 of the JS SDK
+description: |
+  Migration guide for upgrading to v2 of the JS SDK.
+author:
+  name: Jonathan Bakebwa
+  twitter: https://twitter.com/codebender828
+tags:
+  - JavaScript
+  - TypeScript
+---
+
+In this guide, we'll go over the changes you need to make to upgrade to v2 of
+the JS SDK.
+
+## Breaking Changes
+
+- The `env` constructor property has been removed the constructor options in
+  favour of the `chainConfig` property.
+- The `clusterEnv`, `tokens`, `nfts` and `transaction` accessors have been
+  removed from the `MirrorWorld` class instance. You can now asynchronously
+  fetch these resources directly from the corresponding chain methods.
+
+## Upgrade Steps
+
+To install the latest version of the JS SDK, run the following command:
+
+```bash
+pnpm add @usemirrorworld/web3.js
+# or with Yarn
+yarn add @usemirrorworld/web3.js
+# or with NPM
+npm install @usemirrorworld/web3.js
+```
+
+### Defining a chain configuration
+
+The Mirror World JS SDK exports configuration factories for following multiple
+chains:
+
+- `Solana` - [Solana](solana.com/) chain configuration
+- `Ethereum` - [Ethereum](https://ethereum.org/en/) chain configuration
+- `BNBChain` - [BNB Chain](https://www.bnbchain.org/en) configuration
+- `Polygon` - [Polygon](https://polygon.technology/) chain configuration
+
+Learn more about Mirror World's Multichain Support Matrix
+[here](/overview/introduction/multi-chain-solutions)
+
+Below is an example of how to initialize the SDK with a Solana Configuration for
+the mainnet-beta network.
+
+```ts
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet-beta"),
+})
+```
+
+After assigning this configuration, you can now invoke `Solana` methods with the
+SDK.
+
+The table below shows the network names configuration parameters accepted by the
+corresponding chain.
+
+| Chain      | Mainnet name     | Testnet name     |
+| ---------- | ---------------- | ---------------- |
+| `Solana`   | `mainnet-beta`   | `devnet`         |
+| `Polygon`  | `mumbai-mainnet` | `mumbai-testnet` |
+| `BNBChain` | `bnb-mainnet`    | `bnb-testnet`    |
+| `Ethereum` | `mainnet`        | `goerli`         |
+
+For example, below is an example of how to initialize the SDK on Polygon Testnet
+and mint an NFT
+
+```ts
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-testnet"),
+})
+
+await mirrorworld.Polygon.Asset.mintNFT(/** ... */)
+```
+
+> To find the full initialization options for each chain, check out the
+> [Configuration options](/api-reference/js/Configuration#configuration-options)
+> page.
+
+## Multichain Support
+
+One of the most exciting new features of v2 of the Mirror World SDK is the
+multichain support. This means that you can now use the same SDK instance to
+interact with multiple chains. This is especially useful if you are building a
+dApp that supports multiple chains.
+
+To use the multichain support, you need to initialize the SDK with a
+`chainConfig` property. This property accepts an object of chain configurations
+from the previous section.
+
+### Invoking chain-specific methods.
+
+In order to invoke a specific method on a chain, you need to use the chain
+accessor, and service accessors to invoke the method.
+
+For example, to invoke the `mintNFT` method on the Polygon mainnet chain, you
+would do the following:
+
+```ts
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+
+await mirrorworld.Polygon.Asset.mintNFT({
+  collection_address: "0xB11c14E2F322deC851795224A171Bcf03Dc8573D",
+  token_id: 4,
+})
+```
+
+> **To find the full list of chain accessors and service accessors, check out
+> the [Full JavaScript API Reference](/api-reference/js/) page.**
+
+## All done!
+
+At this point, you should be all set to start using the Mirror World JS SDK v2.
+
+If you have any questions, feel free to reach out to us on our
+[Discord developer community](https://mirrorworld.fun/discord)
+
+Happy Hacking!

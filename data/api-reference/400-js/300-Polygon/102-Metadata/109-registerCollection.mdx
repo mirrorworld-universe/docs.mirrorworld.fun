@@ -7,16 +7,34 @@ description:
 
 # `registerCollection`
 
-Register An Nft Collection Info To Metadata Service After Successful
+Register An NFT Collection Info To Metadata Service After Successful
 Registration The Metadata Service Will Index The Collection Data
 
-```js
-import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+```ts
+import {
+  type RegisterCollectionPayloadV2,
+  QueryNFTsFilterType,
+} from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Polygon("mumbai-mainnet"),
-})
+const payload: RegisterCollectionPayloadV2 = {
+  collection: "0xc8F1376211e92320360aE6cac299F1664f438fa2",
+  collection_name: "example collection",
+  collection_type: "NFT",
+  collection_orders: [
+    {
+      order_field: "price",
+      order_desc: "Price: Low to High",
+      desc: true,
+    },
+  ],
+  collection_filters: [
+    {
+      filter_name: "Rarity",
+      filter_type: QueryNFTsFilterType.enum,
+      filter_value: ["Common", "Rare", "Elite", "Ledengary", "Mythical"],
+    },
+  ],
+}
 
-await mirrorworld.Polygon.Metadata.registerCollection()
+await mirrorworld.Polygon.Metadata.registerCollection(payload)
 ```

@@ -1,9 +1,9 @@
 ```tsx
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY"
-  env: ClusterEnvironment.testnet // This can be changed to mainnet using `ClusterEnvironment.mainnet`
+  chainConfig: Polygon("mumbai-testnet"),
 })
 
 const mintAddress = "Ct1GvgpBzzhMtKb7nKc3U3kouPA3fHncAahPY1HthB9E"

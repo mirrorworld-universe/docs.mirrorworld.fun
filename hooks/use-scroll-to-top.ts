@@ -5,14 +5,14 @@ export function useScrollToTop() {
   const router = useRouter()
 
   useEffect(() => {
-    setTimeout(() => {
-      document.scrollingElement?.scrollTo(0, 0)
-    }, 50)
-    setTimeout(() => {
-      document.scrollingElement?.scrollTo(0, 0)
-    }, 100)
-    setTimeout(() => {
-      document.scrollingElement?.scrollTo(0, 0)
-    }, 200)
+    // setTimeout(() => {
+    //   document.scrollingElement?.scrollTo(0, 0)
+    // }, 50)
+    // setTimeout(() => {
+    //   document.scrollingElement?.scrollTo(0, 0)
+    // }, 100)
+    // setTimeout(() => {
+    //   document.scrollingElement?.scrollTo(0, 0)
+    // }, 200)
   }, [router.asPath])
 }

@@ -5,15 +5,19 @@ description: Searches Solana NFTs by Creator Addresses
 
 # `searchNFTsByUpdateAuthorityAddresses`
 
-Searches Solana Nf Ts By Creator Addresses
+Searches Solana NFTs By Creator Addresses
 
 ```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import { type SearchSolanaNFTsByUpdateAuthoritiesPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
-})
+const payload: SearchSolanaNFTsByUpdateAuthoritiesPayloadV2 = {
+  update_authorities: [
+    "BuiAawnD2EoAAp8SdrtkM74nkSVNwV5Vh6E6m8aWXbjV",
+    "24rXTjveoQbAShQtiriNEdAwiqC6YnKmhDSd9nwRBU7y",
+  ],
+  limit: 24,
+  offset: 0,
+}
 
-await mirrorworld.Solana.Asset.searchNFTsByUpdateAuthorityAddresses()
+await mirrorworld.Solana.Asset.searchNFTsByUpdateAuthorityAddresses(payload)
 ```

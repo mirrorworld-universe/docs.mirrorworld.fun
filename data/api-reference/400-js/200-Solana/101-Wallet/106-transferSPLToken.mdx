@@ -1,19 +1,26 @@
 ---
 title: transferSPLToken
-description: Transfers SPL Tokens from user's wallet address to another wallet address
+description:
+  Transfers SPL Tokens from user's wallet address to another wallet address
 ---
 
 # `transferSPLToken`
 
 Transfers Spl Tokens From User S Wallet Address To Another Wallet Address
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type SolanaTransferSPLTokenPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
-})
+// See https://explorer.solana.com/address/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+const USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+const USDC_DECIMALS = 6
 
-await mirrorworld.Solana.Wallet.transferSPLToken()
+const payload: SolanaTransferSPLTokenPayloadV2 = {
+  to_publickey: "5VoC23rdfGxLG9G28eDEppza6atiQuuVwCM1cwGC2MaW",
+  amount: 2 * 10 ** USDC_DECIMALS, // => 2 USDC
+  token_mint: USDC_MINT,
+  decimals: USDC_DECIMALS,
+}
+
+await mirrorworld.Solana.Wallet.transferSPLToken(payload)
 ```

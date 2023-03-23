@@ -5,15 +5,14 @@ description: Search NFT Collections Info
 
 # `queryCollectionsInfo`
 
-Search Nft Collections Info
+Search NFT Collections Info
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type SearchCollectionsInfoV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
-})
+const payload: SearchCollectionsInfoV2 = {
+  collections: ["3zPzwhsbwwD4z9NTNKzi3C7dPXJnxHzFiq459W2zVqQo"],
+}
 
-await mirrorworld.Solana.Metadata.queryCollectionsInfo()
+await mirrorworld.Solana.Metadata.queryCollectionsInfo(payload)
 ```

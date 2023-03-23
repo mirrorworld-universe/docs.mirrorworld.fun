@@ -8,12 +8,10 @@ description: Performs personal signing of a string message
 Performs Personal Signing Of A String Message
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type EVMPersonalSignPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
-
-await mirrorworld.Ethereum.Wallet.personalSign()
+const payload: EVMPersonalSignPayloadV2 = {
+  data: "Message to sign",
+}
+await mirrorworld.Ethereum.Wallet.personalSign(payload)
 ```

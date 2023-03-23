@@ -37,14 +37,18 @@ pnpm install @usemirrorworld/web3.js
 
 ## 3. Import the SDK
 
-You can now import the Mirror World SDK into your project.
+You can now import the Mirror World SDK into your project. Also import the Chain
+Configuration you will be using. For this example, we shall use `Solana`.
+
+To see other chain configurations, please see the
+[API reference](/api-reference/js/Configuration#chain--network-configurations)
 
 ```ts main.ts focus=1
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
-  env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+  chainConfig: Solana("mainnet-beta"),
 })
 
 async function main() {
@@ -63,11 +67,11 @@ main()
 With your API Key, you can now initialize the SDK in your project.
 
 ```ts main.ts focus=3:6
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
-  env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+  chainConfig: Solana("mainnet-beta"),
 })
 
 async function main() {
@@ -86,11 +90,11 @@ main()
 You can start invoking the various methods on the `MirrorWorld` instance. Enjoy!
 
 ```ts main.ts focus=8:14
-import { MirrorWorld, ClusterEnvironment } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
-  env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
+  chainConfig: Solana("mainnet-beta"),
 })
 
 async function main() {

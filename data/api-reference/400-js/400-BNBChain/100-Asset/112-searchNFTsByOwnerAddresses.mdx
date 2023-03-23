@@ -5,15 +5,14 @@ description: Searches BNB Chain NFTs by Owner Addresses
 
 # `searchNFTsByOwnerAddresses`
 
-Searches Bnb Chain Nf Ts By Owner Addresses
+Searches BNB Chain NFTs By Owner Addresses
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type SearchEVMNFTsByOwnerAddressesPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: SearchEVMNFTsByOwnerAddressesPayloadV2 = {
+  owner_address: ["0xEC19D72d352D1aCD771cE492d6A09B2523Cb4575"],
+}
 
-await mirrorworld.BNBChain.Asset.searchNFTsByOwnerAddresses()
+await mirrorworld.BNBChain.Asset.searchNFTsByOwnerAddresses(payload)
 ```

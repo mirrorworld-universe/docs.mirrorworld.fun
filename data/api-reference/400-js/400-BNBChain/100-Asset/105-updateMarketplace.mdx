@@ -5,15 +5,13 @@ description: Updates a sn existing NFT Marketplace on BNB Chain
 
 # `updateMarketplace`
 
-Updates A Sn Existing Nft Marketplace On Bnb Chain
+Updates A Sn Existing NFT Marketplace On BNB Chain
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type IUpdateEVMMarketplacePayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
-
-await mirrorworld.BNBChain.Asset.updateMarketplace()
+const payload: IUpdateEVMMarketplacePayloadV2 = {
+  seller_fee_basis_points: 400,
+}
+await mirrorworld.BNBChain.Asset.updateMarketplace(payload)
 ```

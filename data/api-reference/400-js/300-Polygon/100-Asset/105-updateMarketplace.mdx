@@ -5,15 +5,14 @@ description: Updates a sn existing NFT Marketplace on Polygon
 
 # `updateMarketplace`
 
-Updates A Sn Existing Nft Marketplace On Polygon
+Updates A Sn Existing NFT Marketplace On Polygon
 
 ```js
-import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+import { type IUpdateEVMMarketplacePayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Polygon("mumbai-mainnet"),
-})
+const payload: IUpdateEVMMarketplacePayloadV2 = {
+  seller_fee_basis_points: 400,
+}
 
-await mirrorworld.Polygon.Asset.updateMarketplace()
+await mirrorworld.Polygon.Asset.updateMarketplace(payload)
 ```

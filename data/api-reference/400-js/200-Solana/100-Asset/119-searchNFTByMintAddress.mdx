@@ -5,15 +5,14 @@ description: Searches Solana NFTs by Mint Addresses
 
 # `searchNFTByMintAddress`
 
-Searches Solana Nf Ts By Mint Addresses
+Searches Solana NFTs By Mint Addresses
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type QuerySolanaNFTInfoPayload } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
-})
+const payload: QuerySolanaNFTInfoPayload = {
+  mint_address: "BuiAawnD2EoAAp8SdrtkM74nkSVNwV5Vh6E6m8aWXbjV",
+}
 
-await mirrorworld.Solana.Asset.searchNFTByMintAddress()
+await mirrorworld.Solana.Asset.searchNFTByMintAddress(payload)
 ```

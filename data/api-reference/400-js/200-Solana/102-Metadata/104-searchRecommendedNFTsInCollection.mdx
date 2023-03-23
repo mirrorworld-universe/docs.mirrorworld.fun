@@ -5,15 +5,14 @@ description: Search Recommended NFT in Solana Collection
 
 # `searchRecommendedNFTsInCollection`
 
-Search Recommended Nft In Solana Collection
+Search Recommended NFT In Solana Collection
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type SearchSolanaRecommendedNFTInCollectionPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
-})
+const payload: SearchSolanaRecommendedNFTInCollectionPayloadV2 = {
+  collections: ["4cEwtjcQt8KNBsD8EP3Y7RFZgRiq51uVCwJ4SWUpcCfZ"],
+}
 
-await mirrorworld.Solana.Metadata.searchRecommendedNFTsInCollection()
+await mirrorworld.Solana.Metadata.searchRecommendedNFTsInCollection(payload)
 ```

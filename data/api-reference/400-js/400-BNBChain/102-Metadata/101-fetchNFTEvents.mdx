@@ -5,15 +5,17 @@ description: Fetch BNB Chain NFT Activity
 
 # `fetchNFTEvents`
 
-Fetch Bnb Chain Nft Activity
+Fetch BNB Chain NFT Activity
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type QueryEVMNFTActivityPayload } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: QueryEVMNFTActivityPayload = {
+  contract: "0x011135F655e0916345C5188aA14fD4E2FEf1845E",
+  token_id: 1,
+  page: 1,
+  page_size: 10,
+}
 
-await mirrorworld.BNBChain.Metadata.fetchNFTEvents()
+await mirrorworld.BNBChain.Metadata.fetchNFTEvents(payload)
 ```

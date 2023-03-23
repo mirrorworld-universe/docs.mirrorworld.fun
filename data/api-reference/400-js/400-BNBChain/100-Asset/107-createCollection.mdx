@@ -5,15 +5,41 @@ description: Creates a new verified collection on BNB Chain
 
 # `createCollection`
 
-Creates A New Verified Collection On Bnb Chain
+Creates A New Verified Collection On BNB Chain
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import {
+  type CreateEVMCollectionV2Payload,
+  EVMContractType,
+} from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: CreateEVMCollectionV2Payload = {
+  // The base url of nft json config files. Full url to individual NFT json configuration will be base_url + token_id
+  url: "https://api.orangecomet.io/collectible-metadata/the-mayfair-witches-pass/",
+  // The name of the collection
+  name: "Mayfair Angels Pass",
+  // The symbol of the collection
+  symbol: "MAP",
+  // The type of contract to be deployed. Default is erc1155. Allowed values are "erc1155" and "erc721"
+  contract_type: EVMContractType.erc721,
+  /**
+   * The starting token_id of the collection.
+   * @default 0
+   */
+  mint_start_id: 1,
+  /**
+   * The ending token_id of the collection. Default is 0
+   * @optional
+   * @default 0
+   */
+  mint_end_id: 30,
+  /**
+   *  The amount of NFTs to be minted. Default is 1. For erc721 collections this value should be 1
+   * @optional
+   * @default 1
+   */
+  mint_amount: 1,
+}
 
-await mirrorworld.BNBChain.Asset.createCollection()
+await mirrorworld.BNBChain.Asset.createCollection(payload)
 ```

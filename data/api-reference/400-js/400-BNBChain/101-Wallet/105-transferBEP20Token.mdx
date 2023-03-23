@@ -5,15 +5,20 @@ description: Transfer BEP20 token form your address to another address
 
 # `transferBEP20Token`
 
-Transfer Bep20 Token Form Your Address To Another Address
+Transfer BEP20 Token Form Your Address To Another Address
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type EVMTransferERCTokenPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: EVMTransferERCTokenPayloadV2 = {
+  // Token Contract Address
+  contract: "0x6ee2e9dDa0882f5F32260ed9BD775Ef662c4AF0b",
+  amount: 1,
+  gasLimit: 100000,
+  gasPrice: 1.5,
+  to: "0x80Cd58A56643c958dFC29b85329f9FEda93Bdb56",
+  nonce: 696969,
+}
 
-await mirrorworld.BNBChain.Wallet.transferBEP20Token()
+await mirrorworld.BNBChain.Wallet.transferBEP20Token(payload)
 ```

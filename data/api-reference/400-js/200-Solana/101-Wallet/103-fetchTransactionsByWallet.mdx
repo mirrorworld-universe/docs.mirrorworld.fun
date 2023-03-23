@@ -1,19 +1,14 @@
 ---
 title: fetchTransactionsByWallet
-description: Get transactions performed by an arbitrary wallet 
+description: Get transactions performed by an arbitrary wallet
 ---
 
 # `fetchTransactionsByWallet`
 
 Get Transactions Performed By An Arbitrary Wallet
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+const wallet_address = "2giygaZVoVzhq9QQNxLqRWBjjqLtHG3xgtXDd58j1Pmw"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
-})
-
-await mirrorworld.Solana.Wallet.fetchTransactionsByWallet()
+await mirrorworld.Solana.Wallet.fetchTransactionsByWallet(wallet_address)
 ```

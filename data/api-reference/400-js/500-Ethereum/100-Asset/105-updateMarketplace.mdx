@@ -5,15 +5,14 @@ description: Updates a sn existing NFT Marketplace on Ethereum
 
 # `updateMarketplace`
 
-Updates A Sn Existing Nft Marketplace On Ethereum
+Updates A Sn Existing NFT Marketplace On Ethereum
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type IUpdateEVMMarketplacePayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: IUpdateEVMMarketplacePayloadV2 = {
+  seller_fee_basis_points: 400,
+}
 
-await mirrorworld.Ethereum.Asset.updateMarketplace()
+await mirrorworld.Ethereum.Asset.updateMarketplace(payload)
 ```

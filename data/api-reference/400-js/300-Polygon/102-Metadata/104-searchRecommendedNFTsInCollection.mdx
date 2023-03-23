@@ -5,15 +5,17 @@ description: Search Recommended NFT in Polygon Collection
 
 # `searchRecommendedNFTsInCollection`
 
-Search Recommended Nft In Polygon Collection
+Search Recommended NFT In Polygon Collection
 
 ```js
-import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+import { type SearchSolanaRecommendedNFTInCollectionPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Polygon("mumbai-mainnet"),
-})
+const payload: SearchSolanaRecommendedNFTInCollectionPayloadV2 = {
+  collections: [
+    "0x71bd707A8007Df1f212B2e004c0a331F5b2ebD80",
+    "0x38d0769Ee60ABA07016753022Bda3CBf8b9F9Fff",
+  ],
+}
 
-await mirrorworld.Polygon.Metadata.searchRecommendedNFTsInCollection()
+await mirrorworld.Polygon.Metadata.searchRecommendedNFTsInCollection(payload)
 ```

@@ -5,15 +5,17 @@ description: Fetch Ethereum NFT Activity
 
 # `fetchNFTEvents`
 
-Fetch Ethereum Nft Activity
+Fetch Ethereum NFT Activity
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type QueryEVMNFTActivityPayload } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: QueryEVMNFTActivityPayload = {
+  contract: "0x011135F655e0916345C5188aA14fD4E2FEf1845E",
+  token_id: 1,
+  page: 1,
+  page_size: 10,
+}
 
-await mirrorworld.Ethereum.Metadata.fetchNFTEvents()
+await mirrorworld.Ethereum.Metadata.fetchNFTEvents(payload)
 ```

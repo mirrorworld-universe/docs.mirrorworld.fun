@@ -5,15 +5,16 @@ description: Search BNB Chain Marketplace Events
 
 # `searchMarketplaceEvents`
 
-Search Bnb Chain Marketplace Events
+Search BNB Chain Marketplace Events
 
 ```js
-import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+import { type SearchSolanaMarketplaceEventsPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: BNBChain("bnb-mainnet"),
-})
+const payload: SearchSolanaMarketplaceEventsPayloadV2 = {
+  marketplace_address: "0x732D151D6a953A992D821c8160a8F69F084822b7",
+  page: 1,
+  page_size: 20,
+}
 
-await mirrorworld.BNBChain.Metadata.searchMarketplaceEvents()
+await mirrorworld.BNBChain.Metadata.searchMarketplaceEvents(payload)
 ```

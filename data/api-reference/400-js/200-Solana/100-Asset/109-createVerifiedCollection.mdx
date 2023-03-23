@@ -1,19 +1,20 @@
 ---
 title: createVerifiedCollection
-description: Creates a new verified collection on Solana 
+description: Creates a new verified collection on Solana
 ---
 
 # `createVerifiedCollection`
 
 Creates A New Verified Collection On Solana
 
-```js
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+```ts
+import { type CreateVerifiedCollectionPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Solana("mainnet"),
-})
+const payload: CreateVerifiedCollectionPayloadV2 = {
+  name: "Test Collection",
+  symbol: "TESTCOLL",
+  url: "https://url-to-storage.site/metadata.json",
+}
 
-await mirrorworld.Solana.Asset.createVerifiedCollection()
+await mirrorworld.Solana.Asset.createVerifiedCollection(payload)
 ```

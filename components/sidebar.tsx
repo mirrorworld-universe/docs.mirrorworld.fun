@@ -1,11 +1,12 @@
 import Icon from "@chakra-ui/icon"
-import { Box, Circle, Code, Flex, HStack, Stack } from "@chakra-ui/layout"
+import { Circle, Flex, HStack, Stack } from "@chakra-ui/layout"
 import { chakra } from "@chakra-ui/system"
-import { Collapse, IconButton, useDisclosure } from "@chakra-ui/react"
+import { Collapse, useDisclosure } from "@chakra-ui/react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
-import React, { useCallback, useEffect, useMemo, useRef } from "react"
+import React, { useEffect, useMemo, useRef } from "react"
 import { RxCaretDown, RxCaretRight } from "react-icons/rx"
+import debounce from "lodash.debounce"
 
 import {
   apiReferenceSidebar,
@@ -26,6 +27,35 @@ type DocLinkProps = {
 const sanitize = (href: string) =>
   href.replace(/#.*/, "").split("/").filter(Boolean)
 
+const pathe = (item: TreeNode) =>
+  item.external_url ||
+  item.internal_path ||
+  item.url_path
+
+/**
+     * Recursively determines if the current item should be collapsed or not.
+     * @param item 
+     * @param currentLocation 
+     * @returns 
+     */
+function shouldCollapse(item: TreeNode, currentLocation: string): boolean {
+  function hasMatchingDecendant(routes: TreeNode[]): boolean {
+    for (const route of routes) {
+      const path = pathe(route)
+      if (path === currentLocation) {
+        return true;
+      }
+      if (route.children.length > 0 && hasMatchingDecendant(route.children)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  return hasMatchingDecendant(item.children);
+}
+
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
   const { href, children, isExternal, item, ...rest } = props
@@ -34,47 +64,45 @@ function DocLink(props: DocLinkProps) {
     [props.href, asPath],
   )
 
-  const { isOpen, onToggle, onOpen, onClose } = useDisclosure()
 
-  const linkRef = useRef<HTMLElement>()
+  const rawHrefPathSegments = useMemo(() => sanitize(href.toString()), [href])
+  const routePathSegments = useMemo(() => sanitize(asPath.toString()), [asPath])
+  const rawHrefPath = useMemo(() => href.toString(), [href])
+
+  const { isOpen, onToggle, onOpen, onClose } = useDisclosure({
+    defaultIsOpen: shouldCollapse(item, asPath),
+  })
+
+  const linkRef = useRef<HTMLElement>(null)
 
   const router = useRouter()
   const isApiReference = useMemo(() => {
     return ["api-reference"].includes(router.pathname.split("/")[1])
   }, [router.pathname])
 
-  const isActivePath = (navItem: TreeNode) => {
-    const path =
-      navItem.external_url || navItem.internal_path || navItem.url_path
-
-    const isActive =
-      router.asPath.split("/")[isApiReference ? 2 : 1] ===
-      path.split("/")[isApiReference ? 2 : 1]
-
-    return isActive
-  }
 
   useEffect(() => {
-    const isActive =
-      router.asPath.split("/")[isApiReference ? 2 : 1] ===
-      href.toString().split("/")[isApiReference ? 2 : 1]
-
+    const isActive = shouldCollapse(item, asPath)
     if (!isActive) onClose()
     else {
       onOpen()
+    }
+  }, [rawHrefPathSegments, routePathSegments, asPath, href, item, rawHrefPath])
+
+  function handleCollapseAnimationEnded() {
+    if (isOpen) {
       if (linkRef.current) {
-        // linkRef.current.scrollIntoView({
-        //   behavior: "smooth",
-        //   block: "center",
-        //   inline: "center",
-        // })
-        linkRef.current.scrollTo({
-          top: 350,
-          left: 0,
-        })
+        if (Math.abs(sanitize(asPath).length - sanitize(rawHrefPath).length) <= 1) {
+          linkRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          })
+        }
       }
     }
-  }, [router.asPath])
+  }
+
+  const debouncedHandleCollapseAnimationEnded = debounce(handleCollapseAnimationEnded, 20)
 
   return (
     // @ts-ignore
@@ -126,7 +154,7 @@ function DocLink(props: DocLinkProps) {
         ) : null}
       </HStack>
       {item.children.length ? (
-        <Collapse in={isOpen}>
+        <Collapse in={isOpen} onAnimationComplete={debouncedHandleCollapseAnimationEnded}>
           <chakra.div
             ml={2}
             pl={2}
@@ -255,11 +283,7 @@ export function Sidebar() {
                       <HStack>
                         <DocLink
                           item={subItem}
-                          href={
-                            subItem.external_url ||
-                            subItem.internal_path ||
-                            subItem.url_path
-                          }
+                          href={pathe(subItem)}
                           isExternal={!!subItem.external_url}
                         >
                           <span
