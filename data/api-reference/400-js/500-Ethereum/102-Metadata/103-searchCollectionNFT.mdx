@@ -8,12 +8,15 @@ description: Search Ethereum Collection NFT
 Search Ethereum Collection NFT
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type SearchEVMNFTInCollectionPayloadV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: SearchEVMNFTInCollectionPayloadV2 = {
+  collections: [
+    "0x71bd707A8007Df1f212B2e004c0a331F5b2ebD80",
+    "0x38d0769Ee60ABA07016753022Bda3CBf8b9F9Fff",
+  ],
+  search: "Some NFT Name",
+}
 
-await mirrorworld.Ethereum.Metadata.searchCollectionNFT()
+await mirrorworld.Ethereum.Metadata.searchCollectionNFT(payload)
 ```

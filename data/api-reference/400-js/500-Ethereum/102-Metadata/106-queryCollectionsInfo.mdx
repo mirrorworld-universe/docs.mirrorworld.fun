@@ -8,12 +8,14 @@ description: Search NFT Collections Info
 Search NFT Collections Info
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type SearchCollectionsInfoV2 } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: SearchCollectionsInfoV2 = {
+  collections: [
+    "0x71bd707A8007Df1f212B2e004c0a331F5b2ebD80",
+    "0x38d0769Ee60ABA07016753022Bda3CBf8b9F9Fff",
+  ],
+}
 
-await mirrorworld.Ethereum.Metadata.queryCollectionsInfo()
+await mirrorworld.Ethereum.Metadata.queryCollectionsInfo(payload)
 ```

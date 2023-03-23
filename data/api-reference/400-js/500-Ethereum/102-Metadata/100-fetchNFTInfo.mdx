@@ -8,12 +8,12 @@ description: Fetch Ethereum NFT Info
 Fetch Ethereum NFT Info
 
 ```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+import { type QueryEVMNFTInfoPayload } from "@usemirrorworld/web3.js"
 
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
+const payload: QueryEVMNFTInfoPayload = {
+  contract: "0x011135F655e0916345C5188aA14fD4E2FEf1845E",
+  token_id: 1,
+}
 
-await mirrorworld.Ethereum.Metadata.fetchNFTInfo()
+await mirrorworld.Ethereum.Metadata.fetchNFTInfo(payload)
 ```

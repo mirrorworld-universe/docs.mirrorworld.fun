@@ -7,13 +7,7 @@ description: Search NFT Collection Filter Parameters
 
 Search NFT Collection Filter Parameters
 
-```js
-import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
-
-const mirrorworld = new MirrorWorld({
-  apiKey: "YOUR_API_KEY",
-  chainConfig: Ethereum("mainnet"),
-})
-
-await mirrorworld.Ethereum.Metadata.queryCollectionFilterMetadata()
+```ts
+const collection = "0x38d0769Ee60ABA07016753022Bda3CBf8b9F9Fff"
+await mirrorworld.Ethereum.Metadata.queryCollectionFilterMetadata(collection)
 ```
