@@ -26,6 +26,12 @@ type DocLinkProps = {
 const sanitize = (href: string) =>
   href.replace(/#.*/, "").split("/").filter(Boolean)
 
+const pathe = (item: TreeNode) =>
+  item.external_url ||
+  item.internal_path ||
+  item.url_path
+
+
 function DocLink(props: DocLinkProps) {
   const { asPath } = useRouter()
   const { href, children, isExternal, item, ...rest } = props
@@ -71,38 +77,44 @@ function DocLink(props: DocLinkProps) {
   }
 
   useEffect(() => {
-    const asPathSegments = sanitize(asPath)
-    const targetDepthDiff = rawHrefPathSegments.length - routePathSegments.length
-    const basePath = routePathSegments.slice(0, targetDepthDiff).join("/")
-    const baseDepthDiff = asPathSegments.slice(0, targetDepthDiff).join("/")
-    const isActive = (targetDepthDiff) === 1 && rawHrefPathSegments.join("/").startsWith(basePath) && rawHrefPathSegments.join("/").startsWith(asPath) && routePathSegments.join("/").startsWith(basePath)
-    if (asPath.includes("/api-reference/js/")) {
-      console.log("isActive", {
-        basePath,
-        depthDiff: targetDepthDiff,
-        asPath,
-        href,
-        "rawHrefPathSegments.length": rawHrefPathSegments.length,
-        "routePathSegments.length": routePathSegments.length
-      })
+    /**
+     * Recursively determines if the current item should be collapsed or not.
+     * @param item 
+     * @param currentLocation 
+     * @returns 
+     */
+    function shouldCollapse(item: TreeNode, currentLocation: string): boolean {
+      function hasMatchingDecendant(routes: TreeNode[]): boolean {
+        for (const route of routes) {
+          const path = pathe(route)
+          if (path === currentLocation) {
+            return true;
+          }
+          if (route.children.length > 0 && hasMatchingDecendant(route.children)) {
+            return true;
+          }
+        }
+    
+        return false;
+      }
+    
+      return hasMatchingDecendant(item.children);
     }
+    const isActive = shouldCollapse(item, asPath)
+  
 
     if (!isActive) onClose()
     else {
       onOpen()
       if (linkRef.current) {
-        linkRef.current.scrollIntoView({
+        linkRef.current.scrollTo({
+          top: 350,
+          left: 0,
           behavior: "smooth",
-          block: "center",
-          inline: "center",
         })
-        // linkRef.current.scrollTo({
-        //   top: 350,
-        //   left: 0,
-        // })
       }
     }
-  }, [rawHrefPathSegments, routePathSegments, asPath, href])
+  }, [rawHrefPathSegments, routePathSegments, asPath, href, item, rawHrefPath])
 
   return (
     // @ts-ignore
@@ -283,11 +295,7 @@ export function Sidebar() {
                       <HStack>
                         <DocLink
                           item={subItem}
-                          href={
-                            subItem.external_url ||
-                            subItem.internal_path ||
-                            subItem.url_path
-                          }
+                          href={pathe(subItem)}
                           isExternal={!!subItem.external_url}
                         >
                           <span
