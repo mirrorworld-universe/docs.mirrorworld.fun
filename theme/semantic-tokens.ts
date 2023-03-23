@@ -8,7 +8,7 @@ export const semanticTokens = {
     },
     body: {
       default: "whiteAlpha.100",
-      _dark: "#121517",
+      _dark: "#0c0e0f",
     },
     codeText: {
       default: "pink.700",
@@ -24,7 +24,7 @@ export const semanticTokens = {
     // },
     topNavBody: {
       default: "whiteAlpha.600",
-      _dark: "hsl(200deg 11% 10% / 80%)",
+      _dark: "hsla(195, 10.5%, 7.5%, 0.8)",
     },
     topNavText: {
       default: "gray.900",
@@ -36,7 +36,7 @@ export const semanticTokens = {
     },
     calloutBg: {
       default: "rgba(220, 255, 28, 0.4)",
-      _dark: "rgba(220, 255, 28, 0.2)",
+      _dark: "rgba(220, 255, 28, 0.035)",
     },
     calloutText: {
       default: "mirror.700",
@@ -56,7 +56,7 @@ export const semanticTokens = {
     },
     languageSelectBg: {
       default: "white",
-      _dark: "#121517",
+      _dark: "#0c0e0f",
     },
     searchTriggerText: {
       default: "gray.500",
