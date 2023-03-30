@@ -219,7 +219,7 @@ const payload = {
   contract_type: EVMContractType.erc721,
 }
 
-const contract = await mirrorworld.createEVMCollection(payload)
+const contract = await mirrorworld.Ethereum.Asset.createCollection(payload)
 console.log("my new contract", contract)
 ```
 
