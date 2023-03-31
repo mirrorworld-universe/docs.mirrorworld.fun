@@ -1,0 +1,17 @@
+---
+title: CheckMintingStatus
+---
+
+# `CheckMintingStatus`
+
+Get status of a minting operation. Because minting may has some delay before success.
+```csharp
+List<string> mintAddresses = new List<string>();
+mintAddresses.Add("mint address 1");
+mintAddresses.Add("mint address 2");
+
+MirrorWorld.Solana.CheckMintingStatus(mintAddresses, (res) =>
+{
+    //todo
+});
+```
