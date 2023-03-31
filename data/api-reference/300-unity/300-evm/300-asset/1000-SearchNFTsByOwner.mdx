@@ -1,0 +1,20 @@
+---
+title: MirrorWorld.EVM.SearchNFTsByOwner
+---
+
+# `SearchNFTsByOwner`
+
+Fetch NFTs By Owner Addresses. Returns a detailed payload of all NFTs whose `owners`
+are provided.
+
+```csharp
+List<string> owners = new List<string>();
+owners.Add("address_1");
+owners.Add("address_2");
+int limit = 1;
+int offset = 1;
+
+MirrorWorld.EVM.SearchNFTsByOwner(owners, limit, offset, (res) => {
+    //todo
+});
+```
