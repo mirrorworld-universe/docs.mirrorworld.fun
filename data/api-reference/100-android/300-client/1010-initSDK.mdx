@@ -1,0 +1,16 @@
+---
+title: initSDK
+---
+
+# `initSDK`
+Before using all APIs of Mirror, you need to init SDK first.
+To init sdk, you need to have an API key first, you can get one from [SDK official site](https://app.mirrorworld.fun)
+
+```java
+Context context = this;
+String apiKey = "your-api-key";
+MirrorEnv env = MirrorEnv.DevNet;
+
+MirrorWorld.initSDK(context,apiKey,env);
+```
+

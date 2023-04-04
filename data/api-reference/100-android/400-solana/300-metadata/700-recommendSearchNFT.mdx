@@ -1,0 +1,25 @@
+---
+title: recommendSearchNFT
+chain: Solana
+---
+
+# `recommendSearchNFT`
+Get recommended NFTs from a collection. This API will provide 10
+NFT info at most as recommend NFT. Developer can use this API to fill some recommend blank when user trying search.
+
+```java
+List<String> collections = new ArrayList<>();
+collections.add("collection address 1");
+
+MirrorWorld.recommendSearchNFT(collections, new SOLSearchNFTsListener() {
+    @Override
+    public void onSuccess(List<MirrorMarketSearchNFTObj> result) {
+        Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
+    }
+
+    @Override
+    public void onFail(long code, String message) {
+        Log.d("MirrorSDK","Visit Failed! code:"+code+" message:"+message);
+    }
+});
+```

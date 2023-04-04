@@ -1,0 +1,25 @@
+---
+title: transferSOL
+chain: Solana
+---
+
+# `transferSOL`
+Transfer SOL to wallet address.
+
+```java
+Activity activity = this;
+String publicKey = "";
+int amount = 1;
+
+MirrorWorld.transferSOL(activity, publicKey, amount, new TransferSOLListener() {
+    @Override
+    public void onTransferSuccess(TransferResponse transferResponse) {
+        //todo
+    }
+
+    @Override
+    public void onTransferFailed(long code, String message) {
+        //todo
+    }
+});
+```

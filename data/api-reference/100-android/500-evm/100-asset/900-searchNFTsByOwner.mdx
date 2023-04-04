@@ -1,0 +1,24 @@
+---
+title: MWEVM.searchNFTsByOwner
+chain: EVM
+---
+
+### `searchNFTsByOwner`
+*Notice: searchNFTsByOwner API can only run on MAINNET.*
+
+Fetch NFTs By Creator Addresses. Returns a detailed payload of all NFTs whose `creatorAddresses`
+are provided.
+
+```java
+List<string> creatorAddresses = new ArrayList<>();
+creatorAddresses.add("creator wallet address 1");
+creatorAddresses.Add("creator wallet address 2");
+int limit = 99;
+
+MirrorWorld.searchNFTsByOwner(creatorAddresses, limit, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```
