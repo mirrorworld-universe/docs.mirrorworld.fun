@@ -1,5 +1,5 @@
 ---
-title: MWSolana.checkStatusOfMinting
+title: checkStatusOfMinting
 chain: Solana
 ---
 
@@ -11,7 +11,7 @@ List<String> addresses = new ArrayList<>();
 addresses.add("mintAddress1"); 
 addresses.add("mintAddress2");
 
-MWSolana.checkStatusOfMinting(addresses,new CheckStatusOfMintingListener() {
+MirrorWorld.checkStatusOfMinting(addresses,new CheckStatusOfMintingListener() {
 
     @Override
     public void onSuccess(CheckStatusOfMintingResponse response) {

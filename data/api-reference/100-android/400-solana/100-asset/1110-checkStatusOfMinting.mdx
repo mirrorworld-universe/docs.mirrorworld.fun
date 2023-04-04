@@ -11,7 +11,7 @@ List<String> addresses = new ArrayList<>();
 if(!mintAddress1.isEmpty()) addresses.add(mintAddress1);
 if(!mintAddress2.isEmpty()) addresses.add(mintAddress2);
 
-MWSolana.checkStatusOfTransactions(addresses,new CheckStatusOfMintingListener() {
+MirrorWorld.checkStatusOfTransactions(addresses,new CheckStatusOfMintingListener() {
 
     @Override
     public void onSuccess(CheckStatusOfMintingResponse response) {

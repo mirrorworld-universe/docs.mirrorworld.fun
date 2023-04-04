@@ -1,5 +1,5 @@
 ---
-title: MWSolana.updateNFTProperties
+title: updateNFTProperties
 chain: Solana
 ---
 
@@ -15,7 +15,7 @@ String updateAuthority = "updateAuthority";
 String NFTJsonUrl = "https://my_nft_detail.json";
 int seller_fee_basis_points = 100;
 
-MWSolana.updateNFTProperties(activity, mintAddress, name, symbol, updateAuthority, NFTJsonUrl, seller_fee_basis_points, new MintNFTListener() {
+MirrorWorld.updateNFTProperties(activity, mintAddress, name, symbol, updateAuthority, NFTJsonUrl, seller_fee_basis_points, new MintNFTListener() {
     @Override
     public void onMintSuccess(MintResponse userResponse) {
         Log.d("MirrorSDK","Update NFT result:"+MirrorGsonUtils.getInstance().toJson(userResponse));

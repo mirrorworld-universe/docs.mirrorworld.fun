@@ -1,5 +1,5 @@
 ---
-title: MWEVM.fetchNFTsByOwnerAddresses
+title: fetchNFTsByOwnerAddresses
 chain: EVM
 ---
 
@@ -12,7 +12,7 @@ are provided.
 String owner = "owner address";
 int limit = 99;
 
-MWEVM.fetchNFTsByOwnerAddresses(owner, limit, new MirrorCallback() {
+MirrorWorld.fetchNFTsByOwnerAddresses(owner, limit, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

@@ -1,5 +1,5 @@
 ---
-title: MWSolana.createVerifiedCollection
+title: createVerifiedCollection
 chain: Solana
 ---
 
@@ -14,7 +14,7 @@ String mintSymbol = "Symbol";
 String metaDataUri = "https://my-collection-metadata-uri/metadata.json";
 String confirmation = MirrorConfirmation.Default;
 
-MWSolana.createVerifiedCollection(activity, mintName, mintSymbol, metaDataUri, confirmation, new CreateTopCollectionListener() {
+MirrorWorld.createVerifiedCollection(activity, mintName, mintSymbol, metaDataUri, confirmation, new CreateTopCollectionListener() {
     @Override
     public void onCreateSuccess(MintResponse mintResponse) {
         //todo

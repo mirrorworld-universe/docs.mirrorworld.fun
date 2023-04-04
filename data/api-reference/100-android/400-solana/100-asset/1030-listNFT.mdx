@@ -1,5 +1,5 @@
 ---
-title: MWSolana.listNFT
+title: listNFT
 chain: Solana
 ---
 
@@ -12,7 +12,7 @@ string mintAddress = "mint_address";
 double price = 1;
 String confirmation = Confirmation.Default;
 
-MWSolana.listNFT(activity, mintAddress, price, confirmation, new ListNFTListener() {
+MirrorWorld.listNFT(activity, mintAddress, price, confirmation, new ListNFTListener() {
     @Override
     public void onListSuccess(ListingResponse listingResponse) {
         //todo

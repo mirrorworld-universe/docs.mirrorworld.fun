@@ -1,5 +1,5 @@
 ---
-title: MWSolana.fetchNFTsByOwnerAddresses
+title: fetchNFTsByOwnerAddresses
 chain: Solana
 ---
 
@@ -14,7 +14,7 @@ owners.add("owner address 1");
 int limit = 99;
 int offset = 1;
 
-MWSolana.fetchNFTsByOwnerAddresses(owners, limit, offset, new FetchByOwnerListener() {
+MirrorWorld.fetchNFTsByOwnerAddresses(owners, limit, offset, new FetchByOwnerListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         int count = multipleNFTsResponse.nfts.size();
