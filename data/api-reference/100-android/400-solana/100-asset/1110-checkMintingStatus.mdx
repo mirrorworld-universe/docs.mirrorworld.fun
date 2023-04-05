@@ -1,17 +1,17 @@
 ---
-title: checkStatusOfTransactions
+title: checkMintingStatus
 chain: Solana
 ---
 
-# `checkStatusOfTransactions`
-Get status of a transaction.
+# `checkMintingStatus`
+Get status of a minting operation. Because minting may has some delay before success.
 
 ```java
-List<String> signatures = new ArrayList<>(); 
-signatures.add("signature 1"); 
-signatures.add("signature 2");
+List<String> addresses = new ArrayList<>();
+if(!mintAddress1.isEmpty()) addresses.add(mintAddress1);
+if(!mintAddress2.isEmpty()) addresses.add(mintAddress2);
 
-MirrorWorld.checkStatusOfTransactions(signatures,new CheckStatusOfMintingListener() {
+MirrorWorld.checkMintingStatus(addresses,new CheckStatusOfMintingListener() {
 
     @Override
     public void onSuccess(CheckStatusOfMintingResponse response) {

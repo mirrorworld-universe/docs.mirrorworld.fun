@@ -1,9 +1,9 @@
 ---
-title: fetchNFTsByOwnerAddresses
+title: searchNFTsByOwner
 chain: Solana
 ---
 
-### `fetchNFTsByOwnerAddresses`
+### `searchNFTsByOwner`
 
 Fetch NFTs By Owner Addresses. Returns a detailed payload of all NFTs whose `owners`
 are provided.
@@ -14,7 +14,7 @@ owners.add("owner address 1");
 int limit = 99;
 int offset = 1;
 
-MirrorWorld.fetchNFTsByOwnerAddresses(owners, limit, offset, new FetchByOwnerListener() {
+MirrorWorld.searchNFTsByOwner(owners, limit, offset, new FetchByOwnerListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         int count = multipleNFTsResponse.nfts.size();
@@ -24,7 +24,7 @@ MirrorWorld.fetchNFTsByOwnerAddresses(owners, limit, offset, new FetchByOwnerLis
 
     @Override
     public void onFetchFailed(long code, String message) {
-        Log.d("MirrorSDK","fetchNFTsByOwnerAddresses faild,code:"+code+" message:"+message);
+        Log.d("MirrorSDK","searchNFTsByOwner faild,code:"+code+" message:"+message);
     }
 });
 ```

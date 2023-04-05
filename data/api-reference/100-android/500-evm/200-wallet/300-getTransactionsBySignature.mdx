@@ -1,16 +1,16 @@
 ---
-title: getTransactionBySignature
+title: getTransactionsBySignature
 chain: Solana
 ---
 
-# `getTransactionBySignature`
+# `getTransactionsBySignature`
 Get the transactions by signature.
 
 
 ```java
 String signature = "signature";
 
-MirrorWorld.getTransactionBySignature(signature, new MirrorCallback() {
+MirrorWorld.getTransactionsBySignature(signature, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

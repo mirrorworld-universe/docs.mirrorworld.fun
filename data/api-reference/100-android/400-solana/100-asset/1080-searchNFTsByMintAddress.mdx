@@ -1,9 +1,9 @@
 ---
-title: fetchNFTsByMintAddresses
+title: searchNFTsByMintAddress
 chain: Solana
 ---
 
-# `fetchNFTsByMintAddresses`
+# `searchNFTsByMintAddress`
 
 Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
 are provided.
@@ -13,7 +13,7 @@ List<String> mintAddresses = new ArrayList<>();
 mintAddresses.add("NFT mint address 1");
 mintAddresses.add("NFT mint address 2");
 
-MirrorWorld.fetchNFTsByMintAddresses(mintAddresses, new FetchNFTsListener() {
+MirrorWorld.searchNFTsByMintAddress(mintAddresses, new FetchNFTsListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         Log.d("MirrorSDK","Fetched " + multipleNFTsResponse.nfts.size() + " NFTs");
