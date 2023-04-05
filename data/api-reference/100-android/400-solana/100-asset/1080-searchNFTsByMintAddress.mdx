@@ -1,0 +1,27 @@
+---
+title: searchNFTsByMintAddress
+chain: Solana
+---
+
+# `searchNFTsByMintAddress`
+
+Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
+are provided.
+
+```java
+List<String> mintAddresses = new ArrayList<>();
+mintAddresses.add("NFT mint address 1");
+mintAddresses.add("NFT mint address 2");
+
+MirrorWorld.searchNFTsByMintAddress(mintAddresses, new FetchNFTsListener() {
+    @Override
+    public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
+        Log.d("MirrorSDK","Fetched " + multipleNFTsResponse.nfts.size() + " NFTs");
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        Log.d("MirrorSDK","Fetching NFTs faild,code:"+code+" message:"+message);
+    }
+});
+```

@@ -1,0 +1,27 @@
+---
+title: transferNFT
+chain: Solana
+---
+
+# `transferNFT`
+
+Transfer NFT from holder's wallet to another address.
+
+```java
+Activity activity = this;
+String mintAddress = "NFT mint address";
+String toWallet = "to wallet address";
+String confirmation = MirrorConfirmation.Default;
+
+MirrorWorld.transferNFT(activity, mintAddress, toWallet, confirmation, new TransferNFTListener() {
+    @Override
+    public void onTransferSuccess(ListingResponse listingResponse) {
+        Log.d("MirrorSDK","Transfer success,the NFT is:"+listingResponse.mint_address);
+    }
+
+    @Override
+    public void onTransferFailed(long code, String message) {
+        Log.d("MirrorSDK","Transfer NFT faild,code:"+code+" message:"+message);
+    }
+});
+```

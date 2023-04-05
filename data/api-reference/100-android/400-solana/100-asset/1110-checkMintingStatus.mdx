@@ -1,0 +1,26 @@
+---
+title: checkMintingStatus
+chain: Solana
+---
+
+# `checkMintingStatus`
+Get status of a minting operation. Because minting may has some delay before success.
+
+```java
+List<String> addresses = new ArrayList<>();
+if(!mintAddress1.isEmpty()) addresses.add(mintAddress1);
+if(!mintAddress2.isEmpty()) addresses.add(mintAddress2);
+
+MirrorWorld.checkMintingStatus(addresses,new CheckStatusOfMintingListener() {
+
+    @Override
+    public void onSuccess(CheckStatusOfMintingResponse response) {
+        Log.d("MirrorSDK","result is:" + MirrorGsonUtils.getInstance().toJson(response));
+    }
+
+    @Override
+    public void onCheckFailed(long code, String message) {
+        Log.d("MirrorSDK",MirrorStringUtils.GetFailedNotice("CHECK_STATUS_OFMINTING",code,message));
+    }
+});
+```

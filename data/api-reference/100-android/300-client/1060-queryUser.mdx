@@ -1,0 +1,22 @@
+---
+title: queryUser
+---
+
+# `fetchUser`
+
+Fetche a user's info by email.
+
+```java
+String email = "target-email-address";
+MirrorWorld.fetchUser(email, new FetchUserListener() {
+    @Override
+    public void onUserFetched(UserResponse userResponse) {
+        Log.d("MirrorSDK","Fetched user details:"+userResponse);
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        Log.d("MirrorSDK","Fetched user failed.");
+    }
+});
+```
