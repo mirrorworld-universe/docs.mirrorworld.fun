@@ -1,20 +1,20 @@
 ---
-title: transferETH
+title: transferMatic
 chain: EVM
 ---
 
 # `transferETH`
-Transfer SOL to wallet address.
+Transfer SOL to wallet address.This method can only used on Polygon chain.
 
 ```java
 Activity activity = this;
-String nonce = "nonce ";
+String nonce = "nonce";
 String gasPrice = "gas price";
 String gasLimit = "gas limit";
 String to = "to wallet address";
-int decimals = 1;
+int amount = 1;
 
-MirrorWorld.transferETH(activity, nonce, gasPrice, gasLimit, to, decimals, new MirrorCallback() {
+MirrorWorld.transferMatic(activity, nonce, gasPrice, gasLimit, to, amount, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo
