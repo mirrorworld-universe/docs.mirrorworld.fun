@@ -16,6 +16,7 @@ import {
   allResources,
   allRusts,
   allSDKs,
+  allTechIntros,
   allShowcases,
   allSnippets,
   allUnity,
@@ -87,6 +88,24 @@ export function getOverviewPaths() {
 export function getOverviewDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
   return allOverviews.find(
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
+  )
+}
+
+/* -----------------------------------------------------------------------------
+ * Overview
+ * -----------------------------------------------------------------------------*/
+
+export function getTechIntroPaths() {
+  return allTechIntros
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
+}
+
+export function getTechIntroDoc(_slug: string | string[]) {
+  const slug = Array.isArray(_slug) ? _slug[0] : _slug
+  return allTechIntros.find(
     (_) =>
       _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )
@@ -501,10 +520,15 @@ export const homeSidebar = [
     routes: buildSidebarTree([...allSolutions], [], "/solutions/"),
   },
   {
-    name: "SDK Integration",
+    name: "Integration",
     icon: HiOutlinePuzzle,
-    routes: buildSidebarTree([...allSDKs], [], "/integration/"),
+    routes: buildSidebarTree([...allTechIntros], [], "/tech-intro/"),
   },
+  // {
+  //   name: "SDK Integration",
+  //   icon: HiOutlinePuzzle,
+  //   routes: buildSidebarTree([...allSDKs], [], "/integration/"),
+  // },
   {
     name: "Showcase",
     icon: AiOutlineStar,
