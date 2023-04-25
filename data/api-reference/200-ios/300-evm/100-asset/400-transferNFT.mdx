@@ -1,0 +1,15 @@
+---
+title: transferNFT
+---
+
+# `transferNFT`
+Transfer NFT to another Sol wallet.
+
+```Swift
+MWSDK.EVM.Asset.transferNFT(mint_address: mint_address, to_wallet_address: to_wallet_address, confirmation: confirmation, skip_preflight: skip_preflight,onSuccess: { data in
+    self.Log(data)
+
+},onFailed: { code, message in
+    self.Log("failed:\(code),\(message ?? "")")
+})
+```

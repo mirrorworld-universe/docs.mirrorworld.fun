@@ -1,0 +1,14 @@
+---
+title: buyNFT
+---
+
+# `buyNFT`
+
+Buy a NFT on market place.
+```Swift
+MWSDK.EVM.Asset.buyNFT(collection_address: collection_address,token_id:token_id, price: Double(price) ,marketplace_address: marketplace_address, confirmation: confirmation) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```

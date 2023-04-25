@@ -1,0 +1,14 @@
+---
+title: checkTransactionsStatus
+---
+
+# `checkTransactionsStatus`
+
+Get status of transactions by their signatures.
+```Swift
+MWSDK.Solana.Asset.checkTransactionsStatus(signatures: [signature,another_signature]) { data in
+    print(data)
+} onFailed: { code, message in
+    print("CheckStatusOfTransactions failed,code is:\(code);message:\(String(describing: message))")
+}
+```

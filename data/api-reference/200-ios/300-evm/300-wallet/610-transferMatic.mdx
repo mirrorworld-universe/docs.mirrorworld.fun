@@ -1,0 +1,13 @@
+---
+title: transferMatic
+---
+
+# `transferMatic`
+Transfer Matic to another wallet.
+```Swift
+MWSDK.EVM.Wallet.transferMatic(nonce: nonce, gasPrice: gasPrice,gasLimit: gasLimit,to: to,amount: amount ) { response in
+    print(response)
+} onFailed: {
+    print("failed~")
+}
+```

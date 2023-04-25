@@ -1,0 +1,20 @@
+---
+title: updateNFT
+---
+
+# `updateNFT`
+Update properties of a NFT.
+```Swift
+let mintAddress = "NFT mint address"
+let name = "Awsom NFT"
+let symbol = "My symbol"
+let updateAuthority = "Update authority"
+let url = "Your NFT json url"
+let points = 100
+let confirmation = "confirmed"
+
+MWSDK.Solana.Asset.updateNFT(mint_address: mintAddress, url: url, seller_fee_basis_points: seller_fee_basis_points, name: name, symbol: symbol, updateAuthority: update_authority, confirmation: confirmation, skip_preflight: skip_preflight)
+{ isSucc,data in
+    print("result:\(isSucc),data is:\(data)")
+}
+```

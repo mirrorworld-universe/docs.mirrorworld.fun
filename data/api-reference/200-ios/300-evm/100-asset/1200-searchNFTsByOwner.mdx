@@ -1,0 +1,14 @@
+---
+title: searchNFTsByOwner
+---
+
+# `searchNFTsByOwner`
+Get a collection of NFT by creator addresses
+
+```Swift
+MWSDK.EVM.Asset.searchNFTsByOwner(owner_address: [owner_address], limit: limit , cursor: cursor ) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```

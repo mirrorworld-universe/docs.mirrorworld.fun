@@ -1,0 +1,13 @@
+---
+title: getNFTEvents
+---
+
+# `getNFTEvents`
+Get NFT's events.
+```Swift
+MWSDK.Solana.Metadata.getNFTEvents(mint_address: mint_address, page: page, page_size: page_size) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed  code:\(code),message: \(message ?? "")")
+}
+```

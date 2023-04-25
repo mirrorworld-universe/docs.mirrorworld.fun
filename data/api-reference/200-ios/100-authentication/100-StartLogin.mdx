@@ -1,14 +1,14 @@
 ---
-title: StartLogin
+title: startLogin
 ---
 
-# `StartLogin`
+# `startLogin`
 Calling this api would popup a dialog, user can finish login flow on it. In which dialog, user can login with third method like google, twitter. Or he can login with his email which registered on our website.
 
-```swift
-MirrorWorldSDK.share.StartLogin { userInfo in
-    print("login success :\(userInfo?.toString() ?? "")")
+```Swift
+MWSDK.startLogin { userInfo in
+    print("login success :\(MirrorTool.dicToString(userInfo) ?? "")")
 } onFail: {
-    print("login failed !")
+    print("login failed!")
 }
 ```

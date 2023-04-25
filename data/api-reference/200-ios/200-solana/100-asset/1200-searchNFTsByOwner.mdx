@@ -1,0 +1,14 @@
+---
+title: searchNFTsByOwner
+---
+
+# `searchNFTsByOwner`
+Get a collection of NFT by creator addresses
+
+```Swift
+MWSDK.Solana.Asset.searchNFTsByOwner(owners: ownersArr, limit: limit , offset: offset ) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```

@@ -1,0 +1,13 @@
+---
+title: getTransactions
+---
+
+# `getTransactions`
+Get transactions that belong to the current wallet.
+```Swift
+MWSDK.Solana.Wallet.getTransactions(limit: Int(limit) , next_before: next_before) { response in
+    print("success, result is:\(String(describing: response))")
+} onFailed: {
+    print("failed ~")
+}
+```

@@ -1,0 +1,14 @@
+---
+title: mintNFT
+---
+
+# `mintNFT`
+Mint a new NFT.
+
+```Swift
+MWSDK.EVM.Asset.mintNFT(collection_address: collection_address, token_id: token_id, to_wallet_address: to_wallet_address, mint_amount: mint_amount, confirmation: confirmation){ data in
+    print(data)
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```

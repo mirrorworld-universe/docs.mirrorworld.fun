@@ -1,0 +1,15 @@
+---
+title: recommentSearchNFT
+---
+
+# `recommentSearchNFT`
+Search NFTs by recommend, server will give 10 NFT as recommend NFT at most.
+Developer may use them to fill some blank of searching UI.
+
+```Swift
+MWSDK.Solana.Metadata.recommentSearchNFT(collections: [collection_mint]) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed  code:\(code),message: \(message ?? "")")
+}
+```

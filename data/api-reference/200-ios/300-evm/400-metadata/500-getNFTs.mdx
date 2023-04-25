@@ -1,0 +1,13 @@
+---
+title: getNFTs
+---
+
+# `getNFTs`
+Get NFTs by unabridged rules.
+```Swift
+MWSDK.EVM.Metadata.getNFTs(contract: contract, sale: sale, page: page, page_size: page_size, order: ["order_by":"price","desc":true], marketplace_address: marketplace_address, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]){ data in
+    print(data)
+} onFailed: { code, message in
+    print("failed  code:\(code),message: \(message ?? "")")
+}
+```

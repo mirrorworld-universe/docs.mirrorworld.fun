@@ -1,0 +1,14 @@
+---
+title: mintCollection
+---
+
+# `mintCollection`
+Mint a parent NFT collection.
+
+```Swift
+MWSDK.EVM.Asset.mintCollection(url:url,name: name, symbol: symbol, contract_type: contract_type, mint_start_id: mint_start_id,mint_end_id:mint_end_id,mint_amount: mint_amount ,confirmation:confirmation, onSuccess: { data in
+    print(data)
+}, onFailed: { code,message in
+    print("failed:\(code),\(message ?? "")")
+})
+```

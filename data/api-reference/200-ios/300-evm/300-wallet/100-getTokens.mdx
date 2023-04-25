@@ -1,0 +1,15 @@
+---
+title: getTokens
+---
+
+# `getTokens`
+Allow users to check their tokens in their wallet.
+
+```Swift
+MWSDK.EVM.Wallet.getTokens { response in
+    let res = response?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
+    print("Get wallet tokens:\(res ?? "null")")
+} onFailed: {
+    print("Get wallet tokens: failed")
+}
+```

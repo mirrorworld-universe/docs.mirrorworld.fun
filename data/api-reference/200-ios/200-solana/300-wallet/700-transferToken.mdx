@@ -1,0 +1,13 @@
+---
+title: transferToken
+---
+
+# `transferToken`
+Transfer Token to another wallet.
+```Swift
+MWSDK.Solana.Wallet.transferToken(to_publickey: to_publickey, amount: Int(Double(amount) ?? 0.0), token_mint: token_mint, decimals: Int(decimals) ?? 1) { response in
+    print(response)
+} onFailed: {
+    print("failed~")
+}
+```

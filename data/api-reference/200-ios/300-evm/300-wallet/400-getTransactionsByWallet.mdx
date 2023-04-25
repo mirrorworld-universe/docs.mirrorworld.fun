@@ -1,0 +1,13 @@
+---
+title: getTransactionsByWallet
+---
+
+# `getTransactionsByWallet`
+Get transactions that belong to a wallet.
+```Swift
+MWSDK.EVM.Wallet.getTransactionsByWallet(wallet_address: to_wallet_address, limit: limit) { response in
+    print(response)
+} onFailed: {
+    print("failed~")
+}
+```

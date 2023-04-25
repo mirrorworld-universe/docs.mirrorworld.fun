@@ -1,0 +1,14 @@
+---
+title: mintCollection
+---
+
+# `mintCollection`
+Mint a parent NFT collection.
+
+```Swift
+MWSDK.Solana.Asset.mintCollection(url:url,name: name, symbol: symbol, to_wallet_address: to_wallet_address, seller_fee_basis_points: Int(seller_fee_basis_points) ,confirmation:confirmation,skip_preflight:skip_preflight, onSuccess: { data in
+    print(data)
+}, onFailed: { code,message in
+    print("failed:\(code),\(message ?? "")")
+})
+```
