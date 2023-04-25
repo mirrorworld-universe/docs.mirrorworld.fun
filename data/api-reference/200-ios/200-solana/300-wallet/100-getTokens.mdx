@@ -5,7 +5,7 @@ title: getTokens
 # `getTokens`
 Allow users to check their tokens in their wallet.
 
-```Swift
+```swift
 MWSDK.Solana.Wallet.getTokens { response in
     let res = response?.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "\n", with: "")
     

@@ -5,7 +5,7 @@ title: buyNFT
 # `buyNFT`
 
 Buy a NFT on market place.
-```Swift
+```swift
 MWSDK.Solana.Asset.buyNFT(mint_address: mint_address, price: Double(price) ?? 0.01,auction_house: auction_house,confirmation: confirmation,skip_preflight: skip_preflight) { data in
     print(data)
 } onFailed: { code, message in

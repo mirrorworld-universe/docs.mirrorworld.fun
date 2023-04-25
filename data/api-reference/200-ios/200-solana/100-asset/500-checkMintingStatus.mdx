@@ -4,7 +4,7 @@ title: checkMintingStatus
 
 # `checkMintingStatus`
 Get status of a minting operation. Because minting may has some delay before success.
-```Swift
+```swift
 MWSDK.Solana.Asset.checkMintingStatus(mint_addresses: [mint_address,another_address],onSuccess: { data in
     print("Check status of Minting result is:\(String(describing: data))")
 },onFailed:{ code,errorDesc in

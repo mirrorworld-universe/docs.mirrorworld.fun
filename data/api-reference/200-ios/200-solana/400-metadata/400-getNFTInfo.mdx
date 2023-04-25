@@ -5,7 +5,7 @@ title: getNFTInfo
 # `getNFTInfo`
 Get NFT info. You need to parse the rawJsonString by yourself, cause SDK don't know what format your NFT is like.
 
-```Swift
+```swift
 MWSDK.Solana.Metadata.getNFTInfo(mint_address: mint_address) {data in
     print(data)
 } onFailed: {code, message in

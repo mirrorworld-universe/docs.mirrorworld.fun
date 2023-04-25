@@ -5,7 +5,7 @@ title: getNFTInfo
 # `getNFTInfo`
 Get NFT info. You need to parse the rawJsonString by yourself, cause SDK don't know what format your NFT is like.
 
-```Swift
+```swift
 MWSDK.EVM.Metadata.getNFTInfo(contract: contract,token_id:token_id) {data in
     print(data)
 } onFailed: {code, message in
