@@ -39,7 +39,7 @@ export default function IntegrationLayout({
   const isRootPage = useMemo(() => {
     return router.asPath === "/integration"
   }, [router])
-  
+
   useScrollToTop()
 
   return (

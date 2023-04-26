@@ -11,6 +11,9 @@ export type ClientRedirectConfig = Record<string, string>
 const redirects: ClientRedirectConfig = {
   "/": "/overview/introduction",
   "/tutorials": "/authentication",
+  "/api-reference/unity/marketplace": "/api-reference/unity",
+  "/api-reference/android/marketplace": "/api-reference/android",
+  "/api-reference/js/marketplace": "/api-reference/js",
 }
 
 export function useRedirect() {

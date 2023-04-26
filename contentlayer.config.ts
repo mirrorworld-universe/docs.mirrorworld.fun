@@ -293,6 +293,25 @@ const Guides = defineDocumentType(() => ({
   },
 }))
 
+const TechIntro = defineDocumentType(() => ({
+  name: "TechIntros",
+  filePathPattern: `tech-intro/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    ...fields,
+    tags: { type: "json" },
+    date_published: { type: "string" },
+    author: { type: "json" },
+  },
+  computedFields: {
+    ...computedFields,
+    pathname: {
+      type: "string",
+      resolve: () => `/tech-intro/[slug]`,
+    },
+  },
+}))
+
 const SDK = defineDocumentType(() => ({
   name: "SDKs",
   filePathPattern: `sdk/**/*.mdx`,
@@ -465,6 +484,7 @@ const contentLayerConfig = makeSource({
     FurtherReading,
     SDK,
     Solutions,
+    TechIntro,
 
     // Tutorials
     AuthenticationTutorials,
