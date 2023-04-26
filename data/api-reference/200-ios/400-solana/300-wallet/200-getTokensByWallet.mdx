@@ -1,0 +1,14 @@
+---
+title: getTokensByWallet
+---
+
+# `getTokensByWallet`
+
+Allow users to check wallet tokens by a wallet address.
+```swift
+MWSDK.Solana.Wallet.getTokensByWallet(wallet_address: to_wallet_address) { response in
+    print("success, result is:\(String(describing: response))")
+} onFailed: {
+    print("failed ~")
+}
+```

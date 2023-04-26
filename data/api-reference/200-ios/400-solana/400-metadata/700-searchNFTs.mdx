@@ -1,0 +1,13 @@
+---
+title: searchNFTs
+---
+
+# `searchNFTs`
+Search NFTs by given search string.
+```swift
+MWSDK.Solana.Metadata.searchNFTs(collections: [collection_mint], search: search) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed  code:\(code),message: \(message ?? "")")
+}
+```

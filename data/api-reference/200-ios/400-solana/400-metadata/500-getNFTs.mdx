@@ -1,0 +1,13 @@
+---
+title: getNFTs
+---
+
+# `getNFTs`
+Get NFTs by unabridged rules.
+```swift
+MWSDK.Solana.Metadata.getNFTs(collection: collection_mint, sale: sale, page: page, page_size: page_size, order: ["order_by":"price","desc":true], auction_house: auction_house, filter: [["filter_name" : "Rarity","filter_type":"enum","filter_value":["Common"]]]){ data in
+    print(data)
+} onFailed: { code, message in
+    print("\(item):failed  code:\(code),message: \(message ?? "")")
+}
+```

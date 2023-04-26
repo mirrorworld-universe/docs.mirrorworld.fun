@@ -1,0 +1,13 @@
+---
+title: getTransactionBySignature
+---
+
+# `getTransactionBySignature`
+Get transaction by a signature address.
+```swift
+MWSDK.EVM.Wallet.getTransactionBySignature(signature: signature) { response in
+    print(response)
+} onFailed: {
+    print("failed~")
+}
+```

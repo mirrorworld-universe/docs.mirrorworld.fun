@@ -1,0 +1,14 @@
+---
+title: queryNFT
+---
+
+# `queryNFT`
+Fetch the details of a NFT.
+
+```swift
+MWSDK.Solana.Asset.queryNFT(mint_Address: mint_address) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```

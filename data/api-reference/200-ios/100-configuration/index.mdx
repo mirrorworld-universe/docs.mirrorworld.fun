@@ -1,0 +1,90 @@
+---
+title: Configuration
+---
+
+
+## MirrorWorldSDK
+
+## Introduction to Mirror World
+
+- The Mirror World Smart SDK is a cross-platform interface that provides simple, declarative API interfaces for building Mobile and Web Applications into Web 3 Architecture.
+
+## Supported iOS & SDK Versions
+
+- iOS 11.0+
+- Swift
+- Objective-C/C++/C
+
+## Installation
+
+MirrorWorldSDK is available through [CocoaPods](https://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '11.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+pod 'MirrorWorldSDK'
+end
+
+```
+
+Then, run the following command:
+
+```sh
+pod install
+```
+
+## Getting started
+
+Create a developer account on the Developer dashboard [Mirror World Official Site](https://app.mirrorworld.fun/) . Create project and create an API Key.
+
+## Usage
+
+First, you should configure UrlScheme(mwsdk) in your project
+
+Set UrlScheme in the info.plist file of your project ： `mwsdk`
+
+like this:
+![Image text](https://github.com/mirrorworld-universe/mirrorworld-sdk-ios/blob/master/Example/MirrorWorldSDK/infoplist-UrlScheme-desc.png)
+
+Then
+
+```swift
+import MirrorWorldSDK
+
+```
+
+init SDK in the AppDelegate.
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    MWSDK.initSDK(env: .StagingDevNet, apiKey: "Your API Key")=
+    return true
+}
+
+func application(_ application: UIApplication, handleOpen url: URL) -> Bool {
+    MirrorWorldSDK.share.handleOpen(url: url)
+    return true
+}
+
+```
+
+## Choose your chain
+
+Mirror World SDK supports multi-chain operation. You can use different instance to call all chains' API.
+
+- For all client APIs: the instance is MWSDK
+- For all Solana APIs: the instance is MWSDK.Solana
+- For all EVM APIs: the instance is MWSDK.EVM. EVM include Ethereum\Polygon\BNB.
+
+There are three modules in the Mirror World SDK: Wallet, Asset, and Metadata. You can use different modules depending on which type of APIs you want to call.
+
+*For example, a user use MWSDK.startLogin() to let user login and use MWSDK.Solana.Wallet.getTokens() to check his tokens.*
+
+## Full API Documentation
+
+You can view the documentation for Mirror World SDK for Mobile on
+[our Official Documentation Site](https://mirrorworld.fun/docs/api-reference/ios)

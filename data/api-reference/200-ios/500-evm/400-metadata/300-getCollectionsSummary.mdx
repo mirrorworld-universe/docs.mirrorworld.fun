@@ -1,0 +1,13 @@
+---
+title: getCollectionsSummary
+---
+
+# `getCollectionsSummary`
+Get collections summary info.
+```swift
+MWSDK.EVM.Metadata.getCollectionsSummary(collections: [collection]) {data in
+    print(data)
+} onFailed: {code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```
