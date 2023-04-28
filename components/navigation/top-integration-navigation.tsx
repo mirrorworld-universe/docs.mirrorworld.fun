@@ -76,7 +76,6 @@ export function TopIntegrationNavigation(props: any) {
             <Link href={"/overview/introduction"}>
               <Button
                 as="a"
-                href={"/overview/introduction"}
                 variant="nav"
                 size="sm"
                 _hover={{
@@ -95,7 +94,6 @@ export function TopIntegrationNavigation(props: any) {
             <Link href={"/integration"}>
               <Button
                 as="a"
-                href={"/integration"}
                 variant="nav"
                 size="sm"
                 _hover={{
@@ -113,7 +111,6 @@ export function TopIntegrationNavigation(props: any) {
             <Link href={"/api-reference"}>
               <Button
                 as="a"
-                href={"/api-reference"}
                 variant="nav"
                 size="sm"
                 _hover={{
@@ -132,7 +129,6 @@ export function TopIntegrationNavigation(props: any) {
             <Link href={"/guides"}>
               <Button
                 as="a"
-                href={"/guides"}
                 variant="nav"
                 size="sm"
                 _hover={{
