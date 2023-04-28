@@ -1,0 +1,183 @@
+---
+title: Integrate NFT Fiat Checkout Using Mirror World
+description:
+  Mirror World allows you to create a seamless and secure checkout process for your in-game crypto assets. This guide will provide step-by-step instructions on how to integrate your Fiat-to-NFT Solution using Mirror World Smart Platform.
+author:
+  name: Mirror World
+  twitter: https://twitter.com/joinmirrorworld
+tags:
+  - NFT
+  - Tutorial
+---
+
+Mirror World allows you to create a seamless and secure checkout process for your in-game crypto assets. This guide will provide step-by-step instructions on how to integrate your Fiat-to-NFT Solution using Mirror World Smart Platform.
+
+## Modify your Smart Contract
+
+Start by creating a new contract using the following template or modify your existing NFT contract that you would like the checkout to apply to: The **setMWMintAddress** and **mwMint** functions must be included in the contract in order to grant Mirror World airdrop access.
+
+Contract Template:
+- ERC721
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract MyNftTemplate721 is ERC721, Ownable {
+
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIdCounter;
+
+    uint256 public totalSupply = 100;
+
+    uint256 public mintedCount;
+    bool public enablePurchase = true;
+
+    mapping(address => bool) public validMWMintAddress;
+
+    constructor() ERC721("MyNft", "MN") {
+        
+    }
+
+    modifier onlyMWMinter() {
+        require(validMWMintAddress[msg.sender], "This function is for MirrorWorld only.");
+        _;
+    }
+
+    function setEnablePurchase(bool enable) external onlyOwner {
+        enablePurchase = enable;
+    }
+
+    function setMWMintAddress(address wallet, bool enable) external onlyOwner {
+        validMWMintAddress[wallet] = enable;
+    }
+
+    function mwMint721(address _to, uint256 _amount) public onlyMWMinter {
+        require(enablePurchase, "currently paused");
+        require(_tokenIdCounter.current() + _amount <= totalSupply, "reached max supply");
+
+        // your own code...
+        for (uint256 i = 0; i < _amount; i++ ) {
+            uint256 newTokenId = _tokenIdCounter.current();
+            _safeMint(_to, newTokenId);
+            _tokenIdCounter.increment();
+            mintedCount += 1;
+        }
+    }
+
+}
+```
+
+- ERC1155
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract MyNftTemplate1155 is ERC1155, Ownable {
+
+    bool public enablePurchase = true;
+
+    mapping(address => bool) public validMWMintAddress;
+
+    constructor(
+        string memory uri_
+    ) ERC1155(uri_) {
+
+    }
+
+    modifier onlyMWMinter() {
+        require(validMWMintAddress[msg.sender], "This function is for MirrorWorld only.");
+        _;
+    }
+
+    function setEnablePurchase(bool enable) external onlyOwner {
+        enablePurchase = enable;
+    } 
+
+    function setMWMintAddress(address wallet, bool enable) external onlyOwner {
+        validMWMintAddress[wallet] = enable;
+    }
+
+    function mwMint1155(
+        address _to,
+        uint256 _id,
+        uint256 _amount,
+        bytes memory _data
+    ) external onlyMWMinter {
+        require(enablePurchase, "currently paused");
+
+        // your own code ...
+        _mint(_to, _id, _amount, _data);
+    }
+
+}
+```
+
+## Provide Necessary Information
+
+Once you have created your project and have your contract address, you need to provide the necessary information about your NFT project to Mirror World so that we can create your API key.
+
+This includes the blockchain you want to deploy on, the smart contract address, the product name, the URL of your collection image, the price of your NFT, the amount, the ABI documents, and any other recommended functions or error messages that might appear during the minting process.
+
+| Category | Information Provided  |
+| --- | --- |
+| Blockchain - Which blockchain to deploy on |  |
+| Smart Contract Address |  |
+| Product Name |  |
+| URL of your collection image - the image display to your users |  |
+| Price of your NFT - By default the price is set to be USD. If you wanna use other cryptocurrency, you can mentioned here. (We can also support dynamic pricing method) |  |
+| Amount |  |
+| ABI documents  |  |
+| Error types and error messages might appear during minting process (not required, but recommended) |  |
+| Other functions in Smart Contract (not required, but recommended)
+1. check the remain amount of NFT in contract
+2. Check current minting price (dynamic pricing) |  |
+
+## Generate an API key
+
+Once we received your request, Mirror World team will **generate an API key** for your project that have been tested on testnet. You will need this API key to access Mirror World's payment service API call.
+
+## Access the Payment Service
+
+To access the payment service, you need to call Mirror World's payment service API. You will need to provide the following information:
+
+- contract_address: Smart Contract Address
+- address: User's wallet address, which will receive the NFT
+- mint_amount: Number of NFTs
+- api_key: Mirror World API-key (Production)
+
+## API Example
+
+```html
+[https://nft-checkout.mirrorworld.fun/?collection_address={collection_address}&address={wallet_address}&mint_amount={amount}&api_key={api_key}](https://nft-checkout.mirrorworld.fun/?collection_address=%7Bcollection_address%7D&address=%7Bwallet_address%7D&mint_amount=%7Bamount%7D&api_key=%7Bapi_key%7D)
+```
+
+## NFT Checkout Service Data Flow
+
+<aside>
+💡 How the process works
+
+1. Once you have accessed the payment service, you need to create an order. Mirror World's payment service will update the order every 10 seconds to recalculate the order price, gas, and other relevant factors.
+2. Complete the payment process
+When users enter the payment page, they need to complete the payment process within 1 minute. Otherwise, the payment will be expired, and the order will need to be recalculated.
+3. Trigger the NFT mint progress
+After the payment is successful, Mirror World's Fait checkout service will receive webhook information from Stripe. When Mirror World receives the success message, the service will trigger the NFT mint progress.
+4. Retry and refund process
+If the minting process fails, Mirror World will retry up to three times. If Mirror World finds no NFTs that can be minted, they will terminate the retry and enter the refund process.
+</aside>
+
+![Untitled](/docs/images/guides/checkoutFlow.png)  
+<br />
+## Checkout Demo
+
+To try out the checkout process for NFT, you can visit our demo here:
+
+ [https://checkout-demo.mirrorworld.fun/](https://checkout-demo.mirrorworld.fun/)
