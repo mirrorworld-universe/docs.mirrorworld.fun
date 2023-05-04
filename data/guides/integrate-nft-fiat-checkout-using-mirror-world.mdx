@@ -32,12 +32,14 @@ contract MyNftTemplate721 is ERC721, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIdCounter;
 
+
     uint256 public totalSupply = 100;
 
     uint256 public mintedCount;
     bool public enablePurchase = true;
 
     mapping(address => bool) public validMWMintAddress;
+
 
     constructor() ERC721("MyNft", "MN") {
         
@@ -48,12 +50,15 @@ contract MyNftTemplate721 is ERC721, Ownable {
         _;
     }
 
-    function setEnablePurchase(bool enable) external onlyOwner {
-        enablePurchase = enable;
+    function setEnablePurchase(bool _enable) external onlyOwner {
+        enablePurchase = _enable;
     }
 
-    function setMWMintAddress(address wallet, bool enable) external onlyOwner {
-        validMWMintAddress[wallet] = enable;
+    function setMWMintAddress(address[] memory _wallets, bool _enable) external onlyOwner {
+			  for (uint256 i = 0; i < _wallets.length; i++ ) {
+             address wallet = _wallets[i];
+             validMWMintAddress[wallet] = _enable;
+        }
     }
 
     function mwMint721(address _to, uint256 _amount) public onlyMWMinter {
@@ -81,6 +86,8 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+
+
 contract MyNftTemplate1155 is ERC1155, Ownable {
 
     bool public enablePurchase = true;
@@ -102,22 +109,24 @@ contract MyNftTemplate1155 is ERC1155, Ownable {
         enablePurchase = enable;
     } 
 
-    function setMWMintAddress(address wallet, bool enable) external onlyOwner {
-        validMWMintAddress[wallet] = enable;
+    function setMWMintAddress(address[] memory _wallets, bool _enable) external onlyOwner {
+			  for (uint256 i = 0; i < _wallets.length; i++ ) {
+             address wallet = _wallets[i];
+             validMWMintAddress[wallet] = _enable;
+        }
     }
 
     function mwMint1155(
         address _to,
-        uint256 _id,
-        uint256 _amount,
+        uint256[] memory _ids,
+        uint256[] memory _amounts,
         bytes memory _data
     ) external onlyMWMinter {
         require(enablePurchase, "currently paused");
 
-        // your own code ...
-        _mint(_to, _id, _amount, _data);
+        // your code ...
+        _mintBatch(_to, _ids, _amounts, _data);
     }
-
 }
 ```
 
