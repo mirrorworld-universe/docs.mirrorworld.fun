@@ -1,0 +1,27 @@
+---
+title: mintNFT
+
+---
+
+# `mintNFT`
+Mint NFT into collection. The `mintID` parameter is nullable, server will respond with `"minting is proceeding, please wait for it"` if it detects that a `mintID` has been minted already.
+
+```java
+Activity activity = this;
+String collection = "collection_address";
+String tokenID = "token ID";
+String confirmation = MirrorConfirmation.Default;
+String toWalletAddress = "target wallet address";
+
+MirrorWorld.mintNFT(activity, collection, tokenID, confirmation, toWalletAddress, new MintNFTListener() {
+    @Override
+    public void onMintSuccess(MintResponse userResponse) {
+        Log.d("MirrorSDK","Mint result is:"+MirrorGsonUtils.getInstance().toJson(userResponse));
+    }
+
+    @Override
+    public void onMintFailed(long code, String message) {
+        Log.d("MirrorSDK","Mint failed,code is:"+code+" message:"+message);
+    }
+});
+```

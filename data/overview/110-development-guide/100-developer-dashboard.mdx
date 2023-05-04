@@ -1,0 +1,88 @@
+---
+title: Developer Dashboard
+description: The complete guide to the Mirror World Developer Dashboard
+---
+
+# Developer Dashboard Guide
+
+The Mirror World Developer Dashboard is the hub of all developer related tools for your Mirror World projects are managed. With the Mirror World Developer Dashboard, you can:
+
+- Manage Developer Account Settings
+- Create and manage projects
+- Manage API Keys
+- Create and manage NFT collections
+- Create and manage NFT Marketplaces
+
+## Developer Account Settings
+
+Signing up on the Mirror World Developer Dashboard will create a developer account
+for your email address. Your account will be used to perform operations on the
+assets and marketplaces your create programmatically.
+
+### Developer Wallet
+Your developer wallet address is upgraded with developer privileges to
+create marketplaces and collections from the developer dashboard. 
+
+> You can see your developer wallet address at the top right of the page.
+
+![Wallet Dashboard](/docs/images/dashboard/wallet-dashboard.gif)
+
+### Funding your wallet
+
+Mirror World supports most publicly tradable blockchains. These chains typically have testnets which have faucets. This faucets are used to deposit tokens to a wallet address on the test network for that chain.
+On a given chain's testnet, you can fund your wallet using any of the free open-source faucets for the chain that you are building for.
+
+- **Solana** - [https://solfaucet.com](https://solfaucet.com) (Devnet and Testnet)
+- **Ethereum** - [https://goerlifaucet.com](https://goerlifaucet.com/) (Goerli testnet)
+- **Polygon** - [https://mumbaifaucet.com](https://mumbaifaucet.com/) (Mumbai Testnet)
+- **Chaindrop** - [https://chaindrop.org](https://chaindrop.org/) (Multiple chains)
+
+> Funding your wallet on mainnet can be done by directly transferring tokens to your wallet address. 
+
+## Secret Access Key Management
+
+Mirror World non-custodial wallet infrastructure enforces a strict user security approval
+protocol to prevent user's assets from being mutated without their approval. Learn more about it in our Wallet Security Guide.
+
+However, for developers it may be an inconvenience to have get approval before minting
+NFTs from your own developer wallet. To bypass this mechanism for developers, your developer account is issued a **Secret Access Key** that allows the owner of the developer account to authorize actions that mutate the state of accounts that belong to the developer's wallet.
+
+This means you can mint NFTs and collections using scripts without the need to
+generate approval tokens. This is especially useful when performing scripting tasks, or testing using the API in your back end.
+
+> Whereas this is a powerful token, we only display it once to you. In case you lose this or it is compromised, you can recycle it by simply generating a new one. Please be careful not to publish this token in a compromised or public environment.
+Mirror World will not store this token in any database, however we can cryptographically verify its authenticity when provided as a `Bearer` token.
+> 
+
+### How to generate your secret access key
+The secret access key can be gotten from the Account Settings menu on the top-right of the developer dashboard.
+
+<br />
+
+<video src="/docs/images/dashboard/SecretAccessKey.mp4" autoPlay={true} muted={true} preload="auto" loop={true} />
+
+
+<Alert status="error">
+  <AlertIcon />
+  <div>
+    <AlertTitle>The Secret Access Key is a sensitive credential</AlertTitle>
+    <AlertDescription>Do not paste your secret access key in a public environment or in the client. If it is compromised, please generate a new one to invalidate the old one</AlertDescription>
+  </div>
+</Alert>
+
+### Using your secret access key
+1. Airdropping NFTs from your wallet to an address.
+2. Programmatically batch minting NFTs to an address.
+3. Programmatically minting an NFT collection.
+4. Programmatically listing / buying or cancelling listings on a marketplace
+5. Signing custom transactions
+
+**Example - Listing an NFT**
+
+Consider this [List NFT API](https://developer.mirrorworld.fun/#0c44279e-7a43-4ac7-b31d-6d903449db5f) from the HTTP API Documentation below
+
+<CodeSnippet id="development/sak-example.mdx" />
+
+This API will list a Solana NFT with `mint_address` of `AiBjJ4VYmi3Ba6UU86Xnv36ttFWH2PE4hufq3B5uDfzM` on the marketplace address of `BuhneMwdyewFQKpvmNkzbcfJQKYSY9tXeYEFcdZqGHgP` for 0.1 SOL.
+
+Note that the secret access key is passed into `Authorization: Bearer <**SECRET_ACCESS_KEY**>` header.

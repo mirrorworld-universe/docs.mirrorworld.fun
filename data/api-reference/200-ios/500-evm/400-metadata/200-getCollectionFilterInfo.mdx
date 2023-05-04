@@ -1,0 +1,13 @@
+---
+title: getCollectionFilterInfo
+---
+
+# `getCollectionFilterInfo`
+Get collection filters info.
+```swift
+MWSDK.EVM.Metadata.getCollectionFilterInfo(collection: collection) {data in
+    print(data)
+} onFailed: {code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```

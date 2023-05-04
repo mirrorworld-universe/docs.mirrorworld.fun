@@ -1,0 +1,33 @@
+---
+title: signTypedDataVersioned
+description: Performs off-chain versioned signing of an arbitrary typed message
+---
+
+# `signTypedDataVersioned`
+
+Performs Off Chain Versioned Signing Of An Arbitrary Typed Message
+
+```js
+const payload = {
+  messageType: [
+    {
+      name: "data",
+      type: "string",
+    },
+  ],
+  domain: {
+    name: "example.metamask.com",
+    version: "1",
+    chainId: 1,
+    verifyingContract: "0x0000000000000000000000000000000000000000",
+    salt: [1, 2, 3],
+    extraField: "stuff",
+  },
+  primaryType: "Message",
+  message: {
+    data: "hello",
+  },
+}
+
+await mirrorworld.Ethereum.Wallet.signTypedDataVersioned(payload)
+```

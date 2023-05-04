@@ -3,64 +3,317 @@ title: JS API Reference
 description: JS API Reference
 ---
 
-# JS API Reference - Mirror World Smart SDK
+# JavaScript SDK API Reference
 
-## Authentication Methods | JS
-- [`login`](/api-reference/js/authentication/login)
-- [`loginWithEmail`](/api-reference/js/authentication/loginWithEmail)
-- [`fetchUser`](/api-reference/js/authentication/fetchUser)
+On this page you will find the full JavaScript API reference for the JavaScript
+SDK. It covers the following topics:
 
-## Marketplace Methods | JS
-- [`createVerifiedCollection`](/api-reference/js/marketplace/createVerifiedCollection)
-- [`mintNFT`](/api-reference/js/marketplace/mintNFT)
-- [`updateNFT`](/api-reference/js/marketplace/updateNFT)
-- [`transferNFT`](/api-reference/js/marketplace/transferNFT)
-- [`createMarketplace`](/api-reference/js/marketplace/createMarketplace)
-- [`updateMarketplace`](/api-reference/js/marketplace/updateMarketplace)
-- [`queryMarketplaces`](/api-reference/js/marketplace/queryMarketplaces)
-- [`listNFT`](/api-reference/js/marketplace/listNFT)
-- [`buyNFT`](/api-reference/js/marketplace/buyNFT)
-- [`updateNFTListing`](/api-reference/js/marketplace/updateNFTListing)
-- [`cancelNFTListing`](/api-reference/js/marketplace/cancelNFTListing)
-- [`getNftDetails`](/api-reference/js/marketplace/getNftDetails)
-- [`getNFTs`](/api-reference/js/marketplace/getNFTs)
-- [`getNFTsOwnedByAddress`](/api-reference/js/marketplace/getNFTsOwnedByAddress)
-- [`fetchNFTMarketplaceActivity`](/api-reference/js/marketplace/fetchNFTMarketplaceActivity)
-- [`fetchNFTsByCreatorAddresses`](/api-reference/js/marketplace/fetchNFTsByCreatorAddresses)
-- [`fetchNFTsByMintAddresses`](/api-reference/js/marketplace/fetchNFTsByMintAddresses)
-- [`fetchNFTsByOwnerAddresses`](/api-reference/js/marketplace/fetchNFTsByOwnerAddresses)
-- [`fetchNFTsByUpdateAuthorities`](/api-reference/js/marketplace/fetchNFTsByUpdateAuthorities)
+- [Configuration](/api-reference/js/Configuration)
+- [Authentication](/api-reference/js/Authentication)
+- [Solana Service Methods](#solana--js-api-reference)
+- [Polygon Service Methods](#polygon--js-api-reference)
+- [BNB Chain Service Methods](#bnbchain--js-api-reference)
+- [Ethereum Service Methods](#ethereum--js-api-reference)
+- [Accessors](#accessors--js)
+- [Events](#events--js)
 
-## Wallet Methods | JS
-- [`getTokens`](/api-reference/js/wallet/getTokens)
-- [`getTransactions`](/api-reference/js/wallet/getTransactions)
-- [`transferSOL`](/api-reference/js/wallet/transferSOL)
-- [`transferSPLToken`](/api-reference/js/wallet/transferSPLToken)
+> For the integration guide please visit [this page](/integration/js) For the
+
+## Configuration Options | JS API Reference
+
+> For the JS SDK configuration options, please visit the
+> [configuration page](/api-reference/js/Configuration)
+
+## Authentication | JS API Reference
+
+- [`login`](/api-reference/js/Authentication/login)
+- [`loginWithEmail`](/api-reference/js/Authentication/loginWithEmail)
+- [`fetchUser`](/api-reference/js/Authentication/fetchUser)
+
+## Solana | JS API Reference
+
+All Solana service APIs on the Mirror World Smart SDK.
+
+```ts
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet-beta"),
+})
+
+// Or dynamically set the chainConfig
+mirrorworld.chainConfig = Solana("mainnet-beta")
+
+// Access the Solana service APIs
+mirrorworld.Solana.Asset.buyNFT(/* ... */)
+```
+
+### `Solana.Asset` | API Reference
+
+- [`Solana.Asset.buyNFT`](/api-reference/js/Solana/Asset/buyNFT)
+- [`Solana.Asset.listNFT`](/api-reference/js/Solana/Asset/listNFT)
+- [`Solana.Asset.cancelListing`](/api-reference/js/Solana/Asset/cancelListing)
+- [`Solana.Asset.transferNFT`](/api-reference/js/Solana/Asset/transferNFT)
+- [`Solana.Asset.createMarketplace`](/api-reference/js/Solana/Asset/createMarketplace)
+- [`Solana.Asset.updateMarketplace`](/api-reference/js/Solana/Asset/updateMarketplace)
+- [`Solana.Asset.queryMarketplaces`](/api-reference/js/Solana/Asset/queryMarketplaces)
+- [`Solana.Asset.queryAssetTransactionStatus`](/api-reference/js/Solana/Asset/queryAssetTransactionStatus)
+- [`Solana.Asset.queryAssetMintsStatus`](/api-reference/js/Solana/Asset/queryAssetMintsStatus)
+- [`Solana.Asset.createVerifiedCollection`](/api-reference/js/Solana/Asset/createVerifiedCollection)
+- [`Solana.Asset.getCollections`](/api-reference/js/Solana/Asset/getCollections)
+- [`Solana.Asset.getCollectionNFTs`](/api-reference/js/Solana/Asset/getCollectionNFTs)
+- [`Solana.Asset.mintNFT`](/api-reference/js/Solana/Asset/mintNFT)
+- [`Solana.Asset.updateNFTMetadata`](/api-reference/js/Solana/Asset/updateNFTMetadata)
+- [`Solana.Asset.verifyMintConfig`](/api-reference/js/Solana/Asset/verifyMintConfig)
+- [`Solana.Asset.searchNFTsByMintAddresses`](/api-reference/js/Solana/Asset/searchNFTsByMintAddresses)
+- [`Solana.Asset.searchNFTsByCreatorAddresses`](/api-reference/js/Solana/Asset/searchNFTsByCreatorAddresses)
+- [`Solana.Asset.searchNFTsByUpdateAuthorityAddresses`](/api-reference/js/Solana/Asset/searchNFTsByUpdateAuthorityAddresses)
+- [`Solana.Asset.searchNFTsByOwnerAddresses`](/api-reference/js/Solana/Asset/searchNFTsByOwnerAddresses)
+- [`Solana.Asset.searchNFTByMintAddress`](/api-reference/js/Solana/Asset/searchNFTByMintAddress)
+
+### `Solana.Wallet` | API Reference
+
+- [`Solana.Wallet.fetchTokens`](/api-reference/js/Solana/Wallet/fetchTokens)
+- [`Solana.Wallet.fetchTransactions`](/api-reference/js/Solana/Wallet/fetchTransactions)
+- [`Solana.Wallet.fetchTokensInWallet`](/api-reference/js/Solana/Wallet/fetchTokensInWallet)
+- [`Solana.Wallet.fetchTransactionsByWallet`](/api-reference/js/Solana/Wallet/fetchTransactionsByWallet)
+- [`Solana.Wallet.fetchTransactionBySignature`](/api-reference/js/Solana/Wallet/fetchTransactionBySignature)
+- [`Solana.Wallet.transferSol`](/api-reference/js/Solana/Wallet/transferSol)
+- [`Solana.Wallet.transferSPLToken`](/api-reference/js/Solana/Wallet/transferSPLToken)
+
+### `Solana.Metadata` | API Reference
+
+- [`Solana.Metadata.fetchNFTInfo`](/api-reference/js/Solana/Metadata/fetchNFTInfo)
+- [`Solana.Metadata.fetchNFTEvents`](/api-reference/js/Solana/Metadata/fetchNFTEvents)
+- [`Solana.Metadata.fetchNFTsInfo`](/api-reference/js/Solana/Metadata/fetchNFTsInfo)
+- [`Solana.Metadata.searchCollectionNFT`](/api-reference/js/Solana/Metadata/searchCollectionNFT)
+- [`Solana.Metadata.searchRecommendedNFTsInCollection`](/api-reference/js/Solana/Metadata/searchRecommendedNFTsInCollection)
+- [`Solana.Metadata.searchMarketplaceEvents`](/api-reference/js/Solana/Metadata/searchMarketplaceEvents)
+- [`Solana.Metadata.queryCollectionsInfo`](/api-reference/js/Solana/Metadata/queryCollectionsInfo)
+- [`Solana.Metadata.queryCollectionFilterMetadata`](/api-reference/js/Solana/Metadata/queryCollectionFilterMetadata)
+- [`Solana.Metadata.queryCollectionSummary`](/api-reference/js/Solana/Metadata/queryCollectionSummary)
+- [`Solana.Metadata.registerCollection`](/api-reference/js/Solana/Metadata/registerCollection)
+
+## Polygon | JS API Reference
+
+All Polygon service APIs on the Mirror World Smart SDK.
+
+```ts
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+})
+// Or dynamically set the chainConfig
+mirrorworld.chainConfig = Polygon("mumbai-mainnet")
+
+// Access the Polygon service APIs
+mirrorworld.Polygon.Asset.buyNFT(/* ... */)
+```
+
+### `Polygon.Asset` | API Reference
+
+- [`Polygon.Asset.buyNFT`](/api-reference/js/Polygon/Asset/buyNFT)
+- [`Polygon.Asset.listNFT`](/api-reference/js/Polygon/Asset/listNFT)
+- [`Polygon.Asset.cancelListing`](/api-reference/js/Polygon/Asset/cancelListing)
+- [`Polygon.Asset.transferNFT`](/api-reference/js/Polygon/Asset/transferNFT)
+- [`Polygon.Asset.createMarketplace`](/api-reference/js/Polygon/Asset/createMarketplace)
+- [`Polygon.Asset.updateMarketplace`](/api-reference/js/Polygon/Asset/updateMarketplace)
+- [`Polygon.Asset.queryMarketplaces`](/api-reference/js/Polygon/Asset/queryMarketplaces)
+- [`Polygon.Asset.createCollection`](/api-reference/js/Polygon/Asset/createCollection)
+- [`Polygon.Asset.mintNFT`](/api-reference/js/Polygon/Asset/mintNFT)
+- [`Polygon.Asset.verifyMintConfig`](/api-reference/js/Polygon/Asset/verifyMintConfig)
+- [`Polygon.Asset.getCollections`](/api-reference/js/Polygon/Asset/getCollections)
+- [`Polygon.Asset.getCollectionNFTs`](/api-reference/js/Polygon/Asset/getCollectionNFTs)
+- [`Polygon.Asset.searchNFTsByOwnerAddresses`](/api-reference/js/Polygon/Asset/searchNFTsByOwnerAddresses)
+- [`Polygon.Asset.searchNFT`](/api-reference/js/Polygon/Asset/searchNFT)
+- [`Polygon.Asset.searchNFTs`](/api-reference/js/Polygon/Asset/searchNFTs)
+
+### `Polygon.Wallet` | API Reference
+
+- [`Polygon.Wallet.fetchTokens`](/api-reference/js/Polygon/Wallet/fetchTokens)
+- [`Polygon.Wallet.fetchTransactions`](/api-reference/js/Polygon/Wallet/fetchTransactions)
+- [`Polygon.Wallet.fetchWalletTransactions`](/api-reference/js/Polygon/Wallet/fetchWalletTransactions)
+- [`Polygon.Wallet.fetchTransactionByHash`](/api-reference/js/Polygon/Wallet/fetchTransactionByHash)
+- [`Polygon.Wallet.transferMATIC`](/api-reference/js/Polygon/Wallet/transferMATIC)
+- [`Polygon.Wallet.transferERC20Token`](/api-reference/js/Polygon/Wallet/transferERC20Token)
+- [`Polygon.Wallet.fetchTokensInWallet`](/api-reference/js/Polygon/Wallet/fetchTokensInWallet)
+- [`Polygon.Wallet.fetchTransactionsByWallet`](/api-reference/js/Polygon/Wallet/fetchTransactionsByWallet)
+- [`Polygon.Wallet.personalSign`](/api-reference/js/Polygon/Wallet/personalSign)
+- [`Polygon.Wallet.signTypedData`](/api-reference/js/Polygon/Wallet/signTypedData)
+- [`Polygon.Wallet.signTypedDataVersioned`](/api-reference/js/Polygon/Wallet/signTypedDataVersioned)
+- [`Polygon.Wallet.signAndSendTransaction`](/api-reference/js/Polygon/Wallet/signAndSendTransaction)
+
+### `Polygon.Metadata` | API Reference
+
+- [`Polygon.Metadata.fetchNFTInfo`](/api-reference/js/Polygon/Metadata/fetchNFTInfo)
+- [`Polygon.Metadata.fetchNFTEvents`](/api-reference/js/Polygon/Metadata/fetchNFTEvents)
+- [`Polygon.Metadata.fetchNFTsInfo`](/api-reference/js/Polygon/Metadata/fetchNFTsInfo)
+- [`Polygon.Metadata.searchCollectionNFT`](/api-reference/js/Polygon/Metadata/searchCollectionNFT)
+- [`Polygon.Metadata.searchRecommendedNFTsInCollection`](/api-reference/js/Polygon/Metadata/searchRecommendedNFTsInCollection)
+- [`Polygon.Metadata.searchMarketplaceEvents`](/api-reference/js/Polygon/Metadata/searchMarketplaceEvents)
+- [`Polygon.Metadata.queryCollectionsInfo`](/api-reference/js/Polygon/Metadata/queryCollectionsInfo)
+- [`Polygon.Metadata.queryCollectionFilterMetadata`](/api-reference/js/Polygon/Metadata/queryCollectionFilterMetadata)
+- [`Polygon.Metadata.queryCollectionSummary`](/api-reference/js/Polygon/Metadata/queryCollectionSummary)
+- [`Polygon.Metadata.registerCollection`](/api-reference/js/Polygon/Metadata/registerCollection)
+
+## BNBChain | JS API Reference
+
+All BNBChain service APIs on the Mirror World Smart SDK.
+
+```ts
+import { MirrorWorld, BNBChain } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: BNBChain("bnb-mainnet"),
+})
+
+// Or dynamically set the chainConfig
+mirrorworld.chainConfig = BNBChain("bnb-mainnet")
+
+// Access the BNBChain service APIs
+mirrorworld.BNBChain.Asset.buyNFT(/* ... */)
+```
+
+### `BNBChain.Asset` | API Reference
+
+- [`BNBChain.Asset.buyNFT`](/api-reference/js/BNBChain/Asset/buyNFT)
+- [`BNBChain.Asset.listNFT`](/api-reference/js/BNBChain/Asset/listNFT)
+- [`BNBChain.Asset.cancelListing`](/api-reference/js/BNBChain/Asset/cancelListing)
+- [`BNBChain.Asset.transferNFT`](/api-reference/js/BNBChain/Asset/transferNFT)
+- [`BNBChain.Asset.createMarketplace`](/api-reference/js/BNBChain/Asset/createMarketplace)
+- [`BNBChain.Asset.updateMarketplace`](/api-reference/js/BNBChain/Asset/updateMarketplace)
+- [`BNBChain.Asset.queryMarketplaces`](/api-reference/js/BNBChain/Asset/queryMarketplaces)
+- [`BNBChain.Asset.createCollection`](/api-reference/js/BNBChain/Asset/createCollection)
+- [`BNBChain.Asset.mintNFT`](/api-reference/js/BNBChain/Asset/mintNFT)
+- [`BNBChain.Asset.verifyMintConfig`](/api-reference/js/BNBChain/Asset/verifyMintConfig)
+- [`BNBChain.Asset.getCollections`](/api-reference/js/BNBChain/Asset/getCollections)
+- [`BNBChain.Asset.getCollectionNFTs`](/api-reference/js/BNBChain/Asset/getCollectionNFTs)
+- [`BNBChain.Asset.searchNFTsByOwnerAddresses`](/api-reference/js/BNBChain/Asset/searchNFTsByOwnerAddresses)
+- [`BNBChain.Asset.searchNFT`](/api-reference/js/BNBChain/Asset/searchNFT)
+- [`BNBChain.Asset.searchNFTs`](/api-reference/js/BNBChain/Asset/searchNFTs)
+
+### `BNBChain.Wallet` | API Reference
+
+- [`BNBChain.Wallet.fetchTokens`](/api-reference/js/BNBChain/Wallet/fetchTokens)
+- [`BNBChain.Wallet.fetchTransactions`](/api-reference/js/BNBChain/Wallet/fetchTransactions)
+- [`BNBChain.Wallet.fetchWalletTransactions`](/api-reference/js/BNBChain/Wallet/fetchWalletTransactions)
+- [`BNBChain.Wallet.fetchTransactionByHash`](/api-reference/js/BNBChain/Wallet/fetchTransactionByHash)
+- [`BNBChain.Wallet.transferBNB`](/api-reference/js/BNBChain/Wallet/transferBNB)
+- [`BNBChain.Wallet.transferBEP20Token`](/api-reference/js/BNBChain/Wallet/transferBEP20Token)
+- [`BNBChain.Wallet.fetchTokensInWallet`](/api-reference/js/BNBChain/Wallet/fetchTokensInWallet)
+- [`BNBChain.Wallet.fetchTransactionsByWallet`](/api-reference/js/BNBChain/Wallet/fetchTransactionsByWallet)
+- [`BNBChain.Wallet.personalSign`](/api-reference/js/BNBChain/Wallet/personalSign)
+- [`BNBChain.Wallet.signTypedData`](/api-reference/js/BNBChain/Wallet/signTypedData)
+- [`BNBChain.Wallet.signTypedDataVersioned`](/api-reference/js/BNBChain/Wallet/signTypedDataVersioned)
+- [`BNBChain.Wallet.signAndSendTransaction`](/api-reference/js/BNBChain/Wallet/signAndSendTransaction)
+
+### `BNBChain.Metadata` | API Reference
+
+- [`BNBChain.Metadata.fetchNFTInfo`](/api-reference/js/BNBChain/Metadata/fetchNFTInfo)
+- [`BNBChain.Metadata.fetchNFTEvents`](/api-reference/js/BNBChain/Metadata/fetchNFTEvents)
+- [`BNBChain.Metadata.fetchNFTsInfo`](/api-reference/js/BNBChain/Metadata/fetchNFTsInfo)
+- [`BNBChain.Metadata.searchCollectionNFT`](/api-reference/js/BNBChain/Metadata/searchCollectionNFT)
+- [`BNBChain.Metadata.searchRecommendedNFTsInCollection`](/api-reference/js/BNBChain/Metadata/searchRecommendedNFTsInCollection)
+- [`BNBChain.Metadata.searchMarketplaceEvents`](/api-reference/js/BNBChain/Metadata/searchMarketplaceEvents)
+- [`BNBChain.Metadata.queryCollectionsInfo`](/api-reference/js/BNBChain/Metadata/queryCollectionsInfo)
+- [`BNBChain.Metadata.queryCollectionFilterMetadata`](/api-reference/js/BNBChain/Metadata/queryCollectionFilterMetadata)
+- [`BNBChain.Metadata.queryCollectionSummary`](/api-reference/js/BNBChain/Metadata/queryCollectionSummary)
+- [`BNBChain.Metadata.registerCollection`](/api-reference/js/BNBChain/Metadata/registerCollection)
+
+## Ethereum | JS API Reference
+
+All Ethereum service APIs on the Mirror World Smart SDK.
+
+```ts
+import { MirrorWorld, Ethereum } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+})
+
+// Or dynamically set the
+
+mirrorworld.chainConfig = Ethereum("mainnet")
+
+// Access the Ethereum service APIs
+mirrorworld.Ethereum.Asset.buyNFT(/* ... */)
+```
+
+### `Ethereum.Asset` | API Reference
+
+- [`Ethereum.Asset.buyNFT`](/api-reference/js/Ethereum/Asset/buyNFT)
+- [`Ethereum.Asset.listNFT`](/api-reference/js/Ethereum/Asset/listNFT)
+- [`Ethereum.Asset.cancelListing`](/api-reference/js/Ethereum/Asset/cancelListing)
+- [`Ethereum.Asset.transferNFT`](/api-reference/js/Ethereum/Asset/transferNFT)
+- [`Ethereum.Asset.createMarketplace`](/api-reference/js/Ethereum/Asset/createMarketplace)
+- [`Ethereum.Asset.updateMarketplace`](/api-reference/js/Ethereum/Asset/updateMarketplace)
+- [`Ethereum.Asset.queryMarketplaces`](/api-reference/js/Ethereum/Asset/queryMarketplaces)
+- [`Ethereum.Asset.createCollection`](/api-reference/js/Ethereum/Asset/createCollection)
+- [`Ethereum.Asset.mintNFT`](/api-reference/js/Ethereum/Asset/mintNFT)
+- [`Ethereum.Asset.verifyMintConfig`](/api-reference/js/Ethereum/Asset/verifyMintConfig)
+- [`Ethereum.Asset.getCollections`](/api-reference/js/Ethereum/Asset/getCollections)
+- [`Ethereum.Asset.getCollectionNFTs`](/api-reference/js/Ethereum/Asset/getCollectionNFTs)
+- [`Ethereum.Asset.searchNFTsByOwnerAddresses`](/api-reference/js/Ethereum/Asset/searchNFTsByOwnerAddresses)
+- [`Ethereum.Asset.searchNFT`](/api-reference/js/Ethereum/Asset/searchNFT)
+- [`Ethereum.Asset.searchNFTs`](/api-reference/js/Ethereum/Asset/searchNFTs)
+
+### `Ethereum.Wallet` | API Reference
+
+- [`Ethereum.Wallet.fetchTokens`](/api-reference/js/Ethereum/Wallet/fetchTokens)
+- [`Ethereum.Wallet.fetchTransactions`](/api-reference/js/Ethereum/Wallet/fetchTransactions)
+- [`Ethereum.Wallet.fetchWalletTransactions`](/api-reference/js/Ethereum/Wallet/fetchWalletTransactions)
+- [`Ethereum.Wallet.fetchTransactionByHash`](/api-reference/js/Ethereum/Wallet/fetchTransactionByHash)
+- [`Ethereum.Wallet.transferETH`](/api-reference/js/Ethereum/Wallet/transferETH)
+- [`Ethereum.Wallet.transferERC20Token`](/api-reference/js/Ethereum/Wallet/transferERC20Token)
+- [`Ethereum.Wallet.fetchTokensInWallet`](/api-reference/js/Ethereum/Wallet/fetchTokensInWallet)
+- [`Ethereum.Wallet.fetchTransactionsByWallet`](/api-reference/js/Ethereum/Wallet/fetchTransactionsByWallet)
+- [`Ethereum.Wallet.personalSign`](/api-reference/js/Ethereum/Wallet/personalSign)
+- [`Ethereum.Wallet.signTypedData`](/api-reference/js/Ethereum/Wallet/signTypedData)
+- [`Ethereum.Wallet.signTypedDataVersioned`](/api-reference/js/Ethereum/Wallet/signTypedDataVersioned)
+- [`Ethereum.Wallet.signAndSendTransaction`](/api-reference/js/Ethereum/Wallet/signAndSendTransaction)
+
+### `Ethereum.Metadata` | API Reference
+
+- [`Ethereum.Metadata.fetchNFTInfo`](/api-reference/js/Ethereum/Metadata/fetchNFTInfo)
+- [`Ethereum.Metadata.fetchNFTEvents`](/api-reference/js/Ethereum/Metadata/fetchNFTEvents)
+- [`Ethereum.Metadata.fetchNFTsInfo`](/api-reference/js/Ethereum/Metadata/fetchNFTsInfo)
+- [`Ethereum.Metadata.searchCollectionNFT`](/api-reference/js/Ethereum/Metadata/searchCollectionNFT)
+- [`Ethereum.Metadata.searchRecommendedNFTsInCollection`](/api-reference/js/Ethereum/Metadata/searchRecommendedNFTsInCollection)
+- [`Ethereum.Metadata.searchMarketplaceEvents`](/api-reference/js/Ethereum/Metadata/searchMarketplaceEvents)
+- [`Ethereum.Metadata.queryCollectionsInfo`](/api-reference/js/Ethereum/Metadata/queryCollectionsInfo)
+- [`Ethereum.Metadata.queryCollectionFilterMetadata`](/api-reference/js/Ethereum/Metadata/queryCollectionFilterMetadata)
+- [`Ethereum.Metadata.queryCollectionSummary`](/api-reference/js/Ethereum/Metadata/queryCollectionSummary)
+- [`Ethereum.Metadata.registerCollection`](/api-reference/js/Ethereum/Metadata/registerCollection)
 
 ## Accessors | JS
+
 - [`user`](/api-reference/js/accessors/user)
 - [`wallet`](/api-reference/js/accessors/wallet)
 - [`isLoggedIn`](/api-reference/js/accessors/isLoggedIn)
-- [`nfts`](/api-reference/js/accessors/nfts)
-- [`tokens`](/api-reference/js/accessors/tokens)
-- [`transactions`](/api-reference/js/accessors/transactions)
-- [`clusterEnv`](/api-reference/js/accessors/clusterEnv)
 
 ## Events | JS
+
 The SDK also emits events when specific events happen in the SDK
 
 ```ts
 export type MirrorWorldEvents = {
-  'login:email': UserWithWallet;
-  login: unknown;
-  logout: unknown;
-  ready: undefined;
-  'auth:refreshToken'?: string;
-  'update:user'?: undefined;
-};
+  "login:email": UserWithWallet
+  login: unknown
+  logout: unknown
+  ready: undefined
+  "auth:refreshToken"?: string
+  "update:user"?: undefined
+}
 ```
 
-You can listen to these events using the `on()` method. For example, To listen to the `login:email` event, we invoke the following event:
+You can listen to these events using the `on()` method. For example, To listen
+to the `login:email` event, we invoke the following event:
+
 ```ts
 mirrorworld.on("login:email", (user) => {
   console.log("Logged in User", user)

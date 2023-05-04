@@ -1,0 +1,22 @@
+---
+title: searchNFTsByMintAddress
+
+---
+
+# `searchNFTsByMintAddress`
+
+Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
+are provided.
+
+```java
+List<ReqEVMFetchNFTsToken> tokens = new ArrayList<>();
+tokens.add(new ReqEVMFetchNFTsToken("token_address_1","tokenID1"));
+tokens.add(new ReqEVMFetchNFTsToken("token_address_2","tokenID2"));
+
+MirrorWorld.searchNFTsByMintAddress(tokens, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

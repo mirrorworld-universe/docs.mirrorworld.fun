@@ -1,0 +1,42 @@
+---
+title: How to Use Token On-Ramp Service
+description:
+  Guide on how to use Mirror World on-ramp service to purchase crypto token
+author:
+  name: Le Li
+  twitter: https://twitter.com/joinmirrorworld
+tags:
+  - Tutorial
+  - API
+---
+
+Fiat on-ramp service allows users to convert fiat currency into cryptocurrency. In MirrorWorld, we partner with third-party on-ramp providers to provides a seamless experience to use all major payment methods, including debit and credit card, local bank transfers, Apple Pay, Google Pay, and Samsung Pay.
+
+## Getting Started
+
+Before getting started, you want to make sure that you already have a Mirror
+World developer account and an already created project. If you're yet to create
+one, head over to https://app.mirrorworld.fun/auth/login to get started or go
+through this guide for a proper explanation.
+
+
+## Get On-Ramp UI Widget URL
+You can get on-ramp provider's UI widget URL by making a call to the MirrorWorld API endpoint.
+```bash
+curl --location --request GET 'http://api.mirrorworld.fun/v2/solana/devnet/wallet/on_ramp/get_url?email=<USER_EMAIL>&walletAddress=<RECEIVER_PUBLICK_ADDRESS>&currencyCode=<CRYPTO_CURRENCY_TICKER>' \
+--header 'x-api-key: <PROJECT_API_KEY>'
+````
+
+The response contains the UI widget URL:
+```bash
+https://buy-sandbox.moonpay.com/?apiKey=<MOONPAY_API_KEY>&&currencyCode=<CRYPTO_CURRENCY_TICKER>&walletAddress=<RECEIVER_PUBLICK_ADDRESS>&email=<USER_EMAIL>&signature=1Mqv9xm6vzd%2BY40MF%2FHeVqHSx%2FJ9w5cB1%2
+````
+
+### Open UI Widget URL
+
+Once you get the URL, you can open it in your app (e.g. webview, iframe). The on-ramp provider will guide the user to finish the purchase process, including typing in payment information and KYC if needed.
+
+![moonpay_screenshot.png](/docs/images/tutorials/moonpay_screenshot.png)
+
+### Resources
+- [Moonpay](https://www.moonpay.com/)

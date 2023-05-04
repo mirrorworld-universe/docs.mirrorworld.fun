@@ -1,0 +1,14 @@
+---
+title: listNFT
+---
+
+# `listNFT`
+List a NFT on market place.
+
+```swift
+MWSDK.Solana.Asset.listNFT(mint_address: mint_address, price: Double(price) ?? 0.1,auction_house: auction_house, confirmation: "finalized",skip_preflight: skip_preflight) { data in
+    self.Log(data)
+} onFailed: { code, message in
+    self.Log("failed:\(code),\(message ?? "")")
+}
+```

@@ -1,0 +1,43 @@
+---
+title: registerCollection
+description:
+  Register an NFT collection info to Metadata service. After successful
+  registration, the Metadata Service will index the collection data.
+---
+
+# `registerCollection`
+
+Register An NFT Collection Info To Metadata Service. After Successful
+Registration, The Metadata Service Will Index The Collection Data.
+
+The full type signature of the method is documented
+[here](https://github.com/mirrorworld-universe/mirrorworld-sdk-js/blob/d4a2075770fb8ec1e39c23c35a64cf3e06874bfd/packages/core/src/types/metadata.common.v2.ts#L63)
+
+```ts
+import {
+  type RegisterCollectionPayloadV2,
+  QueryNFTsFilterType,
+} from "@usemirrorworld/web3.js"
+
+const payload: RegisterCollectionPayloadV2 = {
+  collection: "qkuKJWMi14rdYLPBghfBRDpJASdbcLU6xZH3cpUZfng",
+  collection_name: "example collection",
+  collection_type: "NFT",
+  collection_orders: [
+    {
+      order_field: "price",
+      order_desc: "Price: Low to High",
+      desc: true,
+    },
+  ],
+  collection_filters: [
+    {
+      filter_name: "Rarity",
+      filter_type: QueryNFTsFilterType.enum,
+      filter_value: ["Common", "Rare", "Elite", "Ledengary", "Mythical"],
+    },
+  ],
+}
+
+await mirrorworld.Solana.Metadata.registerCollection(payload)
+```

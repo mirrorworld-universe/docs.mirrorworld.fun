@@ -1,0 +1,19 @@
+---
+title: queryMarketplaces
+description: Search NFT Marketplace on Polygon
+---
+
+# `queryMarketplaces`
+
+Search NFT Marketplace On Polygon
+
+```js
+const payload = {
+  // Seller Fee basis points
+  seller_fee_basis_points: 400,
+  // Token Address
+  payment_token: "0x0F3c3A9F8695A3cFe1A475c99Fed8D1d190B1Dd0",
+}
+
+await mirrorworld.Polygon.Asset.queryMarketplaces(payload)
+```

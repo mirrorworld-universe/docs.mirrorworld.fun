@@ -1,0 +1,13 @@
+---
+title: isLogged
+---
+
+# `isLogged`
+
+Checks whether the current user is logged in. You can use this function to judge whether a user needs to start login flow.
+
+```swift
+MWSDK.isLogged { onBool in
+    print("This device's login state is:\(onBool)")
+}
+```

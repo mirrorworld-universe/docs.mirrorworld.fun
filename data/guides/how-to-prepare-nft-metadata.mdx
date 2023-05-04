@@ -1,0 +1,94 @@
+---
+title: How to prepare NFT Metadata
+description: Guide for creating and storing your NFT Metadata
+author:
+  name: David C. Nwadiogbu
+  twitter: https://twitter.com/cnwadiogbu
+tags:
+  - Solana
+  - NFTs
+  - Metadata
+---
+
+## What is NFT metadata
+
+NFT Metadata essentially stores information about your NFTs. They may include
+essential properties of the NFT such as its name, total supply and transaction
+history.
+
+NFT metadata usually comes in `json` format and describes the characteristics
+and properties of the NFT.
+
+## The ERC115 metadata standard
+
+Before we learn how to prepare our metadata, we need to talk about the ERC115
+metadata standard.
+
+The ERC115 metadata standard is a popular standard for creating NFT metadata.
+This is the metadata standard enforced by Mirror World and on Solana NFTs as
+well. As long as your metadata exists on Solana, it is expected to conform to
+the
+[ERC-1155 metadata schema](https://eips.ethereum.org/EIPS/eip-1155#metadata).
+The ERC115 standard is backwards compatible with ERC-721 and is generally
+well-supported by various wallets and marketplaces.
+
+> Only metadata that conforms to the ERC-1155 metadata standard is accepted on
+> Mirrorworld.
+
+## Metadata properties
+
+An NFT metadata may contain the following properties in it:
+
+- `name`: Name of the asset.
+- `symbol`: Symbol of the asset.
+- `description`: Description of the asset.
+- `image`: URI pointing to the asset's logo.
+- `animation_url` (optional): URI pointing to the asset's animation.
+- `external_url`: URI pointing to an external URL defining the asset — e.g. the
+  game's main site.
+- `attributes`: Array of attributes defining the characteristics of the asset.
+
+Let's look at how to prepare metadata for your NFT
+
+## How to prepare Metadata for NFT
+
+Preparing the metadata for your NFT is relatively straightforward. You will need
+to create a `json` file that contains all the relevant information about your
+NFT as seen above.
+
+Here's an example of what your `json` file would look like:
+
+**metadata.json**
+
+```json
+{
+  "name": "Smart Platform by Mirror World",
+  "symbol": "SPMW",
+  "description": "Smart Platform by Mirror World offers multi-chain social authentication, MPC wallet solutions, and in-app marketplace solutions, all with 0 upfront cost.",
+  "image": "https://arweave.net/26YdhY_eAzv26YdhY1uu9uiA3nmDZYwP8MwZAultcE?ext=jpeg",
+  "animation_url": "https://arweave.net/ZAultcE_eAzv26YdhY1uu9uiA3nmDZYwP8MwuiA3nm?ext=glb",
+  "external_url": "https://example.com",
+  "attributes": [
+    {
+      "trait_type": "trait1",
+      "value": "value1"
+    },
+    {
+      "trait_type": "trait2",
+      "value": "value2"
+    }
+  ]
+}
+```
+
+## Storing your metadata
+
+Once you have prepared the metadata `json` file for your NFT, you can make it
+into a metadata `json` URL. This URL can then be used to easily access the
+metadata `json` file associated with the NFT.
+
+To create the metadata `json` URL, you will first need to upload the `json` file
+to an IPFS service like Arweave.
+
+Once the `json` file is uploaded, you will need to obtain the download link for
+the `json` file. This link is the metadata `json` URL.

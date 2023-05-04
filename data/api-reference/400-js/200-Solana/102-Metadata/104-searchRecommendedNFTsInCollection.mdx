@@ -1,0 +1,18 @@
+---
+title: searchRecommendedNFTsInCollection
+description: Search Recommended NFT in Solana Collection
+---
+
+# `searchRecommendedNFTsInCollection`
+
+Search Recommended NFT In Solana Collection
+
+```ts
+import { type SearchSolanaRecommendedNFTInCollectionPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: SearchSolanaRecommendedNFTInCollectionPayloadV2 = {
+  collections: ["4cEwtjcQt8KNBsD8EP3Y7RFZgRiq51uVCwJ4SWUpcCfZ"],
+}
+
+await mirrorworld.Solana.Metadata.searchRecommendedNFTsInCollection(payload)
+```

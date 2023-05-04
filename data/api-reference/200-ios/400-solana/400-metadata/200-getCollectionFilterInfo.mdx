@@ -1,0 +1,13 @@
+---
+title: getCollectionFilterInfo
+---
+
+# `getCollectionFilterInfo`
+Get collection filters info.
+```swift
+ MWSDK.Solana.Metadata.getCollectionFilterInfo(collection: collection) {data in
+    self.Log(data)
+} onFailed: {code, message in
+    self.Log("failed:\(code),\(message ?? "")")
+}
+```

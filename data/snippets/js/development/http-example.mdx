@@ -1,0 +1,10 @@
+```ts
+fetch("https://api.mirrorworld.fun/v2/solana/devnet/wallet/tokens", {
+  method: "GET",
+  headers: {
+    'x-api-key': "YOUR_API_KEY"
+  }
+})
+  .then((res) => res.json())
+  .then(console.log)
+```

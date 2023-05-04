@@ -1,0 +1,21 @@
+---
+title: fetchNFTsByOwnerAddresses
+
+---
+
+### `fetchNFTsByOwnerAddresses`
+
+Fetch NFTs By Owner Addresses. Returns a detailed payload of all NFTs whose `owners`
+are provided.
+
+```java
+String owner = "owner address";
+int limit = 99;
+
+MirrorWorld.fetchNFTsByOwnerAddresses(owner, limit, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

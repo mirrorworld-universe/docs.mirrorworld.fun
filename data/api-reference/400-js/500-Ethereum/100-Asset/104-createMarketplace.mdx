@@ -1,0 +1,18 @@
+---
+title: createMarketplace
+description: Create a new NFT Marketplace on Ethereum
+---
+
+# `createMarketplace`
+
+Create A New NFT Marketplace On Ethereum
+
+```js
+import { type ICreateEVMMarketplacePayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: ICreateEVMMarketplacePayloadV2 = {
+  seller_fee_basis_points: 400,
+}
+
+await mirrorworld.Ethereum.Asset.createMarketplace(payload)
+```

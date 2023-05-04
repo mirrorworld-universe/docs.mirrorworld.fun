@@ -1,6 +1,6 @@
 const baseConfig = {
   repo: "https://github.com/mirrorworld-universe/docs.mirrorworld.fun",
-  title: "Mirror World - All of Crypto’s Potential In A Few Lines of Code.",
+  title: "Mirror World - All of Crypto's Potential In A Few Lines of Code.",
   description: "Highest conversion development infrastructure for Mobile dApps",
   url: "https://mirrorworld.fun",
 }

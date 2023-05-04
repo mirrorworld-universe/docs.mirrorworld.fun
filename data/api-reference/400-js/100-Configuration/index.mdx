@@ -1,0 +1,159 @@
+---
+title: Configuration
+description: JavaScript SDK Configuration Options
+---
+
+# Configuration | JS API Reference
+
+The JavaScript SDK can be configured with a variety of options. These options
+can be set globally, or on a per-instance basis.
+
+## Initialization
+
+Initializing the Mirror World SDK only requires 2 properties in the
+`MirrorWorld` constructor object:
+
+1. `apiKey` - Project's API Key acquired from the
+   [developer dashboard](/overview/development-guide/developer-dashboard)
+2. `chainConfig` - [Chain configuration](#chain-configuration) object for the
+   chain you would like to use. (The chain configuration can also be modified
+   after initialization)
+
+## Multichain Configuration
+
+The Mirror World JS SDK exports configuration factories for following multiple
+chains:
+
+- `Solana` - [Solana](https://solana.com) chain configuration
+- `Ethereum` - [Ethereum](https://ethereum.org/en/) chain configuration
+- `BNBChain` - [BNB Chain](https://www.bnbchain.org/en) configuration
+- `Polygon` - [Polygon](https://polygon.technology/) chain configuration
+
+Learn more about Mirror World's Multichain Support Matrix
+[here](/overview/introduction/multi-chain-solutions)
+
+Below is an example of how to initialize the SDK with a Solana Configuration for
+the mainnet-beta network.
+
+```ts
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Solana("mainnet-beta"),
+})
+```
+
+After assigning this configuration, you can now invoke `Solana` methods with the
+SDK.
+
+### Chain / Network Configurations
+
+The table below shows the network names configuration parameters accepted by the
+corresponding chain.
+
+| Chain      | Mainnet name     | Testnet name     |
+| ---------- | ---------------- | ---------------- |
+| `Solana`   | `mainnet-beta`   | `devnet`         |
+| `Polygon`  | `mumbai-mainnet` | `mumbai-testnet` |
+| `BNBChain` | `bnb-mainnet`    | `bnb-testnet`    |
+| `Ethereum` | `mainnet`        | `goerli`         |
+
+For example, below is an example of how to initialize the SDK on Polygon Testnet
+and mint an NFT
+
+```ts
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-testnet"),
+})
+
+await mirrorworld.Polygon.Asset.mintNFT(/** ... */)
+```
+
+## Configuration Options
+
+```ts
+export interface MirrorWorldOptions {
+  /**
+   * API Key used to authenticate your API requests to Mirror World.
+   */
+  apiKey: string
+  /**
+   * Chain configuration for Mirror World SDK
+   */
+  chainConfig: ChainConfig<ChainTypes>
+  /**
+   * Authentication options
+   */
+  auth?: {
+    // Authentication token
+    authToken?: string
+    // Developer Secret Access Key. Used when interacting with the SDK on the server-side.
+    secretAccessKey?: string
+  }
+  /**
+   * When passed, the Mirror World SDK will automatically log in
+   * the user using their `refresh_token`. This expects the
+   * refresh token returned with the user when logging in.
+   */
+  autoLoginCredentials?: string
+
+  /**
+   * Wallet UI configuration options
+   */
+  walletUIConfig?: {
+    /**
+     * When the `uxMode` is set to `popup`, it uses a new window when interacting with the Wallet UI.
+     * When the `uxMode` is set to `embedded`, it uses an iframe when interacting with the Wallet UI.
+     */
+    uxMode: "popup" | "embedded"
+  }
+}
+```
+
+## Usage with Node.js
+
+When using the Mirror World Smart SDK with Node.js, you may need to authenticate
+the SDK with your API Key and Secret Access Key.
+
+Providing this token will bypass approval for developer wallets. Learn more
+about the
+[Secret Access Key](/overview/development-guide/developer-dashboard#secret-access-key-management).
+
+```ts
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-testnet"),
+  auth: {
+    secretAccessKey: "YOUR_SECRET_ACCESS_KEY",
+  },
+})
+```
+
+## Advanced Concepts
+
+### Dynamic Chain Configuration
+
+When building multichain applciations with the Mirror World SDK, you may
+encounter some scenarios where you may want to switch from one chain to another.
+To perform this kind of switch, you can reassign the `chainConfig` property on
+the `MirrorWorld` instance:
+
+```ts
+// Reassigns chain config to Solana devnet
+mirrorworld.chainConfig = Solana("devnet")
+console.log(mirrorworld.chainConfig) // { chain: "solana", network: "devnet" }
+
+// Reassigns chain config to Ethereum mainnet
+mirrorworld.chainConfig = Ethereum("mainnet")
+console.log(mirrorworld.chainConfig) // { chain: "ethereum", network: "mainnet" }
+
+// Reassigns chain config to BNB Chain mainnet
+mirrorworld.chainConfig = BNBChain("bnb-mainnet")
+console.log(mirrorworld.chainConfig) // { chain: "bnb", network: "bnb-mainnet" }
+```

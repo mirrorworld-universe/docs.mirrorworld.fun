@@ -4,30 +4,102 @@ description: Unity API Reference
 ---
 
 # Unity API Reference - Mirror World Smart SDK
+On this page you will find the full API reference for the Unity SDK. It covers the following topics:
+- [`Configuration`](/api-reference/unity/configuration)
+- [`Solana Service Methods`](/api-reference/unity/solana)
+- [`EVM Service Methods`](/api-reference/unity/evm)
 
-## Authentication Methods | Unity
-- [`StartLogin`](/api-reference/unity/authentication/StartLogin)
-- [`LoginWithEmail`](/api-reference/unity/authentication/LoginWithEmail)
-- [`Logout`](/api-reference/unity/authentication/Logout)
-- [`FetchUser`](/api-reference/unity/authentication/FetchUser)
+## Solana Service Methods | Unity API Reference
 
-## Marketplace Methods | Unity
-- [`CreateVerifiedCollection`](/api-reference/unity/marketplace/CreateVerifiedCollection)
-- [`MintNFT`](/api-reference/unity/marketplace/MintNFT)
-- [`ListNFT`](/api-reference/unity/marketplace/ListNFT)
-- [`BuyNFT`](/api-reference/unity/marketplace/BuyNFT)
-- [`UpdateNFTListing`](/api-reference/unity/marketplace/UpdateNFTListing)
-- [`CancelNFTListing`](/api-reference/unity/marketplace/CancelNFTListing)
-- [`TransferNFT`](/api-reference/unity/marketplace/TransferNFT)
-- [`FetchNFTsByMintAddresses`](/api-reference/unity/marketplace/FetchNFTsByMintAddresses)
-- [`FetchNFTsByCreatorAddresses`](/api-reference/unity/marketplace/FetchNFTsByCreatorAddresses)
-- [`FetchNFTsByUpdateAuthorities`](/api-reference/unity/marketplace/FetchNFTsByUpdateAuthorities)
-- [`FetchNFTsByOwnerAddresses`](/api-reference/unity/marketplace/FetchNFTsByOwnerAddresses)
+### Authentication
+- [`MirrorWorld.Solana.StartLogin`](/api-reference/unity/solana/authentication/StartLogin)
+- [`MirrorWorld.Solana.LoginWithEmail`](/api-reference/unity/solana/authentication/LoginWithEmail)
+- [`MirrorWorld.Solana.IsLogged`](/api-reference/unity/solana/authentication/IsLogged)
+- [`MirrorWorld.Solana.GuestLogin`](/api-reference/unity/solana/authentication/GuestLogin)
+- [`MirrorWorld.Solana.Logout`](/api-reference/unity/solana/authentication/Logout)
 
+### Client
+- [`MirrorWorld.Solana.OpenWallet`](/api-reference/unity/solana/client/OpenWallet)
+- [`MirrorWorld.Solana.OpenMarket`](/api-reference/unity/solana/client/OpenMarket)
+- [`MirrorWorld.Solana.QueryUser`](/api-reference/unity/solana/client/QueryUser)
 
-## Wallet Methods | Unity
-- [`OpenWalletPage`](/api-reference/unity/wallet/OpenWalletPage)
-- [`GetWalletTokens`](/api-reference/unity/wallet/GetWalletTokens)
-- [`GetWalletTransactions`](/api-reference/unity/wallet/GetWalletTransactions)
-- [`TransferSPLToken`](/api-reference/unity/wallet/TransferSPLToken)
-- [`TransferSol`](/api-reference/unity/wallet/TransferSol)
+## Asset
+- [`MirrorWorld.Solana.BuyNFT`](/api-reference/unity/solana/asset/BuyNFT)
+- [`MirrorWorld.Solana.CancelListing`](/api-reference/unity/solana/asset/CancelListing)
+- [`MirrorWorld.Solana.ListNFT`](/api-reference/unity/solana/asset/ListNFT)
+- [`MirrorWorld.Solana.TransferNFT`](/api-reference/unity/solana/asset/TransferNFT)
+- [`MirrorWorld.Solana.MintCollection`](/api-reference/unity/solana/asset/MintCollection)
+- [`MirrorWorld.Solana.MintNFT`](/api-reference/unity/solana/asset/MintNFT)
+- [`MirrorWorld.Solana.UpdateNFT`](/api-reference/unity/solana/asset/UpdateNFT)
+- [`MirrorWorld.Solana.QueryNFT`](/api-reference/unity/solana/asset/QueryNFT)
+- [`MirrorWorld.Solana.SearchNFTsByMintAddress`](/api-reference/unity/solana/asset/SearchNFTsByMintAddress)
+- [`MirrorWorld.Solana.SearchNFTsByOwner`](/api-reference/unity/solana/asset/SearchNFTsByOwner)
+
+## Confirmation
+- [`MirrorWorld.Solana.CheckTransactionsStatus`](/api-reference/unity/solana/confirmation/CheckTransactionsStatus)
+- [`MirrorWorld.Solana.CheckMintingStatus`](/api-reference/unity/solana/confirmation/CheckMintingStatus)
+
+## Wallet
+- [`MirrorWorld.Solana.GetTransactions`](/api-reference/unity/solana/wallet/GetTransactions)
+- [`MirrorWorld.Solana.GetTransactionsByWallet`](/api-reference/unity/solana/wallet/GetTransactionsByWallet)
+- [`MirrorWorld.Solana.GetTransactionsBySignature`](/api-reference/unity/solana/wallet/GetTransactionsBySignature)
+- [`MirrorWorld.Solana.GetTokens`](/api-reference/unity/solana/wallet/GetTokens)
+- [`MirrorWorld.Solana.GetTokensByWallet`](/api-reference/unity/solana/wallet/GetTokensByWallet)
+- [`MirrorWorld.Solana.TransferSol`](/api-reference/unity/solana/wallet/TransferSol)
+- [`MirrorWorld.Solana.TransferToken`](/api-reference/unity/solana/wallet/TransferToken)
+
+## Metadata
+- [`MirrorWorld.Solana.MetadataCollectionsInfo`](/api-reference/unity/solana/metadata/MetadataCollectionsInfo)
+- [`MirrorWorld.Solana.MetadataCollectionFilters`](/api-reference/unity/solana/metadata/MetadataCollectionFilters)
+- [`MirrorWorld.Solana.MetadataCollectionsSummary`](/api-reference/unity/solana/metadata/MetadataCollectionsSummary)
+- [`MirrorWorld.Solana.MetadataNFTInfo`](/api-reference/unity/solana/metadata/MetadataNFTInfo)
+- [`MirrorWorld.Solana.MetadataNFTsInfo`](/api-reference/unity/solana/metadata/TransferToken)
+- [`MirrorWorld.Solana.MetadataNFTEvents`](/api-reference/unity/solana/metadata/MetadataNFTEvents)
+- [`MirrorWorld.Solana.MetadataSearchNFTs`](/api-reference/unity/solana/metadata/MetadataSearchNFTs)
+- [`MirrorWorld.Solana.MetadataRecommendSearchNFTs`](/api-reference/unity/solana/metadata/MetadataRecommendSearchNFTs)
+
+## EVM Service Methods | Unity API Reference
+
+### Authentication
+- [`MirrorWorld.EVM.StartLogin`](/api-reference/unity/evm/authentication/StartLogin)
+- [`MirrorWorld.EVM.LoginWithEmail`](/api-reference/unity/evm/authentication/LoginWithEmail)
+- [`MirrorWorld.EVM.IsLogged`](/api-reference/unity/evm/authentication/IsLogged)
+- [`MirrorWorld.EVM.GuestLogin`](/api-reference/unity/evm/authentication/GuestLogin)
+- [`MirrorWorld.EVM.Logout`](/api-reference/unity/evm/authentication/Logout)
+
+### Client
+- [`MirrorWorld.EVM.OpenWallet`](/api-reference/unity/evm/client/OpenWallet)
+- [`MirrorWorld.EVM.OpenMarket`](/api-reference/unity/evm/client/OpenMarket)
+- [`MirrorWorld.EVM.QueryUser`](/api-reference/unity/evm/client/QueryUser)
+
+## Asset
+- [`MirrorWorld.evm.BuyNFT`](/api-reference/unity/evm/asset/BuyNFT)
+- [`MirrorWorld.evm.CancelListing`](/api-reference/unity/evm/asset/CancelListing)
+- [`MirrorWorld.evm.ListNFT`](/api-reference/unity/evm/asset/ListNFT)
+- [`MirrorWorld.evm.TransferNFT`](/api-reference/unity/evm/asset/TransferNFT)
+- [`MirrorWorld.evm.MintCollection`](/api-reference/unity/evm/asset/MintCollection)
+- [`MirrorWorld.evm.MintNFT`](/api-reference/unity/evm/asset/MintNFT)
+- [`MirrorWorld.evm.QueryNFT`](/api-reference/unity/evm/asset/QueryNFT)
+- [`MirrorWorld.evm.SearchNFTsByMintAddress`](/api-reference/unity/evm/asset/SearchNFTsByMintAddress)
+- [`MirrorWorld.evm.SearchNFTsByOwner`](/api-reference/unity/evm/asset/SearchNFTsByOwner)
+
+## Wallet
+- [`MirrorWorld.evm.GetTransactions`](/api-reference/unity/evm/wallet/GetTransactions)
+- [`MirrorWorld.evm.GetTransactionsByWallet`](/api-reference/unity/evm/wallet/GetTransactionsByWallet)
+- [`MirrorWorld.evm.GetTransactionsBySignature`](/api-reference/unity/evm/wallet/GetTransactionsBySignature)
+- [`MirrorWorld.evm.GetTokens`](/api-reference/unity/evm/wallet/GetTokens)
+- [`MirrorWorld.evm.GetTokensByWallet`](/api-reference/unity/evm/wallet/GetTokensByWallet)
+- [`MirrorWorld.evm.TransferETH`](/api-reference/unity/evm/wallet/TransferETH)
+- [`MirrorWorld.evm.TransferMatic`](/api-reference/unity/evm/wallet/TransferMatic)
+- [`MirrorWorld.evm.TransferBNB`](/api-reference/unity/evm/wallet/TransferBNB)
+- [`MirrorWorld.evm.TransferToken`](/api-reference/unity/evm/wallet/TransferToken)
+
+## Metadata
+- [`MirrorWorld.evm.MetadataCollectionsInfo`](/api-reference/unity/evm/metadata/MetadataCollectionsInfo)
+- [`MirrorWorld.evm.MetadataCollectionFilters`](/api-reference/unity/evm/metadata/MetadataCollectionFilters)
+- [`MirrorWorld.evm.MetadataCollectionsSummary`](/api-reference/unity/evm/metadata/MetadataCollectionsSummary)
+- [`MirrorWorld.evm.MetadataNFTInfo`](/api-reference/unity/evm/metadata/MetadataNFTInfo)
+- [`MirrorWorld.evm.MetadataNFTsInfo`](/api-reference/unity/evm/metadata/TransferToken)
+- [`MirrorWorld.evm.MetadataNFTEvents`](/api-reference/unity/evm/metadata/MetadataNFTEvents)
+- [`MirrorWorld.evm.MetadataSearchNFTs`](/api-reference/unity/evm/metadata/MetadataSearchNFTs)
+- [`MirrorWorld.evm.MetadataRecommendSearchNFTs`](/api-reference/unity/evm/metadata/MetadataRecommendSearchNFTs)

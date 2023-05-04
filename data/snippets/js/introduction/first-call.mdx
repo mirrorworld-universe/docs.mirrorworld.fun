@@ -1,0 +1,11 @@
+```tsx
+import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY"
+  chainConfig: Polygon("mumbai-testnet"),
+})
+
+const mintAddress = "Ct1GvgpBzzhMtKb7nKc3U3kouPA3fHncAahPY1HthB9E"
+const nft = await mirrorworld.getNftDetails(mintAddress)
+```

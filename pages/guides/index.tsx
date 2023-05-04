@@ -103,7 +103,7 @@ export default function Blog() {
     <Box>
       <SkipNavLink>Skip to main content</SkipNavLink>
       <TopNavigation />
-      <chakra.div pt="10">
+      <chakra.div py="10">
         <Box maxW="8xl" mx="auto" px={{ sm: "6", base: "4", md: "8" }}>
           <Container as="main" maxW="4xl" className="mdx-content" pt="4">
             <Stack spacing={8}>
@@ -114,9 +114,10 @@ export default function Blog() {
                 fundamentals, NFTs, DeFi, Gaming Development and more!
               </Text>
 
-              <HStack spacing={4}>
+              <HStack spacing={4} overflowX="scroll">
                 <Link href={`/guides`}>
                   <Tag
+                    flexShrink={0}
                     bg="#dcff1a99"
                     size="lg"
                     color="mirror.900"
@@ -129,6 +130,7 @@ export default function Blog() {
                 {articleGroups.map((article) => (
                   <Link href={`/guides?tag=${article}`} key={article}>
                     <Tag
+                      flexShrink={0}
                       bg="#dcff1a99"
                       size="lg"
                       color="mirror.900"
@@ -143,59 +145,61 @@ export default function Blog() {
 
               <SimpleGrid columns={[1, 1, 3]} spacing={10}>
                 {selectedArticles?.map((guide, i) => (
-                  <Link key={i} href={`/guides/${guide.slug}`}>
-                    <Box
-                      rounded="md"
-                      overflow="hidden"
-                      border={"1px solid"}
-                      borderColor="mirror.800"
-                      backdropBlur={"sm"}
-                      cursor="pointer"
-                      transition="all 0.2s ease-in-out"
-                      _hover={{
-                        shadow: "lg",
-                      }}
-                      onClick={() => {
-                        // @ts-ignore
-                        window.mixgather.event("view_guides", {
-                          guide_name: guide.title,
-                        })
-                      }}
-                    >
-                      <AspectRatio ratio={1.7}>
-                        {/*@ts-ignore*/}
-                        <Image src={guide.shareImage} alt={guide.title} />
-                      </AspectRatio>
-                      <Stack px={4} py={3}>
-                        <Heading
-                          as={"h3"}
-                          size="2xs"
-                          fontWeight="bold"
-                          noOfLines={2}
-                        >
-                          {guide.title}
-                        </Heading>
-                        <HStack>
-                          {guide?.tags?.map((t, j) => (
-                            <Tag
-                              rounded="full"
-                              key={j}
-                              fontSize={"0.7em"}
-                              bg="#dcff1a99"
-                              color="mirror.900"
-                              px="2"
-                              py="0.5"
-                              letterSpacing="smaller"
-                            >
-                              {t}
-                            </Tag>
-                          ))}
-                        </HStack>
-                        <Text fontSize={"sm"} noOfLines={3}>
-                          {guide.description}
-                        </Text>
-                      </Stack>
-                    </Box>
+                  <Link key={guide.slug} href={`/guides/${guide.slug}`} passHref>
+                    <chakra.a>
+                      <Box
+                        rounded="md"
+                        overflow="hidden"
+                        border={"1px solid"}
+                        borderColor="mirror.800"
+                        backdropBlur={"sm"}
+                        cursor="pointer"
+                        transition="all 0.2s ease-in-out"
+                        _hover={{
+                          shadow: "lg",
+                        }}
+                        onClick={() => {
+                          // @ts-ignore
+                          window.mixgather.event("view_guides", {
+                            guide_name: guide.title,
+                          })
+                        }}
+                      >
+                        <AspectRatio ratio={1.7}>
+                          {/*@ts-ignore*/}
+                          <Image src={guide.shareImage} alt={guide.title} />
+                        </AspectRatio>
+                        <Stack px={4} py={3}>
+                          <Heading
+                            as={"h3"}
+                            size="2xs"
+                            fontWeight="bold"
+                            noOfLines={2}
+                          >
+                            {guide.title}
+                          </Heading>
+                          <HStack>
+                            {guide?.tags?.map((t, j) => (
+                              <Tag
+                                rounded="full"
+                                key={j}
+                                fontSize={"0.7em"}
+                                bg="#dcff1a99"
+                                color="mirror.900"
+                                px="2"
+                                py="0.5"
+                                letterSpacing="smaller"
+                              >
+                                {t}
+                              </Tag>
+                            ))}
+                          </HStack>
+                          <Text fontSize={"sm"} noOfLines={3}>
+                            {guide.description}
+                          </Text>
+                        </Stack>
+                      </Box>
+                    </chakra.a>
                   </Link>
                 ))}
               </SimpleGrid>

@@ -26,8 +26,12 @@ import { Link as CLink } from "@chakra-ui/layout"
 import { useState, useEffect, useRef } from "react"
 import { ApiReferenceCards } from "./cards/api-reference-cards"
 import { IntegrationCards } from "./cards/integration-cards"
+import { IntegrationCardsMinimal } from "./cards/integration-cards-minimal"
 import { MobileFrameworksCards } from "./cards/mobile-frameworks-cards"
 import { WebFrameworksCards } from "./cards/web-frameworks-cards"
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { Alert, AlertDescription, AlertIcon, AlertTitle } from "@chakra-ui/alert"
+import { LightMode } from "@chakra-ui/color-mode"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -159,69 +163,82 @@ const components: Record<string, FC<Record<string, any>>> = {
     return <div className="prose">{props.children}</div>
   },
   CodeSnippet(props) {
-    const { framework: userFramework } = useFramework()
+    const { framework = "js", setFramework } = useFramework()
 
     const snippets = allSnippets.filter((p) => {
-      const [_, __, ...rest] = p.params
+      const [_, framework, ...rest] = p.params
+
       const str = rest.join("/") + ".mdx"
-      return str === props.id
+      return frameworks[framework] && str === props.id
+    }).sort((a, b) => {
+      if (a.params[1] > b.params[1]) {
+        return 1;
+      }
+      if (b.params[1] > a.params[1]) {
+        return -1;
+      }
+      return 0;
     })
 
     const [state, send] = useMachine(
       tabs.machine({
         id: props.id,
-        value: userFramework ?? "react",
+        value: snippets[0].framework,
       }),
     )
 
     const api = tabs.connect(state, send, normalizeProps)
+
+    const _allSnippets = snippets.map(s => ({ ...s, framework: s.params[1] }))
 
     return (
       <Box
         width="full"
         maxW="768px"
         my="8"
-        bg="hsl(230, 1%, 98%)"
+        bg="languageSelectBg"
         rounded="6px"
         {...api.rootProps}
       >
-        <Box {...api.triggerGroupProps}>
-          {FRAMEWORKS.map((framework) => (
+        <Box {...api.triggerGroupProps} bg="languageSelectBg">
+          {_allSnippets.map((snippet) => (
             <chakra.button
               py="2"
               px="4"
               fontSize="sm"
               fontWeight="medium"
               borderBottom="2px solid"
-              borderBottomColor="gray.200"
+              borderBottomColor="supportTableCheckMute"
               _selected={{
-                borderBottomColor: "currentColor",
-                color: "green.500",
+                borderBottomColor: "textLink",
+                color: "textLink",
+                fontWeight: "bold"
               }}
               _focusVisible={{ outline: "2px solid blue" }}
-              {...api.getTriggerProps({ value: framework })}
-              key={framework}
+              {...api.getTriggerProps({ value: snippet.framework })}
+              key={snippet.framework}
+              data-framework={snippet.framework}
             >
               <HStack>
-                <Icon as={frameworks[framework].icon} />
-                <p>{frameworks[framework].label}</p>
+                <Icon as={frameworks[snippet.framework].icon} />
+                <p>{frameworks[snippet.framework].label}</p>
               </HStack>
             </chakra.button>
           ))}
         </Box>
         <Box {...api.contentGroupProps}>
-          {FRAMEWORKS.map((framework) => {
-            const snippet = snippets.find((p) => p.framework === framework)
+          {_allSnippets.map((snippet) => {
+            const _snippet = snippets.find((p) => p.framework === snippet.framework)
             return (
               <Box
-                {...api.getContentProps({ value: framework })}
+                {...api.getContentProps({ value: snippet.framework })}
                 position="relative"
-                key={framework}
+                key={snippet.framework}
                 mt="-6"
                 _focusVisible={{ outline: "2px solid blue" }}
               >
                 {snippet ? (
-                  <SnippetItem id={framework} body={snippet.body} />
+                  <SnippetItem id={snippet.framework} body={snippet.body} />
                 ) : (
                   <Box mt="6" padding="4" fontSize="sm" opacity="0.5">
                     Snippet not found :(
@@ -292,10 +309,44 @@ const components: Record<string, FC<Record<string, any>>> = {
       </CLink>
     )
   },
+  InlineButtonLink: (_props) => {
+    const { href, variant, children, ...props} = _props
+    return (
+      <chakra.span d="inline-block" mt={5}>
+        <CLink
+          isExternal
+          href={href}
+          outline="none"
+          rounded="4px"
+          _hover={{ textDecoration: "none" }}
+          w={{ base: "full", sm: "unset" }}
+        >
+          <Button variant={variant || "mirror"} px={6} w={{ base: "full", sm: "unset" }} {...props}>
+            <HStack spacing="2">
+              <span>{children}</span>
+              <Icon as={ExternalLinkIcon} />
+            </HStack>
+          </Button>
+        </CLink>
+      </chakra.span>
+    )
+  },
   ApiReferenceCards: (props) => <ApiReferenceCards {...props} />,
   IntegrationCards: (props) => <IntegrationCards {...props} />,
+  IntegrationCardsMinimal: (props) => <IntegrationCardsMinimal {...props} />,
   MobileFrameworksCards: (props) => <MobileFrameworksCards {...props} />,
   WebFrameworksCards: (props) => <WebFrameworksCards {...props} />,
+  AlertMessage: (props) => (
+    <Alert status={props.status || "warning"} variant={props.variant || "left-accent"}>
+      <AlertIcon />
+      <AlertTitle>{props.title}</AlertTitle>
+      <AlertDescription>{props.description}</AlertDescription>
+    </Alert>
+  ),
+  Alert: (props) => <Alert {...props} variant="left-accent" color="dark" my={5}/>,
+  AlertIcon: (props) => <AlertIcon {...props} />,
+  AlertTitle: (props) => <AlertTitle {...props} />,
+  AlertDescription: (props) => <AlertDescription {...props} />,
 }
 
 export function useMDX(code: string) {

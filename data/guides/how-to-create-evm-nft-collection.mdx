@@ -1,0 +1,231 @@
+---
+title: Creating an ERC721/ERC1155 NFT Collection With Mirror World Smart SDK
+description:
+  Mirror World Smart SDK supports minting the two types of ERC NFT contract
+  standards on EVM-compatible blockchains - ERC1155 and ERC721.
+author:
+  name: Jonathan Bakebwa
+  twitter: https://twitter.com/codebender828
+tags:
+  - ERC721
+  - ERC1155
+  - NFT
+---
+
+Mirror World Smart SDK supports minting the two types of ERC NFT contract
+standards on EVM-compatible blockchains - ERC1155 and ERC721.
+
+**ERC1155** is a token standard that allows the creation and trading of multiple
+tokens within a single contract. Each token can represent a unique asset, and
+the contract can manage an unlimited number of tokens. ERC1155 is more efficient
+than ERC721 for creating and managing large collections of NFTs because the
+minting of multiple tokens can be done in a single transaction.
+
+**ERC721**, on the other hand, is a token standard that allows the creation and
+trading of a single token within a single contract. Each token is unique and
+cannot be interchanged with other tokens within the same contract. This makes
+ERC721 more suitable for creating unique and rare digital assets, such as
+collectibles or digital art.
+
+The metadata for tokens minted on either blockchain typically includes the
+following fields:
+
+```json
+// ERC721/ERC1155 on-chain contract metadata
+{
+  "tokenName": "Token Name",
+  "tokenSymbol": "Token Symbol",
+  "tokenType": "ERC1155/721",
+  "totalSupply": "Total Supply",
+  "decimals": "Decimal Place",
+  "owner": "Owner Address",
+  "issuer": "Issuer Address",
+  "tokenURI": "URL To Token Metadata"
+}
+```
+
+## Preparing your token metadata
+
+The metadata returned from the `tokenURI` field for tokens minted on the
+corresponding blockchain should include the following fields:
+
+- `name`: The name of the token
+- `description`: A description of the token
+- `image`: A URL to an image of the token
+- `type`: The type of the token (e.g. ERC1155, ERC721, etc.)
+- `attributes`: An optional array of key-value pairs that describe the
+  attributes of the token, such as rarity, color, or other characteristics.
+
+The `attributes` field is optional and can be used to provide more information
+about the token. It consists of an array of key-value pairs, where each key
+represents a trait and each value represents the trait's value.
+
+For example, the following metadata includes attributes for a fictional NFT
+named "Mayfair Witches Pass #1". The attributes describe the gem material, key
+material, top frame, gem cut, shaft model, crystal currents, elemental fusion,
+energy level, rarity, and model blueprint of the NFT.
+
+```json
+{
+  "name": "Mayfair Witches Pass #1",
+  "description": "This GIFTED key is the mystical gateway to enter the immersive world of Anne Rice's Immortal Universe, where the ancient rituals of the Mayfair Witches hold sway. Infused with hidden magic and a blend of herbs like lavender, rosemary, and sage, this key serves as the ultimate talisman for unlocking the seeker's potential and delving deeper into the world of the immortals. With this key in-hand, holders will discover their true power and become one with the mystical realm beyond.",
+  "image": "ipfs://bafybeidwnmendawp3w245jijvejt7xqenistsffqt6ebc4dnfmbf6mcxzy/gifted_02--0420.jpg",
+  "attributes": [
+    {
+      "trait_type": "Gem Material",
+      "value": "Emerald"
+    },
+    {
+      "trait_type": "Key Material",
+      "value": "Silver"
+    },
+    {
+      "trait_type": "Top Frame",
+      "value": "Kite Frame"
+    },
+    {
+      "trait_type": "Gem Cut",
+      "value": "Cushion Cut"
+    },
+    {
+      "trait_type": "Shaft Model",
+      "value": "Spiral"
+    },
+    {
+      "trait_type": "Crystal Currents",
+      "value": "Love"
+    },
+    {
+      "trait_type": "Elemental Fusion",
+      "value": "Emotional Balance"
+    },
+    {
+      "trait_type": "Energy Level",
+      "value": "3.5"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Gifted"
+    },
+    {
+      "trait_type": "Model Blueprint",
+      "value": "MKEY-0001"
+    }
+  ]
+}
+```
+
+> After creating your metadata upload it to Object storage or a decentralized
+> storage service like IPFS, Arweave, or Filecoin.
+
+[**The Official Ethereum Docs have a comprehensive guide**](https://ethereum.org/pt/developers/tutorials/how-to-mint-an-nft/#config-meta)
+for preparing your metadata
+
+**Make sure to keep track of the URL to the metadata, as it will be used when
+minting the NFTs.**
+
+>
+
+## Funding your project wallet
+
+Before deploying your Collection's smart contract, you need to make sure that
+your project wallet is funded with enough funds to pay the gas fee for
+deployment.
+
+You can see your project wallet on the developer dashboard when you select the
+Chain/Network combination on the developer dashboard.
+
+- **For Mainnet**, you can fund your wallet by directly transferring funds into
+  your project wallet from an external wallet, or exchange.
+- **For Testnet,** you can use a faucet to get tokens. Examples of popular
+  testnet faucets include [https://mumbaifaucet.com/](https://mumbaifaucet.com/)
+  and [https://goerlifaucet.com/](https://goerlifaucet.com/)
+
+## Deploy the NFT Collection Contract
+
+Now that your collection metadata is prepared, you can deploy your new NFT
+collection contract with the
+[**mint NFT Collection API**](https://developer.mirrorworld.fun/#40b5ee02-fd48-4fe5-abb6-db69c155cd07).
+This API requires the following credentials:
+
+- **API Key** - passed in to the `x-api-key` header. If you don't have an API
+  Key, please use the
+  [Getting Started](/overview/development-guide/projects#creating-a-project)
+  guide to create a project and get the API Key for your project.
+- **Secret Access Key** - passed into the
+  `Authorization: Bearer <SECRET_ACCESS_KEY>` header. If you don't have your
+  Secret Access Key yet, please follow
+  [this guide to acquire your Secret Access Key](/overview/development-guide/developer-dashboard#secret-access-key-management).
+
+### With HTTP
+
+Replace `:chain` and `:network` parameters to the chain and network combination
+you want to deploy to.
+
+> Here is the full
+> [table of supported chains](https://developer.mirrorworld.fun/#multichain-support-matrix).
+
+_Required parameters:_
+
+- **`url`**: The base url of your metadata json files from the previous section.
+  The full url for the individual NFT's metadata JSON configuration will be
+  `base_url` + `token_id`
+- **`name`**: The name of the collection
+- **`symbol`**: The symbol of the collection
+
+_Optional parameters:_
+
+- **`contract_type`**: The type of contract to be deployed. Default is erc1155.
+  Allowed values are erc1155 and erc721
+- **`mint_start_id`**: The starting token_id of the collection. Default is 0
+- **`mint_end_id`**: The ending token_id of the collection. Default is 0
+- **`mint_amount`**: The amount of NFTs to be minted. Default is 1. For erc721
+  collections this value should be 1
+- **`confirmation`**: The confirmation level of the transaction. Default is
+  finalized. Allowed values are finalized and confirmed
+
+```bash
+curl --location 'https://api.mirrorworld.fun/v2/:chain/:network/asset/mint/collection' \
+--header 'x-api-key: <YOUR_API_KEY>' \
+--header 'Authorization: Bearer <YOUR_SECRET_ACCESS_KEY>' \
+--header 'Content-Type: application/json' \
+--data '{
+    "url": "https://www.funapes.io/api/funana/",
+    "contract_type": "erc721",
+    "confirmation": "finalized"
+}'
+```
+
+### With JavaScript SDK
+
+This example uses the JavaScript SDK to deploy an ERC721 Collection on Polygon
+mainnet.
+
+```tsx
+import { MirrorWorld, Polygon, EVMContractType } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-mainnet"),
+  auth: {
+    secretAccessKey: "YOUR_SECRET_ACCESS_KEY",
+  },
+})
+
+const payload = {
+  name: "Fun Apes 2023",
+  symbol: "FUNAPES",
+  url: "https://www.funapes.io/api/funana/",
+  contract_type: EVMContractType.erc721,
+}
+
+const contract = await mirrorworld.Ethereum.Asset.createCollection(payload)
+console.log("my new contract", contract)
+```
+
+If you followed the steps above, you should now have successfully deployed your
+NFT collection contract on an EVM-compatible blockchain! Congratulations!
+
+Now you can start minting and trading your unique digital assets. Don't forget
+to promote your collection and engage with your audience to build a strong
+community around your NFTs.

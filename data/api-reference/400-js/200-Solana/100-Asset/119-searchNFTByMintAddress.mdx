@@ -1,0 +1,18 @@
+---
+title: searchNFTByMintAddress
+description: Searches Solana NFTs by Mint Addresses
+---
+
+# `searchNFTByMintAddress`
+
+Searches Solana NFTs By Mint Addresses
+
+```ts
+import { type QuerySolanaNFTInfoPayload } from "@usemirrorworld/web3.js"
+
+const payload: QuerySolanaNFTInfoPayload = {
+  mint_address: "BuiAawnD2EoAAp8SdrtkM74nkSVNwV5Vh6E6m8aWXbjV",
+}
+
+await mirrorworld.Solana.Asset.searchNFTByMintAddress(payload)
+```

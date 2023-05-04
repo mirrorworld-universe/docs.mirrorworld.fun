@@ -1,0 +1,22 @@
+---
+title: searchCollectionNFT
+description: Search BNB Chain Collection NFT
+---
+
+# `searchCollectionNFT`
+
+Search BNB Chain Collection NFT
+
+```js
+import { type SearchEVMNFTInCollectionPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: SearchEVMNFTInCollectionPayloadV2 = {
+  collections: [
+    "0x71bd707A8007Df1f212B2e004c0a331F5b2ebD80",
+    "0x38d0769Ee60ABA07016753022Bda3CBf8b9F9Fff",
+  ],
+  search: "Some NFT Name",
+}
+
+await mirrorworld.BNBChain.Metadata.searchCollectionNFT(payload)
+```

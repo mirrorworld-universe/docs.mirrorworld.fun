@@ -1,0 +1,14 @@
+---
+title: getCollectionsInfo
+---
+
+# `getCollectionsInfo`
+Get collections info by collection addresses.
+
+```swift
+MWSDK.EVM.Metadata.getCollectionsInfo(collections: [collection_mint]) {data in
+    print(data)
+} onFailed: {code, message in
+    print("failed  code:\(code),message: \(message ?? "")")
+}
+```

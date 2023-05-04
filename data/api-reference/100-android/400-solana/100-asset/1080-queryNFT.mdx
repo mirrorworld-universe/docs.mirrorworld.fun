@@ -1,0 +1,25 @@
+---
+title: queryNFT
+
+---
+
+### `queryNFT`
+
+Fetches an NFT's details by mint address.
+
+```java
+string mintAddress = "mint_address";
+
+MirrorWorld.queryNFT(mint_address, new FetchSingleNFTListener() {
+    @Override
+    public void onFetchSuccess(SingleNFTResponse nftObject) {
+        Log.d("Result","NFT details is:"+MirrorGsonUtils.getInstance().toJson(nftObject));
+    }
+
+    @Override
+    public void onFetchFailed(long code, String message) {
+        Log.d("Result",message);
+    }
+});
+
+```

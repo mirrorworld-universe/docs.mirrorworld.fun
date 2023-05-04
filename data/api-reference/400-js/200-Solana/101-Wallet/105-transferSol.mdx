@@ -1,0 +1,23 @@
+---
+title: transferSol
+description: Transfers SOL from user's wallet address to another wallet address
+---
+
+# `transferSol`
+
+Transfers SOL From User S Wallet Address To Another Wallet Address
+
+> `transferSol` accepts the `amount` to be sent in LAMPORTS, not SOL
+
+```ts
+import { type SolanaTransferSOLPayloadV2 } from "@usemirrorworld/web3.js"
+
+const LAMPORTS_PER_SOL = 1000000000
+
+const payload: SolanaTransferSOLPayloadV2 = {
+  amount: 0.1 * LAMPORTS_PER_SOL,
+  to_publickey: "DG7g6XMEgqEESMSX2LbiieDUKPFqZ4ztdYvnwy5VfVX",
+}
+
+await mirrorworld.Solana.Wallet.transferSol(payload)
+```

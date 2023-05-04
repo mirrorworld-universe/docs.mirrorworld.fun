@@ -1,0 +1,14 @@
+---
+title: searchNFTs
+---
+
+# `searchNFTs`
+Get a collection of NFT by mint addresses.
+
+```swift
+MWSDK.Solana.Asset.searchNFTs(mint_addresses: mint_address_arr) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```

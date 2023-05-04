@@ -1,4 +1,5 @@
 import { useMDX } from "components/mdx-components"
+import SEO from 'components/seo'
 import { IntegrationGuide } from "contentlayer/generated"
 import {
   getIntegrationGuideDoc,
@@ -19,11 +20,7 @@ export default function IntegrationGuidesPage({
 
   return (
     <>
-      <NextSeo title={doc.title} description={doc.description} openGraph={{
-        title: doc.title,
-        description: doc.description,
-        images: [{ url: imageUrl }]
-      }} />
+      <SEO title={doc.title} description={doc.description} />
       <IntegrationLayout doc={doc}>{Component}</IntegrationLayout>
     </>
   )

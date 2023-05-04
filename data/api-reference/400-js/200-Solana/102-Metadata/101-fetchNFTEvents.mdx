@@ -1,0 +1,21 @@
+---
+title: fetchNFTEvents
+description: Fetch Solana NFT Activity
+---
+
+# `fetchNFTEvents`
+
+Fetch Solana NFT Activity
+
+```ts
+import { type QuerySolanaNFTActivityPayload } from "@usemirrorworld/web3.js"
+
+const payload: QuerySolanaNFTActivityPayload = {
+  auction_house: "5VoC23rdfGxLG9G28eDEppza6atiQuuVwCM1cwGC2MaW",
+  mint_address: "81Lwj4nHEnBcNEBECMLqi5NoosFFt5YsEZDjPx7rFfyV",
+  page: 1,
+  page_size: 20,
+}
+
+await mirrorworld.Solana.Metadata.fetchNFTEvents(payload)
+```

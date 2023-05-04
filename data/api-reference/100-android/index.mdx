@@ -5,44 +5,91 @@ description: Android API Reference
 
 # Android API Reference - Mirror World Smart SDK
 
+On this page you will find the full API reference for the Android SDK. It covers the following topics:
+- [`Configuration`](/api-reference/android/configuration)
+- [`Authentication`](/api-reference/android/authentication)
+- [`Client Methods`](/api-reference/android/client)
+- [`Solana Service Methods`](/api-reference/android/solana)
+- [`EVM Service Methods`](/api-reference/android/evm)
+
 ## Authentication Methods | Android
-- [`startLogin`](/api-reference/android/authentication/startLogin)
-- [`isLoggedIn`](/api-reference/android/authentication/isLoggedIn)
-- [`setDebug`](/api-reference/android/authentication/setDebug)
-- [`loginWithEmail`](/api-reference/android/authentication/loginWithEmail)
-- [`fetchUser`](/api-reference/android/authentication/fetchUser)
-- [`logout`](/api-reference/android/authentication/logout)
+- [`MirrorWorld.startLogin`](/api-reference/android/authentication/startLogin)
+- [`MirrorWorld.guestLogin`](/api-reference/android/authentication/guestLogin)
+- [`MirrorWorld.isLoggedIn`](/api-reference/android/authentication/isLoggedIn)
+- [`MirrorWorld.loginWithEmail`](/api-reference/android/authentication/loginWithEmail)
+- [`MirrorWorld.logout`](/api-reference/android/authentication/logout)
 
-## Marketplace Methods | Android
-- [`createVerifiedCollection`](/api-reference/android/marketplace/createVerifiedCollection)
-- [`mintNFT`](/api-reference/android/marketplace/mintNFT)
-- [`listingNFT`](/api-reference/android/marketplace/listingNFT)
-- [`buyNFT`](/api-reference/android/marketplace/buyNFT)
-- [`updateNFTListing`](/api-reference/android/marketplace/updateNFTListing)
-- [`cancelNFTListing`](/api-reference/android/marketplace/cancelNFTListing)
-- [`transferNFT`](/api-reference/android/marketplace/transferNFT)
-- [`fetchNFTsByMintAddresses`](/api-reference/android/marketplace/fetchNFTsByMintAddresses)
-- [`fetchNFTsByCreatorAddresses`](/api-reference/android/marketplace/fetchNFTsByCreatorAddresses)
-- [`fetchNFTsByUpdateAuthorities`](/api-reference/android/marketplace/fetchNFTsByUpdateAuthorities)
-- [`fetchNFTsByOwnerAddresses`](/api-reference/android/marketplace/fetchNFTsByOwnerAddresses)
-- [`getNFTDetails`](/api-reference/android/marketplace/getNFTDetails)
-- [`getNFTsOwnedByAddress`](/api-reference/android/marketplace/getNFTsOwnedByAddress)
+## Client Methods | Android
+- [`MirrorWorld.initSDK`](/api-reference/android/solana/client/initSDK)
+- [`MirrorWorld.openWallet`](/api-reference/android/solana/client/openWallet)
+- [`MirrorWorld.openMarket`](/api-reference/android/solana/client/openMarket)
+- [`MirrorWorld.queryUser`](/api-reference/android/solana/client/queryUser)
 
-## Wallet Methods | Android
-- [`openWallet`](/api-reference/android/wallet/openWallet)
-- [`getTokens`](/api-reference/android/wallet/getTokens)
-- [`getTransactions`](/api-reference/android/wallet/getTransactions)
-- [`transferSol`](/api-reference/android/wallet/transferSol)
-- [`transferSPLToken`](/api-reference/android/wallet/transferSPLToken)
+## Solana Service Methods | Android API Reference
 
-## Storefront Methods | Android API Reference
+### Asset
+- [`MirrorWorld.buyNFT`](/api-reference/android/solana/asset/buyNFT)
+- [`MirrorWorld.cancelNFTListing`](/api-reference/android/solana/asset/cancelNFTListing)
+- [`MirrorWorld.listNFT`](/api-reference/android/solana/asset/listNFT)
+- [`MirrorWorld.transferNFT`](/api-reference/android/solana/asset/transferNFT)
+- [`MirrorWorld.mintCollection`](/api-reference/android/solana/asset/mintCollection)
+- [`MirrorWorld.mintNFT`](/api-reference/android/solana/asset/mintNFT)
+- [`MirrorWorld.updateNFT`](/api-reference/android/solana/asset/updateNFT)
+- [`MirrorWorld.queryNFT`](/api-reference/android/solana/asset/queryNFT)
+- [`MirrorWorld.searchNFTsByMintAddress`](/api-reference/android/solana/asset/searchNFTsByMintAddress)
+- [`MirrorWorld.searchNFTsByOwner`](/api-reference/android/solana/asset/searchNFTsByOwner)
+- [`MirrorWorld.checkTransactionsStatus`](/api-reference/android/solana/confirmation/checkTransactionsStatus)
+- [`MirrorWorld.checkMintingStatus`](/api-reference/android/solana/confirmation/checkMintingStatus)
 
-- [`openMarket`](/api-reference/android/storefront/openMarket)
-- [`getCollectionFilterInfo`](/api-reference/android/storefront/getCollectionFilterInfo)
-- [`getNFTInfo`](/api-reference/android/storefront/getNFTInfo)
-- [`getCollectionInfo`](/api-reference/android/storefront/getCollectionInfo)
-- [`getNFTEvents`](/api-reference/android/storefront/getNFTEvents)
-- [`searchNFTs`](/api-reference/android/storefront/searchNFTs)
-- [`getNFTsByUnabridgedParams`](/api-reference/android/storefront/getNFTsByUnabridgedParams)
-- [`recommendSearchNFT`](/api-reference/android/storefront/recommendSearchNFT)
-- [`getNFTRealPrice`](/api-reference/android/storefront/getNFTRealPrice)
+### Wallet
+- [`MirrorWorld.getTransactions`](/api-reference/android/solana/wallet/getTransactions)
+- [`MirrorWorld.getTransactionsByWallet`](/api-reference/android/solana/wallet/getTransactionsByWallet)
+- [`MirrorWorld.getTransactionBySignature`](/api-reference/android/solana/wallet/getTransactionBySignature)
+- [`MirrorWorld.getTokens`](/api-reference/android/solana/wallet/getTokens)
+- [`MirrorWorld.getTokensByWallet`](/api-reference/android/solana/wallet/getTokensByWallet)
+- [`MirrorWorld.transferSOL`](/api-reference/android/solana/wallet/transferSOL)
+- [`MirrorWorld.transferToken`](/api-reference/android/solana/wallet/transferToken)
+
+### Metadata
+- [`MirrorWorld.getCollectionInfo`](/api-reference/android/solana/metadata/getCollectionInfo)
+- [`MirrorWorld.getCollectionFilterInfo`](/api-reference/android/solana/metadata/getCollectionFilterInfo)
+- [`MirrorWorld.getCollectionSummary`](/api-reference/android/solana/metadata/getCollectionSummary)
+- [`MirrorWorld.getNFTInfo`](/api-reference/android/solana/metadata/getNFTInfo)
+- [`MirrorWorld.getNFTsByUnabridgedParams`](/api-reference/android/solana/metadata/getNFTsByUnabridgedParams)
+- [`MirrorWorld.getNFTEvents`](/api-reference/android/solana/metadata/getNFTEvents)
+- [`MirrorWorld.searchNFTs`](/api-reference/android/solana/metadata/searchNFTs)
+- [`MirrorWorld.recommendSearchNFT`](/api-reference/android/solana/metadata/recommendSearchNFT)
+
+## EVM Service Methods | Android API Reference
+
+### Asset
+- [`MirrorWorld.buyNFT`](/api-reference/android/evm/asset/buyNFT)
+- [`MirrorWorld.cancelNFTListing`](/api-reference/android/evm/asset/cancelNFTListing)
+- [`MirrorWorld.listNFT`](/api-reference/android/evm/asset/listNFT)
+- [`MirrorWorld.transferNFT`](/api-reference/android/evm/asset/transferNFT)
+- [`MirrorWorld.mintCollection`](/api-reference/android/evm/asset/mintCollection)
+- [`MirrorWorld.mintNFT`](/api-reference/android/evm/asset/mintNFT)
+- [`MirrorWorld.queryNFT`](/api-reference/android/evm/asset/queryNFT)
+- [`MirrorWorld.searchNFTsByMintAddress`](/api-reference/android/evm/asset/searchNFTsByMintAddress)
+- [`MirrorWorld.searchNFTsByOwner`](/api-reference/android/evm/asset/searchNFTsByOwner)
+
+### Wallet
+- [`MirrorWorld.getTransactions`](/api-reference/android/evm/wallet/getTransactions)
+- [`MirrorWorld.getTransactionsByWallet`](/api-reference/android/evm/wallet/getTransactionsByWallet)
+- [`MirrorWorld.getTransactionsBySignature`](/api-reference/android/evm/wallet/getTransactionsBySignature)
+- [`MirrorWorld.getTokens`](/api-reference/android/evm/wallet/getTokens)
+- [`MirrorWorld.getTokensByWallet`](/api-reference/android/evm/wallet/getTokensByWallet)
+- [`MirrorWorld.transferETH`](/api-reference/android/evm/wallet/transferETH)
+- [`MirrorWorld.transferBNB`](/api-reference/android/evm/wallet/transferBNB)
+- [`MirrorWorld.transferMatic`](/api-reference/android/evm/wallet/transferMatic)
+- [`MirrorWorld.transferToken`](/api-reference/android/evm/wallet/transferToken)
+
+### Metadata
+- [`MirrorWorld.getCollectionInfo`](/api-reference/android/evm/metadata/getCollectionInfo)
+- [`MirrorWorld.getCollectionFilterInfo`](/api-reference/android/evm/metadata/getCollectionFilterInfo)
+- [`MirrorWorld.getCollectionSummary`](/api-reference/android/evm/metadata/getCollectionSummary)
+- [`MirrorWorld.getNFTInfo`](/api-reference/android/evm/metadata/getNFTInfo)
+- [`MirrorWorld.getNFTsByUnabridgedParams`](/api-reference/android/evm/metadata/getNFTsByUnabridgedParams)
+- [`MirrorWorld.getNFTEvents`](/api-reference/android/evm/metadata/getNFTEvents)
+- [`MirrorWorld.searchNFTs`](/api-reference/android/evm/metadata/searchNFTs)
+- [`MirrorWorld.recommendSearchNFT`](/api-reference/android/evm/metadata/recommendSearchNFT)

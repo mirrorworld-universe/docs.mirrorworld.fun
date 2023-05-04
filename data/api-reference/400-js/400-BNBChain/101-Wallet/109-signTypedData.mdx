@@ -1,0 +1,21 @@
+---
+title: signTypedData
+description: Performs off-chain signing of a an arbitrary typed message
+---
+
+# `signTypedData`
+
+Performs Off Chain Signing Of A An Arbitrary Typed Message
+
+```js
+const payload = {
+  data: [
+    {
+      name: "data",
+      type: "string",
+      value: "hello world",
+    },
+  ],
+}
+await mirrorworld.BNBChain.Wallet.signTypedData(payload)
+```

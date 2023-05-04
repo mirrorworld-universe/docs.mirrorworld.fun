@@ -1,21 +1,15 @@
 import { useMDX } from "components/mdx-components"
+import SEO from 'components/seo'
 import { Overview } from "contentlayer/generated"
 import DocsLayout from "layouts/docs"
 import { getOverviewDoc, getOverviewPaths } from "lib/contentlayer-utils"
-import { generateShareImageUrl } from 'lib/seo/generate-image'
 import { GetStaticPaths, GetStaticProps } from "next"
-import { NextSeo } from "next-seo"
 
 export default function OverviewPage({ doc }: { doc: Overview }) {
   const Component = useMDX(doc.body.code)
-  const imageUrl = generateShareImageUrl({ title: doc.title, description: doc.description })
   return (
     <>
-      <NextSeo title={doc.title} description={doc.description} openGraph={{
-        title: doc.title,
-        description: doc.description,
-        images: [{ url: imageUrl }]
-      }} />
+      <SEO title={doc.title} description={doc.description} />
       <DocsLayout doc={doc}>{Component}</DocsLayout>
     </>
   )

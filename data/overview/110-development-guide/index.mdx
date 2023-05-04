@@ -1,0 +1,96 @@
+---
+title: Development Guide
+description: Developers' Guide for using the Mirror World SDK
+---
+
+# Development Guide for building with Mirror World Smart SDK
+
+## Developer Dashboard
+
+Before you can start building with the Mirror World Smart Platform,
+you need a developer account and an API Key, You can acquire these from the [developer dashboard](https://app.mirrorworld.fun).
+The developer dashboard is where developers can create and manage their projects, as well as API credentials.
+
+<InlineButtonLink size="sm" href="https://app.mirrorworld.fun">
+  Go to Dashboard
+</InlineButtonLink>
+
+> 🧠 Learn what else is possible in the [Developer Dashboard](/overview/development-guide/developer-dashboard)
+
+## Interacting with the Mirror World Smart Platform
+
+There are two ways ton interact with the Mirror World API cluster:
+
+- **Official Client SDKs** - Beginner-friendly, recommended, cross-platform.
+- **HTTP API** - Advanced, For complex operations.
+
+## SDK Integration Guides
+
+Currently, Mirror World's Smart SDK officially supports the following platforms:
+
+<IntegrationCardsMinimal />
+
+
+### Unofficial SDKs
+We also have some community authored SDKs below:
+- **[Flutter SDK](https://github.com/Zfinix/mirrorworld-sdk-flutter)**
+
+If you'd like to contribute towards authoring an SDK for unsupported platform, [hit us up on discord](https://mirrorworld.fun/discord)!
+
+## Using HTTP
+
+If you're more comfortable with using HTTP API via the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) API or with an HTTP API client like [Postman](https://www.postman.com),
+you can also use the Mirror World Smart Platform's HTTP API Interface. This is most suitable for performing scripting tasks like batch minting NFTs, or if you are consuming the API on the back end.
+
+Like the SDKs, the HTTP API also requires you to have an API Key to be passed into the `x-api-key` header.
+
+This request gets the tokens inside a wallet address on Solana Devnet.
+<CodeSnippet id="development/http-example.mdx" />
+
+<InlineButtonLink size="sm" href="https://developer.mirrorworld.fun">
+  Explore HTTP API Documentation
+</InlineButtonLink>
+
+
+## API Credentials
+
+There are two types of API credentials you can use to consume the Mirror World API.
+
+1. **API Key** - The API Key is used to authenticate the request against a project. This key is required, and is passed into the `x-api-key` header. You can acquire the API Key for your project on the developer dashboard.
+2. **Authorization Token** - The Authorization Token is used to give the client access to protected resources, and allows us to uniquely identify the user accessing a specific resource. You can get this credential in two ways below:.
+
+### User Authentication
+Users are authenticated when they login to your application using social authentication or,
+with email and password. This returns an `access_token` in the successful response. You can use to query
+some user specific resources.
+
+> If you're using the SDK, They already handle this token management for you. However, with HTTP API, you
+will need to handle and apply this token yourself before making a request to an authenticated resource.
+
+See an example request below that queries a user's information. The return type can be found [here.](https://developer.mirrorworld.fun/#3df5eef0-b278-419a-a8ef-c7286c2e6419)
+
+<CodeSnippet id="development/user-auth.mdx" />
+
+### Developer Authentication
+Developers can authenticate themselves on the Mirror World API by using their developer secret access key. This is a sensitive credential
+that can bypass action approval for assets in the developers' wallet. This is useful for debugging and performing batch requests with your
+wallet address or interacting with the API on a back end service.
+
+You can get the Secret Access Key on the Account Settings menu on the developer dashboard.
+
+> Whereas this is useful for debugging and testing, it is advised not to paste this credential in a location that is compromised.
+> Learn more about the Secret Access Key in this guide.
+
+To learn how to generate the Secret Access Key, please [this guide]().
+
+The usage for the Secret Access Key is similar to that for the user's auth token as shown below. This request queries the developer's
+user information. The return type can be found The return type can be found [here.](https://developer.mirrorworld.fun/#3df5eef0-b278-419a-a8ef-c7286c2e6419)
+<CodeSnippet id="development/developer-auth.mdx" />
+
+## Troubleshooting Errors
+
+All errors returned from the Mirror World API cluster are documented here on the [API Error Reference Page](/docs/further-reading/api-error-reference).
+
+## Community & Support
+If you're building with the Mirror World SDK, join the [Mirror World Developer Discord](https://mirrorworld.fun/discord) server community and engage other builders.
+We also have multiple support channels documented [here](/resources/support)

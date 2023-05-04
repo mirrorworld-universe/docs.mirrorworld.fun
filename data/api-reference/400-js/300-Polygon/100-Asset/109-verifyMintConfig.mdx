@@ -1,0 +1,18 @@
+---
+title: verifyMintConfig
+description: Verifies the mint configuration of a Polygon NFT
+---
+
+# `verifyMintConfig`
+
+Verifies The Mint Configuration Of A Polygon NFT
+
+```js
+import { type VerifyEVMMintConfigPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: VerifyEVMMintConfigPayloadV2 = {
+  url: "https://api.orangecomet.io/collectible-metadata/the-mayfair-witches-pass/",
+}
+
+await mirrorworld.Polygon.Asset.verifyMintConfig(payload)
+```

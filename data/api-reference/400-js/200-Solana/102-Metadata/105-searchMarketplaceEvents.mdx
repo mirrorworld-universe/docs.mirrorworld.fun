@@ -1,0 +1,20 @@
+---
+title: searchMarketplaceEvents
+description: Search Solana Marketplace Events
+---
+
+# `searchMarketplaceEvents`
+
+Search Solana Marketplace Events
+
+```js
+import { type SearchSolanaMarketplaceEventsPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: SearchSolanaMarketplaceEventsPayloadV2 = {
+  marketplace_address: "FBqBFaPXHqpnDKnpmhgpUsf9WdY8nZvkDnMSeuxd6za9",
+  page: 1,
+  page_size: 24,
+}
+
+await mirrorworld.Solana.Metadata.searchMarketplaceEvents(payload)
+```

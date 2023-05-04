@@ -1,0 +1,23 @@
+---
+title: searchNFTsByOwnerAddresses
+description: Searches Solana NFTs by Owner Addresses
+---
+
+# `searchNFTsByOwnerAddresses`
+
+Searches Solana NFTs By Owner Addresses
+
+```ts
+import { type SearchSolanaNFTsByOwnersPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: SearchSolanaNFTsByOwnersPayloadV2 = {
+  owners: [
+    "BuiAawnD2EoAAp8SdrtkM74nkSVNwV5Vh6E6m8aWXbjV",
+    "24rXTjveoQbAShQtiriNEdAwiqC6YnKmhDSd9nwRBU7y",
+  ],
+  limit: 24,
+  offset: 0,
+}
+
+await mirrorworld.Solana.Asset.searchNFTsByOwnerAddresses(payload)
+```

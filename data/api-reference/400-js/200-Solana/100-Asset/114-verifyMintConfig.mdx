@@ -1,0 +1,18 @@
+---
+title: verifyMintConfig
+description: Verifies the mint configuration of a Solana NFT
+---
+
+# `verifyMintConfig`
+
+Verifies The Mint Configuration Of A Solana NFT
+
+```js
+import { type VerifySolanaMintConfigPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: VerifySolanaMintConfigPayloadV2 = {
+  url: "https://url-to-bad-monkey-storage.site/0001.json",
+}
+
+await mirrorworld.Solana.Asset.verifyMintConfig(payload)
+```

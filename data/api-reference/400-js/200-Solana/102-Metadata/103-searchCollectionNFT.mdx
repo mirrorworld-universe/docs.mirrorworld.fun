@@ -1,0 +1,19 @@
+---
+title: searchCollectionNFT
+description: Search Solana Collection NFT
+---
+
+# `searchCollectionNFT`
+
+Search Solana Collection NFT
+
+```ts
+import { type SearchSolanaNFTInCollectionPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: SearchSolanaNFTInCollectionPayloadV2 = {
+  collections: ["4cEwtjcQt8KNBsD8EP3Y7RFZgRiq51uVCwJ4SWUpcCfZ"],
+  search: "Bad Monkeys",
+}
+
+await mirrorworld.Solana.Metadata.searchCollectionNFT(payload)
+```

@@ -1,0 +1,20 @@
+---
+title: searchMarketplaceEvents
+description: Search BNB Chain Marketplace Events
+---
+
+# `searchMarketplaceEvents`
+
+Search BNB Chain Marketplace Events
+
+```js
+import { type SearchSolanaMarketplaceEventsPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: SearchSolanaMarketplaceEventsPayloadV2 = {
+  marketplace_address: "0x732D151D6a953A992D821c8160a8F69F084822b7",
+  page: 1,
+  page_size: 20,
+}
+
+await mirrorworld.BNBChain.Metadata.searchMarketplaceEvents(payload)
+```

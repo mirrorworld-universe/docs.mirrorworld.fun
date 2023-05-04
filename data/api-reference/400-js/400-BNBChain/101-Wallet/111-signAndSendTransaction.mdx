@@ -1,0 +1,23 @@
+---
+title: signAndSendTransaction
+description: Signs a transaction and sends it to the network
+---
+
+# `signAndSendTransaction`
+
+Signs A Transaction And Sends It To The Network
+
+```js
+import { type EVMSignAndSendTransactionPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: EVMSignAndSendTransactionPayloadV2 = {
+  nonce: 15,
+  gasPrice: "0x09284e242",
+  gasLimit: "0x31929",
+  to: "0xAeAd331622371228A0388E8D4909aC77681AF1b8",
+  value: "0x02",
+  data: "0x7f7465737432000000000000000000000000000000000000000000000000000000600057",
+}
+
+await mirrorworld.BNBChain.Wallet.signAndSendTransaction(payload)
+```

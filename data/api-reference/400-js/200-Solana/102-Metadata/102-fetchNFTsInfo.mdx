@@ -1,0 +1,31 @@
+---
+title: fetchNFTsInfo
+description: Fetch Solana NFTs Info. Accepts Filtering Metadata
+---
+
+# `fetchNFTsInfo`
+
+Fetch Solana NFTs Info Accepts Filtering Metadata
+
+You can find the full type signature for the `fetchNFTsInfo` method
+[here](https://github.com/mirrorworld-universe/mirrorworld-sdk-js/blob/d4a2075770fb8ec1e39c23c35a64cf3e06874bfd/packages/core/src/types/metadata.solana.v2.ts#L3)
+
+```ts
+import { type QuerySolanaNFTsPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: QuerySolanaNFTsPayloadV2 = {
+  // Collection address
+  contract: "JDLE2pYTirozWHYtcWyCc9D4sJztkETpeE2zeqv5pvu3",
+  // Marketplace address (Optional)
+  auction_house: "2sBcb7vXLrUSdCToBuBhpg8hmJaA1kBhsYreHDoSQuVc",
+  order: {
+    order_by: "price",
+    desc: true,
+  },
+  sale: true,
+  page: 1,
+  page_size: 20,
+}
+
+await mirrorworld.Solana.Metadata.fetchNFTsInfo(payload)
+```

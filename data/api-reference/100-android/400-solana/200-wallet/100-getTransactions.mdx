@@ -1,0 +1,25 @@
+---
+title: getTransactions
+
+---
+
+# `getTransactions`
+Get the transactions of user's wallet.
+
+
+```java
+int limit = 1;
+String nextBefore = "nextBefore";
+
+MirrorWorld.getTransactions(limit, nextBefore, new GetWalletTransactionListener() {
+    @Override
+    public void onSuccess(GetWalletTransactionsResponse walletTransactionsResponse) {
+        Log.d("Result","GetTransactions success! count is "+walletTransactionsResponse.count);
+    }
+
+    @Override
+    public void onFailed(long code, String message) {
+        Log.d("Result","Get failed,message:"+message);
+    }
+});
+```

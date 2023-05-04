@@ -1,0 +1,18 @@
+---
+title: MirrorWorld.EVM.UpdateNFT
+---
+
+# `UpdateNFT`
+Get status of transactions by their signatures.
+```csharp
+string mintAddress = "mint address";
+string name = "name";
+string symbol = "symbol";
+stirng updateAuthority = "updateAuthority";
+string jsonUrl = "https://nft_detail_json.json";
+int seller_fee_basis_points = 100;
+
+MirrorWorld.EVM.UpdateNFT(mintAddress, name, symbol, updateAuthority, jsonUrl, 200, Confirmation.Default, null, (res) => {
+    //todo
+});
+```

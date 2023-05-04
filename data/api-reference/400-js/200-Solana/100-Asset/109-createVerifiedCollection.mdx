@@ -1,0 +1,20 @@
+---
+title: createVerifiedCollection
+description: Creates a new verified collection on Solana
+---
+
+# `createVerifiedCollection`
+
+Creates A New Verified Collection On Solana
+
+```ts
+import { type CreateVerifiedCollectionPayloadV2 } from "@usemirrorworld/web3.js"
+
+const payload: CreateVerifiedCollectionPayloadV2 = {
+  name: "Test Collection",
+  symbol: "TESTCOLL",
+  url: "https://url-to-storage.site/metadata.json",
+}
+
+await mirrorworld.Solana.Asset.createVerifiedCollection(payload)
+```

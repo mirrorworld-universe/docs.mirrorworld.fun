@@ -17,7 +17,15 @@ const routeMapping = {
   "/rust/rust-installation": "/integration/rust",
   "/rust/rust-api": "/api-reference/rust",
   "/rust/rust-authentication": "/api-reference/rust/authentication",
+  "/api-reference/js/authetication": "/api-reference/js/Authentication",
+  "/api-reference/js/marketplace": "/api-reference/js/configuration",
+  "/api-reference/js/wallet": "/api-reference/js/configuration",
 }
+
+const baseOrigins = Object.keys(routeMapping).reduce((acc, curr) => {
+  acc[curr] = true
+  return acc
+}, {})
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone()
@@ -31,6 +39,13 @@ export function middleware(request: NextRequest) {
   if (targetPath) {
     url.pathname = targetPath
     return NextResponse.redirect(url)
+  }
+
+  for (const baseOrigin in baseOrigins) {
+    if (url.pathname.startsWith(baseOrigin)) {
+      url.pathname = routeMapping[baseOrigin]
+      return NextResponse.redirect(url)
+    }
   }
 }
 

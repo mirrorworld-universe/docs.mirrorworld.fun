@@ -1,0 +1,15 @@
+---
+title: openWallet
+---
+
+# `openWallet`
+Open a webview which would show the wallet page.
+
+```swift
+MWSDK.openWallet {
+    print("Wallet is logout")
+    
+} loginSuccess: { userinfo in
+    print("Wallet login: \(String(describing: userinfo))")
+}
+```

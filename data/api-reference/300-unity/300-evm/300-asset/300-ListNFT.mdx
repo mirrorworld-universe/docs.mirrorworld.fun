@@ -1,0 +1,19 @@
+---
+title: MirrorWorld.EVM.ListNFT
+---
+
+# `ListNFT`
+
+List NFT on Mirror World Marketplace.
+AuctionHouse: If you give the `auctionHouse` param, you can specify which market you want to list in.
+
+```csharp
+string mintAddress = "mint_address";
+double price = 1;
+string confirmation = Confirmation.Default;
+string auctionHouse = "your_market_auction_house";
+
+MirrorWorld.EVM.ListNFT(mintAddress, price, auctionHouse, confirmation, null, (res) => {
+    //todo
+});
+```

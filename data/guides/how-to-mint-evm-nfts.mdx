@@ -1,0 +1,127 @@
+---
+title: Minting ERC721/ERC1155 NFT Collection
+description:
+  In this guide, you will mint NFTs to the collection you created using the
+  Mirror World SDK.
+author:
+  name: Jonathan Bakebwa
+  twitter: https://twitter.com/codebender828
+tags:
+  - ERC721
+  - ERC1155
+  - NFTs
+  - Minting
+---
+
+In this guide, you will mint NFTs to the collection you created using the Mirror
+World SDK. If you do not yet have a collection address, please follow
+[this guide to create an ERC721/ERC1155 collection](/guides/how-to-create-evm-nft-collection)
+and return to this page to mint NFTs to your collection.
+
+That's it! Let's move forward to minting NFTs.
+
+## Pre-requisites
+
+- [ ] Your `collection_address` is prepared
+- [ ] Your have prepared your API credentials (API Key and Secret Access Key).
+- [ ] Your wallet has been funded. If you hav
+
+### Funding your project wallet
+
+> Skip this section if your project wallet is already funded
+
+Before minting NFTs to your collection, you need to make sure that your project
+wallet is funded with enough funds to pay the gas fee for deployment.
+
+You can see your project wallet on the top-right of the developer dashboard when
+you select the Chain/Network combination on the developer dashboard.
+
+- **For Mainnet**, you can fund your wallet by directly transferring funds into
+  your project wallet from an external wallet, or exchange.
+- **For Testnet,** you can use a faucet to get tokens. Examples of popular
+  testnet faucets include [https://mumbaifaucet.com/](https://mumbaifaucet.com/)
+  and [https://goerlifaucet.com/](https://goerlifaucet.com/)
+
+### API Credentials
+
+> Skip this section if you already have your API credentials
+
+Minting NFTs requires the following API credentials:
+
+- **API Key** - passed in to the `x-api-key` header. If you don't have an API
+  Key, please use the
+  [Getting Started](/overview/development-guide/projects#creating-a-project)
+  guide to create a project and get the API Key for your project.
+- **Secret Access Key** - passed into the
+  `Authorization: Bearer <SECRET_ACCESS_KEY>` header. If you don't have your
+  Secret Access Key yet, please follow
+  [this guide to acquire your Secret Access Key](/overview/development-guide/developer-dashboard#secret-access-key-management).
+
+## Minting your ERC721/ERC1155 NFTs
+
+### With HTTP
+
+You can use the
+[Mint NFT to collection](https://developer.mirrorworld.fun/#8f4d519f-a0dd-4710-aab0-cc11579bdca0)
+API to mint NFTs to your collection
+
+Replace `:chain` and `:network` parameters to the chain and network combination
+you want to deploy to.
+
+> Here is the full
+> [table of supported chains](https://developer.mirrorworld.fun/#multichain-support-matrix).
+
+_Required properties:_
+
+- **`collection_address`**: The address of the collection
+- **`token_id`**: The token_id of the NFT to be minted
+
+_Optional properties:_
+
+- **`to_wallet_address`**: The wallet address to which the NFT will be minted.
+  You can use this to airdrop NFTs to a user.
+- **`mint_amount`**: The amount of NFTs to be minted. Default is 1. For erc721
+  collections this value should be 1
+- **`confirmation`**: The confirmation level of the transaction. Default is
+  finalized. Allowed values are finalized and confirmed
+
+Below is an example code snippet. Take note of the variables to be replaced
+
+```bash
+curl --location 'https://api.mirrorworld.fun/v2/:chain/:network/asset/mint/nft' \
+    --header 'x-api-key: <YOUR_API_KEY>' \
+    --header 'Authorization: Bearer <YOUR_SECRET_ACCESS_KEY>' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "collection_address": "<YOUR_COLLECTION_ADDRESS>",
+        "token_id": 1
+    }'
+```
+
+### With JavaScript SDK
+
+This example uses the JavaScript SDK to mint an ERC721 Collection on Ethereum
+mainnet.
+
+```tsx
+import { MirrorWorld, Ethereum, EVMContractType } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Ethereum("mainnet"),
+  auth: {
+    secretAccessKey: "YOUR_SECRET_ACCESS_KEY",
+  },
+})
+
+const payload = {
+  collection_address: "0xSOME_COLLECTION_ADDRESS",
+  token_id: 1,
+}
+
+const nft = await mirrorworld.Ethereum.Asset.mintNFT(payload)
+console.log("my new NFT", nft)
+```
+
+Congratulations! You have successfully minted an NFT to your EVM-compatible
+blockchain collection.

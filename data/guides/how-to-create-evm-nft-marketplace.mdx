@@ -1,0 +1,244 @@
+---
+title: Creating an NFT Marketplace for your ERC721/ERC1155 NFT collection
+description:
+  In this guide, you will create an NFT marketplace for listing and trading NFT
+  for the NFTs you created using the Mirror World SDK.
+author:
+  name: Jonathan Bakebwa
+  twitter: https://twitter.com/codebender828
+tags:
+  - Tutorial
+  - EVM
+  - Marketplace
+---
+
+In this guide, you will create an NFT marketplace for listing and trading NFT
+for the NFTs you created using the Mirror World SDK. If you do not yet have a
+collection, please follow
+[this guide to create an ERC721/ERC1155 collection](/guides/how-to-create-evm-nft-collection),
+mint some NFTs and return to this page to create an NFT Marketplace to your
+collection.
+
+That's it! Let's move forward to the pre-requisites. Make sure that your
+`collection_address` is prepared, you have your API credentials (API Key and
+Secret Access Key) ready, and your wallet has been funded. If you haven't funded
+your project wallet yet, follow the instructions in the "Funding your project
+wallet" section. If you don't have your API credentials yet, refer to the "API
+Credentials" section for instructions on how to acquire them.
+
+## Pre-requisites
+
+- [ ] Your `collection_address` is prepared. You may also prepare multiple
+      collections
+- [ ] Your have prepared your API credentials (API Key and Secret Access Key).
+- [ ] Your project wallet has been funded.
+
+### Funding your project wallet
+
+> Skip this section if your project wallet is already funded
+
+Before deploying your Marketplace Instance, you need to make sure that your
+project wallet is funded with enough funds to pay the gas fee for deployment.
+
+You can see your project wallet on the top-right of the developer dashboard when
+you select the Chain/Network combination on the developer dashboard.
+
+- **For Mainnet**, you can fund your wallet by directly transferring funds into
+  your project wallet from an external wallet, or exchange.
+- **For Testnet,** you can use a faucet to get tokens. Examples of popular
+  testnet faucets include [https://mumbaifaucet.com/](https://mumbaifaucet.com/)
+  and [https://goerlifaucet.com/](https://goerlifaucet.com/)
+
+### API Credentials
+
+> Skip this section if you already have your API credentials
+
+Minting NFTs requires the following API credentials:
+
+- **API Key** - passed in to the `x-api-key` header. If you don't have an API
+  Key, please use the
+  [Getting Started](/overview/development-guide/projects#creating-a-project)
+  guide to create a project and get the API Key for your project.
+- **Secret Access Key** - passed into the
+  `Authorization: Bearer <SECRET_ACCESS_KEY>` header. If you don't have your
+  Secret Access Key yet, please follow
+  [this guide to acquire your Secret Access Key](/overview/development-guide/developer-dashboard#secret-access-key-management).
+
+## Deploying your Marketplace Instance
+
+Behind the scenes, Mirror World uses the widely supported
+[Seaport Protocol](https://github.com/ProjectOpenSea/seaport) to orchestrate
+marketplace listings and transactions.
+
+Seaport is a marketplace protocol for safely and efficiently buying and selling
+NFTs. Each listing contains an arbitrary number of items that the offerer is
+willing to give (the "offer") along with an arbitrary number of items that must
+be received along with their respective receivers (the "consideration").
+
+### With HTTP
+
+You can use the
+[Deploy Marketplace Instance API](https://developer.mirrorworld.fun/#072c6557-5b9d-4140-b2fe-4e8e4c72ad34)
+to deploy your NFT Marketplace instance.
+
+Replace `:chain` and `:network` parameters to the chain and network combination
+you want to deploy to.
+
+> Here is the full
+> [table of supported chains](https://developer.mirrorworld.fun/#multichain-support-matrix).
+
+_Required parameters:_
+
+- **`seller_fee_basis_points`**: The seller fee basis points
+
+_Optional parameters:_
+
+- **`payment_token`**: The payment token address. Default is null, which means
+  the native token
+- **`storefront`**: The storefront UI configuration details. Used when deploying
+  a storefront client application The `storefront` configuration conforms to the
+  following schema:
+  ```tsx
+  export interface IStorefrontConfig {
+    subdomain: string
+    name: string
+    description: string
+    logo?: string
+    banner?: string
+  }
+  ```
+- **`collections`**: The array of ERC721/ERC1155 collections to be added to the
+  marketplace.
+
+In this example for the `payment_token`, we shall use polygon's MATIC testnet
+token address (`0x0000000000000000000000000000000000001010`)
+
+Below is an example code snippet. Take note of the variables to be replaced
+
+```tsx
+curl --location 'https://api.mirrorworld.fun/v2/:chain/:network/asset/marketplaces/create' \
+    --header 'x-api-key: <YOUR_API_KEY>' \
+    --header 'Authorization: Bearer <YOUR_SECRET_ACCESS_KEY>' \
+    --header 'Content-Type: application/json' \
+    --data '{
+				"payment_token": "0x0000000000000000000000000000000000001010",
+        "seller_fee_basis_points": 100,
+        "collections": ["SOME_COLLECTION_ADDRESS"]
+    }'
+```
+
+### With JavaScript SDK
+
+This example uses the JavaScript SDK to create an NFT marketplace on Polygon
+Testnet.
+
+```tsx
+import { MirrorWorld, Polygon, EVMContractType } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Polygon("mumbai-testnet"),
+  auth: {
+    secretAccessKey: "YOUR_SECRET_ACCESS_KEY",
+  },
+})
+
+const payload = {
+  payment_token: "0x0000000000000000000000000000000000001010",
+  seller_fee_basis_points: 100,
+}
+
+const marketplace = await mirrorworld.Polygon.Asset.createMarketplace(payload)
+console.log("my new marketplace", marketplace)
+```
+
+Successfully creating a marketplace returns an object with the
+`marketplace_address` property. This represents your marketplace instance. Keep
+this address as you will use it to transact with your marketplace.
+
+You have successfully an EVM-compatible Marketplace.
+
+## Listing, Buying and Transacting with your NFT Marketplace
+
+You can list your NFTs using the
+[List NFT API](https://developer.mirrorworld.fun/#7e46147f-3ece-4e45-afe8-0633db127bf3).
+
+### With HTTP API
+
+_Required parameters:_
+
+- **`collection_address`**: The address of the collection
+- **`token_id`**: The `token_id` of the NFT
+- **`price`**: The price of the NFT
+- **`marketplace_address`**: The address of the marketplace
+
+_Optional parameters:_
+
+- **`confirmation`**: The confirmation level of the transaction. Default is
+  finalized. Allowed values are finalized and confirmed
+
+Replace `:chain` and `:network` parameters to the chain and network combination
+you want to deploy to.
+
+> Here is the full
+> [table of supported chains](https://developer.mirrorworld.fun/#multichain-support-matrix).
+
+```tsx
+curl --location 'https://api.mirrorworld.fun/v2/:chain/:network/asset/auction/list' \
+    --header 'x-api-key: <YOUR_API_KEY>' \
+    --header 'Authorization: Bearer <YOUR_SECRET_ACCESS_KEY>' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "collection_address": "<YOUR_COLLECTION_ADDRESS>",
+        "token_id": 1,
+        "price": 0.1,
+        "marketplace_address": "<YOUR_MARKETPLACE_ADDRESS>"
+    }'
+```
+
+### With JavaScript SDK
+
+This example uses the JavaScript SDK to list an NFT on your marketplace
+
+```tsx
+import { MirrorWorld, Polygon, EVMContractType } from '@usemirrorworld/web3.js';
+
+const mirrorworld = new MirrorWorld({
+  apiKey: 'YOUR_API_KEY',
+  chainConfig: Polygon("mumbai-testnet"),
+  auth: {
+    secretAccessKey: 'YOUR_SECRET_ACCESS_KEY',
+  },
+})
+
+const payload = const payload = {
+  collection_address: 'YOUR_COLLECTION_ADDRESS',
+  price: 0.1,
+  token_id: 1,
+  marketplace_address: 'YOUR_MARKETPLACE_ADDRESS',
+}
+
+const listing = await mirrorworld.Polygon.Asset..listNFT(payload);
+console.log("token listing", listing)
+```
+
+### Other Marketplace Transactions
+
+- [Listing NFTs](https://developer.mirrorworld.fun/#7e46147f-3ece-4e45-afe8-0633db127bf3)
+- [Buying NFTs](https://developer.mirrorworld.fun/#85dd1e46-7e9a-4152-903f-e788d29ba091)
+- [Cancelling NFT Listings](https://developer.mirrorworld.fun/#ad74ace6-1343-4c16-85e0-08c8204ff506)
+- [Transferring NFTs](https://developer.mirrorworld.fun/#1fe1e6e4-4045-4a72-8136-07a4a2f6f5a4)
+
+## Getting Marketplace Events
+
+You can query the listing events for your Marketplace in the same using the
+following APIs:
+
+- [Query Marketplace Events](https://developer.mirrorworld.fun/#d49a57e8-e53e-4988-a5ed-6e2a7d0e020c)
+- [Query Single NFT's Marketplace Events](https://developer.mirrorworld.fun/#8f4b818b-0658-4a64-8692-46608ea16f92)
+- [Search NFTs with Filter and Sort](https://developer.mirrorworld.fun/#11332796-01d5-478a-b9ac-09b95fae7079)
+- [Get Marketplace NFTs](https://developer.mirrorworld.fun/#11332796-01d5-478a-b9ac-09b95fae7079)
+- [Search NFTs with Search word](https://developer.mirrorworld.fun/#4abc1638-5698-4e8a-9473-837a00648446)
+- [Get Recommended NFTs](https://developer.mirrorworld.fun/#d2041f93-679e-4290-836e-ecee4b90930e)
+
+Congratulations! You can now transact with you EVM Marketplace.

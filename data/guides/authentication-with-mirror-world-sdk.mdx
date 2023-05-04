@@ -1,0 +1,248 @@
+---
+title: How to Authenticate With The Mirror World Smart SDK
+description:
+  TypeScript/JavaScript Guide for authentication with the Mirror World SDK SDK
+  in a React/Next.js App
+author:
+  name: Jonathan Bakebwa
+  twitter: https://twitter.com/codebender828
+tags:
+  - React
+  - Next.js
+---
+
+In this tutorial, we shall be covering how to authenticate your users with the
+Mirror World SDK. This specific tutorial will be focusing on JavaScript for the
+front end.
+
+> We shall be creating more tutorials for back end authentication soon! If you
+> are looking for other frameworks, please see the
+> [integration guides for **Android, Unity, iOS and Rust**](/integration).
+
+## Getting Started
+
+### Create a Mirror World Project
+
+The first step to building with the Mirror World SDK is to create a project and
+get it's **API Key**. Please follow the guide on
+[creating your first Mirror World Project](/overview/getting-started).
+
+If you have an API Key, you can skip the step.
+
+### Install dependencies
+
+<CodeSnippet id="tutorial/installation.mdx" />
+
+> See [Android Installation Guide](/integration/android) and
+> [Unity Installation Guide](/integration/unity) for Android and Unity
+> respectively
+
+### Project Setup
+
+Create a Next JS app by running this command in your terminal
+
+```shell
+yarn create next-app mirrorworld-js
+# or
+npx create-next-app@latest mirrorworld-js
+```
+
+### Install the Mirror World Smart SDK
+
+Next, let's make sure we have the Mirror World Smart SDK installed in our
+project. This will enable us to run the following command in your project's root
+directory, in the terminal:
+
+```shell
+yarn add @usemirrorworld/web3.js
+```
+
+### Implementing Login
+
+Let's implement login functionality into our app using the Mirror World Smart
+SDK. To use the SDK, we'll need to create a new instance of the SDK.
+
+Edit your **index.tsx** file to look like this
+
+📁 **pages/index.tsx**
+
+```tsx
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import styles from "../styles/Home.module.css"
+
+export default function Home() {
+  const mirrorworld = new MirrorWorld({
+    apiKey: "YOUR_SECRET_API_KEY", // Replace this with the API Key for your project
+    chainConfig: Solana("mainnet-beta"),
+  })
+
+  return <div className={styles.container}></div>
+}
+```
+
+Next, we're going to create a function that logs the user in, and a button to
+trigger that function.
+
+Update your **index.tsx** file to look like this
+
+```tsx
+import { useState } from "react"
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import styles from "../styles/Home.module.css"
+
+export default function Home() {
+  const [user, setUser] = useState()
+
+  const mirrorworld = new MirrorWorld({
+    apiKey: "YOUR_SECRET_API_KEY", // Replace this with the API Key for your project
+    chainConfig: Solana("mainnet-beta"),
+  })
+
+  async function login() {
+    const { user } = await mirrorworld.login()
+    setUser(user)
+  }
+
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <button onClick={login}>Login to Mirror World</button>
+      </main>
+    </div>
+  )
+}
+```
+
+As you can see, we've bound the login method to the button. When you click on
+the button a popup appears giving you multiple options to login to mirror world.
+
+![User wallet login](https://res.cloudinary.com/xtellar/image/upload/v1665995199/mirror-world/image_hn4dzq.png)
+
+We also include a user state using the `useState` hook from React so that we can
+set the user object and use it in our app as we'll see shortly.
+
+Let's go ahead and display the user information in our app with this piece of
+code:
+
+```tsx
+return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <button onClick={login}>Login to Mirror World</button>
+        {user ? (
+          <div className="user-info">
+              <ul>
+                <li>Username: {user.username} </li>
+                <li>Email: {user.email}</li>
+                <li>ETH Address: {user.wallet.eth_address}</li>
+                <li>SOL Address: {user.wallet.sol_address}</li>
+              </ul>
+          </div>
+        ) : (
+          <p>No User available</p>
+        )}
+      </main>
+    </div>
+  );
+}
+```
+
+Try to log in again and you should see your user details displayed like this:
+
+![Displaying user info](https://res.cloudinary.com/xtellar/image/upload/v1665995203/mirror-world/Untitled_1_n2xrdk.png)
+
+## Extract Login Logic to a React Hook for
+
+Great! With the current setup, the user can now login at the click of a button,
+however, we would like to refresh the user's login state everytime the visit the
+app so that they don't have to keep logging in every time they come to your app.
+
+### Create `useMirrorWorld` hook
+
+Let's create a new hook called `useMirrorWorld` that will provide our SDK
+instance and automatically fetch user's state each time the app loads.
+
+Create a new file called `useMirrorWorld.tsx` with the following code.
+
+<CodeSnippet id="tutorial/use-mirrorworld.mdx" />
+
+Great! now you have a created a helper hook to clean up your `index.tsx` page.
+
+### Wrap `app.tsx` with the `MirrorWorldProvider` component
+
+Wrap your `_app.tsx` with the `MirrorWorldProvider` component we just created in
+our `useMirrorWorld.tsx` file 👇🏽
+
+```tsx
+// In your pages/_app.tsx file
+
+import type { AppProps } from "next/app"
+import { MirrorWorldProvider } from "../path/to/useMirrorWorld.tsx"
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <MirrorWorldProvider>
+      <Component {...pageProps} />
+    </MirrorWorldProvider>
+  )
+}
+```
+
+### Refactor `pages/index.tsx` to use the `useMirrorWorld` hook.
+
+Phew! We can now clean up our `pages/index.tsx` page as shown below.
+
+```tsx
+// Your new `pages/index.tsx` file
+
+import { useState } from "react"
+import styles from "../styles/Home.module.css"
+import { useMirrorWorld } from "../path/to/useMirrorWorld.tsx" // [tl! ++]
+
+export default function Home() {
+  // Simplified home page code!
+  const { user, login } = useMirrorWorld()
+
+  return (
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <button onClick={login}>Login to Mirror World</button>
+        {user ? (
+          <div className="user-info">
+            <ul>
+              <li>Username: {user.username} </li>
+              <li>Email: {user.email}</li>
+              <li>ETH Address: {user.wallet.eth_address}</li>
+              <li>SOL Address: {user.wallet.sol_address}</li>
+            </ul>
+          </div>
+        ) : (
+          <p>No User available</p>
+        )}
+      </main>
+    </div>
+  )
+}
+```
+
+Congrats! Now your user's will automatically be logged in whenever they visit
+your app!
+
+## Going Further
+
+Great! At this point you're pretty much ready to start doing building with the
+JavaScript SDK for Mirror World. There are a few things you can do to proceed
+from here:
+
+- Explore the [Full JavaScript API Reference](/api-reference/js) to learn more.
+- Looking for inspiration? Take a look at our [Guides](/guides) or see what
+  builders are building in the [Showcase](/showcase).
+- [Join the Mirror World Developer community](https://mirrorworld.fun/discord)!
+  We're a vibrant community of builders!
+
+### Getting Support
+
+If you're stuck or just looking for support, you may also
+[schedule a support call](https://mirrorworld.fun/support) with our team.
+
+Happy Hacking!

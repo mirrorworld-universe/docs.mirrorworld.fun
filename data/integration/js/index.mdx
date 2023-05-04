@@ -4,103 +4,123 @@ title: JavaScript/TypeScript Integration Guide
 
 <CH.Scrollycoding>
 
-  # JavaScript/TypeScript Integration Guide
+# JavaScript/TypeScript Integration Guide
 
-  This guide will walk you through the setup process for the Mirror World Smart SDK on JavaScript/TypeScript.
+This guide will walk you through the setup process for the Mirror World Smart
+SDK on JavaScript/TypeScript.
 
-  ## 1. Create a Developer Account
-  Create a developer account on the [Developer dashboard](https://app.mirrorworld.fun). Create project and create an API Key. If you already have an API Key, you may skip this step and proceed to the next one.
+## 1. Create a Developer Account
 
+Create a developer account on the
+[Developer dashboard](https://app.mirrorworld.fun). Create project and create an
+API Key. If you already have an API Key, you may skip this step and proceed to
+the next one.
 
-  ## 2. Install the JS Mirror World SDK
+## 2. Install the JS Mirror World SDK
 
-  The Mirror World SDK for JavaScript implements a TypeScript-compatible client
-  that can be used for both in the browser and Node.js. Install it with the package manager of your choice:
+The Mirror World SDK for JavaScript implements a TypeScript-compatible client
+that can be used for both in the browser and Node.js. Install it with the
+package manager of your choice:
 
-  ```sh install.sh
-  # With Yarn
-  yarn add @mirrorworld/web3.js
+```sh install.sh
+# With Yarn
+yarn add @usemirrorworld/web3.js
 
-  # With npm
-  npm install @mirrorworld/web3.js
+# With npm
+npm install @usemirrorworld/web3.js
 
-  # With pnpm
-  pnpm install @mirrorworld/web3.js
-  ```
-  ---
+# With pnpm
+pnpm install @usemirrorworld/web3.js
+```
 
-  ## 3. Import the SDK
-  You can now import the Mirror World SDK into your project.
+---
 
-  ```ts main.ts focus=1
-  import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+## 3. Import the SDK
 
-  const mirrorworld = new MirrorWorld({
-    apiKey: "YOUR_SECRET_API_KEY",
-    env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
-  })
+You can now import the Mirror World SDK into your project. Also import the Chain
+Configuration you will be using. For this example, we shall use `Solana`.
 
-  async function main() {
-    await mirrorworld.login()
-    await mirrorworld.getTokens()
-    await mirrorworld.getNFTs()
-  }
+To see other chain configurations, please see the
+[API reference](/api-reference/js/Configuration#chain--network-configurations)
 
-  main()
-  ```
-  ---
+```ts main.ts focus=1
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
-  ## 4.  Initialize SDK with API Key
-  With your API Key, you can now initialize the SDK in your project.
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_SECRET_API_KEY",
+  chainConfig: Solana("mainnet-beta"),
+})
 
-  ```ts main.ts focus=3:6
-  import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+async function main() {
+  const { user } = await mirrorworld.login()
+  const tokens = await mirrorworld.Solana.Wallet.fetchTokens()
+  const nfts = await mirrorworld.Solana.Asset.fetchNFTsByOwnerAddresses({ owners: [user.wallet.sol_address ]})
+}
 
-  const mirrorworld = new MirrorWorld({
-    apiKey: "YOUR_SECRET_API_KEY",
-    env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
-  })
+main()
+```
 
-  async function main() {
-    await mirrorworld.login()
-    await mirrorworld.getTokens()
-    await mirrorworld.getNFTs()
-  }
+---
 
-  main()
-  ```
-  ---
-  ## 5. Start building!
-  You can start invoking the various methods on the `MirrorWorld` instance. Enjoy!
+## 4. Initialize SDK with API Key
 
-  ```ts main.ts focus=8:14
-  import { MirrorWorld, ClusterEnvironment } from "@mirrorworld/web3.js"
+With your API Key, you can now initialize the SDK in your project.
 
-  const mirrorworld = new MirrorWorld({
-    apiKey: "YOUR_SECRET_API_KEY",
-    env: ClusterEnvironment.testnet, // Can be ClusterEnvionment.mainnet for mainnet
-  })
+```ts main.ts focus=3:6
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
 
-  async function main() {
-    await mirrorworld.login()
-    await mirrorworld.getTokens()
-    await mirrorworld.getNFTs()
-  }
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_SECRET_API_KEY",
+  chainConfig: Solana("mainnet-beta"),
+})
 
-  main()
-  ```
+async function main() {
+  const { user } = await mirrorworld.login()
+  const tokens = await mirrorworld.Solana.Wallet.fetchTokens()
+  const nfts = await mirrorworld.Solana.Asset.fetchNFTsByOwnerAddresses({ owners: [user.wallet.sol_address ]})
+}
 
-  ## Going Further
+main()
+```
 
-  Great! At this point you're pretty much ready to start doing building with the
-  JavaScript SDK for Mirror World. There are a few things you can do to proceed from here:
+---
 
-  - Explore the [Full JavaScript API Reference](/api-reference/js) to learn more.
-  - Looking for inspiration? Take a look at our [Guides](/guides) or see what builders are building in the [Showcase](/showcase).
-  - [Join the Mirror World Developer community](https://mirrorworld.fun/discord)! We're a vibrant community of builders!
+## 5. Start building!
 
+You can start invoking the various methods on the `MirrorWorld` instance. Enjoy!
 
-  ### Getting Support
-  If you're stuck or just looking for support, you may also [schedule a support call](https://mirrorworld.fun/support) with our team.
+```ts main.ts focus=8:14
+import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_SECRET_API_KEY",
+  chainConfig: Solana("mainnet-beta"),
+})
+
+async function main() {
+  const { user } = await mirrorworld.login()
+  const tokens = await mirrorworld.Solana.Wallet.fetchTokens()
+  const nfts = await mirrorworld.Solana.Asset.fetchNFTsByOwnerAddresses({ owners: [user.wallet.sol_address ]})
+}
+
+main()
+```
+
+## Going Further
+
+Great! At this point you're pretty much ready to start doing building with the
+JavaScript SDK for Mirror World. There are a few things you can do to proceed
+from here:
+
+- Explore the [Full JavaScript API Reference](/api-reference/js) to learn more.
+- Looking for inspiration? Take a look at our [Guides](/guides) or see what
+  builders are building in the [Showcase](/showcase).
+- [Join the Mirror World Developer community](https://mirrorworld.fun/discord)!
+  We're a vibrant community of builders!
+
+### Getting Support
+
+If you're stuck or just looking for support, you may also
+[schedule a support call](https://mirrorworld.fun/support) with our team.
 
 </CH.Scrollycoding>

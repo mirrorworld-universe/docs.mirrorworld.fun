@@ -1,4 +1,5 @@
 import { useMDX } from "components/mdx-components"
+import SEO from 'components/seo'
 import { MarketplaceTutorials } from "contentlayer/generated"
 import DocsLayout from "layouts/docs"
 import {
@@ -7,7 +8,6 @@ import {
 } from "lib/contentlayer-utils"
 import { generateShareImageUrl } from 'lib/seo'
 import { GetStaticPaths, GetStaticProps } from "next"
-import { NextSeo } from "next-seo"
 
 export default function MarketplaceTutorialsPage({
   doc,
@@ -15,14 +15,9 @@ export default function MarketplaceTutorialsPage({
   doc: MarketplaceTutorials
 }) {
   const Component = useMDX(doc.body.code)
-  const imageUrl = generateShareImageUrl({ title: doc.title, description: doc.description })
   return (
     <>
-      <NextSeo title={doc.title} description={doc.description} openGraph={{
-        title: doc.title,
-        description: doc.description,
-        images: [{ url: imageUrl }]
-      }} />
+      <SEO title={doc.title} description={doc.description} />
       <DocsLayout doc={doc}>{Component}</DocsLayout>
     </>
   )

@@ -1,0 +1,21 @@
+---
+title: queryCollectionSummary
+description: Search NFT Collection Filter Parameters
+---
+
+# `queryCollectionSummary`
+
+Search NFT Collection Filter Parameters
+
+```ts
+import { type QueryCollectionsSummaryV2 } from "@usemirrorworld/web3.js"
+
+const payload: QueryCollectionsSummaryV2 = {
+  collections: [
+    "0x71bd707A8007Df1f212B2e004c0a331F5b2ebD80",
+    "0x38d0769Ee60ABA07016753022Bda3CBf8b9F9Fff",
+  ],
+}
+
+await mirrorworld.Polygon.Metadata.queryCollectionSummary(payload)
+```
