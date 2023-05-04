@@ -1,0 +1,16 @@
+---
+title: GetTokensByWallet
+---
+
+# `GetTokensByWallet`
+
+Get tokens by wallet address.
+
+```csharp
+string walletAddress = "target wallet address";
+int limit = 1;
+string nextBefore = "next before";
+MWSDK.Polygon.Wallet.GetTokensByWallet(walletAddress,limit,nextBefore,(res) => {
+    //todo
+});
+```
