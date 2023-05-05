@@ -13,21 +13,34 @@ Play.
 
 ## What are the features of Smart Marketplace?
 
-- **Cross-platform Compatible** - Supports for iOS and Android on mobile.
-- **Configurable Storefront** - Allows developers to customize the platform's
-  fees, the NFTs displayed, and the personalized UI.
-- **Powerful Metadata Filter** - Supports fast filtering of different types of
-  NFT by NFT metadata.
+| Asset minting | • Create Collection <br />• Mint NFTs into collection |
+| --- | --- |
+| Marketplace | • Create Seaport Marketplace instance <br /> • List NFTs <br /> • Buy NFTs <br /> • Cancel listing <br /> • Update Listing |
+| Query NFTs | • By Owner <br /> • By Creators <br /> • By Update Authorities |
+| Query NFT Transaction History | / |
 
 ## How to integrate Smart Marketplace?
 
 We've created some guides to help you get started with interacting with the
 Smart Marketplace:
 
+Solana
+
 - [Creating an NFT Marketplace on with the Mirror World Smart SDK](/guides/how-to-create-nft-marketplace)
 - [Performing Marketplace Transactions with the Mirror World Smart SDK](/guides/marketplace-transactions-with-mirrorworld-sdk)
 - [Creating a NFT Marketplace Storefront](/guides/how-to-create-nft-marketplace-storefront)
 - [Deploying Your Own NFT Marketplace Storefront](/guides/how-to-deploy-your-nft-marketplace-storefront)
+
+EVM Compatible Chain
+
+- [Create an NFT marketplace for your ERC721/ ERC1155 collection](/guides/how-to-create-evm-nft-marketplace)
+
+## Technical Structure
+Behind the scenes, Mirror World uses the widely supported [Seaport Protocol](https://github.com/ProjectOpenSea/seaport) to orchestrate marketplace listings and transactions.
+
+Seaport is a marketplace protocol for safely and efficiently buying and selling NFTs. Each listing contains an arbitrary number of items that the offerer is willing to give (the "offer") along with an arbitrary number of items that must be received along with their respective receivers (the "consideration").
+
+![consideration](/docs/images/techintro/consideration.png)
 
 ## How did we use Smart Marketplace?
 

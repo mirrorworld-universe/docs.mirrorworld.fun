@@ -17,12 +17,18 @@ onboarding million of Web3 users with fraction of the cost.
 - **Free forever** - Onboarding users is just the first step to building a
   successful dApp. So we provide this service free of charge.
 - **Go mainstream** - Supports mainstream social authentication providers that
-  users are familiar with (Google, Facebook, Twitter, Discord, Apple, e.t.c.)
+  users are familiar with **(Google, Facebook, Twitter, Discord, Apple, e.t.c.)**
 - **Muti-Chain support** - Supports most major blockchains, such as Solana,
   Ethereum, Polygon, and BNB Smart Chain, etc.
 - **Self-custody wallet support** - Want to use MetaMask or Phantom to
   authenticate? No problem! You can still authenticate your users with
   self-custody wallets on Mirror World.
+
+## Technical Structure
+
+![authentication-flow.png](/docs/images/techintro/authentication-flow.png)
+
+A client can authenticate through social authentications (e.g. google). Once the client gets the JWT token, it can be included in the following requests to access/update/delete the resources that user owns (e.g. transfer ethers from client’s in-app-wallet to somewhere else).
 
 ## How to integrate Smart Authentication?
 
