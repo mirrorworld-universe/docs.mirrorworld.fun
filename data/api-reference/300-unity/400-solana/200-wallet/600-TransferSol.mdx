@@ -1,0 +1,16 @@
+---
+title: TransferSol
+---
+
+# `TransferSol`
+
+Transfer Sol to another wallet.
+
+```csharp
+int amount = 1;
+string toPublicKey = "to publick key";
+
+MWSDK.Solana.Wallet.TransferSol(amount, toPublicKey, Confirmation.Default, null, (res) => {
+    //todo
+});
+```

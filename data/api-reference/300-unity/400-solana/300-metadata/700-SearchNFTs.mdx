@@ -1,0 +1,17 @@
+---
+title: SearchNFTs
+---
+
+# `SearchNFTs`
+
+Search NFTs by an input search string.
+
+```csharp
+List<string> collections = new List<string>();
+collections.Add("collection 1");
+string searchString = "your search string";
+
+MWSDK.Solana.Metadata.SearchNFTs(collections, searchString, (res) => {
+    //todo
+});
+```

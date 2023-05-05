@@ -1,0 +1,16 @@
+---
+title: TransferNFT
+---
+
+# `TransferNFT`
+
+Transfer NFT from holder's wallet to another address.
+
+```csharp
+string mintAddress = "mint_address";
+string toWallet = "wallet_address";
+
+MWSDK.Polygon.Asset.TransferNFT(mintAddress, toWallet, approveFinished, (res) => {
+    //todo
+});
+```

@@ -1,0 +1,23 @@
+---
+title: MintNFT
+---
+
+# `MintNFT`
+
+Mint NFT into collection.
+The "mintID" param is nullable, server will response that "minting is proceeding, please wait it" if detected one mintID is minted already.
+
+```csharp
+string parentCollection = "collection_address";
+string collectionName = "NewNFT";
+string collectionSymbol = "NFT";
+string collectionUrl = "https://example.com/path/detail.json";
+string confirmation = Confirmation.Default;
+string mintID = "randomID";
+string receiveWallet = "another wallet";
+double amount = "0.1";
+
+MWSDK.Solana.Asset.MintNFT(parentCollection, collectionName, collectionSymbol, collectionUrl, confirmation, mint_id, receiveWallet, amount, null, (res) => {
+    //todo
+});
+```

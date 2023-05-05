@@ -1,0 +1,19 @@
+---
+title: GetNFTs
+---
+
+# `GetNFTs`
+
+Get info of NFTs by unabriged params.
+
+```csharp
+string collection = "collection address";
+int page = 1;
+int pageSize = 10;
+string orderByString = "price";
+bool desc = true;
+
+MWSDK.Solana.Metadata.GetNFTs(collection, page, pageSize, orderByString, desc, null, (res) => {
+    //todo
+});
+```

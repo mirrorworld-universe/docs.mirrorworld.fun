@@ -1,0 +1,18 @@
+---
+title: SearchNFTsByMintAddress
+---
+
+# `SearchNFTsByMintAddress`
+
+Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
+are provided.
+
+```csharp
+List<string> addresses = new List<string>();
+addresses.Add("mint_address_1");
+addresses.Add("mint_address_2");
+
+MWSDK.Polygon.Asset.SearchNFTsByMintAddress(list, (res) => {
+    //todo
+});
+```
