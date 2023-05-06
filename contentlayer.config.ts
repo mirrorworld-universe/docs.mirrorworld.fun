@@ -295,7 +295,7 @@ const Guides = defineDocumentType(() => ({
 
 const TechIntro = defineDocumentType(() => ({
   name: "TechIntros",
-  filePathPattern: `tech-intro/*.mdx`,
+  filePathPattern: `tech-intro/**/**/*.mdx`,
   contentType: "mdx",
   fields: {
     ...fields,
