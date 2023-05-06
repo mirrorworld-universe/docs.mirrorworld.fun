@@ -1,0 +1,116 @@
+---
+title: API Error Reference
+description: Mirror World API Error Reference
+---
+
+# API Error Reference
+
+This is a list of all API Errors that can be returned by the Mirror World API
+Cluster. | Code | Error | Message | | :------- |
+:---------------------------------------- |
+:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| | `100000` | ROUTE_NOT_FOUND | Not Found %1$s %2$s | | `100001` |
+EMAIL_NOT_FOUND | We could not find an account with this email address. | |
+`100002` | FAILED_SOCIAL_AUTH | Failed to authenticate user with social auth | |
+`100003` | INVALID_OAUTH_PROVIDER | Invalid Oauth Provider Type Provided. Please
+use one of Google, Facebook, Apple or Discord. | | `100004` |
+CONFLICTING_AUTHENTICATION_METHODS | Critical error. We found duplicate social
+provider accounts for this user email. | | `100005` | CONFLICTING_EMAIL_ADDRESS
+| An account already exists with this email address. Please login to continue |
+| `100006` | EXPIRED_EMAIL_VERIFICATION_CODE | This verification code has
+expired. Please request new code and try again | | `100007` |
+INVALID_EMAIL_VERIFICATION_CODE | Invalid verification code. Please use the code
+sent to your email address | | `100008` | VERIFICATION_FOR_EMAIL_IN_PROGRESS |
+Email verification is already in progress for this email address. Please check
+your email address to find the verification code to complete signup | | `100009`
+| INVALID_REFRESH_TOKEN | Invalid or expired refresh token. Please login again
+to continue. | | `100010` | INVALID_LOGIN_CREDENTIALS | The email or password
+provided for login are incorrect. Please try again | | `100011` |
+DEVELOPER_ACCOUNT_NOT_FOUND | Could not find developer account for this user.
+Please create developer entity before using developer resources. | | `100012` |
+INVALID_AUTH_TOKEN | The authentication token you provided is either invalid or
+has expired. Please login to continue | | `100013` | NO_AUTH_TOKEN_ERROR | No
+auth token was provided for authenticated route. | | `100014` | INVALID_API_KEY
+| We could not find the project for the API key your provided. Please check that
+the API key is provided correctly. | | `100015` |
+TOKEN_LOGIN_SESSION_IN_PROGRESS | Token login session is already in progress for
+this email address. Please complete the current session before starting a new
+one | | `100016` | FAILED_SESSION_PROOF | The login session token you provided
+is either invalid or did not pass the proof of identity. Please verify that this
+is a real token that belongs to the user before proceeding. | | `100017` |
+INCOMPLETE_SESSION_PROOF_ERROR | This session_token has not yet been proven by
+the user. Please complete authentication and proof of ownership before
+requesting the user's tokens | | `100018` | EXPIRED_SESSION_PROOF | The login
+session token you provided has expired. Please start a new session to continue
+logging in. | | `100019` | UNAUTHORIZED_APPLICATION_ACCESS | A session can only
+be issued and completed by the same application. Please ensure that the API keys
+used to start and complete login session belong to the same project | | `100020`
+| INVALID_PASSCODE | Invalid passcode. The passcode you provided is incorrect. |
+| `100021` | EXPIRED_WALLET_PASSCODE_VERIFICATION | This verification code has
+expired. Please request new code and try again | | `100022` |
+INVALID_WALLET_PASSCODE_VERIFICATION_CODE | Invalid verification code. Please
+use the code sent to your email address | | `100023` | PENDING_ACTION_NOT_FOUND
+| Could not find pending user action. Please try again. | | `100024` |
+ACTION_USER_NOT_FOUND | Could not find action user. Please try again. | |
+`100025` | UNAUTHORIZED_DEVELOPER_ACCESS | Forbidden. You are trying to access a
+developer resource from a project of which you are not a member. | | `100026` |
+REPEAT_PASSWORD_NOT_AGREEMENT | The two passwords are inconsistent, please
+re-enter. | | `100027` | INVALID_ACTION_AUTHORIZATION | The action token you
+provided is either invalid or has expired. Please request user to approve again.
+| | `100028` | UNAUTHORIZED_ACTION | The action you are trying to perform has
+not been authorized by the user. | | `100029` | ACTION_NOT_FOUND | Could not
+find an action with the provided uuid for this user. Please try again | |
+`100030` | MPC_WALLET_KEYGEN_FAILED | Failed to create mpc wallet. Please try
+again | | `100031` | PROJECT_NOT_FOUND | Could not find project. Please create
+project entity before using its resources. | | `100031` |
+INVALID_SECRET_ACCESS_KEY | The secret access key provided is no longer valid
+because it has been invalidated by the owner or has been compromised. Please
+generate a new token on the developer dashboard. Some helpful resources (1)
+Generate a secret access key: https://app.mirrorworld.fun (2) Managing Your
+Secret Access Key:
+https://docs.mirrorworld.fun/further-reading/security/access-secret-key | |
+`100032` | EXPIRED_SECRET_ACCESS_KEY | This secret access key provided has
+already expired. Please generate a new token on the developer dashboard. Some
+helpful resources: (1) Generate a secret access key: https://app.mirrorworld.fun
+(2) Managing Your Secret Access Key:
+https://docs.mirrorworld.fun/further-reading/security/access-secret-key | |
+`100100` | UNAUTHORIZED_BOT_REQUEST | It looks like you are using a bot to
+access a protected resource. Access denied. | | `100150` | BAD_REQUEST | Bad
+request | | `120001` | REQUEST_VALIDATION_ERROR | Request validation failed | |
+`120002` | NFT_OWNERSHIP_ERROR | User is not the owner of this NFT | | `120003`
+| TRANSACTION_EXECUTION_ERROR | Failed to execute transaction. Please try again.
+| | `120004` | INSUFFICIENT_BALANCE_ERROR | Insufficient balance to process
+transaction. Wallet:
+%1$s                                                                                                                                                                                                                                                                                                                         |
+| `120005` | INSUFFICIENT_TOKEN_BALANCE_ERROR          | Insufficient token balance to process transaction. Wallet: %1$s
+Token:
+%2$s                                                                                                                                                                                                                                                                                                       |
+| `120006` | MARKETPLACE_DOES_NOT_EXIST                | Marketplace does not exist. Marketplace: %1$s
+| | `120007` | REQUEST_ERROR | Problem with request parameters | | `120010` |
+USER_WALLET_ERROR | User can't perform this operation | | `120100` |
+NOT_IMPLEMENTED | Method is not implemented for this network | | `120101` |
+INSUFFICIENT_PERMISSIONS_ON_PROJECT | Don't have sufficient permissions to
+execute action on the project | | `120102` | COLLECTION_NOT_FOUND | Collection
+not found. Collection: %1$s | | `120103` | LISTING_ALREADY_EXISTS | Listing with
+this price already exists. | | `120104` | LISTING_DOES_NOT_EXIST | Listing does
+not exist. | | `120105` | BUY_SELF_LISTING | Cannot buy your own listing. | |
+`666003` | ACCOUNT_NOT_INITIALIZED | the wallet account is not initialized. | |
+`666004` | INVALID_MAX_WITHDRAW | invalid max withdraw. | | `666005` |
+INVALID_MIN_WITHDRAW | invalid min withdraw. | | `666006` | INVALID_TIMESTAMP |
+invalid timestamp | | `666008` | RPC_NODE_IS_BEHIND | RPC node is behind. Please
+try again. | | `666011` | RPC_CONNECTION_RESET | RPC connection reset. Please
+try again. | | `666009` | BLOCK_HEIGHT_EXCEEDED | Block height exceeded. | |
+`120207` | ACCOUNT_DOES_NOT_EXIST | Account not found | | `120208` |
+TRANSACTION_EXECUTION_TIMEOUT | Transactions block height exceeded limit. Please
+try again | | `200001` | PARAMS_ERROR | Request params validation failed | |
+`200002` | NFT_NOT_EXIST | NFT not exist | | `200003` | COLLECTION_NOT_EXIST |
+Collection not exist | | `200004` | OUT_OF_MAX_PAGE | Input page params out of
+max page | | `200005` | PRICE_PARSE_ERROR | Price parse failed | | `200100` |
+METADATE_SERVER_INTERNAL_ERROR | Server internal error | | `666001` |
+AMOUNT_TOO_LOW_TO_COVER_RENT | amount is too low to cover to_account's rent fee.
+| | `666002` | INSUFFICIENT_BALANCE | the wallet balance is insufficient. | |
+`666007` | NO_ENOUGH_BALANCE | no enough balance. | | `666010` |
+ACCOUNT_NOT_EXIST | Account not found | | `666012` | TOKEN_ACCOUNT_NOT_INTIATED
+| Token account is not initialized. | | `666013` | TOKEN_ADDRESS_ALREADY_EXIST |
+Token address is already existed. | | `666014` | AIRDROP_LIMIT_REACHED | Airdrop
+limit reached. |
