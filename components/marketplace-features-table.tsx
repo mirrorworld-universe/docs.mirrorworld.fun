@@ -42,7 +42,7 @@ export const MarketplaceFeatureTable = (props: BoxProps) => {
                             >
                                 Asset minting
                             </Th>
-                            <Th fontSize="sm" color="#000000" bg="transparent">• Create Collection <br />• Mint NFTs into collection</Th>
+                            <Th fontSize="sm" bg="transparent">• Create Collection <br />• Mint NFTs into collection</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
@@ -68,7 +68,7 @@ export const MarketplaceFeatureTable = (props: BoxProps) => {
                             >Query NFTs</Td>
                             <Td>• By Owner <br /> • By Creators <br /> • By Update Authorities</Td>
                         </Tr>
-                        <Tr bg="#ffffff">
+                        <Tr>
                             <Td
                                 fontSize="md"
                                 fontWeight="bold"
