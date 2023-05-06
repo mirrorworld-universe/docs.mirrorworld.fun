@@ -68,7 +68,8 @@ export const globalStyles: SystemStyleObject = {
     width: "100%",
     marginY: "8",
     th: {
-      bg: "topNavBody",
+      fontSize: '20px',
+      bg: "supportTableHeadBg",
     },
     "th, td": {
       borderWidth: "1px",
