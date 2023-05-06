@@ -42,7 +42,7 @@ export const MarketplaceFeatureTable = (props: BoxProps) => {
                             >
                                 Asset minting
                             </Th>
-                            <Th fontSize="sm" bg="transparent">• Create Collection <br />• Mint NFTs into collection</Th>
+                            <Th color="text" fontSize="sm" bg="supportTableCellBg">• Create Collection <br />• Mint NFTs into collection</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
@@ -55,7 +55,8 @@ export const MarketplaceFeatureTable = (props: BoxProps) => {
                                 py="8"
                                 shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                             >Marketplace</Td>
-                            <Td>• Create Seaport Marketplace instance <br /> • List NFTs <br /> • Buy NFTs <br /> • Cancel listing <br /> • Update Listing</Td>
+                            <Td
+                                color="text" bg="supportTableCellBg">• Create Seaport Marketplace instance <br /> • List NFTs <br /> • Buy NFTs <br /> • Cancel listing <br /> • Update Listing</Td>
                         </Tr>
                         <Tr>
                             <Td
@@ -66,7 +67,8 @@ export const MarketplaceFeatureTable = (props: BoxProps) => {
                                 py="8"
                                 shadow="inset 0px 8px 0px rgb(255 255 255 / 8%)"
                             >Query NFTs</Td>
-                            <Td>• By Owner <br /> • By Creators <br /> • By Update Authorities</Td>
+                            <Td
+                                color="text" bg="supportTableCellBg">• By Owner <br /> • By Creators <br /> • By Update Authorities</Td>
                         </Tr>
                         <Tr>
                             <Td
@@ -76,7 +78,9 @@ export const MarketplaceFeatureTable = (props: BoxProps) => {
                                 color="topNavButtonTextActive"
                                 py="8"
                             >Query NFT Transaction History</Td>
-                            <Td>/</Td>
+                            <Td color="text" bg="supportTableCellBg">
+                                /
+                            </Td>
                         </Tr>
                     </Tbody>
                 </Table>
