@@ -542,11 +542,11 @@ export const homeSidebar = [
     icon: HiOutlineViewGrid,
     routes: buildSidebarTree([...allResources], [], "/resources/"),
   },
-  {
-    name: "Further Reading",
-    icon: AiOutlineBook,
-    routes: buildSidebarTree([...allFurtherReadings], [], "/further-reading/"),
-  },
+  // {
+  //   name: "Further Reading",
+  //   icon: AiOutlineBook,
+  //   routes: buildSidebarTree([...allFurtherReadings], [], "/further-reading/"),
+  // },
 ]
 
 export const integrationSidebar = [
