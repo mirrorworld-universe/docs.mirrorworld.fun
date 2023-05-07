@@ -211,13 +211,16 @@ export function getUnityDoc(_slug: string | string[]) {
  * -----------------------------------------------------------------------------*/
 
 export function getResourcesPaths() {
-  return allResources.map((doc) => `/resources/${doc.slug}`)
+  return allResources
+    .map((_) => _.pathSegments.map((_: PathSegment) => _.pathName).join("/"))
+    .map(_toParams)
 }
 
 export function getResourcesDoc(_slug: string | string[]) {
   const slug = Array.isArray(_slug) ? _slug[0] : _slug
   return allResources.find(
-    (post) => post.frontmatter.slug === `/resources/${slug}`,
+    (_) =>
+      _.pathSegments.map((_: PathSegment) => _.pathName).join("/") === slug,
   )
 }
 
@@ -539,11 +542,11 @@ export const homeSidebar = [
     icon: HiOutlineViewGrid,
     routes: buildSidebarTree([...allResources], [], "/resources/"),
   },
-  {
-    name: "Further Reading",
-    icon: AiOutlineBook,
-    routes: buildSidebarTree([...allFurtherReadings], [], "/further-reading/"),
-  },
+  // {
+  //   name: "Further Reading",
+  //   icon: AiOutlineBook,
+  //   routes: buildSidebarTree([...allFurtherReadings], [], "/further-reading/"),
+  // },
 ]
 
 export const integrationSidebar = [

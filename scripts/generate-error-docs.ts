@@ -43,7 +43,7 @@ async function generateDocs() {
   content += result
 
   writeFileSync(
-    resolve(__dirname, "../data/further-reading/api-error-reference.mdx"),
+    resolve(__dirname, "../data/overview/300-api-error-reference.mdx"),
     content,
   )
 

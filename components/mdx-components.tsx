@@ -32,6 +32,7 @@ import { WebFrameworksCards } from "./cards/web-frameworks-cards"
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from "@chakra-ui/alert"
 import { LightMode } from "@chakra-ui/color-mode"
+import { MarketplaceFeatureTable } from  "./marketplace-features-table"
 
 function SnippetItem({ body, id }: { body: MDX; id: string }) {
   const content = useMDX(body.code)
@@ -283,6 +284,9 @@ const components: Record<string, FC<Record<string, any>>> = {
   },
   ResourceSupportTable: (props) => {
     return <ResourceSupportTable {...props}></ResourceSupportTable>
+  },
+  MarketplaceFeatureTable: () => {
+    return <MarketplaceFeatureTable />
   },
   SupportButton: (props) => {
     return <SupportButton {...props} />

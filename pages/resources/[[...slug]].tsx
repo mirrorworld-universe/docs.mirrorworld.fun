@@ -22,5 +22,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  return { props: { doc: getResourcesDoc(ctx.params.slug) } }
+  const params = ctx.params as any
+  const pagePath = params.slug?.join("/") ?? ""
+  return { props: { doc: getResourcesDoc(pagePath) } }
 }
