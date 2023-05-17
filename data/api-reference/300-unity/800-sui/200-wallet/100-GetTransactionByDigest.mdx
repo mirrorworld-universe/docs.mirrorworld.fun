@@ -4,7 +4,14 @@ title: GetTransactionByDigest
 
 # `GetTransactionByDigest`
 
-Get transactions by digest.
+Get Sui transaction detail info.
+### Parameters
+`digest` - The transaction digest to be queried.
+
+### Returns
+`response class` - `CommonResponse<SUIResGetTransactionByDigest>`
+
+### Code Example
 ```csharp
 string digest = "target digest";
 

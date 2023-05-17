@@ -5,12 +5,24 @@ title: TransferToken
 # `TransferToken`
 
 Transfer token to another wallet.
+### Parameters
+`to_publickey|string` - The receiver wallet address
 
+`amount|int` - The token amount
+
+`token|string` - The token mint address
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+### Return
+`response class` - CommonResponse<SUIResTransferToken>
+
+### Code Example
 ```csharp
 string token = "0xabcdefghijklmn::MyCoin::MYCOIN";
 int amount = 1;
 string toPublicKey = "to publick key";
-Action approveFinished = null;//This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+Action approveFinished = null;
 
 MWSDK.SUI.Wallet.TransferToken(toPublicKey, amount, token, approveFinished, (res) =>
 {
