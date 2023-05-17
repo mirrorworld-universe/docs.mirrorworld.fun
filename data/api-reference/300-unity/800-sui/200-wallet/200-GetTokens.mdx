@@ -1,0 +1,18 @@
+---
+title: GetTokens
+---
+
+# `GetTokens`
+
+Get tokens of current user.
+
+```csharp
+MWSDK.SUI.Wallet.GetTokens((res) =>
+{
+    CommonResponse<SUIResGetTokens> resObj = res;
+    string message = resObj.message;
+    SUIResGetTokens data = resObj.data;
+
+    PrintLog("Get tokens result:" + JsonUtility.ToJson(res));
+});
+```

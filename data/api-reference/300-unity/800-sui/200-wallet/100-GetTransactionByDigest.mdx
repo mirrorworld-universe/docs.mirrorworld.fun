@@ -1,0 +1,20 @@
+---
+title: GetTransactionByDigest
+---
+
+# `GetTransactionByDigest`
+
+Get transactions by digest.
+```csharp
+string digest = "target digest";
+
+MWSDK.SUI.Wallet.GetTransactionByDigest(digest, (res) =>
+{
+    CommonResponse<SUIResGetTransactionByDigest> resObj = res;
+    long http_status_code = resObj.http_status_code;
+    string message = resObj.message;
+    SUIResGetTransactionByDigest data = resObj.data;
+
+    PrintLog("result:" + JsonUtility.ToJson(res));
+});
+```
