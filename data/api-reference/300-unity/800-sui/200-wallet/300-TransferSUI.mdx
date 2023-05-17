@@ -3,9 +3,11 @@ title: TransferSUI
 ---
 
 # `TransferSUI`
+
 Transfer SUI to another wallet address.
 
 ### Parameters
+
 `to_publickey|string` - The receiver wallet address
 
 `amount|int` - The transfer amount
@@ -13,6 +15,7 @@ Transfer SUI to another wallet address.
 `approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
 
 ### Return
+
 `response class` - CommonResponse<SUIResTransferSUI>
 
 ### Code Example
