@@ -12,3 +12,11 @@ MWSDK.StartLogin((loginResponse) => {
 });
 ```
 
+# How to finish login flow on Unity Editor
+
+/*On mobile devices, the SDK will use the system's default browser to assist users in completing the login process. However, for security reasons, there will be certain limitations on the login process on PCs or Macs.*/
+
+1. Please make sure you have filled in the Debug Email on the MirrorSDK prefab, and this email must be the same as the one you used to apply for the current API Key.
+2. After calling the StartLogin method, a login page will pop up. Please use the Email you just filled in to log in. If that Email is associated with a social account, please use the respective social platform buttons for login.
+
+In summary, you must ensure that the following three accounts have the same email: the account used to apply for the API Key, the Debug Email, and the account actually used for logging in on the login page. Only then can you successfully log in within the UnityEditor.

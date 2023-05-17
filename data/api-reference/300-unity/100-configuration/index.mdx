@@ -109,6 +109,9 @@ So the time will be longer more or less.
 - `Confirmed`: It is a fairly quick response to the user and is a reasonable promise that the transaction if processed, will be eventually finalized after a certain number of confirmations by the validator network.
 - `Processed`: The node will query its most recent block. Note that the block may still be skipped by the cluster.
 
+> Tips:
+If you want to obtain the complete information of an on-chain operation, please make sure to use "Finalized." For example, when calling the "MintNFT" method, if you don't use "Finalized," the returned result will not include the "transaction_hash" field.
+
 ### Package
 You need to do some configuation if you want to package your app.
 
