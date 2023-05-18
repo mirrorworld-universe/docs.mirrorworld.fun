@@ -4,8 +4,20 @@ title: CancelListing
 
 # `CancelListing`
 
-Cancel listing NFT on Mirror World Marketplace.
+Cancel listing NFT on Marketplace.
+### Parameters
+`mintAddress|string` - Mint address of a NFT.
 
+`price|double` - Price of this NFT on marketplace.
+
+`auction_house|string` - Which marketplace the target NFT on.
+
+`confirmation|string` - Confirmation of this request, you can check what confirmation we have by checking Confirmation class. If you want to get more information, please refer to [explain of confirmation](https://mirrorworld.fun/docs/api-reference/unity/configuration#confirmation).
+
+### Returns
+`response class` - `CommonResponse<SolResBuyNFT>`
+
+### Code Example
 ```csharp
 string mintAddress = "mint_address";
 double price = 1;
@@ -14,6 +26,12 @@ string confirmation = Confirmation.Default;
 
 MWSDK.Solana.Asset.CancelListing(mintAddress, price, auctionHouse, confirmation, null, (res) =>
 {
-    //todo
+    CommonResponse<ListingResponse> resObj = res;
+    long code = res.code;
+    ListingResponse lr = res.data;
+    string signature = res.data.signature;
+    //todo...
+
+    PrintLog("result:" + JsonUtility.ToJson(res));
 });
 ```

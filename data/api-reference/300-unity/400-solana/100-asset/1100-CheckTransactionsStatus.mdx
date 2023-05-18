@@ -5,6 +5,15 @@ title: CheckTransactionsStatus
 # `CheckTransactionsStatus`
 
 Get status of transactions.
+### Parameters
+`signatures|List<string>` - The signatures of transactions you are planning to query.
+
+`action|Action<GetStatusOfTransactionsResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<GetStatusOfTransactionsResponse>`
+
+### Code Example
 ```csharp
 List<string> signatures = new List<string>();
 signatures.Add("signature 1");
@@ -12,6 +21,11 @@ signatures.Add("signature 2");
 
 MWSDK.Solana.Asset.CheckTransactionsStatus(signatures, (res) =>
 {
-    //todo
+    CommonResponse<GetStatusOfTransactionsResponse> resObj = res;
+    long code = res.code;
+    string message = res.message;
+    GetStatusOfTransactionsResponse transactionStatus = res.data;
+    //todo...
+
 });
 ```

@@ -5,14 +5,35 @@ title: MintCollection
 # `MintCollection`
 
 Create a new Verified Collection.
+### Parameters
+`collectionName|string` - Name of new collection you want to mint.
 
+`collectionSymbol|string` - Symbol of new collection you want to mint.
+
+`collectionUrl|string` - A URL that contains the JSON information of the NFT you want to mint. You need to upload the JSON file in advance to obtain its URL.
+
+`confirmation|string` - Confirmation of this request, you can check what confirmation we have by checking Confirmation class. If you want to get more information, please refer to [explain of confirmation](https://mirrorworld.fun/docs/api-reference/unity/configuration#confirmation).
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<SolResMintResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResMintResponse>`
+
+### Code Example
 ```csharp
 string collectionName = "TopCollection";
 string collectionSymbol = "Top";
 string collectionUrl = "https://example.com/path/detail.json";
 int seller_fee_basis_points = 400;
+string confirmation = Confirmation.Default;
+Action approveFinish = null;
 
-MWSDK.Solana.Asset.MintCollection(collectionName, collectionSymbol, collectionUrl, seller_fee_basis_points, null, null, (res) => {
-    //todo
+MWSDK.Solana.Asset.MintCollection(collectionName, collectionSymbol, collectionUrl, seller_fee_basis_points, confirmation, approveFinish, (res) => {
+    CommonResponse<SolResMintResponse> resObj = res;
+    string collectionAddress = res.data.mint_address;
+    //todo...
+
 });
 ```

@@ -3,8 +3,16 @@ title: Client
 ---
 
 # Client Methods | Unity API Reference
+*This functional module includes some functional methods of the SDK, such as opening a wallet, accessing the marketplace, and initializing the SDK.When calling them, just like the Authentication module, you don't need to worry about the current chain. Simply use MWSDK to make the calls.*
 
 - [`MWSDK.InitSDK`](/api-reference/unity/client/InitSDK)
+Call this API to initialize the SDK. While direct calling can successfully initialize the SDK, we still recommend using the method of dragging the prefab into the scene for SDK configuration and initialization. For more details, please refer to the [configuration documentation](https://mirrorworld.fun/docs/api-reference/unity/configuration#config-with-prefab).
+
 - [`MWSDK.OpenWallet`](/api-reference/unity/client/OpenWallet)
+Open the wallet page for the current user. If the user is not logged in, the page cannot be opened.
+
 - [`MWSDK.OpenMarket`](/api-reference/unity/client/OpenMarket)
+Open a specific Marketplace page. If the user is not logged in, the page cannot be opened. You can set up your own Marketplace website and pass its URL as a parameter to the SDK, or you can use [our website template](https://mirrorworld.fun/docs/guides/how-to-create-nft-marketplace-storefront) to create it.
+ 
 - [`MWSDK.QueryUser`](/api-reference/unity/client/QueryUser)
+Use this API to query the basic information of any user.

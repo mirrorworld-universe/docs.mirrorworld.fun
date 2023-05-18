@@ -5,9 +5,20 @@ title: GuestLogin
 # `GuestLogin`
 
 Use this API to make a user logged in as a guest who has a new account and a new wallet.
+### Parameters
+`action|Action<LoginResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `LoginResponse`
+
+### Code Example
 ```csharp
 MWSDK.GuestLogin((loginResponse) => {
-    //todo
+    LoginResponse resObj = loginResponse;
+    string solAddress = resObj.user.wallet.sol_address;
+    string userName = resObj.user.username;
+    //todo...
+
 });
 ```
 

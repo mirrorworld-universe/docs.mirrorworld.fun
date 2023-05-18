@@ -4,15 +4,28 @@ title: SearchNFTsByMintAddress
 
 # `SearchNFTsByMintAddress`
 
-Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
-are provided.
+Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses` are provided.
 
+### Parameters
+`addresses|List<string>` - The addresses of the NFTs you are planning to query.
+
+`action|Action<MultipleNFTsResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<MultipleNFTsResponse>`
+
+### Code Example
 ```csharp
 List<string> addresses = new List<string>();
 addresses.Add("mint_address_1");
 addresses.Add("mint_address_2");
 
 MWSDK.Solana.Asset.SearchNFTsByMintAddress(list, (res) => {
-    //todo
+    CommonResponse<MultipleNFTsResponse> resObj = res;
+    long code = res.code;
+    string message = res.message;
+    MultipleNFTsResponse multipleNFTs = res.data;
+    //todo...
+
 });
 ```

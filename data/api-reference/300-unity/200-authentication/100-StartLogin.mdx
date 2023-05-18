@@ -5,16 +5,30 @@ title: StartLogin
 # `StartLogin`
 
 Call up the login web page. If the user finishes the flow, the action will be called.
+### Parameters
+`action|Action<LoginResponse>` - After the user completes the login verification, this Action will be called.
 
+### Returns
+`response class` - `LoginResponse`
+
+### Code Example
 ```csharp
-MWSDK.StartLogin((loginResponse) => {
-    //todo
-});
+Action<LoginResponse> action = (loginResponse) =>
+{
+    LoginResponse resObj = loginResponse;
+    string solAddress = resObj.user.wallet.sol_address;
+    string userName = resObj.user.username;
+    //todo...
+
+    MWSDK.DebugLog("Login result:" + JsonUtility.ToJson(loginResponse));
+};
+
+MWSDK.StartLogin(action);
 ```
 
 # How to finish login flow on Unity Editor
 
-/*On mobile devices, the SDK will use the system's default browser to assist users in completing the login process. However, for security reasons, there will be certain limitations on the login process on PCs or Macs.*/
+>*On mobile devices, the SDK will use the system's default browser to assist users in completing the login process. However, for security reasons, there will be certain limitations on the login process on PCs or Macs.*
 
 1. Please make sure you have filled in the Debug Email on the MirrorSDK prefab, and this email must be the same as the one you used to apply for the current API Key.
 2. After calling the StartLogin method, a login page will pop up. Please use the Email you just filled in to log in. If that Email is associated with a social account, please use the respective social platform buttons for login.
