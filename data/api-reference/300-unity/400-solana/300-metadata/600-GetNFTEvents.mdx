@@ -8,9 +8,9 @@ Get events of a NFT.
 ### Parameters
 `mintAddress|string` - The address of the NFT to be queried.
 
-`page|int` - The page number, page > 0.
+`page|int` - The page number, page {'>'} 0.
 
-`pageSize|int` - The page size, 0 < page_size < 50.
+`pageSize|int` - The page size, 0 {'<'} page_size {'<'} 50.
 
 `action|Action<GetNFTEventsResponse>` - The callback function of this method is used to receive the results.
 
