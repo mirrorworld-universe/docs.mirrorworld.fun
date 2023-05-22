@@ -5,12 +5,25 @@ title: GetCollectionsInfo
 # `GetCollectionsInfo`
 
 Get collections info in metadata.
+### Parameters
+`collections|List<string>` - The addresses of all collections to be queried.
 
+`action|Action<GetCollectionInfoResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<GetCollectionInfoResponse>`
+
+### Code Example
 ```csharp
 List<string> collections = new List<string>();
 collections.Add("collection 1");
 
 MWSDK.Solana.Metadata.GetCollectionsInfo(collections, (res) => {
-    //todo
+    CommonResponse<List<GetCollectionInfoResponse>> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    List<GetCollectionInfoResponse> infoList = resObj.data;
+    //todo...
+
 });
 ```

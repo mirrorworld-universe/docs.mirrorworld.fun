@@ -5,10 +5,24 @@ title: GetTransactionsBySignature
 # `GetTransactionsBySignature`
 
 Get transactions by signature.
+### Parameters
+`signature|string` - The transaction hash to be queried.
+
+`action|Action<SolResGetTransactionBySig>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResGetTransactionBySig>`
+
+### Code Example
 ```csharp
 string signature = "target signature";
 
 MWSDK.Solana.Wallet.GetTransactionsBySignature(signature, (res) => {
-    //todo
+    CommonResponse<SolResGetTransactionBySig> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    SolResGetTransactionBySig transaction = resObj.data;
+    //todo...
+
 });
 ```

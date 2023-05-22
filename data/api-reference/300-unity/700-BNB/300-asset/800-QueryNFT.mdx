@@ -4,11 +4,27 @@ title: QueryNFT
 
 # `QueryNFT`
 Query single NFT's details.
+### Parameters
+`token_address|string` -  The address of the NFT.
 
+`token_id|int` -   The token_id of the NFT.
+
+`action|Action<CommonResponse<EVMResNFTInfo[]>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResNFTInfo[]>`
+
+### Code Example
 ```csharp
-string mintAddress = "mint address";
+string token_address = "token address";
+int token_id = "token id";
 
-MWSDK.BNB.Asset.QueryNFT(mintAddress, (res) => {
-    //todo
+MWSDK.BNB.Asset.QueryNFT(token_address, token_id, (res) => {
+    CommonResponse<EVMResNFTInfo[]> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResNFTInfo[] nftInfo = resObj.data;
+    //todo...
+
 });
 ```

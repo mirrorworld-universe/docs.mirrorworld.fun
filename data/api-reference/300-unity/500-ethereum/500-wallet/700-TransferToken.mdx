@@ -5,14 +5,29 @@ title: TransferToken
 # `TransferToken`
 
 Transfer token to another wallet.
+### Parameters
+`to|string` - The receiver address.
 
+`amount|string` - The transfer amount.
+
+`contract|string` -  The token contract address.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<string>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `string`
+
+### Code Example
 ```csharp
-string tokenMint = "token mint";
-int decimals = 9;
-int amount = 1;
-string toPublicKey = "to publick key";
+string to = "to wallet";
+string amount = "1";
+string contract = "contract";
+Action approveFinished = null;
 
-MWSDK.Ethereum.Wallet.TransferToken(tokenMint, decimals, amount, toPublicKey, null, (res) => {
-    //todo
+MWSDK.Ethereum.Wallet.TransferToken(to, amount, contract, approveFinished, (res) => {
+    string resStr = res;
+    //todo...
 });
 ```

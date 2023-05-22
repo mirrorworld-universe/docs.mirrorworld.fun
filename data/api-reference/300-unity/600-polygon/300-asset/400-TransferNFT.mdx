@@ -5,12 +5,33 @@ title: TransferNFT
 # `TransferNFT`
 
 Transfer NFT from holder's wallet to another address.
+### Parameters
+`collection_address|string` -  The address of the collection.
 
+`token_id|int` - The token_id of the NFT.
+
+`toWallet|string` - Address of which wallet you want to transfer to.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<EVMResTransferNFT>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResTransferNFT>`
+
+### Code Example
 ```csharp
-string mintAddress = "mint_address";
+string collection_address = "collection_address";
+int token_id = 1;
 string toWallet = "wallet_address";
+Action approveFinished = null;
 
-MWSDK.Polygon.Asset.TransferNFT(mintAddress, toWallet, approveFinished, (res) => {
-    //todo
+MWSDK.Polygon.Asset.TransferNFT(mintAddress, token_id, toWallet, approveFinished, (res) => {
+    CommonResponse<EVMResTransferNFT> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResTransferNFT transferRes = resObj.data;
+    //todo...
+
 });
 ```

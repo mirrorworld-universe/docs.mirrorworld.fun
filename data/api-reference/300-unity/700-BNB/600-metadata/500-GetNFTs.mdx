@@ -5,15 +5,47 @@ title: GetNFTs
 # `GetNFTs`
 
 Get info of NFTs by unabriged params.
+### Parameters
+`contract|string` - The contract address.
 
+`page|int` - The page number, page {'>'} 0.
+
+`pageSize|int` - The page size, 0 {'<'} page size {'<='} 50.
+
+`orderByString|string` - The contract address.
+
+`desc|bool` - The desc of this searching.
+
+`filters|List<EVMGetNFTsByParamsReqFilter>` - Filters the searching would obain.
+
+`action|Action<CommonResponse<EVMResMetadataNFTs>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResMetadataNFTs>`
+
+### Code Example
 ```csharp
-string collection = "collection address";
+string contract = "contract address";
 int page = 1;
 int pageSize = 10;
 string orderByString = "price";
 bool desc = true;
 
-MWSDK.BNB.Metadata.GetNFTs(collection, page, pageSize, orderByString, desc, null, (res) => {
-    //todo
+List<EVMGetNFTsByParamsReqFilter> filters = new List<EVMGetNFTsByParamsReqFilter>();
+EVMGetNFTsByParamsReqFilter filter = new EVMGetNFTsByParamsReqFilter();
+filter.filter_name = "filter name";
+filter.filter_type = "price";
+filter.filter_value = new List<int>() { 1,2 };
+filters.Add(filter);
+
+MWSDK.BNB.Metadata.GetNFTs(contract, page, pageSize, orderByString, desc, filters, (res) =>
+{
+    CommonResponse<EVMResMetadataNFTs> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResMetadataNFTs nftsResult = resObj.data;
+    //todo...
+
+    PrintLog("result:" + JsonUtility.ToJson(res));
 });
 ```

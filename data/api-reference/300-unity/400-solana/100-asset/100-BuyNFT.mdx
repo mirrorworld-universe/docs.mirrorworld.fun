@@ -5,13 +5,32 @@ title: BuyNFT
 # `BuyNFT`
 
 Purchase NFT on specified Marketplace.
+### Parameters
+`mintAddress|string` - Mint address of a NFT.
 
+`price|double` - Price of this NFT on marketplace.
+
+`auction_house|string` - Which marketplace the target NFT on.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<SolResBuyNFT>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResBuyNFT>`
+
+### Code Example
 ```csharp
 string mintAddress = "NFT mint address on solana";
 double price = "NFT's price";
 string auction_house = "auction house which NFT is on";
+Action approveFinish = null;
 
-MWSDK.Solana.Asset.BuyNFT(mintAddress, price, auction_house, null, (res) => {
-    //todo
+MWSDK.Solana.Asset.BuyNFT(mintAddress, price, auction_house, approveFinish, (res) => {
+    CommonResponse<SolResBuyNFT> resObj = res;
+    long http_status_code = res.http_status_code;
+    SolResBuyNFTNft nft = res.data.nft;
+    //todo...
+    
 });
 ```

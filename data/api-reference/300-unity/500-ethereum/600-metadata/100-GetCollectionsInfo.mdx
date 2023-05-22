@@ -5,12 +5,25 @@ title: GetCollectionsInfo
 # `GetCollectionsInfo`
 
 Get collections info in metadata.
+### Parameters
+`collections|List<string>` - The collections address you want to query.
 
+`action|Action<CommonResponse<List<EVMResMetadataCollectionInfo>>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<List<EVMResMetadataCollectionInfo>>`
+
+### Code Example
 ```csharp
 List<string> collections = new List<string>();
 collections.Add("collection 1");
 
 MWSDK.Ethereum.Metadata.GetCollectionsInfo(collections, (res) => {
-    //todo
+    CommonResponse<List<EVMResMetadataCollectionInfo>> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    List<EVMResMetadataCollectionInfo> collectionInfo = resObj.data;
+    //todo..
+
 });
 ```

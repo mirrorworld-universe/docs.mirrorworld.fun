@@ -3,8 +3,11 @@ title: Solana
 ---
 
 # Solana Service Methods | Unity API Reference
+>Here is a list of APIs for Solana that can assist you in performing operations on the Solana chain. However, please note that the APIs for the Client and Authentication modules, being public, are not listed here. Please visit: [Authentication APIs](https://mirrorworld.fun/docs/api-reference/unity/authentication) or [Client APIs](https://mirrorworld.fun/docs/api-reference/unity/client) for accessing those APIs.
 
 ## Asset
+*In the Asset module, you can perform operations related to on-chain assets, such as minting, listing, buying, and searching NFTs.*
+
 - [`MWSDK.Solana.Asset.BuyNFT`](/api-reference/unity/solana/asset/BuyNFT)
 - [`MWSDK.Solana.Asset.CancelListing`](/api-reference/unity/solana/asset/CancelListing)
 - [`MWSDK.Solana.Asset.ListNFT`](/api-reference/unity/solana/asset/ListNFT)
@@ -19,6 +22,7 @@ title: Solana
 - [`MWSDK.Solana.Asset.CheckMintingStatus`](/api-reference/unity/solana/confirmation/CheckMintingStatus)
 
 ## Wallet
+*In the Wallet module, you can perform various operations on the assets in your wallet, such as viewing transactions, viewing/transfering tokens, and more.*
 - [`MWSDK.Solana.Wallet.GetTransactions`](/api-reference/unity/solana/wallet/GetTransactions)
 - [`MWSDK.Solana.Wallet.GetTransactionsByWallet`](/api-reference/unity/solana/wallet/GetTransactionsByWallet)
 - [`MWSDK.Solana.Wallet.GetTransactionsBySignature`](/api-reference/unity/solana/wallet/GetTransactionsBySignature)
@@ -28,6 +32,8 @@ title: Solana
 - [`MWSDK.Solana.Wallet.TransferToken`](/api-reference/unity/solana/wallet/TransferToken)
 
 ## Metadata
+*If you want to implement your own UI for a marketplace, the Metadata module provides you with the necessary APIs. By using these APIs, you can create [a marketplace similar to Mirror World](https://jump.mirrorworld.fun/), where you can manage and display metadata related to assets, such as NFTs.*
+
 - [`MWSDK.Solana.Metadata.GetCollectionsInfo`](/api-reference/unity/solana/metadata/GetCollectionsInfo)
 - [`MWSDK.Solana.Metadata.GetCollectionFilters`](/api-reference/unity/solana/metadata/GetCollectionFilters)
 - [`MWSDK.Solana.Metadata.GetCollectionsSummary`](/api-reference/unity/solana/metadata/GetCollectionsSummary)

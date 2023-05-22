@@ -5,12 +5,19 @@ title: GetTokensByWallet
 # `GetTokensByWallet`
 
 Get tokens by wallet address.
+### Parameters
+`wallet_address|string` - Which wallet you want to query.
 
+`action|Action<string>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `string`
+
+### Code Example
 ```csharp
 string walletAddress = "target wallet address";
-int limit = 1;
-string nextBefore = "next before";
-MWSDK.BNB.Wallet.GetTokensByWallet(walletAddress,limit,nextBefore,(res) => {
-    //todo
+MWSDK.BNB.Wallet.GetTokensByWallet(walletAddress,(res) => {
+    string resStr = res;
+    //todo...
 });
 ```

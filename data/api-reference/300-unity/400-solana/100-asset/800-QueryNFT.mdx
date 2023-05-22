@@ -4,11 +4,24 @@ title: QueryNFT
 
 # `QueryNFT`
 Query single NFT's details.
+### Parameters
+`mintAddress|string` - The address of the NFT which you are planning to query.
 
+`action|Action<CommonResponse<SingleNFTResponse>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SingleNFTResponse>`
+
+### Code Example
 ```csharp
 string mintAddress = "mint address";
 
 MWSDK.Solana.Asset.QueryNFT(mintAddress, (res) => {
-    //todo
+    CommonResponse<SingleNFTResponse> resObj = res;
+    long code = res.code;
+    string message = res.message;
+    string name = res.data.nft.name;
+    //todo...
+
 });
 ```

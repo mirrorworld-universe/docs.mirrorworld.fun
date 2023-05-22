@@ -5,11 +5,25 @@ title: GetTransactions
 # `GetTransactions`
 
 Get transactions of current user.
-```csharp
-float number = 0.1f;
-string nextBefore = "next before";
+### Parameters
+`limit|int` - The transaction limit.
 
-MWSDK.BNB.Wallet.GetTransactions(number, nextBefore, (res) => {
-    //todo
+`action|Action<CommonResponse<EVMResTransactions>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResTransactions>`
+
+### Code Example
+```csharp
+int limit = 1;
+
+MWSDK.BNB.Wallet.GetTransactions(limit, (res) =>
+{
+    CommonResponse<EVMResTransactions> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResTransactions transactionsRes = resObj.data;
+    //todo...
+
 });
 ```

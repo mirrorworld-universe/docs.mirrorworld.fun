@@ -4,9 +4,20 @@ title: SearchNFTsByOwner
 
 # `SearchNFTsByOwner`
 
-Fetch NFTs By Owner Addresses. Returns a detailed payload of all NFTs whose `owners`
-are provided.
+Fetch NFTs By Owner Addresses. Returns a detailed payload of all NFTs whose `owners` are provided.
+### Parameters
+`owners|List<string>` - The owner wallet addresses you are planning to query.
 
+`limit|int` - The number of NFTs to return. Default is 10.
+
+`offset|int` - The offset of NFTs to return. Default is 0.
+
+`action|Action<CommonResponse<MultipleNFTsResponse>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<MultipleNFTsResponse>`
+
+### Code Example
 ```csharp
 List<string> owners = new List<string>();
 owners.Add("address_1");
@@ -15,6 +26,11 @@ int limit = 1;
 int offset = 1;
 
 MWSDK.Solana.Asset.SearchNFTsByOwner(owners, limit, offset, (res) => {
-    //todo
+    CommonResponse<MultipleNFTsResponse> resObj = res;
+    long code = res.code;
+    string message = res.message;
+    MultipleNFTsResponse multipleNFTs = res.data;
+    //todo...
+
 });
 ```

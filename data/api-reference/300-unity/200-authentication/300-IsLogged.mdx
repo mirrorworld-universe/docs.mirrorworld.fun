@@ -3,10 +3,18 @@ title: IsLogged
 ---
 
 # `IsLogged`
-Check current user's log status.
+Check current user's log status.We strongly recommend calling this API for checking every time the user enters the game, so that you can decide whether to guide the user to log in.
 
+### Parameters
+`action|Action<bool>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response value` - `bool`
+
+### Code Example
 ```csharp
 MWSDK.IsLogged((res) => {
-    //todo
+    bool isLogged = res;
+    //todo...
 });
 ```

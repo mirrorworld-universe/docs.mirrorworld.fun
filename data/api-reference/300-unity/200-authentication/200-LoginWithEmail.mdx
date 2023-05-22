@@ -5,12 +5,27 @@ title: LoginWithEmail
 # `LoginWithEmail`
 
 Logs in a user with email and password.
+### Parameters
+`email` - User's email address.
 
+`password` - User's password.
+
+`action|Action<CommonResponse<LoginResponse>>` - After the user logged, this action will be called.
+
+### Returns
+`response class` - `LoginResponse`
+
+### Code Example
 ```csharp
 string email = "your email address";
 string password = "your email password";
 
 MWSDK.LoginWithEmail(email, password, (res) => {
-    //todo
+    LoginResponse resObj = loginResponse;
+    string solAddress = resObj.user.wallet.sol_address;
+    string userName = resObj.user.username;
+    //todo...
+
+    MWSDK.DebugLog("Login result:" + JsonUtility.ToJson(loginResponse));
 });
 ```

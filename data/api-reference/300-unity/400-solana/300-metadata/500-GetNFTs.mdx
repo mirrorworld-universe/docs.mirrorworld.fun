@@ -5,15 +5,44 @@ title: GetNFTs
 # `GetNFTs`
 
 Get info of NFTs by unabriged params.
+### Parameters
+`collection|string` - The address of the collection to be queried.
 
+`page|int` - The page number, page {'>'} 0.
+
+`page_size|int` - The page size, 0 {'<'} page size {'<='} 50.
+
+`orderByString|string` - The address of the NFT to be queried.
+
+`filters|List<GetNFTsRequestFilter>` - The filter items.
+
+`action|Action<CommonResponse<GetNFTsResponse>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<GetNFTsResponse>`
+
+### Code Example
 ```csharp
 string collection = "collection address";
 int page = 1;
 int pageSize = 10;
 string orderByString = "price";
 bool desc = true;
+List<GetNFTsRequestFilter> filters = new List<GetNFTsRequestFilter>();
+GetNFTsRequestFilter filter1 = new GetNFTsRequestFilter();
+filter1.filter_name = "filter_name";
+filter1.filter_type = "filter_type";
+filter1.filter_value = new List<object>();
+filter1.filter_value.Add(1);
+filter1.filter_value.Add("2");
+filters.Add(filter1);
 
-MWSDK.Solana.Metadata.GetNFTs(collection, page, pageSize, orderByString, desc, null, (res) => {
-    //todo
+MWSDK.Solana.Metadata.GetNFTs(collection, page, pageSize, orderByString, desc, filters, (res) => {
+    CommonResponse<GetNFTsResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    GetNFTsResponse nftsResult = resObj.data;
+    //todo...
+
 });
 ```

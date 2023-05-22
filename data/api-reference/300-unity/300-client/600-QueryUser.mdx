@@ -5,9 +5,22 @@ title: QueryUser
 # `QueryUser`
 Fetches the current user's object.
 
+### Parameters
+`userEmail|string` - The email address which you want to query.
+
+`action|Action` - To receive the response.
+
+### Returns
+There is no response.
+
+### Code Example
 ```csharp
 string userEmail = "A user's email address";
 MWSDK.QueryUser(userEmail, (res) => {
-    //todo
+    CommonResponse<UserResponse> resObj = res;
+    string userName = resObj.data.username;
+    string solAddress = resObj.data.wallet.sol_address;
+    //todo...
+    
 });
 ```

@@ -6,15 +6,30 @@ title: SearchNFTsByOwner
 
 Fetch NFTs By Owner Addresses. Returns a detailed payload of all NFTs whose `owners`
 are provided.
+### Parameters
+`owner_address|string` -  The address of NFTs holder.
 
+`limit|int` - The number of collections to be returned. Default is 25. Maximum is 100.
+
+`cursor|string` -  The cursor to be used for pagination.
+
+`action|Action<CommonResponse<NFTDataResponse>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<NFTDataResponse>`
+
+### Code Example
 ```csharp
-List<string> owners = new List<string>();
-owners.Add("address_1");
-owners.Add("address_2");
+string owner_address = "owner_address";
 int limit = 1;
-int offset = 1;
+string cursor = "cursor";
 
-MWSDK.Polygon.Asset.SearchNFTsByOwner(owners, limit, offset, (res) => {
-    //todo
+MWSDK.Polygon.Asset.SearchNFTsByOwner(owner_address, limit, cursor, (res) => {
+    CommonResponse<NFTDataResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    NFTDataResponse nftInfo = resObj.data;
+    //todo...
+
 });
 ```
