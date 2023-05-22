@@ -5,7 +5,23 @@ title: TransferToken
 # `TransferToken`
 
 Transfer token to another wallet.
+### Parameters
+`to_publickey|string` - The receiver wallet address.
 
+`amount|int` -  The transfer amount.
+
+`token_mint|string` - The token mint address.
+
+`decimals|int` - The token decimals.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<TransferTokenResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<TransferTokenResponse>`
+
+### Code Example
 ```csharp
 string tokenMint = "token mint";
 int decimals = 9;
@@ -13,6 +29,11 @@ int amount = 1;
 string toPublicKey = "to publick key";
 
 MWSDK.Solana.Wallet.TransferToken(tokenMint, decimals, amount, toPublicKey, null, (res) => {
-    //todo
+    CommonResponse<TransferTokenResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    TransferTokenResponse transferResult = resObj.data;
+    //todo...
+
 });
 ```

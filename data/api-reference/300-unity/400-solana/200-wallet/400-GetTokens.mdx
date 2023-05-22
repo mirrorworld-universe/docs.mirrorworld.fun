@@ -5,8 +5,20 @@ title: GetTokens
 # `GetTokens`
 
 Get tokens of current user.
+### Parameters
+`action|Action<WalletTokenResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<WalletTokenResponse>`
+
+### Code Example
 ```csharp
 MWSDK.Solana.Wallet.GetTokens((res) => {
-    //todo
+    CommonResponse<WalletTokenResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    WalletTokenResponse token = resObj.data;
+    //todo...
+    
 });
 ```

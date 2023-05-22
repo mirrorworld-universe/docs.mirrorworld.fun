@@ -5,11 +5,24 @@ title: GetCollectionFilters
 # `GetCollectionFilters`
 
 Get collections filter's info in metadata.
+### Parameters
+`collections|string` - The collection you want to query.
 
+`action|Action<CommonResponse<EVMResMetadataCollectionFilter>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResMetadataCollectionFilter>`
+
+### Code Example
 ```csharp
 string collection = "collection address";
 
 MWSDK.BNB.Metadata.GetCollectionFilters(collection, (res) => {
-    //todo
+    CommonResponse<EVMResMetadataCollectionFilter> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResMetadataCollectionFilter filterInfo = resObj.data;
+    //todo...
+
 });
 ```

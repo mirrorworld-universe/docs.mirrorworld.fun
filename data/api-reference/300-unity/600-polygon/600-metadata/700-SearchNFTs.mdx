@@ -5,13 +5,29 @@ title: SearchNFTs
 # `SearchNFTs`
 
 Search NFTs by an input search string.
+### Parameters
+`collections|List<string>` - The list of contract address.
 
+`searchString|string` -  The search filed
+
+`action|Action<CommonResponse<List<EVMResMetadataSearchNFTs>>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<List<EVMResMetadataSearchNFTs>>`
+
+### Code Example
 ```csharp
 List<string> collections = new List<string>();
 collections.Add("collection 1");
 string searchString = "your search string";
 
-MWSDK.Polygon.Metadata.SearchNFTs(collections, searchString, (res) => {
-    //todo
+MWSDK.Polygon.Metadata.SearchNFTs(collections, searchString, (res) =>
+{
+    CommonResponse<List<EVMResMetadataSearchNFTs>> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    List<EVMResMetadataSearchNFTs> nftRes = resObj.data;
+    //todo...
+
 });
 ```

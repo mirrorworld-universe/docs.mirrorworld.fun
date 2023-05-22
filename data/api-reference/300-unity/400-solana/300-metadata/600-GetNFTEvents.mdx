@@ -5,13 +5,30 @@ title: GetNFTEvents
 # `GetNFTEvents`
 
 Get events of a NFT.
+### Parameters
+`mintAddress|string` - The address of the NFT to be queried.
 
+`page|int` - The page number, page > 0.
+
+`pageSize|int` - The page size, 0 < page_size < 50.
+
+`action|Action<GetNFTEventsResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<GetNFTEventsResponse>`
+
+### Code Example
 ```csharp
 string mintAddress = "collection address";
 int page = 1;
 int pageSize = 10;
 
 MWSDK.Solana.Metadata.GetNFTEvents(mintAddress, page, pageSize, (res) => {
-    //todo
+    CommonResponse<GetNFTEventsResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    GetNFTEventsResponse events = resObj.data;
+    //todo...
+
 });
 ```

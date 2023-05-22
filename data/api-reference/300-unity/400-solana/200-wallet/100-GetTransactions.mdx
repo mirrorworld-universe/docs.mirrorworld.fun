@@ -5,11 +5,27 @@ title: GetTransactions
 # `GetTransactions`
 
 Get transactions of current user.
+### Parameters
+`limit|int` - The limit count of transactions.
+
+`nextBefore|string` - The transaction offset.
+
+`action|Action<SolResGetTransactions>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResGetTransactions>`
+
+### Code Example
 ```csharp
-float number = 0.1f;
+int limit = 1;
 string nextBefore = "next before";
 
-MWSDK.Solana.Wallet.GetTransactions(number, nextBefore, (res) => {
-    //todo
+MWSDK.Solana.Wallet.GetTransactions(limit, nextBefore, (res) => {
+    CommonResponse<SolResGetTransactions> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    SolResGetTransactions transactions = resObj.data;
+    //todo...
+
 });
 ```

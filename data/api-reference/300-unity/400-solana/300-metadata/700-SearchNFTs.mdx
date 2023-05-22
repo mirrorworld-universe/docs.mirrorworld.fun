@@ -5,13 +5,28 @@ title: SearchNFTs
 # `SearchNFTs`
 
 Search NFTs by an input search string.
+### Parameters
+`collections|List<string>` - The addresses of all collections to be queried.
 
+`searchString|string` - The search filed
+
+`action|Action<List<MirrorMarketNFTObj>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<List<MirrorMarketNFTObj>>`
+
+### Code Example
 ```csharp
 List<string> collections = new List<string>();
 collections.Add("collection 1");
 string searchString = "your search string";
 
 MWSDK.Solana.Metadata.SearchNFTs(collections, searchString, (res) => {
-    //todo
+    CommonResponse<List<MirrorMarketNFTObj>> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    List<MirrorMarketNFTObj> nftObjs = resObj.data;
+    //todo...
+
 });
 ```

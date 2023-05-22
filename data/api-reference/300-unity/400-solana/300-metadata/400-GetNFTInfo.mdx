@@ -5,11 +5,20 @@ title: GetNFTInfo
 # `GetNFTInfo`
 
 Get info of a NFT.
+### Parameters
+`mintAddress|string` - The address of the NFT to be queried.
 
+`action|Action<string>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `string`
+
+### Code Example
 ```csharp
 string mintAddress = "mint address";
 
 MirrorWorld.Solana.GetNFTInfo(mintAddress, (res) => {
-    //todo
+    string resultString = res;
+    //todo...
 });
 ```

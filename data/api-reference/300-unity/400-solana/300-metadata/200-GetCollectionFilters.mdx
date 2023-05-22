@@ -5,11 +5,24 @@ title: GetCollectionFilters
 # `GetCollectionFilters`
 
 Get collections filter's info in metadata.
+### Parameters
+`collections|string` - The address of the collections to be queried.
 
+`action|Action<GetCollectionFilterInfoResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<GetCollectionFilterInfoResponse>`
+
+### Code Example
 ```csharp
 string collection = "collection address";
 
 MWSDK.Solana.Metadata.GetCollectionFilters(collection, (res) => {
-    //todo
+    CommonResponse<GetCollectionFilterInfoResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    GetCollectionFilterInfoResponse filterInfo = resObj.data;
+    //todo...
+
 });
 ```

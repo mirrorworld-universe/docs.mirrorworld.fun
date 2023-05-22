@@ -5,11 +5,27 @@ title: GetNFTInfo
 # `GetNFTInfo`
 
 Get info of a NFT.
+### Parameters
+`contract|string` - The contract address.
 
+`token_id|int` - The token id.
+
+`action|Action<CommonResponse<EVMResMetadataNFTInfo>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResMetadataNFTInfo>`
+
+### Code Example
 ```csharp
-string mintAddress = "mint address";
+string contract = "contract address";
+string token_id = "token_id";
 
-MWSDK.Ethereum.Metadata.GetNFTInfo(mintAddress, (res) => {
-    //todo
+MWSDK.Ethereum.Metadata.GetNFTInfo(contract, token_id, (res) => {
+    CommonResponse<EVMResMetadataNFTInfo> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResMetadataNFTInfo nftInfo = resObj.data;
+    //todo...
+
 });
 ```

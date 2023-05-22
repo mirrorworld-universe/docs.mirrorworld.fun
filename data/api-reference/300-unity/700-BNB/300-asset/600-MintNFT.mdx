@@ -6,18 +6,42 @@ title: MintNFT
 
 Mint NFT into collection.
 The "mintID" param is nullable, server will response that "minting is proceeding, please wait it" if detected one mintID is minted already.
+### Parameters
+`collection|string` -  The address of the collection.
 
+`token_id|int` - The token_id of the NFT.
+
+`jsonUrl|string` -  The json url which contains details of collection's NFT.
+
+`toWallet|string` - Address of which wallet you want to transfer to.
+
+`amount|int` - The amount of NFTs to be minted. Default is 1. For erc721 collections this value should be 1.
+
+`confirmation|string` - Confirmation of this request, you can check what confirmation we have by checking Confirmation class. If you want to get more information, please refer to [explain of confirmation](https://mirrorworld.fun/docs/api-reference/unity/configuration#confirmation).
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<EVMResMintNFT>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResMintNFT>`
+
+### Code Example
 ```csharp
-string parentCollection = "collection_address";
-string collectionName = "NewNFT";
-string collectionSymbol = "NFT";
-string collectionUrl = "https://example.com/path/detail.json";
+string collection = "collection_address";
+int token_id = 1;
+string jsonUrl = "https://example.com/path/detail.json";
 string confirmation = Confirmation.Default;
-string mintID = "randomID";
-string receiveWallet = "another wallet";
-double amount = "0.1";
+string toWallet = "wallet address";
+int amount = 1;
+Action approveFinished = null;
 
-MWSDK.BNB.Asset.MintNFT(parentCollection, collectionName, collectionSymbol, collectionUrl, confirmation, mint_id, receiveWallet, amount, null, (res) => {
-    //todo
+MWSDK.BNB.Asset.MintNFT(collection, token_id, jsonUrl, toWallet, amount, confirmation, approveFinished, (res) => {
+    CommonResponse<EVMResMintNFT> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResMintNFT mintRes = resObj.data;
+    //todo...
+
 });
 ```

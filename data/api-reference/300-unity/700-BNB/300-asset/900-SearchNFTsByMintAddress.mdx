@@ -6,13 +6,28 @@ title: SearchNFTsByMintAddress
 
 Fetch NFTs By Mint Addresses. Returns a detailed payload of all NFTs whose `mintAddresses`
 are provided.
+### Parameters
+`list|List<EVMSearchNFTsByAddressesReqToken>` -  The list of tokens to be searched. List must be an array of json objects containing token_address and token_id.
 
+`action|Action<CommonResponse<EVMResNFTInfo[]>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResNFTInfo[]>`
+
+### Code Example
 ```csharp
-List<string> addresses = new List<string>();
-addresses.Add("mint_address_1");
-addresses.Add("mint_address_2");
+List<EVMSearchNFTsByAddressesReqToken> list = new List<EVMSearchNFTsByAddressesReqToken>();
+EVMSearchNFTsByAddressesReqToken token = new EVMSearchNFTsByAddressesReqToken();
+token.token_address = "token address";
+token.token_id = 1
+list.Add(token);
 
 MWSDK.BNB.Asset.SearchNFTsByMintAddress(list, (res) => {
-    //todo
+    CommonResponse<EVMResNFTInfo[]> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResNFTInfo[] nftInfo = resObj.data;
+    //todo...
+
 });
 ```
