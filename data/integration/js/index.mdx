@@ -24,13 +24,13 @@ package manager of your choice:
 
 ```sh install.sh
 # With Yarn
-yarn add @usemirrorworld/web3.js
+yarn add @mirrorworld/web3.js
 
 # With npm
-npm install @usemirrorworld/web3.js
+npm install @mirrorworld/web3.js
 
 # With pnpm
-pnpm install @usemirrorworld/web3.js
+pnpm install @mirrorworld/web3.js
 ```
 
 ---
@@ -44,7 +44,7 @@ To see other chain configurations, please see the
 [API reference](/api-reference/js/Configuration#chain--network-configurations)
 
 ```ts main.ts focus=1
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
@@ -67,7 +67,7 @@ main()
 With your API Key, you can now initialize the SDK in your project.
 
 ```ts main.ts focus=3:6
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",
@@ -90,7 +90,7 @@ main()
 You can start invoking the various methods on the `MirrorWorld` instance. Enjoy!
 
 ```ts main.ts focus=8:14
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_SECRET_API_KEY",

@@ -1,5 +1,5 @@
 {
-  "name": "@usemirrorworld/docs",
+  "name": "@mirrorworld/docs",
   "private": true,
   "license": "MIT",
   "version": "0.0.0",
@@ -42,7 +42,7 @@
     "@reach/portal": "^0.17.0",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash.debounce": "^4.0.7",
-    "@usemirrorworld/web3.js": "^2.0.3",
+    "@mirrorworld/web3.js": "^2.2.2",
     "@zag-js/combobox": "^0.1.12",
     "@zag-js/dialog": "^0.1.11",
     "@zag-js/react": "^0.1.13",
