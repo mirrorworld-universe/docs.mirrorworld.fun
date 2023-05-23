@@ -26,11 +26,11 @@ the JS SDK.
 To install the latest version of the JS SDK, run the following command:
 
 ```bash
-pnpm add @usemirrorworld/web3.js
+pnpm add @mirrorworld/web3.js
 # or with Yarn
-yarn add @usemirrorworld/web3.js
+yarn add @mirrorworld/web3.js
 # or with NPM
-npm install @usemirrorworld/web3.js
+npm install @mirrorworld/web3.js
 ```
 
 ### Defining a chain configuration
@@ -50,7 +50,7 @@ Below is an example of how to initialize the SDK with a Solana Configuration for
 the mainnet-beta network.
 
 ```ts
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY",
@@ -75,7 +75,7 @@ For example, below is an example of how to initialize the SDK on Polygon Testnet
 and mint an NFT
 
 ```ts
-import { MirrorWorld, Solana } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Solana } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY",
@@ -109,7 +109,7 @@ For example, to invoke the `mintNFT` method on the Polygon mainnet chain, you
 would do the following:
 
 ```ts
-import { MirrorWorld, Polygon } from "@usemirrorworld/web3.js"
+import { MirrorWorld, Polygon } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY",
