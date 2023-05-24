@@ -1,0 +1,32 @@
+---
+title: TransferNativeToken
+---
+
+# `TransferNativeToken`
+
+Transfer ETH to another wallet.
+### Parameters
+`to_publickey|string` - The receiver address.
+
+`amount|int` - amount.
+
+`action|Action<CommonResponse<TransferSolResponse>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<TransferSolResponse>`
+
+### Code Example
+```csharp
+string to_publickey;
+int amount;
+
+MWSDK.Polygon.Wallet.TransferNativeToken(to_publickey, amount, (res) =>
+{
+    CommonResponse<TransferSolResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    TransferSolResponse transferRes = resObj.data;
+    //todo...
+
+});
+```
