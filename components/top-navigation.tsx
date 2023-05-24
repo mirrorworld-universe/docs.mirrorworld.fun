@@ -17,6 +17,7 @@ import {
   AiOutlineApi,
   AiOutlineExperiment,
   AiOutlineRocket,
+  AiOutlineFile,
 } from "react-icons/ai"
 import { FiSun } from "react-icons/fi"
 import Link from "next/link"
@@ -56,7 +57,7 @@ export function TopNavigation(props: any) {
         justify="space-between"
         maxW="8xl"
         mx="auto"
-        px={{ base: "4", sm: "6", md: "8" }}
+        px={{ base: "4", sm: "6", md: "7" }}
       >
         <HStack spacing="3">
           <LogoWithLink />
@@ -144,6 +145,26 @@ export function TopNavigation(props: any) {
                 Guides
               </Button>
             </Link>
+            <Button
+              onClick={() => {
+                window.open(
+                  "https://mirrorworld.fun/blog?page=1&tag=weekly-update",
+                )
+              }}
+              as="a"
+              variant="nav"
+              size="sm"
+              _hover={{
+                bg: "topNavButtonLayoutHover",
+                color: "topNavButtonTextHover",
+              }}
+              leftIcon={<AiOutlineFile />}
+              color={"topNavText"}
+              {...(["guides"].includes(router.pathname.split("/")[1]) &&
+                activeStyles)}
+            >
+              Changelog
+            </Button>
             {/*<Link href={"/authentication"}>*/}
             {/*<Button*/}
             {/*  // as="a"*/}

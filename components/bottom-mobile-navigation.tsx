@@ -2,7 +2,12 @@ import { Box, Text, HStack, Stack } from "@chakra-ui/layout"
 import { IconButton, useColorMode, useToast } from "@chakra-ui/react"
 import { MobileNavigation } from "./mobile-navigation"
 import { BiHomeAlt, BiBookOpen } from "react-icons/bi"
-import { AiOutlineApi, AiOutlineExperiment, AiOutlineRocket } from "react-icons/ai"
+import {
+  AiOutlineApi,
+  AiOutlineExperiment,
+  AiOutlineFile,
+  AiOutlineRocket,
+} from "react-icons/ai"
 import Link from "next/link"
 import { useRouter } from "next/router"
 
@@ -71,7 +76,7 @@ export function BottomMobileNavigation() {
               icon={<AiOutlineRocket />}
               color={"topNavText"}
               {...(["integration"].includes(router.pathname.split("/")[1]) &&
-                  activeStyles)}
+                activeStyles)}
             >
               Integration
             </IconButton>
@@ -116,6 +121,28 @@ export function BottomMobileNavigation() {
             <Text fontSize="xs">API Reference</Text>
           </Stack>
         </Link>
+        <Stack
+          onClick={() => {
+            window.open("https://mirrorworld.fun/blog?page=1&tag=weekly-update")
+          }}
+          alignItems="center"
+        >
+          <IconButton
+            aria-label="Navigate to API Reference"
+            variant="nav"
+            size="md"
+            minWidth="unset"
+            w={10}
+            h={10}
+            icon={<AiOutlineFile />}
+            color={"topNavText"}
+            {...(["api-reference"].includes(router.pathname.split("/")[1]) &&
+              activeStyles)}
+          >
+            Changelog
+          </IconButton>
+          <Text fontSize="xs">Changelog</Text>
+        </Stack>
       </HStack>
       <HStack spacing="8">
         <nav hidden>

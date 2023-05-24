@@ -16,6 +16,7 @@ import { BiHomeAlt, BiBookOpen } from "react-icons/bi"
 import {
   AiOutlineApi,
   AiOutlineExperiment,
+  AiOutlineFile,
   AiOutlineRocket,
 } from "react-icons/ai"
 import { FiSun } from "react-icons/fi"
