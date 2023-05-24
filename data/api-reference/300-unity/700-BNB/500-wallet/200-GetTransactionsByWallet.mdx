@@ -5,12 +5,28 @@ title: GetTransactionsByWallet
 # `GetTransactionsByWallet`
 
 Get transactions of target user.
-```csharp
-string walletAddress = "target wallet address";
-float number = 0.1f;
-string nextBefore = "next before";
+### Parameters
+`wallet_address|string` - Which wallet you want to query.
 
-MWSDK.BNB.Wallet.GetTransactionsByWallet(walletAddress, limit, nextBefore, (res) => {
-    //todo
+`limit|int` - The transaction limit.
+
+`action|Action<CommonResponse<EVMResGetTransactionsByWallet>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResGetTransactionsByWallet>`
+
+### Code Example
+```csharp
+string wallet_address = "target wallet address";
+int limit = 1;
+
+MWSDK.BNB.Wallet.GetTransactionsByWallet(wallet_address, limit, (res) =>
+{
+    CommonResponse<EVMResGetTransactionsByWallet> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResGetTransactionsByWallet transactions = resObj.data;
+    //todo...
+
 });
 ```

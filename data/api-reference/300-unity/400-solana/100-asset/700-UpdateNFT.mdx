@@ -4,6 +4,29 @@ title: UpdateNFT
 
 # `UpdateNFT`
 Get status of transactions by their signatures.
+### Parameters
+`mintAddress|string` - The address of the NFT which you are planning to update.
+
+`name|string` - The new name of this NFT.
+
+`symbol|string` - The new symbol of this NFT.
+
+`jsonUrl|string` - The new json url of this NFT.
+
+`updateAuthority|string` - Update authority of this NFT.
+
+`seller_fee_basis_points|int` - New seller_fee_basis_points of this NFT.
+
+`confirmation|string` - Confirmation of this request, you can check what confirmation we have by checking Confirmation class. If you want to get more information, please refer to [explain of confirmation](https://mirrorworld.fun/docs/api-reference/unity/configuration#confirmation).
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<SolResUpdateNFT>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResUpdateNFT>`
+
+### Code Example
 ```csharp
 string mintAddress = "mint address";
 string name = "name";
@@ -11,8 +34,14 @@ string symbol = "symbol";
 stirng updateAuthority = "updateAuthority";
 string jsonUrl = "https://nft_detail_json.json";
 int seller_fee_basis_points = 100;
+Action approveFinish = null;
 
-MWSDK.Solana.Asset.UpdateNFT(mintAddress, name, symbol, updateAuthority, jsonUrl, 200, Confirmation.Default, null, (res) => {
-    //todo
+MWSDK.Solana.Asset.UpdateNFT(mintAddress, name, symbol, updateAuthority, jsonUrl, 200, Confirmation.Default, approveFinish, (res) => {
+    CommonResponse<SolResUpdateNFT> resObj = res;
+    long code = res.code;
+    string message = res.message;
+    string nftName = res.data.nft.name;
+    //todo...
+
 });
 ```

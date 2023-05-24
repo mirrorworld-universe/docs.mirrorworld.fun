@@ -3,9 +3,26 @@ title: Authentication
 ---
 
 # Authentication Methods | Unity API Reference
+*The APIs in this module allow users to perform authorization-related operations, such as logging in, logging out, and checking login status.Here is a list of APIs in this functional module.*
+
+>To use these APIs, you don't need to worry about which chain you are currently on. Simply call the desired API directly. Like `MWSDK.StartLogin`
 
 - [`MWSDK.StartLogin`](/api-reference/unity/authentication/StartLogin)
+
+Users must log in before they can use all the APIs provided by the SDK. This API will trigger a permission verification page to guide users through the login process and return the result.
+
 - [`MWSDK.GuestLogin`](/api-reference/unity/authentication/GuestLogin)
+
+Calling this API will assign a temporary account to the user for quick login, but this account has limited permissions and cannot perform all operations.
+
 - [`MWSDK.IsLogged`](/api-reference/unity/authentication/IsLogged)
+
+This API will return a boolean value to indicate whether the current user has already logged in. In most cases, developers should call this API before invoking StartLogin to ensure that users are not prompted for unnecessary logins.
+
 - [`MWSDK.LoginWithEmail`](/api-reference/unity/authentication/LoginWithEmail)
+
+Developers can also allow users to log in using their email and password.
+
 - [`MWSDK.Logout`](/api-reference/unity/authentication/Logout)
+
+Regardless of how the user logged in, calling this API will clear their login information and set their status to logged out.

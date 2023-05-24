@@ -5,12 +5,30 @@ title: TransferNFT
 # `TransferNFT`
 
 Transfer NFT from holder's wallet to another address.
+### Parameters
+`mintAddress|string` - Mint address of a NFT.
 
+`toWallet|string` - Address of which wallet you want to transfer to.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<SolResTransferNFT>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResTransferNFT>`
+
+### Code Example
 ```csharp
 string mintAddress = "mint_address";
 string toWallet = "wallet_address";
+Action approveFinished = null;
 
 MWSDK.Solana.Asset.TransferNFT(mintAddress, toWallet, approveFinished, (res) => {
-    //todo
+    CommonResponse<SolResTransferNFT> resObj = res;
+    long code = res.code;
+    string nftAddress = res.data.mint_address;
+    //todo...
+
+    PrintLog("result:" + JsonUtility.ToJson(res));
 });
 ```

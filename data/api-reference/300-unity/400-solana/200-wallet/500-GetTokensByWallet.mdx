@@ -5,12 +5,29 @@ title: GetTokensByWallet
 # `GetTokensByWallet`
 
 Get tokens by wallet address.
+### Parameters
+`walletAddress|string` - Which wallet you want to get from.
 
+`limit|int` -  The limit count of transactions.
+
+`nextBefore|string` - The transaction offset.
+
+`action|Action<WalletTokenResponse>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<WalletTokenResponse>`
+
+### Code Example
 ```csharp
 string walletAddress = "target wallet address";
 int limit = 1;
 string nextBefore = "next before";
 MWSDK.Solana.Wallet.GetTokensByWallet(walletAddress,limit,nextBefore,(res) => {
-    //todo
+    CommonResponse<WalletTokenResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    WalletTokenResponse tokens = resObj.data;
+    //todo...
+
 });
 ```

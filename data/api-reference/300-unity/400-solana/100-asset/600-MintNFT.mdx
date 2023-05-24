@@ -6,18 +6,45 @@ title: MintNFT
 
 Mint NFT into collection.
 The "mintID" param is nullable, server will response that "minting is proceeding, please wait it" if detected one mintID is minted already.
+### Parameters
+`collection|string` - The address of the collection where you are planning to mint the NFT.
 
+`name|string` - The name of the NFT which you are planning to mint.
+
+`symbol|string` - The symbol of the NFT which you are planning to mint.
+
+`jsonUrl|string` - A URL that contains the JSON information of the NFT you want to mint. You need to upload the JSON file in advance to obtain its URL.
+
+`mintID|string` - To differentiate between different mint operations and prevent users from minting duplicates, you need to provide a unique mint ID.You can generate a unique mint ID for each minting operation on your server-side for users, or for simpler games, you can consider generating it directly on the client-side.
+
+`amount|double` - A deprecated parameter, it will be removed in future versions.
+
+`confirmation|string` - Confirmation of this request, you can check what confirmation we have by checking Confirmation class. If you want to get more information, please refer to [explain of confirmation](https://mirrorworld.fun/docs/api-reference/unity/configuration#confirmation).
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<SolResMintResponse>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResMintResponse>`
+
+### Code Example
 ```csharp
-string parentCollection = "collection_address";
-string collectionName = "NewNFT";
-string collectionSymbol = "NFT";
-string collectionUrl = "https://example.com/path/detail.json";
+string collection = "collection_address";
+string name = "NewNFT";
+string symbol = "NFT";
+string jsonUrl = "https://example.com/path/detail.json";
 string confirmation = Confirmation.Default;
 string mintID = "randomID";
 string receiveWallet = "another wallet";
 double amount = "0.1";
+Action approveFinish = null;
 
-MWSDK.Solana.Asset.MintNFT(parentCollection, collectionName, collectionSymbol, collectionUrl, confirmation, mint_id, receiveWallet, amount, null, (res) => {
-    //todo
+MWSDK.Solana.Asset.MintNFT(collection, name, symbol, jsonUrl, confirmation, mint_id, receiveWallet, amount, approveFinish, (res) => {
+    CommonResponse<SolResMintResponse> resObj = res;
+    long code = res.code;
+    string nftMintAddress = res.data.mint_address;
+    //todo...
+    
 });
 ```

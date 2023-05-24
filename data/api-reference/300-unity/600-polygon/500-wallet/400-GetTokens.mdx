@@ -5,8 +5,21 @@ title: GetTokens
 # `GetTokens`
 
 Get tokens of current user.
+### Parameters
+`action|Action<CommonResponse<EVMResGetTokens>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResGetTokens>`
+
+### Code Example
 ```csharp
-MWSDK.Polygon.Wallet.GetTokens((res) => {
-    //todo
+MWSDK.Polygon.Wallet.GetTokens((res) =>
+{
+    CommonResponse<EVMResGetTokens> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResGetTokens tokens = resObj.data;
+    //todo...
+
 });
 ```

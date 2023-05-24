@@ -5,12 +5,25 @@ title: GetCollectionsSummary
 # `GetCollectionsSummary`
 
 Get collections summary info in metadata.
+### Parameters
+`collections|List<string>` - The collections address you want to query.
 
+`action|Action<CommonResponse<List<EVMResMetadataCollectionsSummary>>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<List<EVMResMetadataCollectionsSummary>>`
+
+### Code Example
 ```csharp
 List<string> collections = new List<string>();
 collections.Add("collection 1");
 
 MWSDK.Ethereum.Metadata.GetCollectionsSummary(collections, (res) => {
-    //todo
+    CommonResponse<List<EVMResMetadataCollectionsSummary>> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    List<EVMResMetadataCollectionsSummary> collectionInfos = resObj.data;
+    //todo...
+
 });
 ```

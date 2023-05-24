@@ -5,6 +5,16 @@ title: CheckMintingStatus
 # `CheckMintingStatus`
 
 Get status of a minting operation. Because minting may has some delay before success.
+
+### Parameters
+`mintAddresses|List<string>` - The mintAddresses of transactions you are planning to query.
+
+`action|Action<CommonResponse<GetStatusOfTransactionsResponse>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<GetStatusOfTransactionsResponse>`
+
+### Code Example
 ```csharp
 List<string> mintAddresses = new List<string>();
 mintAddresses.Add("mint address 1");
@@ -12,6 +22,11 @@ mintAddresses.Add("mint address 2");
 
 MWSDK.Solana.Asset.CheckMintingStatus(mintAddresses, (res) =>
 {
-    //todo
+    CommonResponse<GetStatusOfTransactionsResponse> resObj = res;
+    long code = res.code;
+    string message = res.message;
+    GetStatusOfTransactionsResponse transactionStatus = res.data;
+    //todo...
+
 });
 ```

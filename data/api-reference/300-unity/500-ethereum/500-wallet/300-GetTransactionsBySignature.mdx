@@ -5,10 +5,25 @@ title: GetTransactionsBySignature
 # `GetTransactionsBySignature`
 
 Get transactions by signature.
+### Parameters
+`signature|string` - The signature to be queried.
+
+`action|Action<CommonResponse<EVMResTransactionData>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResTransactionData>`
+
+### Code Example
 ```csharp
 string signature = "target signature";
 
-MWSDK.Ethereum.Wallet.GetTransactionsBySignature(signature, (res) => {
-    //todo
+MWSDK.Ethereum.Wallet.GetTransactionsBySignature(signature, (res) =>
+{
+    CommonResponse<EVMResTransactionData> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResTransactionData transaction = resObj.data;
+    //todo...
+
 });
 ```

@@ -5,12 +5,30 @@ title: GetTransactionsByWallet
 # `GetTransactionsByWallet`
 
 Get transactions of target user.
+### Parameters
+`walletAddress|string` - Which wallet you want to get from.
+
+`limit|int` -  The limit count of transactions.
+
+`nextBefore|string` - The transaction offset.
+
+`action|Action<SolResGetTransactionByWallet>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResGetTransactionByWallet>`
+
+### Code Example
 ```csharp
 string walletAddress = "target wallet address";
-float number = 0.1f;
+int limit = 1;
 string nextBefore = "next before";
 
 MWSDK.Solana.Wallet.GetTransactionsByWallet(walletAddress, limit, nextBefore, (res) => {
-    //todo
+    CommonResponse<SolResGetTransactionByWallet> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    SolResGetTransactionByWallet transactions = resObj.data;
+    //todo...
+
 });
 ```

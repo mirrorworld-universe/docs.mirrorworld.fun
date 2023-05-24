@@ -5,15 +5,34 @@ title: CancelListing
 # `CancelListing`
 
 Cancel listing NFT on Mirror World Marketplace.
+### Parameters
+`collection_address|string` - The address of the collection.
 
+`token_id|int` - The token_id of the NFT.
+
+`marketplace_address|string` - Which marketplace the target NFT on.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<EVMResCancelList>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResCancelList>`
+
+### Code Example
 ```csharp
-string mintAddress = "mint_address";
-double price = 1;
-string auctionHouse = "your_market_auction_house";
-string confirmation = Confirmation.Default;
+string collection_address = "collection address on evm";
+int token_id = 1;
+string marketplace_address = "marketplace_address";
+Action approveFinish = null;
 
-MWSDK.Polygon.Asset.CancelListing(mintAddress, price, auctionHouse, confirmation, null, (res) =>
+MWSDK.Polygon.Asset.CancelListing(collection_address, token_id, marketplace_address, approveFinish, (res) =>
 {
-    //todo
+    CommonResponse<EVMResCancelList> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResCancelList calcelList = resObj.data;
+    //todo...
+
 });
 ```

@@ -5,14 +5,33 @@ title: MintCollection
 # `MintCollection`
 
 Create a new Verified Collection.
+### Parameters
+`collectionName|string` -  The name of the collection.
 
+`collectionSymbol|string` -  The symbol of the collection.
+
+`collectionUrl|string` -  The json url which contains details of collection's NFT.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<EVMResMintCollection>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResMintCollection>`
+
+### Code Example
 ```csharp
 string collectionName = "TopCollection";
 string collectionSymbol = "Top";
 string collectionUrl = "https://example.com/path/detail.json";
-int seller_fee_basis_points = 400;
+Action approveFinished = null;
 
-MWSDK.BNB.Asset.MintCollection(collectionName, collectionSymbol, collectionUrl, seller_fee_basis_points, null, null, (res) => {
-    //todo
+MWSDK.BNB.Asset.MintCollection(collectionName, collectionSymbol, collectionUrl, approveFinished, (res) => {
+    CommonResponse<EVMResMintCollection> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResMintCollection mintRes = resObj.data;
+    //todo...
+
 });
 ```

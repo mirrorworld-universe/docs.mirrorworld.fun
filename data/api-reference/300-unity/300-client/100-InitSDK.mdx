@@ -6,11 +6,28 @@ title: InitSDK
 Before using all APIs of Mirror, you need to init SDK first.
 To init sdk, you need to have an API key first, you can get one from [SDK official site](https://app.mirrorworld.fun)
 
-```java
-Context context = this;
-String apiKey = "your-api-key";
-MirrorEnv env = MirrorEnv.DevNet;
+### Parameters
+`apiKey|string` - Your App's API Key, if you don't have one yet, you can apply for it [here](https://app.mirrorworld.fun/).
 
-MWSDK.InitSDK(context,apiKey,env);
+`mirrorObj|GameObject` - In Unity SDK, we need to have a GameObject that exists at all times to run coroutines.
+
+`chain|MirrorChain` - Pass in the chain on which you decide to work. If you need to switch between different chains, you can use the MWSDK.SetChain() method to change the current chain you are on.
+
+`debugMode|bool` - Whether show the debug flow log.
+
+`env|MirrorEnv` - Decide which environment you want to work in, regardless of the chain. Currently, we only provide two environments: MainNet and DevNet.
+
+### Returns
+There is no response.
+
+### Code Example
+```csharp
+GameObject mirrorObj = new GameObject("MirrorSDK", typeof(MirrorSDK));
+string apiKey = "your api key";
+MirrorChain chain = MirrorChain.Solana;
+bool debugMode = true;
+MirrorEnv env = MirrorEnv.Devnet;
+
+MWSDK.InitSDK(apiKey, mirrorObj, chain, debugMode, env);
 ```
 

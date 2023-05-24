@@ -5,12 +5,25 @@ title: GetCollectionsSummary
 # `GetCollectionsSummary`
 
 Get collections summary info in metadata.
+### Parameters
+`collections|List<string>` - The addresses of all collections to be queried.
 
+`action|Action<CommonResponse<SolResMetadataGetCollectionSummary>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<SolResMetadataGetCollectionSummary>`
+
+### Code Example
 ```csharp
 List<string> collections = new List<string>();
 collections.Add("collection 1");
 
 MWSDK.Solana.Metadata.GetCollectionsSummary(collections, (res) => {
-    //todo
+    CommonResponse<List<SolResMetadataGetCollectionSummary>> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    List<SolResMetadataGetCollectionSummary> collectionInfoList = resObj.data;
+    //todo...
+
 });
 ```

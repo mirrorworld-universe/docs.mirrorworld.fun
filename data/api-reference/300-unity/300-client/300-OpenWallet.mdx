@@ -5,6 +5,13 @@ title: OpenWallet
 # `OpenWallet`
 Open wallet page on native.
 
+### Parameters
+`action|Action` - When the user clicks the Logout button in the Wallet, this Action will be called, which is equivalent to the user logging out of the entire SDK. You can perform some cleanup logic here, such as returning to the main menu.
+
+### Returns
+There is no response.
+
+### Code Example
 ```csharp
 MWSDK.OpenWallet(() => {
     //todo: user log out from user

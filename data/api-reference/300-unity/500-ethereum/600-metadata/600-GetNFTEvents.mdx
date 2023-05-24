@@ -5,13 +5,37 @@ title: GetNFTEvents
 # `GetNFTEvents`
 
 Get events of a NFT.
+### Parameters
+`contract|string` - The contract address.
 
+`page|int` - The page number, page {'>'} 0.
+
+`page_size|int` - The page size, 0 {'<'} page size {'<='} 50.
+
+`token_id|int` - The token id.
+
+`marketplace_address|string` - The marketplace address.
+
+`action|Action<CommonResponse<EVMResMetadataNFTEvents>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResMetadataNFTEvents>`
+
+### Code Example
 ```csharp
-string mintAddress = "collection address";
+string contract = "contract address";
 int page = 1;
 int pageSize = 10;
+int token_id = 1;
+string marketplace_address = "marketplace_address";
 
-MWSDK.Metadata.Metadata.GetNFTEvents(mintAddress, page, pageSize, (res) => {
-    //todo
+MWSDK.Ethereum.Metadata.GetNFTEvents(contract, page, pageSize, token_id, marketplace_address, (res) =>
+{
+    CommonResponse<EVMResMetadataNFTEvents> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResMetadataNFTEvents events = resObj.data;
+    //todo...
+
 });
 ```

@@ -6,14 +6,36 @@ title: ListNFT
 
 List NFT on Mirror World Marketplace.
 AuctionHouse: If you give the `auctionHouse` param, you can specify which market you want to list in.
+### Parameters
+`collection_address|string` - The address of the collection.
 
+`token_id|int` - The token_id of the NFT.
+
+`price|double` - Price of this NFT on marketplace.
+
+`marketplace_address|string` - Which marketplace address the target NFT on.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<EVMResListNFT>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<EVMResListNFT>`
+
+### Code Example
 ```csharp
-string mintAddress = "mint_address";
-double price = 1;
-string confirmation = Confirmation.Default;
-string auctionHouse = "your_market_auction_house";
+string collection_address = "collection_address";
+double price = 0.1f;
+int token_id = 1;
+string marketplace_address = "marketplace_address";
+Action approveFinish = null;
 
-MWSDK.Polygon.Asset.ListNFT(mintAddress, price, auctionHouse, confirmation, null, (res) => {
-    //todo
+MWSDK.Polygon.Asset.ListNFT(collection_address, token_id, price, marketplace_address, approveFinish, (res) => {
+    CommonResponse<EVMResListNFT> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    EVMResListNFT listRes = resObj.data;
+    //todo...
+
 });
 ```

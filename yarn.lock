@@ -1307,6 +1307,23 @@
     "@types/mdx" "^2.0.0"
     "@types/react" ">=16"
 
+"@mirrorworld/web3.js@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/@mirrorworld/web3.js/-/web3.js-2.2.2.tgz#96e9206b71e95feba8d2662d4035cf2b3702e21c"
+  integrity sha512-RILRtpkOdCxVaqC+ujNMQJJlWQERWyXXGsmOxG3YyIRigJBkK8AyC8wFv98bwUCExzApgX+e4V7n6UBBjcyulg==
+  dependencies:
+    "@babel/runtime" "^7.18.9"
+    "@types/bson" "^4.2.0"
+    aria-hidden "^1.2.2"
+    axios "^0.27.2"
+    body-scroll-lock "^4.0.0-beta.0"
+    bson "^4.6.5"
+    joi "^17.6.0"
+    mitt "^3.0.0"
+    mobile-device-detect "^0.4.3"
+    motion "^10.15.5"
+    query-string "^7.1.1"
+
 "@motionone/animation@^10.12.0":
   version "10.14.0"
   resolved "https://registry.yarnpkg.com/@motionone/animation/-/animation-10.14.0.tgz#2f2a3517183bb58d82e389aac777fe0850079de6"
@@ -2018,23 +2035,6 @@
   dependencies:
     "@typescript-eslint/types" "5.37.0"
     eslint-visitor-keys "^3.3.0"
-
-"@usemirrorworld/web3.js@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@usemirrorworld/web3.js/-/web3.js-2.0.3.tgz#7b44ba9f7bf5ed50e1e5e325902523991133fcbf"
-  integrity sha512-dn/2RIq6aqnTRL8Bl6yD+BONwLz9nwzJyUuqZwOdFEFSHLwrp1UocamtXWn4o6xYiO9bmldAPl7XPaVRuRUaoQ==
-  dependencies:
-    "@babel/runtime" "^7.18.9"
-    "@types/bson" "^4.2.0"
-    aria-hidden "^1.2.2"
-    axios "^0.27.2"
-    body-scroll-lock "^4.0.0-beta.0"
-    bson "^4.6.5"
-    joi "^17.6.0"
-    mitt "^3.0.0"
-    mobile-device-detect "^0.4.3"
-    motion "^10.15.5"
-    query-string "^7.1.1"
 
 "@zag-js/aria-hidden@0.1.2":
   version "0.1.2"

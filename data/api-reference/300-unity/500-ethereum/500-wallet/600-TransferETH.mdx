@@ -5,15 +5,41 @@ title: TransferETH
 # `TransferETH`
 
 Transfer ETH to another wallet.
+### Parameters
+`nonce|string` - nonce.
 
+`gasPrice|string` - gasPrice.
+
+`gasLimit|string` - gasLimit.
+
+`to|string` - to.
+
+`amount|string` - amount.
+
+`approveFinish|Action` - This action will be invoked after the user completes the permission verification in the approval process. You can use it to provide UI prompts. For example, in a game, after calling the current API, you can immediately display a "Waiting" UI. The SDK will then automatically pop up the permission verification interface. When the user enters the password on the interface and clicks "Return," this action will be called to close the previous "Waiting" UI.
+
+`action|Action<CommonResponse<TransferSolResponse>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<TransferSolResponse>`
+
+### Code Example
 ```csharp
 string nonce;
 string gasPrice;
 string gasLimit;
 string to;
 string amount;
+Action approveFinished;
 
-MWSDK.Ethereum.Wallet.TransferETH(nonce, gasPrice, gasLimit, to, amount, null, (res) => {
-    //todo
+MWSDK.Ethereum.Wallet.TransferETH(nonce, gasPrice, gasLimit, to, amount, approveFinished, (res) =>
+{
+    CommonResponse<TransferSolResponse> resObj = res;
+    long code = resObj.code;
+    string message = resObj.message;
+    TransferSolResponse transferRes = resObj.data;
+    //todo...
+
+    PrintLog("result:" + JsonUtility.ToJson(res));
 });
 ```
