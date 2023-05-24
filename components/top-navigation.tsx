@@ -6,7 +6,7 @@ import {
   useColorMode,
   useToast,
 } from "@chakra-ui/react"
-import { GithubIcon } from "components/icons"
+import { ChangeLogIcon, GithubIcon } from "components/icons"
 import { FaDiscord } from "react-icons/fa"
 import siteConfig from "site.config"
 import { IconLink } from "./icon-link"
@@ -17,7 +17,6 @@ import {
   AiOutlineApi,
   AiOutlineExperiment,
   AiOutlineRocket,
-  AiOutlineFile,
 } from "react-icons/ai"
 import { FiSun } from "react-icons/fi"
 import Link from "next/link"
@@ -158,7 +157,7 @@ export function TopNavigation(props: any) {
                 bg: "topNavButtonLayoutHover",
                 color: "topNavButtonTextHover",
               }}
-              leftIcon={<AiOutlineFile />}
+              leftIcon={<ChangeLogIcon />}
               color={"topNavText"}
               {...(["guides"].includes(router.pathname.split("/")[1]) &&
                 activeStyles)}

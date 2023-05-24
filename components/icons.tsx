@@ -403,3 +403,44 @@ export const PolygonIcon = (props: Props) => (
     </defs>
   </svg>
 )
+
+export const ChangeLogIcon = (props: Props) => {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M11.25 3.5H4.25V12H11.25V3.5Z"
+        stroke="#171923"
+        stroke-width="0.499999"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M9.74999 3.5V2H3C2.86193 2 2.75 2.11193 2.75 2.25V10.5H4.25"
+        stroke="#171923"
+        stroke-width="0.499999"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.25 6.5H9.24999"
+        stroke="#171923"
+        stroke-width="0.499999"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.25 8.5H9.24999"
+        stroke="#171923"
+        stroke-width="0.499999"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  )
+}

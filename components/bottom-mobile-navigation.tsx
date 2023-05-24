@@ -5,11 +5,11 @@ import { BiHomeAlt, BiBookOpen } from "react-icons/bi"
 import {
   AiOutlineApi,
   AiOutlineExperiment,
-  AiOutlineFile,
   AiOutlineRocket,
 } from "react-icons/ai"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { ChangeLogIcon } from "./icons"
 
 export function BottomMobileNavigation() {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -134,7 +134,7 @@ export function BottomMobileNavigation() {
             minWidth="unset"
             w={10}
             h={10}
-            icon={<AiOutlineFile />}
+            icon={<ChangeLogIcon />}
             color={"topNavText"}
             {...(["api-reference"].includes(router.pathname.split("/")[1]) &&
               activeStyles)}
