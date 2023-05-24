@@ -159,7 +159,7 @@ export function TopNavigation(props: any) {
               }}
               leftIcon={<ChangeLogIcon />}
               color={"topNavText"}
-              {...(["guides"].includes(router.pathname.split("/")[1]) &&
+              {...(["Changelog"].includes(router.pathname.split("/")[1]) &&
                 activeStyles)}
             >
               Changelog
