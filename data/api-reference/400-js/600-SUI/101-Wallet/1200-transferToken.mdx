@@ -1,0 +1,20 @@
+---
+title: transferToken
+description: Transfer token from SUI wallet to another SUI wallet
+---
+
+# `transferToken`
+
+Transfer Token From SUI Wallet To Another SUI Wallet
+
+```js
+import { type SUITransferTokenPayload } from "@mirrorworld/web3.js"
+
+const payload: SUITransferTokenPayload = {
+  amount: 1,
+  to_public: "0x80Cd58A56643c958dFC29b85329f9FEda93Bdb56",
+  token:"0x8e0389a086a3821788c3de328e54daf0b9e3ad77fb2cad12601b42379e36784f::mycoin::MYCOIN"
+}
+
+await mirrorworld.Ethereum.Wallet.transferToken(payload)
+```

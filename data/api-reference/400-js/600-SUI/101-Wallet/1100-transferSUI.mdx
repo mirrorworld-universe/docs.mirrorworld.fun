@@ -1,0 +1,19 @@
+---
+title: transferSUI
+description: Transfer SUI from SUI wallet to another SUI wallet
+---
+
+# `transferSUI`
+
+Transfer SUI From SUI Wallet To Another SUI Wallet
+
+```js
+import { type SUITransferSUIPayloadV2 } from "@mirrorworld/web3.js"
+
+const payload: SUITransferSUIPayloadV2 = {
+  amount: 1,
+  to_public: "0x80Cd58A56643c958dFC29b85329f9FEda93Bdb56"
+}
+
+await mirrorworld.Ethereum.Wallet.transferSUI(payload)
+```
