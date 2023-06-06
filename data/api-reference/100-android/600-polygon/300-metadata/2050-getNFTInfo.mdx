@@ -1,0 +1,20 @@
+---
+title: getNFTInfo
+
+---
+
+# `getNFTInfo`
+Get details of a NFT in Marketplace.
+
+```java
+String contract = "contract";
+String tokenID = "token ID";
+
+MirrorWorld.Polygon.Metadata.getNFTInfo(contract,tokenID, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        String r = "Visiting result:"+MirrorGsonUtils.getInstance().toJson(result);
+        runInUIThread(holder,r);
+    }
+});
+```

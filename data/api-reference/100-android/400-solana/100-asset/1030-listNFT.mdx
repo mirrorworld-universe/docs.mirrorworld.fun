@@ -11,7 +11,7 @@ string mintAddress = "mint_address";
 double price = 1;
 String confirmation = Confirmation.Default;
 
-MirrorWorld.listNFT(activity, mintAddress, price, confirmation, new ListNFTListener() {
+MirrorWorld.Solana.Asset.listNFT(activity, mintAddress, price, confirmation, new ListNFTListener() {
     @Override
     public void onListSuccess(ListingResponse listingResponse) {
         //todo

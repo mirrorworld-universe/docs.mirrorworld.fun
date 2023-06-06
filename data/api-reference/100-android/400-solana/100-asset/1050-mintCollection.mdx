@@ -14,7 +14,7 @@ String mintSymbol = "Symbol";
 String metaDataUri = "https://my-collection-metadata-uri/metadata.json";
 String confirmation = MirrorConfirmation.Default;
 
-MirrorWorld.mintCollection(activity, mintName, mintSymbol, metaDataUri, confirmation, new CreateTopCollectionListener() {
+MirrorWorld.Solana.Asset.mintCollection(activity, mintName, mintSymbol, metaDataUri, confirmation, new CreateTopCollectionListener() {
     @Override
     public void onCreateSuccess(MintResponse mintResponse) {
         //todo

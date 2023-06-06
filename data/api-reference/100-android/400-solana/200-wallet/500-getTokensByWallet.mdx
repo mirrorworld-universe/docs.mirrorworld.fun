@@ -9,7 +9,7 @@ Get single transaction with its signature.
 ```java
 String walletAddress = "wallet address";
 
-MirrorWorld.getTokensByWallet(walletAddress, new GetWalletTokenListener() {
+MirrorWorld.Solana.Wallet.getTokensByWallet(walletAddress, new GetWalletTokenListener() {
     @Override
     public void onSuccess(GetWalletTokenResponse walletTokenResponse) {
         //todo

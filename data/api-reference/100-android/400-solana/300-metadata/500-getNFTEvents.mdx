@@ -11,7 +11,7 @@ String mint_address = "nft address";
 int page = 1;
 int page_size = 10;
 
-MirrorWorld.getNFTEvents(mint_address,page,page_size, new GetNFTEventsListener() {
+MirrorWorld.Solana.Metadata.getNFTEvents(mint_address,page,page_size, new GetNFTEventsListener() {
     @Override
     public void onSuccess(GetNFTEventsRes result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));

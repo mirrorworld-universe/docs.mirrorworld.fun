@@ -12,7 +12,7 @@ String collection = "collection_address";
 String confirmation = MirrorConfirmation.Default;
 String detailUrl = "https://example.com/path/detail.json";
 
-MirrorWorld.mintNFT(activity, collection, detailUrl, confirmation, new MintNFTListener() {
+MirrorWorld.Solana.Asset.mintNFT(activity, collection, detailUrl, confirmation, new MintNFTListener() {
     @Override
     public void onMintSuccess(MintResponse userResponse) {
         Log.d("MirrorSDK","Mint result is:"+MirrorGsonUtils.getInstance().toJson(userResponse));

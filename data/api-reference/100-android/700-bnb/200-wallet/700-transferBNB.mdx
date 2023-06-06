@@ -1,0 +1,23 @@
+---
+title: transferBNB
+
+---
+
+# `transferBNB`
+Transfer BNB to wallet address.This method can only used on BNB chain.
+
+```java
+Activity activity = this;
+String nonce = "nonce ";
+String gasPrice = "gas price";
+String gasLimit = "gas limit";
+String to = "to wallet address";
+int amount = 1;
+
+MirrorWorld.BNB.Wallet.transferBNB(activity, nonce, gasPrice, gasLimit, to, amount, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

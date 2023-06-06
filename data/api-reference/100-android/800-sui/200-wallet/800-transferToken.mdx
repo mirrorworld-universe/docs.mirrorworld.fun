@@ -1,0 +1,21 @@
+---
+title: transferToken
+
+---
+
+# `transferToken`
+Transfer Token to wallet address.
+
+```java
+String to_publickey;
+int amount;
+String token;
+
+MirrorWorld.SUI.Wallet.transferToken(to_publickey,amount,token,new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+        
+    }
+});
+```

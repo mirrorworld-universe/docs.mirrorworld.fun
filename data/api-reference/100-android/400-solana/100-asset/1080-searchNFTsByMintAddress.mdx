@@ -13,7 +13,7 @@ List<String> mintAddresses = new ArrayList<>();
 mintAddresses.add("NFT mint address 1");
 mintAddresses.add("NFT mint address 2");
 
-MirrorWorld.searchNFTsByMintAddress(mintAddresses, new FetchNFTsListener() {
+MirrorWorld.Solana.Asset.searchNFTsByMintAddress(mintAddresses, new FetchNFTsListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         Log.d("MirrorSDK","Fetched " + multipleNFTsResponse.nfts.size() + " NFTs");

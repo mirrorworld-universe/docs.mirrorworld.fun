@@ -1,0 +1,23 @@
+---
+title: mintNFT
+
+---
+
+# `mintNFT`
+This endpoint is used to mint a new NFT on the collection.
+
+```java
+String collection_address;
+String name;
+String description;
+String image_url;
+String to_wallet_address;
+
+MirrorWorld.SUI.Asset.mintNFT(collection_address,name, description, image_url, null,to_wallet_address,new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+        
+    }
+});
+```

@@ -13,7 +13,7 @@ String mintAddress = "mint_address";
 doubld price = 1.0;
 String auctionHouse = "auction_house";
 
-MirrorWorld.cancelNFTListing(activity, mintAddress, price, auctionHouse, new CancelListListener() {
+MirrorWorld.Solana.Asset.cancelNFTListing(activity, mintAddress, price, auctionHouse, new CancelListListener() {
     @Override
     public void onCancelSuccess(ListingResponse listingResponse) {
         Log.d("MirrorSDK","CancelNFTListing success! Mint address is "+listingResponse.mint_address);

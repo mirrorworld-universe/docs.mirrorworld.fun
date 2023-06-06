@@ -1,0 +1,19 @@
+---
+title: transferSUI
+
+---
+
+# `transferSUI`
+Transfer SUI to a recipient.
+
+```java
+String to_publickey;
+int amount;
+MirrorWorld.SUI.Wallet.transferSUI(to_publickey,amount,new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+        
+    }
+});
+```
