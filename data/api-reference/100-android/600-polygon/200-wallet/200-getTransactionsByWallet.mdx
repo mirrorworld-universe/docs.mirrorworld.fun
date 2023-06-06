@@ -1,0 +1,19 @@
+---
+title: getTransactionsByWallet
+
+---
+
+# `getTransactionsByWallet`
+Get the transactions of user's wallet.
+
+```java
+String walletAddress = "wallet address";
+int limit = 1;
+
+MirrorWorld.Polygon.Wallet.getTransactionsByWallet(walletAddress, limit, new MirrorCallback() {
+    @Override
+    public void callback(String r) {
+        //todo
+    }
+});
+```

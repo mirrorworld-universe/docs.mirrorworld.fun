@@ -1,0 +1,20 @@
+---
+title: queryNFT
+
+---
+
+### `queryNFT`
+
+Fetches an NFT's details by mint address.
+
+```java
+String tokenAddress = "mint_address";
+String tokenID = "token ID";
+
+MirrorWorld.Polygon.Asset.queryNFT(tokenAddress, tokenID, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```

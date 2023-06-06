@@ -1,0 +1,22 @@
+---
+title: buyNFT
+
+---
+
+# `buyNFT`
+Purchase NFT on Mirror World Marketplace.
+
+```java
+Activity activity = this;
+String mintAddress = "mint address";
+String tokenID = "token ID";
+double price = 1;
+String marketplaceAddress = "marketplace address";
+
+MirrorWorld.Polygon.Asset.buyNFT(activity, mintAddress, tokenID, price, marketplaceAddress, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+    }
+});
+```
