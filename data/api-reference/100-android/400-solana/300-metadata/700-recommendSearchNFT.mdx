@@ -11,7 +11,7 @@ NFT info at most as recommend NFT. Developer can use this API to fill some recom
 List<String> collections = new ArrayList<>();
 collections.add("collection address 1");
 
-MirrorWorld.recommendSearchNFT(collections, new SOLSearchNFTsListener() {
+MirrorWorld.Solana.Metadata.recommendSearchNFT(collections, new SOLSearchNFTsListener() {
     @Override
     public void onSuccess(List<MirrorMarketSearchNFTObj> result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));

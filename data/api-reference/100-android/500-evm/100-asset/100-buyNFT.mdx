@@ -13,7 +13,7 @@ String tokenID = "token ID";
 double price = 1;
 String marketplaceAddress = "marketplace address";
 
-MirrorWorld.buyNFT(activity, mintAddress, tokenID, price, marketplaceAddress, new MirrorCallback() {
+MirrorWorld.Ethereum.Asset.buyNFT(activity, mintAddress, tokenID, price, marketplaceAddress, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

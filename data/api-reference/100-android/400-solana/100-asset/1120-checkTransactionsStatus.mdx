@@ -11,7 +11,7 @@ List<String> signatures = new ArrayList<>();
 signatures.add("signature 1"); 
 signatures.add("signature 2");
 
-MirrorWorld.checkTransactionsStatus(signatures,new CheckStatusOfMintingListener() {
+MirrorWorld.Solana.Asset.checkTransactionsStatus(signatures,new CheckStatusOfMintingListener() {
 
     @Override
     public void onSuccess(CheckStatusOfMintingResponse response) {

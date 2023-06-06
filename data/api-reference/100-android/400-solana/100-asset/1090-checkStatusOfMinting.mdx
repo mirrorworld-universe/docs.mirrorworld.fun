@@ -11,7 +11,7 @@ List<String> addresses = new ArrayList<>();
 addresses.add("mintAddress1"); 
 addresses.add("mintAddress2");
 
-MirrorWorld.checkStatusOfMinting(addresses,new CheckStatusOfMintingListener() {
+MirrorWorld.Solana.Asset.checkStatusOfMinting(addresses,new CheckStatusOfMintingListener() {
 
     @Override
     public void onSuccess(CheckStatusOfMintingResponse response) {

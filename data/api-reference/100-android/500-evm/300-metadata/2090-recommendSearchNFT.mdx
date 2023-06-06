@@ -11,7 +11,7 @@ NFT info at most as recommend NFT. Developer can use this API to fill some recom
 List<String> collections = new ArrayList<>();
 collections.add("collection address 1");
 
-MirrorWorld.recommendSearchNFT(collections, new MirrorCallback() {
+MirrorWorld.Ethereum.Metadata.recommendSearchNFT(collections, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

@@ -9,7 +9,7 @@ Get single transaction with its signature.
 ```java
 String walletAddress = "wallet address";
 
-MirrorWorld.getTokensByWallet(walletAddress, new MirrorCallback() {
+MirrorWorld.Ethereum.Wallet.getTokensByWallet(walletAddress, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

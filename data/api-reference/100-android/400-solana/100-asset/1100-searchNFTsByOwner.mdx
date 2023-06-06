@@ -14,7 +14,7 @@ owners.add("owner address 1");
 int limit = 99;
 int offset = 1;
 
-MirrorWorld.searchNFTsByOwner(owners, limit, offset, new FetchByOwnerListener() {
+MirrorWorld.Solana.Asset.searchNFTsByOwner(owners, limit, offset, new FetchByOwnerListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         int count = multipleNFTsResponse.nfts.size();

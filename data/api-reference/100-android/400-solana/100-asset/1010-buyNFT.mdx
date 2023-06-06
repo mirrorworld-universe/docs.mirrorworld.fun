@@ -11,7 +11,7 @@ String mintAddress = "mint address";
 double price = 1;
 String auctionHouse = "auction_house";
 
-MirrorWorld.buyNFT(activity, mintAddress, price, auctionHouse, new BuyNFTListener() {
+MirrorWorld.Solana.Asset.buyNFT(activity, mintAddress, price, auctionHouse, new BuyNFTListener() {
     @Override
     public void onBuySuccess(ListingResponse listingResponse) {
         Log.d("MirrorSDK","Buy NFT success,NFT is:"+listingResponse.mint_address);

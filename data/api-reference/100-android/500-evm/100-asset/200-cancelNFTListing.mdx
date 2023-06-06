@@ -13,7 +13,7 @@ String mintAddress = "mint_address";
 String tokenID = "token ID";
 String marketplaceAddress = "marketplace address";
 
-MirrorWorld.cancelNFTListing(activity, mintAddress, tokenID, marketplaceAddress, new MirrorCallback() {
+MirrorWorld.Ethereum.Asset.cancelNFTListing(activity, mintAddress, tokenID, marketplaceAddress, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

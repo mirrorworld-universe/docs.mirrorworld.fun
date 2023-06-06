@@ -7,7 +7,7 @@ title: getTokens
 Get the current user's tokens.
 
 ```java
-MirrorWorld.getTokens(new GetWalletTokenListener() {
+MirrorWorld.Solana.Wallet.getTokens(new GetWalletTokenListener() {
     @Override
     public void onSuccess(GetWalletTokenResponse walletTokenResponse) {
         Log.d("MirrorSDK","Get wallet token success!");

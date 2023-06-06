@@ -13,7 +13,7 @@ float amount = "1.1f";
 String tokenMint = "mint address";
 int decimals = 1;
 
-MirrorWorld.transferToken(activity, toPublicKey, amount, tokenMint, decimals, new MirrorCallback() {
+MirrorWorld.Solana.Wallet.transferToken(activity, toPublicKey, amount, tokenMint, decimals, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

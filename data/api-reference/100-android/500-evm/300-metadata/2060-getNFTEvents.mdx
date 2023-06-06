@@ -12,7 +12,7 @@ String tokenID = "token ID";
 int page = 1;
 int page_size = 10;
 
-MirrorWorld.getNFTEvents(contract,tokenID, page, page_size, new MirrorCallback() {
+MirrorWorld.Ethereum.Metadata.getNFTEvents(contract,tokenID, page, page_size, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

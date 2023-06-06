@@ -11,7 +11,7 @@ List<String> collections = new ArrayList<>();
 collections.add("collection address 1");
 collections.add("collection address 2");
 
-MirrorWorld.getCollectionSummary(collections, new GetCollectionSummaryListener() {
+MirrorWorld.Ethereum.Metadata.getCollectionSummary(collections, new GetCollectionSummaryListener() {
     @Override
     public void onSuccess(List<GetCollectionSummaryRes> res) {
         //todo

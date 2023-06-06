@@ -6,14 +6,14 @@ title: getTransactions
 # `getTransactions`
 Get the transactions of user's wallet.
 
-
 ```java
-int limit = 1;
+String digest;
 
-MirrorWorld.Ethereum.Wallet.getTransactions(limit, new MirrorCallback() {
+MirrorWorld.SUI.Wallet.getTransactions(digest,new MirrorCallback() {
     @Override
     public void callback(String result) {
-       //todo
+        //todo
+        
     }
 });
 ```

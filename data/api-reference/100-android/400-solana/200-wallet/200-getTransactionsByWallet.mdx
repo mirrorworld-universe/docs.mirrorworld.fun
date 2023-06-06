@@ -11,7 +11,7 @@ String walletAddress = "wallet address";
 int limit = 1;
 String nextBefore = "nextBefore";
 
-MirrorWorld.getTransactionsByWallet(walletAddress, limit, nextBeforeStr, new MirrorCallback() {
+MirrorWorld.Solana.Wallet.getTransactionsByWallet(walletAddress, limit, nextBeforeStr, new MirrorCallback() {
     @Override
     public void callback(String r) {
         //todo

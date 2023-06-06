@@ -13,7 +13,7 @@ String collection = "collection address";
 String tokenID = "token ID";
 String toWalletAddress = "to wallet address";
 
-MirrorWorld.transferNFT(activity, collection, tokenID, toWalletAddress, new MirrorCallback() {
+MirrorWorld.Ethereum.Asset.transferNFT(activity, collection, tokenID, toWalletAddress, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

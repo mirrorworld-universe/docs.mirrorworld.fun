@@ -15,7 +15,7 @@ creatorAddresses.add("creator wallet address 1");
 creatorAddresses.Add("creator wallet address 2");
 int limit = 99;
 
-MirrorWorld.searchNFTsByOwner(creatorAddresses, limit, new MirrorCallback() {
+MirrorWorld.Ethereum.Asset.searchNFTsByOwner(creatorAddresses, limit, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

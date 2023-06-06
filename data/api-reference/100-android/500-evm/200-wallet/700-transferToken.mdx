@@ -15,7 +15,7 @@ String to = "to wallet address";
 int decimals = 1;
 String contract = "contract";
 
-MirrorWorld.transferToken(returnActivity, nonce, gasPrice, gasLimit, to, decimals, contract, new MirrorCallback() {
+MirrorWorld.Ethereum.Wallet.transferToken(returnActivity, nonce, gasPrice, gasLimit, to, decimals, contract, new MirrorCallback() {
     @Override
     public void callback(String result) {
         String r = (result);

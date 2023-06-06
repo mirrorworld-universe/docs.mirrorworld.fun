@@ -10,7 +10,7 @@ Get collection info in marketplace.
 List<String> collections = new ArrayList<>();
 collections.add("your collection address");
 
-MirrorWorld.getCollectionInfo(collections, new GetCollectionInfoListener() {
+MirrorWorld.Ethereum.Metadata.getCollectionInfo(collections, new GetCollectionInfoListener() {
     @Override
     public void onSuccess(List<GetCollectionInfoRes> result) {
         //todo

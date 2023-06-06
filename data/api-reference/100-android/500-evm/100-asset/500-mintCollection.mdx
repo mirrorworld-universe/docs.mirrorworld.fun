@@ -13,7 +13,7 @@ String contractType = "contract type";
 String metaDataUri = "https://my-collection-metadata-uri/metadata.json";
 String confirmation = MirrorConfirmation.Default;
 
-MirrorWorld.mintCollection(activity, contractType, metaDataUri, confirmation, new MirrorCallback() {
+MirrorWorld.Ethereum.Asset.mintCollection(activity, contractType, metaDataUri, confirmation, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

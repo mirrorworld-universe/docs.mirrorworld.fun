@@ -12,7 +12,7 @@ List<String> collections = new ArrayList<>();
 collections.add("collection address 1");
 String searchString = "weapon";
 
-MirrorWorld.searchNFTs(collections, searchString, new SearchNFTsListener() {
+MirrorWorld.Solana.Metadata.searchNFTs(collections, searchString, new SearchNFTsListener() {
     @Override
     public void onSuccess(List<MirrorMarketSearchNFTObj> result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));

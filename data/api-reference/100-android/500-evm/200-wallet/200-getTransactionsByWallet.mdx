@@ -10,7 +10,7 @@ Get the transactions of user's wallet.
 String walletAddress = "wallet address";
 int limit = 1;
 
-MirrorWorld.getTransactionsByWallet(walletAddress, limit, new MirrorCallback() {
+MirrorWorld.Ethereum.Wallet.getTransactionsByWallet(walletAddress, limit, new MirrorCallback() {
     @Override
     public void callback(String r) {
         //todo

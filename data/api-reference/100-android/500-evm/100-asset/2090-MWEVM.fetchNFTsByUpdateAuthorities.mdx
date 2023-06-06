@@ -16,7 +16,7 @@ creatorAddresses.Add("authority address 2");
 int limit = 99;
 int offset = 1;
 
-MirrorWorld.fetchNFTsByUpdateAuthorities(updateAuthorities, limit, offset, new FetchNFTsListener() {
+MirrorWorld.Ethereum.Asset.fetchNFTsByUpdateAuthorities(updateAuthorities, limit, offset, new FetchNFTsListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         Log.d("MirrorSDK","FetchNFTsByUpdateAuthorities success!nft count is:"+multipleNFTsResponse.nfts.size());

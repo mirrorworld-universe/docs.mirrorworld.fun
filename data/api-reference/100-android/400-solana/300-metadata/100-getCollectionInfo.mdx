@@ -10,7 +10,7 @@ Get collection info in marketplace.
 List<String> collections = new ArrayList<>();
 collections.add("your collection address");
 
-MirrorWorld.getCollectionInfo(collections, new GetCollectionInfoListener() {
+MirrorWorld.Solana.Metadata.getCollectionInfo(collections, new GetCollectionInfoListener() {
     @Override
     public void onSuccess(List<GetCollectionInfoRes> result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));

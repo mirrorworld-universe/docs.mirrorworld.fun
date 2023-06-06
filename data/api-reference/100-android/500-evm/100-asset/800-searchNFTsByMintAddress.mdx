@@ -13,7 +13,7 @@ List<ReqEVMFetchNFTsToken> tokens = new ArrayList<>();
 tokens.add(new ReqEVMFetchNFTsToken("token_address_1","tokenID1"));
 tokens.add(new ReqEVMFetchNFTsToken("token_address_2","tokenID2"));
 
-MirrorWorld.searchNFTsByMintAddress(tokens, new MirrorCallback() {
+MirrorWorld.Ethereum.Asset.searchNFTsByMintAddress(tokens, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

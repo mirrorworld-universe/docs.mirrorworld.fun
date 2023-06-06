@@ -11,7 +11,7 @@ Fetches an NFT's details by mint address.
 String tokenAddress = "mint_address";
 String tokenID = "token ID";
 
-MirrorWorld.queryNFT(tokenAddress, tokenID, new MirrorCallback() {
+MirrorWorld.Ethereum.Asset.queryNFT(tokenAddress, tokenID, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

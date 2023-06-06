@@ -26,7 +26,7 @@ filter.put("filter_type","enum");
 List<JSONObject> filters = new ArrayList<>();
 filters.add(filter);
 
-MirrorWorld.getNFTsByUnabridgedParams(collection, page, page_size, order_by, desc, sale, null, new MirrorCallback() {
+MirrorWorld.Ethereum.Metadata.getNFTsByUnabridgedParams(collection, page, page_size, order_by, desc, sale, null, new MirrorCallback() {
     @Override
     public void callback(String result) {
         //todo

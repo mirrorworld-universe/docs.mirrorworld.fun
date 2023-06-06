@@ -24,9 +24,10 @@ Create a developer account on the [Developer dashboard](https://app.mirrorworld.
 3.  Add configeration to build.gradle:
 
 ```java
-dependencies {
-        implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
-        }
+dependencies 
+{
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+}
 ```
 
 4. Config CustomTab!
@@ -129,21 +130,12 @@ And finnaly,your activity config may like this:
 ## Usage
 ### Choose your chain
 Developers must use specified classes to call APIs on specified chains.  
-All API on all chains is same to call, but the instance's package is different.
-You may select which package you want to use when typing API:
-    <img src="https://market-assets.mirrorworld.fun/docs/android-sdk-select-chain.png" width="100%" height="100%" />
-    
-By the way, if you want to use different chain in your project, you may type all package path like the following code:
-```java
-//If you inited the SDK, there is no need to call initSDK API again even though you want to change your chain.
-com.mirror.sdk.solana.MirrorWorld.initSDK(activity,APIKey,env);
-com.mirror.sdk.evm.MirrorWorld.startLogin(new MirrorCallback() {
-    @Override
-    public void callback(String result) {
-        //todo: Show result
-    }
-}, cctivity);
-```
+
+**There are two situations here:**
+If you want to call an API from the Auth or Client module, simply type in `"MirrorWorld."` and the IDE will suggest all the APIs you may need. 
+However, if you want to call an API on a specific chain, you will need to select the chain you want to work on after typing in "MirrorWorld.", and then choose the API you want from that chain's API. For example, if I want to buy an NFT on the Solana chain, I would need to type in `MirrorWorld.Solana.Asset.buyNFT()`.
+
+*Each chain will include three functional modules: Asset, Wallet, and Metadata. If you are unsure where to find the specific API you want to call, you can refer to our [API documentation](https://mirrorworld.fun/docs/api-reference/android).*
 
 ### Initialization
 We can initialize Mirror World SDK with the following code:
@@ -203,7 +195,7 @@ owners.add("owner_wallet_address_2");
 int limit = 1;
 int offset = 1;
 
-MirrorWorld.fetchNFTsByOwnerAddresses(owners, limit, offset, new FetchByOwnerListener() {
+MirrorWorld.Solana.Asset.fetchNFTsByOwnerAddresses(owners, limit, offset, new FetchByOwnerListener() {
     @Override
     public void onFetchSuccess(MultipleNFTsResponse multipleNFTsResponse) {
         int count = multipleNFTsResponse.nfts.size();
@@ -236,7 +228,7 @@ String to_wallet_address = "target wallet address";
 Activity activity = this;
 String confirmation = MirrorConfirmation.Default;
 
-MirrorWorld.transferNFT(activity, mint_address, to_wallet_address, confirmation, new TransferNFTListener() {
+MirrorWorld.Solana.Wallet.transferNFT(activity, mint_address, to_wallet_address, confirmation, new TransferNFTListener() {
     @Override
     public void onTransferSuccess(ListingResponse listingResponse) {
         Log.d("Transfer result","success");
@@ -258,7 +250,7 @@ String confirmation = MirrorConfirmation.Default;
 String mint_address = "nft_mint_address";
 Double price = 0.1;
 
-MirrorWorld.listNFT(activity, mint_address, price, confirmation, new ListNFTListener() {
+MirrorWorld.Solana.Asset.listNFT(activity, mint_address, price, confirmation, new ListNFTListener() {
     @Override
     public void onListSuccess(ListingResponse listingResponse) {
         Log.d("ListNFT success","price is:"+listingResponse.price);

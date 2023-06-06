@@ -10,7 +10,7 @@ Get details of a NFT in Marketplace.
 String contract = "contract";
 String tokenID = "token ID";
 
-MirrorWorld.getNFTInfo(contract,tokenID, new MirrorCallback() {
+MirrorWorld.Ethereum.Metadata.getNFTInfo(contract,tokenID, new MirrorCallback() {
     @Override
     public void callback(String result) {
         String r = "Visiting result:"+MirrorGsonUtils.getInstance().toJson(result);

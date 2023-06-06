@@ -10,7 +10,7 @@ Get NFT real price which is calculated by fee rate. The param fee means how much
 String price = "1.2";
 int fee = 4250;
 
-MirrorWorld.getNFTRealPrice(price,fee, new GetNFTRealPriceListener() {
+MirrorWorld.Ethereum.Metadata.getNFTRealPrice(price,fee, new GetNFTRealPriceListener() {
     @Override
     public void onSuccess(GetNFTRealPriceRes result) {
         Log.d("MirrorSDK","Visiting success:"+MirrorGsonUtils.getInstance().toJson(result));
