@@ -1,0 +1,22 @@
+---
+title: mintNFT
+description: This endpoint is used to mint a new NFT on the collection
+---
+
+# `mintNFT`
+This endpoint is used to mint a new NFT on the collection.
+
+```js
+import { type SUIMintNFTPayload } from "@mirrorworld/web3.js"
+
+  const payload = reactive<SUIMintNFTPayload>({
+    collection_address:'',
+    name:'',
+    description:'',
+    image_url:'',
+    attributes:[],
+    to_wallet_address:''
+  });
+
+await mirrorworld.value.SUI.Asset.mintNFT(payload)
+```

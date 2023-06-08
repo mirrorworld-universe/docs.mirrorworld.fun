@@ -1,0 +1,21 @@
+---
+title: mintCollection
+description: This endpoint is used to mint a new NFT collection. The collection can be type ERC1155 or ERC721
+---
+
+# `mintCollection`
+
+This endpoint is used to mint a new NFT collection. The collection can be type ERC1155 or ERC721.
+
+```js
+import { type SUIMintCollectionPayload } from "@mirrorworld/web3.js"
+
+const payload = reactive<SUIMintCollectionPayload>({
+  name:'collection1234',
+  symbol:'1234',
+  description:'this is my collection and it's awsom',
+  creators:[]
+});
+
+await mirrorworld.Ethereum.Asset.mintCollection(payload)
+```
