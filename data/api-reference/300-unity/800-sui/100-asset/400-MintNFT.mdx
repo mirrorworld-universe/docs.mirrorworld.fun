@@ -1,0 +1,47 @@
+---
+title: MintNFT
+---
+
+# `MintNFT`
+
+This endpoint is used to mint a new NFT on the collection.
+
+### Parameters
+
+`collection_address|string` - The address of the collection
+
+`name|string` - The name of the NFT to be minted
+
+`image_url|string` -  The image url of the NFT to be minted.
+
+`attributes|List<SUIReqMintNFTAttribute>` - Attribute of the NFT to be minted.
+
+`description|string` - The description of the NFT to be minted.
+
+`to_wallet_address|string` - The wallet address to which the NFT will be minted. Default is users wallet address.
+
+`action|Action<CommonResponse<SUIResMintNFT>>` - The callback function of this method is used to receive the results.
+
+### Return
+
+`response class` - `CommonResponse<SUIResMintNFT>`
+
+### Code Example
+
+```csharp
+string collection;
+string name;
+string image_url;
+List<SUIReqMintNFTAttribute> attributes
+string description;
+string to_wallet_address;
+
+MWSDK.SUI.Asset.MintNFT(collection, name, image_url, attributes, description, to_wallet_address, (res) =>
+{
+    CommonResponse<SUIResMintNFT> resObj = res;
+    string message = resObj.message;
+    SUIResMintNFT data = resObj.data;
+
+    //todo
+});
+```

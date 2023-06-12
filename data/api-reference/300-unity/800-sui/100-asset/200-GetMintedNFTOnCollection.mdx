@@ -1,0 +1,25 @@
+---
+title: GetMintedNFTOnCollection
+---
+
+# `GetMintedNFTOnCollection`
+This endpoint is used to fetch NFTs on collection that user already minted.
+
+### Parameters
+`action|Action<CommonResponse<List<SUIResGetMintedNFTOnCollectionObj>>` - The callback function of this method is used to receive the results.
+
+### Return
+`response class` - `CommonResponse<List<SUIResGetMintedNFTOnCollectionObj>>`
+
+### Code Example
+```csharp
+string collection;
+MWSDK.SUI.Asset.GetMintedNFTOnCollection(collection, (res) =>
+{
+    CommonResponse<List<SUIResGetMintedNFTOnCollectionObj>> resObj = res;
+    string message = resObj.message;
+    List<SUIResGetMintedNFTOnCollectionObj> data = resObj.data;
+
+    //todo
+});
+```

@@ -1,0 +1,25 @@
+---
+title: GetMintedCollections
+---
+
+# `GetMintedCollections`
+This endpoint is used to fetch collections that user already minted.
+
+### Parameters
+`action|Action<CommonResponse<List<SUIResGetMintedCollectionsObj>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<List<SUIResGetMintedCollectionsObj>>`
+
+### Code Example
+```csharp
+
+MWSDK.SUI.Asset.GetMintedCollections((res) =>
+{
+    CommonResponse<List<SUIResGetMintedCollectionsObj>> resObj = res;
+    string message = resObj.message;
+    List<SUIResGetMintedCollectionsObj> data = resObj.data;
+
+    //todo
+});
+```
