@@ -1,0 +1,40 @@
+---
+title: MintCollection
+---
+
+# `MintCollection`
+
+This endpoint is used to mint a new NFT collection. The collection can be type ERC1155 or ERC721.
+
+### Parameters
+
+`name|string` - The name of the collection
+
+`symbol|string` - The symbol of the collection
+
+`description|string` - The description of the collection.
+
+`creators|string[]` - The creators of the collection. Default is the user address.
+
+`action|Action<CommonResponse<SUIResMintCollection>>` - The callback function of this method is used to receive the results.
+
+### Return
+
+`response class` - `CommonResponse<SUIResMintCollection>`
+
+### Code Example
+
+```csharp
+string name;
+string symbol;
+string description;
+string[] creator;
+
+MWSDK.SUI.Asset.MintCollection(name, symbol, description, creator, (res) =>
+{
+    CommonResponse<SUIResMintCollection> resObj = res;
+    string message = resObj.message;
+    SUIResMintCollection data = resObj.data;
+    //todo
+});
+```
