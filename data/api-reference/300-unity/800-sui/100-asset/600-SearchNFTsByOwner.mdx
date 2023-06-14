@@ -1,0 +1,30 @@
+---
+title: SearchNFTsByOwner
+---
+
+# `SearchNFTsByOwner`
+This endpoint is used to search NFTs by owner address.
+
+### Parameters
+
+`owner_address|string` - The address of NFTs holder
+
+`action|Action<CommonResponse<List<SUIResQueryNFT>>>` - The callback function of this method is used to receive the results.
+
+### Return
+
+`response class` - `CommonResponse<List<SUIResQueryNFT>>`
+
+### Code Example
+
+```csharp
+string owner_address;
+MWSDK.SUI.Asset.SearchNFTsByOwner(owner_address, (res) =>
+{
+    CommonResponse<List<SUIResQueryNFT>> resObj = res;
+    string message = resObj.message;
+    List<SUIResQueryNFT> data = resObj.data;
+
+    PrintLog("result:" + JsonUtility.ToJson(res));
+});
+```
