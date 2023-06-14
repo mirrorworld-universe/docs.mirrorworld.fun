@@ -1,0 +1,27 @@
+---
+title: QueryNFT
+---
+
+# `QueryNFT`
+This endpoint is used to get an NFT by nft_object_id.
+
+### Parameters
+`nft_object_id|string` - The id address of the NFT
+
+`action|Action<CommonResponse<List<SUIResQueryNFT>>` - The callback function of this method is used to receive the results.
+
+### Returns
+`response class` - `CommonResponse<List<SUIResQueryNFT>>`
+
+### Code Example
+```csharp
+string nft_object_id;
+MWSDK.SUI.Asset.QueryNFT(nft_object_id, (res) =>
+{
+    CommonResponse<List<SUIResQueryNFT>> resObj = res;
+    string message = resObj.message;
+    List<SUIResQueryNFT> data = resObj.data;
+
+    //todo
+});
+```

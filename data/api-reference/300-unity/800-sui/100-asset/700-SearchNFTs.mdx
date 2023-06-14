@@ -1,0 +1,32 @@
+---
+title: SearchNFTs
+---
+
+# `SearchNFTs`
+This endpoint is used to search NFTs by object ids.
+
+### Parameters
+
+`nft_object_ids|List<string>` - The list of NFT object ids to be searched.
+
+`action|Action<CommonResponse<List<SUIResQueryNFT>>>` - The callback function of this method is used to receive the results.
+
+### Return
+
+`response class` - `CommonResponse<List<SUIResQueryNFT>>`
+
+### Code Example
+
+```csharp
+List<string> nft_object_ids = new List<string>();
+nft_object_ids.Add("object id 1");
+
+MWSDK.SUI.Asset.SearchNFTs(nft_object_ids, (res) =>
+{
+    CommonResponse<List<SUIResQueryNFT>> resObj = res;
+    string message = resObj.message;
+    List<SUIResQueryNFT> data = resObj.data;
+
+    //todo
+});
+```
