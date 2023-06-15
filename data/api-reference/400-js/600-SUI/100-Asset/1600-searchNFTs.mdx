@@ -1,0 +1,18 @@
+---
+title: searchNFTs
+description:This endpoint is used to search NFTs by object ids
+---
+
+# `searchNFTs`
+
+This endpoint is used to search NFTs by object ids
+
+```js
+import { type SUISearchNFTsPayload } from "@mirrorworld/web3.js"
+
+const payload = reactive<SUISearchNFTsPayload>({
+  nft_object_ids:[]
+});
+
+await mirrorworld.SUI.Asset.searchNFTsByOwner(payload)
+```

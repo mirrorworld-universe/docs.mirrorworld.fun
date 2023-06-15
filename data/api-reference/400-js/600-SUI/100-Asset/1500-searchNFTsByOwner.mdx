@@ -1,0 +1,18 @@
+---
+title: searchNFTsByOwner
+description: This endpoint is used to search NFTs by owner address
+---
+
+# `searchNFTsByOwner`
+
+This endpoint is used to search NFTs by owner address
+
+```js
+import { type SUISearchNFTsByOwnerPayload } from "@mirrorworld/web3.js"
+
+const payload = reactive<SUISearchNFTsByOwnerPayload>({
+  owner_address:''
+});
+
+await mirrorworld.SUI.Asset.searchNFTsByOwner(payload)
+```
