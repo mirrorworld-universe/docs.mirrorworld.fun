@@ -1,0 +1,18 @@
+---
+title: searchNFTs
+---
+
+# `searchNFTs`
+This endpoint is used to search NFTs by owner address.
+
+```java
+List<string> nft_object_ids;
+
+MirrorWorld.SUI.Asset.searchNFTs(nft_object_ids, new MirrorCallback() {
+    @Override
+    public void callback(String result) {
+        //todo
+        
+    }
+});
+```
