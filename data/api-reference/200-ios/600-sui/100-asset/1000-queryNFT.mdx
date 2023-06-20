@@ -1,0 +1,14 @@
+---
+title: queryNFT
+---
+
+# `queryNFT`
+Fetch the details of a NFT.
+
+```swift
+MWSDK.SUI.Asset.queryNFT(nft_object_id:nft_object_id,onSuccess: { data in
+    print(data)
+},onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+})
+```

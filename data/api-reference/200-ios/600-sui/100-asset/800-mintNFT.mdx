@@ -1,0 +1,14 @@
+---
+title: mintNFT
+---
+
+# `mintNFT`
+Mint a new NFT.
+
+```swift
+MWSDK.SUI.Asset.mintNFT(collection_address:collection_address,name: name,image_url: image,attributes: attributes,description: description,to_wallet_address:to_wallet_address,onSuccess: { data in
+    print(data)
+},onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+})
+```

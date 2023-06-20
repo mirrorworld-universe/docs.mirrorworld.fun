@@ -1,0 +1,14 @@
+---
+title: transferSUI
+---
+
+# `transferSUI`
+Transfer SUI to another wallet.
+
+```swift
+MWSDK.SUI.Wallet.transferSUI(to_publickey:to_publickey,amount:amount,onSuccess: { data in
+    print(data)
+},onFailed: { code, message in
+    print("failed~")
+})
+```
