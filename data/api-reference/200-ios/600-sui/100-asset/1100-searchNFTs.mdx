@@ -1,0 +1,14 @@
+---
+title: searchNFTs
+---
+
+# `searchNFTs`
+This endpoint is used to search NFTs by object ids.
+
+```swift
+MWSDK.SUI.Asset.searchNFTs(nft_object_ids:nft_object_ids_arr,onSuccess: { data in
+    print(data)
+},onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+})
+```

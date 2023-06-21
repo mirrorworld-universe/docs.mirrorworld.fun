@@ -1,0 +1,14 @@
+---
+title: searchNFTsByOwner
+---
+
+# `searchNFTsByOwner`
+This endpoint is used to search NFTs by owner address.
+
+```swift
+MWSDK.SUI.Asset.searchNFTsByOwner(owner_address:owner_address,onSuccess: { data in
+    print(data)
+},onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+})
+```

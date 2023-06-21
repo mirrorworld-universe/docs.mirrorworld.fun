@@ -1,0 +1,14 @@
+---
+title: mintCollection
+---
+
+# `mintCollection`
+Mint a parent NFT collection.
+
+```swift
+MWSDK.SUI.Asset.mintCollection(name:name,symbol: symbol, description: description,creators: creators_arr,onSuccess: { data in
+    print(data)
+},onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+})
+```

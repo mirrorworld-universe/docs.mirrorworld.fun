@@ -1,0 +1,14 @@
+---
+title: getMintedNFTsOnCollection
+---
+
+# `getMintedNFTsOnCollection`
+This endpoint is used to fetch NFTs on collection that user already minted.
+
+```swift
+MWSDK.SUI.Asset.getMintedNFTsOnCollection(collection_address: collection_address,onSuccess: { data in
+    print(response)
+},onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+})
+```

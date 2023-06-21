@@ -1,0 +1,14 @@
+---
+title: getMintedCollection
+---
+
+# `getMintedCollection`
+This endpoint is used to fetch collections that user already minted.
+
+```swift
+MWSDK.SUI.Asset.getMintedCollection { response in
+    print(response)
+} onFailed: {code, error in
+    print("failed:\(code),\(message ?? "")")
+}
+```

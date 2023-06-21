@@ -1,0 +1,13 @@
+---
+title: transferToken
+---
+
+# `transferToken`
+Transfer Token to another wallet.
+```swift
+MWSDK.SUI.Wallet.transferToken(to_publickey:to_publickey,amount:amount,token:token,onSuccess: { data in
+    print(data)
+},onFailed: { code, message in
+    print("failed~")
+})
+```
