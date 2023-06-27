@@ -1,0 +1,13 @@
+---
+title: getNFTEvents
+---
+
+# `getNFTEvents`
+Get NFT's events.
+```swift
+MWSDK.EVM.Metadata.getNFTEvents(contract: contract,token_id:token_id, page: page, page_size: page_size, marketplace_address: marketplace_address) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed  code:\(code),message: \(message ?? "")")
+}
+```

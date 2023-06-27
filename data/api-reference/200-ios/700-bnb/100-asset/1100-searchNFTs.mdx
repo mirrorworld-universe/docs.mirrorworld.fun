@@ -1,0 +1,14 @@
+---
+title: searchNFTs
+---
+
+# `searchNFTs`
+Get a collection of NFT by mint addresses.
+
+```swift
+MWSDK.EVM.Asset.searchNFTs(tokens: mint_address_arr) { data in
+    print(data)
+} onFailed: { code, message in
+    print("failed:\(code),\(message ?? "")")
+}
+```

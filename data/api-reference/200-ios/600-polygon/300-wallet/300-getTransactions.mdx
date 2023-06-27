@@ -1,0 +1,13 @@
+---
+title: getTransactions
+---
+
+# `getTransactions`
+Get transactions that belong to the current wallet.
+```swift
+MWSDK.EVM.Wallet.getTransactions(limit: Int(limit)) { response in
+    print(response)
+} onFailed: {
+    print("failed ~")
+}
+```
