@@ -417,29 +417,29 @@ export const ChangeLogIcon = (props: Props) => {
       <path
         d="M11.25 3.49997H4.24997V12H11.25V3.49997Z"
         stroke="currentColor"
-        stroke-width="0.750003"
-        stroke-linejoin="round"
+        strokeWidth="0.750003"
+        strokeLinejoin="round"
       />
       <path
         d="M9.75 3.49998V1.99997H2.99997C2.8619 1.99997 2.74997 2.1119 2.74997 2.24997V10.5H4.24998"
         stroke="currentColor"
-        stroke-width="0.750003"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="0.750003"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M6.25 6.5H9.25001"
         stroke="currentColor"
-        stroke-width="0.750003"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="0.750003"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M6.25 8.5H9.25001"
         stroke="currentColor"
-        stroke-width="0.750003"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="0.750003"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )

@@ -1,9 +1,8 @@
 import { useMDX } from "components/mdx-components"
-import SEO from 'components/seo'
+import SEO from "components/seo"
 import { Solutions } from "contentlayer/generated"
 import DocsLayout from "layouts/docs"
 import { getSolutionsDoc, getSolutionsPaths } from "lib/contentlayer-utils"
-import { generateShareImageUrl } from 'lib/seo'
 import { GetStaticPaths, GetStaticProps } from "next"
 
 export default function SolutionsPages({ doc }: { doc: Solutions }) {
@@ -17,7 +16,8 @@ export default function SolutionsPages({ doc }: { doc: Solutions }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { paths: getSolutionsPaths(), fallback: false }
+  const paths = getSolutionsPaths()
+  return { paths: paths, fallback: false }
 }
 
 export const getStaticProps: GetStaticProps<{ doc: Solutions }> = async (

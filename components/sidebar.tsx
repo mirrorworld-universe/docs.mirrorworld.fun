@@ -28,32 +28,30 @@ const sanitize = (href: string) =>
   href.replace(/#.*/, "").split("/").filter(Boolean)
 
 const pathe = (item: TreeNode) =>
-  item.external_url ||
-  item.internal_path ||
-  item.url_path
+  item.external_url || item.internal_path || item.url_path
 
 /**
-     * Recursively determines if the current item should be collapsed or not.
-     * @param item 
-     * @param currentLocation 
-     * @returns 
-     */
+ * Recursively determines if the current item should be collapsed or not.
+ * @param item
+ * @param currentLocation
+ * @returns
+ */
 function shouldCollapse(item: TreeNode, currentLocation: string): boolean {
   function hasMatchingDecendant(routes: TreeNode[]): boolean {
     for (const route of routes) {
       const path = pathe(route)
       if (path === currentLocation) {
-        return true;
+        return true
       }
       if (route.children.length > 0 && hasMatchingDecendant(route.children)) {
-        return true;
+        return true
       }
     }
 
-    return false;
+    return false
   }
 
-  return hasMatchingDecendant(item.children);
+  return hasMatchingDecendant(item.children)
 }
 
 function DocLink(props: DocLinkProps) {
@@ -63,7 +61,6 @@ function DocLink(props: DocLinkProps) {
     () => href.toString() === asPath,
     [props.href, asPath],
   )
-
 
   const rawHrefPathSegments = useMemo(() => sanitize(href.toString()), [href])
   const routePathSegments = useMemo(() => sanitize(asPath.toString()), [asPath])
@@ -80,7 +77,6 @@ function DocLink(props: DocLinkProps) {
     return ["api-reference"].includes(router.pathname.split("/")[1])
   }, [router.pathname])
 
-
   useEffect(() => {
     const isActive = shouldCollapse(item, asPath)
     if (!isActive) onClose()
@@ -92,7 +88,9 @@ function DocLink(props: DocLinkProps) {
   function handleCollapseAnimationEnded() {
     if (isOpen) {
       if (linkRef.current) {
-        if (Math.abs(sanitize(asPath).length - sanitize(rawHrefPath).length) <= 1) {
+        if (
+          Math.abs(sanitize(asPath).length - sanitize(rawHrefPath).length) <= 1
+        ) {
           linkRef.current.scrollIntoView({
             behavior: "smooth",
             block: "center",
@@ -102,7 +100,10 @@ function DocLink(props: DocLinkProps) {
     }
   }
 
-  const debouncedHandleCollapseAnimationEnded = debounce(handleCollapseAnimationEnded, 20)
+  const debouncedHandleCollapseAnimationEnded = debounce(
+    handleCollapseAnimationEnded,
+    20,
+  )
 
   return (
     // @ts-ignore
@@ -154,7 +155,10 @@ function DocLink(props: DocLinkProps) {
         ) : null}
       </HStack>
       {item.children.length ? (
-        <Collapse in={isOpen} onAnimationComplete={debouncedHandleCollapseAnimationEnded}>
+        <Collapse
+          in={isOpen}
+          onAnimationComplete={debouncedHandleCollapseAnimationEnded}
+        >
           <chakra.div
             ml={2}
             pl={2}
@@ -163,7 +167,7 @@ function DocLink(props: DocLinkProps) {
             borderLeftStyle="solid"
             data-sub-navitem
           >
-            {item.children.map((_subItem, j) => {
+            {item.children?.map((_subItem, j) => {
               return (
                 <DocLink
                   item={_subItem}
@@ -184,10 +188,8 @@ function DocLink(props: DocLinkProps) {
                     }}
                   >
                     {_subItem.children.length ? (
-                      <>
-                        {_subItem.nav_title}
-                      </>
-                    ): (
+                      <>{_subItem.nav_title}</>
+                    ) : (
                       <>
                         {isApiReference ? (
                           <chakra.code
@@ -259,7 +261,7 @@ export function Sidebar() {
   return (
     <nav aria-label="Sidebar Navigation">
       <Stack as="ul" listStyleType="none" direction="column" spacing="6">
-        {currentSideBar.map((item) => {
+        {currentSideBar?.map((item) => {
           return (
             <li className="sidebar__category" key={item.name.toLowerCase()}>
               <HStack mb="3" color="textLink">
@@ -274,7 +276,7 @@ export function Sidebar() {
               </HStack>
 
               <Flex as="ul" listStyleType="none" direction="column">
-                {item.routes.map((subItem, index) => {
+                {item.routes?.map((subItem, index) => {
                   return (
                     <div
                       key={subItem.url_path + index}
