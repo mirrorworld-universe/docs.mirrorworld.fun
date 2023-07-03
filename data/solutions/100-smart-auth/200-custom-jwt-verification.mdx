@@ -1,0 +1,33 @@
+---
+title: Custom JWT Authentication Provider
+description: Custom JWT Authentication Provider
+---
+
+# Custom JWT Authentication Provider
+
+Developers can integrate login with their own existing JWT tokens. That way users don’t have to login on MirrorWorld platform, but can directly use 3rd party login system.
+
+
+## 1. Generate and Sign JWT by Custom JWT Authentication Provider
+3rd party can issue and sign JWT on their own servers. After that JWT can be included in Authorization header with requests to MirrorWorld API.
+```http
+Authorization: 'Bearer <3rd party issued token>'
+```
+
+## 2. Verify JWT by Custom JWT Authentication Provider
+Custom JWT Authentication Provider has to provide an API endpoint, which can be used to verify tokens that were issued by it.
+Endpoint has to take a header with authorization token, and return HTTP 200 if token passes verification.
+
+## 3. Register Verification Endpoint on Project
+Under each project in developer dashboard, 3rd party developer can register JWT token verification endpoint.
+Endpoint will be used to verify JWT tokens issued by the custom JWT authentication provider.
+
+![custom-auth-provider.png](/docs/images/techintro/custom-auth-provider.png)
+
+## 4. Register Users on the Project
+
+User is identified by email field inside the JWT token payload. Email inside the token must equal the email used when registering user on the project.
+
+To register a user on the project, 3rd party developer can use endpoint: [https://api.mirrorworld.fun/v2/auth/project-login](https://api.mirrorworld.fun/v2/auth/project-login)
+
+More details on how to use endpoint can be found in [API documentation](https://developer.mirrorworld.fun/#a1155c6d-c89e-416c-a7ca-0ecf7c955f8e)
