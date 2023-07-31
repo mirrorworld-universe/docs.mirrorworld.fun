@@ -1,0 +1,138 @@
+---
+title: Minting NFT on Sui NFT Collection
+description: In this guide, you will mint Collection and NFTs on the Sui chain using MirrorWorld SDK.
+author:
+  name: MirrorWorld
+  twitter: https://twitter.com/joinmirrorworld
+tags:
+  - Sui
+  - Asset Minting
+---
+
+In this guide, you will mint NFTs to the collection you created using the Mirror
+World SDK. If you do not yet have a collection address, please follow
+[this guide to create a Sui NFT collection](/guides/how-to-create-sui-nft-collection)
+and return to this page to mint NFTs to your collection.
+
+That's it! Let's move forward to minting NFTs.
+
+## Pre-requisites
+
+- [ ] Your `collection_object_id` is prepared
+- [ ] Your have prepared your API credentials (API Key and Secret Access Key).
+- [ ] Your Sui wallet has been funded.
+
+### Funding your Sui wallet
+
+Before deploying your Collection's contract, you need to make sure that
+your Sui wallet is funded with enough funds to pay the gas fee for
+deployment.
+
+You can see your Sui wallet on the developer dashboard when you select the
+Chain/Network combination on the developer dashboard.
+
+- **For Mainnet**, you can fund your wallet by directly transferring funds into
+your Sui wallet shown on developer dashboard from an external wallet, or exchange.
+- **For Testnet,** you can use a faucet to get tokens. Current best way to getting
+test tokens is through official Sui Discord channel [https://discord.gg/sui](https://discord.gg/sui)
+
+### API Credentials
+
+> Skip this section if you already have your API credentials
+
+Minting NFTs requires the following API credentials:
+
+- **API Key** - passed in to the `x-api-key` header. If you don't have an API
+Key, please use the
+[Getting Started](/overview/development-guide/projects#creating-a-project)
+guide to create a project and get the API Key for your project.
+- **Secret Access Key** - passed into the
+`Authorization: Bearer <SECRET_ACCESS_KEY>` header. If you don't have your
+Secret Access Key yet, please follow
+[this guide to acquire your Secret Access Key](/overview/development-guide/developer-dashboard#secret-access-key-management).
+
+## Minting your Sui NFTs
+
+### With HTTP
+
+You can use the
+[Mint NFT to collection](https://developer.mirrorworld.fun/#8f4d519f-a0dd-4710-aab0-cc11579bdca0)
+API to mint NFTs to your collection
+
+Replace `:network` parameter with the network value you want to deploy to.
+
+_Required properties:_
+
+- **`collection_address`**: The address of the collection object id
+- **`name`**: The name of the NFT
+- **`description`**: The description of the NFT
+- **`image_url`**: The url of the NFT's image
+- **`attributes`**: The attributes of the NFT. This is an array of key, value objects
+
+_Optional properties:_
+
+- **`to_wallet_address`**: The wallet address to which the NFT will be minted.
+You can use this to airdrop NFTs to a user.
+
+Below is an example code snippet. Take note of the variables to be replaced
+
+```bash
+curl --location 'https://api.mirrorworld.fun/v2/:chain/:network/asset/mint/nft' \
+    --header 'x-api-key: <YOUR_API_KEY>' \
+    --header 'Authorization: Bearer <YOUR_SECRET_ACCESS_KEY>' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "collection_address": "YOUR_COLLECTION_ADDRESS",
+        "name": "Mayfair Witches Pass #1",
+        "description": "This GIFTED key is the mystical gateway to enter the immersive world of Anne Rices Immortal Universe, where the ancient rituals of the Mayfair Witches hold sway. Infused with hidden magic and a blend of herbs like lavender, rosemary, and sage, this key serves as the ultimate talisman for unlocking the seekers potential and delving deeper into the world of the immortals. With this key in-hand, holders will discover their true power and become one with the mystical realm beyond.",
+        "image_url": "ipfs://bafybeidwnmendawp3w245jijvejt7xqenistsffqt6ebc4dnfmbf6mcxzy/gifted_02--0420.jpg",
+        "attributes": [
+          {
+            "trait_type": "Gem Material",
+            "value": "Emerald"
+          },
+          {
+            "trait_type": "Key Material",
+            "value": "Silver"
+          },
+        ],
+    }'
+```
+
+### With JavaScript SDK
+
+This example uses the JavaScript SDK to mint an NFT on Sui mainnet.
+
+```tsx
+import { MirrorWorld, Sui } from "@mirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Sui("mainnet"),
+  auth: {
+    secretAccessKey: "YOUR_SECRET_ACCESS_KEY",
+  },
+})
+
+const payload = {
+  collection_address: "YOUR_COLLECTION_ADDRESS",
+  name: 'Mayfair Witches Pass #1',
+  description: 'This GIFTED key is the mystical gateway to enter the immersive world of Anne Rice\'s Immortal Universe, where the ancient rituals of the Mayfair Witches hold sway. Infused with hidden magic and a blend of herbs like lavender, rosemary, and sage, this key serves as the ultimate talisman for unlocking the seeker\'s potential and delving deeper into the world of the immortals. With this key in-hand, holders will discover their true power and become one with the mystical realm beyond.',
+  image_url: 'ipfs://bafybeidwnmendawp3w245jijvejt7xqenistsffqt6ebc4dnfmbf6mcxzy/gifted_02--0420.jpg',
+  attributes: [
+    {
+      "trait_type": "Gem Material",
+      "value": "Emerald"
+    },
+    {
+      "trait_type": "Key Material",
+      "value": "Silver"
+    },
+  ],
+}
+
+const nft = await mirrorworld.Sui.Asset.mintNFT(payload)
+console.log("my new NFT", nft)
+```
+
+Congratulations! You have successfully minted an NFT to your Sui blockchain collection.

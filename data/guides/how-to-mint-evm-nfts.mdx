@@ -1,5 +1,5 @@
 ---
-title: Minting ERC721/ERC1155 NFT Collection
+title: Minting NFT on ERC721/ERC1155 Collection
 description:
   In this guide, you will mint NFTs to the collection you created using the
   Mirror World SDK.
@@ -22,7 +22,7 @@ That's it! Let's move forward to minting NFTs.
 
 - [ ] Your `collection_address` is prepared
 - [ ] Your have prepared your API credentials (API Key and Secret Access Key).
-- [ ] Your wallet has been funded. If you hav
+- [ ] Your wallet has been funded.
 
 ### Funding your project wallet
 
@@ -98,11 +98,11 @@ curl --location 'https://api.mirrorworld.fun/v2/:chain/:network/asset/mint/nft' 
 
 ### With JavaScript SDK
 
-This example uses the JavaScript SDK to mint an ERC721 Collection on Ethereum
+This example uses the JavaScript SDK to mint a NFT to Collection on Ethereum
 mainnet.
 
 ```tsx
-import { MirrorWorld, Ethereum, EVMContractType } from "@mirrorworld/web3.js"
+import { MirrorWorld, Ethereum } from "@mirrorworld/web3.js"
 
 const mirrorworld = new MirrorWorld({
   apiKey: "YOUR_API_KEY",
