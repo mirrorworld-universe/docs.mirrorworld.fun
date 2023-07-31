@@ -1,0 +1,217 @@
+---
+title: Creating a Sui NFT Collection With Mirror World Smart SDK
+description:
+Mirror World Smart SDK supports minting NFT collection contracts on Sui mainnet and testnet chains.
+author:
+name: MirrorWorld
+twitter: https://twitter.com/joinmirrorworld
+tags:
+  - Asset Minting
+  - Sui
+---
+
+An NFT Collection is made up of a variety of several unique NFTs. Usually, NFT
+collections may consist of various NFTs that share some similar characteristics
+with slight variations across each individual token. For GameFi, NFTs are
+important assets for players, which allows players to actually own the assets
+and help the project achieve co-creation. For SocialFi, NFTs can be used as
+status symbols or rewards to be given to social users.
+
+Whatever it is, creating your own NFT collection is a big step in your NFT
+journey. In this guide, we're going to learn how to create NFT Collections on
+Sui with the Mirror World SDK.
+
+> 💡 **Why do you need an NFT collection?**
+>
+> NFT collection is the classification of digital assets and is usually used to
+> manage different series of NFTs. For example, for GameFi, weapons can be
+> divided into different NFT collections depending on their rarity, and each NFT
+> collection maintains a separate floor price.
+
+## Getting Started
+
+To create an NFT collection, make sure you already have a Mirror World developer
+account. A developer account grants you access to numerous features that can
+help you build on Mirror World, and it can be created within seconds. If you do
+not yet have an account, head over
+to [https://app.mirrorworld.fun/auth/login](https://app.mirrorworld.fun/auth/login)
+to get started. You'll be redirected to the Mirror World dashboard after
+successfully signing up.
+
+## Create a Project
+
+Creating a project is a necessary step in your NFT collection creation process.
+A project is the foundation for developing with Mirror World. Every project is
+created with three major credentials:
+
+1. **API Key:** Used to authorize a client to access the Mirror World API.
+2. **Client ID:** Used to publicly identify your project.
+3. **Client Secret:** Sensitive credential that the project owner/developer will
+use to verify certain claims about their project on our Authentication
+services.
+
+These credentials can be found on the Mirror World developer dashboard within
+the project.
+
+## Preparing your token metadata
+
+The metadata returned from the `metadata_url` field for tokens minted on the
+corresponding blockchain should include the following fields:
+
+- `name`: The name of the token
+- `description`: A description of the token
+- `image_url`: A URL to an image of the token
+- `attributes`: An optional array of key-value pairs that describe the
+attributes of the token, such as rarity, color, or other characteristics.
+
+The `attributes` field is optional and can be used to provide more information
+about the token. It consists of an array of key-value pairs, where each key
+represents a trait and each value represents the trait's value.
+
+For example, the following metadata includes attributes for a fictional NFT
+named "Mayfair Witches Pass #1". The attributes describe the gem material, key
+material, top frame, gem cut, shaft model, crystal currents, elemental fusion,
+energy level, rarity, and model blueprint of the NFT.
+
+```json
+{
+  "name": "Mayfair Witches Pass #1",
+  "description": "This GIFTED key is the mystical gateway to enter the immersive world of Anne Rice's Immortal Universe, where the ancient rituals of the Mayfair Witches hold sway. Infused with hidden magic and a blend of herbs like lavender, rosemary, and sage, this key serves as the ultimate talisman for unlocking the seeker's potential and delving deeper into the world of the immortals. With this key in-hand, holders will discover their true power and become one with the mystical realm beyond.",
+  "image_url": "ipfs://bafybeidwnmendawp3w245jijvejt7xqenistsffqt6ebc4dnfmbf6mcxzy/gifted_02--0420.jpg",
+  "attributes": [
+    {
+      "trait_type": "Gem Material",
+      "value": "Emerald"
+    },
+    {
+      "trait_type": "Key Material",
+      "value": "Silver"
+    },
+    {
+      "trait_type": "Top Frame",
+      "value": "Kite Frame"
+    },
+    {
+      "trait_type": "Gem Cut",
+      "value": "Cushion Cut"
+    },
+    {
+      "trait_type": "Shaft Model",
+      "value": "Spiral"
+    },
+    {
+      "trait_type": "Crystal Currents",
+      "value": "Love"
+    },
+    {
+      "trait_type": "Elemental Fusion",
+      "value": "Emotional Balance"
+    },
+    {
+      "trait_type": "Energy Level",
+      "value": "3.5"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Gifted"
+    },
+    {
+      "trait_type": "Model Blueprint",
+      "value": "MKEY-0001"
+    }
+  ]
+}
+```
+
+> After creating your metadata upload it to Object storage or a decentralized
+> storage service like IPFS, Arweave, or Filecoin.
+
+**Make sure to keep track of the URL to the metadata, as it will be used when
+minting the NFTs.**
+
+>
+
+## Funding your project wallet
+
+Before deploying your Collection's contract, you need to make sure that
+your Sui wallet is funded with enough funds to pay the gas fee for
+deployment.
+
+You can see your Sui wallet on the developer dashboard when you select the
+Chain/Network combination on the developer dashboard.
+
+- **For Mainnet**, you can fund your wallet by directly transferring funds into
+your Sui wallet shown on developer dashboard from an external wallet, or exchange.
+- **For Testnet,** you can use a faucet to get tokens. Current best way to getting
+test tokens is through official Sui Discord channel [https://discord.gg/sui](https://discord.gg/sui)
+
+## Deploy the NFT Collection Contract
+
+Now that your collection metadata is prepared, you can deploy your new NFT
+collection contract with the
+[**mint NFT Collection API**](https://developer.mirrorworld.fun/#3d090fd2-d294-462b-98e1-a233b703d79b).
+This API requires the following credentials:
+
+- **API Key** - passed in to the `x-api-key` header. If you don't have an API
+Key, please use the
+[Getting Started](/overview/development-guide/projects#creating-a-project)
+guide to create a project and get the API Key for your project.
+- **Secret Access Key** - passed into the
+`Authorization: Bearer <SECRET_ACCESS_KEY>` header. If you don't have your
+Secret Access Key yet, please follow
+[this guide to acquire your Secret Access Key](/overview/development-guide/developer-dashboard#secret-access-key-management).
+
+### With HTTP
+
+Replace `:network` parameters to the network value you want to deploy to.
+
+_Required parameters:_
+
+- **`name`**: The name of the collection
+- **`description`**: The symbol of the collection
+
+_Optional parameters:_
+
+- **`creators`**: List of collection creators, that are legible to get a share of royalties
+
+```bash
+curl --location 'https://api.mirrorworld.fun/v2/sui/:network/asset/mint/collection' \
+--header 'x-api-key: <YOUR_API_KEY>' \
+--header 'Authorization: Bearer <YOUR_SECRET_ACCESS_KEY>' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Funama",
+    "description": "Sunama Sui Collection"
+}'
+```
+
+### With JavaScript SDK
+
+This example uses the JavaScript SDK to deploy a Sui Collection on Sui mainnet chain.
+
+```tsx
+import { MirrorWorld, Sui } from "@mirrorworld/web3.js"
+
+const mirrorworld = new MirrorWorld({
+  apiKey: "YOUR_API_KEY",
+  chainConfig: Sui("mainnet"),
+  auth: {
+    secretAccessKey: "YOUR_SECRET_ACCESS_KEY",
+  },
+})
+
+const payload = {
+  name: "Fun Apes 2023",
+  description: "Collection of Fun Apes 2023",
+}
+
+const contract = await mirrorworld.Sui.Asset.createCollection(payload)
+console.log("my new contract", contract)
+```
+
+If you followed the steps above, you should now have successfully deployed your
+NFT collection contract on a Sui blockchain! Congratulations!
+
+Now you can start minting and trading your unique digital assets. Don't forget
+to promote your collection and engage with your audience to build a strong
+community around your NFTs.
