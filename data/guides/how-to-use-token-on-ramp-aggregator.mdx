@@ -8,17 +8,19 @@ author:
 tags:
   - Token OnRamp
   - Wallet
+  - Fiat
 ---
-
-Fiat on-ramp service allows users to convert fiat currency into cryptocurrency. In MirrorWorld, we partner with multiple third-party on-ramp providers to provides a seamless experience to use all major payment methods, including debit and credit card, local bank transfers and other local payment methods.
 
 ## Getting Started
 
-Before getting started, you want to make sure that you already have a Mirror
-World developer account and an already created project. If you're yet to create
-one, head over to https://app.mirrorworld.fun/auth/login to get started or go
-through this guide for a proper explanation.
+In this article, you’re going to learn how to integrate a service that enables
+your users to buy cryptocurrencies using the method they are already used to
+such as credit and debit cards. 
 
+Token On-Ramp is the process of buying crypto
+with fiat currency using a credit, debit card or even by making a transfer. This
+is a game changer in web3 right now because it reduces the friction of
+onboarding web3 native into web3.
 
 ## Create UI Widget URL
 
@@ -28,15 +30,11 @@ Base URL:
 http://onramp.mirrorworld.fun/
 ```
 
-| URL Param  | Required?        | Sample           |
-| ---------- | ---------------- | ---------------- |
-| `api_key`  | `Yes`            | `<mw_live_abcxx>`|
-| `fiat_currency`  | `No`            | `<USD>`|
-| `fiat_amount`  | `No`            | `<200>`|
-| `crypto_currency`  | `No`            | `<ETH>`|
-| `network`  | `No`            | `<Ethereum>`|
-| `wallet_address`  | `No`            | `<0x000000>`|
+Now let’s get straight into building! The only thing you need to do is to add
+the base URL to your iframe or webview on mobile, the on-ramp provider will
+guide you on how to complete your purchase.
 
-Once you get the URL, you can open it in your app (e.g. webview, iframe). The on-ramp provider will guide the user to finish the purchase process, including typing in payment information and KYC if needed.
+![token_onramp_aggregator.png](/docs/images/tutorials/token_onramp_aggregator.png)
 
-![onramp_aggregator.png](/docs/images/tutorials/onramp_aggregator.png)
+By implementing these steps, you'll seamlessly bridge the gap between
+traditional currencies and the exciting realm of cryptocurrencies.

@@ -175,6 +175,11 @@
       "error": "EXPIRED_SECRET_ACCESS_KEY",
       "message": "This secret access key provided has already expired. Please generate a new token on the developer dashboard. Some helpful resources: (1) Generate a secret access key: https://app.mirrorworld.fun (2) Managing Your Secret Access Key: https://docs.mirrorworld.fun/further-reading/security/access-secret-key"
     },
+    "NETWORK_NOT_SUPPORTED": {
+      "code": "100033",
+      "error": "NETWORK_NOT_SUPPORTED",
+      "message": "Chain or Network is not supported"
+    },
     "UNAUTHORIZED_BOT_REQUEST": {
       "code": "100100",
       "error": "UNAUTHORIZED_BOT_REQUEST",
@@ -219,6 +224,11 @@
       "code": "120007",
       "error": "REQUEST_ERROR",
       "message": "Problem with request parameters"
+    },
+    "TRANSACTION_NOT_FOUND": {
+      "code": "120008",
+      "error": "TRANSACTION_NOT_FOUND",
+      "message": "Transaction not found"
     },
     "USER_WALLET_ERROR": {
       "code": "120010",
@@ -379,6 +389,11 @@
       "code": "666014",
       "error": "AIRDROP_LIMIT_REACHED",
       "message": "Airdrop limit reached."
+    },
+    "AIRDROP_FAILED": {
+      "code": "666015",
+      "error": "AIRDROP_FAILED",
+      "message": "Airdrop failed"
     }
   },
   "keys": [
@@ -417,6 +432,7 @@
     "PROJECT_NOT_FOUND",
     "INVALID_SECRET_ACCESS_KEY",
     "EXPIRED_SECRET_ACCESS_KEY",
+    "NETWORK_NOT_SUPPORTED",
     "UNAUTHORIZED_BOT_REQUEST",
     "BAD_REQUEST",
     "REQUEST_VALIDATION_ERROR",
@@ -426,6 +442,7 @@
     "INSUFFICIENT_TOKEN_BALANCE_ERROR",
     "MARKETPLACE_DOES_NOT_EXIST",
     "REQUEST_ERROR",
+    "TRANSACTION_NOT_FOUND",
     "USER_WALLET_ERROR",
     "NOT_IMPLEMENTED",
     "INSUFFICIENT_PERMISSIONS_ON_PROJECT",
@@ -464,6 +481,7 @@
     "RPC_CONNECTION_RESET",
     "TOKEN_ACCOUNT_NOT_INTIATED",
     "TOKEN_ADDRESS_ALREADY_EXIST",
-    "AIRDROP_LIMIT_REACHED"
+    "AIRDROP_LIMIT_REACHED",
+    "AIRDROP_FAILED"
   ]
 }
