@@ -10,7 +10,12 @@ tags:
   - Wallet
 ---
 
-Fiat on-ramp service allows users to convert fiat currency into cryptocurrency. In MirrorWorld, we partner with multiple third-party on-ramp providers to provides a seamless experience to use all major payment methods, including debit and credit card, local bank transfers and other local payment methods.
+In this article, you’re going to learn how to integrate a service that enables
+your users to buy cryptocurrencies using the method they are already used to
+such as credit and debit cards. Token On-Ramp is the process of buying crypto
+with fiat currency using a credit, debit card or even by making a transfer. This
+is a game changer in web3 right now because it reduces the friction of
+onboarding web3 native into web3.
 
 ## Getting Started
 
@@ -18,7 +23,6 @@ Before getting started, you want to make sure that you already have a Mirror
 World developer account and an already created project. If you're yet to create
 one, head over to https://app.mirrorworld.fun/auth/login to get started or go
 through this guide for a proper explanation.
-
 
 ## Create UI Widget URL
 
@@ -28,15 +32,42 @@ Base URL:
 http://onramp.mirrorworld.fun/
 ```
 
-| URL Param  | Required?        | Sample           |
-| ---------- | ---------------- | ---------------- |
-| `api_key`  | `Yes`            | `<mw_live_abcxx>`|
-| `fiat_currency`  | `No`            | `<USD>`|
-| `fiat_amount`  | `No`            | `<200>`|
-| `crypto_currency`  | `No`            | `<ETH>`|
-| `network`  | `No`            | `<Ethereum>`|
-| `wallet_address`  | `No`            | `<0x000000>`|
+Now let’s get straight into building! The only thing you need to do is to add
+the base URL to your iframe or webview on mobile, the on-ramp provider will
+guide you on how to complete your purchase.
 
-Once you get the URL, you can open it in your app (e.g. webview, iframe). The on-ramp provider will guide the user to finish the purchase process, including typing in payment information and KYC if needed.
+| URL Param         | Required? | Sample            |
+| ----------------- | --------- | ----------------- |
+| `api_key`         | `Yes`     | `<mw_live_abcxx>` |
+| `fiat_currency`   | `No`      | `<USD>`           |
+| `fiat_amount`     | `No`      | `<200>`           |
+| `crypto_currency` | `No`      | `<ETH>`           |
+| `network`         | `No`      | `<Ethereum>`      |
+| `wallet_address`  | `No`      | `<0x000000>`      |
 
 ![onramp_aggregator.png](/docs/images/tutorials/onramp_aggregator.png)
+
+You can also modify the URL with custom data using any of the above parameters,
+for example, Let's say I want the initial fiat amount on the widget to be 500
+then you can modify the URL to like this:
+
+```bash
+http://onramp.mirrorworld.fun/?fiat_amount=500
+```
+
+You can find the full list of parameters in this notion doc:
+[Full list](https://mirrorworldfun.notion.site/On-Ramp-Aggregator-c533d732a7c348ddafc7181c66390312)
+
+## How to test the integration
+
+To test the integration, you can use our staging environment
+https://onramp-staging.mirrorworld.fun and get test cards from our current
+providers below and then run some test transactions.
+
+## Providers
+
+> - [Moonpay](https://docs.moonpay.com/moonpay/implementation-guide/on-ramp/references/sandbox-testing/test-credit-cards)
+> - [Transfi](https://docs.transfi.com/guides/testing-widget#3-payment-methods-for-testinghttps://docs.transfi.com/guides/testing-widget#3-payment-methods-for-testing)
+
+By implementing these steps, you'll seamlessly bridge the gap between
+traditional currencies and the exciting realm of cryptocurrencies.
