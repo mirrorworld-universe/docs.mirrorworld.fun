@@ -1,0 +1,41 @@
+---
+title: How to specify the available network for a wallet using URL params
+description:
+  How to specify the available network for a wallet using URL params
+author:
+  name: Mirror World
+  twitter: https://twitter.com/joinmirrorworld
+tags:
+  - Wallet
+---
+
+In this article, you will learn how to control the network list available for a wallet by manipulating parameters in the URL.
+
+## Getting Started
+
+Before getting started, you want to make sure that you already have a Mirror
+World developer account and an already created project. If you're yet to create
+one, head over to https://app.mirrorworld.fun/auth/login to get started or go
+through this guide for a proper explanation.
+
+## Create UI Widget URL
+
+Base URL:
+
+```bash
+http://auth-next.mirrorworld.fun/
+```
+
+Now let’s get straight into building! All you need to do is add the network name you want to control to the "network" parameter in the URL.
+
+| URL Param         | Required? | Sample            |
+| ----------------- | --------- | ----------------- |
+| `network`         | `No`     | `<solana,bnb,polygon,ethereum>` |
+
+```bash
+https://auth-next.mirrorworld.fun?network=solana,bnb
+```
+
+![wallet-networks.png](/docs/images/tutorials/wallet-networks.png)
+
+By implementing these steps, you will be able to control the list of supported networks in the wallet page.
