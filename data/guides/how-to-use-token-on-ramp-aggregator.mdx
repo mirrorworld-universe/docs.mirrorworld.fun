@@ -44,6 +44,7 @@ guide you on how to complete your purchase.
 | `crypto_currency` | `No`      | `<ETH>`           |
 | `network`         | `No`      | `<Ethereum>`      |
 | `wallet_address`  | `No`      | `<0x000000>`      |
+| `redirect_url`    | `No`      | `<https://mirrorworld.fun>`  |
 
 ![onramp_aggregator.png](/docs/images/tutorials/onramp_aggregator.png)
 
@@ -53,6 +54,12 @@ then you can modify the URL to like this:
 
 ```bash
 http://onramp.mirrorworld.fun/?fiat_amount=500
+```
+
+If you want to redirect to a custom page after a successful purchase. You can modify the URL to like this:
+
+```bash
+http://onramp.mirrorworld.fun/?redirect_url=https://mirrorworld.fun
 ```
 
 You can find the full list of parameters in this notion doc:
