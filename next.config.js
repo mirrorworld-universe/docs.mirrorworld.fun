@@ -1,4 +1,4 @@
-const { withContentlayer } = require("next-contentlayer");
+const { withContentlayer } = require("next-contentlayer")
 
 /**
  * @type {import('next').NextConfig}
@@ -6,6 +6,9 @@ const { withContentlayer } = require("next-contentlayer");
 module.exports = withContentlayer({
   swcMinify: true,
   basePath: "/docs",
+  experimental: {
+    largePageDataBytes: 512 * 1000, // 512kb
+  },
   redirects: () => [
     {
       source: "/discord",
@@ -24,4 +27,4 @@ module.exports = withContentlayer({
     },
   ],
   // noop
-});
+})
