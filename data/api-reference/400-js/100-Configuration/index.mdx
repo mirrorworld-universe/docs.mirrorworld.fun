@@ -137,6 +137,24 @@ const mirrorworld = new MirrorWorld({
 })
 ```
 
+## What's next?
+After the initialization is done, if you want to call the SDK's interface, you need to first have the user log in to obtain a token.
+```ts
+import { MirrorWorld, Solana } from '@mirrorworld/web3.js';
+
+const mirrorworld = ref<MirrorWorld>(
+  new MirrorWorld({
+    apiKey: 'YOUR_SECRET_API_KEY',
+    chainConfig: Solana('mainnet-beta'),
+  })
+);
+
+// Login user with Social Authentication
+async function login() {
+  await mirrorworld.value.login();
+}
+```
+
 ## Advanced Concepts
 
 ### Dynamic Chain Configuration
